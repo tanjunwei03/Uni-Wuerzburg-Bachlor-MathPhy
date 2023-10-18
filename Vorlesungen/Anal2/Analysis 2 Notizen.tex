@@ -1,0 +1,264 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\title{Analysis 2 (Vorlesungen)}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+\begin{Definition}
+	$f$ is differentiable at $x_0\in x$ if and only if
+	\[
+	\lim_{x \to 0} \frac{f(x)-f(x_0)}{x-x_0}=f'(x_0)
+	.\] 
+	(This definition means that the limit exists and is finite.) We define the limit as the derivative.
+\end{Definition}
+
+\begin{Definition}
+	Let $X$ be a set and $f:x\to \R$ a function. A point $x_0\in X$ is called a global maximum if and only if
+	 \[
+	f(x)\le f(x_0)
+	\] 
+	holds for all $x\in X$
+\end{Definition}
+
+\begin{Definition}
+	If it is also true that $f(x)<f(x_0)$ for all $x\in X$, then we call $x_0$ a strict global maximum ``striktes globales Maximum".
+\end{Definition}
+
+\begin{Definition}
+	$x\in X$ heißt lokales (striktes) Maximum, wenn es eine Umgebung $U \subseteq X$ gibt, sodass $x_0$ eine Maximum von $f|_U:U\to \R$ ist. 
+\end{Definition}
+
+\begin{Theorem}
+	(Mittelwertsatz) Sei $I=[a,b]\subseteq \R$ mit $a<b$, und $f,g:[a,b]\to \R$ stetig und differenzierbar. 
+
+	Dann gibt es $x_0\in (a,b)$ mit
+	\[
+		\left( f(b)-f(a) \right) g'(x_0)=\left( g(b)-g(a) \right) f'(x_0)
+	.\] 
+\end{Theorem}
+
+\begin{proof}
+	Sei
+	\[
+	\varphi(x)=\left( f(b)-f(a) \right) g(x)-\left( g(b)-g(a) \right) f(x)
+	.\] 
+	$\varphi(x)$ ist stetig und differenzierbar auf $[a,b]$ bzw. $(a,b)$. Wir haben
+	\[
+	\varphi(a)=\dots=\varphi(b)
+	.\] 
+	Dann k\"{o}nnen wir den Satz Rolles verwenden: $\exists x_0\in (a,b)$ mit $\varphi'(x_0)=0$, d.h.
+	\[
+	\varphi'(x_0)=\left( f(b)-f(a) \right) g'(x_0)-\left( g(b)-g(a) \right) f'(x_0)
+	.\] 
+\end{proof}
+
+\begin{Corollary}
+	Sei $f:[a,b]\to \R$ stetig und differenzierbar in $(a,b)$ mit $f'(x)=0$ f\"{u}r alle $x\in (a,b)$. Dann ist $f$ konstant.
+\end{Corollary}
+
+\begin{Corollary}
+	Sei $f:[a,b]\to \R$ stetig und in $(a,b)$ differenzierbar. Dann
+
+	\begin{enumerate}[label=(\roman*)]
+		\item Gilt $f'\left(x \right) >0$ f\"{u}r alle $x\in (a,b)$, so ist $f$ strikt monoton wachsend.
+		\item Gilt $f'<0$, so ist $f$ monoton fallend.
+	\end{enumerate}
+\end{Corollary}
+
+\begin{Corollary}
+	Sei $f:[a,b]\to \R$ stetig und auf $(a,b)$ differenzierbar mit beschr\"{a}nkter Ableitung, dann sie die Differenzquotienten auch beschr\"{a}nkt. Wenn
+	\[
+	m\le f'(x) \le M
+	,\] 
+	dann ist
+	\[
+	m\le \frac{f(b)-f(a)}{b-a}\le M
+	.\] 
+\end{Corollary}
+
+\begin{Corollary}
+	\[
+	\left| \frac{f(x_2)-f(x_1)}{x_2-x_1} \right| <\|f'\|
+	.\] 
+	Wobei $\|f'\|=\sup_{x\in [a,b]}f'(x)$
+\end{Corollary}
+
+\begin{Theorem}
+	Sei $X\subseteq \C$ offene Teilmenge und $f:X\to \C$ differenzierbar mit lokal beschr\"{a}nkter Ableitung $f':X\to \C$. Dann sei f\"{u}r alle kompakten Teilmengen $K\subseteq X$ und alle $z_1,z_0\in K$ 
+	\[
+	|f(z_1)-f(z_0)|<\|f'\|_K|z_1-z_0|
+	.\] 
+\end{Theorem}
+
+\begin{proof}
+	Wir bezeichnet
+	\[
+	z(t)=z_1t+z_0(1-t)
+	,\] 
+	und wahlen ein komplexe Zahl $c$, womit $c(z_1-x_0)=|z_1-z_0|$. Dann ist
+	\[g(t)=Re\left[ cf(z(t)) \right] 
+	\] 
+	differenzierbar und reelle. Dann ist
+	\begin{align*}
+		g'(t)=&Re\left[ cf'(z(t))(z_1-z_0) \right]
+	\end{align*}
+	Daher gilt auch
+	\begin{align*}
+		|g'(t)|<& |cf'(z(t))(z_1-z_0)\\
+		=& |c| |f'(z(t))| |z_1-z_0|\\
+		=& |f'(z(t))| |z_1-z_0|\\
+		<& \|f'\| |z_1-z_0|
+	\end{align*}
+\end{proof}
+
+\begin{Theorem}
+	(Zwischenwertsatz f\"{u}r Ableitung) Sei $f:[a,b]\to \R$ diffbar mit
+	\[
+	f'(a)\neq f'(b)
+	.\] 
+	Dann nimmt $f'$ jeder Wert zwischen $f'(a)$ und $f'(b)$ in $(a,b)$ an.
+\end{Theorem}
+
+\begin{proof}
+	Nimm an, dass $f'(a)<f'(b)$, und sei $y_0\in (f'(a), f'(b))$. Dann behandelt
+	\[
+		\varphi(x)=f(x)-y_0x, x\in [a,b]
+	.\] 
+	$\varphi$ ist diffbar mit $\varphi'(x)=f'(x)-y_0$. Dann ist
+
+	\begin{gather*}
+		\varphi'(a)=f'(a)-y_0<0\\
+		\varphi'(b)=f'(b)-y_0>0
+	\end{gather*}
+
+	Dann existiert $\epsilon_1, \epsilon_2>0$ mit
+	\begin{gather*}
+		\varphi(x)<\varphi(a), \qquad 
+	\end{gather*}
+\end{proof}
+\section{17/10/23}
+Wir befassen uns mit Grenze wie
+\[
+\lim_{x \to x_0} \frac{f(x)}{g(x)}
+.\] 
+Es wäre gut, wenn wir das als
+\[
+\frac{\lim_{x \to x_0} f(x)}{\lim_{x \to x_0} g(x)}
+\] 
+schreiben könnten. Das ist nur richtig, wenn $\lim_{x \to x_0} g(x)\neq 0$. Was passiert, wenn
+\[
+\lim_{x \to x_0} g(x)=0=\lim_{x \to x_0} f(x)?\] 
+\begin{Lemma}
+	Sei $g(x_0)=0$ und $g'(x_0)\neq 0$. Dann existiert eine Umgebung $U$, daf\"{u}r gilt
+	\[
+	g(x)\neq 0 \qquad x\in U \\ \left\{ 0 \right\} 
+	.\] 
+\end{Lemma}
+\begin{proof}
+	Angenommen, dass es falsch ist. Dann existiert in jeder offene Ball $B_{1 / n}(x_0)$ ein punkt, der wie als $x_n$ bezeichnen und daf\"{u}r gilt, dass $g(x_n)=0$. 
+\end{proof}
+\begin{Proposition}
+	Seien $f,g: X\to \mathbb{K}$ bei $x_0\in X$ differenzierbar und
+	\[
+	f(x_0)=0=g(x_0) \qquad g'(x_0)\neq 0.\]
+	Dann gilt
+	\[
+	\lim_{x \to x_0} \frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}
+	.\] 
+\end{Proposition}
+
+\begin{Theorem}
+	(L'Hopital) Seien $I=(a,b)\subseteq \R$ offen und $f,g:I\to \R$ differenzierbar auf $I$ mit $g'(x)\neq 0$ f\"{u}r alle $x\in I$. Weitere gilt auch entweder
+	\begin{enumerate}[label=(\roman*)]
+		\item $\lim_{x \to a^{-}} f(x)=0= \lim_{x \to a^{-}} f(x)$
+		\item $\lim_{x \to a^{-}} g'(x)=\infty\text{ oder }-\infty$
+	\end{enumerate}
+	In diesem Fall gilt
+	\[
+		\lim_{x \to a^{-}} \frac{f(x)}{g(x)}=\lim_{x \to a^{-}} \frac{f'(x)}{g'(x)}
+	,\]
+	sofern der Grenzwert der Ableitung in $\R\cup \left\{ \pm\infty \right\} $ existiert. Eine entsprechende Aussage gilt f\"{u}r $b$.
+\end{Theorem}
+
+\begin{Definition}
+	Sei $X$ eine offene Teilmenge $\subseteq \R\text{ oder }\C$. Dann
+	\begin{enumerate}
+		\item Eine Funktion $f:X\to \mathbb{K}$ heißt k-mal stetig differenzierbar, wenn $f':X\to \mathbb{K}$ (k-1)-mal stetig differenzierbar ist.
+		\item Wenn das f\"{u}r alle $k\in \mathbb{N}$ passt, heißt $f$ glatt.
+		\item Die Menge alle k-mal stetig differenzierbar Funktionen heißt $\mathcal{C}^k$
+		\item Wenn f\"{u}r a Funktion es f\"{u}r alle $k$ passt, kann die Funktion als glatt gennant werden.
+		\item Die Menge alle glatte Funktionen heißt $\mathcal{C}^\infty$
+	\end{enumerate}
+\end{Definition}
+\begin{proof}
+	$f,g$ sind unbedingt stetig bei $x_0$, also
+	\[
+	\lim_{x \to x_0} f(x)=0=\lim_{x \to x_0} g(x)
+	.\] 
+	Da $g'(x_0)\neq 0$, gibt es eine Umgebung $U\subseteq X$ von $x_0$ mit $g(x)\neq 0$ f\"{u}r $x\in U\\ \left\{ x_0 \right\} $. Dann gilt daf\"{u}r
+	\[
+		\frac{f(x)}{g(x)}=\frac{f(x)-f(x_0)}{g(x)-g(x_0)}=\frac{f(x)-f(x_0)}{x-x_0}\frac{x-x_0}{g(x)-g(x_0)}
+	.\] 
+Weil die beiten Grenzwerte existieren und $g'(x_0)\neq 0$ gilt, folgt also
+\[
+\lim_{x \to x_0} \frac{f(x)}{g(x)}=\frac{f'(x_0)}{g'(x_0)}
+.\] 
+\end{proof}
+\begin{Example}
+	\begin{enumerate}
+		\item Polynome sind glatt, die Ableitung eines Polynoms ist immer einen anderen Polynom.
+		\item Rationale Abbildungen sind glatt, die Ableitung eine rationale Abbildung ist rational.
+		\item Die Ableitung die exponentiale Abbildung ist wieder die exponentiale Abbildung.
+	\end{enumerate}
+\end{Example}
+
+\begin{Definition}
+	Eine Algebra $\mathcal{A}$ von Funktionen ist eine Menge, wobei f\"{u}r alle $f,g\in \mathcal{A}$ gilt.
+ \[
+	 af+bg\in \mathcal{A},\]
+	 \[
+		 fg\in \mathcal{A}
+	 .\] 
+\end{Definition}
+
+\begin{Proposition}
+	Sei $X$ offene Teilmenge der rellen oder komplexen Zahlen und $k\in\mathbb{N}\cup \left\{ \infty \right\} $. Dann
+	\begin{enumerate}
+		\item $\mathcal{C}^k$ bietet eine Unteralgebra alle Funktionen
+		\item Ist $f\neq 0$ auf ganze $X$ eine $\mathcal{C}^k$ Funktion, so ist $\frac{1}{f}\in \mathcal{C}^k (X, \mathbb{K})$.
+		\item Ist Y ein weitere Teilmenge und $g\in \mathcal{C}(Y< \mathbb{K})$ mit $f(X)\subseteq Y$, dann ist $g\circ f \in C^k(X, \mathbb{K})$
+	\end{enumerate}
+\end{Proposition}
+\end{document}
