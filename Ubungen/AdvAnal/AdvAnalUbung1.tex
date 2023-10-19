@@ -1,0 +1,107 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\title{Lineare Algebra 1 Hausaufgabenblatt Nr. 1}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\begin{Problem}
+	 Seien $X, Y$ nichtleere Mengen, $f : X \to Y$ eine Abbildung und $\mathcal A, \mathcal S$ $\sigma$-Algebren über $X$ sowie $B$ eine $\sigma$-Algebra über $Y$. Beweisen oder widerlegen Sie:
+	 \begin{parts}
+		 \item $\mathcal A \cup \mathcal S$ ist eine $\sigma$-Algebra \"{u}ber $X$.
+		 \item $\mathcal A \cap \mathcal S$ ist eine $\sigma$-Algebra \"{u}ber $X$. 
+		 \item $\mathcal A \backslash \mathcal S$ ist eine $\sigma$-Algebra \"{u}ber $X$.
+		 \item $f ^{-1}(\mathcal B)=\left\{ f^{-1}(B)\subseteq X | B\in\mathcal B \right\}$ ist eine $\sigma$-Algebra \"{u}ber $X$.
+		 \item $f(\mathcal A)=\left\{ f(A)\subseteq Y|A\in \mathcal A \right\} $ ist eine $\sigma$-Algebra \"{u}ber $Y$.
+	 \end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Sei
+		\begin{align*}
+			X=&\left\{ a,b,c \right\} \\
+			\mathcal A=&\left\{ \varnothing, \left\{ a,b \right\} , \left\{ c \right\} , X \right\} \\
+			\mathcal S=&\left\{ \varnothing, \left\{ a \right\} , \left\{ b,c \right\} , X \right\}\\
+		\end{align*}
+
+		Dann ist 
+		\[
+		A\cup S=\left\{ \varnothing, \left\{ a \right\} ,\left\{ a,b \right\} , \left\{ c \right\} , \left\{ b,c \right\}, X  \right\} 
+		.\] 
+		keine $\sigma$-Algebra, weil
+		\[
+		\left\{ a,b \right\} \cap \left\{ b,c \right\} =\left\{ b \right\} \not\in \mathcal A \cup \mathcal S
+		.\] 
+
+	\item Richtig.
+		\begin{enumerate}[label=(\arabic*)]
+			\item $X\in \mathcal A, X\in \mathcal S\implies X \in\mathcal A \cap \mathcal S$
+			\item Sei $A\in \mathcal A\cap \mathcal S$. Dann  $A\in \mathcal A$ und $A\in\mathcal S$. 
+
+				Daraus folgt: $A^c\in\mathcal A$ und $A^c\in \mathcal S$. Deswegen ist $A^c\in \mathcal A \cap \mathcal S$.
+
+			\item Sei $(A_j), A_j\in\mathcal A\cap \mathcal S$. Dann gilt:
+\begin{align*}
+	\bigcup_{j=1} ^\infty A_j\in& \mathcal A\\
+	\bigcup_{j=1} ^\infty A_j\in& \mathcal S
+\end{align*}
+Daraus folgt
+\[
+	\bigcup_{j=1} ^\infty A_j\in \mathcal A\cap \mathcal S
+.\] 
+		\end{enumerate}
+	\item Falsch. $X\in \mathcal A$, $X\in \mathcal S\implies X\not\in \mathcal A \backslash\mathcal S$
+	\item Richtig.
+		 \begin{enumerate}[label=(\arabic*)]
+			 \item $f^{-1}(Y)=X\in f^{-1}\mathcal{B}$ 
+			 \item Sei $A=f^{-1}(B)$
+				 \[
+					 X-A=f^{-1}(\underbrace{Y-B}_{\in \mathcal B})\in f^{-1}(\mathcal B)
+			 .\] 
+
+		 \item Es folgt aus
+			 \[
+				 \bigcup_{j\in \N} f^{-1}(B_j)=f^{-1}\left( \bigcup_{j\in \N} B_j \right) 
+			 .\] 
+	 \end{enumerate}
+		 \item Falsch. Sei $a\in Y$ und $f$ die konstante Abbildung $f(x)=a\forall x\in X$. Dann gilt
+			 \[
+			 f(\mathcal A)=\left\{ \varnothing, \left\{ a \right\}  \right\} 
+			 \] 
+			 was keine $\sigma$-Algebra ist
+	\end{parts}
+\end{proof}
+
+\end{document}
