@@ -69,13 +69,16 @@
 geschrieben werden kann. Weiterhin ist obige Menge im Fall $(d_1, d_2) \neq  (0, 0)$ immer eine Gerade
 \end{Theorem}
 
+\begin{Remark}
+	Der Parameterform f\"{u}r Geraden und Ebenen ist in der Vorlesung bewiesen.
+\end{Remark}
 \begin{Problem}\label{pr:linalg1-3}
 	Beweisen Sie folgende Aussage:
 Gegeben seien zwei Punkte $p, q \in \R^2$ mit $p \neq  q$. Dann gibt es genau eine Gerade $g \subseteq \R^2$ mit $p \in g$ und $q \in g$. Diese ist gegeben durch $g_{p,q} = \{x \in \R^2 |x_1 (q_2 - p_2 ) - x_2(q_1 - p_1 ) = p_1q_2-  p_2q_1\}$.
 \end{Problem}
 
 \begin{proof}
-	Wir nutzen Def.~\ref{def:line1}. Weil $p$ und $q$ in der Gerade sind, können wir zwei gleichungen schreiben\ldots
+	Wir nutzen Def.~\ref{def:line1}. Weil $p$ und $q$ in der Gerade sind, können wir zwei Gleichungen schreiben\ldots
 	\begin{align*}
 		a_1p_1+a_2p_2&=b\\
 		a_1q_1+a_2q_2&=b
@@ -97,6 +100,8 @@ Gegeben seien zwei Punkte $p, q \in \R^2$ mit $p \neq  q$. Dann gibt es genau ei
 		x_1t'+x_2t'\frac{p_1-q_1}{q_2-p_2}=&p_1t'+p_2\frac{p_1-q_1}{q_2-p_2}t'
 	\end{align*}
 	Es ist klar, dass die zweite Gleichung nur die erste Gleichung durch $t' / t$ multipliziert ist. Deshalb habe die zwei Gleichungen die gleiche Lösungsmengen, dann sind die Gerade, die durch die Gleichungen definiert werden, auch gleich.
+
+Wenn $q_1=q_2$ d\"{u}rfen wir die L\"{o}sungemenge nicht so schreiben. Aber wir k\"{o}nnen den Beweis wiederholen, aber mit $a_2$ als das freie Parameter. Es darf nicht, dass $\left( q_1-p_1,q_2-p_2 \right) =(0,0)$, weil $\va q\neq \va 0$
 \end{proof}
 \begin{Problem}
 	In Beispiel 1.2.8 wurde der Schnitt von zwei Ebenen bestimmt. Er hatte eine ganz bestimmte Form, die wir für den Kontext dieser Aufgabe als Gerade bezeichnen wollen, formal:
@@ -184,22 +189,51 @@ also die einzige Lösung ist $\xi_1=t_2=t_2'=0 \implies t_2=t_2'=0,t_1=t_2\impli
 		E_2=\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} +u_1\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}+u_2\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad u_1,u_2\in \R
 		.\]
 		Dann ist $E_1\cap E_2=\varnothing$
-		\item Es ist klar, dass maximal eines der F\"{a}lle gelten kann. Wir nehmen an, dass die erste zwei F\"{a}lle nicht gelten. Dann gilt
+	\item 
+		\begin{Theorem}
+			Sei $\va a, \va b\in \R^n, n\in \N$. Dann gibt es genau eine Gerade $g$, wof\"{u}r gilt $\va a \in g, \va b \in g$. Es kann als
+			\[
+			\va a+t(\va b-\va a), t\in \R
+			\] 
+			geschrieben werden.
+		\end{Theorem}
+		\begin{proof}
+			Es ist klar, dass
+			\begin{gather*}
+				\va a\in g\qquad(t=0)\\
+				\va b\in g\qquad(t=1)
+			\end{gather*}
+			Sei dann eine andere Gerade $g'$, wof\"{u}r gilt $\va a\in g'$ und $\va b\in g'$. $g'$ kann als
+			\[
+			\va u+t\va v, t\in \R
+			\]
+			geschrieben werden, wobei $\va u, \va v\in\R^n$. Es existiert $t_1,t_2\in\R$, sodass
+			\begin{gather*}
+				\va u+t_1\va v=\va a\\
+				\va u+t_2\va v=\va b
+			\end{gather*}
+			Es gilt dann
+			\begin{gather*}
+				\va u=\va a-t_1\va v\\
+				\va a-t_1\va v+t_2\va v=\va b\\
+				\va v = \frac{1}{t_2-t_1}(\va b - \va a)\qquad t_1\neq t_2\text{ weil }\va a \neq \va b
+			\end{gather*}
+			Es gilt dann f\"{u}r $g'$: 
+			\begin{align*}
+				g'=& \left\{ \va u+t\va v|t\in \R \right\} \\
+				=& \left\{ \va a-\frac{t_1}{t_2-t_1}(\va b-\va a)+\frac{t}{t_2-t_1}(\va b-\va a)|t\in \R \right\}\\
+				=& \left\{\va a+\left( \frac{t}{t_2-t_1}-\frac{t_1}{t_2-t_1} \right) \left( \va b -\va a \right) | t\in \R \right\}
+			\end{align*}
+			Wenn man $t'=\frac{t}{t_2-t_1}-\frac{t_1}{t_2-t_1}$ definiert, ist es dann klar, dass $g'=g$
+		\end{proof}
+
+			Es ist klar, dass maximal eines der F\"{a}lle gelten kann. Wir nehmen an, dass die erste zwei F\"{a}lle nicht gelten. Dann gilt
 		\[
 		|g\cap E|\ge 2
 		.\] 
 		Es gibt dann mindestens zwei Punkte in $g\cap E$. Es ist auch klar, dass die Verbindungsgerade zwische die beide Punkte $g$ ist (Pr.~\ref{pr:linalg1-3})
 
-		\begin{Lemma}
-			Sei $\va a, \va b\in \R^3$. Die Verbindungsgerade kann als
-			\[
-			\va a+t(\va b-\va a), \qquad t\in \R\] 
-			geschrieben werden.
-		\end{Lemma}
 
-		\begin{proof}
-			Klar von der Lösung zu Pr.~\ref{pr:linalg1-3}
-		\end{proof}
 		\begin{Theorem}
 			Sei $\va v_1, \va v_2\in E$. Dann ist die Verbindungsgerade zwischen $\va v_1$ und $\va v_2$ auch in $E$.
 		\end{Theorem}

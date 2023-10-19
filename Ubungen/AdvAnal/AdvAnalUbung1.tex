@@ -30,7 +30,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \begin{document}
-	\title{Lineare Algebra 1 Hausaufgabenblatt Nr. 1}
+	\title{Vertiefung Analysis Hausaufgabenblatt Nr. 1}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
@@ -100,8 +100,129 @@ Daraus folgt
 			 \[
 			 f(\mathcal A)=\left\{ \varnothing, \left\{ a \right\}  \right\} 
 			 \] 
-			 was keine $\sigma$-Algebra ist
+			 was keine $\sigma$-Algebra ist, solange $Y\neq \left\{ a \right\} $.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+		
+	 \item Sei $X := \Q$ und $\mathcal A_\sigma (M)$ die von $M := \{(a, b] \cap Q | a, b \in \Q, a < b\}$ erzeugte $\sigma$-Algebra. Zeigen Sie, dass $\mathcal A_\sigma (M ) = P(\Q)$ gilt.
+
+ \item Seien $X, Y$ nichtleere Mengen und $f:X\to Y$ eine Abbildung. Zeigen Sie: F\"{u}r $\mathcal M\subseteq \mathcal{P}(Y)$ gilt
+	 \[
+		 f^{-1}\left( A_\sigma(\mathcal M) \right) =\mathcal A_\sigma\left( f^{-1}(\mathcal M) \right) 
+	 .\]
+	 Das Urbild von $\mathcal M$ ist hierbei analog zum Urbild einer $\sigma$-Algebra definiert durch
+	 \[
+		 f^{-1}(\mathcal M):=\left\{ f^{-1}(B)\subseteq X|B\in \mathcal M \right\} 
+	 .\] 
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item $\left\{ q \right\} \in \mathcal A_\sigma(\mathcal M)\forall q\in \Q$, weil
+		\[
+			\left\{ q \right\} =\bigcap_{n=1}^\infty \left(q-\frac{1}{n}, q\right]\in \mathcal A_\sigma(M) 
+		.\] 
+		Weil $\Q$ abz\"{a}hlbar ist, sind alle Teilmenge $A\in \mathcal P(\Q)$ abz\"{a}hlbar, daher 
+		\[
+		\mathcal P(\Q)\subseteq \mathcal A_\sigma\left( \left\{ \left\{ q \right\} | q\in \Q \right\}  \right) \subseteq \mathcal A_\sigma(M)
+	\]
+		Es ist klar, dass
+		\[
+		\mathcal A_\sigma(M)\subseteq \mathcal P(\Q)
+		.\]
+	\item 
+	
+		Sei $ P=\left\{ \mathcal A| \mathcal A\text{ ist eine }\sigma\text{-Algebra},\mathcal M \subseteq \mathcal A \right\} $. Per Definition ist $\mathcal A_\sigma(\mathcal M)=\bigcap_{\mathcal A\in P} \mathcal A$. Dann ist der zu bewiesene Satz
+		\[
+			f^{-1}\left( \bigcap_{\mathcal A\in P} \mathcal A \right) =\bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)\overset{?}{=}\mathcal A_\sigma\left( f^{-1}\left( \mathcal M \right)  \right) 
+		.\]
+		Jeder $\sigma$-Algebra $f^{-1}\left( \mathcal A \right) $ entschließt $f^{-1}\left( \mathcal M \right) $. Daraus folgt, dass
+		\[
+			\mathcal A_\sigma \left( f^{-1}\left( \mathcal M \right)  \right) \subseteq \bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)
+		.\] 
+
 	\end{parts}
 \end{proof}
 
+\begin{Problem}
+	Wir betrachten $\R^n$ mit der Standardmetrik, also ausgestattet mit der Euklidischen Norm $\|\cdot\|$. F\"{u}r $re>0$ und $x\in \R^n$ sei $B_r(x):=\left\{ y\in \R^n |\|x-y\|<r \right\} $. Definiere außerdem $B_\Q := \left\{ B_r(q)\subseteq \R^n | \Q \ni r > 0, q \in \Q^n \right\} $ und $B_\R :=\left\{ B_r(x)\subseteq \R^n | r > 0, x \in \R^n \right\} $ 
+	\begin{parts}
+	\item Zeigen Sie: F\"{u}r jeder offene Menge $A\subseteq \R^n$ gilt $A=\cup_{B_r(q)\in M}B_r(q)$ mit
+		\[
+		M:= \left\{ B_r(q)\in B_\Q| B_r(q)\subseteq A \right\} 
+		.\]
+	\item Folgern Sie nun $\mathcal A_\sigma (B_\Q)=\mathcal A_\sigma(B_\R)=\mathcal{B}^n$
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+\begin{parts}
+\item Es genügt zu beweisen, dass jeder offene Ball eine Vereinigung von $\Q$-Balle sind.
+
+	Sei $B_p(x), p\in \R, x\in \R^n$ eine offene Ball. Sei auch $(a_i), a_i\in \Q^n$ eine Folge, wof\"{u}r gilt
+\begin{gather*}
+	\|x-a_i\|<r \forall i\\
+	\lim_{i \to \infty} a_i=x
+\end{gather*}
+Sei dann
+\[
+	M_i=B_{r-\|x-a_i\|}(a_i)\in B_\Q
+.\] 
+Es ist klar, dass jeder $M_i\subseteq B_r(x)$ ist. Wir beweisen auch, dass $\bigcup_{i=1} ^\infty M_i=B_r(x)$.
+
+Sei $y\in B_r(x)$. Es gilt $\|y-x\|=r_0<r$. Sei $\xi=r-r_0$. Weil $\lim_{n \to \infty} a_n=x$, gibt es ein Zahl $a_k$, wof\"{u}r gilt
+\[
+\|a_k-x\|<\frac{\xi}{2}
+.\] 
+(Eigentlich existiert unendlich viel, aber die brauchen wir nicht). Es gilt dann
+\[
+\|y-a_k\|\le \|y-x\|+\|x-a_k\|\le r_0+\frac{\xi}{2}<r-\frac{\xi}{2}<r-\|x-a_i\|
+,\] 
+also $y\in B_{r-\|x-a_k\|}(a_k)$. Jetzt ist die Ergebnis klar: Weil jeder offene Menge eine Vereinigung von offene B\"{a}lle ist, gilt
+\[
+A=\bigcup B_p(x)= \bigcup \bigcup B_r(q)
+,\] 
+wobei $ p\in \R, x\in \R^n$ und $r\in \Q, q\in \Q^n$
+
+\item $\mathcal A_\sigma\left( B_\R \right) =\mathcal B^n$ per Definition. 
+
+	Aus $B_\Q\subseteq B_\R$ folgt $\mathcal A_\sigma\left( B_\Q \right)  \subseteq \mathcal A_\sigma\left( B_\R \right) $
+
+Aus 
+\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Sei $X$ eine Menge, $\mathcal A$ eine $\sigma$-Algebra über $X$ und $\mu : A \to [0, \infty]$ eine Mengenfunktion.
+	\begin{parts}
+	\item  Sei $\mu$ $\sigma$-subadditiv, $B \in \mathcal A$ und definiere $\mu_B : \mathcal A \to [0,\infty ], \mu_B (A) := \mu(A \cap B)$. Zeigen Sie, dass $\mu_B$ wohldefiniert und eine $\sigma$-subadditive Mengenfunktion ist.
+	\item $\mu$ erf\"{u}lle die beiden Eigenschaften
+		\begin{enumerate}[label=(\arabic*)]
+			\item $\mu(A\cup B)=\mu(A)+\mu(B)$ f\"{u}r alle $A,B\in \mathcal A$ mit $A\cap B=\varnothing$.
+			\item $\lim_{n \to \infty} \mu\left( A_n \right) =\mu\left( \bigcup_{n=1} ^\infty A_n \right) $ f\"{u}r alle $(A_n)\subseteq A$ mit $A_1\subseteq A_2\subseteq \dots$.
+		\end{enumerate}
+		Zeigen Sie, dass $\mu$ $\sigma$-additiv ist.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Weil $B\in\mathcal A$, ist $B\cap A\in\mathcal A \forall A\in\mathcal A$. $\mu_B$ ist daher wohldefiniert. 
+
+	Sei $(A_j), A_j\in\mathcal A$, $\bigcup_{j=1}^\infty A_j\in\mathcal A$. Sei auch $B_j=A_j\cap B\in \mathcal A$. Dann gilt
+	\[
+		\mu_B\left( \bigcup_{j=1} ^\infty A_j \right) =\mu\left( B\cap \bigcup_{j=1} ^\infty A_j \right) =\mu \left( \bigcup_{j=1} ^\infty \left( B\cap A_j \right)  \right)=\mu\left( \bigcup_{j=1} ^\infty B_j \right) \le \sum_{j=1}^\infty \mu(B_j) 
+	.\] 
+	\item Sei $(A_j), A_j\in\mathcal A$ paarweise disjunkter Menge. Dann definiere $B_j=\bigcup_{i=1}^j A_j$. F\"{u}r $k$ endlich ist es klar,
+		\[
+			\mu(B_k)=\sum_{i=1}^k A_i
+		.\]
+		Weil $B_i\subseteq B_{i+1}$, (2) gilt auch:
+		\[
+			\lim_{n \to \infty} \mu(B_n)=\lim_{n \to \infty} \sum_{i=1}^n A_i=\sum_{i=1}^\infty A_i=\mu\left( \bigcup_{n=1} ^\infty B_n \right) =\mu\left( \bigcup_{n=1} ^\infty A_n \right) 
+		.\] 
+	\end{parts}
+\end{proof}
 \end{document}
