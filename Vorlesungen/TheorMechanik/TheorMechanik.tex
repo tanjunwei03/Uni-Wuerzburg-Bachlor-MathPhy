@@ -1,0 +1,58 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+\title{Theoretische Mechanik - Vorlesungen}
+\author{Jun Wei Tan}
+\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+\date{\today}
+\maketitle
+
+\begin{Definition}
+	Sei
+	\[
+	\va F : \R^3 \to \R^3
+	,\] 
+	und nicht
+	\[
+	\va F : \R^3 \times \R^3 \times \R \to \R^3
+	.\]
+	d.h die Kraft ist nur vom Ort abhängig.
+
+	Dann definieren wir
+	\[
+	W: \Gamma \to \R,\]
+	\[
+		\gamma \to W(\gamma)=-\int_\gamma \va F\cdot \dd{\va x}
+	.\] 
+\end{Definition}
+\end{document}

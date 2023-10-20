@@ -204,7 +204,47 @@ Dann
 	\[
 	A=\frac{F_0}{-m\omega_0^2-2m\gamma i\omega_0+k}
 	.\] 
-\item 
+\item für verschwindende Dämpfung $\gamma = 0$ und äußere Kraft $F_\text{ext} \equiv 0$ ist die L\"{o}sung
+	\[
+	x(t)=x_0\cos\omega t+\frac{v_0}{\omega}\sin\omega t, \qquad \omega=\sqrt{k / m} 
+	.\] 
+	Wir berechnen
+	\[
+		\dot{x}=-x_0\omega\sin\omega t +v_0\cos\omega t
+	.\] 
+	Dann gilt
+\begin{align*}
+	\frac{m}{2}\left( \dv{x}{t} \right) ^2 =& \frac{m}{2}\left( -x_0\omega\sin\omega t+v_0\cos\omega t \right) ^2\\
+	=& \frac{m}{2}\left( x_0^2\omega^2\sin^2\omega t-2x_0v_0\omega \sin\omega t\cos\omega t+v_0^2\cos^2\omega t \right)\\
+	=& \cancelto{k / 2}{\frac{m}{2\omega^2}}\left( x_0^2\sin^2\omega t-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\cos^2\omega t\right)\\
+	=& \frac{k}{2}\left( x_0^2(1-\cos^2\omega t)-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\left( 1-\sin^2\omega t \right)  \right) 
+\end{align*}
+Aus
+\[
+\frac{k}{2}x(t)^2=\frac{k}{2}\left( x_0^2\cos^2\omega t+\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t\frac{v_0^2}{\omega^2}\sin^2\omega t \right) 
+\]
+folgt
+\begin{align*}
+	E(t)=& \frac{k}{2}\left( x_0^2(1-\cos^2\omega t)-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\left( 1-\sin^2\omega t \right)  \right) \\
+	     &+\frac{k}{2}\left( x_0^2\cos^2\omega t+\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t\frac{v_0^2}{\omega^2}\sin^2\omega t \right)\\ 
+	=&\frac{k}{2}x_0^2+\frac{kv_0^2}{2\omega^2},
+\end{align*}
+was nicht abhängig von $t$ ist.
+
+Wir untersuchen jetzt die Energie f\"{u}r eine harmonische äußere Kraft. Wenn die Dämpfung $\neq 0$ ist, ist
+\[
+\lim_{t \to \infty} \left( x_h(t)+x_p(t) \right) =\lim_{t \to \infty} x_p(t)
+.\] 
+Daher muss man nur die Energie der Partikularlösung berechnen:
+\begin{align*}
+	x(t)=& \frac{F_0}{-m\omega_0^2-2m\gamma i\omega_0+k}e^{-i\omega_0t}\\
+	\dot{x}(t)=&-\frac{iF_0\omega_0}{-m\omega_0^2-2m\gamma i\omega_0+k}e^{-i\omega_0t}
+\end{align*}
+Wenn $\gamma = 0$, kann $x(t)\to\infty$, wenn
+\[
+	-m\omega_0^2+k=0\qquad\text{(Resonanz)}
+.\]
+Das bedeutet $E(t)\to \infty$ auch.
 \end{enumerate}
 \end{proof}
 \end{document}

@@ -135,15 +135,23 @@ Daraus folgt
 		.\]
 	\item 
 	
-		Sei $ P=\left\{ \mathcal A| \mathcal A\text{ ist eine }\sigma\text{-Algebra},\mathcal M \subseteq \mathcal A \right\} $. Per Definition ist $\mathcal A_\sigma(\mathcal M)=\bigcap_{\mathcal A\in P} \mathcal A$. Dann ist der zu bewiesene Satz
+		Sei $ P=\left\{ \mathcal A| \mathcal A\text{ ist eine }\sigma\text{-Algebra},\mathcal M \subseteq \mathcal A \right\} $. Per Definition ist $\mathcal A_\sigma(\mathcal M)=\bigcap_{\mathcal A\in P} \mathcal A$. Dann ist es zu beweisen: 
 		\[
 			f^{-1}\left( \bigcap_{\mathcal A\in P} \mathcal A \right) =\bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)\overset{?}{=}\mathcal A_\sigma\left( f^{-1}\left( \mathcal M \right)  \right) 
 		.\]
-		Jeder $\sigma$-Algebra $f^{-1}\left( \mathcal A \right) $ entschließt $f^{-1}\left( \mathcal M \right) $. Daraus folgt, dass
+		Jeder $\sigma$-Algebra $f^{-1}\left( \mathcal A \right) $ enthält $f^{-1}\left( \mathcal M \right) $. Daraus folgt, dass
 		\[
 			\mathcal A_\sigma \left( f^{-1}\left( \mathcal M \right)  \right) \subseteq \bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)
 		.\] 
 
+	Jetzt betrachten wir
+	\[
+		\mathcal{M}':=f_*\left( \mathcal{A}_\sigma \left( f^{-1}(\mathcal{M}) \right)  \right) 
+	.\]
+	Es ist klar, dass $\mathcal{M}'$ eine $\sigma$-Algebra ist, die $\mathcal{M}$ und daher auch $\mathcal{A}_\sigma \left( \mathcal{M} \right) $ enth\"{a}lt. Es ist auch klar, dass $f^{-1}\left( \mathcal{M}' \right)=\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{M} \right)  \right)  $. Daraus folgt:
+	\[
+		f^{-1}\left( \mathcal{A}_\sigma \left( \mathcal{M} \right)  \right) \subseteq f^{-1}\left( \mathcal{ M}' \right) =\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{ M} \right)  \right)
+	.\] 
 	\end{parts}
 \end{proof}
 
@@ -160,7 +168,7 @@ Daraus folgt
 
 \begin{proof}
 \begin{parts}
-\item Es genügt zu beweisen, dass jeder offene Ball eine Vereinigung von $\Q$-Balle sind.
+\item Es genügt zu beweisen, dass jeder offene Ball eine Vereinigung von $\Q$-Bälle sind.
 
 	Sei $B_p(x), p\in \R, x\in \R^n$ eine offene Ball. Sei auch $(a_i), a_i\in \Q^n$ eine Folge, wof\"{u}r gilt
 \begin{gather*}
@@ -191,7 +199,18 @@ wobei $ p\in \R, x\in \R^n$ und $r\in \Q, q\in \Q^n$
 
 	Aus $B_\Q\subseteq B_\R$ folgt $\mathcal A_\sigma\left( B_\Q \right)  \subseteq \mathcal A_\sigma\left( B_\R \right) $
 
-Aus 
+Aus (a) folgt, dass
+\[
+B_\R\subseteq \mathcal A_\sigma\left( B_\Q \right) 
+.\] 
+Dann
+\[
+\mathcal A_\sigma\left( B_\R \right) \subseteq \mathcal A_\sigma\left( \mathcal A_\sigma\left( B_\Q \right)  \right) =\mathcal A_\sigma\left( B_\Q \right) 
+.\]
+Deswegen
+\[
+	\mathcal A_\sigma\left( B_\Q \right) =\mathcal A_\sigma\left( B_\R \right) =\mathcal B^n
+.\] 
 \end{parts}
 \end{proof}
 
@@ -212,9 +231,9 @@ Aus
 	\item Weil $B\in\mathcal A$, ist $B\cap A\in\mathcal A \forall A\in\mathcal A$. $\mu_B$ ist daher wohldefiniert. 
 
 	Sei $(A_j), A_j\in\mathcal A$, $\bigcup_{j=1}^\infty A_j\in\mathcal A$. Sei auch $B_j=A_j\cap B\in \mathcal A$. Dann gilt
-	\[
-		\mu_B\left( \bigcup_{j=1} ^\infty A_j \right) =\mu\left( B\cap \bigcup_{j=1} ^\infty A_j \right) =\mu \left( \bigcup_{j=1} ^\infty \left( B\cap A_j \right)  \right)=\mu\left( \bigcup_{j=1} ^\infty B_j \right) \le \sum_{j=1}^\infty \mu(B_j) 
-	.\] 
+	\begin{gather*}
+		\mu_B\left( \bigcup_{j=1} ^\infty A_j \right) =\mu\left( B\cap \bigcup_{j=1} ^\infty A_j \right)=\mu\left( \bigcup_{j=1} ^\infty B_j \right) \le \sum_{j=1}^\infty \mu(B_j)=\sum_{j=1}^\infty \mu_B(A_j) 
+	\end{gather*}
 	\item Sei $(A_j), A_j\in\mathcal A$ paarweise disjunkter Menge. Dann definiere $B_j=\bigcup_{i=1}^j A_j$. F\"{u}r $k$ endlich ist es klar,
 		\[
 			\mu(B_k)=\sum_{i=1}^k A_i
