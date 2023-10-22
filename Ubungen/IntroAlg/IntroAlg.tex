@@ -1,0 +1,135 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+\title{Einf\"{u}rung in die Algebra Hausaufgabenblatt Nr. 1}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+\begin{Problem}
+	Sei $G := 2\N^* := \{2n | n \in \N* \}$ die Menge der positiven geraden Zahlen. Wir nennen $a \in G$ \emph{zerlegbar}, falls sich $a$ als Produkt zweier Elemente aus $G$ schreiben lässt. Ansonsten nennen wir $a$ unzerlegbar. Beispielsweise sind 4 zerlegbar und 6 unzerlegbar. Zeigen Sie:
+	\begin{parts}
+		\item $G$ ist multiplikativ abgeschlossen.
+		\item Jedes $a\in G$ l\"{a}sst sich als Produkt unzerlegbarer Elemente aus $G$ schreiben.
+		\item Selbst wenn man die Reihenfolge der Faktoren nicht berücksichtigt, so ist die Zerlegung nach (b) im Allgemeinen nicht eindeutig.
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item $2n\times 2n'=4nn'=2(nn')$
+	\item Wir beweisen es per Induktion. Nehme an, dass jede Elemente  $2n, n < k$ als Produkt unzerlegbare Elemente aus $G$ geschrieben werden kann. F\"{u}r $2(1)=1$ ist es klar - $2$ ist unzerlegbar.
+		
+		Sei $M_k\subseteq G =\left\{ m\in G| \exists n\in G, mn=2k\right\} $
+		
+		Entweder ist $M=\varnothing$, oder $G$ ist selbst unzerlegbar, oder es existiert $m,n\in G, mn=2k$. Weil $m$ und $n$ ein Produkt unzerlegbarer Elemente aus $G$ sind, ist $2k$ auch ein Produkt unzerlegbarer Elemente.
+	\item Gegenbeispiel:
+		\[
+		G\ni 1020=30\times 34=102\times 10
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	In dieser Aufgabe stellen wir den Euklidischen Algorithmus zur Berechung des größten gemeinsamen Teilers vor. Seien hierzu zwei natürliche Zahlen $a, b \in \N$ mit $b \neq 0$ vorgelegt. Wir setzen $r_0 := a, r1 := b$ und rekursiv für alle $i \in \N*$ mit $r_i \neq 0$.
+		\[r_{i+1}:=\text{ Rest von }r_{i-1}\text{ bei der Division durch }r_i\]
+	\begin{enumerate}[label=(\alph*)]
+	\item	Zeigen Sie, dass es ein $n\ge 2$ mit  $r_n=0$ gibt.
+	\end{enumerate}	
+Da die Rekursionsformel für $i = n$ nicht mehr anwendbar ist, bricht die Folge $(r_i)$ der Reste beim Index $n$ ab. Daher gibt es nur genau einen Index $n \ge 2$ mit $r_n = 0$. Beweisen Sie nun:
+\begin{enumerate}[resume*]
+\item F\"{u}r alle $i\in \left\{ 1,2,3,\dots,n \right\} $ gilt $ggT(a,b)=ggT(r_{i-1},r_i)$.
+\item Es ist $ggT(a,b)=r_{n-1}$.
+\item Berechnen Sie $ggT(210,45)$ mit Hilfe des Euklidschen Algorithmus.
+\end{enumerate}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item
+
+		\[r_{i-1}=qr_{i}+r_{i+1}\qquad 0\le r_{i+1}<r_i\]
+		per Definition. Weil $r_{i-1}<r_i$, ist die Folge monoton fallend. Da es endlich viele nat\"{u}rliche Zahlen $k<b$ gibt, muss $r_n=0$.
+ 
+
+	\item Wir beweisen:
+		\[
+			ggT(r_{i-1}, r_i)=ggT(r_i,r_{i+1})
+		.\]
+		Die gewünschte Ergebnisse folgt daraus per Induktion.
+
+		Es gilt $r_{i-1}-qr_i=r_{i+1}$. Dann folgt: $ggT(r_{i-1}, r_i)$ teilt $r_{i-1}$ und $r_i$ und daher auch $r_{i-1}-qr_i$. Deshalb ist $ggT(r_{i-1},r_i)$ auch einen Teiler von $r_{i+1}\implies ggT(r_{i-1},r_i)\le ggT(r_i, r_{i+1})$. 
+
+		Weil $r_{i-1}=qr_i+r_{i+1}$, ist $ggT(r_i,r_{i+1})$ einen Teiler von $r_i$ und $r_{i+1}$ und daher auch von $qr_i+r_{i+1}$. Deshalb ist es auch einen Teiler von $r_{i-1}$, und $ggT(r_{i},r_{i+1})\le ggT(r_{i-1},r_i)$
+	\item Es gilt
+		\[
+			r_{n-2}=qr_{n-1}+\cancel{r_{n}}
+		,\] 
+		also $r_{n-1}$ teilt $r_{n-2}$. Daraus folgt
+		\[
+			ggT(r_{n-1},r_{n-2})=r_{n-1}=ggT(a,b)
+		.\] 
+	\item 
+		\begin{align*}
+			210&=4 \times 45+30\\
+			45&=1\times 30+15\\
+			30&=2\times 15+0\\
+			15&\\
+			0&
+		\end{align*}
+		\[
+		ggT(210,45)=15
+		.\]
+
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Seien $p$ und $q$ zwei ungerade und aufeinanderfolgende Primzahlen, so dass also zwischen $p$ und $q$ keine weiteren Primzahlen existieren. Zeigen Sie, dass $p + q$ ein Produkt von mindestens drei (nicht notwendig verschiedenen) Primzahlen ist.
+\end{Problem}
+
+\begin{proof}
+	Sei obdA $p<q$. Weil $p$ und $q$ ungerade sind, ist $p+q$ gerade, also $p+q=2k, k\in \N$. Nehme an, dass $p+q$ ein Produkt von zwei Primzahlen ist, also $k\in \mathbb{P}$. Dann gilt
+	\[
+		p < k < q, \qquad k\in \mathbb{P}
+	,\]
+	ein Widerspruch. Deshalb ist $k\not\in \mathbb{P}$ und $k$ ist ein Produkt von mindestens zwei Primzahlen, also $p+q$ ist ein Produkt von mindestens drei Primzahlen. 
+\end{proof}
+
+\begin{Problem}
+	Seien $n \in \N^*$ und $a \in \Z$. Zeigen Sie, dass es genau dann ein $x \in \Z$ mit $ax \equiv 1\pmod{n}$ gibt, wenn $ggT(a, n) = 1$ gilt.
+\end{Problem}
+\begin{proof}
+	$ax\equiv 1\pmod{n}\iff ax-1=kn, k\in\Z$, also $ax-kn=1$.
+
+	Weil $ggT(a,n)=1$, gibt es so zwei Zahlen $a, -k$, so dass $ax-kn=1$ (Lemma von Bezout)
+\end{proof}
+\end{document}

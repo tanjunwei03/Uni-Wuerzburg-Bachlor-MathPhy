@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  20 OCT 2023 15:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  22 OCT 2023 10:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Template.tex
-(./Template.tex
+**LinAlg2Blatt1.tex
+(./LinAlg2Blatt1.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/revtex/revtex4-2.cls
 Document Class: revtex4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for documentation)
@@ -537,13 +537,16 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip59
+) (/usr/share/texmf-dist/tex/latex/polynom/polynom.sty
+Package: polynom 2017/07/17 0.19 (CH,HA)
+\pld@currstage=\count318
 ) (/usr/share/texmf-dist/tex/latex/transparent/transparent.sty
 Package: transparent 2022-10-27 v1.5 Transparency with color stacks
  (/usr/share/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
 Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color stack (HO)
 )) (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count318
+\c@float@type=\count319
 \float@exts=\toks44
 \float@box=\box81
 \@float@everytoks=\toks45
@@ -551,59 +554,59 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 ) (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip60
-\multirow@cntb=\count319
+\multirow@cntb=\count320
 \multirow@dima=\skip61
 \bigstrutjot=\dimen275
 )
-\c@Theorem=\count320
-\c@Proposition=\count321
-\c@Problem=\count322
+\c@Theorem=\count321
+\c@Proposition=\count322
+\c@Problem=\count323
  (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))
-Class revtex4-2 Info: Unrecognized LaTeX tabular. Please update this document class! (Proceeding with fingers crossed.) on input line 32.
+Class revtex4-2 Info: Unrecognized LaTeX tabular. Please update this document class! (Proceeding with fingers crossed.) on input line 33.
 
 
 Class revtex4-2 Warning: Repair the float package.
 
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 32.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 32.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 32.
-(./Template.aux)
-\openout1 = `Template.aux'.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 33.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 33.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 33.
+(./LinAlg2Blatt1.aux)
+\openout1 = `LinAlg2Blatt1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count323
+\scratchcounter=\count324
 \scratchdimen=\dimen276
 \scratchbox=\box83
-\nofMPsegments=\count324
-\nofMParguments=\count325
+\nofMPsegments=\count325
+\nofMParguments=\count326
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count326
+\MPscratchCnt=\count327
 \MPscratchDim=\dimen277
-\MPnumerator=\count327
-\makeMPintoPDFobject=\count328
+\MPnumerator=\count328
+\makeMPintoPDFobject=\count329
 \everyMPtoPDFconversion=\toks47
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -611,38 +614,43 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 32.
- (./Template.out) (./Template.out)
+Package hyperref Info: Link coloring OFF on input line 33.
+ (./LinAlg2Blatt1.out) (./LinAlg2Blatt1.out)
 \@outlinefile=\write5
-\openout5 = `Template.out'.
+\openout5 = `LinAlg2Blatt1.out'.
 
-Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 32.
-\openout3 = `TemplateNotes.bib'.
+Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 33.
+\openout3 = `LinAlg2Blatt1Notes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Template.bbl) [2] (./Template.aux)
-Package rerunfilecheck Info: File `Template.out' has not changed.
-(rerunfilecheck)             Checksum: 9813FF05EACD42C48EEC6A1DC41E19C6;407.
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (16.43628pt too wide) detected at line 210
+[]
+ []
+
+[3] (./LinAlg2Blatt1.bbl) [4] (./LinAlg2Blatt1.aux)
+Package rerunfilecheck Info: File `LinAlg2Blatt1.out' has not changed.
+(rerunfilecheck)             Checksum: AD47BD5722A926C79139306C84369459;281.
  ) 
 Here is how much of TeX's memory you used:
- 23261 strings out of 477985
- 418675 string characters out of 5840058
- 1868388 words of memory out of 5000000
- 43049 multiletter control sequences out of 15000+600000
- 520844 words of font info for 65 fonts, out of 8000000 for 9000
+ 23657 strings out of 477985
+ 424792 string characters out of 5840058
+ 1895388 words of memory out of 5000000
+ 43439 multiletter control sequences out of 15000+600000
+ 520536 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,8n,104p,410b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Template.pdf (2 pages, 157626 bytes).
+ 102i,18n,104p,415b,662s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on LinAlg2Blatt1.pdf (4 pages, 162166 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 130 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
+ 26 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

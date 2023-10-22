@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  20 OCT 2023 15:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  22 OCT 2023 15:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**Template.tex
-(./Template.tex
+**IntroAlg.tex
+(./IntroAlg.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/revtex/revtex4-2.cls
 Document Class: revtex4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for documentation)
@@ -571,8 +571,8 @@ Class revtex4-2 Warning: Repair the float package.
 Class revtex4-2 Info: cite was not loaded (OK!) on input line 32.
 Class revtex4-2 Info: mcite was not loaded (OK!) on input line 32.
 Class revtex4-2 Info: multicol was not loaded (OK!) on input line 32.
-(./Template.aux)
-\openout1 = `Template.aux'.
+(./IntroAlg.aux)
+\openout1 = `IntroAlg.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
@@ -612,12 +612,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package hyperref Info: Link coloring OFF on input line 32.
- (./Template.out) (./Template.out)
+ (./IntroAlg.out) (./IntroAlg.out)
 \@outlinefile=\write5
-\openout5 = `Template.out'.
+\openout5 = `IntroAlg.out'.
 
 Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 32.
-\openout3 = `TemplateNotes.bib'.
+\openout3 = `IntroAlgNotes.bib'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -626,23 +626,23 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Template.bbl) [2] (./Template.aux)
-Package rerunfilecheck Info: File `Template.out' has not changed.
-(rerunfilecheck)             Checksum: 9813FF05EACD42C48EEC6A1DC41E19C6;407.
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./IntroAlg.bbl) [3] (./IntroAlg.aux)
+Package rerunfilecheck Info: File `IntroAlg.out' has not changed.
+(rerunfilecheck)             Checksum: 9E3BD5D3D06A7F69D481A2DD723AE673;305.
  ) 
 Here is how much of TeX's memory you used:
- 23261 strings out of 477985
- 418675 string characters out of 5840058
- 1868388 words of memory out of 5000000
- 43049 multiletter control sequences out of 15000+600000
- 520844 words of font info for 65 fonts, out of 8000000 for 9000
+ 23259 strings out of 477985
+ 418629 string characters out of 5840058
+ 1866388 words of memory out of 5000000
+ 43047 multiletter control sequences out of 15000+600000
+ 520536 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,8n,104p,410b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Template.pdf (2 pages, 157626 bytes).
+ 102i,11n,104p,410b,669s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on IntroAlg.pdf (3 pages, 143026 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 23 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 119 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
+ 24 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

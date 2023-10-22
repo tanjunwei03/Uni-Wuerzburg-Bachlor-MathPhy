@@ -1,0 +1,239 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{polynom}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\title{Theoretische Mechanik Hausaufgabenblatt Nr. 1}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\begin{Problem}
+	\begin{parts}	
+		\item Bestimmen Sie alle komplexwertigen Lösungen der Gleichung
+	\[
+	x^2=u+iv,\] 
+	in Abh\"{a}ngigkeit von $u,v\in \R$
+
+\item F\"{u}hren Sie das Nullstellenproblem
+	\[
+		ax^2+bx+c=0,\]
+		mit $a\in\C\backslash 0, b\in \C, c\in \C$ auf den Fall in (a) zur\"{u}ck. Geben Sie weiterhin eine geschlossene Darstelling aller L\"{o}sungen f\"{u}r den Fall $a=1$ an.
+
+		Hat alles geklappt, sollte bei Ihnen speziell für den Fall $a = 1$ und $\Im(b) = \Im(c) = 0$ die entsprechende Mitternachtsformel dastehen.
+		\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $\left| x^2 \right| =|x|^2=|u+iv|=\sqrt{u^2+v^2}$ 
+
+		Daraus folgt:
+		\[
+			|x|=(u^2+v^2)^{1 / 4}
+		,\]
+		\[
+			x=(u^2+v^2)^{1 / 4}e^{i\theta} 
+		.\] 
+		Setze es in $x^2=u+iv$ ein und löse die Gleichungen für $\theta$. Sei $\varphi=\atan_2(u,v)$ Dann ist:
+		 \[
+			 \theta=\frac{\varphi}{2}\text{ oder }\theta=\frac{\varphi+2\pi}{2}
+		 .\]
+
+	\item \[
+			ax^2+bx+c=0\implies x^2+\frac{b}{a}x+\frac{c}{a}=0
+	,\]
+	d.h.
+	\begin{align*}
+		x^2+\frac{b}{a}x+\frac{c}{a}=& \left( x+\frac{b}{2a} \right)^2+\frac{c}{a}-\frac{b^2}{4a^2}=0\\
+		\left( x+\frac{b}{2a} \right)^2=&\frac{b^2}{4a^2}-\frac{c}{a}\\
+		x=&-\frac{b}{2a}+p
+	\end{align*}
+	wobei $p$ die L\"{o}sung zu $p^2=\frac{b^2}{4a^2}-\frac{c}{a}$ ist. 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Finden Sie f\"{u}r die Polynome $p,d\in \C[x]$ jeweils solche $q,r\in \C[x]$ mit $\deg(r)<\deg(d)$, dass $p=qd+r$ gilt.
+	\begin{parts}
+	\item $p=x^7+x^5+x^3+1, d=x^2+x+1$
+	\item $p=x^5+(3-i)x^3-x^2+(1-3i)x+1+i,d=x^2+i$
+	\item  Wie sehen $s$, $r$ aus, wenn man in (a) und (b) jeweils die Rollen von $p$ und $d$ vertauscht? D.h. bestimmen Sie $s,r\in \C[x]$ mit $\deg r < \deg p$, sodass $d=sp+r$ gilt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\polylongdiv[style=A]{x^7+x^5+x^3+1}{x^2+x+1}
+
+		Daher
+		\[
+		q=x^5-x^4+x^3, r=1
+		.\]
+	\item $q=x^3+(3-2i)x-x, r=-(1+6i)x+(1+2i)$
+	\item $r=d, s=0$
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Seien
+	\[A=\begin{pmatrix} 1 & 2 & 1 & 5 \\ 2 & 1 & -1 & 4 \\ 1 & 0 & -1 & 1 \end{pmatrix}, b=\begin{pmatrix} -38 \\ -46 \\ -18 \end{pmatrix} , c=\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \]
+	gegeben.
+	\begin{parts}
+	\item Bestimmen Sie $\Im(A)$ und $\ker(A)$ 
+	\item Bestimmen Sie L\"{o}s$(A, b)$ und L\"{o}s$(A, c)$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 	\begin{align*}
+		\left(
+		\begin{array}{cccc}
+			1 & 2 & 1 & 5 \\
+			2 & 1 & -1 & 4 \\
+			1 & 0 & -1 & 1 \\
+		\end{array}
+		\right) \xrightarrow{R_2-2R_1} \left(
+		\begin{array}{cccc}
+			1 & 2 & 1 & 5 \\
+			0 & -3 & -3 & -6 \\
+			1 & 0 & -1 & 1 \\
+		\end{array}
+		\right) \xrightarrow{R_3-R_1} \left(
+		\begin{array}{cccc}
+			1 & 2 & 1 & 5 \\
+			0 & -3 & -3 & -6 \\
+			0 & -2 & -2 & -4 \\
+		\end{array}
+		\right) \xrightarrow{R_2\times -\frac{1}{3}} \\\left(
+		\begin{array}{cccc}
+			1 & 2 & 1 & 5 \\
+			0 & 1 & 1 & 2 \\
+			0 & -2 & -2 & -4 \\
+		\end{array}
+		\right) \xrightarrow{R_3+2R_2} \left(
+		\begin{array}{cccc}
+			1 & 2 & 1 & 5 \\
+			0 & 1 & 1 & 2 \\
+			0 & 0 & 0 & 0 \\
+		\end{array}
+		\right) \xrightarrow{R_1-2R_2} \left(
+		\begin{array}{cccc}
+			1 & 0 & -1 & 1 \\
+			0 & 1 & 1 & 2 \\
+			0 & 0 & 0 & 0 \\
+		\end{array}
+		\right)
+	\end{align*}
+	Daraus folgt
+	\[
+	\text{im}(A)=\text{span}\left\{ \begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} , \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix}  \right\} 
+	.\]
+	Sei dann $(x_1,x_2,x_3,x_4)^T\in \R^4$. Wenn $(x_1,x_2,x_3,x_4)^T\in \ker(A)$, gilt
+	\begin{align*}
+		t_3&:= x_3\\
+		t_4&:= x_4\\
+		x_1&=x_3-x_4=t_3-t_4\\
+		x_2&=-x_3-2x_4=-t_3-2t_4
+	\end{align*}
+	Daraus folgt:
+	\begin{align*}
+	\ker(A)=\text{span}\left\{ \begin{pmatrix} 1 \\ -1 \\ 1 \\ 0 \end{pmatrix} ,\begin{pmatrix} -1 \\ -2 \\ 0 \\ 1 \end{pmatrix}  \right\} 
+	\end{align*}	
+\item 
+	\begin{gather*}
+\left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & -38 \\
+ 2 & 1 & -1 & 4 & -46 \\
+ 1 & 0 & -1 & 1 & -18 \\
+\end{array}
+\right) \xrightarrow{R_2-2R_1} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & -38 \\
+ 0 & -3 & -3 & -6 & 30 \\
+ 1 & 0 & -1 & 1 & -18 \\
+\end{array}
+\right) \xrightarrow{R_3-R_1} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & -38 \\
+ 0 & -3 & -3 & -6 & 30 \\
+ 0 & -2 & -2 & -4 & 20 \\
+\end{array}
+\right) \\\xrightarrow{R_2\times -\frac{1}{3}} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & -38 \\
+ 0 & 1 & 1 & 2 & -10 \\
+ 0 & -2 & -2 & -4 & 20 \\
+\end{array}
+\right) \xrightarrow{R_3+2R_2} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & -38 \\
+ 0 & 1 & 1 & 2 & -10 \\
+ 0 & 0 & 0 & 0 & 0 \\
+\end{array}
+\right) \xrightarrow{R_1-2R_2} \left(
+\begin{array}{cccc|c}
+ 1 & 0 & -1 & 1 & -18 \\
+ 0 & 1 & 1 & 2 & -10 \\
+ 0 & 0 & 0 & 0 & 0 \\
+\end{array}
+\right)
+	\end{gather*}
+
+	Ausserdem
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Gegeben seien die $\R$-Vektorr\"{a}ume $V$ mit Basis $B_V=\left\{ v_1,v_2,v_3 \right\} $ und Basis $B_W=\left\{ w_1,w_2,w_3 \right\} $. Wir definieren einen linearen Operator $T: V \to W$ wie folgt:
+	\[
+	T(v_1)=w_1+w_3\qquad T(v_2)=w_1+w_2, T(v_3)=-w_1-w_2-w_3
+	.\] 
+	\begin{parts}
+	\item $w_1,w_2,w_3\in \text{span}\left\{ T(v_1),T(v_2),T(v_3) \right\} $, weil
+			\begin{align*}
+				w_1=&T(v_1)+T(v_2)+T(v_3)\\
+				w_2=&(-1)\left( T(v_3)+T(v_1) \right) \\
+				w_3=&(-1)\left( T(v_2)+T(v_3) \right) 
+			\end{align*}
+			Daraus folgt:
+			\[
+				W=\text{span}\left( w_1,w_2,w_3 \right)=\text{span}\left( T(v_1), T(v_2), T(v_3) \right)  
+			.\]
+			Daraus folgt:
+			\[
+				\text{im}(T)=\R^3, \qquad \text{ker}(T)=\left\{ 0 \right\} 
+			.\] 
+		\item 
+
+\end{parts}
+\end{Problem}
+	\end{document}

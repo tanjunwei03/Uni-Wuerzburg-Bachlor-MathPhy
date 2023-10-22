@@ -38,4 +38,73 @@
 	\maketitle
 \section{18/10/23}
 In dieser Vorlesung ist $0\in \N$.
+\section{20/10/23}
+\begin{Theorem}
+Seien $a,b\in \Z$ mit $a\neq 0$ oder $b\neq 0$ und $z\in \Z$ sei ein gemeinsamen Teiler von $a$ und $b$. Dann gilt $d\cdot ggT\left( \frac{a}{d},\frac{b}{d} \right) =ggT(a,b)$. Insbesondere gilt $d|ggT(a,b)$ und $\frac{a}{ggT(a,b)}$ und $\frac{b}{ggT(a,b)}$ sind Teiler von $d$.	
+\end{Theorem}
+\begin{proof}
+	$ggT\left( \frac{a}{d},\frac{b}{d} \right) $ teilt $\frac{a}{d}$ und $\frac{b}{d}$ und daher ist $d\cdot ggT\left( \frac{a}{d},\frac{b}{d} \right) $ ein Teiler von $a$ und $b$. Deswegen ist $d\cdot ggT\left( \frac{a}{d},\frac{b}{d} \right) \le ggT(a,b)$
+
+	Nach den Satz von Bezout gibt es $s,t \in \Z$ mit $ggT(a,b)=sa+tb$. Aus $d|a$ und $d|b$ folgt $d|ggT(a,b)$. Aus
+	 \[
+	\frac{a}{d}=\frac{ggT(a,b)}{d} \frac{a}{ggT(a,b)}
+	\]
+	folgt $\frac{ggT(a,b)}{d}|\frac{a}{d}$ und ähnlich auch $\frac{ggT(a,b)}{d}|\frac{b}{d}\implies \frac{ggT(a,b)}{d}\le ggT(\frac{a}{d},\frac{b}{d})$
+\end{proof}
+
+\begin{Theorem}
+	Seien $a,b,c\in\Z$ und $a,b$ teilerfremd. Dann gilt
+	\begin{parts}
+		\item Aus $a|bc$ folgt $a|c$.
+		\item Aus $a|c$ und $b|c$ folgt $ab|c$.
+		\item $ggT(a,bc)=ggT(a,c)$
+	\end{parts}
+\end{Theorem}
+
+\begin{proof}
+	Es gibt $s,t\in\Z$ mit $sa+tb=1$, also $sac+tbc=c$.
+	\begin{parts}
+	\item $a|sac, a|tbc\implies a|c$
+	\item Aus  $a|c$ folgt $ab|bc$, und aus $b|c$ folgt $ab|ac$. Aus $ab|sac$ und $ab|tbc$ folgt $ab|c$.
+	\item 
+	\end{parts}
+\end{proof}
+
+\begin{Definition}
+	kleinstes gemeinsames Vielfaches = LCM
+\end{Definition}
+
+\begin{Lemma}
+	F\"{u}r $a,b\in \N*$ gilt $ggT(a,b)ksV(a,b)=ab$. 
+\end{Lemma}
+
+\begin{proof}
+	Wegen $\frac{ab}{ggT(a,b)}=\frac{a}{ggT(a,b)}b=a \frac{b}{ggT(a,b)}$ ist $\frac{ab}{ggT(a,b)}$ ein Vielfaches von $a$ und $b$, also $\frac{ab}{ggT(a,b)}\ge ksV(a,b)$
+
+	Da $\frac{a}{ggT(a,b)}$ und $\frac{b}{ggT(a,b)}$ teilerfremd sind und Teiler von $\frac{kgV(a,b)}{ggT(a,b)}$ sind, gilt
+	\[
+	\frac{a}{ggT(a,b)}\frac{b}{ggT(a,b)}|\frac{kgV(a,b)}{ggT(a,b)}\implies ab\le kgV(a,b)\cdot ggT(a,b)
+	.\] 
+\end{proof}
+
+\begin{Definition}
+	Sei $a,b,m\in \Z$ mit $m\neq 0$. Man sagt, dass $a$ kongruent $b$ modulo $m$ ist, falls $m|a-b$. 
+\end{Definition}
+
+\begin{Lemma}
+	Sei $k,m\in \N*$ und $a,a',b,b'\in \Z$ mit $a\equiv a'$ und $b\equiv b'\pmod{m}$. Dann gilt
+	\begin{parts}
+	\item $a\pm b\equiv a'\pm b'\pmod{m}$
+	\item $ab=a'b'\pmod{m}$ 
+	\item $a^k\equiv \left( a' \right) ^k \pmod{m}$
+	\end{parts}
+\end{Lemma}
+
+\begin{Theorem}
+	Sei $a,b\in\Z$, $p\in\mathbb{P}$ und $p|ab$. Dann gilt $p|a$ oder $p|b$
+\end{Theorem}
+
+\begin{proof}
+	Sei $d=ggT(a,p)$. Wegen $d|p$ und $p\in\mathbb{P}$ gilt $d=1$ oder $d=p$. Falls $d=p$, sind wir fertig. Falls $d=1$, sind $a$ und $p$ teilerfremd. Dann $p|ab\implies p|b$
+\end{proof}
 \end{document}
