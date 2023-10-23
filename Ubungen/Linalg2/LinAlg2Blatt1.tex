@@ -182,13 +182,13 @@
  0 & -3 & -3 & -6 & 30 \\
  1 & 0 & -1 & 1 & -18 \\
 \end{array}
-\right) \xrightarrow{R_3-R_1} \left(
+\right) \xrightarrow{R_3-R_1}\\\left(
 \begin{array}{cccc|c}
  1 & 2 & 1 & 5 & -38 \\
  0 & -3 & -3 & -6 & 30 \\
  0 & -2 & -2 & -4 & 20 \\
 \end{array}
-\right) \\\xrightarrow{R_2\times -\frac{1}{3}} \left(
+\right) \xrightarrow{R_2\times -\frac{1}{3}} \left(
 \begin{array}{cccc|c}
  1 & 2 & 1 & 5 & -38 \\
  0 & 1 & 1 & 2 & -10 \\
@@ -200,7 +200,7 @@
  0 & 1 & 1 & 2 & -10 \\
  0 & 0 & 0 & 0 & 0 \\
 \end{array}
-\right) \xrightarrow{R_1-2R_2} \left(
+\right)\\ \xrightarrow{R_1-2R_2} \left(
 \begin{array}{cccc|c}
  1 & 0 & -1 & 1 & -18 \\
  0 & 1 & 1 & 2 & -10 \\
@@ -209,8 +209,56 @@
 \right)
 	\end{gather*}
 
-	Ausserdem
-	\end{parts}
+	\begin{align*}
+		x_1-x_3+x_4=&-18\\
+		x_2+x_3+2x_4=&-10
+	\end{align*}	
+	Deswegen ist $\text{L\"{o}s}(A,b)$ 
+	\begin{align*}
+		\begin{pmatrix} -18+x_3-x_4\\-10-x_3-2x_4 \\ x_3 \\ x_4 \end{pmatrix} =& \begin{pmatrix} -18 \\ -10 \\ 0 \\ 0 \end{pmatrix} +x_3\begin{pmatrix} 1 \\ -1 \\ 1 \\ 0 \end{pmatrix} +x_4 \begin{pmatrix} -1 \\ -2 \\ 0 \\ 1 \end{pmatrix} 
+	\end{align*}
+\item 
+	\begin{align*}
+\left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & 0 \\
+ 2 & 1 & -1 & 4 & 0 \\
+ 1 & 0 & -1 & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_2-2R_1} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & 0 \\
+ 0 & -3 & -3 & -6 & 0 \\
+ 1 & 0 & -1 & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3-R_1} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & 0 \\
+ 0 & -3 & -3 & -6 & 0 \\
+ 0 & -2 & -2 & -4 & 1 \\
+\end{array}
+\right) \\\xrightarrow{R_2\times -\frac{1}{3}} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & 0 \\
+ 0 & 1 & 1 & 2 & 0 \\
+ 0 & -2 & -2 & -4 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3+2R_2} \left(
+\begin{array}{cccc|c}
+ 1 & 2 & 1 & 5 & 0 \\
+ 0 & 1 & 1 & 2 & 0 \\
+ 0 & 0 & 0 & 0 & 1 \\
+\end{array}
+\right) \xrightarrow{R_1-2R_2} \left(
+\begin{array}{cccc|c}
+ 1 & 0 & -1 & 1 & 0 \\
+ 0 & 1 & 1 & 2 & 0 \\
+ 0 & 0 & 0 & 0 & 1 \\
+\end{array}
+\right)
+	\end{align*}
+	Es gibt keine L\"{o}sungen, weil $0\neq 1$, also  $\text{L\"{o}s}(A, c)=\varnothing$
+\end{parts}
 \end{proof}
 \begin{Problem}
 	Gegeben seien die $\R$-Vektorr\"{a}ume $V$ mit Basis $B_V=\left\{ v_1,v_2,v_3 \right\} $ und Basis $B_W=\left\{ w_1,w_2,w_3 \right\} $. Wir definieren einen linearen Operator $T: V \to W$ wie folgt:
@@ -233,7 +281,15 @@
 				\text{im}(T)=\R^3, \qquad \text{ker}(T)=\left\{ 0 \right\} 
 			.\] 
 		\item 
-
-\end{parts}
+\[
+	\begin{pmatrix} 1 & 1 & -1\\ 0 & 1 & -1\\1 & 0 & -1 \end{pmatrix} 
+.\] 
+\item \[
+B_W^*=\left\{ w_1+w_3,w_1+w_2,-w_1-w_2-w_3 \right\} 
+.\] 
+\item \[
+B_V^*=\left\{ v_1+v_2+v_3, -(v_1+v_3), -(v_2+v_3) \right\} 
+.\] 
+		\end{parts}
 \end{Problem}
 	\end{document}

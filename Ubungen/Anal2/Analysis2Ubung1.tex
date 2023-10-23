@@ -34,15 +34,10 @@
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\author{Lukas Then}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\begin{Remark}
-		Sie haben gesagt, dass wir das Bennungsschema 
-
-		``Analysis1Blatt[Blattzahl][Nachname1][Nachname2][Nachmame3].pdf"
-
-		nutzen sollten. Meinen Sie Analysis1 oder Analysis2? 
-	\end{Remark}
 \begin{Problem}
 Berechnen Sie Ableitungen der folgenden Funktionen:
 \begin{parts}
@@ -122,7 +117,7 @@ Berechnen Sie Ableitungen der folgenden Funktionen:
 
 	Beweis: Es gibt zwei F\"{a}lle:
 	\begin{enumerate}[label=(\roman*)]
-		\item $x_0\in \Q$. Dann in jeder offenen Ball $(x_0-\delta, x_0+\delta)$ gibt esein Zahl $x \in \R \backslash \Q$, also $|g(x)-g(x_0)|=g(x_0)=y_0>\epsilon$
+		\item $x_0\in \Q$. Dann in jeder offenen Ball $(x_0-\delta, x_0+\delta)$ gibt es ein Zahl $x \in \R \backslash \Q$, also $|g(x)-g(x_0)|=g(x_0)=y_0>\epsilon$
 
 		\item Sei $x_0\in \R \backslash \Q$. Dann in jeder offenen Ball $(x_0-\delta, x_0+\delta)$ gibt es ein Zahl $x\in \Q$, also $|g(x)-g(x_0)|=g(x)>y_0>\epsilon$
 	\end{enumerate}
@@ -231,7 +226,7 @@ Weil das Grenzwert auf $\R\cup \left\{ \pm\infty \right\} $ existiert, ist
 \end{proof}
 \begin{Corollary}
 	\[
-	\lim_{x \to \infty} \left[ x\left( \frac{\ln^2x}{x}-x \right)  \right] =-\infty
+	\lim_{x \to \infty} \left[ x\left( \frac{\ln^2x}{x}-1 \right)  \right] =-\infty
 	.\] 
 \end{Corollary}
 Deswegen ist
@@ -258,7 +253,7 @@ f'(x)=\begin{cases}
 \end{cases}
 .\] 
 
-Es ist klar, dass $x=0$ eine L\"{o}sung zu $f'(x)=0$ ist. Weil $f''(0)=2>0$, ist es ein lokales Minimum. Es gilt auch, dass es $a,b\in \R, a<1<b$ gibt, wof\"{u}r gilt
+Es ist klar, dass $x=0$ eine L\"{o}sung zu $f'(x)=0$ ist. Weil $f''(0)=2>0$, ist es ein lokales Minimum. Es gibt auch $a,b\in \R, a<1<b$, wof\"{u}r gilt
 \begin{align*}
 	& f'(x)>0 & x\in (a,1)\\
 	& f'(x)<0 & x\in (1,b)
@@ -269,15 +264,15 @@ Falls $f(1)\ge \lim_{x \to 1^{-}} f(x)$, ist $f(1)$ ein lokales Maximum (sogar w
 	und
 	\[
 	f(1)=\frac{8}{\pi}\arctan 1=\frac{8}{\pi}\frac{\pi}{4}=2\] 
-	ist $f(1)$ ein lokales Maximum. Weil $f(x)<2$ f\"{u}r $x>1$ kann kein Punkt $x>1$ ein globales Maximum sein. Es gilt auch,d ass
+	ist $f(1)$ ein lokales Maximum. Weil $f(x)<2$ f\"{u}r $x>1$ kann kein Punkt $x>1$ ein globales Maximum sein. Es gilt auch, dass
 	\[
 	f(-1)=(-1)^2+1=2
 	.\] 
-	Außer $x\in \left\{ -1,0,1 \right\} $ gibt es keine M\"{o}glichkeiten f\"{u}r ein globales Maximum. Daher sind die Globale EMaxima auf $x\in \left\{ -1,1 \right\} $ 
+	Außer $x\in \left\{ -1,0,1 \right\} $ gibt es keine M\"{o}glichkeiten f\"{u}r ein globales Maximum. Daher sind die globale Maxima auf $x\in \left\{ -1,1 \right\} $ 
 
 	F\"{u}r $x\in [1,1)$ gilt $f(x)\ge 1$. Dennoch ist
 	\[
 	\lim_{x \to \infty} \frac{8}{\pi}\arctan\left( \frac{1}{x} \right) =0
 	.\] 
-	Deswegen gibt es \emph{keine} globales Maximum auf $\R$. Wenn man $f(\infty)$ definiert durch $f(\infty)=\lim_{x \to \infty} f(x)$, ist $f(\infty)$ das globale Maximum
+	Deswegen gibt es \emph{keine} globales Maximum auf $\R$. Wenn man $f(\infty)$ definiert durch $f(\infty)=\lim_{x \to \infty} f(x)$, ist $f(\infty)$ das globale Maximum.
 \end{document}
