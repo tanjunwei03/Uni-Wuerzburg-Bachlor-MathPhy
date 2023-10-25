@@ -298,4 +298,71 @@ Dann
 	\end{center}
 	Leider ist die Vereinigung kein Produkt-Menge
 \end{Remark}
+\section{24/10/23}
+\begin{Definition}
+	Sei $\mathcal{A}$ eine $\sigma$-Algebra \"{u}ber X, und $\mu:\mathcal{A}\to [0,\infty]$ Mengefunktion. Wenn $\mu$ $\sigma$-Additiv ist, heißt $\mu$ Maß. 
+
+	Ist $\mu(X)=1$, dann heißt $\mu$ Wahrscheinlichkeitsmaß.
+\end{Definition}
+\begin{Example}
+	Sei
+	\[
+	\varphi(A)=\begin{cases}
+		1 & A \neq \varphi\\
+		0 & A = \varphi
+	\end{cases}
+	.\] 
+	Dann ist $\varphi$ endlich und $\sigma$-subadditiv. Aber weil es nicht $\sigma$-Additiv ist, ist es keinen Maß. 
+\end{Example}
+\begin{Definition}
+	Sei $(X, \mathcal{A})$ eine $\sigma$-Algebra \"{u}ber $X$ und $a\in X$. Dann ist
+	\[
+	\varphi(A)=\begin{cases}
+		1 & a \in A\\
+		0 & a \not\in A
+	\end{cases}
+	.\] 
+	ein Maß (Dirac-Maß)
+\end{Definition}
+\begin{Example}
+	Sei $\varphi(A)=\text{ anzahl der Elemente von }A$. Dann ist $\varphi$ ein Maß. 
+\end{Example}
+
+\begin{Theorem}
+	\begin{enumerate}
+		\item $\mu(A \cap B)+\mu(A \cup B)=\mu(A)+\mu(B)$
+		\item Falls $A\subseteq B$, dann ist $\mu(B\backslash A)=\mu(B)-\mu(A)$.
+		\item Falls $A\subseteq B$, dann $\mu(A)\le \mu(B)$
+		\item Falls $A_1\subseteq A_2\subseteq A_3\dots$,. dann $\lim_{k \to \infty} \mu(A_k)=\mu\left( \bigcup_{j=1} ^\infty A_j \right) $.
+		\item Falls $A_1\supseteq A_2\supseteq A_3\dots$ und $\mu(A_1)<\infty$, dann ist $\lim_{k \to \infty} \mu(A_k)=\mu\left( \bigcap_{j=1} ^\infty A_j \right) $
+	\end{enumerate}
+\end{Theorem}
+
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			\begin{align*}
+				A \cup B=&A\cup(B\backslash A)\\
+				B =& (B\backslash A)\cup (A \cap B)\\
+				\mu(B\backslash A)=&\mu(A\cup B)-\mu(A)=\mu(B)-\mu(A \cap B)\\
+				\mu(A\cup B)+\mu(A\cap B)=& \mu(A)+\mu(B)
+			\end{align*}
+		\item $B=A\cup (B\backslash A)$, und daher $\mu(B)=\mu(A)+\mu(B\backslash A)$.
+		\item $\mu(B)=\mu(A)+\mu(B\backslash A)\ge \mu(A)$.
+	\end{enumerate}
+	\end{proof}
+	\begin{Definition}
+		Eine Menge $M\in \mathcal{A}$ heißt Nullmenge, Falls $\mu(M) =0$. Der Maßraum heißt vollständig, wenn gilt: $M \subseteq N, N$ Nullmenge impliziert $M\in \mathcal{A}$ (alle Teilmenge von Nullmengen sind messbar)
+	\end{Definition}
+	\begin{Corollary}
+		Abz\"{a}hlbare Vereinigung von Nullmengen ist Nullmenge.
+	\end{Corollary}
+\begin{Definition}
+	Eine Abbildung $\mu^*:[0,+\infty]$ heißt äußeres Maß, falls gilt:
+	\begin{enumerate}
+		\item $\mu^*(\varnothing)=0$ 
+		\item $\mu*$ ist monoton, d.h $A\subseteq B\implies \mu^*(A)\le \mu^*(B)$ 
+		\item $\mu^*$ ist $\sigma$-subadditiv
+	\end{enumerate}
+\end{Definition}
 \end{document}

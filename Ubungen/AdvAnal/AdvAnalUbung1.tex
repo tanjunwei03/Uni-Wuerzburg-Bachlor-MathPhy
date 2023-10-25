@@ -34,6 +34,8 @@
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\author{Lucas Wollmann}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
 
@@ -106,7 +108,7 @@ Daraus folgt
 \begin{Problem}
 	\begin{parts}
 		
-	 \item Sei $X := \Q$ und $\mathcal A_\sigma (M)$ die von $M := \{(a, b] \cap Q | a, b \in \Q, a < b\}$ erzeugte $\sigma$-Algebra. Zeigen Sie, dass $\mathcal A_\sigma (M ) = P(\Q)$ gilt.
+	\item Sei $X := \Q$ und $\mathcal A_\sigma (M)$ die von $M := \{(a, b] \cap Q | a, b \in \Q, a < b\}$ erzeugte $\sigma$-Algebra. Zeigen Sie, dass $\mathcal A_\sigma (M ) = \mathcal{P}(\Q)$ gilt.
 
  \item Seien $X, Y$ nichtleere Mengen und $f:X\to Y$ eine Abbildung. Zeigen Sie: F\"{u}r $\mathcal M\subseteq \mathcal{P}(Y)$ gilt
 	 \[
@@ -148,10 +150,9 @@ Daraus folgt
 	\[
 		\mathcal{M}':=f_*\left( \mathcal{A}_\sigma \left( f^{-1}(\mathcal{M}) \right)  \right) 
 	.\]
-	Es ist klar, dass $\mathcal{M}'$ eine $\sigma$-Algebra ist, die $\mathcal{M}$ und daher auch $\mathcal{A}_\sigma \left( \mathcal{M} \right) $ enth\"{a}lt. Es ist auch klar, dass $f^{-1}\left( \mathcal{M}' \right)=\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{M} \right)  \right)  $. Daraus folgt:
+	Es ist schon in der Vorlesung bewiesen, dass $\mathcal{M}'$ eine $\sigma$-Algebra ist, die $\mathcal{M}$ und daher auch $\mathcal{A}_\sigma \left( \mathcal{M} \right) $ enth\"{a}lt. Weil $f^{-1}(\mathcal{M}')$ eine $\sigma$-Algebra ist, ist $f^{-1}\left( \mathcal{M}' \right)=\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{M} \right)  \right)  $. Daraus folgt:
 	\[
-		f^{-1}\left( \mathcal{A}_\sigma \left( \mathcal{M} \right)  \right) \subseteq f^{-1}\left( \mathcal{ M}' \right) =\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{ M} \right)  \right)
-	.\] 
+		f^{-1}\left( \mathcal{A}_\sigma \left( \mathcal{M} \right)  \right) \subseteq f^{-1}\left( \mathcal{ M}' \right) =\mathcal{A}_\sigma\left( f^{-1}\left( \mathcal{ M} \right)  \right) . \qedhere\]
 	\end{parts}
 \end{proof}
 
@@ -170,7 +171,7 @@ Daraus folgt
 \begin{parts}
 \item Es genügt zu beweisen, dass jeder offene Ball eine Vereinigung von $\Q$-Bälle sind.
 
-	Sei $B_p(x), p\in \R, x\in \R^n$ eine offene Ball. Sei auch $(a_i), a_i\in \Q^n$ eine Folge, wof\"{u}r gilt
+	Sei $B_p(x), p\in \R, x\in \R^n$ eine offene Ball. Sei auch $(a_i), a_i\in \Q^n$ eine Folge, für die gilt
 \begin{gather*}
 	\|x-a_i\|<r \forall i\\
 	\lim_{i \to \infty} a_i=x
@@ -210,7 +211,7 @@ Dann
 Deswegen
 \[
 	\mathcal A_\sigma\left( B_\Q \right) =\mathcal A_\sigma\left( B_\R \right) =\mathcal B^n
-.\] 
+.\qedhere\] 
 \end{parts}
 \end{proof}
 
@@ -241,7 +242,7 @@ Deswegen
 		Weil $B_i\subseteq B_{i+1}$, (2) gilt auch:
 		\[
 			\lim_{n \to \infty} \mu(B_n)=\lim_{n \to \infty} \sum_{i=1}^n A_i=\sum_{i=1}^\infty A_i=\mu\left( \bigcup_{n=1} ^\infty B_n \right) =\mu\left( \bigcup_{n=1} ^\infty A_n \right) 
-		.\] 
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
 \end{document}

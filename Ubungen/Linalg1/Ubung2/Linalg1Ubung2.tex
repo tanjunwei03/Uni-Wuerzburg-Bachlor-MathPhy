@@ -1,0 +1,48 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\title{Lineare Algebra 1 Hausaufgabenblatt Nr. 1}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+\begin{Problem}
+	Gegeben sei die Relation $~\subseteq (\R^2 \ \{0\}) \times  (\R^2 \ \{O\})$ mit $x ~ y$ genau dann, wenn es eine Gerade $L \subseteq \R2$ gibt, die $0$, $x$ und $y$ enthält.
+
+	\begin{parts}
+		\item Bestimmen Sie alle $y \in \R^2 \backslash \{(0, 0)\}$ mit $(0, 1) ~ y$ bzw. $(1, 0) ~ y$ und skizzieren Sie die beiden Mengen in einem geeigneten Koordinatensystem.
+		\item Begründen Sie, dass ~ eine Äquivalenzrelation ist.
+		\item Bleibt $~$ auch dann eine Äquivalenzrelation, wenn man sie als Relation in $\R^2$ betrachtet?
+	\end{parts}
+\end{Problem}
+\end{document}
