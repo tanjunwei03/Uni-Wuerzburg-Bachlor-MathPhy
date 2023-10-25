@@ -1,0 +1,237 @@
+\begin{Problem}
+Berechnen Sie Ableitungen der folgenden Funktionen:
+\begin{parts}
+	\item $f(x)=\frac{\arctan\sin x^2}{e^{1-x}}\text{ f\"{u}r }x\in \R$ 
+	\item $g(x)=x^{(x^x)}\text{ f\"{u}r }x>0$
+\end{parts}
+\end{Problem}
+
+	\begin{parts}
+		\item 
+			\[
+				f(x)=e^{x-1}\arctan\sin x^2
+			.\] 
+			\begin{align*}
+				f'(x)=& e^{x-1}\dv{x}\arctan\sin x^2+\left( \arctan\sin x^2 \right) \dv{x}e^{x-1}\\
+			=&\frac{e^{x-1}}{1+\sin^2 x^2}\dv{x}\sin x^2+\left( \arctan\sin x^2 \right)e^{x-1}\dv{x}(x-1)\\
+			=&\frac{e^{x-1}}{1+\sin^2 x^2}(\cos x^2)(2x)+(\arctan\sin x^2)e^{x-1}\\
+			=& \frac{2x\cos x^2 e^{x-1}}{1+\sin^2 x^2}+(\arctan\sin x^2)e^{x-1}
+			\end{align*}
+		\item 
+			\begin{align*}
+				g(x)=& x^{(x^x)}\\
+				\ln g(x)=& x^x\ln x
+			\end{align*}
+
+			\begin{Lemma}
+				\begin{align*}
+					h(x)&:=x^x\\
+					h'(x)&=x^x(1+\ln x)
+				\end{align*}
+			\end{Lemma}
+			\begin{proof}
+				\[
+				\ln h(x)=x\ln x
+				.\] 
+				\begin{align*}
+					\dv{x}|\ln h(x)=&\dv{x}\left( x\ln x \right) \\
+					\frac{h'(x)}{h(x)}=&\ln x+1\\
+					h'(x)=&h(x)\left( 1+\ln x \right) \\
+					=&x^x\left( 1+\ln x \right) 
+				\end{align*}
+			\end{proof}
+			Dann gilt
+	\begin{align*}
+		\dv{x}\ln g(x)=&\dv{x}\left( x^x \ln x \right) \\
+		\frac{g'(x)}{g(x)}=&\frac{1}{x}x^x+(\ln x)\dv{x}\left( x^x \right) \\
+		=&\frac{x^x}{x}+(\ln x)x^x (1+\ln x)\\
+		g'(x)=&g(x)x^x\left[ \frac{1}{x}+\ln x+\ln^2x \right] \\
+		=& x^{x^x+x}\left[ \frac{1}{x}+\ln x+\ln^2x \right] \\
+		=& x^{x^x+x-1}\left[ 1+x\ln x+x\ln^2 x \right] 
+	\end{align*}
+		\end{parts}
+
+\begin{Problem}
+	Untersuchen Sie, für welche Argumente des Definitionsbereiches die folgenden Funktionen differenzierbar sind:
+	\begin{parts}
+	\item $f(x)=|x|, x\in \R$ 
+	\item $g(x)= \begin{cases}
+			x^2 & x\in \Q \\
+			0 & x\in \R \backslash \Q
+	\end{cases}$ 
+\item $h(z)=\overline{z}, z\in \C$
+	\end{parts}
+\end{Problem}
+
+\begin{parts}
+\item F\"{u}r $x_0\neq 0$ gibt es eine Umgebung auf $x_0$, worin $|x|=x$ oder $|x|=-x$. Dann ist die Ableitung von $|x|$ gleich mit die Ableitung von entweder $x$ oder $-x$, also $f'(x_0)$ existiert f\"{u}r $x_0\neq 0$.
+
+	F\"{u}r $x_0=0$ gilt $|0|=0$, und auch
+	\begin{align*}
+		\lim_{x \to 0^{+}} \frac{f(x)-f(0)}{x-0}&=\lim_{x \to 0^{+}} \frac{x}{x}=1\\
+		\lim_{x \to 0^{-}} \frac{f(x)-f(0)}{x-0}&=\lim_{x \to 0^{-}} \frac{-x}{x}=-1
+	\end{align*}
+	Weil die beide ungleich sind, existiert die Grenzwert und daher auch die Ableitung nicht.
+
+\item Sei $x_0\neq 0$ und $y_0=x_0^2$. Dann f\"{u}r $0<\epsilon<y_0$ existiert keine $\delta>0$, sodass $|x-x_0|<\delta\implies |g(x)-g(x_0)|<\epsilon$.
+
+	Beweis: Es gibt zwei F\"{a}lle:
+	\begin{enumerate}[label=(\roman*)]
+		\item $x_0\in \Q$. Dann in jeder offenen Ball $(x_0-\delta, x_0+\delta)$ gibt es ein Zahl $x \in \R \backslash \Q$, also $|g(x)-g(x_0)|=g(x_0)=y_0>\epsilon$
+
+		\item Sei $x_0\in \R \backslash \Q$. Dann in jeder offenen Ball $(x_0-\delta, x_0+\delta)$ gibt es ein Zahl $x\in \Q$, also $|g(x)-g(x_0)|=g(x)>y_0>\epsilon$
+	\end{enumerate}
+	Sei $x_0=0$. Dann gilt $g(x_0)=0$, und auch:
+	\begin{enumerate}[label=(\roman*)]
+		\item $x\in \Q$, also
+			\begin{align*}
+				\frac{g(x)-g(0)}{x-0}=& \frac{x^2}{x}\\
+				=& x
+			\end{align*}
+
+		\item oder $x \not\in \Q$, also
+			\[
+			g(x)-g(0)=0-0=0\implies \frac{g(x)-g(0)}{x-0}=0
+			.\] 
+	\end{enumerate}
+	Deshalb ist
+	\[
+	g'(0)=\lim_{x \to 0} \frac{g(x)-g(0)}{x-0}=0
+	.\]
+\item Zu berechnen:
+	\[
+		\lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}=\lim_{z \to z_0} \frac{\overline{z}-\overline{z_0}}{z-z_0}=\lim_{z \to z_0} \frac{\overline{z-z_0}}{z-z_0}
+	.\] 
+
+	Sei $z=z_0+x, x\in \R$. Dann, falls die Grenzwert existiert, ist es gleich
+	\begin{align*}
+		\lim_{z \to z_0} \frac{\overline{z-z_0}}{z-z_0}=& \lim_{x \to 0} \frac{\overline{z_0+x-z_0}}{z_0+x-z_0}\\
+		=& \lim_{x \to 0} \frac{\overline{x}}{x}\\
+		=&\lim_{x \to 0} \frac{x}{x}\\
+		=& 1
+	\end{align*}
+
+	Sei jetzt $z=z_0+ix, x\in \R$. Falls die Grenzwert existiert ist es gleich
+	\begin{align*}
+		\lim_{z \to z_0} \frac{\overline{z-z_0}}{z-z_0}=&\lim_{x \to 0} \frac{\overline{z_0+ix-z_0}}{z_0+ix-z_0}\\
+		=& \lim_{x \to 0} \frac{\overline{ix}}{ix}\\
+		=& \lim_{x \to 0} \frac{-ix}{ix} \\
+		=& -1
+	\end{align*}
+
+	Weil das Grenzwert, wenn durch zwei Richtungen berechnet wurde, ungleich ist, existiert das Grenzwert nicht (f\"{u}r alle $z\in \C$)
+\end{parts}
+
+\begin{Problem}
+	Man zeige, dass die Gleichung
+	\[
+	x=\cos\left( \frac{\pi x}{2} \right) \] 
+	auf $[0,1]$ genau eine L\"{o}sung besitzt.
+\end{Problem}
+
+Sei $f(x)=x-\cos\left( \frac{\pi x}{2} \right) $. Dann ist die Gleichung gleich $f(x)=0$. $f(x)$ ist auf $[0,1]$ stetig, und auf $(0,1)$ differenzierbar.
+\begin{align*}
+	f(0)=& 0-1=-1\\
+	f(1)=& 1-0=1
+\end{align*}
+Wegen des Zwischenwertsatzes gibt es mindestens eine L\"{o}sung zu der Gleichung $f(x)=0$. Dann
+\[
+	f'(x)=1+\frac{\pi}{2}\sin\left( \frac{\pi x}{2} \right) >0\text{ f\"{u}r }x\in [0,1]
+.\] 
+$f$ is dann monoton wachsend, und es gibt maximal eine L\"{o}sung zu $f(x)=0$.
+
+Deswegen besitzt die Gleichung genau eine L\"{o}sung.
+
+\begin{Problem}
+	Bestimmen Sie die folgenden Grenzwerte:
+	\begin{parts}
+	\item $\lim_{k \to \infty} k\ln \frac{k-1}{k}$ 
+	\item  $\lim_{x \to \infty} \frac{x^{\ln x}}{e^x}$
+	\end{parts}
+\end{Problem}
+
+\begin{parts}
+\item \[
+k\ln \frac{k-1}{k}=\frac{\ln (k-1)-\ln k}{1 / k}
+.\] 
+Weil $\ln x$ und $1 / x$ auf $x\in (0,\infty)$ differenzierbar sind, kann man den Satz von L'Hopital verwenden:
+\begin{align*}
+	\dv{k}\left[ \ln(k-1)-\ln k \right] =& \frac{1}{k-1}-\frac{1}{k}=\frac{1}{k(k-1)}\\
+	\dv{k}\frac{1}{k}=&-\frac{1}{k^2}
+\end{align*}
+Dann gilt
+\begin{align*}
+	\lim_{k \to \infty}  \frac{\frac{1}{k(k-1)}}{-\frac{1}{k^2}}=&\lim_{k \to \infty} \left( -\frac{k}{k-1} \right)\\
+	=& \lim_{k \to \infty} \left( -\frac{1}{1-\frac{1}{k}} \right) \\
+	=&-1
+\end{align*}
+Weil das Grenzwert auf $\R\cup \left\{ \pm\infty \right\} $ existiert, ist
+\[
+\lim_{k \to \infty} k\ln\left( \frac{k-1}{k} \right) =-1
+.\]
+\item \[
+		\frac{x^{\ln x}}{e^x}=\frac{\left( e^{\ln x} \right)^{\ln x}}{e^x}=\frac{e^{\ln^2 x}}{e^x}=e^{\ln^2 x-x}=e^{x\left( \frac{\ln^2 x}{x}-1 \right) }
+.\]
+\begin{Lemma}
+	\[
+	\lim_{x \to \infty} \frac{\ln^p x}{x^q}=0,\qquad p,q>0
+	.\] 
+\end{Lemma}
+\begin{proof}
+	\begin{align*}
+		\lim_{x \to \infty} \frac{\ln^p x}{x^q}=&\left( \lim_{x \to \infty} \frac{\ln x}{x^{p / q}} \right)^q\\
+		=&\left( \lim_{x \to \infty} \frac{1}{x(x^{p / q})} \right)^q & \text{L'Hopital}\\
+		=& 0^q=0
+	\end{align*}
+\end{proof}
+\begin{Corollary}
+	\[
+	\lim_{x \to \infty} \left[ x\left( \frac{\ln^2x}{x}-1 \right)  \right] =-\infty
+	.\] 
+\end{Corollary}
+Deswegen ist
+\[
+	\lim_{x \to \infty} \frac{x^{\ln x}}{e^x}=\lim_{x \to \infty} e^{x\left( \frac{\ln^2 x}{x}-1 \right) }=0
+.\] 
+\end{parts}
+\begin{Problem}
+	Überprüfen Sie die Funktion $f : [-1, +\infty) \to \R$ definiert durch
+	\[
+	f(x)=\begin{cases}
+		x^2+1 & -1\le x < 1\\
+		\frac{8}{\pi}\arctan \frac{1}{x} & x \ge 1
+	\end{cases}
+	\]
+auf lokale und globale Extrema.
+\end{Problem}
+
+Es gilt
+\[
+f'(x)=\begin{cases}
+	2x & -1< x < 1 \\
+	\frac{8}{\pi}\frac{1}{1+\frac{1}{x^2}}\left( -\frac{1}{x^2} \right) & x>1
+\end{cases}
+.\] 
+
+Es ist klar, dass $x=0$ eine L\"{o}sung zu $f'(x)=0$ ist. Weil $f''(0)=2>0$, ist es ein lokales Minimum. Es gibt auch $a,b\in \R, a<1<b$, wof\"{u}r gilt
+\begin{align*}
+	& f'(x)>0 & x\in (a,1)\\
+	& f'(x)<0 & x\in (1,b)
+\end{align*}
+Falls $f(1)\ge \lim_{x \to 1^{-}} f(x)$, ist $f(1)$ ein lokales Maximum (sogar wenn $f$ nicht auf $1$ stetig ist). Weil
+\[
+	\lim_{x \to 1^{-}} f(x)=\lim_{x \to 1^{-}} \left( x^2+1 \right) =2\] 
+	und
+	\[
+	f(1)=\frac{8}{\pi}\arctan 1=\frac{8}{\pi}\frac{\pi}{4}=2\] 
+	ist $f(1)$ ein lokales Maximum. Weil $f(x)<2$ f\"{u}r $x>1$ kann kein Punkt $x>1$ ein globales Maximum sein. Es gilt auch, dass
+	\[
+	f(-1)=(-1)^2+1=2
+	.\] 
+	Außer $x\in \left\{ -1,0,1 \right\} $ gibt es keine M\"{o}glichkeiten f\"{u}r ein globales Maximum. Daher sind die globale Maxima auf $x\in \left\{ -1,1 \right\} $ 
+
+	F\"{u}r $x\in [1,1)$ gilt $f(x)\ge 1$. Dennoch ist
+	\[
+	\lim_{x \to \infty} \frac{8}{\pi}\arctan\left( \frac{1}{x} \right) =0
+	.\] 
+	Deswegen gibt es \emph{keine} globales Maximum auf $\R$. Wenn man $f(\infty)$ definiert durch $f(\infty)=\lim_{x \to \infty} f(x)$, ist $f(\infty)$ das globale Maximum.

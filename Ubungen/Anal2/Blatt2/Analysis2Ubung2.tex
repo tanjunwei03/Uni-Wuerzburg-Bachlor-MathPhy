@@ -1,8 +1,11 @@
 \documentclass[prb,12pt]{revtex4-2}
 
+%font
+\usepackage[T1]{fontenc}
+\usepackage[osf,sc]{mathpazo}
+%actual preamble
 \usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
 \usepackage{enumitem}
-%\usepackage{cmbright}
 \usepackage{cancel}
 \usepackage{booktabs}
 \usepackage{tikz}
@@ -12,7 +15,7 @@
 \usepackage{float}
 \usepackage{multirow}
 \newtheorem{Theorem}{Theorem}
-\newtheorem{Proposition}{Theorem}
+\newtheorem{Proposition}[Theorem]{Proposition}
 \newtheorem{Lemma}[Theorem]{Lemma}
 \newtheorem{Corollary}[Theorem]{Corollary}
 \newtheorem{Example}[Theorem]{Example}
@@ -103,6 +106,7 @@ Beweisen Sie, dass $(f_n),n\in \N$ gegen eine zu bestimmende Grenzfunktion $f : 
 		\end{cases}
 		.\] 
 Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, gibt es eine Umgebung $0\in V$, in der gilt, dass $|f_n'(x)-f_n'(0)|=f_n'(x)\le 1-\epsilon, x\in V$. Sei dann  $0\neq x\in V$, und $|1-f_n'(x)|>\epsilon$. Deswegen ist es kein Widerspruch.
+
 \item Es gilt $\left|\frac{\cos(nx)}{n^3}\right|\le \frac{1}{n^3}$. Daher konvergiert die Reihe gleichmäßig (Weierstraßsches Majorantenkriterium).
 
 	Jetzt ist $\dv{x} \frac{\cos(nx)}{n^3}=-\frac{\cancel{n}\sin(nx)}{n^{\cancelto{2}{3}}}$. Weil $\left|\frac{\sin(nx)}{n^2}\right|\le \frac{1}{n^2}$, konvergiert $\sum_{n=1}^{\infty} \left| \frac{\sin(nx)}{n^2} \right|$ gleichmäßig. Deswegen ist $f$ differenzierbar, mit Ableitung
@@ -155,7 +159,7 @@ Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, 
 				.\qedhere\] 
 				Jetzt nehme an, dass es f\"{u}r $p$ gilt. Wir zeigen, dass es f\"{u}r $p\to p+1$ auch gilt. 
 				\[
-					\lim_{x \to \infty} \frac{(\ln x)^{p+1}}{x^k}=\lim_{x \to \infty} \frac{(p+1)(\ln x)^p}{kx^{k-1}(x)}=\frac{p+1}{k}\lim_{x \to \infty} \frac{(\ln x)^p}{x^k}=0
+					\lim_{x \to \infty} \frac{(\ln x)^{p+1}}{x^k}=\lim_{x \to \infty} \frac{(p+1)(\ln x)^p}{kx^{k-1}(x)}=\frac{p+1}{k}\lim_{\xi \to \infty} \frac{(\ln x)^p}{x^k}=0
 				.\] 
 			\end{proof}
 			\begin{Lemma}
@@ -168,6 +172,21 @@ Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, 
 				\[
 					\lim_{x \to \infty} x^{-k}(\ln x)^p=\lim_{x \to \infty} e^{-k\xi}\xi^p=0
 				.\qedhere\] 
+			\end{proof}
+			Die Ableitungen $f^{(n)}(x), x\neq 0$ haben den Form $p_n\left( \frac{1}{x} \right) \exp\left( \frac{1}{x^2} \right) $, wobei $p_n(x)$ eine Polynome ist. 
+			\begin{Proposition}
+				$f^{(n)}(0)=0$
+			\end{Proposition}
+			\begin{proof}
+				Wir beweisen es per Induktion. $f^{(0)}(0)=0$ per Definition.
+				\begin{align*}
+					f^{(n)}(0)=&\lim_{x \to 0} \frac{f^{(n-1)}(x)-f^{(n-1)}(0)}{x-0}\\
+					=&\lim_{x \to 0}  \frac{1}{x}\left( f^{(n-1)}(x) \right)\\
+					=&\lim_{x \to 0} \frac{1}{x}p_{n-1}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}}\\
+					=&\lim_{x \to \infty} xp_n(x)e^{-x}\\
+					=&0
+				\end{align*}
+				Deswegen ist $f$ überall (inkl. 0) differenzierbar, mit alle Ableitungen $f^{(n)}(0)=0$
 			\end{proof}
 	\end{enumerate}
 \end{proof}
