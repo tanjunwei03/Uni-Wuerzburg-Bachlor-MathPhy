@@ -145,7 +145,37 @@ Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, 
 \end{Problem}
 \begin{proof}
 	\begin{enumerate}[label=\roman*)]
-		\item \ldots
+		\item 
+			\begin{Theorem}
+				Die Ableitung von ein Produkt $f_1(x)f_2(x)\dots f_n(x)$ ist \[
+				\sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x).\]
+			\end{Theorem}
+			\begin{proof}
+				Wir beweisen es per Indukion. F\"{u}r $n=2$ ist es das Produktregel. Jetzt nehme an, dass es f\"{u}r eine $n\in \N$ richtig ist, und 
+				\begin{align*}
+					\dv{x}\left( f_1(x)f_2(x)\dots f_{n+1}(x) \right) =& \dv{x}\left( f_1(x)f_2(x)\dots f_n(x) \right) f_{n+1}(x)\\
+											   &+\left( f_1(x)f_2(x)\dots f_n(x) \right) \dv{f_{n+1}}{x}\\
+					=& \sum_{k=1}^{n}\left( \sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x) \right)\\
+					 &+\left( f_1(x)f_2(x)\dots f_n(x) \right) f_n'(x)\\
+					=&\sum_{i=1}^{n+1} f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_{n+1}(x)
+				\end{align*}
+			\end{proof}
+			\begin{Corollary}\label{thm:ana2u2corollary1}
+				Alle Monome von differenzierbare Funktionen sind differenzierbar, und die Ableitung ist noch eine lineare Kombination von Monome.
+			\end{Corollary}
+			\begin{Corollary}
+				Sei $f$ $k-$ mal differenzierbar. Dann alle Monome von \[f'(x),f''(x),\dots, f^{(n-1)}(x)\] sind differenzierbar.
+			\end{Corollary}
+			\begin{Theorem}
+				$\dv[k]{x}(f\circ g)$ ist ein Monom von Ableitungen von $f$ und $g$ (höchstens die $k$-ste Ableitung), sofern $f$ und $g$, $n$-mal differenzierbar sind.
+			\end{Theorem}
+			\begin{proof}
+				F\"{u}r $k=1$ gilt
+				\[
+					\dv{x}(f\circ g)\left(x \right) =f'(g(x))g'(x)
+				.\] 
+				Nehme an, dass es f\"{u}r ein $k\in \N,k<n$ gilt. Dann per Korollar~\ref{thm:ana2u2corollary1} gilt es auch f\"{u}r $k+1$. Per Induktion ist die Verkettung dann $n$-mal differenzierbar,
+			\end{proof}
 		\item 
 			\begin{Lemma}
 				\[
