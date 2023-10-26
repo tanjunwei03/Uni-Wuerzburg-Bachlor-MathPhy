@@ -1,0 +1,151 @@
+\begin{Problem}
+	Es seien die Punkte $x_0, x_1, \dots, x_n$ mit $x_i \in \R$ gegeben. Wir definieren den Operator
+	\[
+		\Phi:\R_{\le n}[x]\to \R^{n+1}, p\to y, \text{ mit }p(x_i)=y_i, i=0,\dots,n
+	\] 
+	wobei wir mit $\R_{\le n}[x]$ den Raum der Polynome mit reellen Koeffizienten vom Grad höchsten $n$ bezeichnen und $p(x)$ die Auswertung des Polynoms $p$ im Punkt $x$ beschreibt.
+	\begin{parts}
+		\item  Zeigen Sie: Sind die Punkte $x_i$ paarweise verschieden, so ist die Abbildung $\Phi$ wohldefiniert und isomorph. (Eine Konsequenz hieraus ist die eindeutige Lösbarkeit der Polynominterpolation.)
+		\item Was passiert, wenn Sie nicht fordern, dass die $x_i$ paarweise verschieden sind? Kann $\Phi$ im Allgemeinen noch injektiv (surjektiv) sein?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+\item Injektiv: Nehme an, dass es zwei unterschiedliche Polynome $p_1$, $p_2$ gibt, mit $p_1(x_i)=p_2(x_i)\forall i=0,\dots,n$. Dann ist $p(x):=p_1(x)-p_2(x)$ auch ein Polynom, mit $p(x_i):=0\forall i\in \{0,\dots,n\}$. Weil  $ \deg(p)\le n$ist, folgt daraus, dass $\forall x,p(x)=0, p_1(x)=p_2(x)$. Das ist ein Widerspruch.
+
+	Surjektive: Sei $(y_0,\dots,y_n)\in \R^{n+1}$. Dann ist
+	\[
+	p(x)=(x-y_0)(x-y_1)\dots(x-y_n)
+	\]
+	auch ein Polynom mit $\Phi(p)=(y_0,\dots,y_n)$.
+
+	Linearität: Sei $p_1(x),p_2(x)\in \R_{\le n}[x], a\in \R$. Sei auch $p(x)=p_1(x)+p_2(x)$. Es gilt dann
+	\[
+	p(x_i)=p_1(x_i)+p_2(x_i),i=0,\dots,n\] und daher
+	\[
+	\Phi(p)=\Phi(p_1+p_2)=\Phi(p_1)+\Phi(p_2)
+	.\] 
+	Es gilt auch, f\"{u}r $p(x):=ap_1(x)$, dass
+	\[
+	p(x_i)=ap_1(x_i), i=0,\dots,n
+	,\]
+	und daher
+	\[
+	\Phi(p)=\Phi(ap_1)=a\Phi(p_1)
+	.\] 
+\item Nein. Sei, zum Beispiel, $n=1$, $x_0=x_1=0$. Dann gilt
+	\begin{align*}
+		\Phi(x)=&(0,0)^T\\
+		\Phi(x^2)=&(0,0)^T
+	\end{align*}
+	Aber die zwei Polynome sind ungleich.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}	
+	\item Es sei eine Matrix $A \in \mathbb{K}^{n\times n}$ gegeben. Wir bilden die erweiterte Matrix
+	\[
+		B=(A|1_n)\]
+		mit $1_n$ die Einheitsmatrix in $\R^n$. Zeigen Sie: $A$ ist genau dann invertierbar, wenn $A$ durch elementare Zeilenumformung in die Einheitsmatrix überführt werden kann. Verfizieren Sie weiterhin: Werden die dafür benötigten Zeilenumformungen auf ganz $B$ angewendet, so ergibt sich im hinteren Teil, wo zu Beginn die Einheitsmatrix stand, genau $A^{-1}$.
+	\item Es sei nun
+		\[
+			A=\begin{pmatrix} 1 & 0 & 0 & 1\\0 & -1 & 2 & 0 \\ 0 & 0 & 0 & -2\\3 & 0 & 1 & 2 \end{pmatrix} 
+		.\] 
+		Bestimmen Sie $A^{-1}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Definiert $(x,y),x\in \mathbb{K}^n,y\in\mathbb{K}^m$ durch $\mathbb{K}^{n+m}\ni(x,y)=(x_1,\dots,x_n,y_1,\dots,y_n)$. Eine solche erweiterte Matrix bedeutet eine Gleichungssystem durch
+		\[
+		B(x, -y)=Ax-1_ny=0
+		,\]
+		wobei $x,y\in \mathbb{K}^n$. F\"{u}r jeder $x\in\mathbb{K}^n$ gibt es $y\in \mathbb{K}^n,$ so dass $B(x,-y)=0$. Nehme an, dass wir durch elementare Zeilenumformung
+		\[
+		B=(A|1_n)\to (1_n, A'):=B'
+		\]
+		kann. Die Gleichungssystem ist dann $x=A'y$. Dadurch können wir f\"{u}r jeder  $y\in\mathbb{K}^n$ eine $A'y=x\in\mathbb{K}^n$ rechnen, f\"{u}r die gilt, dass $Ax=y$. Das heißt, dass $A'=A^{-1}$. 
+	\item
+		{\allowdisplaybreaks
+		\begin{gather*}
+			\left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & -1 & 2 & 0 & 0 & 1 & 0 & 0 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+ 3 & 0 & 1 & 2 & 0 & 0 & 0 & 1 \\
+\end{array}
+\right) \xrightarrow{R_4-3R_1} \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & -1 & 2 & 0 & 0 & 1 & 0 & 0 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+\end{array}
+\right) \xrightarrow{R_2\times -1}\\ \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & -2 & 0 & 0 & -1 & 0 & 0 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3\leftrightarrow R_4} \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & -2 & 0 & 0 & -1 & 0 & 0 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \xrightarrow{R_2+2R_3}\\ \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & -2 & -6 & -1 & 0 & 2 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \xrightarrow{R_2-R_4} \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0 & -6 & -1 & -1 & 2 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & -2 & 0 & 0 & 1 & 0 \\
+\end{array}
+\right) \xrightarrow{R_4\times -\frac{1}{2}}\\ \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+ 0 & 1 & 0 & 0 & -6 & -1 & -1 & 2 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & 1 & 0 & 0 & -\frac{1}{2} & 0 \\
+\end{array}
+\right) \xrightarrow{R_1-R_4} \left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 0 & 1 & 0 & \frac{1}{2} & 0 \\
+ 0 & 1 & 0 & 0 & -6 & -1 & -1 & 2 \\
+ 0 & 0 & 1 & -1 & -3 & 0 & 0 & 1 \\
+ 0 & 0 & 0 & 1 & 0 & 0 & -\frac{1}{2} & 0 \\
+\end{array}
+\right) \xrightarrow{R_3+R_4} \\\left(
+\begin{array}{cccc|cccc}
+ 1 & 0 & 0 & 0 & 1 & 0 & \frac{1}{2} & 0 \\
+ 0 & 1 & 0 & 0 & -6 & -1 & -1 & 2 \\
+ 0 & 0 & 1 & 0 & -3 & 0 & -\frac{1}{2} & 1 \\
+ 0 & 0 & 0 & 1 & 0 & 0 & -\frac{1}{2} & 0 \\
+\end{array}
+\right)
+		\end{gather*}
+	}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es seien die Vektorräume $V, W$ über $\mathbb{K}$ gegeben mit $\dim(V) = n$ und $\dim(W ) = m$. Wir betrachten eine lineare Abbildung
+	\[
+	T:V\to W, v\to T(v)\] 
+Seien $B_V$ und $B_W$ Basen von $V$, bzw. $W$. Wir nehmen an $T$ ist nicht die konstante Nullabbildung. Beweisen Sie:
+\begin{parts}
+\item Der Kern von $_{B_W}[T]_{B_V}$ ist entweder trivial (d.h. nur die 0) oder hängt nur von der Wahl von $B_V$ ab, aber nicht von $B_W$.
+\item Das Bild von $_{B_W}[T]_{B_V}$ ist entweder der ganze $\mathbb{K}^m$ oder hängt nur von der Wahl von $B_W$ ab, aber nicht von $B_v$. 
+\item Der Rang von $_{B_W}[T]_{B_V}$ ist unabh\"{a}ngig von $B_w$ und $B_V$.
+aber nicht von $B_W$.
+\end{parts}
+\end{Problem}

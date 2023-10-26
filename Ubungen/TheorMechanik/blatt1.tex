@@ -1,0 +1,230 @@
+\begin{Problem}
+	Betrachten Sie den harmonischen Oszillator in einer Dimension, d. h. das Anfangswertproblem
+	\begin{align*}
+		m\dv[2]{x}{t}(t)=&F(x(t))=-kx(t)\\
+		x(t_0)=&x_0\in \R\\
+		\dv{x}{t}(t_0)=&v_0\in \R
+	\end{align*}
+\begin{enumerate}
+	\item Zeigen Sie, daß wenn eine komplexwertige Funktion $z : I \to \C$ mit $t_0 \in I \subseteq \R$ die Differentialgleichung (1a) löst, ihr Realteil $x(t) = \Re z(t)$ zur Lösung des reellen Anfangswertproblems (1) benutzt werden kann.
+	\item Was ist die allgemeinste Form der rechten Seite der Differentialgleichung (1a), für die der Realteil einer komplexen Lösung selbst eine Lösung ist? Geben Sie Gegenbeispiele an.
+	\item Machen Sie den üblichen Exponentialansatz für lineare Differentialgleichungen mit konstanten Koeffizienten\ldots 
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item Sei $x(t)=x_r(t)+i x_i(t), x_r, x_i: I\to\R$.
+
+			Dann gilt
+
+			 \[
+				 m\left( \dv[2]{x_r}{t}+i\dv[2]{x_i}{t} \right) =-k(x_r+ix_i)
+			.\] 
+			Weil das eine Gleichung von zwei komplexe Zahlen ist, gilt auch
+			\[
+				m\dv[2]{x_r}{t}=-kx_r
+			.\] 
+		\item Das passt f\"{u}r alle reelle lineare Kombinationen der Ableitungen von $x(t)$.
+
+			\[
+				\sum_{i=0}^n a_i\dv[i]{x}{t}=0, \qquad a_i\in \R
+			.\] 
+			\paragraph{Gegenbeispiele}
+			\begin{enumerate}[label=(\roman*)]
+				\item Irgendeine $a_i\not\in \R$
+
+\[
+	m\dv[2]{x}{t}=-ikx(t), \qquad k\in \R
+.\] 
+Hier ist es klar, dass \emph{keine} Abbildung $x:\R\to \R$ eine L\"{o}sung sein kann, weil die linke Seite reelle wird, aber die rechte Seite nicht reelle wird.
+
+Daraus folgt: Das Realteil der L\"{o}sung ist kein L\"{o}sung.
+
+\item Nichtlineare Gleichung, z.B.
+
+\[
+	m\dv[2]{x}{t}=-k\left( \dv{x}{t} \right) ^2
+.\] 
+			\end{enumerate}
+
+		\item 
+			\begin{gather*}
+				x(t)=\alpha e^{\lambda t}\\
+				\ddot{x}(t)=\lambda^2 \alpha e^{\lambda t}
+			\end{gather*}
+			Dann
+			\begin{gather*}
+				m\cancel\alpha\lambda^2 \cancel{e^{\lambda t}}=-k\cancel\alpha \cancel{e^{\lambda t}}\\
+				\lambda^2=-\frac{k}{m}\\
+				\lambda=\pm i\sqrt{\frac{k}{m}}=\pm i\omega \qquad \omega :=\sqrt{\frac{k}{m}}    
+			\end{gather*}
+			Daraus folgt, f\"{u}r $z_1(t)$:
+\begin{align*}
+	z_1(0)=&\alpha_{1,+}+\alpha_{1,-}=x_0\\
+	z_1'(0)=&-i\omega \alpha_{1,+}+i\omega \alpha_{1,-}=v_0\\
+		&-\alpha_{1,+}+\alpha_{1,-}=-\frac{iv_0}{\omega}\\
+	2\alpha_{1,-}=&x_0-\frac{iv_0}{\omega}\\
+	2\alpha_{1,+}=&x_0+\frac{iv_0}{\omega}\\
+	z_1(t)=& \frac{1}{2}\left[ \left( x_0+\frac{iv_0}{\omega} \right) e^{-i\omega t}+\left( x_0-\frac{iv_0}{\omega} \right) e^{i\omega t} \right] 
+\end{align*}
+Daraus folgt die andere Formen der L\"{o}sungen:
+\begin{enumerate}[label=(\roman*)]
+	\item $x_2(t)$ 
+		\begin{align*}
+			&\frac{1}{2}\left[ \left( x_0+\frac{iv_0}{\omega} \right)e^{-i\omega t}+\left( x_0-\frac{iv_0}{\omega} \right) e^{i\omega t}  \right] \\
+			&= \Re\left[ \left( x_0+\frac{iv_0}{\omega} \right) e^{-i\omega t} \right] \\
+			&=\Re\left[ \left( x_0+\frac{iv_0}{\omega} \right) \left( \cos(\omega t)-i\sin(\omega t) \right)  \right] \\
+			&=\Re\left[ x_0\cos\omega t+\frac{v_0}{\omega}\sin\omega t+i(\dots) \right] \\
+			&= x_0\cos\omega t+\frac{v_0}{\omega}\sin\omega t
+		\end{align*}
+	\item $x_3(t)$ 
+		(R-Formula)
+		\begin{gather*}
+			x_0\cos\omega t+\frac{v_0}{\omega}\sin\omega t=\alpha_3 \sin(\omega t+\delta_3)\\
+			\alpha_3=\sqrt{x_0^2+\left( \frac{v_0}{\omega} \right) ^2} \\
+			\delta_3=\arctan \frac{v_0}{x_0\omega}
+		\end{gather*}
+	\item $x_4(t)$ 
+		\[
+		\sin\left( x+\frac{\pi}{2} \right) =\cos x
+		.\] 
+		Daraus folgt:
+		\[
+		\alpha_4=\alpha_3 \qquad \delta_4=\delta_3+\frac{\pi}{2}
+		.\] 
+\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+\begin{Problem}
+Betrachten Sie den gedämpften und getriebenen harmonischen Oszillator in
+einer Dimension mit dem Anfangswertproblem
+\begin{gather*}
+	m\dv[2]{x}{t}=F(x(t),\dot{x}(t),t)=-kx(t)-2m\gamma\dv{x}{t}+F_{ext}(t)\\
+	x(0)=x_0\in \R\\
+	\dv{x}{t}(0)=v_0\in \R
+\end{gather*}
+\begin{enumerate}
+	\item Lösen sie das Anfangswertproblem zunächst für verschwindende äußere Kraft $F_{ext} \equiv 0$. Machen Sie dazu wieder den üblichen Exponentialansatz
+	\[x(t)=\alpha e^{\lambda t}\]
+	und behandeln Sie auch den Fall $\gamma^2=k/m$
+	\item Lösen sie das Anfangswertproblem für eine harmonische äußere Kraft $F_{ext}(t) = F_0 sin(\omega_0 t)$ indem Sie zur soeben gefundenen Lösung der homogenen Differentialgleichung noch eine Partikularlösung mit dem Ansatz vom Typ der rechten Seite ``$x(t) = A sin(\omega_0 t)+B cos(\omega_0 t)$" addieren. Auch hier empfiehlt es sich, Kraft und Ansatz zu komplexifizieren:
+	\begin{align*}
+		F_{ext}(t)=& F_0\sin(\omega_0t)\to F_0 e^{-i\omega_0 t}\\
+		x(t)=&A\sin(\omega_0 t)\to Ae^{-i\omega_0 t}
+	\end{align*}
+	\item Zeigen Sie anhand der Lösungen, daß die Energie
+	\[E(t)=\frac m2\left(\dv{x}{t}(t)\right)^2+\frac k2x^2(t)\]
+	für verschwindende Dämpfung $\gamma = 0$ und äußere Kraft $F_{ext} \equiv 0$ erhalten ist und diskutieren Sie die Zeitabhängigkeit von $E(t)$ als Funktion von $\gamma$ im allgemeinen Fall. Berücksichtigen Sie insbesondere eine harmonische äußere Kraft $F_{ext}(t) = F_0 \sin(\omega_0 t)$.
+\end{enumerate}
+\end{Problem}
+
+\begin{proof}
+	\begin{enumerate}
+	\item 	
+	\begin{gather*}
+		x(t)=\alpha e^{\lambda t}\\
+		\dot{x}(t)=\alpha\lambda e^{\lambda t}\\
+		\ddot{x}(t)=\alpha\lambda^2e^{\lambda t}
+	\end{gather*}
+Daraus folgt
+\begin{align*}
+	m\lambda^2\cancel\alpha\cancel{e^{\lambda t}}=&-k\cancel{\alpha e^{\lambda t}}-2m\gamma\lambda\cancel{\alpha e^{\lambda t}}\\
+	0=&m\lambda^2+2m\gamma\lambda+k\\
+	\lambda=&-\gamma\pm \sqrt{\gamma^2-\frac{k}{m}}
+\end{align*}
+Falls $\gamma^2 \neq \frac{k}{m}$ :
+\[
+	x(t)=e^{-\gamma t}\left[ Ae^{\sqrt{\gamma^2-\frac{k}{m}} t}+Be^{-\sqrt{\gamma^2-\frac{k}{m}} t} \right] 
+,\] 
+\begin{align*}
+	x'(t)=&-\gamma e^{-\gamma t}\left[ Ae^{\sqrt{\gamma^2-\frac{k}{m}} t}+Be^{-\sqrt{\gamma^2-\frac{k}{m}} t} \right] \\
+	      &+e^{-\gamma t}\left[ A\sqrt{\gamma^2-\frac{k}{m}} e^{\sqrt{\gamma^2-\frac{k}{m}} t}-B\sqrt{\gamma^2-\frac{k}{m}} e^{-\sqrt{\gamma^2-\frac{k}{m}} t} \right] 
+\end{align*}
+und
+\begin{gather*}
+	x(0)=A+B=x_0\\
+	x'(0)=\sqrt{\gamma^2-\frac{k}{m}} \left( A-B \right)=v_0\\
+	2A=x_0+\frac{v_0}{\sqrt{\gamma^2-\frac{k}{m}} }\\
+	2B=x_0-\frac{v_0}{\sqrt{\gamma^2-\frac{k}{m}} }
+\end{gather*}
+Es ist zu beachten, dass es möglich ist, dass $\gamma^2<\frac{k}{m}$. In diesem Fall ist $\sqrt{\gamma^2-\frac{k}{m}} =i\sqrt{\frac{k}{m}-\gamma^2} $, aber der Form der L\"{o}sung bleibt.
+
+F\"{u}r $\gamma^2=\frac{k}{m}$ ist die L\"{o}sung
+\[
+	x(t)=Ae^{-\gamma t}+Bte^{-\gamma t}
+.\] 
+Es gilt
+\[
+	x'(t)=-\gamma Ae^{-\gamma t}+Be^{-\gamma t}-Bt\gamma e^{-\gamma t}
+.\]
+Dann
+\begin{align*}
+	x(0)=& A=x_0\\
+	x'(0)=& -\gamma A+B=v_0\\
+	B=& v_0+\gamma x_0\\
+	x(t)=& x_0e^{-\gamma t}+(v_0+\gamma x_0)te^{-\gamma t}
+\end{align*}
+\item Wir suchen eine Partikularl\"{o}sung f\"{u}r die Gleichung
+	\[
+		m\dv[2]{x}{t}+2m\gamma\dv{x}{t}+kx=F_0e^{-i\omega_0t}
+	\]
+	mit dem Form
+	\[
+		x(t)=Ae^{-i\omega_0t}
+	.\] 
+	Es gilt
+	\begin{align*}
+		x'(t)=&-i\omega_0 Ae^{-i\omega_0 t} \\
+		x''(t)=&-\omega_0^2 Ae^{-i\omega_0 t}
+	\end{align*}
+	Dann ist
+	\[
+		-\omega_0^2 Ame^{-i\omega_0t}-2m\gamma i\omega_0 Ae^{-i\omega_0 t}+Ake^{-i\omega_0 t}=F_0e^{-i\omega_0t}
+	,\]
+	\[
+	A=\frac{F_0}{-m\omega_0^2-2m\gamma i\omega_0+k}
+	.\] 
+\item für verschwindende Dämpfung $\gamma = 0$ und äußere Kraft $F_\text{ext} \equiv 0$ ist die L\"{o}sung
+	\[
+	x(t)=x_0\cos\omega t+\frac{v_0}{\omega}\sin\omega t, \qquad \omega=\sqrt{k / m} 
+	.\] 
+	Wir berechnen
+	\[
+		\dot{x}=-x_0\omega\sin\omega t +v_0\cos\omega t
+	.\] 
+	Dann gilt
+\begin{align*}
+	\frac{m}{2}\left( \dv{x}{t} \right) ^2 =& \frac{m}{2}\left( -x_0\omega\sin\omega t+v_0\cos\omega t \right) ^2\\
+	=& \frac{m}{2}\left( x_0^2\omega^2\sin^2\omega t-2x_0v_0\omega \sin\omega t\cos\omega t+v_0^2\cos^2\omega t \right)\\
+	=& \cancelto{k / 2}{\frac{m}{2\omega^2}}\left( x_0^2\sin^2\omega t-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\cos^2\omega t\right)\\
+	=& \frac{k}{2}\left( x_0^2(1-\cos^2\omega t)-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\left( 1-\sin^2\omega t \right)  \right) 
+\end{align*}
+Aus
+\[
+\frac{k}{2}x(t)^2=\frac{k}{2}\left( x_0^2\cos^2\omega t+\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t\frac{v_0^2}{\omega^2}\sin^2\omega t \right) 
+\]
+folgt
+\begin{align*}
+	E(t)=& \frac{k}{2}\left( x_0^2(1-\cos^2\omega t)-\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t+\frac{v_0^2}{\omega^2}\left( 1-\sin^2\omega t \right)  \right) \\
+	     &+\frac{k}{2}\left( x_0^2\cos^2\omega t+\frac{2x_0v_0}{\omega}\sin\omega t\cos\omega t\frac{v_0^2}{\omega^2}\sin^2\omega t \right)\\ 
+	=&\frac{k}{2}x_0^2+\frac{kv_0^2}{2\omega^2},
+\end{align*}
+was nicht abhängig von $t$ ist.
+
+Wir untersuchen jetzt die Energie f\"{u}r eine harmonische äußere Kraft. Wenn die Dämpfung $\neq 0$ ist, ist
+\[
+\lim_{t \to \infty} \left( x_h(t)+x_p(t) \right) =\lim_{t \to \infty} x_p(t)
+.\] 
+Daher muss man nur die Energie der Partikularlösung berechnen:
+\begin{align*}
+	x(t)=& \frac{F_0}{-m\omega_0^2-2m\gamma i\omega_0+k}e^{-i\omega_0t}\\
+	\dot{x}(t)=&-\frac{iF_0\omega_0}{-m\omega_0^2-2m\gamma i\omega_0+k}e^{-i\omega_0t}
+\end{align*}
+Wenn $\gamma = 0$, kann $x(t)\to\infty$, wenn
+\[
+	-m\omega_0^2+k=0\qquad\text{(Resonanz)}
+.\]
+Das bedeutet $E(t)\to \infty$ auch.
+\end{enumerate}
+\end{proof}

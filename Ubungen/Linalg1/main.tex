@@ -1,5 +1,6 @@
-\documentclass{book}
-%fonts
+\documentclass[prb,12pt]{revtex4-2}
+
+%font
 % Palatino for main text and math
 \usepackage[osf,sc]{mathpazo}
 
@@ -11,7 +12,6 @@
 % (scaled to match size of Palatino)
 \usepackage[scaled=0.85]{beramono}
 %actual packages
-\usepackage{polynom}
 \usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
 \usepackage{enumitem}
 \usepackage{cancel}
@@ -42,37 +42,12 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \begin{document}
-	\title{Universit\"{a}t W\"{u}rzburg \"{U}bungsbl\"{a}tter\\Bachelor Mathematische Physik}
+	\title{Lineare Algebra 1 Hausaufgabenblatt Nr. 2}
 	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\tableofcontents
-
-\chapter{Lineare Algebra 1}
-\section{Blatt 1}
-\input{Linalg1/blatt1.tex}
-\section{Blatt 2}
-\input{Linalg1/blatt2.tex}
-
-\chapter{Lineare Algebra 2}
-\section{Blatt 1}
-\input{Linalg2/blatt1.tex}
-
-\chapter{Analysis 2}
-Ich habe die Übungen für Analysis 2 mit Lukas Then gemacht.
-\section{Blatt 1}
-\input{Anal2/blatt1.tex}
-
-\chapter{Vertiefung Analysis}
-Ich habe die Übungen für Vertiefung Analysis mit Lucas Wollman gemacht.
-\section{Blatt 1}
-\input{AdvAnal/blatt1.tex}
-
-\chapter{Einf\"{u}rung in die Algebra}
-\section{Blatt 1}
-\input{IntroAlg/blatt1.tex}
-
-\chapter{Theoretische Mechanik}
-\section{Blatt 1}
-\input{TheorMechanik/blatt1.tex}
+%\input{blatt1.tex}
+\input{blatt2.tex}
 \end{document}

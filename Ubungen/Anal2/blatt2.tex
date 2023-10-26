@@ -1,0 +1,206 @@
+\begin{Problem}
+	Es seien $f, g : D \to \R$  $n$-mal differenzierbare Funktionen für $n \in \N\backslash 0$ und $D \subset  \mathbb{K}$ offen. Zeigen Sie, dass $f \cdot g$ ebenfalls $n$-mal differenzierbar ist und weiterhin
+	\[
+		(f\cdot g)^{(n)}(x)=\sum_{k=0}^{n} f^{(k)}(x)g^{(n-k)}(x)\] 
+		für jedes $x\in D$ gilt.
+\end{Problem}
+\begin{proof}
+	Wir zeigen es per Induktion, für $n=1$ ist es das Produktregel. Nehme jetzt an, dass $f,g$ $(n+1)-$ mal differenzierbar Funktionen sind und 
+	\[
+		(f\cdot g)^{(n)}(x)=\sum_{k=0}^{n} f^{(k)}(x)g^{(n-k)}(x)\]
+		gilt (weil alle $(n+1)$-mal differenzierbar Funktionen sind auch $n$-mal differenzierbar). Dann ist $(f\cdot g)^{(n)}(x)$ differenzierbar, weil die rechte Seite eine Linearkombination von Produkte aus (zumindest) einmal differenzierbar Funktionen. Es gilt auch,
+		\begin{align*}
+			(f\cdot g)^{(n)}(x)=&\dv{x}\sum_{k=0}^{n}\binom{n}{k} f^{(k)}(x)g^{(n-k)}(x)\\
+			=& \sum_{k=0}^{n} \binom{n}{k}\left( f^{(k+1)}(x)g^{(n-k)}(x)+f^{(k)}(x)g^{(n-k+1)}(x) \right) & n=1\text{ Fall} \\
+			=& \sum_{k=0}^{n} \binom{n}{k}f^{(k+1)}(x)g^{(n-k)}(x)+\sum_{k=0}^{n} f^{(k)}(x)g^{(n-k+1)}(x)\\
+			=&\sum_{k=1}^{n+1} \binom{n}{k-1}f^{(k)}(x)g^{(n-k+1)}(x)+\sum_{k=0}^{n}\binom{n}{k} f^{(k)}(x)g^{(n-k+1)}(x)\\
+			=&\sum_{k=0}^{n+1} \binom{n}{k}f^{(k)}g^{(n-k)}(x)
+		\end{align*}
+\end{proof}
+\begin{Problem}
+	\begin{enumerate}[label=\roman*)]
+		\item Betrachten Sie die Funktionenfolge $f_n:\R \to \R$ definiert durch
+\[
+f_n(x)=\frac{1}{n}\sqrt{n^2x^2+1} 
+.\] 
+Beweisen Sie, dass $(f_n),n\in \N$ gegen eine zu bestimmende Grenzfunktion $f : \R \to \R$  gleichmäßig konvergiert, diese jedoch nicht differenzierbar auf $\R$  ist. Warum ist das kein Widerspruch zu Proposition 5.5.2?  
+\item Untersuchen Sie
+	\[
+	f(x)=\sum_{n=1}^{\infty} \frac{\cos(nx)}{n^3}, x\in \R
+	.\] 
+	auf Differenzierbarkeit.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}[label=\roman*)]
+		\item \[
+		f_n(x)=\sqrt{x^2+\frac{1}{n^2}} 
+		.\] 
+		Es ist klar, dass $f_n(x)$ konvergiert gegen $\sqrt{x^2} =|x|$. Sei dann $r(x)=\sqrt{x^2+\frac{1}{n^2}} -|x|$. F\"{u}r $x>0$ gilt
+		\begin{align*}
+			r(x)=& \sqrt{x^2+\frac{1}{n^2}}-x\\
+			r'(x)=& \frac{x}{\sqrt{x^2+\frac{1}{n^2}} }-1\le 0
+		\end{align*}
+		Deswegen ist $r(x)$ monoton fallend auf $(0,\infty)$. Ähnlich beweist man, dass $r(x)$ monoton wachsend auf $(-\infty, 0)$ ist. Deswegen ist $x=0$ ein globales Maximum, und $r(x)\le r(0)=\frac{1}{n}$. Daher konvergiert $(f_n)$ gleichmäßig.
+
+		Man berechnet:
+		\[
+			f_n'(x)=\frac{x}{\sqrt{x^2+\frac{1}{n^2}} }
+		.\] 
+		Die Folge der Ableitungen konvergiert gegen $\frac{x}{\sqrt{x^2} }=\text{sgn}(x)$, falls $x\neq 0$, und $0$, falls $x=0$. Es konvergiert aber nicht lokal gleichmäßig in eine Umgebung $U$ auf $0$.
+
+		Sei $1>\epsilon>0$ gegeben, und nehme an, dass existiere $N\in \N$, f\"{u}r die gilt, 
+		\[
+		|f_n(x)'-g(x)|\le \epsilon\qquad n>N,x\in U
+		,\] 
+		wobei
+		\[
+		f'(x)=\begin{cases}
+			1 & x > 0\\
+			-1 & x < 0\\
+			0 & x = 0
+		\end{cases}
+		.\] 
+Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, gibt es eine Umgebung $0\in V$, in der gilt, dass $|f_n'(x)-f_n'(0)|=f_n'(x)\le 1-\epsilon, x\in V$. Sei dann  $0\neq x\in V$, und $|1-f_n'(x)|>\epsilon$. Deswegen ist es kein Widerspruch.
+
+\item Es gilt $\left|\frac{\cos(nx)}{n^3}\right|\le \frac{1}{n^3}$. Daher konvergiert die Reihe gleichmäßig (Weierstraßsches Majorantenkriterium).
+
+	Jetzt ist $\dv{x} \frac{\cos(nx)}{n^3}=-\frac{\cancel{n}\sin(nx)}{n^{\cancelto{2}{3}}}$. Weil $\left|\frac{\sin(nx)}{n^2}\right|\le \frac{1}{n^2}$, konvergiert $\sum_{n=1}^{\infty} \left| \frac{\sin(nx)}{n^2} \right|$ gleichmäßig. Deswegen ist $f$ differenzierbar, mit Ableitung
+	\[
+		f'(x)=\sum_{n=1}^{\infty} \left[ -\frac{\sin(nx)}{n^2} \right] 
+	.\qedhere\] 
+\end{enumerate}
+\end{proof}
+\begin{Problem}
+	Zeigen Sie, dass die Funktion
+	\[f:[-1,1]\to\R\qquad f(x)=\text{max}\left\{ x,0 \right\} \]
+	gleichmäßig durch Polynome approximiert werden kann.
+\end{Problem}
+\begin{proof}
+	Wir wissen schon, dass es $q_n(x)$ existiert, $q_n(x)$ Polynome, und $q_n(x)\to |x|$ gleichmäßig. Es gilt auch
+	\[
+	f(x)=\frac{|x|}{2}+\frac{x}{2}
+	.\] 
+	Daher konvergiert gleichmäßig
+	\[
+		\frac{q_n(x)}{2}+\frac{x}{2}\to f(x)
+	.\qedhere\] 
+\end{proof}
+\begin{Problem}
+\begin{enumerate}[label=\roman*)]
+	\item  Es seien $f : (a, b) \to (c, d)$ und $g : (c, d) \to  R$  $n$-mal differenzierbare Funktionen mit $n \in \N_0$. Zeigen Sie, dass auch $g \circ f$ $n$-mal differenzierbar ist.  
+	\item Zeigen Sie, dass $f : \R \to \R$ mit
+		\[
+		f(x)=\begin{cases}
+			\exp\left( -\frac{1}{x^2} \right) & x\neq 0\\
+			0 & x = 0 
+		\end{cases}
+		\]
+		eine unendlich oft differenzierbare Funktion definiert ist. Bestimmen Sie zudem $f^{(n)}(0)$ für alle $n\in \N$
+\end{enumerate}	
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}[label=\roman*)]
+		\item 
+			\begin{Theorem}
+				Die Ableitung von ein Produkt $f_1(x)f_2(x)\dots f_n(x)$ ist \[
+				\sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x).\]
+			\end{Theorem}
+			\begin{proof}
+				Wir beweisen es per Indukion. F\"{u}r $n=2$ ist es das Produktregel. Jetzt nehme an, dass es f\"{u}r eine $n\in \N$ richtig ist, und 
+				\begin{align*}
+					\dv{x}\left( f_1(x)f_2(x)\dots f_{n+1}(x) \right) =& \dv{x}\left( f_1(x)f_2(x)\dots f_n(x) \right) f_{n+1}(x)\\
+											   &+\left( f_1(x)f_2(x)\dots f_n(x) \right) \dv{f_{n+1}}{x}\\
+					=& \sum_{k=1}^{n}\left( \sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x) \right)\\
+					 &+\left( f_1(x)f_2(x)\dots f_n(x) \right) f_n'(x)\\
+					=&\sum_{i=1}^{n+1} f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_{n+1}(x)
+				\end{align*}
+			\end{proof}
+			\begin{Corollary}\label{thm:ana2u2corollary1}
+				Alle Monome von differenzierbare Funktionen sind differenzierbar, und die Ableitung ist noch eine lineare Kombination von Monome.
+			\end{Corollary}
+			\begin{Corollary}
+				Sei $f$ $k-$ mal differenzierbar. Dann alle Monome von \[f'(x),f''(x),\dots, f^{(n-1)}(x)\] sind differenzierbar.
+			\end{Corollary}
+			\begin{Theorem}
+				$\dv[k]{x}(f\circ g)$ ist ein Monom von Ableitungen von $f$ und $g$ (höchstens die $k$-ste Ableitung), sofern $f$ und $g$, $n$-mal differenzierbar sind.
+			\end{Theorem}
+			\begin{proof}
+				F\"{u}r $k=1$ gilt
+				\[
+					\dv{x}(f\circ g)\left(x \right) =f'(g(x))g'(x)
+				.\] 
+				Nehme an, dass es f\"{u}r ein $k\in \N,k<n$ gilt. Dann per Korollar~\ref{thm:ana2u2corollary1} gilt es auch f\"{u}r $k+1$. Per Induktion ist die Verkettung dann $n$-mal differenzierbar,
+			\end{proof}
+		\item 
+			\begin{Lemma}
+				\[
+				\lim_{x \to \infty} \frac{(\ln x)^p}{x^k}=0, k > 0
+				.\] 
+			\end{Lemma}
+			\begin{proof}
+				Wir beweisen es per Induktion auf $p$. F\"{u}r $p=1$ verwenden wir den Satz von L'Hopital
+				\[
+					\lim_{x \to \infty} \frac{\ln x}{x^k}=\lim_{x \to \infty} \frac{1}{kx^{k-1}(k)}=\lim_{x \to \infty} \frac{1}{kx^k}=0
+				.\qedhere\] 
+				Jetzt nehme an, dass es f\"{u}r $p$ gilt. Wir zeigen, dass es f\"{u}r $p\to p+1$ auch gilt. 
+				\[
+					\lim_{x \to \infty} \frac{(\ln x)^{p+1}}{x^k}=\lim_{x \to \infty} \frac{(p+1)(\ln x)^p}{kx^{k-1}(x)}=\frac{p+1}{k}\lim_{\xi \to \infty} \frac{(\ln x)^p}{x^k}=0
+				.\] 
+			\end{proof}
+			\begin{Lemma}
+			\[
+				\lim_{x \to \infty} x^p e^{-kx}=0, k>0
+			.\] 	
+			\end{Lemma}
+			\begin{proof}
+				Nimm $x=e^\xi$. Dann gilt
+				\[
+					\lim_{x \to \infty} x^{-k}(\ln x)^p=\lim_{x \to \infty} e^{-k\xi}\xi^p=0
+				.\qedhere\] 
+			\end{proof}
+			Die Ableitungen $f^{(n)}(x), x\neq 0$ haben den Form $p_n\left( \frac{1}{x} \right) \exp\left( \frac{1}{x^2} \right) $, wobei $p_n(x)$ eine Polynome ist. 
+			\begin{Proposition}
+				$f^{(n)}(0)=0$
+			\end{Proposition}
+			\begin{proof}
+				Wir beweisen es per Induktion. $f^{(0)}(0)=0$ per Definition.
+				\begin{align*}
+					f^{(n)}(0)=&\lim_{x \to 0} \frac{f^{(n-1)}(x)-f^{(n-1)}(0)}{x-0}\\
+					=&\lim_{x \to 0}  \frac{1}{x}\left( f^{(n-1)}(x) \right)\\
+					=&\lim_{x \to 0} \frac{1}{x}p_{n-1}\left(\frac{1}{x}\right)e^{-\frac{1}{x^2}}\\
+					=&\lim_{x \to \infty} xp_n(x)e^{-x}\\
+					=&0
+				\end{align*}
+				Deswegen ist $f$ überall (inkl. 0) differenzierbar, mit alle Ableitungen $f^{(n)}(0)=0$
+			\end{proof}
+	\end{enumerate}
+\end{proof}
+\begin{Problem}
+	Es seien $K_1 , K_2 \subset \mathbb{K}$  nichtleere, kompakte Mengen und die Folgen stetiger Funktionen $f_n : K_1 \to K_2$ sowie $g_n : K_2 \to K$  seien gleichmäßig konvergent gegen $f : K_1 \to K_2$ bzw. $f : K_2 \to K$. Beweisen Sie, dass auch
+	\[
+	g_n\circ f_n \to g \circ f\]
+	gleichmäßig auf $K_1$ gilt.
+\end{Problem}
+
+\begin{proof}
+	Sei $\epsilon>0$ gegeben. Dann per Definition existiert $n_2\in\N$, sodass 
+	\begin{equation}\label{eq:anal2u2eq1}
+		|g_n(x)-g(x)|<\frac{\epsilon}{2}, x\in K_2, n\ge n_2 
+	\end{equation}
+	Weil $g$ stetig und auf eine kompakte Menge definiert ist, ist $g$ gleichmäßig stetig, und es existiert $\delta>0$, f\"{u}r die gilt
+	\begin{equation}\label{eq:anal2u2eq2}
+		|g(a)-g(b)|<\frac{\epsilon}{2}, \qquad |a-b|<\delta
+	\end{equation}
+	Es gibt auch $n_1\in\N$, $|f_n(x)-f(x)|<\delta, x\in K_1, n\ge n_1$. F\"{u}r $n>n_1$ gilt daher auch
+	\begin{equation}\label{eq:anal2u2eq3}
+		|g(f_n(x))-g(f(x))|<\frac{\epsilon}{2}, n>n_1, x\in K_1
+	\end{equation}
+	Sei $N=\max(n_1,n_2)$. F\"{u}r $n\ge N$ gilt Eq.~\eqref{eq:anal2u2eq1} und Eq.~\eqref{eq:anal2u2eq3} auch, weil $N\ge n_1$ und $N\ge n_2$. Dann f\"{u}r $n\ge N$ gilt.
+	\begin{align*}
+		|g(f(x))-g_n(f_n(x))|		=&|g(f(x))-g(f_n(x))+g(f_n(x))-g_n(f_n(x))|\\
+		\le&\underbrace{|g(f(x))-g(f_n(x))|}_{< \epsilon / 2~\eqref{eq:anal2u2eq3}}+\underbrace{|g(f_n(x))-g_n(f_n(x))|}_{< \epsilon / 2~\eqref{eq:anal2u2eq1}}\\
+		<\epsilon
+	\end{align*}
+	Also $g_n\circ f_n\to g\circ f$ gleichmäßig.
+\end{proof}
