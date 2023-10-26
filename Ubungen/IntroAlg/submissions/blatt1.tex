@@ -1,41 +1,3 @@
-\documentclass[prb,12pt]{revtex4-2}
-
-\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
-\usepackage{enumitem}
-\usepackage{cancel}
-\usepackage{booktabs}
-\usepackage{tikz}
-\usepackage{hyperref}
-\usepackage{enumitem}
-\usepackage{transparent}
-\usepackage{float}
-\usepackage{multirow}
-\newtheorem{Theorem}{Theorem}
-\newtheorem{Proposition}{Theorem}
-\newtheorem{Lemma}[Theorem]{Lemma}
-\newtheorem{Corollary}[Theorem]{Corollary}
-\newtheorem{Example}[Theorem]{Example}
-\newtheorem{Remark}[Theorem]{Remark}
-\theoremstyle{definition}
-\newtheorem{Problem}{Problem}
-\theoremstyle{definition}
-\newtheorem{Definition}[Theorem]{Definition}
-\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
-%tikz
-\usetikzlibrary{patterns}
-% definitions of number sets
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\C}{\mathbb{C}}
-\begin{document}
-\title{Einf\"{u}rung in die Algebra Hausaufgabenblatt Nr. 1}
-	\author{Jun Wei Tan}
-	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
-	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
-	\date{\today}
-	\maketitle
 \begin{Problem}
 	Sei $G := 2\N^* := \{2n | n \in \N^* \}$ die Menge der positiven geraden Zahlen. Wir nennen $a \in G$ \emph{zerlegbar}, falls sich $a$ als Produkt zweier Elemente aus $G$ schreiben lässt. Ansonsten nennen wir $a$ unzerlegbar. Beispielsweise sind 4 zerlegbar und 6 unzerlegbar. Zeigen Sie:
 	\begin{parts}
@@ -113,6 +75,57 @@ Da die Rekursionsformel für $i = n$ nicht mehr anwendbar ist, bricht die Folge 
 	\end{parts}
 \end{proof}
 \begin{Problem}
+	(Bonus Problem) Wir wissen von dem Lemma von Bezout, dass f\"{u}r jeder $x,y,\in\N$ es $a,b\in \Z$ gibt, so dass
+	\[
+	ax+by=ggT(x,y)
+	.\] 
+	Zum Beispiel ist $-210+5\times 45=15$. Kann man von das Euklidische Algorithmus die Zahlen $a,b$ rechnen?
+\end{Problem}
+\begin{proof}
+	Wir berechnen zuerst eine andere Beispiel
+	\begin{align*}
+		427=&1\times 264+163\\
+		264=&1\times 163+101\\
+		163=&1\times 101+62\\
+		101=&1\times 62+39\\
+		62=&1\times 39+23\\
+		39=&1\times 23+16\\
+		23=&1\times 16+7\\
+		16=&2\times 7+2\\
+		7=&3\times 2+1\\
+		2=&1\times 2 +0
+	\end{align*}
+	Wir kehren zur\"{u}ck:
+	\begin{align*}
+		7-1=&3\times 2\\
+		3\times 16=&6\times 7 +3\times 2\\
+		=&6\times 7+(7 - 1)\\
+		=&7\times 7-1\\
+		6\times 16 =& 14\times 7-1\\
+		6\times 16+1=& 14\times 7\\
+		14\times 23 =& 14\times 16+14\times 7\\
+		=& 14\times 16+(6\times 16+1)\\
+		=& 20\times 16 +1
+	\end{align*}
+	In der letzte Gleichung bleibt $ggT(427,264)$ (1). Wir setzen immer wieder ein, bis zu wir eine Gleichung des Forms $427a+264b=1$ haben
+\end{proof}
+\begin{Problem}
+	(Bonus Problem 2) Sei $k\in\N$ gegeben. F\"{u}r welche Zahlen $\N\ni a,b<k$ braucht das Euklidische Algorithismus die meiste Schritte?
+\end{Problem}
+\begin{proof}
+Wir möchten, dass die Folge $r_n\to 0$ nicht so schnell. 
+	\begin{align*}
+		13&=1\times 8+5\\
+		8&=1\times 5+3\\
+		5&=1\times 3 +2\\
+		3&=1\times 2 +1\\
+		2&=1\times 2+0\\
+		1&\\
+		0&
+	\end{align*}
+	ist die Fibonacci Folge.
+\end{proof}
+\begin{Problem}
 	Seien $p$ und $q$ zwei ungerade und aufeinanderfolgende Primzahlen, so dass also zwischen $p$ und $q$ keine weiteren Primzahlen existieren. Zeigen Sie, dass $p + q$ ein Produkt von mindestens drei (nicht notwendig verschiedenen) Primzahlen ist.
 \end{Problem}
 
@@ -132,4 +145,3 @@ Da die Rekursionsformel für $i = n$ nicht mehr anwendbar ist, bricht die Folge 
 
 	Weil $ggT(a,n)=1$, gibt es so zwei Zahlen $a, -k$, so dass $ax-kn=1$ (Lemma von Bezout)
 \end{proof}
-\end{document}

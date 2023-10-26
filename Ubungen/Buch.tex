@@ -1,5 +1,6 @@
-\documentclass[prb,12pt]{revtex4-2}
+\documentclass{book}
 
+\usepackage{polynom}
 \usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
 \usepackage{enumitem}
 \usepackage{cancel}
@@ -30,24 +31,31 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \begin{document}
-	\title{Vertiefung Analysis Hausaufgabenblatt Nr. 1}
+	\title{Universit\"{a}t W\"{u}rzburg \"{U}bungsbl\"{a}tter\\Bachelor Mathematische Physik}
 	\author{Jun Wei Tan}
-	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
-	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\begin{Problem}
-		Es erfüllt alle Bedingungen.
-	\end{Problem}
-	\begin{Problem}
-		Sei $X=\R, \mathcal{A}_1=\mathcal{A}_2=\left\{ (a,b), a<b,a,b\in\R \right\} $. Dann sind $(0,1)\times (0,1)\text{ und }(1,2)\times (1,2) \in \mathcal{A}_1\text{ [lustiges Symbol etwas wie }\otimes\text{ aber anders (wie tippt man das eigentlich?)]} \mathcal{A_2}$, aber deren Vereinigung nicht.
-	\end{Problem}
+	\tableofcontents
 
-	\begin{Problem}
-		\begin{enumerate}
-			\item $A\backslash(A\cap B)=(A\cap B^c)$
-			\item  $A=X\cap A, \varnothing = A \cap \varnothing$
-			\item  $\bigcup_{i\in \N} (A \cap B_i)=A \cap \left(\bigcup_{i\in \N}B_i\right) $
-		\end{enumerate}
-	\end{Problem}
-	\end{document}
+\chapter{Lineare Algebra 1}
+\section{Blatt 1}
+\input{Linalg1/submissions/blatt1.tex}
+
+\chapter{Lineare Algebra 2}
+\section{Blatt 1}
+\input{Linalg2/submissions/blatt1.tex}
+
+\chapter{Analysis 2}
+Ich habe die Übungen für Analysis 2 mit Lukas Then gemacht.
+\section{Blatt 1}
+\input{Anal2/submissions/blatt1.tex}
+
+\chapter{Vertiefung Analysis}
+Ich habe die Übungen für Vertiefung Analysis mit Lucas Wollman gemacht.
+\section{Blatt 1}
+\input{AdvAnal/submissions/blatt1.tex}
+
+\chapter{Theoretische Mechanik}
+\section{Blatt 1}
+\input{TheorMechanik/submissions/blatt1.tex}
+\end{document}
