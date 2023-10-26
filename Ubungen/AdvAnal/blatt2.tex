@@ -3,7 +3,7 @@
 	\[
 	\mu_\lambda:\mathcal{P}(\N)\to \overline{\R}, \mu_\lambda(A):=\sum_{k\in A} \exp(\lambda) \frac{\lambda^k}{k!}
 	.\] 
-	Bestimmen SIe jeweils alle $\lambda\in \R$, f\"{u}r die
+	Bestimmen Sie jeweils alle $\lambda\in \R$, f\"{u}r die
 	\begin{parts}
 		\item $(\N, \mathcal{P}(\N), \mu_\lambda)$ ein Maßraum ist.
 		\item $\mu_\lambda$ ein endliches Maß ist.
@@ -80,6 +80,37 @@
 			\sum_{k=1}^{\infty} \alpha\nu_2(A_{2,k})\le& \sum_{k=1}^{\infty} \nu_1(A_{2,k})<\mu_1^*(A)+\epsilon
 		\end{align*}
 		Weil das f\"{u}r alle $\epsilon$ gilt, ist $\alpha\mu_2^*(A)\le \mu_1^*(A)$
-	\item Test
+	\item Es existiert, f\"{u}r jede Elemente $(a,b)=J\in \mathbb{J}(n)$, ein Element $[a,b)\in\mathbb{J}_l(n)\supseteq (a,b)$, und es gilt  $\text{vol}_n([a,b))\le \text{vol}_n((a,b))$. F\"{u}r jede Elemente  $[a,b)\in\mathbb{J}_l$ existiert auch $\overline{\mathbb{J}}(n)\ni [a,b]\supseteq [a,b)$, f\"{u}r die gilt $\text{vol}_n([a,b])\le \text{vol}_n([a,b))$. Daraus folgt die Behauptung:
+		 \[
+			 \lambda_a^*(A)\le \lambda_l^*(A)\le \lambda_n^*(A)\text{ f\"{u}r alle }A\subseteq \R^n
+		.\] 
+
+		Ähnlich folgt die andere Teil. Man muss nur $(a,b]$ statt $[a,b)$ einsetzen, und alle Aussagen bleiben richtig.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Zeigen Sie folgende Aussagen über das äußere Lebesgue-Maß:
+	\begin{parts}
+	\item Es gilt $\lambda_n^*(A)=0$ f\"{u}r alle abz\"{a}hlbaren Mengen $A\subseteq \R^n$.
+	\item Seien  $A,B\subseteq \R^n$mit  $\lambda_n^*(B)=0$. Dann gilt $\lambda_n^*(A\cup B)=\lambda_n^*(A)$.
+	\item Es ist $\lambda_1^*\left( [0,1]\backslash \mathbb{Q} \right) =1$.
+\item Es ist $\lambda_2^*\left( \R\times \left\{ 0 \right\}  \right)$ =0
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item	Sei $A=\left\{ x_1,x_2,\dots \right\} $. Sei auch
+		\[
+			M_\epsilon=\left\{\left( x_i-\frac{\epsilon}{2^{i+1}},x_i+\frac{\epsilon}{2^{i+1}}\right)|i\in\N  \right\} 
+		.\] 
+		F\"{u}r jede $\epsilon>0$ ist $M_\epsilon$ eine \"{U}berdeckung von $A$. Es gilt auch:
+		\begin{align*}
+			\sum_{B \in M_\epsilon} \text{vol}_n(B)=& \sum_{i=1}^\infty \text{vol}_n\left( \left( x_i-\frac{\epsilon}{2^{i+1}},x_i+\frac{\epsilon}{2^{i+1}} \right)  \right) \\
+			=&\sum_{i=1}^{\infty} \frac{\epsilon}{2^i}\\
+			=&\epsilon
+		\end{align*}
+		Weil dann $\lambda_n^*(A)\le \epsilon\forall \epsilon>0$, ist $\lambda_n^*(A)=0$.
+	\item \ldots
+	\item Weil $\left\{ [0,1] \right\} $ eine \"{U}berdeckung von $[0,1]\backslash \Q$ ist, ist $\lambda_1^*\left( [0,1]\backslash\Q \right) \le 1$. Wegen subadditivität gilt $\lambda_1^*([0,1])=1\le \lambda_1^*([0,1])+\lambda_1^*(\Q\cap [0,1])\le \lambda_1^*([0,1])+\lambda_1^*(\Q)$.Weil $\Q$ abz\"{a}hlbar ist, gilt $\lambda_1^*(\Q)=0$ und daraus folgt $1\le \lambda_1^*\left( [0,1] \right) $. Daher gilt $\lambda_1^*\left( [0,1] \right) =1$
 	\end{parts}
 \end{proof}

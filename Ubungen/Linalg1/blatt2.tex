@@ -196,16 +196,16 @@
 	\end{parts}
 \end{proof}
 \begin{Problem}
-	Es seien $M, N$ Mengen, $m, n$ nat\"{u}rliche Zahlen und die Abbildungen $f : M \to \{1, 2, 3, . . . , m\}, g : N \to \{1, 2, 3,\dots , n\}$ bijektiv. Finden Sie eine nat\"{u}rliche Zahl $k$ und eine bijektive Abbildung $F : M \times  N \to \{1, 2, 3, \dots , k\}$.
+	Es seien $M, N$ Mengen, $m, n$ nat\"{u}rliche Zahlen und die Abbildungen $f : M \to \{1, 2, 3, \dots , m\}, g : N \to \{1, 2, 3,\dots , n\}$ bijektiv. Finden Sie eine nat\"{u}rliche Zahl $k$ und eine bijektive Abbildung $F : M \times  N \to \{1, 2, 3, \dots , k\}$.
 \end{Problem}
 \begin{proof}
 	$k=nm$, und
 	\[
 	F(a,b)=a+(b-1)m
 	.\] 
-	Das ist bijektiv. F ist maximal, wenn $a=m,b=n$. Dann ist  $F=m+(n-1)m=nm$. Sei $x\in \left\{ 1,2,3,\dots, mn-1 \right\} $ gegeben. Es gibt eindeutige Zahlen $a, b-1$, so dass
+	Das ist bijektiv. Sei $x\in\left\{ 1,2,\dots,nm \right\} $. Es existiert eindeutige Zahlen $p,q\in\N$, so dass
 	\[
-	x=(b-1)m+a, a<m
-	\]
-	gilt (Divison mit Rest). Weil es solche Zahlen f\"{u}r alle $x$ gibt, ist $F$ surjektiv. Weil sie eindeutig sind, ist $F$ injektiv. $F$ ist dann bijektiv.
+	x=pm+q, q<m
+	.\] 
+	Falls $q=0$, sei $b=p,a=m$. Sonst definiert man $b=p+1,a=m$. Per Definition ist $a\in \left\{ 1,2,3,\dots,m \right\} $. Außerdem ist $1\le b\le n$, weil $p\le k / m=n$ ($n$ teilt $k=mn$).
 \end{proof}
