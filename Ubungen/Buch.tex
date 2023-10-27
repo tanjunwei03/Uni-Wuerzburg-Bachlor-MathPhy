@@ -35,6 +35,10 @@
 \newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %tikz
 \usetikzlibrary{patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{subcaption}
+\usepackage{float}
 % definitions of number sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -81,4 +85,6 @@ Ich habe die Übungen für Vertiefung Analysis mit Lucas Wollman gemacht.
 \chapter{Theoretische Mechanik}
 \section{Blatt 1}
 \input{TheorMechanik/blatt1.tex}
+\section{Blatt 2}
+\input{TheorMechanik/blatt2.tex}
 \end{document}
