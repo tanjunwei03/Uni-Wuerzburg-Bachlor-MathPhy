@@ -110,7 +110,19 @@
 			=&\epsilon
 		\end{align*}
 		Weil dann $\lambda_n^*(A)\le \epsilon\forall \epsilon>0$, ist $\lambda_n^*(A)=0$.
-	\item \ldots
+	\item Weil äußere Maße $\sigma$-subadditiv sind, gilt
+		\[
+			\lambda_n^*(A\cup B)\le \lambda_n^*(A)+\lambda_n^*(B)=\lambda_n^*(A)
+		.\] 
+		Weil $A\subseteq A\cup B$, gilt $\lambda_n^*(A)\le \lambda_n^*(A\cup B)$. Daraus folgt:
+		\[
+		\lambda_n^*(A\cup B)=\lambda_n^*(A)
+		.\] 
 	\item Weil $\left\{ [0,1] \right\} $ eine \"{U}berdeckung von $[0,1]\backslash \Q$ ist, ist $\lambda_1^*\left( [0,1]\backslash\Q \right) \le 1$. Wegen subadditivität gilt $\lambda_1^*([0,1])=1\le \lambda_1^*([0,1])+\lambda_1^*(\Q\cap [0,1])\le \lambda_1^*([0,1])+\lambda_1^*(\Q)$.Weil $\Q$ abz\"{a}hlbar ist, gilt $\lambda_1^*(\Q)=0$ und daraus folgt $1\le \lambda_1^*\left( [0,1] \right) $. Daher gilt $\lambda_1^*\left( [0,1] \right) =1$
+	\item Sei f\"{u}r jeder $\epsilon>0$ $M_\epsilon$ die \"{U}berdeckung. 
+		\[
+		M_\epsilon=\left\{ \left( \frac{n}{2}-1,\frac{n}{2} \right) \times \left( -\frac{\epsilon}{2^n},\frac{\epsilon}{2^n} \right)|n\in \N  \right\} \bigcup \left\{ \left( -\frac{n}{2},-\frac{n}{2}+1 \right) \times \left( -\frac{\epsilon}{2^n},\frac{\epsilon}{2^n} \right)|n\in \N  \right\} 
+		.\] 
+		Es gilt $\sum_{A\in M_\epsilon} \text{vol}_2(A)=2\epsilon$. Weil $M_\epsilon$ f\"{u}r alle $\epsilon>0$ eine \"{U}berdeckung von $\R\times \left\{ 0 \right\} $ ist, gilt $\lambda_2^*\left( \R\times \left\{ 0 \right\}  \right) =0$.
 	\end{parts}
 \end{proof}

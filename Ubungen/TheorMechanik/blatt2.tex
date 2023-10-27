@@ -210,7 +210,14 @@
 	\begin{enumerate}[label=(\arabic*)]
 		\item Auf $z=0$ Ebene:
 		
-		$\eta=-2$: $V=\frac 12\ln\left(x^2+y^2\right)$, sonst $V=\frac 1{\eta+2}r^{n+2}r^{n+2}$
+		$\eta=-2$: $V=-\frac 12\ln\left(x^2+y^2\right)$, sonst $V=-\frac 1{\eta+2}r^{n+2}$
+
+		Wenn $n=0$ kann eine Potentialfunktion f\"{u}r alle $\va r\in\R^3$ definiert werden: $V(x,y,z)=-\frac{1}{2}\left( x^2+y^2 \right) $
+
+	\item Nur f\"{u}r $\eta=0$, $V=\frac{1}{2}\left( x^2-y^2 \right) $.
+	\item F\"{u}r $\eta=-2$, $V=-\tan^{-1}\left( \frac{x}{y} \right) $.
+
+	\item F\"{u}r $\eta=0$, $V=-xy$.
 	\end{enumerate}
 \end{enumerate}
 \end{proof}
@@ -234,8 +241,8 @@
 		\draw[thick, ->] (0,-1.5) -- (0,1.5);
 		\draw[thick] (-1.5,0) circle (0.3 and 1);
 		\draw[thick] (1.5,0) circle (0.3 and 1);
-		\draw[thick] (1.5,1) arc(-45:-135:{sqrt(4.5)});
-		\draw[thick] (1.5,-1) arc(45:135:{sqrt(4.5)});
+		\draw[thick] (1.5,1) arc(-65:-115:{sqrt(3^2/(2-2*cos(50))});
+		\draw[thick] (1.5,-1) arc(65:115:{sqrt(3^2/(2-2*cos(50))});
 		\draw[thick, ->] (0.2,0.2) -- (-1.5,-1.5);
 		\draw[thick,->] (-1.5,0) -- (-1.5,1);
 		\draw (-1.5,1) node[anchor=south] {$R$};
@@ -244,3 +251,44 @@
 	\end{tikzpicture}
 \end{center}
 \end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item \ldots
+		\item 
+			\begin{Theorem}
+				Im Allgemein, f\"{u}r $\pdv{L}{t}=0$, gilt
+				\[
+					\dv{t}\left( \pdv{L}{\dot{q}}\dot{q}-L \right) =0
+				.\] 
+			\end{Theorem}
+			\begin{proof}
+				Erinnern Sie sich daran, dass
+				\begin{equation}\label{eq:theorMechanik2-1}
+					\dv{t}\pdv{L}{\dot{q}}=\pdv{L}{q}
+				\end{equation}
+				Es gilt 
+				\begin{align*}
+	\dv{t}\left( \pdv{L}{\dot{q}}\dot{q}-L \right) =&\left( \dv{t}\pdv{L}{\dot{q}} \right) \dot{q}+\pdv{L}{\dot{q}}\ddot{q}-\pdv{L}{\dot{q}}\ddot{q}-\pdv{L}{q}\dot{q}+\cancel{\pdv{L}{t}}\\
+	=&\left( \dv{t}\pdv{L}{\dot{q}} \right) \dot{q}-\pdv{L}{q}\dot{q}\\
+	=&\left( \pdv{L}{q} \right) \dot{q}-\pdv{L}{q}	\dot{q}=0\qedhere
+	\end{align*}
+			\end{proof}
+			Sei jetzt $L(y(x),y'(x),x)=y(x)\sqrt{1+y'(x)^2} $. Es folgt $\pdv{L}{x}=0$. Daraus folgt
+			\begin{align*}
+				\pdv{L}{y'}y'-L=&\left( \frac{y(x)y'(x)}{\sqrt{1+y'(x)^2} } \right) y'-y(x)\sqrt{1+y'(x)^2}\\
+				=&\left( \frac{yy'^2}{\sqrt{1+y'^2} } \right) -\frac{y(1+y'^2)}{\sqrt{1+y'^2} }\\
+				=&\frac{-y}{\sqrt{1+y'^2} }
+			\end{align*}
+			Es gilt dann, dass
+			\[
+				\dv{x}\left( \frac{y}{\sqrt{1+y'^2} } \right) =0
+			.\] 
+			Daraus folgt:
+			\begin{align*}
+				\alpha y=&\sqrt{1+y'^2} \\
+				\alpha^2 y^2=& 1+y'^2\\
+				y'=&\pm \sqrt{\alpha^2y^2-1} & +\text{ wenn }x>0\\
+				\int\dd{x}=&	\int \frac{\dd y}{\sqrt{\alpha^2y^2-1} }
+			\end{align*}
+	\end{enumerate}
+\end{proof}
