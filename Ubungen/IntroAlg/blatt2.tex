@@ -1,0 +1,77 @@
+\begin{Problem}
+	Sei $G$ eine Gruppe mit neutralem Element 1. Für jedes Element $g \in G$ gelte $g^2 = 1$. Zeigen Sie, dass G dann abelsch ist.
+\end{Problem}
+
+\begin{proof}
+\begin{Lemma}
+	Sei $a,b\in G$. Dann gilt $(ab)^{-1}=b^{-1}a^{-1}$.
+\end{Lemma}
+\begin{proof}
+	\[abb^{-1}a^{-1}=a(bb^{-1})a^{-1}=aa^{-1}=1\]
+\end{proof}
+Es gilt, f\"{u}r jede $g\in G$, dass $g=g^{-1}$, weil $gg=1$ (per Definition). Deswegen gilt
+\[
+ab=(ab)^{-1}=b^{-1}a^{-1}=ba
+.\] 
+\end{proof}
+
+\begin{Problem}
+	Sei $K$ ein endlicher Körper mit $q \in \N^*$ Elementen.
+	\begin{parts}
+		\item Zeigen Sie, dass es genau $\prod_{k=0}^{n-1} (q^n-q^k)$ geordnete Basen des $K$-Vektorraums $K^n$ gibt. Unter einer geordneten Basis des $K$-Vektorraums $K^n$ verstehen wir hierbei ein n-Tupel $(b_1 , \dots, b_n)$ linear unabhängiger Vektoren $b_1, \dots, b_n \in K^n$.
+		\item Nutzen Sie Teilaufgabe (a), um nachzuweisen, dass die Gruppe $GL_n(K)$ aus Beispiel 2.4 (d) die Ordnung $\prod_{k=0}^{n-1} (q^n-q^k) $ besitzt.
+	\end{parts}
+\end{Problem}
+\begin{Problem}
+	Wir betrachten die komplexen $(2 \times  2)$-Matrizen
+	\[
+		E:=\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \qquad I:=\begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix} \qquad J:=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \qquad K:=\begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} 
+	.\] 
+	Zeigen Sie, dass die Menge $Q_8 := \{\pm E, \pm I, \pm J, \pm K\}$ zusammen mit der Matrixmultiplikation eine nicht-abelsche Gruppe der Ordnung 8 bildet. Man nennt $Q_8$ auch die \emph{Quaternionengruppe} der Ordnung 8.
+
+	\textbf{Hinweis:}  Ein paar konkrete Matrixmultiplikationen werden Sie bei dieser Aufgabe ausrechnen müssen. Versuchen Sie, deren Anzahl gering zu halten und möglichst viel aus Ihren bereits durchgeführten Rechnungen zu schließen.
+\end{Problem}
+\begin{proof}
+	Wir zeigen zuerst, dass $Q_8$ under $\cdot$ abgeschlossen ist. Wir wissen von der Linearen Algebra, dass $EM=M$ f\"{u}r alle Matrizen $M$. Das heißt, dass $E$ ein neutrales Element ist. Wir wissen auch, dass $(-E)M=-M$. Ich betrachte einige wichtige Matrixmultiplikationen:
+	\[
+	I^2=J^2=K^2=-E
+	.\]
+	Daraus folgt, dass $x^{-1}=-x$, f\"{u}r $Q_8\ni x \neq \pm E$. F\"{u}r $x=-E$ ist $x^{-1}=x$. Jede $x\in G$ ist daher invertierbar.
+	Es gilt auch
+	\begin{align*}
+		IJ=&\begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix} \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} =\begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}=K\\
+		JK=&\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} =\begin{pmatrix} i & 0 \\ 0 & i \end{pmatrix}=I\\
+		KI=&\begin{pmatrix} 0 & i\\i & 0 \end{pmatrix} \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} =J
+	\end{align*}
+	Von daraus folgt, dass $Q_8$ under Matrixmultiplikation abgeschlossen ist. Deswegen ist $Q_8$ eine Gruppe. Es ist nicht abelsche. Sei $a,b\in \left\{ \pm I, \pm J, \pm K \right\}, a\neq \pm b$, und daher $ab\in \left\{ \pm I, \pm J, \pm K \right\} $ 
+	\[
+	ab=-(ab)^{-1}=-b^{-1}a^{-1}=-(-b)(-a)=-ba
+	.\] 
+\end{proof}
+\begin{Problem}
+	Sei $G$ eine Gruppe der Ordnung 4. Zeigen Sie, dass $G$ abelsch ist.
+\end{Problem}
+\begin{proof}
+	Sei $G=\left\{ 1,a,b,c \right\} $. Nehme an, dass $G$ nicht abelsch ist. ObdA können wir annehmen, dass $ab\neq ba$. Wir betrachten dann drei Fälle:
+	\begin{enumerate}
+		\item $ab=a$ oder $ab=b$ (obdA nehme an, $ab=a$).
+
+			Es gilt dann
+			\[
+				(ba)b=b(ab)=ba
+			.\] 
+			Daraus folgt $b=1$, ein Widerspruch.
+
+		\item $ab=1$. Es folgt aus die eindeutigkeit des Inverses, dass $ba=1$, auch ein Widerspruch.
+
+		\item $ab=c$. Erinnern Sie sich daran, dass $ba\neq 1$, sonst gibt es ein Widerspruch wie im vorherigen Fall. Es gilt auch $ba\neq c$, weil $ab\neq ba$. Nehme obdA an, dass $ba=a$. Es gilt dann
+			\[
+			bab=ab=bc
+			.\] 
+			Es gilt auch
+			\[
+			bc=bab=b^2c
+			.\] 
+			Deswegen ist $b=1$, noch ein Widerspruch.
+	\end{enumerate}
+\end{proof}
