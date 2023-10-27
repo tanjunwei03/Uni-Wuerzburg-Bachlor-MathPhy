@@ -7,12 +7,12 @@
 	Sei $a,b\in G$. Dann gilt $(ab)^{-1}=b^{-1}a^{-1}$.
 \end{Lemma}
 \begin{proof}
-	\[abb^{-1}a^{-1}=a(bb^{-1})a^{-1}=aa^{-1}=1\]
+	\[abb^{-1}a^{-1}=a(bb^{-1})a^{-1}=aa^{-1}=1.\qedhere\]
 \end{proof}
 Es gilt, f\"{u}r jede $g\in G$, dass $g=g^{-1}$, weil $gg=1$ (per Definition). Deswegen gilt
 \[
 ab=(ab)^{-1}=b^{-1}a^{-1}=ba
-.\] 
+.\qedhere\] 
 \end{proof}
 
 \begin{Problem}
@@ -22,6 +22,34 @@ ab=(ab)^{-1}=b^{-1}a^{-1}=ba
 		\item Nutzen Sie Teilaufgabe (a), um nachzuweisen, dass die Gruppe $GL_n(K)$ aus Beispiel 2.4 (d) die Ordnung $\prod_{k=0}^{n-1} (q^n-q^k) $ besitzt.
 	\end{parts}
 \end{Problem}
+
+\begin{proof}
+	\begin{parts}	
+	\item Wir versuchen, ein $p$-Tupel lineare unabhängig Vektoren zu finden. Ich zeige, dass es genau $\prod_{k=0}^{p-1}\left( q^n-q^k \right)$ solche Vektoren gibt. F\"{u}r $p=n$ ist das nat\"{u}rlich die gew\"{u}nschte Behauptung.
+
+	F\"{u}r $p=1$ müssen wir $n$ Elemente aus $K$ finden. Es gibt $q^n$ Möglichkeiten dafür. Jedoch ist $(0,0,\dots,0)$ verboten. Deswegen gibt es genau $q^n-1$ Vektoren, die nicht $(0,0,\dots,0)$ sind.
+
+	Jetzt nehmen wir an, dass es genau $\prod_{k=0}^{p-1} \left( q^n-q^k \right)  $ Tupel von $p$ lineare unabhängig Vektoren gibt (wenn man die Reihenfolge berücksichtig), f\"{u}r eine beliebige $p<n$. Sei $v_1,v_2,\dots, v_p$ ein solches $p$-Tupel. Wir möchten eine andere Vektor  $v_{p+1}$ finden, die lineare unabhängig von $v_1,v_2,\dots, v_p$ ist. Das bedeutet:
+	\[
+		v_{p+1}\neq a_1v_1+a_2v_2+\dots+a_p v_p
+	\] 
+	f\"{u}r \textbf{alle} $a_1,a_2,\dots, a_p\in K$. Es gibt $p^q$ Kombinationen f\"{u}r $(a_1,a_2,\dots,a_p)$. Weil $v_1,v_2,\dots, v_p$ linear unabhängig sind, gilt f\"{u}r jede $(a_1,a_2,\dots, a_p)\neq (a_1',a_2',\dots, a_p')$ auch $a_1v_1+\dots+a_pv_p\neq a_1'v_1+\dots+a_p' v\dots+a_p' v_p$. Deswegen gibt es f\"{u}r jede $v_1,v_2,\dots, v_p$ genau $q^n-q^p$ Möglichkeiten für $v_{p+1}$. 
+
+Es gibt daher
+\[
+\prod_{k=0}^{p-1}\left( q^n-q^k \right)   
+\]
+$p$-Tuple von linear unabhängig Vektoren. F\"{u}r $p=n$ ist die Behauptung bewiesen.
+\item Sei $v_1,v_2,\dots, v_n$ ein Basis von $K^n$, und $T$ eine lineare Abbildung $T:K^n\to K^n$. Wenn man $T(v_1),T(v_2),\dots, T(v_n)$ weiß, ist $T$ eindeutig. $T$ is invertierbar genau wenn $T(v_1), T(v_2),\dots,T(v_n)$ linear unabhängig sind. Es gibt dadurch eine bijektive Funktion
+	\[
+		f:GL_n(K)\to \left\{ (v_1,v_2,\dots,v_n)\in K^{n \times n}|v_1,\dots, v_n\text{ sind linear unabhängig} \right\} 
+	.\] 
+	Aber wir wissen, dass es genau $\prod_{k=0}^{n-1} \left( q^n-q^k \right)  $ solche $(v_1,v_2,\dots,v_n)\in K^{n \times n}$ gibt. Daraus folgt:
+	\[
+	\left|GL_n(K)\right|=\prod_{k=0}^{n-1} \left( q^n-q^k \right)  
+	.\qedhere\] 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Wir betrachten die komplexen $(2 \times  2)$-Matrizen
 	\[
@@ -46,7 +74,7 @@ ab=(ab)^{-1}=b^{-1}a^{-1}=ba
 	Von daraus folgt, dass $Q_8$ under Matrixmultiplikation abgeschlossen ist. Deswegen ist $Q_8$ eine Gruppe. Es ist nicht abelsche. Sei $a,b\in \left\{ \pm I, \pm J, \pm K \right\}, a\neq \pm b$, und daher $ab\in \left\{ \pm I, \pm J, \pm K \right\} $ 
 	\[
 	ab=-(ab)^{-1}=-b^{-1}a^{-1}=-(-b)(-a)=-ba
-	.\] 
+	.\qedhere\] 
 \end{proof}
 \begin{Problem}
 	Sei $G$ eine Gruppe der Ordnung 4. Zeigen Sie, dass $G$ abelsch ist.
@@ -72,6 +100,6 @@ ab=(ab)^{-1}=b^{-1}a^{-1}=ba
 			\[
 			bc=bab=b^2c
 			.\] 
-			Deswegen ist $b=1$, noch ein Widerspruch.
+			Deswegen ist $b=1$, noch ein Widerspruch.\qedhere
 	\end{enumerate}
 \end{proof}
