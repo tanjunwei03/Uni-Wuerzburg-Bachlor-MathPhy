@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  23 OCT 2023 07:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  28 OCT 2023 10:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**cmech.tex
-(./cmech.tex
+**main.tex
+(./main.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/share/texmf-dist/tex/latex/revtex/revtex4-2.cls
 Document Class: revtex4-2 2020/10/03 4.2e (https://journals.aps.org/revtex/ for documentation)
@@ -548,90 +548,62 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box81
 \@float@everytoks=\toks45
 \@floatcapt=\box82
-) (/usr/share/texmf-dist/tex/latex/xtab/xtab.sty
-Package: xtab 2011/07/31 v2.3f Extended supertabular package
-\c@tracingst=\count319
-\PWSTcapht=\dimen275
-\ST@wd=\dimen276
-\ST@rightskip=\skip60
-\ST@leftskip=\skip61
-\ST@parfillskip=\skip62
-\c@PWSTtable=\count320
-\PWSTlastpage=\count321
-\PWSTpenultimate=\count322
-\PWSTcurpage=\count323
-\PWSTtempc=\count324
-\PWSTlines=\count325
-\PWST@lastht=\dimen277
-\PWST@generalht=\dimen278
-\PWST@ht=\dimen279
-\ST@pageleft=\dimen280
-\ST@headht=\dimen281
-\ST@tailht=\dimen282
-\ST@pagesofar=\dimen283
-\ST@pboxht=\dimen284
-\ST@lineht=\dimen285
-\ST@stretchht=\dimen286
-\ST@prevht=\dimen287
-\ST@toadd=\dimen288
-\ST@dimen=\dimen289
-\ST@pbox=\box83
 ) (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip63
-\multirow@cntb=\count326
-\multirow@dima=\skip64
-\bigstrutjot=\dimen290
+\multirow@colwidth=\skip60
+\multirow@cntb=\count319
+\multirow@dima=\skip61
+\bigstrutjot=\dimen275
 )
-\c@Theorem=\count327
-\c@Proposition=\count328
-\c@Problem=\count329
+\c@Theorem=\count320
+\c@Proposition=\count321
+\c@Problem=\count322
  (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))
-Class revtex4-2 Info: Unrecognized LaTeX tabular. Please update this document class! (Proceeding with fingers crossed.) on input line 34.
+Class revtex4-2 Info: Unrecognized LaTeX tabular. Please update this document class! (Proceeding with fingers crossed.) on input line 43.
 
 
 Class revtex4-2 Warning: Repair the float package.
 
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 34.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 34.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 34.
-(./cmech.aux)
-\openout1 = `cmech.aux'.
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 43.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 43.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 43.
+(./main.aux)
+\openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
  (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count330
-\scratchdimen=\dimen291
-\scratchbox=\box84
-\nofMPsegments=\count331
-\nofMParguments=\count332
+\scratchcounter=\count323
+\scratchdimen=\dimen276
+\scratchbox=\box83
+\nofMPsegments=\count324
+\nofMParguments=\count325
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count333
-\MPscratchDim=\dimen292
-\MPnumerator=\count334
-\makeMPintoPDFobject=\count335
+\MPscratchCnt=\count326
+\MPscratchDim=\dimen277
+\MPnumerator=\count327
+\makeMPintoPDFobject=\count328
 \everyMPtoPDFconversion=\toks47
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -639,38 +611,38 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 34.
- (./cmech.out) (./cmech.out)
+Package hyperref Info: Link coloring OFF on input line 43.
+ (./main.out) (./main.out)
 \@outlinefile=\write5
-\openout5 = `cmech.out'.
+\openout5 = `main.out'.
 
-Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 34.
-\openout3 = `cmechNotes.bib'.
+Class revtex4-2 Info: Taking \maketitle back from hyperref on input line 43.
+\openout3 = `mainNotes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./cmech.bbl) [3] (./cmech.aux)
-Package rerunfilecheck Info: File `cmech.out' has not changed.
-(rerunfilecheck)             Checksum: FC9179CC53A4545054A77DB1333A6CF0;274.
+) (./blatt0.tex) (./main.bbl) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./main.aux)
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 73456446C79E3C2718FD5D5D6CF90C41;282.
  ) 
 Here is how much of TeX's memory you used:
- 23403 strings out of 477985
- 420591 string characters out of 5840058
- 1870388 words of memory out of 5000000
- 43185 multiletter control sequences out of 15000+600000
- 521494 words of font info for 67 fonts, out of 8000000 for 9000
+ 23241 strings out of 477985
+ 418381 string characters out of 5840058
+ 1859388 words of memory out of 5000000
+ 43045 multiletter control sequences out of 15000+600000
+ 520536 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,16n,104p,580b,672s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on cmech.pdf (3 pages, 181188 bytes).
+ 102i,18n,104p,438b,499s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (1 page, 149659 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
+ 95 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
+ 5 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
