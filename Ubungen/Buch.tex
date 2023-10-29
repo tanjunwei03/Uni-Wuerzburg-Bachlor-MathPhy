@@ -1,16 +1,11 @@
-\documentclass{book}
-%fonts
-% Palatino for main text and math
-\usepackage[osf,sc]{mathpazo}
+\documentclass{tuftebook}
 
-% Helvetica for sans serif
-% (scaled to match size of Palatino)
-\usepackage[scaled=0.90]{helvet}
-
-% Bera Mono for monospaced
-% (scaled to match size of Palatino)
-\usepackage[scaled=0.85]{beramono}
-%actual packages
+\geometry{
+	left=24.8mm, % left margin
+	textwidth=130mm, % main text block
+	marginparsep=8.2mm, % gutter between main text block and margin notes
+	marginparwidth=40mm % width of margin notes
+}
 \usepackage{polynom}
 \usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
 \usepackage{enumitem}
@@ -22,19 +17,21 @@
 \usepackage{transparent}
 \usepackage{float}
 \usepackage{multirow}
-\newtheorem{Theorem}{Theorem}
-\newtheorem{Proposition}{Theorem}
+\newtheorem{Theorem}{Satz}
+\numberwithin{Theorem}{chapter}
+\newtheorem{Proposition}{Proposition}
 \newtheorem{Lemma}[Theorem]{Lemma}
-\newtheorem{Corollary}[Theorem]{Corollary}
-\newtheorem{Example}[Theorem]{Example}
-\newtheorem{Remark}[Theorem]{Remark}
+\newtheorem{Corollary}[Theorem]{Korollar}
+\newtheorem{Example}[Theorem]{Beispiel}
+\newtheorem{Remark}[Theorem]{Bemerkung}
 \theoremstyle{definition}
-\newtheorem{Problem}{Problem}
+\newtheorem{Problem}{Aufgabe}
 \theoremstyle{definition}
 \newtheorem{Definition}[Theorem]{Definition}
 \newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
 %tikz
 \usetikzlibrary{patterns}
+\renewcommand{\proofname}{Beweis}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage{subcaption}
