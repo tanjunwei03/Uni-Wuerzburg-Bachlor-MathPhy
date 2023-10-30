@@ -149,3 +149,24 @@ Seien $B_V$ und $B_W$ Basen von $V$, bzw. $W$. Wir nehmen an $T$ ist nicht die k
 aber nicht von $B_W$.
 \end{parts}
 \end{Problem}
+\begin{proof}
+Nach Korollar 5.43 gilt, f\"{u}r $A,A' \subseteq V$ und $B,B'\subseteq W$ Basen der Vektorräume $V$ und $W$ über $\mathbb{K}$, und $\Phi\in \text{Hom}(V,W)$.
+ \[
+	 _{B'}\left[ \Phi \right]_{A'}={}_{B'}[\text{id}_W]_B\cdot{}_B[\Phi]_A\cdot{}_A[\text{id}_V]_{A'}
+.\] 
+\begin{Lemma}
+	Jeder Basiswechsel f\"{u}r sowohl $B_V$ als auch $B_W$ kann als zwei Basiswechseln interpretiert werden, wobei eine Basiswechsel nur $B_V$ verändert, und die andere nur $B_W$.
+\end{Lemma}
+\begin{proof}
+	\[
+		_{B'}\left[ \Phi \right]_{A'}={}_{B'}[\text{id}_W]_B\cdot{}_B[\Phi]_A\cdot{}_A[\text{id}_V]_{A'}={}_{B'}[\text{id}_W]_B\left( {}_B[\text{id}_W]_B\cdot {}_B[\Phi]_A\cdot {}_A[\text{id}]_{A'} \right) {}_A[\text{id}_V]_A
+	.\]
+	(In den Klammern gibt es zuerst ein Basiswechsel in $V$, dann ein Basiswechsel in $W$ ). Ein ähnliche Argument zeigt, dass wir zuerst ein Basiswechseln in $W$ betrachten kann.
+\end{proof}
+\begin{Corollary}
+	In jedem Teilaufgabe muss man nur das Fall betrachten, in dem entweder $B_V$ oder $B_W$ sich verändert. 
+\end{Corollary}
+	\begin{parts}
+	\item 
+	\end{parts}
+\end{proof}
