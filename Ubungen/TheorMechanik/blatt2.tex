@@ -1,7 +1,7 @@
 \begin{Problem}
 	Betrachten Sie die folgenden Familien von Kraftfeldern auf geeigneten Definitionsbereichen $D_\eta^{(n)}  \subseteq \R^3$
 	\begin{align*}
-		F_\eta^{(1)}:& D_\eta^{(1)}\ni \va x\to r^\eta\cdot \va x\in \R^3\\
+		F_\eta^{(1)}:& D_\eta^{(1)}\ni \va x\to r^\eta\cdot \va x\in \R^3\\\marginnote{Eigentlich ist $\va x$ als $\va x = (x,y,z)^T$ definiert. Deswegen sind alle meine Antworten nicht die erwartete Antwort.}
 		F_\eta^{(2)}:& D_\eta^{(2)}\ni\va x \to r_{12}^\eta\cdot(x_1\va e_1-x_2\va e_2)\in \R^3\\
 		F_\eta^{(3)}:& D_\eta^{(3)}\ni \va x\to r_{12}^\eta\cdot\left( x_2\va e_1-x_1\va e_2 \right) \in\R^3\\
 		F_\eta^{(4)}:&D_\eta^{(3)}\ni \va x\to r_{12}^\eta\cdot\left( x_2\va e_1+x_1\va e_2 \right) \in \R^3
@@ -201,7 +201,7 @@
 	\item Maximalen Definitionsbereich (f\"{u}r alle $\va F_\eta^{(n)}$): Wenn $\eta\le -1, \R^3\backslash \{(0,0,0)\}$, sonst $\R^3$.
 	\item maximale Bereiche, auf denen $\va F_\eta^{(n)}$ konservativ ist. $n=\dots$
 	\begin{enumerate}[label=(\arabic*)]
-		\item Falls $\eta=0,D_\eta^{(1)}$, sonst $z=0$
+		\item Falls $\eta=0,D_\eta^{(1)}$, sonst $z=0$\marginnote{Erwartete Antwort ist einfach $D_\eta^{(1)}$.}
 		\item Falls $\eta=0, D_\eta^{(2)}$, sonst $\varnothing$
 		\item Falls $\eta=-2, D_\eta^{(3)}$, sonst $\varnothing$.
 		\item Falls $\eta=0, D_\eta^{(4)}$, sonst $\varnothing$.
@@ -210,12 +210,12 @@
 	\begin{enumerate}[label=(\arabic*)]
 		\item Auf $z=0$ Ebene:
 		
-		$\eta=-2$: $V=-\frac 12\ln\left(x^2+y^2\right)$, sonst $V=-\frac 1{\eta+2}r^{n+2}$
+		$\eta=-2$: $V=-\frac 12\ln\left(x^2+y^2\right)$, sonst $V=-\frac 1{\eta+2}r^{\eta+2}$\marginnote{Die erwartete Antwort ist einfach $V=-\frac{1}{\eta+2}r^{\eta+2}$}
 
 		Wenn $n=0$ kann eine Potentialfunktion f\"{u}r alle $\va r\in\R^3$ definiert werden: $V(x,y,z)=-\frac{1}{2}\left( x^2+y^2 \right) $
 
 	\item Nur f\"{u}r $\eta=0$, $V=\frac{1}{2}\left( x^2-y^2 \right) $.
-	\item F\"{u}r $\eta=-2$, $V=-\tan^{-1}\left( \frac{x}{y} \right) $.
+	\item F\"{u}r $\eta=-2$, $V=-\tan^{-1}\left( \frac{x}{y} \right) $.\marginnote{In zylindrische Koordinaten ist es $V=-\varphi$}
 
 	\item F\"{u}r $\eta=0$, $V=-xy$.
 	\end{enumerate}

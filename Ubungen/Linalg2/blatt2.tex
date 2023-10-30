@@ -159,14 +159,27 @@ Nach Korollar 5.43 gilt, f\"{u}r $A,A' \subseteq V$ und $B,B'\subseteq W$ Basen 
 \end{Lemma}
 \begin{proof}
 	\[
-		_{B'}\left[ \Phi \right]_{A'}={}_{B'}[\text{id}_W]_B\cdot{}_B[\Phi]_A\cdot{}_A[\text{id}_V]_{A'}={}_{B'}[\text{id}_W]_B\left( {}_B[\text{id}_W]_B\cdot {}_B[\Phi]_A\cdot {}_A[\text{id}]_{A'} \right) {}_A[\text{id}_V]_A
+		_{B'}\left[ \Phi \right]_{A'}={}_{B'}[\text{id}_W]_B\cdot{}_B[\Phi]_A\cdot{}_A[\text{id}_V]_{A'}={}_{B'}[\text{id}_W]_B\left( {}_B[\text{id}_W]_B\cdot {}_B[\Phi]_A\cdot {}_A[\text{id}_V]_{A'} \right) {}_A[\text{id}_V]_A
 	.\]
-	(In den Klammern gibt es zuerst ein Basiswechsel in $V$, dann ein Basiswechsel in $W$ ). Ein ähnliche Argument zeigt, dass wir zuerst ein Basiswechseln in $W$ betrachten kann.
+	(In den Klammern gibt es zuerst ein Basiswechsel in $V$, dann ein Basiswechsel in $W$). Ein ähnliche Argument zeigt, dass wir zuerst ein Basiswechseln in $W$ betrachten kann.
 \end{proof}
 \begin{Corollary}
-	In jedem Teilaufgabe muss man nur das Fall betrachten, in dem entweder $B_V$ oder $B_W$ sich verändert. 
+	In die Aufgabe muss man nur das Fall betrachten, in dem entweder $B_V$ oder $B_W$ sich verändert. 
 \end{Corollary}
 	\begin{parts}
-	\item 
+	\item Nehme an, $\ker({}_{B_W}[T]_{B_V})\neq 0$. Die zwei Fälle
+		\begin{enumerate}[label=(\roman*)]
+			\item Nur $B_W$ sich verändert.
+
+				Sei $v\in\mathbb{K}^n$, $_B[\Phi]_Av=0$. Es gilt
+				\[
+					_{B'}[\Phi]_A={}_{B'}[\text{id}_W]{}_B[\Phi]_A{}_A[\text{id}_V]_Av={}_{B'}[\text{id}_W]_B{}_B[\Phi]_Av={}_{B'}[\text{id}_W]_B(0)=0
+				.\] 
+
+				Sei jetzt $_B[\Phi]_Av\neq 0$. Solange wir zeigen, dass
+				\[
+				_B[
+				.\] 
+		\end{enumerate}
 	\end{parts}
 \end{proof}

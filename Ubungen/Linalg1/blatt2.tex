@@ -45,7 +45,7 @@
 
 				Es gibt eine Gerade zwischen $0,x$ und $y$, und eine Gerade zwischen $0, y$ und $z$. Weil die beide Geraden zwischen $y$ geht, sind die Geraden gleich, und enthält $x$ und $z$, daher $x\sim z$.
 		\end{enumerate}
-		\item Nein. $(1,0)\sim (0,0), (0,1)\sim (0,0)$, aber $(1,0)\sim (0,1)$ stimmt nicht.
+		\item Nein. $(1,0)\sim (0,0), (0,1)\sim (0,0)$, aber $(1,0)\sim (0,1)$ stimmt nicht.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -96,7 +96,7 @@
 		\begin{enumerate}[label=(\roman*)]
 			\item $f\circ em$
 			
-			Surjektive, injektive und auch bijektive
+			Surjektive, injektiv und auch bijektiv
 			
 			\item $em\circ f$ 
 			
@@ -164,7 +164,9 @@
 	
 		Es gilt dann:
 		\begin{align*}
-			f^{(k+1)+l}=&f\circ f^k\circ f^l\\
+			f^{(k+1)+l}=&f\circ f^{k+l}\\
+			=&f\circ f^k\circ f^l\\
+			=&(f\circ f^k)\circ f^l\\
 			=& f^{k+1}\circ f^l
 		\end{align*}
 		Deswegen gilt es auch f\"{u}r $k+1$, und daher f\"{u}r alle $k\in \N$.
