@@ -1,0 +1,59 @@
+\begin{Problem}
+	Sei $(X, \mathcal{A})$ ein messbarer Raum. Zeigen Sie, dass
+	\[
+		\mu:A\to[0,\infty], A\to \begin{cases}
+			0, &A\text{ endlich oder abzählbar}\\
+			\infty &A\text{ überabzählbar}
+		\end{cases}
+	.\] 
+	eine $\sigma$-additive Mengenfunktion, also ein Maß, und somit $(X,\mathcal{A},\mu)$ ein Maßraum.
+\end{Problem}
+
+\begin{proof}
+Weil $\varnothing$ endlich ist, gilt $\mu(\varnothing)=0$. Sei $(A_j)A_j\in \mathcal{A}$ eine Folge paarweise disjunkter Menge.
+\begin{enumerate}
+	\item Zumindest eine $A_k$ ist überabzählbar:
+
+		Die Vereinigung $\bigcup A_i $ ist dann überabzählbar, und $\mu\left( \bigcup A_i  \right) =\infty$. Es gilt auch, dass $\sum \mu(A_i)=\infty$. 
+	\item Keine $A_i$ ist abzählbar. Die abzählbare Vereinigung von abzählbare Menge ist abzählbar, und es glit
+		\[
+		0=\mu\left( \bigcup A_i  \right)=\sum \mu(A_i)=\sum 0=0 
+		.\] 
+\end{enumerate}
+\end{proof}
+
+\begin{Problem}
+	Sei $(A,\mathcal{A})$ ein messbarer Raum und $\mu,\nu: \mathcal{A}\to[0,\infty]$ Maße über $\mathcal{A}$. Beweisen oder wiederlegen Sie:
+	\begin{parts}
+	\item Die Funktion $\eta:\mathcal{A}\to\overline{R},\eta(A)=\max(\mu(A),\nu(A))$ is ein Maß über $\mathcal{A}$.
+	\item Die Funktion
+		\[
+		\mu+\nu:\mathcal{A}\to \overline{R}, \left( \mu+\nu \right)(A):=\mu(A)+\nu(A)
+		\]
+		ist ein Maß über $\mathcal{A}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Sei $X=\left\{ a,b \right\} $, und $\mathcal{A}=\left\{ \varnothing, \left\{ a \right\} ,\left\{ b \right\} ,X \right\} $. Sei außerdem
+		\begin{align*}
+			\mu(\left\{ a \right\} )=&5\\
+			\mu\left( \left\{ b \right\}  \right) =1\\
+			\nu\left( \left\{ a \right\}  \right) =1\\
+			\nu\left( \left\{ b \right\}  \right) =5
+		\end{align*}
+	Daraus und aus der Additivität folgt
+	\[
+	\nu(X)=\mu(X)=6
+	.\] 
+	Daher ist $\eta(X)=6$. Es gilt, aber $\eta(\left\{ a \right\} )=\eta\left( \left\{ b \right\}  \right) =5$, und
+	\[
+	\eta\left( \left\{ a \right\} \cup \left\{ b \right\}  \right)=\eta(X)=6\neq 10=\eta\left( \left\{ a \right\}  \right) +\eta\left( \left\{ b \right\}   \right)  
+	.\] 
+\item Stimmt. Sei $\zeta=\mu+\nu$. $\zeta(\varnothing)=\mu(\varnothing)+\nu(\varnothing)=0+0=0$. Sei $(A_j), A_j\in \mathcal{A}$ eine Folge paarweise disjunkte Mengen. Weil jede Folge positive Zahlen konvergiert (sogar absolut) in $\overline{\R}$, gilt
+	\begin{align*}
+		\zeta\left( \bigcup_{i=1} ^\infty A_i \right) &=\mu\left( \bigcup_{i=1} ^\infty A_i \right) +\nu\left( \bigcup_{i=1} ^\infty A_i \right) =\left[ \sum_{i=1}^{\infty} \mu(A_i) \right] +\left[\sum_{i=1}^{\infty} \nu(A_i)\right]\\
+	&=\sum_{i=1}^{\infty} \left( \mu(A_i)+\nu(A_i) \right) =\sum_{i=1}^{\infty} \zeta(A_i)
+	\end{align*}
+	\end{parts}
+\end{proof}

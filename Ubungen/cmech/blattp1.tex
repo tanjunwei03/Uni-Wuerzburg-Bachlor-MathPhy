@@ -1,0 +1,88 @@
+\begin{Problem}
+	\begin{parts}
+		\item Man berechne den Abstand der Punkte $P (8| - 2| - 4)$ und $Q(5|4| - 6)$
+		\item Berechnen Sie den Fl\"{a}cheninhalt des durch die Punkte $P_1(2|3|1)$, $P_2(0|2|3)$ und $P_3(1|2|2)$ gegebenen Dreiecks.
+		\item Zeigen Sie, dass gilt $(|\va a|=a$ usw.): $\qquad \left| \va a \cdot \va b \right| \le a \cdot b$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item
+	\begin{align*}
+		d(P, Q)=&\sqrt{(8-5)^2+(-2-4)^2+(-4+6)^2}\\
+		=& \sqrt{3^2+6^2+2^2}\\
+		=&\sqrt{49} =7
+	\end{align*}
+\item
+	{\allowdisplaybreaks
+	\begin{align*}
+		P_2-P_1=&\begin{pmatrix} -2 \\ -1 \\ 2 \end{pmatrix} \\
+		P_3-P_1=& \begin{pmatrix} -1 \\ -1 \\ 1 \end{pmatrix}\\
+		(P_2-P_1)\times (P_3-P_1)=&\begin{bmatrix} \vu i & \vu j & \vu k \\ -2 & -1 & 2 \\ -1 & -1 & 1 \end{bmatrix} \\
+		=& \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\\
+		|(P_2-P_1)\times (P_3-P_1)|=& \sqrt{1^2+0^2+1^2} =\sqrt{2}\\
+		A=& \frac{\sqrt{2} }{2}
+\end{align*}}
+\item $|\va a \cdot \va b|=|ab\cos\theta|=ab|\cos\theta| \le ab$. \qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Auf der A3 zwischen dem Kreuz Biebelried und der Abfahrt Randersacker ist ein 4 km langer Stau vor einer Baustelle.
+	\begin{parts}
+	\item Wie viele Autos stehen ungef\"{a}hr in diesem Stau?	
+	\item Wie viele Personen befinden sich in diesem Stau?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Ein Auto ist ungef\"{a}hr $2$ m lang, und es gibt daher $\frac{4\text{ km}}{2\text{ m}}=2000$ Autos in ein $4\text{ km}$ lange Gerade. Aber es gibt ungef\"{a}hr 6 Spuren, und die Anzahl von Autos ist ungef\"{a}hr $2000\times 6 = 12000$ Autos im Stau.
+	\item Es gibt wahrscheinlich durchschnittlich $2$ Personen pro Auto, also $24000$ Personen im Stau. \qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Eine Familie macht einen Sonntagsspaziergang. Auf dem R\"{u}ckweg beschließt das Kind 2,0 km entfernt vom Haus mit dem Fahrrad vorauszufahren. Die Eltern spazieren gem\"{u}tlich mit einer konstanten Geschwindigkeit von 3,0 km/h in Richtung Haus. Das Kind f\"{a}hrt mit einer konstanten Geschwindigkeit von 8,0 km/h nach Hause. Dort angekommen dreht es um und f\"{a}hrt zur\"{u}ck zu seinen Eltern. Wenn es auf diese trifft, dreht es wieder um und f\"{a}hrt wieder zum Haus zur¨uck usw. bis die Eltern schließlich auch zu Hause ankommen.
+	\begin{parts}
+	\item In welcher Entfernung zum Haus treffen die Eltern das Kind das 1. Mal, 2. Mal, 3. Mal nach dessen Losfahren wieder? (Skizze!)
+	\item Welche Gesamtstrecke hat das Kind am Schluss (wenn alle zu Hause angekommen sind) zur\"{u}ckgelegt?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+Sei
+\begin{align*}
+	d=&2\text{ km}\\
+	v_1=&3\text{ kmh}^{-1}\\
+	v_2=&8\text{ kmh}^{_1}
+\end{align*}
+	\begin{parts}
+	\item 		Sei $t_n$ die Zeit, die die Eltern und das Kind sich zum $n$. Mal treffen. Die Eltern sind $x_n=d-v_1t_n$ vom Haus entfernt. Wann treffen sie sich zum nächsten Mal ($t_{n+1}$)? Es gilt:
+	\begin{align*}
+		x_{n+1}=& d-v_1t_{n+1}\\
+		x_{n+1}+x_n=& v_2(t_{n+1}-t_n)\\
+		\underbrace{d-v_1t_{n+1}}_{x_{n+1}}+\underbrace{d-v_1t_n}_{x_n}=&v_2(t_{n+1}-t_n)\\
+		2d-v_1(t_{n+1}+t_n)=& v_2(t_{n+1}-t_n)\\
+		(v_2+v_1)t_{n+1}+(v_1-v_2)t_n=&2d\\
+		t_{n+1}=&\frac{2d}{v_1+v_2}+\frac{v_2-v_1}{v_1+v_2}t_n
+	\end{align*}
+	Sei dann $t_0=0,a=\frac{v_2-v_1}{v_1+v_2},b=\frac{2d}{v_1+v_2}$ und die L\"{o}sung ist:
+	\[
+	t_n=\frac{(1-a^n)b}{1-a}+C, \qquad C\in \R
+	.\] 
+	Weil $t_0=0$, ist $C=0$. Numerisch ist $a=5 / 11\approx 0.455$ und $b\approx 0.634\text{ h}$. Daraus folgt die erste $t_n$ und auch $x_n=d-v_1t_n$:
+
+	\begin{center}
+		\begin{tabular}{p{0.1\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
+			\toprule
+			$n$ & $t_n\text{ (h)}$ & $x_n\text{ (km)}$\\\midrule
+0 & 0 & 2.00 \\\midrule
+1 & 0.364 & 0.909 \\\midrule
+2 & 0.529 & 0.413 \\\midrule
+3 & 0.604 & 0.188 \\\midrule
+4 & 0.638 & 0.0854 \\\midrule
+5 & 0.654 & 0.0388 \\\midrule
+6 & 0.661 & 0.0176 \\\bottomrule
+		\end{tabular}
+	\end{center}
+\item $d=\frac{2\text{ km}}{3\text{ kmh}^{-1}}8\text{ kmh}^{-1}\approx 5.33\text{ km}$
+	\end{parts}
+\end{proof}

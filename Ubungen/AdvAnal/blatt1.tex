@@ -84,7 +84,7 @@ Daraus folgt
 	\begin{parts}
 	\item $\left\{ q \right\} \in \mathcal A_\sigma(\mathcal M)\forall q\in \Q$, weil
 		\[
-			\left\{ q \right\} =\bigcap_{n=1}^\infty \left(q-\frac{1}{n}, q\right]\in \mathcal A_\sigma(M) 
+			\left\{ q \right\} =\bigcap_{n=1}^\infty \left(q-\frac{1}{n}, q\right]\in \mathcal A_\sigma(M) \marginnote{Es sollte den Schnitt mit $\Q$ geben, also $\left(q-\frac{1}{n}, q\right]\cap \Q$ statt $\left(q-\frac{1}{n},q\right]$}
 		.\] 
 		Weil $\Q$ abz\"{a}hlbar ist, sind alle Teilmenge $A\in \mathcal P(\Q)$ abz\"{a}hlbar, daher 
 		\[
@@ -99,7 +99,10 @@ Daraus folgt
 		Sei $ P=\left\{ \mathcal A| \mathcal A\text{ ist eine }\sigma\text{-Algebra},\mathcal M \subseteq \mathcal A \right\} $. Per Definition ist $\mathcal A_\sigma(\mathcal M)=\bigcap_{\mathcal A\in P} \mathcal A$. Dann ist es zu beweisen: 
 		\[
 			f^{-1}\left( \bigcap_{\mathcal A\in P} \mathcal A \right) =\bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)\overset{?}{=}\mathcal A_\sigma\left( f^{-1}\left( \mathcal M \right)  \right) 
-		.\]
+		.\]\marginnote{\[f^{-1}\left( \bigcap_{\mathcal A\in P} \mathcal A \right) =\bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)\] stimmt nicht. Es gilt zu sagen, weil $\mathcal{M}\subseteq \mathcal{A}_\sigma(\mathcal{M})$, gilt auch 		\begin{align*}
+				f^{-1}(\mathcal{M})\subseteq& f^{-1}\left(\mathcal{A}_\sigma\left(\mathcal{M}\right)\right)\\
+				\mathcal{A}_\sigma(f^{-1}(\mathcal{M}))\subseteq& \mathcal{A}_\sigma\left(f^{-1}\left(\mathcal{A}_\sigma\left(\mathcal{M}\right)\right)\right)=f^{-1}\left(\mathcal{A}_\sigma\left(\mathcal{M}\right)\right)
+		\end{align*}}
 		Jeder $\sigma$-Algebra $f^{-1}\left( \mathcal A \right) $ enthält $f^{-1}\left( \mathcal M \right) $. Daraus folgt, dass
 		\[
 			\mathcal A_\sigma \left( f^{-1}\left( \mathcal M \right)  \right) \subseteq \bigcap_{\mathcal A\in P} f^{-1}(\mathcal A)
