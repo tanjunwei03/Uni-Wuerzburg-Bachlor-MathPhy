@@ -1,0 +1,38 @@
+\begin{Problem}
+	Sei $\lambda^*_n$ das äußere Lebesgue-Maß und $A \subseteq \R^n$. Zeigen Sie, dass folgende Aussagen äquivalent sind:
+	\begin{parts}
+		\item $A$ ist $\lambda_n^*$ messbar.
+		\item Es gilt $\lambda_n^*\left( A\cap Q \right) +\lambda_n^*\left( A^c\cap Q \right) =\lambda_n^*(Q)$ f\"{u}r alle $Q\in \mathbb{J}(n)$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{Definition}
+	Sei $\mu^*$ ein äußeres Maß auf $X$. Eine Menge $A\subseteq X$ heißt $\mu^*$-messbar, falls gilt
+	\[
+		\mu^*(D)=\mu^*(A\cap D)+\mu^*(A^c\cap D)\qquad \forall D\subseteq X
+	.\] 
+	\end{Definition}
+Weil alle Teilmengen $I\in \mathbb{J}(n)$ solche Teilmengen $D\subseteq X$ sind, gilt natürlich (a)$\implies$(b).
+\end{proof}
+
+\begin{Problem}
+	 Sei $(X, \mathcal{A}, \nu)$ ein Maßraum und $\mu^*$ das von $(\mathcal{A}, \nu)$ induzierte äußere Maß auf $X$, d.h. in Satz 1.37 ist $K = \mathcal{A}$ und $\nu=\nu$. Nach Satz 1.59 induziert $\mu^*$ ein Maß $\mu := \mu^* |A(\mu^*)$ auf der $\sigma$-Algebra $\mathcal{A}(\mu^*)$.
+	 \begin{parts}
+	 \item Zeigen Sie, dass $\mu$ eine sogenannte Erweiterung von $\nu$ ist, also dass
+		 \begin{enumerate}[label=(\arabic*)]
+			 \item $\mathcal{A}\subseteq \mathcal{A}(\mu^*)$ und
+			 \item $\mu(A)=\nu(A)$ f\"{u}r alle $A\in \mathcal{A}$ gilt.
+		 \end{enumerate}
+	 \item Gilt sogar $\mu=\nu$, also $\mathcal{A}=\mathcal{A}(\mu^*)$?
+	 \end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $A\in \mathcal{A}$ 
+	\item Nein. Sei zum Beispiel $\mathcal{A}=\mathcal{A}_\sigma\left(\mathbb{J}(n)\right)$, und $\nu:\mathcal{A}\to [0,\infty]$ das eingeschränkte Lebesgue-Maß. Dann ist $\mu^*=\lambda_n^*$, und daher $\mu$ das Lebesgue-Maß. Es gilt aber
+		\[
+			\left\{ q \right\} \not\in \mathcal{A}_\sigma\left( \mathbb{J}(n) \right), \qquad q\in \R
+		,\] 
+		obwohl jeder Punktmenge $\lambda_n^*$ messbar ist.
+	\end{parts}
+\end{proof}

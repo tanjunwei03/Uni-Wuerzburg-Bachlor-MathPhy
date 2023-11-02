@@ -39,7 +39,9 @@ Beweisen Sie, dass $(f_n),n\in \N$ gegen eine zu bestimmende Grenzfunktion $f : 
 		Es ist klar, dass $f_n(x)$ konvergiert gegen $\sqrt{x^2} =|x|$. Sei dann $r(x)=\sqrt{x^2+\frac{1}{n^2}} -|x|$. F\"{u}r $x>0$ gilt
 		\begin{align*}
 			r(x)=& \sqrt{x^2+\frac{1}{n^2}}-x\\
-			r'(x)=& \frac{x}{\sqrt{x^2+\frac{1}{n^2}} }-1\le 0
+			r'(x)=& \frac{x}{\sqrt{x^2+\frac{1}{n^2}} }-1\\
+			\le& \frac{x}{\sqrt{x^2}}-1\\
+			=&0
 		\end{align*}
 		Deswegen ist $r(x)$ monoton fallend auf $(0,\infty)$. Ähnlich beweist man, dass $r(x)$ monoton wachsend auf $(-\infty, 0)$ ist. Deswegen ist $x=0$ ein globales Maximum, und $r(x)\le r(0)=\frac{1}{n}$. Daher konvergiert $(f_n)$ gleichmäßig.
 
@@ -61,7 +63,11 @@ Beweisen Sie, dass $(f_n),n\in \N$ gegen eine zu bestimmende Grenzfunktion $f : 
 			0 & x = 0
 		\end{cases}
 		.\] 
-Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, gibt es eine Umgebung $0\in V$, in der gilt, dass $|f_n'(x)-f_n'(0)|=f_n'(x)\le 1-\epsilon, x\in V$. Sei dann  $0\neq x\in V$, und $|1-f_n'(x)|>\epsilon$. Deswegen ist es kein Widerspruch.
+Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, gibt es eine Umgebung $0\in V$, in der gilt, dass $|f_n'(x)-f_n'(0)|=f_n'(x)\le 1-\epsilon, x\in V$. Sei dann  $0\neq x\in V$, und $|1-f_n'(x)|>\epsilon$, also die Folge $f_n'$ konvergiert nicht lokal gleichmäßig.
+
+Man kann auch beachten, dass $f_n'(x)$ stetig f\"{u}r alle $n\in \N$ und $x\in \R$ ist. Wenn die Folge lokal gleichmäßig in eine Umgebung auf $0$ konvergiert, wäre das Grenzwert auch stetig. Weil das Grenzwert nicht stetig ist, kann die Folge nicht lokal gleichmäßig konvergieren.
+
+Deswegen ist es kein Widerspruch zu den Korollar, weil die Voraussetzungen nicht erfüllt sind.
 
 \item Es gilt $\left|\frac{\cos(nx)}{n^3}\right|\le \frac{1}{n^3}$. Daher konvergiert die Reihe gleichmäßig (Weierstraßsches Majorantenkriterium).
 
@@ -111,7 +117,7 @@ Nehme eine solche Abbildung $f_n'(x)$. Weil $f'_n$ stetig ist, und $f_n'(0)=0$, 
 				\begin{align*}
 					\dv{x}\left( f_1(x)f_2(x)\dots f_{n+1}(x) \right) =& \dv{x}\left( f_1(x)f_2(x)\dots f_n(x) \right) f_{n+1}(x)\\
 											   &+\left( f_1(x)f_2(x)\dots f_n(x) \right) \dv{f_{n+1}}{x}\\
-					=& \sum_{k=1}^{n}\left( \sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x) \right)\\
+					=& \left( \sum_{i=1}^n f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_n(x) \right)\\
 					 &+\left( f_1(x)f_2(x)\dots f_n(x) \right) f_n'(x)\\
 					=&\sum_{i=1}^{n+1} f_1(x)f_2(x)\dots \dv{f_i(x)}{x}\dots f_{n+1}(x)
 				\end{align*}

@@ -1,0 +1,50 @@
+\begin{Problem}
+\begin{parts}
+	\item Benutzen Sie Proposition 5.6.9, um zu zeigen, dass
+		\[
+		g(x)=\sin(x)\cosh(x), \qquad x\in \R
+		\] 
+durch die zugehörige Taylorreihe im Punkt $x_0 = 0$ mit Konvergenzradius $R=+\infty$ dargestellt wird.
+\item Zeigen Sie, dass $f:\R\to \R$ mit
+	\[
+	f(x)=\begin{cases}
+		\exp\left( -\frac{1}{x^2} \right) & \qquad x \neq 0\\
+		0 & \text{sonst}
+	\end{cases}
+	\]
+	\emph{nicht} durch ihre Taylorreihe um x = 0 dargestellt wird. Warum ist dies kein Widerspruch zu Proposition 5.6.9?
+\end{parts}	
+\end{Problem}
+
+\begin{Problem}
+	Es sei $f : \R_0^+ \to \R$ definiert durch $f (x) = \sqrt[3]{x}$. Geben Sie das Taylorpolynom $P_2$ von f mit Entwicklungspunkt $x_0 = 1$ an und schätzen Sie den maximalen Fehler von $|f(x) - P_2(x)|$ auf dem Intervall $\left[ \frac{1}{2},\frac{3}{2} \right] $ ab.
+\end{Problem}
+
+\begin{Problem}
+	Bestimmen Sie die Taylorpolynome vom Grad 30 der folgenden Funktionen in $x_0$.
+	\begin{parts}
+	\item $f(x)=x^3-3x^2+3x+2$ im Punkt $x_0=2$.
+	\item $g(x)=\sin^2\left( \pi x \right) $ in $x_0=3$.
+	\item $h(x)=\sin^{-1}(x)$ in $x_0=0$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Bestimmen Sie die Ober- und Untersummen von $\exp : [0, 1] \to\R$ für die markierten Zerlegungen $(J_n, \Xi_n)$ mit der Auswahl $\Xi_n = \left\{ 0,\frac{1}{n},\frac{1}{n},\dots,\frac{n-1}{n},1 \right\} $ für $n \in \N$. Zeigen Sie anschließend, dass die zugehörigen Ober- und Untersummen gegen denselben Wert konvergieren.
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item 
+\begin{align*}
+	\mathfrak{O}_{\Xi_n}(f)=&\sum_{k=0}^{n-1} \left( \frac{1}{n}\exp\left( \frac{k+1}{n} \right)  \right)\\ 
+	=&\frac{1}{n}\sum_{n=0}^{n-1} \exp\left( \frac{k+1}{n} \right)\\
+	=& \frac{1}{n}\frac{(e-1)e^{1 / n}}{e^{1 / n}-1}\\
+	=&\frac{1}{n}\frac{e-1}{1-e^{-1 / n}} 
+\end{align*}
+\item 
+	\begin{align*}
+		\mathfrak{U}_{\Xi_n}(f)
+	\end{align*}
+	\end{parts}
+\end{proof}

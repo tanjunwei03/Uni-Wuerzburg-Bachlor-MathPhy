@@ -103,3 +103,39 @@ $p$-Tuple von linear unabhängig Vektoren. F\"{u}r $p=n$ ist die Behauptung bewi
 			Deswegen ist $b=1$, noch ein Widerspruch.\qedhere
 	\end{enumerate}
 \end{proof}
+\begin{Problem}
+	Wie viele Gruppe der Ordnung 1/2/3/4 gibt es?
+\end{Problem}
+\begin{proof}
+Ordnung:
+\begin{parts}
+\item 1: $G=\left\{ 1 \right\} $ 
+\item 2: $G=\left\{ 1,a \right\} ,a^2=1$ 
+\item 3: $G=\left\{ 1,a,b \right\} $ 
+
+	Jede element muss invertierbar sind, und $1$ kann nicht die Inverse sein. Wir betrachten $a^{-1}$ :
+	\begin{enumerate}[label=(\roman*)]
+		\item $a^{-1}=a$. Es gilt $b^{-1}=b$, sonst ist $b^{-1}=a\implies a^{-1}=b$. Es gilt dann entweder $ab=a$ oder $ab=b$. Sei $ab=a$. Es gilt
+\[
+b=(aa)b=aab=aa=1
+,\]
+ein Widerspruch. Das Fall ist leider unmöglich.
+\item Es gilt $ab=1$, daher auch $ba=1$. Dann muss es gelten, $a^2=b$, $b^2=a$. Das Fall ist möglich.
+	\end{enumerate}
+	Es gibt nur eine Gruppe der Ordnung 3.
+\item 4: Wir haben schon bewiesen, dass es abelsch sein muss. Wir zeichnen die Tabelle
+	\begin{center}
+		\begin{tikzpicture}[scale=0.5]
+			\draw (0,0) node {$1$};
+			\draw (1,0) node {$a$};
+			\draw (2,0) node {$b$};
+			\draw (3,0) node {$c$};
+			\draw (0,-1) node {$a$};
+			\draw (0,-2) node {$b$};
+			\draw (0,-3) node {$c$};
+			\draw[thick] (0.5,-0.5) -- (3,-3);
+		\end{tikzpicture}
+	\end{center}
+	Es muss symmetrisch sein. Weil alle Elemente in alle Zeilen und Spalten vorkommen muss, gilt entweder
+\end{parts}
+\end{proof}

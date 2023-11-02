@@ -14,12 +14,15 @@
 	\begin{parts}
 	\item $\mu_\lambda$ ist auf jedem Fall f\"{u}r endliche Teilmengen von $\N$ wohldefiniert. Weil $\sum_{k=0}^\infty \frac{\lambda^k}{k!}$ konvergiert (absolut) f\"{u}r alle $\lambda\in\R$, konvergiert absolut alle Teilfolge. 
 
-		$\mu_\lambda$ ist auch trivialweise additiv.
-	\item Das passt f\"{u}r $\lambda \in \R$ 
-	\item Wir brauchen 
+		$\mu_\lambda$ ist auch trivialerweise additiv, weil es eine Summe ist.
+	\item Das passt f\"{u}r $\lambda \in \R$, weil 
 		\[
-		\sum_{k=1}^{\infty} \exp(\lambda) \frac{\lambda^k}{k!}=\exp(\lambda)(\exp(\lambda)-1)=1
-		,\] 
+		\sum_{k=1}^{\infty} \exp(\lambda) \frac{\lambda^k}{k!}=\exp(\lambda)(\exp(\lambda)-1)<\infty
+		.\] 
+	\item Wir brauchen
+		\[
+		\exp(\lambda)\left( \exp(\lambda)-1 \right) =1
+		.\] 
 		oder 
 		\[
 		\exp(\lambda)=\frac{1}{2}(1\pm \sqrt{5} )
@@ -40,18 +43,18 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item In der Übungsblatt 1. haben wir schon bewiesen, dass es wohldefiniert ist.
+	\item In der Übungsblatt 1. haben wir schon bewiesen, dass es wohldefiniert und eine Mengenfunktion ist.
 
 		Sei dann $(A_j), A_j\in \mathcal{A}$ eine Folge disjunkte Menge. Es gilt
 	\begin{align*}
 		&\mu_B\left( \bigcup_{i\in\N} A_i \right) =\mu\left( B\cap \bigcup_{i\in \N} A_i \right)\\
 		&=\underbrace{\mu\left( \bigcup_{i\in \N} \left( B \cap A_i \right)  \right)=\sum_{i\in \N}\mu(B\cap A_i)}_{\sigma-\text{additivität von }\mu}=\sum_{i\in \N}\mu_B(A_i)
 	\end{align*}
-		$\mu_B$ ist dann $\sigma$-Additiv, und daher Maß.
+		$\mu_B$ ist dann $\sigma$-additiv, und daher Maß.
 	\item Ja. Sei $\mu(A)=0$. Weil $A\cap B\subseteq A$ ist, gilt auch $\mu_B(A)=0$. Weil $(X,\mathcal{A},\mu_B)$ vollständig ist, ist jede Teilmenge $\mathcal{A}\ni A' \subseteq A$. $(X, \mathcal{A},\mu)$ ist dann vollständig.
 	\item Nein. Sei $X=\left\{ a,b,c \right\},B=\left\{ a \right\}, \mathcal{A}=\left\{\varnothing, \left\{ a \right\} , \left\{ b,c \right\}  \right\} $.
 
-		Sei auch $\mu(\left\{ b,c \right\} \neq 0, \mu(X)\neq 0, \mu(\left\{ a \right\} )\neq 0$. Dann ist $(X, \mathcal{A},\mu)$ trivialweise vollständig (es gibt keine Nullmenge), aber $\mu_B(\left\{ b,c \right\} )=\mu(\left\{ a \right\} \cap \left\{ b,c \right\} )=\mu(\varnothing)=0$. Deswegen ist $\left\{ b,c \right\} $ eine Nullmenge in $(X,A,\mu_B)$, aber $\left\{ b \right\} \subseteq \left\{b ,c \right\} \not\in \mathcal{A}$
+		Sei auch $\mu(\left\{ b,c \right\}) \neq 0, \mu(X)\neq 0, \mu(\left\{ a \right\} )\neq 0$. Sei außerdem $\mu_B(A)=\mu\left( \left\{ a \right\}\cap A \right\}$ Dann ist $(X, \mathcal{A},\mu)$ vollständig (es gibt keine Nullmengen), aber $\mu_B(\left\{ b,c \right\} )=\mu(\left\{ a \right\} \cap \left\{ b,c \right\} )=\mu(\varnothing)=0$. Deswegen ist $\left\{ b,c \right\} $ eine Nullmenge in $(X,A,\mu_B)$, aber $\left\{ b \right\} \subseteq \left\{b ,c \right\} \not\in \mathcal{A}$\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -123,6 +126,6 @@
 		\[
 		M_\epsilon=\left\{ \left( \frac{n}{2}-1,\frac{n}{2} \right) \times \left( -\frac{\epsilon}{2^n},\frac{\epsilon}{2^n} \right)|n\in \N  \right\} \bigcup \left\{ \left( -\frac{n}{2},-\frac{n}{2}+1 \right) \times \left( -\frac{\epsilon}{2^n},\frac{\epsilon}{2^n} \right)|n\in \N  \right\} 
 		.\] 
-		Es gilt $\sum_{A\in M_\epsilon} \text{vol}_2(A)=2\epsilon$. Weil $M_\epsilon$ f\"{u}r alle $\epsilon>0$ eine \"{U}berdeckung von $\R\times \left\{ 0 \right\} $ ist, gilt $\lambda_2^*\left( \R\times \left\{ 0 \right\}  \right) =0$.
+		Es gilt $\sum_{A\in M_\epsilon} \text{vol}_2(A)=2\epsilon$. Weil $M_\epsilon$ f\"{u}r alle $\epsilon>0$ eine \"{U}berdeckung von $\R\times \left\{ 0 \right\} $ ist, gilt $\lambda_2^*\left( \R\times \left\{ 0 \right\}  \right) =0$.\qedhere
 	\end{parts}
 \end{proof}
