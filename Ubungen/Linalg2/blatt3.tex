@@ -1,0 +1,60 @@
+\begin{Problem}
+	\begin{parts}
+		\item  Berechnen Sie alle möglichen Matrixprodukte der folgenden Matrizen. Was muss jeweils für die Dimensionen erfüllt sein?
+	 \begin{gather*}
+		 A=\begin{pmatrix} 1 & -1 & 2 \\ 0 & 3 & 5 \\ 1 & 8 & 7 \end{pmatrix}, B=\begin{pmatrix} -1 & 0 & 1 & 0 \\ 0 & 1 & 0 & -1 \\ 1 & 0 & -1 & 0 \end{pmatrix} ,C=\begin{pmatrix} 1 \\ 0 \\ 8 \\ -7 \end{pmatrix}\\
+		 D=\begin{pmatrix} -1 & 2 & 0 & 8 \end{pmatrix}, E=\begin{pmatrix} 1 & 4 \\ 0 & 5 \\ 6 & 8 \end{pmatrix} , F=\begin{pmatrix} -1 & 2 & 0 \end{pmatrix} .
+	 \end{gather*}
+ \item Eine Blockmatrix ist eine Matrix von der Form
+	 \[
+		 A=\begin{pmatrix} A_1 & A_3 \\ A_2 & A_4 \end{pmatrix} \] 
+		 mit Matrizen $A_1\in \mathbb{K}^{n \times m}, A_2\in \mathbb{K}^{n'\times m}, A_3\in \mathbb{K}^{n \times m'}, A_4\in\mathbb{K}^{n'\times m'}$. Sei weiterhin
+		 \[
+			 B=\begin{pmatrix} B_1 & B_3 \\ B_2 & B_4 \end{pmatrix} \] 
+			 mit ebenso Einträgen aus $\mathbb{K}$. Wer nun meint, die Multiplikation von A und B sei so simpel wie
+			 \[
+				 A\cdot B=\begin{pmatrix} A_1B_1+A_3B_2 & A_1B_3+A_3B_4 \\ A_2B_1+A_4B_2 & A_2B_3+A_4B_4 \end{pmatrix} \] 
+hat tatsächlich recht. Beweisen Sie diese Formel und geben Sie gleichzeitig die $B_i'$s für die benötigten Matrizenräume an, sodass die Rechnung wohldefiniert ist.
+ \end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item F\"{u}r $A$ eine $n\times m$ Matrize, und $B$ eine $p\times q$ Matrize, ist $AB$ wohldefiniert, nur wenn $m=p$
+
+		Die Matrizprodukte sind
+		\begin{gather*}
+			AB=\begin{pmatrix} 1 & -1 & -1 & 1\\5 & 3 & -5 & -3 \\ 6 & 8 & -6 & -8 \end{pmatrix}\\
+			AE=\begin{pmatrix} 13 & 15 \\ 30 & 55 \\ 43 & 100 \end{pmatrix} \\
+			FA=\begin{pmatrix} -1 & 7 & 8 \end{pmatrix}\\ 
+			BC=\begin{pmatrix} 7 \\ -7 \\ -7 \end{pmatrix}\\
+			CD=\begin{pmatrix} -1 & 2 & 0 & 8 \\ 0 & 0 & 0 & 0\\-8 & 16 & 0 & 64\\-7 & 14 & 0 & 56 \end{pmatrix}\\
+			DC=(55)\\
+			CF=\begin{pmatrix} -1 & 2 & 0 \\ 0 & 0 & 0 \\ -8 & 16 & 0\\-7 & 14 & 0 \end{pmatrix}\\ 
+			FE=\begin{pmatrix} -1 & 6 \end{pmatrix} 
+		\end{gather*}
+	\item Wir brauchen $B_1\in\mathbb{K}^{m\times p},B_2\in\mathbb{K}^{m'\times p}, B_3\in\mathbb{K}^{m\times q}, B_4\in\mathbb{K}^{m'\times q}$ f\"{u}r $p,q\in \N$. Wir bezeichnen, f\"{u}r $v_1\in\mathbb{K}^p,v_2\in\mathbb{K}^q$, das Vektor $(v_1,v_2)\in\mathbb{K}^{p+q}$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es seien $V$ und $W$ Vektorräume über K, nicht notwendigerweise endlich-dimensional und
+	\[
+	\Phi:V\to W
+	\]
+	eine lineare Abbildung. Beweisen Sie:
+	\begin{parts}
+	\item Die duale Abbildung $\Phi^*$ ist injektiv genau dann, wenn $\Phi$ surjektiv ist.
+		{\footnotesize Hinweis: Die Richtung $\implies$ beweisen Sie am einfachsten als eine Kontraposition.}
+	\item Die duale Abbildung $\Phi$ ist surjektiv genau dann, wenn $\Phi$ injektiv ist.
+		{\footnotesize Hinweis: Die Rückrichtung lässt sich am einfachsten direkt beweisen. Nutzen Sie in dem Fall die Injektivität von $\Phi$ aus, um f\"{u}r ein beliebiges $v^*\in V^*$ eine lineare Abbildung im Bild von $\Phi^*$ zu konstruieren, die die gleichen Werde wie Abbildung $v^*$ liefert.}
+	\item Im Falle der Invertierbarkeit gilt
+		\[
+			\left( \Phi^{-1} \right) ^*=\left( \Phi^* \right) ^{-1}
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $\Phi$ surjektiv, und $w_1^*,w_2^*\in W^*$. Es gilt $\Phi w_1^*=w_1^*\circ \Phi, \Phi w_2^*=w_2^*\circ \Phi$. Die zwei Abbildungen  $w_1^*\circ \Phi$ und $w_2^*\circ \Phi$ sind unterschiedliche, solange es mindestens ein $v\in V$ gibt, sodass $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$. Wir haben aber ausgenommen, dass $w_1^*\neq w_2^*$. Das bedeutet, dass es $w\in W$ gibt, so dass $w_1^*(w)\neq w_2^*(w)$. Weil $\Phi$ surjektiv ist, ist $w=\Phi(v)$ f\"{u}r eine $v$. Dann ist $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$, also  $\Phi^*$ ist surjektiv. 
+		Jetzt nehmen wir an, dass $\Phi$ nicht surjektiv ist. Wir definieren zwei lineare Funktionale $w_1^*$ und $w_2^*$, sodass $w_1^*\neq w_2^*$. Sei $w_1^*(w)=w_2^*(w)\forall w\in\text{im}(\Phi)$ 
+	\end{parts}
+\end{proof}
