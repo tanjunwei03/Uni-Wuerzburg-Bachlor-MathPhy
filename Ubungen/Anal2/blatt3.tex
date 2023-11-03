@@ -19,7 +19,16 @@ durch die zugehörige Taylorreihe im Punkt $x_0 = 0$ mit Konvergenzradius $R=+\i
 \begin{Problem}
 	Es sei $f : \R_0^+ \to \R$ definiert durch $f (x) = \sqrt[3]{x}$. Geben Sie das Taylorpolynom $P_2$ von f mit Entwicklungspunkt $x_0 = 1$ an und schätzen Sie den maximalen Fehler von $|f(x) - P_2(x)|$ auf dem Intervall $\left[ \frac{1}{2},\frac{3}{2} \right] $ ab.
 \end{Problem}
-
+\begin{proof}
+	Es gilt $f(x)=x^{1 / 3}$, und daher
+	\[
+		f^{(n)}(x)=\left[\prod_{i=0}^{n-1} \left( \frac{1}{3}-i \right) \right]x^{\frac{1}{3}-n} 
+	,\] 
+	also
+	\[
+		f^{(n)}(1)=\prod_{i=1}^{n-1} \left( \frac{1}{3}-i \right)  
+	.\] 
+\end{proof}
 \begin{Problem}
 	Bestimmen Sie die Taylorpolynome vom Grad 30 der folgenden Funktionen in $x_0$.
 	\begin{parts}

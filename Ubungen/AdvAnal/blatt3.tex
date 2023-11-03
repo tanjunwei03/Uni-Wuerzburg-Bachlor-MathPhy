@@ -12,7 +12,29 @@
 		\mu^*(D)=\mu^*(A\cap D)+\mu^*(A^c\cap D)\qquad \forall D\subseteq X
 	.\] 
 	\end{Definition}
-Weil alle Teilmengen $I\in \mathbb{J}(n)$ solche Teilmengen $D\subseteq X$ sind, gilt natürlich (a)$\implies$(b).
+	Weil alle Teilmengen $I\in \mathbb{J}(n)$ solche Teilmengen $D\subseteq X$ sind, gilt natürlich (a)$\implies$(b). Jetzt bleibt (b)$\implies$(a) zu zeigen. Es gibt, f\"{u}r jede $\epsilon>0$, eine abzählbare Überdeckung $M=\left\{ Q_i, i\in \N \right\} \subseteq \mathbb{J}$ aus offene Intervale von $D$, f\"{u}r die gilt $\sum_{i=1}^{\infty} \lambda_n^*(Q_i)=\lambda_n^*(D)+\epsilon$. F\"{u}r jede $Q_i\in M$ gilt
+	\[
+		\lambda_n^*\left( A\cap Q_i \right) +\lambda_n^*\left( A^c\cap Q_i \right) =\lambda_n^*(Q_i)
+	.\] 
+	Außerdem gilt
+	\[
+	\sum_{i=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) +\sum_{i=1}^{\infty} \lambda_n^*\left( A^c\cap Q_i \right) =\sum_{i=1}^{\infty} \lambda_n^*(Q_i)=\lambda_n^*(D)+\epsilon
+	.\] 
+	
+	\vspace{1cm}
+
+	Sei $(Q_i),Q_i\in \mathbb{J}$ eine abzählbare Überdeckung von $A \cap D$ und  $(P_i), P_i\in \mathbb{J}$ eine abzählbare Überdeckung von $A^c \cap D$, f\"{u}r die gilt $\sum_{n=1}^{\infty} \lambda_n^*(Q_n)\le\lambda_n^*(A^c\cap D)+\epsilon, \sum_{n=1}^{\infty} \lambda_n^*(P_n)\le\lambda_n^*(A^c\cap D)+\epsilon$ Wir betrachten $Q_i$:
+	\[
+		\lambda_n^*(A \cap Q_i)+\lambda_n^*(A^c \cap Q_i)=\lambda_n^*(Q_i)
+	,\] 
+	also
+	\[
+		\sum_{n=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) =\sum_{n=1}^{\infty} \lambda_n^*(Q_i)-\sum_{n=1}^{\infty} \left( A^c\cap Q_i \right)\le \lambda_n^*(A\cap D)+\epsilon 
+	.\] 
+	Es gilt ähnlich
+	\[
+	\sum_{n=1}^{\infty} \lambda_n^*\left( A^c\cap P_i \right) =\sum_{n=1}^{\infty} \lambda_n^*(P_i)-\sum_{n=1}^{\infty} (A\cap P_i)\le \lambda_n^*(A^c\cap D)+\epsilon
+	.\] 
 \end{proof}
 
 \begin{Problem}
@@ -28,7 +50,10 @@ Weil alle Teilmengen $I\in \mathbb{J}(n)$ solche Teilmengen $D\subseteq X$ sind,
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Sei $A\in \mathcal{A}$ 
+	\item Sei $A\in \mathcal{A}$. Wir müssen zeigen, das f\"{u}r alle $D\subseteq X$, gilt
+		\[
+			\mu^*(A\cap D)+\mu^*(A^c\cap D)=\mu^*(D)
+		.\] 
 	\item Nein. Sei zum Beispiel $\mathcal{A}=\mathcal{A}_\sigma\left(\mathbb{J}(n)\right)$, und $\nu:\mathcal{A}\to [0,\infty]$ das eingeschränkte Lebesgue-Maß. Dann ist $\mu^*=\lambda_n^*$, und daher $\mu$ das Lebesgue-Maß. Es gilt aber
 		\[
 			\left\{ q \right\} \not\in \mathcal{A}_\sigma\left( \mathbb{J}(n) \right), \qquad q\in \R
