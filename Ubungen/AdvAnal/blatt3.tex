@@ -20,21 +20,18 @@
 	\[
 	\sum_{i=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) +\sum_{i=1}^{\infty} \lambda_n^*\left( A^c\cap Q_i \right) =\sum_{i=1}^{\infty} \lambda_n^*(Q_i)=\lambda_n^*(D)+\epsilon
 	.\] 
-	
-	\vspace{1cm}
-
-	Sei $(Q_i),Q_i\in \mathbb{J}$ eine abzählbare Überdeckung von $A \cap D$ und  $(P_i), P_i\in \mathbb{J}$ eine abzählbare Überdeckung von $A^c \cap D$, f\"{u}r die gilt $\sum_{n=1}^{\infty} \lambda_n^*(Q_n)\le\lambda_n^*(A^c\cap D)+\epsilon, \sum_{n=1}^{\infty} \lambda_n^*(P_n)\le\lambda_n^*(A^c\cap D)+\epsilon$ Wir betrachten $Q_i$:
+	Weil $A\cap Q_i$ bzw. $A^c\cap Q_i$ eine abzählbare Überdeckung von $A$ bzw. $A^c$ ist, gilt f\"{u}r $Q=\bigcup_{i=1} ^n Q_i$:
 	\[
-		\lambda_n^*(A \cap Q_i)+\lambda_n^*(A^c \cap Q_i)=\lambda_n^*(Q_i)
-	,\] 
-	also
+	\lambda_n^*(A\cap D)\le \lambda_n^*(A \cap Q)\le \sum_{i=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) 
+	,\]
+	und ähnlich
 	\[
-		\sum_{n=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) =\sum_{n=1}^{\infty} \lambda_n^*(Q_i)-\sum_{n=1}^{\infty} \left( A^c\cap Q_i \right)\le \lambda_n^*(A\cap D)+\epsilon 
+	\lambda_n^*(A^c\cap D)\le \lambda_n^*(A^c\cap Q)\le \sum_{i=1}^{\infty} \lambda_n^*(A\cap Q_i)
 	.\] 
-	Es gilt ähnlich
+	Daraus folgt
 	\[
-	\sum_{n=1}^{\infty} \lambda_n^*\left( A^c\cap P_i \right) =\sum_{n=1}^{\infty} \lambda_n^*(P_i)-\sum_{n=1}^{\infty} (A\cap P_i)\le \lambda_n^*(A^c\cap D)+\epsilon
-	.\] 
+	\lambda_n^*(A\cap D)+\lambda_n^*(A^c\cap D)\le \lambda_n^*(D)
+	.\qedhere\] 
 \end{proof}
 
 \begin{Problem}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  2 NOV 2023 16:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  3 NOV 2023 14:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -847,8 +847,14 @@ File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/f
 onts/enc/dvips/base/8r.enc}]
 [2] [3] [4] [5] [6]) (./main.bbl) [7] (./main.aux)
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1F7B0C643375378481978B83F26B3CB2;264.
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 1F7B0C643375378481978B83F26B3CB2;264
+(rerunfilecheck)             After:  7D063B08622F342E32D5E3643B777594;264.
  ) 
 Here is how much of TeX's memory you used:
  23666 strings out of 477985
@@ -867,7 +873,7 @@ s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public
 lic/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino
 /uplb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/sh
 are/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on main.pdf (7 pages, 149237 bytes).
+Output written on main.pdf (7 pages, 149158 bytes).
 PDF statistics:
  147 PDF objects out of 1000 (max. 8388607)
  113 compressed objects within 2 object streams
