@@ -20,7 +20,7 @@
 	\[
 	\sum_{i=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) +\sum_{i=1}^{\infty} \lambda_n^*\left( A^c\cap Q_i \right) =\sum_{i=1}^{\infty} \lambda_n^*(Q_i)=\lambda_n^*(D)+\epsilon
 	.\] 
-	Weil $A\cap Q_i$ bzw. $A^c\cap Q_i$ eine abzählbare Überdeckung von $A$ bzw. $A^c$ ist, gilt f\"{u}r $Q=\bigcup_{i=1} ^n Q_i$:
+	Weil $A\cap Q_i$ bzw. $A^c\cap Q_i$ eine abzählbare Überdeckung von $A$ bzw. $A^c$ ist, gilt f\"{u}r $Q=\bigcup_{i=1}^\infty Q_i$:
 	\[
 	\lambda_n^*(A\cap D)\le \lambda_n^*(A \cap Q)\le \sum_{i=1}^{\infty} \lambda_n^*\left( A\cap Q_i \right) 
 	,\]
@@ -47,14 +47,37 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Sei $A\in \mathcal{A}$. Wir müssen zeigen, das f\"{u}r alle $D\subseteq X$, gilt
+	\item Wir beweisen zuerst $\mu(A)=\nu(A)$ f\"{u}r alle $A\in \mathcal{A}$. Es genugt zu beweisen, dass $\nu(A)=\mu^*(A)$. Es ist klar, dass $\{A\}$ eine abzählbare Überdeckung von $A$ ist, und daher $\mu^*(A)\le \nu(A)$. Aber f\"{u}r jede abzählbare Überdeckung $(Q_i),Q_i\in \mathcal{A},\bigcup_{i=1}^\infty Q_i\supseteq A $, gilt wegen der Monotonie von $\mu^*$ und der $\sigma$-additivität von $\nu$ $\sum_{i=1}^{\infty} \nu(Q_i)\ge \nu(A)$. Daraus folgt
+		\[
+			\mu(A)=\nu(A)\text{ f\"{u}r alle }A\in \mathcal{A}
+		.\] 
+		Jetzt beweisen wir (1). Sei $A\in \mathcal{A}$. Wir müssen zeigen, das f\"{u}r alle $D\subseteq X$, gilt
 		\[
 			\mu^*(A\cap D)+\mu^*(A^c\cap D)=\mu^*(D)
 		.\] 
+		Sei $(Q_i),Q_i\in\mathcal{A}$ eine abzählbare Überdeckung von $D$, f\"{u}r die gilt $\sum_{i=1}^{\infty} \nu(Q_i)\le \mu^*(D)+\epsilon, \epsilon>0$ beliebig.  Betrachten Sie
+		\[
+			\mu^*(A\cap Q_i)+\mu^*(A^c\cap Q_i)
+		.\] 
+		Weil sowohl $A$ als auch  $Q_i$ in $\mathcal{A}$ sind, gilt
+		\[
+			\mu^*(A\cap Q_i)+\mu^*(A^c\cap Q_i)=\mu^*(Q_i)
+		.\] 
+		Daraus folgt
+	\begin{align*}
+		\mu^*(A\cap D)+\mu^*(A^c\cap D)\le& \mu^*(A\cap Q)+\mu^*(A^c\cap Q)\\
+		\le& \sum_{i=1}^{\infty} \left( \mu^*(A\cap Q_i)+\mu^*(A^c\cap Q_i) \right)\\
+		=&\sum_{i=1}^{\infty} \mu^*(Q_i)\le\mu^*(D)+\epsilon
+		\end{align*}
+		Weil $\epsilon>0$ beliebig war, gilt
+		\[
+		\mu^*(A\cap D)+\mu^*(A^c\cap D)\le \mu^*(D)
+		,\] 
+		also $A$ ist messbar.
 	\item Nein. Sei zum Beispiel $\mathcal{A}=\mathcal{A}_\sigma\left(\mathbb{J}(n)\right)$, und $\nu:\mathcal{A}\to [0,\infty]$ das eingeschränkte Lebesgue-Maß. Dann ist $\mu^*=\lambda_n^*$, und daher $\mu$ das Lebesgue-Maß. Es gilt aber
 		\[
 			\left\{ q \right\} \not\in \mathcal{A}_\sigma\left( \mathbb{J}(n) \right), \qquad q\in \R
 		,\] 
-		obwohl jeder Punktmenge $\lambda_n^*$ messbar ist.
+		obwohl jede Punktmenge $\lambda_n^*$ messbar ist.\qedhere
 	\end{parts}
 \end{proof}
