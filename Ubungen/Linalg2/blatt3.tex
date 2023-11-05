@@ -58,8 +58,39 @@ hat tatsächlich recht. Beweisen Sie diese Formel und geben Sie gleichzeitig die
 
 		Jetzt nehmen wir an, dass $\Phi$ nicht surjektiv ist. Wir definieren zwei lineare Funktionale $w_1^*$ und $w_2^*$, sodass $w_1^*\neq w_2^*$. Sei $w_1^*(w)=w_2^*(w)\forall w\in\text{im}(\Phi)$ 
 	\item Zuerst beweisen wir: $\Phi$ nicht injektiv $\implies$ $\Phi^*$ nicht surjektiv.
+		Sei $v_1,v_2\in V,v_1\neq v_2$ und $\Phi(v_1)=\Phi(v_2)=w$.Es gibt eine lineare Abbildung $v^*\in V^*$, so dass $v^*(v_1)\neq v^*(v_2)$. Sei aber $w^*\in W^*$. Es gilt $\left( \Phi^* w^* \right)(v) =(w^*\circ\Phi)(v)$. Dann ist
+		\[
+		\Phi^*w^*(v_1)=\Phi^*(w)=\Phi^*w^*(v_2)
+		,\] 
+		also $\Phi^*(w^*)\neq v^*$ f\"{u}r alle $w^*\in W^*$. Es folgt: $\Phi^*$ ist nicht surjektiv.
+
+		Jetzt beweisen wir $\Phi$ injektiv $\implies$ $\Phi^*$ surjektiv. Sei $v^*\in V^*$. Wir definieren eine Abbildung (momentan nicht unbedingt linear) so: F\"{u}r alle  $w\in \text{im}(\Phi)$, also  $w=\Phi(v)$, ist $w^*(w)=v^*(v)$. F\"{u}r  $w\not\in \text{im}(\Phi)$ ist $w^*(w)=0$. 
+
+		Es ist klar, dass $w^*\cdot \Phi=v^*$. Wir müssen nur zeigen, dass $w^*$ linear ist, also $w^*\in W^*$.
+		 \begin{enumerate}[label=(\arabic*)]
+			 \item Sei $w\in W$, $a\in \mathbb{K}$. Falls $w \not\in \text{im}(\Phi)$, ist auch $aw\not\in \text{im}(\Phi)$. Es gilt daher
+				 \[
+				 w^*(aw)=aw^*(w)=0
+				 .\] 
+				 Falls $w\in \text{im}(\Phi)$, also $w=\Phi v$ f\"{u}r ein $v\in V$, gilt auch $aw=\Phi(av)$, und
+				 \[
+				 w^*(aw)=v^*(av)=av^*(v)=aw^*(w)
+				 .\] 
+		\end{enumerate}
+		Daraus folgt: $w^*\in W^*$, und $\Phi^*(w^*)=v^*$.
+	\item In den letzten Teilaufgaben haben wir bewiesen, dass wenn $\Phi$ bijektiv ist, ist $\Phi^*$ auch bijektiv. Die Rückrichtung stimmt auch. Wir müssen nur Gleichheit zeigen.
+
 		\begin{tcolorbox}
-			\textbf{Idee:} Wenn $\Phi(v_1)=\Phi(v_2)$, k\"{o}nnen Abbildungen $W\to \mathbb{K}$ $v_1$ und $v_2$ nicht unterscheiden.
+			\textbf{Vereinfachung:} Wir müssen nur zeigen, per Definition eine Inverseabbildung, dass
+			\[
+				\Phi^*\circ \left( \Phi^{-1} \right) ^*=\text{id}_{V^*}
+			.\] 
 		\end{tcolorbox}
+		Es gilt, f\"{u}r $v^*\in V^*$, $\left( \Phi^{-1} \right)^*(v^*)=v^*\circ\Phi^{-1}$. Daraus folgt
+		\begin{align*}
+			\left(\Phi^*\circ\left( \Phi^{-1} \right)^*\right)(v^*)=&\Phi^*\left( v^*\circ \Phi^{-1} \right) \\
+			=& v^*\circ\Phi^{-1}\circ\Phi\\
+			=& v^*\qedhere
+		\end{align*}
 	\end{parts}
 \end{proof}

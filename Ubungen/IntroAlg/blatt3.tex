@@ -1,0 +1,54 @@
+\begin{Problem}
+	Wir ändern die Gruppendefinition aus Definition 2.3 ab, indem wir für eine Menge $G$ mit einer zweistelligen Verknüpfung $\cdot$ und einem Element $e\in G$ fordern:
+	\begin{parts}
+		\item Es gilt $(a\cdot b)\cdot c=a\cdot(b\cdot c)$ für alle $a,b,c\in G$.	
+		\item Es gilt $a\cdot e=a$ für alle $a\in G$.
+ \item[\refstepcounter{enumi}(\alph{enumi}\textquotesingle)] Zu jedem $a \in G$ gibt es ein Element $b\in G$ mit $b\cdot a = e$
+	\end{parts}
+Ist dann $G$ stets eine Gruppe?
+\end{Problem}
+\begin{proof}
+	Nein. Sei $x\cdot y=x$. Es ist klar, dass es assoziativ ist. Es gilt auch $x\cdot e=x\forall x$. Außerdem gilt $e\cdot x=e\forall x\in G$. 
+	Aber es gilt f\"{u}r alle $x\in G$, dass $x\cdot y=x\neq e\forall y \in G$. $G$ ist dann keine Gruppe.
+\end{proof}
+
+\begin{Problem}
+	Sei $n\in N$ mit $n\ge 3$ fixiert. Wir setzen $\alpha := \exp ( 2\pi i / n ) \in \C$ und definieren die folgenden zwei Abbildungen:
+	\[
+		s:\C\to \C, \qquad z\to \overline{z}\qquad\text{sowie}\qquad r:\C\to\C, z\to\alpha z
+	.\] 
+	Das neutrale Element der Gruppe $\text{Sym}(\C)$ bezeichnen wir mit $e$ und mit $\cdot$ die Verkettung von Funktionen.
+	\begin{parts}
+	\item Zeigen Sie, dass $s^2=e$ und $r\cdot s\cdot r=s$ gelten.
+	\item Zeigen Sie, dass für $k\in\N$ genau dann $r^k = e$ gilt, wenn $n|k$ ist.
+	\item Zeigen Sie, dass $r$ und $s$ Elemente der symmetrischen Gruppe $\text{Sym}(\C)$ sind.
+	\item Zeigen Sie, dass $s\cdot r^k = r^{-k} \cdot s$ für alle $k \in\N$ gilt.
+	\item Zeigen Sie, dass zu jedem $k\in \N$ ein $t\in \N$ mit $r^{-k}=r^t$ existiert.
+	\item Beschreiben Sie das Abbildungsverhalten von $r$ und $s$ geometrisch.
+	\item Folgern Sie aus (a)–(e), dass $\{r^x \cdot s^y | x, y \in \Z\} = \{r^a \cdot s^b | 0 \le a < n\text{ und }0 \le b < 2\}$ gilt.
+	\item Zeigen Sie, dass $D_n := \{r^a \cdot s^b |0 \le a < n\text{ und }0 \le b < 2\}$ eine Gruppe ist.
+	\item Beweisen Sie, dass $|D_n| = 2n$ gilt.
+	\item Zeigen Sie, dass $D_n$ nicht abelsch ist.
+	\end{parts}
+\end{Problem}
+\begin{parts}
+\item  $s^2=e$ folgt aus $\overline{\overline{z}}=z$. Es gilt
+\begin{align*}
+	(r\cdot s\cdot r)(z)=&(r\cdot s)\left( \exp(2\pi i / n)z \right) \\
+	=& r\left( \exp(-2\pi i / n)\overline{z} \right) \\
+	=& \exp(2\pi i / n)\exp(-2\pi i / n )\overline{z}\\
+	=& \overline{z}
+\end{align*}
+Also $r\cdot s\cdot r = s$.
+\item Wir wissen,  $r^k(z)=\exp(2\pi i k / n)z$. $r^k=e$ genau dann, wen $\exp(2\pi i k / n)=1$, also $n | k$.
+\item Sie sind bijektiv.
+\item 
+	 \begin{align*}
+		 (s\cdot r^k)(z)=& s\left( \exp\left( 2\pi i k / n \right) z \right) \\
+		 =& \exp\left( -2\pi i k / n \right) \overline{z}\\
+		 (r^{-k}\cdot s)(z)=&\left( r^{-k} \right) (\overline{z})\\
+		 =& \exp(-2\pi i k / n)\overline{z}\\
+		 =&(s\cdot r^k)(z)
+	\end{align*}
+\item Sei 
+\end{parts}
