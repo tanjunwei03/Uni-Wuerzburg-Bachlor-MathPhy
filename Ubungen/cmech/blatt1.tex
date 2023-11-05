@@ -123,6 +123,23 @@ Es folgt daraus:
 \[
 y=x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}
 .\] 
+(b)
+\begin{tcolorbox}
+	\textbf{Bemerkung:} Man muss wegen der Konvexität der Trajektorie nur das Fall betrachten, in dem der Ball nur die nähere Seite des Korbrands trifft.
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{blatt1diagram.pdf}
+	\end{center}
+\end{tcolorbox}
+Die ``linke" Seite des Korbrands hat Koordinaten bezüglich der Werfer $(l-d / 2, h_1-h_0)$. Das Ball hat Radius $\frac{U}{2\pi}$. Wir betrachten dewegen
+\[
+d(x):=\left\|\begin{pmatrix} x \\ x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2} \end{pmatrix} -\begin{pmatrix} l - \frac{d}{2}\\h_1-h_0 \end{pmatrix} \right\|\le \frac{U}{2\pi}
+.\] 
+\begin{align*}
+	d(x)^2=&\left( x-l+\frac{d}{2} \right)^2+\left( x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}-h_1+h_0 \right)^2\\
+	2d(x)\dv{d(x)}{x}=&2\left( x-l+\frac{d}{2} \right) \\
+			  &+\left(x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}\right)\left( \tan\theta-(l\tan\theta-(h_1-h_0))\frac{2x}{l^2} \right) 
+\end{align*}
+Das ist eine kubische Gleichung, und deswegen im Allgemein nicht einfach unlösbar. 
 \paragraph{Aufgabe 1.3}
 \begin{center}
 	\begin{tikzpicture}

@@ -44,7 +44,7 @@ hat tatsächlich recht. Beweisen Sie diese Formel und geben Sie gleichzeitig die
 	\begin{parts}
 	\item Die duale Abbildung $\Phi^*$ ist injektiv genau dann, wenn $\Phi$ surjektiv ist.
 		{\footnotesize Hinweis: Die Richtung $\implies$ beweisen Sie am einfachsten als eine Kontraposition.}
-	\item Die duale Abbildung $\Phi$ ist surjektiv genau dann, wenn $\Phi$ injektiv ist.
+	\item Die duale Abbildung $\Phi^*$ ist surjektiv genau dann, wenn $\Phi$ injektiv ist.
 		{\footnotesize Hinweis: Die Rückrichtung lässt sich am einfachsten direkt beweisen. Nutzen Sie in dem Fall die Injektivität von $\Phi$ aus, um f\"{u}r ein beliebiges $v^*\in V^*$ eine lineare Abbildung im Bild von $\Phi^*$ zu konstruieren, die die gleichen Werde wie Abbildung $v^*$ liefert.}
 	\item Im Falle der Invertierbarkeit gilt
 		\[
@@ -54,7 +54,12 @@ hat tatsächlich recht. Beweisen Sie diese Formel und geben Sie gleichzeitig die
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Sei $\Phi$ surjektiv, und $w_1^*,w_2^*\in W^*$. Es gilt $\Phi w_1^*=w_1^*\circ \Phi, \Phi w_2^*=w_2^*\circ \Phi$. Die zwei Abbildungen  $w_1^*\circ \Phi$ und $w_2^*\circ \Phi$ sind unterschiedliche, solange es mindestens ein $v\in V$ gibt, sodass $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$. Wir haben aber ausgenommen, dass $w_1^*\neq w_2^*$. Das bedeutet, dass es $w\in W$ gibt, so dass $w_1^*(w)\neq w_2^*(w)$. Weil $\Phi$ surjektiv ist, ist $w=\Phi(v)$ f\"{u}r eine $v$. Dann ist $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$, also  $\Phi^*$ ist surjektiv. 
+	\item Sei $\Phi$ surjektiv, und $w_1^*,w_2^*\in W^*$. Es gilt $\Phi w_1^*=w_1^*\circ \Phi, \Phi w_2^*=w_2^*\circ \Phi$. Die zwei Abbildungen  $w_1^*\circ \Phi$ und $w_2^*\circ \Phi$ sind unterschiedliche, solange es mindestens ein $v\in V$ gibt, sodass $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$. Wir haben aber ausgenommen, dass $w_1^*\neq w_2^*$. Das bedeutet, dass es $w\in W$ gibt, so dass $w_1^*(w)\neq w_2^*(w)$. Weil $\Phi$ surjektiv ist, ist $w=\Phi(v)$ f\"{u}r eine $v$. Dann ist $(w_1^*\circ\Phi)(v)\neq (w_2^*\circ\Phi)(v)$, also  $\Phi^*$ ist injektiv.
+
 		Jetzt nehmen wir an, dass $\Phi$ nicht surjektiv ist. Wir definieren zwei lineare Funktionale $w_1^*$ und $w_2^*$, sodass $w_1^*\neq w_2^*$. Sei $w_1^*(w)=w_2^*(w)\forall w\in\text{im}(\Phi)$ 
+	\item Zuerst beweisen wir: $\Phi$ nicht injektiv $\implies$ $\Phi^*$ nicht surjektiv.
+		\begin{tcolorbox}
+			\textbf{Idee:} Wenn $\Phi(v_1)=\Phi(v_2)$, k\"{o}nnen Abbildungen $W\to \mathbb{K}$ $v_1$ und $v_2$ nicht unterscheiden.
+		\end{tcolorbox}
 	\end{parts}
 \end{proof}
