@@ -15,7 +15,30 @@ durch die zugehörige Taylorreihe im Punkt $x_0 = 0$ mit Konvergenzradius $R=+\i
 	\emph{nicht} durch ihre Taylorreihe um x = 0 dargestellt wird. Warum ist dies kein Widerspruch zu Proposition 5.6.9?
 \end{parts}	
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item \begin{align*}
+			g(x)=&\sin(x)\cosh(x)\\
+			=&\left( \frac{e^{ix}-e^{-ix}}{2i} \right) \left( \frac{e^x+e^{-x}}{2} \right) \\
+			=& \frac{1}{4i}\left( e^{(i+1)x}+e^{(i-1)x}-e^{(1-i)x}-e^{-(i+1)x} \right)\\
+			=& \frac{i}{4}\left[ e^{-(i+1)x}+e^{(1-i)x}-e^{(i+1)x}-e^{(i-1)x} \right]\\
+			g^{(n)}(x)=&\frac{i}{4}\left[ \left[ -(i+1) \right]^n e^{-(i+1)x}+(1-i)^n e^{(1-i)x}\right.\\
+ &\left.-(1+i)^n e^{(i+1)x}-(i-1)^n e^{(i-1)x} \right]\\
+			|g^{(n)}(x)|\le& \frac{1}{4}(\sqrt{2})^n\left[ \left| e^{-(i+1)x} \right| +\left| e^{(1-i)x} \right| +\left| e^{(i+1)x} \right| +\left| e^{(i-1)x} \right|   \right] 
+		\end{align*}
+		Die Bedingungen sind jetzt erfüllt: Sei $B_r(0)^{cl}$ ein abgeschlossenes Ball für beliebige $r>0$. Sei außerdem
+\begin{gather*}
+			c=\sup_{x\in B_r(0)^{cl}}\frac{1}{4}\left[ \left| e^{-(i+1)x} \right| +\left| e^{(1-i)x} \right| +\left| e^{(i+1)x} \right| +\left| e^{(i-1)x} \right|   \right]\\
+			\alpha=\sqrt{2} 
+\end{gather*}
+Es gilt $c\neq \infty$, weil die Abbildung in den Klammern stetig ist, und ist daher auf eine eingeschränkte Menge auch eingeschränkt. Es folgt:
+\begin{equation}\tag{5.6.23}
+	\|g^{(n)}\|_{B_r(0)^{cl}}\le c\alpha^n
+\end{equation}
+Also die formale Taylorreihe hat einen Konvergenzradius $R>r$ und konvergiert gegen auf $B_r(0)^{cl}$ gegen $g$. Weil das f\"{u}r alle $r>0$ gilt, konvergiert die Taylorreihe gegen $f$ f\"{u}r alle $x\in \R$, und die Konvergenzradius $R=+\infty$.
+\item Es ist klar, dass es nicht durch ihre Taylorreihe dargestellt wird. Die Taylorreihe ist $0+0x+0x^2+\dots=0$, aber $f(x)\neq 0$ f\"{u}r $x\neq 0$.
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Es sei $f : \R_0^+ \to \R$ definiert durch $f (x) = \sqrt[3]{x}$. Geben Sie das Taylorpolynom $P_2$ von f mit Entwicklungspunkt $x_0 = 1$ an und schätzen Sie den maximalen Fehler von $|f(x) - P_2(x)|$ auf dem Intervall $\left[ \frac{1}{2},\frac{3}{2} \right] $ ab.
 \end{Problem}
@@ -32,6 +55,42 @@ durch die zugehörige Taylorreihe im Punkt $x_0 = 0$ mit Konvergenzradius $R=+\i
 	\[
 	P_2(x)=1+\frac{1}{3}(x-1)-\frac{1}{9}(x-1)^2
 	.\] 
+	Wir wissen schon
+	\begin{equation}\tag{5.6.20}
+		\left| R_{n,x_0}(f)(h) \right| \le \sup_{t\in[0,1]}\left| f^{(n)}(x_0+th)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!}
+	\end{equation}
+	Hier ist $n=2$, und $|h|\le \frac{1}{2}$. 
+\begin{tcolorbox}
+	\textbf{Vereinfachung:} (Nur in diesem Problem, falsch im Allgemein) Der maximale Fehler ist gleich $\sup_{t\in [-1,1]}\left| f^{(n)}(x_0+th)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!}$, wobei $h=\frac{1}{2},n=2$, und $x_0=1$.
+\begin{proof}
+	Wir betrachten zuerst $R_{n,x_0}(f)(\xi)$ f\"{u}r $0\le\xi\le h$. Es gilt
+	\begin{align*}
+		\sup_{\xi\in [0,h]}R_{n,x_0}(f)(\xi)\le& \sup_{\xi\in [0,h]}\left[\sup_{t\in [0,1]}\left| f^{(n)}(x_0+t\xi)-f^{(n)}(x_0) \right| \frac{|\xi|^n}{(n-1)!}\right]\\
+		=& \sup_{\xi\in [0,h]}\left[\sup_{t\in [0,1]}\left| f^{(n)}(x_0+t\xi)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!} \right] \\
+		=&\sup_{t\in [0,1]}\left| f^{(n)}(x_0+th)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!}
+	\end{align*}
+	Ähnlich gilt auch
+	\[
+		\sup_{\xi\in[-h,0]}R_{n,x_0}(f)(\xi)=\sup_{t\in [-1,0]}\left| f^{(n)}(x_0+th)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!}
+	.\] 
+	Weil wir den maximalen Fehler auf dem ganzen Intervall schätzen möchten, ist die gewünschte Antwort daher
+	\[
+		\sup_{\xi\in[-h,h]}R_{n,x_0}(f)(\xi)=\sup_{t\in[-1,1]}\left| f^{(n)}(x_0+th)-f^{(n)}(x_0) \right| \frac{|h|^n}{(n-1)!}
+	.\qedhere\] 
+\end{proof}
+\end{tcolorbox}
+Wir betrachten deswegen
+\begin{align*}
+	&\sup_{t\in [-1,1]}\left( f^{(n)}(x_0+th)-f^{(n)}(x_0) \right)\\
+	&= \sup_{t\in [-1,1]}\left( \left[\prod_{i=0}^{n-1}\left( \frac{1}{3}-i \right) \right] \left( x_0+th \right) ^{\frac{1}{3}-n}-\left[ \prod_{i=0}^{n-1}\left( \frac{1}{3}-i \right)    \right]    \right)\\
+	&= \left[ \prod_{i=0}^{n-1}\left( \frac{1}{3}-i \right) \right]\sup_{t\in[-1,1]}\left( \left(1+\frac{t}{2}\right)^{- 5 / 3}-1 \right) \\
+	&=\left[ \prod_{i=0}^{n-1} \left( \frac{1}{3}-i \right)  \right]\left( \left( 1-\frac{1}{2} \right)^{- 5 / 3}-1 \right)\\
+	&=\left[ \prod_{i=0}^{n-1}\left( \frac{1}{3}-i \right) \right] \left( 2^{5 / 3}-1 \right)  
+\end{align*}
+Also der maximale Fehler ist
+\[
+	\frac{1}{4}\left[ \prod_{i=0}^{n-1} \left( \frac{1}{3}-i \right)   \right] \left( 2^{5 / 3}-1 \right) 
+.\qedhere\]
 \end{proof}
 \begin{Problem}
 	Bestimmen Sie die Taylorpolynome vom Grad 30 der folgenden Funktionen in $x_0$.
