@@ -1,9 +1,9 @@
-\paragraph{Aufgabe 1.1}
+\textbf{Aufgabe 1.1}
 \begin{parts}
 	\item 
-		\begin{center}
-			\begin{tikzpicture}[scale=2.5]
-				\draw[thick, ->] (0,0) -- (2.5,0);
+	\begin{center}
+		\begin{tikzpicture}[scale=2.5]
+			\draw[thick, ->] (0,0) -- (2.5,0);
 			\draw[thick, ->] (0,0) -- (0,1.5);
 			\filldraw[thick, pattern = north east lines] (0,0) -- (1.5,1) -- (2,0) -- cycle;
 			\draw (0,1.5) node[anchor=south] {$v$};
@@ -15,75 +15,76 @@
 			\draw (0.4,0.5) node[anchor=south] {$\frac{v_{max,1}}{t'}=a_1$};
 			\draw (1.75,0.5) node[anchor=south west] {$\frac{v_{max,1}}{t_{min,1}-t'} = |a_2|$};
 			\draw (1.5,0.5) node[anchor=east] {$d$};
-			\end{tikzpicture}
-		\end{center}
-		Man löst die Gleichungen
-		\begin{align}
-			\frac{1}{2}(v_{max,1})(t_{min,1})=&d\label{eqn1}\\
-			v_{max,1}=&a_1t'\label{eqn2}\\
-			v_{max,1}=&(t'-t_{min,1})a_2\label{eqn3}
-		\end{align}
-		Aus \eqref{eqn2} folgt $t'=v_{max,1} / a_1$. Wir setzen das in \eqref{eqn3} ein. Es ergibt sich
-		\[
-			v_{max,1}=\left( \frac{v_{max,1}}{a_1}-t_{min,1} \right) a_2
-		.\] 
-		Daraus folgt:
-		\[
-			v_{max,1}\left( 1-\frac{a_2}{a_1} \right) =-t_{min,1}a_2
-		.\] 
+		\end{tikzpicture}
+	\end{center}
+	Man löst die Gleichungen
+	\begin{align}
+		\frac{1}{2}(v_{max,1})(t_{min,1})=&d\label{eqn1}\\
+		v_{max,1}=&a_1t'\label{eqn2}\\
+		v_{max,1}=&(t'-t_{min,1})a_2\label{eqn3}
+	\end{align}
+	Aus \eqref{eqn2} folgt $t'=v_{max,1} / a_1$. Wir setzen das in \eqref{eqn3} ein. Es ergibt sich
+	\[
+	v_{max,1}=\left( \frac{v_{max,1}}{a_1}-t_{min,1} \right) a_2
+	.\] 
+	Daraus folgt:
+	\[
+	v_{max,1}\left( 1-\frac{a_2}{a_1} \right) =-t_{min,1}a_2
+	.\] 
 	\item 	Noch einmal setzen wir das in \eqref{eqn1} ein:
-		\[
-			\frac{1}{2}\left[ -t_{min,1}a_2\left( 1-\frac{a_2}{a_1} \right)^{-1} \right] \left( t_{min,1} \right) =d 
-		.\] 
-		Die L\"{o}sung ist
-		\[
-			t_{min,1}=\boxed{\left[ -\frac{2d}{a_2}\left( 1-\frac{a_2}{a_1} \right)  \right]^{1 / 2}}
-		.\] 
-		Aus \eqref{eqn1} folgt
-		\[
-			v_{max,1}=\frac{2d}{t_{mn,1}}
-		.\] 
-		Also
-		\[
-			v_{max,1}=\boxed{\left[ -\frac{1-\frac{a_2}{a_1}}{2a_2d} \right]^{-1 / 2}} 
-		.\] 
+	\[
+	\frac{1}{2}\left[ -t_{min,1}a_2\left( 1-\frac{a_2}{a_1} \right)^{-1} \right] \left( t_{min,1} \right) =d 
+	.\] 
+	Die L\"{o}sung ist
+	\[
+	t_{min,1}=\boxed{\left[ -\frac{2d}{a_2}\left( 1-\frac{a_2}{a_1} \right)  \right]^{1 / 2}}
+	.\] 
+	Aus \eqref{eqn1} folgt
+	\[
+	v_{max,1}=\frac{2d}{t_{mn,1}}
+	.\] 
+	Also
+	\[
+	v_{max,1}=\boxed{\left[ -\frac{1-\frac{a_2}{a_1}}{2a_2d} \right]^{-1 / 2}} 
+	.\] 
 	\item 
-		\begin{center}
-			\begin{tikzpicture}[scale=2]
-				\draw[thick, ->] (0,0) --(2.5,0);
-				\draw[thick, ->] (0,0) -- (0,1.5);
-				\filldraw[thick,pattern = north east lines] (0,0) -- (0.75,1) -- (1.5,1) -- (2,0) -- cycle;
-				\draw[ultra thick, dashed] (0,1) -- (0.75,1) -- (0.75,0);
-				\draw[ultra thick, dashed] (1.5,1) -- (1.5,0);
-				\draw (0,1) node[anchor=east] {$v_{max,2}$};
-				\draw[thick, <->] (0,-0.1) -- (0.75,-0.1);
-				\draw (0.375,-0.1) node[anchor=north] {$t_1$};
-				\draw (2.5,0) node[anchor=west] {$t$};
-				\draw[thick,<->] (1.5,-0.1) -- (2,-0.1);
-				\draw (1.75,-0.1) node[anchor=north] {$t_2$};
-				\draw (0,1.5) node[anchor=south] {$v$};
-				\draw (0.5,0) node[anchor=south] {$s_1$};
-				\draw (1.5,0) node[anchor=south west] {$s_2$};
-				\draw (1.125,0.5) node {$s_3$};
-				\draw[thick,<->] (0.75,-0.1) -- (1.5,-0.1);
-				\draw (1.125,-0.1) node[anchor=north] {$t_3$};
-			\end{tikzpicture}
-		\end{center}
-		Es gilt
-		\begin{align*}
-			t_1=&\frac{v_{max,2}}{a_1}\\
-			t_2=&-\frac{v_{max,2}}{a_2}\\
-			s_1=&\frac{1}{2}a_1t_1^2=\frac{v_{max,2}^2}{2a_1}\\
-			s_2=&\frac{1}{2}v_{max,2}t_2=-\frac{v_{max,2}^2}{2a_2}\\
-			s_3=&v_{max,2}t_3=d-s_1-s_2\\
-			t_3=&\frac{d-s_1-s_2}{v_{max,2}}\\
-			=&\frac{d}{v_{max,2}}-\frac{v_{max,2}}{2a_1}+\frac{v_{max,2}}{2a_2}\\
-			t_{min,2}=&t_1+t_2+t_3\\
-			=&\frac{d}{v_{max,2}}+\frac{v_{max,2}}{2a_1}-\frac{v_{max,2}}{2a_2}\\
-		\end{align*}
-
+	\begin{center}
+		\begin{tikzpicture}[scale=2]
+			\draw[thick, ->] (0,0) --(2.5,0);
+			\draw[thick, ->] (0,0) -- (0,1.5);
+			\filldraw[thick,pattern = north east lines] (0,0) -- (0.75,1) -- (1.5,1) -- (2,0) -- cycle;
+			\draw[ultra thick, dashed] (0,1) -- (0.75,1) -- (0.75,0);
+			\draw[ultra thick, dashed] (1.5,1) -- (1.5,0);
+			\draw (0,1) node[anchor=east] {$v_{max,2}$};
+			\draw[thick, <->] (0,-0.1) -- (0.75,-0.1);
+			\draw (0.375,-0.1) node[anchor=north] {$t_1$};
+			\draw (2.5,0) node[anchor=west] {$t$};
+			\draw[thick,<->] (1.5,-0.1) -- (2,-0.1);
+			\draw (1.75,-0.1) node[anchor=north] {$t_2$};
+			\draw (0,1.5) node[anchor=south] {$v$};
+			\draw (0.5,0) node[anchor=south] {$s_1$};
+			\draw (1.5,0) node[anchor=south west] {$s_2$};
+			\draw (1.125,0.5) node {$s_3$};
+			\draw[thick,<->] (0.75,-0.1) -- (1.5,-0.1);
+			\draw (1.125,-0.1) node[anchor=north] {$t_3$};
+		\end{tikzpicture}
+	\end{center}
+	Es gilt
+	\begin{align*}
+		t_1=&\frac{v_{max,2}}{a_1}\\
+		t_2=&-\frac{v_{max,2}}{a_2}\\
+		s_1=&\frac{1}{2}a_1t_1^2=\frac{v_{max,2}^2}{2a_1}\\
+		s_2=&\frac{1}{2}v_{max,2}t_2=-\frac{v_{max,2}^2}{2a_2}\\
+		s_3=&v_{max,2}t_3=d-s_1-s_2\\
+		t_3=&\frac{d-s_1-s_2}{v_{max,2}}\\
+		=&\frac{d}{v_{max,2}}-\frac{v_{max,2}}{2a_1}+\frac{v_{max,2}}{2a_2}\\
+		t_{min,2}=&t_1+t_2+t_3\\
+		=&\frac{d}{v_{max,2}}+\frac{v_{max,2}}{2a_1}-\frac{v_{max,2}}{2a_2}\\
+	\end{align*}
+	
 \end{parts}
-\paragraph{Aufgabe 1.2}
+
+\textbf{Aufgabe 1.2}
 \begin{center}
 	\begin{tikzpicture}[scale=2.5]
 		\draw[thick, ->] (0,0) -- (0,{(3-sqrt(3))/(1+sqrt(3))});
@@ -111,12 +112,12 @@ v_0^2=\frac{gl^2}{2\cos^2\theta\left( l\tan\theta-(h_1-h_0) \right) }
 
 \begin{center}
 	$l=h_1=1\text{ m},h_0=0\text{ m}$
-
-
+	
+	
 	\begin{tikzpicture}
 		\begin{axis}[ymin=-200,ymax=200,xmin=0,xmax=90,xlabel=$\theta\left( ^{\circ} \right) $,ylabel=$v_0\text{ (ms}^{-1})$]
-\addplot[domain=0:90,color=red,samples=200]{9.81/(2*cos(x)*cos(x)*(tan(x)-1))};
-\end{axis}
+			\addplot[domain=0:90,color=red,samples=200]{9.81/(2*cos(x)*cos(x)*(tan(x)-1))};
+		\end{axis}
 	\end{tikzpicture}
 \end{center}
 Es folgt daraus:
@@ -124,23 +125,17 @@ Es folgt daraus:
 y=x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}
 .\] 
 (b)
-\begin{tcolorbox}
-	\textbf{Bemerkung:} Man muss wegen der Konvexität der Trajektorie nur das Fall betrachten, in dem der Ball nur die nähere Seite des Korbrands trifft.
-	\begin{center}
-		\includegraphics[width=0.5\textwidth]{blatt1diagram.pdf}
-	\end{center}
-\end{tcolorbox}
-Die ``linke" Seite des Korbrands hat Koordinaten bezüglich der Werfer $(l-d / 2, h_1-h_0)$. Das Ball hat Radius $\frac{U}{2\pi}$. Wir betrachten dewegen
-\[
-d(x):=\left\|\begin{pmatrix} x \\ x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2} \end{pmatrix} -\begin{pmatrix} l - \frac{d}{2}\\h_1-h_0 \end{pmatrix} \right\|\le \frac{U}{2\pi}
-.\] 
-\begin{align*}
-	d(x)^2=&\left( x-l+\frac{d}{2} \right)^2+\left( x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}-h_1+h_0 \right)^2\\
-	2d(x)\dv{d(x)}{x}=&2\left( x-l+\frac{d}{2} \right) \\
-			  &+\left(x\tan\theta-(l\tan\theta-(h_1-h_0))\frac{x^2}{l^2}\right)\left( \tan\theta-(l\tan\theta-(h_1-h_0))\frac{2x}{l^2} \right) 
-\end{align*}
-Das ist eine kubische Gleichung, und deswegen im Allgemein nicht einfach unlösbar. 
-\paragraph{Aufgabe 1.3}
+Sei $\varphi$ der Eintreffwinkel des Balls, und $\varphi^{\prime}$ der Winkel des Balls beim Überfliegen des Korbrandes. Es gilt dann $\varphi\approx \varphi^{\prime}$. \\
+Zudem gilt: \[\tan\varphi=\frac{U}{d\pi}\]
+Die Trajektorie des Balls wird beschrieben durch \[y(x)=-\frac{g}{2v_0^2\cos ^2\alpha}x^2+\tan \alpha x +h_0.\]
+Der Ball passiert den Korbrand an der Stelle $x_R=l-\frac d2$. \\
+Es gilt\[y'(x_R)=-\frac{g}{v_0^2\cdot \cos ^2\alpha}x_R+\tan \alpha.\]
+Somit lautet die Tangentenfunktion an der Stelle $x_R$ 
+\[t(x_R)=\left( -\frac{g}{v_0^2\cos^2 \alpha}x_R+\tan \alpha\right)(x-x_R)-\frac{g}{2v_0^2\cdot \cos ^2\alpha}x_R^2+\tan\alpha x_R+h_0\]
+mit der Steigung \[m=-\frac{g}{v_0^2\cos^2 \alpha}x_R+\tan \alpha.\]
+Es gilt dann \[m=\tan \varphi =\frac{U}{2\pi}\]\[-\frac{g}{v_0^2\cos^2 \alpha}\left(l-\frac{d}{2}\right)+\tan \alpha=\frac{U}{d\pi}\]\[\alpha=\arctan\left(\frac{U}{d\pi}+\frac{g}{v_{0,x}^2}\left(l-\frac d2\right)\right).\]Der Winkel $\alpha$ muss also mindestens $\arctan\left(\frac{U}{d\pi}+\frac{g}{v_{0,x}^2}\left(l-\frac d2\right)\right)$ betragen. 
+
+\textbf{Aufgabe 1.3}
 \begin{center}
 	\begin{tikzpicture}
 		\draw[thick] (-0.5,-1) rectangle (0.5,0);
@@ -180,10 +175,11 @@ Also
 	\va F=&-\left[ \begin{pmatrix} 0 \\ -m_1g \end{pmatrix} +m_1g\begin{pmatrix} \sin\alpha \\-\cos\alpha  \end{pmatrix}  \right]\\
 	=& m_1g\begin{pmatrix} -\sin\alpha \\ 1+\cos\alpha \end{pmatrix} 
 \end{align*}
-\paragraph{Aufgabe 1.4}
+
+\textbf{Aufgabe 1.4}
 \begin{parts}
-\item 
-\noindent \\
+	\item 
+	\noindent \\
 	\begin{center}
 		\begin{tikzpicture}
 			\draw[thick,->] (0,0) -- (1,0);
@@ -200,49 +196,49 @@ Also
 			\draw (1.5,0.5) node[anchor=west] {$x$};
 		\end{tikzpicture}
 	\end{center}
-\item $a_y=0$ (Zwangsbedingung), $a_x=\frac{1}{3m}\left(|F_2|-|F_1|\right)$
-\item \noindent \\
+	\item $a_y=0$ (Zwangsbedingung), $a_x=\frac{1}{3m}\left(|F_2|-|F_1|\right)$
+	\item \noindent \\
 	\begin{center}
 		\begin{tikzpicture}[scale=1]
 			\fill[pattern = north east lines] (0,-0.2) rectangle (2,0);
-		\fill (0.5,0.2) circle (0.2);
-	\fill (1.5,0.2) circle (0.2);
-	\draw[thick, ->] (0.5,0.2) -- (0,0.2);
-	\draw[thick, ->] (1.5,0.2) -- (2,0.2);
-	\draw (0,0.2) node[anchor=east] {$\va F_1$};
-	\draw (2,0.2) node[anchor=west] {$\va F_2$};
-	\draw[ultra thick] (0.5,0.2) -- (1.5,0.2);
+			\fill (0.5,0.2) circle (0.2);
+			\fill (1.5,0.2) circle (0.2);
+			\draw[thick, ->] (0.5,0.2) -- (0,0.2);
+			\draw[thick, ->] (1.5,0.2) -- (2,0.2);
+			\draw (0,0.2) node[anchor=east] {$\va F_1$};
+			\draw (2,0.2) node[anchor=west] {$\va F_2$};
+			\draw[ultra thick] (0.5,0.2) -- (1.5,0.2);
 		\end{tikzpicture}
 	\end{center}
 	\[
 	a_1=a_2=\frac{1}{3m}\left(|\va F_2|-|\va F_1| \right) 
 	.\] 
-\item \noindent \\
+	\item \noindent \\
 	\begin{center}
 		\begin{tikzpicture}[scale=1.5]
-		\fill (0,0) circle (2pt);
-		\draw[thick, ->] (0,0) -- (1,0);
-		\draw[thick, ->] (0,0) -- (0,1);
-		\draw[thick, ->] (0,0) -- (-1,0);
-		\draw[thick, ->] (0,0) -- (0,-1);
-	\fill (3,0) circle (2pt);
-	\draw[thick, ->] (3,0) -- (4,0);
-	\draw[thick, ->] (3,0) -- (3,1);
-	\draw[thick, ->] (3,0) -- (3,-1); 
-	\draw[thick, ->] (3,0) -- (2,0);
-	\draw (1,0) node[anchor=north] {$T$};
-	\draw (0,1) node[anchor=east] {$N_1$};
-	\draw (0,-1) node[anchor=east] {$m_1g$};
-	\draw (-1,0) node[anchor=north] {$\va F_1$};
-	\draw (4,0) node[anchor=north] {$\va F_2$};
-	\draw (2,0) node[anchor=north] {$T$};
-	\draw (3,1) node[anchor=west] {$N_2$};
-	\draw (3,-1) node[anchor=west] {$m_2g$};
-	\draw (0,0) node[anchor=south west] {$m_1$};
-	\draw (3,0) node[anchor=south east] {$m_2$};
+			\fill (0,0) circle (2pt);
+			\draw[thick, ->] (0,0) -- (1,0);
+			\draw[thick, ->] (0,0) -- (0,1);
+			\draw[thick, ->] (0,0) -- (-1,0);
+			\draw[thick, ->] (0,0) -- (0,-1);
+			\fill (3,0) circle (2pt);
+			\draw[thick, ->] (3,0) -- (4,0);
+			\draw[thick, ->] (3,0) -- (3,1);
+			\draw[thick, ->] (3,0) -- (3,-1); 
+			\draw[thick, ->] (3,0) -- (2,0);
+			\draw (1,0) node[anchor=north] {$T$};
+			\draw (0,1) node[anchor=east] {$N_1$};
+			\draw (0,-1) node[anchor=east] {$m_1g$};
+			\draw (-1,0) node[anchor=north] {$\va F_1$};
+			\draw (4,0) node[anchor=north] {$\va F_2$};
+			\draw (2,0) node[anchor=north] {$T$};
+			\draw (3,1) node[anchor=west] {$N_2$};
+			\draw (3,-1) node[anchor=west] {$m_2g$};
+			\draw (0,0) node[anchor=south west] {$m_1$};
+			\draw (3,0) node[anchor=south east] {$m_2$};
 		\end{tikzpicture}
 	\end{center}
-\item 
+	\item 
 	\begin{align*}
 		m_1a=&T-F_1\\
 		m_2a=& F_2-T\\
