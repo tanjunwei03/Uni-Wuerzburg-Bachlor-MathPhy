@@ -5,13 +5,15 @@
 		\item Es gilt $\lambda_n^*\left( A\cap Q \right) +\lambda_n^*\left( A^c\cap Q \right) =\lambda_n^*(Q)$ f\"{u}r alle $Q\in \mathbb{J}(n)$.
 	\end{parts}
 \end{Problem}
-\begin{proof}
+\begin{proof}\noindent 
+	\begin{tcolorbox}
 	\begin{Definition}
 	Sei $\mu^*$ ein äußeres Maß auf $X$. Eine Menge $A\subseteq X$ heißt $\mu^*$-messbar, falls gilt
 	\[
 		\mu^*(D)=\mu^*(A\cap D)+\mu^*(A^c\cap D)\qquad \forall D\subseteq X
 	.\] 
 	\end{Definition}
+\end{tcolorbox}
 	Weil alle Teilmengen $I\in \mathbb{J}(n)$ solche Teilmengen $D\subseteq X$ sind, gilt natürlich (a)$\implies$(b). Jetzt bleibt (b)$\implies$(a) zu zeigen. Es gibt, f\"{u}r jede $\epsilon>0$, eine abzählbare Überdeckung $M=\left\{ Q_i, i\in \N \right\} \subseteq \mathbb{J}$ aus offene Intervale von $D$, f\"{u}r die gilt $\sum_{i=1}^{\infty} \lambda_n^*(Q_i)=\lambda_n^*(D)+\epsilon$. F\"{u}r jede $Q_i\in M$ gilt
 	\[
 		\lambda_n^*\left( A\cap Q_i \right) +\lambda_n^*\left( A^c\cap Q_i \right) =\lambda_n^*(Q_i)
@@ -26,12 +28,17 @@
 	,\]
 	und ähnlich
 	\[
-	\lambda_n^*(A^c\cap D)\le \lambda_n^*(A^c\cap Q)\le \sum_{i=1}^{\infty} \lambda_n^*(A\cap Q_i)
+	\lambda_n^*(A^c\cap D)\le \lambda_n^*(A^c\cap Q)\le \sum_{i=1}^{\infty} \lambda_n^*(A^C\cap Q_i)
 	.\] 
 	Daraus folgt
-	\[
+	\begin{align*}
+		\lambda_n^*(A\cap D)+\lambda_n^*(A^c\cap D)&\le \sum_{i=1}^{\infty} \lambda_n^*(A\cap Q_i)+\sum_{i=1}^{\infty} \lambda_n^*(A^c\cap Q_i)\\
+	&=\sum_{i=1}^{\infty} \lambda_n^*(Q_i)\le\lambda_n^*(D)+\epsilon
+\end{align*}
+Weil $\epsilon>$ beliebig war, ist
+\[
 	\lambda_n^*(A\cap D)+\lambda_n^*(A^c\cap D)\le \lambda_n^*(D)
-	.\qedhere\] 
+.\qedhere\] 
 \end{proof}
 
 \begin{Problem}
@@ -47,7 +54,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wir beweisen zuerst $\mu(A)=\nu(A)$ f\"{u}r alle $A\in \mathcal{A}$. Es genugt zu beweisen, dass $\nu(A)=\mu^*(A)$. Es ist klar, dass $\{A\}$ eine abzählbare Überdeckung von $A$ ist, und daher $\mu^*(A)\le \nu(A)$. Aber f\"{u}r jede abzählbare Überdeckung $(Q_i),Q_i\in \mathcal{A},\bigcup_{i=1}^\infty Q_i\supseteq A $, gilt wegen der Monotonie von $\mu^*$ und der $\sigma$-additivität von $\nu$ $\sum_{i=1}^{\infty} \nu(Q_i)\ge \nu(A)$. Daraus folgt
+	\item Wir beweisen zuerst $\mu(A)=\nu(A)$ f\"{u}r alle $A\in \mathcal{A}$. Es genugt zu beweisen, dass $\nu(A)=\mu^*(A)$. Es ist klar, dass $\{A\}$ eine abzählbare Überdeckung von $A$ ist, und daher $\mu^*(A)\le \nu(A)$. Wir betrachten dann eine abzählbare Überdeckung $(Q_i),Q_i\in \mathcal{A},\bigcup_{i=1}^\infty Q_i\supseteq A $. $\mu^*(A)$ ist die Infinum von solchen Folgen von Mengen. Es gilt wegen der Monotonie von $\mu^*$ und der $\sigma$-Additivität von $\nu$: $\sum_{i=1}^{\infty} \nu(Q_i)\ge \nu(A)$. Daraus folgt
 		\[
 			\mu(A)=\nu(A)\text{ f\"{u}r alle }A\in \mathcal{A}
 		.\] 

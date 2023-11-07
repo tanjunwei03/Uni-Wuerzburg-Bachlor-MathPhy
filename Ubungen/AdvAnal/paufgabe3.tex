@@ -1,0 +1,47 @@
+\begin{Problem}
+	Sei wie im Beweis von Lemma 1.18
+	\[
+	p_1:\R^n\to \R, \qquad (x_1,\dots,x_n)\to x_1
+	\]
+	die Projektion auf die erste Koordinate. F\"{u}r $A\subseteq \R^n$ definiere $\mu^*(A):=\lambda_1^*(p_1(A))$.
+	\begin{parts}
+		\item Zeigen Sie, dass $\mu^*$ ein äußeres Maß ist.
+		\item Beweisen oder widerlegen Sie: Es gilt,$\mu^*(O)>0$ f\"{u}r alle offenen michtleeren Menge $O\subseteq \R^n$
+		\item Beweisen oder widerlegen Sie: Es gilt  $\mu^*(C)>0$ f\"{u}r alle nichtleeren abgeschlossenen Mengen $C\subseteq \R^n$
+	\end{parts}
+\end{Problem}
+\begin{proof}	
+	\begin{parts}
+\item 
+	\begin{enumerate}[label=(\roman*)]
+		\item $\mu^*(\varnothing)=\lambda_1^*(\varnothing)=0$.
+		\item Sei  $\R^n\ni A\subseteq B\in \R^n$. Es gilt auch, dass
+			 \[
+			p_1(A)\subseteq p_1(B)
+			.\]
+			Es folgt daraus
+			\[
+			\mu^*(A)\le \mu^*(B)
+			.\]
+		\item Sei $(A_i),A_i\subseteq \R^n$ eine Folge von Mengen, und $A=\bigcup_{i=1}^\infty A_i$
+			\begin{tcolorbox}
+				\begin{Lemma}
+					Es gilt $p_1(A)=\bigcup_{i=1} ^\infty p_1(A_i)$
+				\end{Lemma}
+				\begin{proof}
+					Sei $x_1\in p_1(A)$, also es gibt $(x_1,\dots, x_n)\in A$. Das bedeutet, dass $(x_1,\dots, x_n)\in A_k$ f\"{u}r eine $k$ ist. Dann ist $x_1\in p_{1}(A_k)$, und $x_1\in \bigcup_{i=1} ^\infty p_1(A_i)$. 
+				\end{proof}
+			\end{tcolorbox}
+			Weil $\lambda_1^*$ äußeres Maß ist, gilt
+			\[
+			\mu^*(A)=\lambda_1^*(p_1(A))\le\sum_{i=1} ^\infty \lambda_1^*(p_1(A_i))=\sum_{i=1}^{\infty} \mu^*(A_i)
+			.\] 
+	\end{enumerate}
+\item H 
+	\begin{tcolorbox}
+		\begin{Lemma}
+			$p_1$ ist stetig.
+		\end{Lemma}
+	\end{tcolorbox}
+	\end{parts}
+\end{proof}

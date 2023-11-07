@@ -1,0 +1,176 @@
+\begin{Problem}\label{pr:linalg1-4.1}
+	Direktes Produkt
+	\begin{parts}
+		\item Zeigen Sie: Sind $(G,*,e_G)$ und $(H,\star, e_H)$ Gruppen, dann ist auch $G\times H$ mit der Verknüpfung
+			\[
+			\odot\left( G\times H \right) \times \left( G\times H \right) \to G\times H, \qquad (g_1,h_1)\odot(g_2,h_2):=(g_1*g_2,h_1\star h_2)
+			\] 
+			und dem neutralen Element $(e_G,e_H)$ eine Gruppe. Diese Gruppe nennt man auch das \emph{direktes Produkt} von $G$ und $H$.
+		\item Zeigen Sie: Sind $(R,+,\cdot)$ und $(S,\star,*)$ Ringe, dann ist auch $R\times S$ mit den Verkn\"{u}pfung $\oplus$ und $\odot$, definiert durch $(r_1,s_1)\oplus (r_2,s_2):=(r_1+r_2,s_1\star s_2)$ bzw. $(r_1,s_1)\odot (r_2,s_2):= (r_1\cdot r_2, s_1* s_2)$ ein Ring.
+		\item Beweisen oder widerlegen Sie: Ist $(K,+,\cdot)$ ein Körper, dann ist auch $K \times K$ mit den Verknüpfungen wie in (b) ein Körper.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item (Assoziativität) 
+\begin{align*}
+	(g_1,h_1)\odot ((g_2,h_2)\odot(g_3,h_3))=&(g_1,h_1)\odot(g_2*g_3,h_2\star h_3)\\
+	=& (g_1*(g_2*g_3), h_1\star(h_2\star h_3))\\
+	=& ((g_1*g_2)*g_3,(h_1\star h_2)\star h_3)\\ 
+	=& (g_1*g_2,h_1\star h_2)\odot (g_3,h_3)\\
+	=& ((g_1,h_1)\odot (h_1,h_2))\odot (g_3,h_3)
+\end{align*}
+\item (Neutrales Element)
+	\[
+		(g_1,h_1)\odot (e_G,e_H)=(g_1,h_1)=(e_G,e_H)\odot (g_1,h_1)
+	.\] 
+\item (Existenz des Inverses) Sei $(g_1,h_1)\in G\times H$. Weil $G$ und $H$ gruppe sind, gibt es elemente $g_1^{-1}\in G, h_1^{-1}\in H$, sodass $g_1*g_1^{-1}=e_G=g_1^{-1}*g_1$ und $h_1\star h_1^{-1}=e_H=h_1^{-1}\star h_1$. Es gilt
+	\[
+		(g_1,h_1)\odot(g_1^{-1},h_1^{-1})=(g_1*g_1^{-1},h_1\star h_1^{-1})=(e_G,e_H)
+	,\]
+	und ähnlich auch $(g_1^{-1},h_1^{-1})\odot (g_1,h_1)=(e_G,e_H)$
+		\end{enumerate}
+		Schluss: $ (G\times H, \odot, (e_G,e_H))$ ist eine Gruppe.
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item $(R\times S,\oplus, (0_R, 0_S))$ ist eine abelsche Gruppe.
+
+				Folgt aus (a).
+\item $\oplus$ ist assoziativ:
+
+	Beweis läuft ähnlich zu (a), die Behauptung folgt aus die Assoziativität von $\cdot$ und $*$.
+\item Distributivgesetz:
+	 \begin{align*}
+		 (r_1,s_1)\odot\left( (r_2,s_2)\oplus(r_3,s_3) \right) =& (r_1,s_1)\odot(r_2+r_3,s_2\star s_3)\\
+		 =&(r_1\cdot (r_2+r_3),s_1*(s_2\star s_3))\\
+		 =&(r_1\cdot r_2+r_1\cdot r_3, s_1*s_2\star s_1*s_3)\\
+		 =&(r_1\cdot r_2, s_1*s_2)\oplus (r_1\cdot r_3, s_1*s_3)\\
+		 =&\left[(r_1,s_1)\odot(r_2,s_2)\right]\oplus \left[ (r_1,s_1)\odot (r_3,s_3) \right] 
+	\end{align*}
+		\end{enumerate}
+	\item Falsch. Sei $x,y\in K$ beliebige Elemente von $K$. Es ist klar, dass $(0,0)$ das Nullelement ist, weil
+		\[
+			(x,y)\oplus(0,0)=(x+0,y+0)=(x,y)
+		.\] 
+		Sei jetzt $x\neq 0 \neq 0$. Es gilt
+		\[
+			(x,0)\odot (0,y)=(x\cdot 0, 0 \cdot y)=(0,0)
+		,\] 
+		also es gibt Nullteiler.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Zeigen Sie: In einem Ring $(R,+,\cdot)$ gilt genau dann die Kürzungsregel
+	\begin{tcolorbox}
+		Falls $a\in R\backslash \left\{ 0 \right\} $ und $x,y\in R$ beliebig sind, dann gilt $a\cdot x = a \cdot y\implies x = y$
+	\end{tcolorbox}
+	wenn $R$ nullteilerfrei ist.
+\end{Problem}
+\begin{proof}
+\begin{enumerate}
+	\item $R$ hat Nullteiler $\implies$ die Kürzungsregel gilt nicht.
+
+		Per Ausnahme gibt es $x\in R\backslash \left\{ 0 \right\} $ mit Nullteiler $a\in R\backslash \left\{ 0 \right\} $, also $a\cdot x=0$. Es gilt auch, dass $a\cdot 0=0$, daher
+		\[
+		a\cdot x = a\cdot 0 = 0
+		.\] 
+		Aber $x\neq 0$, und die Kürzungsregel gilt nicht.
+	\item $R$ nullteilerfrei $\implies$ Kürzungsregel gilt.
+
+		Seien $a\in R\backslash \left\{ 0 \right\} $ und $x,y\in R$ beliebig und
+		\begin{align*}
+			a\cdot x=&a\cdot y\\
+			a\cdot x+[-(a\cdot y)]=&a\cdot y+[-(a\cdot y)]\\
+			0=&a\cdot x - a \cdot y\\
+			=&a\cdot (x-y)
+	\end{align*}
+	Daraus folgt, dass entweder $a=0$ oder $x-y=0$. Weil wir schon ausgenommen haben, dass $a\neq 0$, gilt $x-y=0$, oder $x=y$.\qedhere
+\end{enumerate}
+\end{proof}
+\begin{Problem}
+	\textbf{(Verknüpfungsverträglich)} Es seien $(G,\cdot, e_G), (H, *, e_H)$ Gruppen und $\alpha:G\to H$ ein Gruppenhomomorphismus. Zeigen Sie
+	\begin{parts}
+	\item $U=\left\{ u\in G|\alpha(u)=e_H \right\} $ ist eine Untergruppe von $G$.
+	\item $\alpha(G)$ ist eine Untergruppe von $H$.
+	\item Durch $a\sim b\iff ab^{-1}$ wird eine eine verknüpfungsverträgliche Äquivalenzrelation auf $G$ definiert.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item Neutrales Element.
+
+				$\alpha(e_G)=e_H$, weil, f\"{u}r alle $x\in G$ gilt
+				\[
+				\alpha(x)=\alpha(x\cdot e_G)=\alpha(x)*\alpha(e_G)
+				.\] 
+			\item $U$ ist abgeschlossen.
+
+Sei $x,y\in U$, also $\alpha(x)=e_H=\alpha(y)$. Es gilt
+\[
+\alpha(x\cdot y)=\alpha(x)*\alpha(y)=e_H*e_H=e_H\]
+also $x\cdot y\in U$.
+\item Existenz des Inverses
+
+	Sei  $x\in U$, und $x\cdot x^{-1}=e_G$. Es gilt
+	 \[
+		 e_H=\alpha(e_G)=\alpha(x\cdot x^{-1})=\alpha(x)* \alpha\left( x^{-1} \right)=e_H*\alpha\left( x^{-1} \right)  =\alpha\left( x^{-1} \right) 
+	,\] 
+	also $x^{-1}\in U$.
+		\end{enumerate}
+	\item 
+		\begin{enumerate}
+			\item Neutrales Element
+
+				$\alpha(e_G)=e_H$, der Beweis ist schon in (a) geschrieben.
+			\item $\alpha(G)$ ist abgeschlossen.
+
+				Sei $\alpha(G)\ni y_1=\alpha(x_1)$ bzw. $\alpha(G)\ni y_2=\alpha(x_2)$, f\"{u}r $x_1,x_2\in G$. Es gilt
+				\[
+				y_1*y_2=\alpha(x_1)*\alpha(x_2)=\alpha(x_1\cdot x_2)\in \alpha(G)
+				.\] 
+			\item Existenz des Inverses
+
+				Sei $\alpha(G)\ni y=\alpha(x)$. Sei auch $x^{-1}\in G$, sodass $x\cdot x^{-1}=e_G=x^{-1}\cdot x$. Es gilt
+				\[
+					y*\alpha(x^{-1})=\alpha(x)*\alpha(x^{-1})=\alpha(x\cdot x^{-1})=\alpha(e_G)=e_H
+				,\]
+				also $\exists \alpha(x^{-1})\in \alpha(G)$, f\"{u}r die gilt $y*\alpha(x^{-1})=e_H=\alpha(x^{-1})*y$.
+		\end{enumerate}
+	\item In (i) - (iii) beweisen wir, dass es eine Äquivalenzrelation ist. Dann beweisen wir, dass sie verknüpfungsverträglich ist. Sei im Beweis $x,y,z,w\in G$ beliebige Elemente.
+\begin{enumerate}[label=(\roman*)]
+	\item (Reflexivität) $x \sim x$, weil $x\cdot x^{-1}=e_G\in U$.
+	\item (Symmetrie) Sei $x\sim y$, also $xy^{-1}\in U$. Es gilt dann, $(xy^{-1})^{-1}=yx^{-1}$. Weil $U$ eine Gruppe ist, gilt $(xy^{-1})^{-1}\in U$, also $yx^{-1}\in U$. Daraus folgt $y\sim x$.
+	\item (Transitivität) Sei $x\sim y$ und $y\sim z$, also  $x\cdot y^{-1}\in U$ und $y\cdot z^{-1}\in U$. Es folgt
+		\[
+			x\cdot z^{-1}=\underbrace{x\cdot y^{-1}}_{\in U}\cdot \underbrace{y\cdot z^{-1}}_{\in U}\in U
+		,\]
+		also $x\sim z$.
+	\item Sei  $x\sim y$ und $z\sim w$, also $x\cdot y^{-1}\in U$ und $z\cdot w^{-1}\in U$. Wir möchten zeigen, dass $x\cdot z\sim y\cdot w$, also
+		\[
+			x\cdot z\cdot (y \cdot w)^{-1}=x\cdot z \cdot w^{-1}\cdot y^{-1} \in U
+		.\] 
+		Es gilt
+		\begin{align*}
+			\alpha(x\cdot z\cdot w^{-1}\cdot y^{-1})=&\alpha(x)*\alpha(z\cdot w^{-1})*\alpha(y^{-1})\\
+			=&\alpha(x)*e_H*\alpha(y^{-1})\\
+			=& \alpha(x\cdot y^{-1})\\
+			=& e_H
+		\end{align*}
+		also $x\cdot z\sim y\cdot w$.\qedhere
+\end{enumerate}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\textbf{(Rechnen in verschiedenen Ringen)}
+	\begin{parts}
+	\item Bestimmen Sie das inverse Element von $\overline{6}$ in $\Z / 4\Z, \Z / 5\Z, \Z / 7\Z$ bzw. $\Z / 35\Z$ oder weisen Sie nach, dass es nicht existiert.
+	\item Bestimmen Sie die Charakteristik von $\Z / 3\Z\times \Z / 5\Z$ bzw. $\Z / 2\Z \times \Z / 6\Z$, wobei die beiden Teile des Produktes als Ringe interpretiert werden und die Verknüpfung wie in \ref{pr:linalg1-4.1}(b) definiert wird.
+	\item Bestimmen Sie alle $z\in \C$, die die Gleichung $z^2+2$ erfüllen.
+	\item Berechnen Sie $(7+i)(6-i)^{-1}$ und geben Sie das Ergebnis ale komplexe Zahl gemäß Definition 2.4.14 an.
+	\item Bestimmen Sie die Einerstelle von $27^{101}$.
+	\end{parts}
+\end{Problem}
