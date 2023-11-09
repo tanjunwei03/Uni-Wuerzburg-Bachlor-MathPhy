@@ -29,12 +29,12 @@
 	\[
 		\int_a^b f(x)\dd{x}>0
 	.\] 
-	Zeigen SIe, dass es ein echtes Intervall $J\subset [a,b]$ gibt, auf dem $f$ strikt positiv ist, d.h. mit $f(x)>0$ f\"{u}r alle $x\in J$.
+	Zeigen Sie, dass es ein echtes Intervall $J\subset [a,b]$ gibt, auf dem $f$ strikt positiv ist, d.h. mit $f(x)>0$ f\"{u}r alle $x\in J$.
 
 	{\footnotesize Hinweis: Eine Möglichkeit ist, die Charakterisierung der Darboux-Integrierbarkeit zu benutzen und Untersummen zu betrachten.}
 \end{Problem}
 \begin{proof}
-	Wir beweisen es per Widerspruch. Nehme an, dass in jedem Interval es mindestens ein Punkt $x_0$ gibt, f\"{u}r die $f(x_0)\le 0$. Insbesondere gilt das f\"{u}r alle abgeschlossen Intervalle $[c,d]\subseteq [a,b]$.
+	Wir beweisen es per Widerspruch. Nehme an, dass in jedem Intervall es mindestens ein Punkt $x_0$ gibt, f\"{u}r die $f(x_0)\le 0$. Insbesondere gilt das f\"{u}r alle abgeschlossen Intervalle $[c,d]\subseteq [a,b]$.
 
 	Sei jetzt $\mathcal{J}$ eine beliebige Zerlegung von $[a,b]$, $\mathcal{J}=\left\{ t_0,t_1,\dots,t_N \right\} $, mit die übliche Voraussetzung $t_0< t_1 < t_2<\dots< t_N$. Es gilt
 	\begin{align*}
@@ -72,7 +72,50 @@
 			-1 & x\not\in \Q
 		\end{cases}
 		.\] 
-	\item Wahr.
+		Dann ist $|f|=1$ integrierbar (Proposition 6.1.6). Wir müssen jetzt nur beweisen, dass $f$ nicht integrierbar ist. Sei $\mathcal{J}=\left\{ 0=t_0,t_1,\dots,t_N=1 \right\} $. Es gibt, f\"{u}r alle Intervalle $[a,b]\subseteq [0,1]$, zwei Punkte
+		\begin{align*}
+			& \Q \ni x_0 \in [a,b] & \text{dichtheit von }\Q\\
+			& \R\backslash \Q \ni  x_1 \in [a,b] & \Q\text{ ist nur abzählbar}
+		\end{align*}
+		Also gilt
+		\begin{align*}
+			\text{sup}\left( f|_{\left[ a,b \right] } \right) =&1\\
+			\text{inf}\left( f|_{[a,b]} \right)=&-1 
+		\end{align*}
+		Daraus folgt, f\"{u}r jede Zerlegung $\mathcal{J}$ von $[0,1]$, dass
+		\begin{align*}
+			\mathcal{O}_\mathcal{J}(f)=&1\\
+			\mathcal{U}_\mathcal{J}(f)=&-1
+		\end{align*}
+		also $f$ ist nicht auf $[0,1]$ integrierbar.
+	\item Wahr. 
+		\begin{tcolorbox}[title=Bemerkung]
+			Sei $f:[a,b]\to \R, f\ge \delta$ f\"{u}r ein $\delta>0$. Es gilt dann
+			\begin{align*}
+				\frac{1}{\text{inf}(f)}=&\text{sup}\left( \frac{1}{f} \right) \\
+				\frac{1}{\text{sup}(f)}=&\text{inf}\left( \frac{1}{f} \right) 
+			\end{align*}
+			wegen der Monotonie von $x\to 1 / x$.
+		\end{tcolorbox}
+		Wir haben auch
+		\begin{tcolorbox}[title=Korollar]
+			\textbf{(Korollar aus Proposition 6.2.3(vi))} $f:[a,b]\to \R$ ist genau dann integrierbar, wenn es zu jedem $\epsilon>0$ eine Zerlegung $\mathcal{J}=\left\{ a=t_0,t_1,\dots,t_N \right\} $ von $I$ gibt, sodass
+			\[
+				\sum_{i=1}^{N} \left[ \text{sup}\left( f|_{[a,b]} \right) -\text{inf}\left( f_{[a,b]} \right)  \right](t_i-t_{i-1})<\epsilon 
+			.\] 
+		\end{tcolorbox}
+		Wir arbeiten mit dem Korollar. Sei $\mathcal{J}=\left\{ a=t_0,t_1,\dots,t_N \right\} $ eine Zerlegung von $[a,b]$. Es gilt
+		\begin{align*}
+		&	\sum_{i=1}^{N} \left[ \text{sup}\left( \left.\frac{1}{f}\right|_{[t_{i-1},t_i]}\right)-\text{inf}\left( \left.\frac{1}{f}\right|_{[t_{i-1},t_i]} \right)  \right](t_i-t_{i-1})\\
+			=&\sum_{i=1}^{N} \left[ \frac{1}{\text{inf}\left( f|_{[t_{i-1},t_i]} \right) }-\frac{1}{\text{sup}\left( f|_{[t_{i-1},t_i]} \right) } \right](t_i-t_{i-1})\\
+			=&\sum_{i=1}^{N} \left[\frac{\text{sup}\left( f|_{[t_{i-1},t_i]} \right) -\text{inf}\left( f|_{[t_{i-1},t_i]} \right)}{\text{sup}\left( f|_{[t_{i-1},t_i]} \right)\text{inf}\left( f|_{[t_{i-1},t_i]} \right) }  \right](t_i-t_{i-1})\\
+			\le&\frac{1}{\delta^2}\sum_{i=1}^N\left[\text{sup}\left( f|_{[t_{i-1},t_i]} \right) -\text{inf}\left( f|_{[t_{i-1},t_i]}\right)\right](t_i-t_{i-1})
+		\end{align*}
+		Per Hypothese gibt es eine Zerlegung $\mathcal{J}$ von $[a,b]$, f\"{u}r die gilt
+		\[
+			\sum_{i=1}^{N}\left[ \text{sup}\left( f|_{[t_{i-1},t_i]} \right) -\text{inf}\left( f|_{[t_{i-1},t_i]} \right)  \right] < \epsilon\delta^2
+		.\]
+		Dies ist genau die gewünschte Zerlegung.
 	\item Falsch. Sei $f$ und $g$ Treppefunktionen, $f,g:[0,1]\to \R$:
 		\begin{align*}
 			f(x)=&\begin{cases}
@@ -84,7 +127,17 @@
 					0 & \text{sonst}.
 				\end{cases}
 		\end{align*}
-		Es gilt $(f\cdot g)(x)=0$, und daher $\int_0^1 (f\cdot g)(x)\dd{x}=0$.
+		Es gilt $(f\cdot g)(x)=0$, und daher $\int_0^1 (f\cdot g)(x)\dd{x}=0$. Jetzt sei $\mathcal{J}=\left\{ 0,\frac{1}{4},\frac{1}{2},\frac{3}{4},1 \right\} $. Es gilt
+		\begin{align*}
+			\mathcal{U}_\mathcal{J}\left( f \right) \ge& \text{sup}\left( f|_{\left[\frac{1}{4},\frac{1}{2}\right]} \right)\left( \frac{1}{2}-\frac{1}{4} \right)\\
+				=&1(1 / 4)= 1 / 4\\
+				\mathcal{U}_\mathcal{J}(g)\ge& \text{sup}\left( g|_{\left[ \frac{1}{2},\frac{3}{4} \right] }  \right)\left( \frac{3}{4}-\frac{1}{2} \right) \\
+				=&1(1 / 4)=1 /4
+			\end{align*}
+			Also $\int_0^1 f(x)\dd{x} > \frac{1}{4}>0$, und gleich f\"{u}r $\int_0^1 g(x)\dd{x}$. Daher ist
+			\[
+				\int_0^1 (f\cdot g)(x)\dd{x}=0\neq \int_0^1 f(x)\dd{x}\cdot \int_0^1 g(x)\dd{x}
+			.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
