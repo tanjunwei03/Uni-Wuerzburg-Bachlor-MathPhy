@@ -1,0 +1,111 @@
+\begin{Problem}
+	In dieser Aufgabe beweisen wir, dass die Verknüpfung zweier Riemann-integrierbarer Funktionen i.A. nicht Riemann-integrierbar ist. Dazu gehen wir wie folgt vor:
+	\begin{enumerate}[label=(\alph*)]
+		\item Es sei $q:\N \to \Q\cap [0,1]$ eine Abzählung von $\Q\cap [0,1]$, d.h. eine bijektive Abbildung von $\N$ nach $\Q\cap [0,1]$. Weiterhin sei
+			 \[
+			f(x)=\begin{cases}
+				0 & x\in [0,1]\backslash \Q, \\
+				\frac{1}{n} & x=q_n.
+			\end{cases}
+			.\] 
+			Zeigen Sie, dass $f$ Riemann-integrierbar ist.
+		\item Weiterhin sei
+			\[
+			g(x)=\begin{cases}
+				0 & x\in [0,1]\backslash \left\{ \frac{1}{n}|n\in \N \right\},\\
+				1 & x=\frac{1}{n}\text{ f\"{u}r ein }n\in \N.
+			\end{cases}
+			\] 
+			Zeigen Sie, dass $g$ Riemann-integrierbar ist, die Verknüpfung $g\circ f$ mit der Funktion $f$ jedoch nicht. 
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir definieren rekursiv eine Menge
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei $f:[a,b]\to \R$ Riemann-integrierbar auf dem echten Intervall $[a,b]$ mit
+	\[
+		\int_a^b f(x)\dd{x}>0
+	.\] 
+	Zeigen SIe, dass es ein echtes Intervall $J\subset [a,b]$ gibt, auf dem $f$ strikt positiv ist, d.h. mit $f(x)>0$ f\"{u}r alle $x\in J$.
+
+	{\footnotesize Hinweis: Eine Möglichkeit ist, die Charakterisierung der Darboux-Integrierbarkeit zu benutzen und Untersummen zu betrachten.}
+\end{Problem}
+\begin{proof}
+	Wir beweisen es per Widerspruch. Nehme an, dass in jedem Interval es mindestens ein Punkt $x_0$ gibt, f\"{u}r die $f(x_0)\le 0$. Insbesondere gilt das f\"{u}r alle abgeschlossen Intervalle $[c,d]\subseteq [a,b]$.
+
+	Sei jetzt $\mathcal{J}$ eine beliebige Zerlegung von $[a,b]$, $\mathcal{J}=\left\{ t_0,t_1,\dots,t_N \right\} $, mit die übliche Voraussetzung $t_0< t_1 < t_2<\dots< t_N$. Es gilt
+	\begin{align*}
+		\mathcal{U}_{\mathcal{J}}=&\sum_{i=1}^{N} \text{inf}\left( f|_{[t_{i-1},t_i]} \right) (t_i-t_{i-1})\\
+		\le& \sum_{i=1}^{N} (0)(t_i-t_{i-1})\\
+		=& 0
+	\end{align*}
+	Weil $\mathcal{J}$ beliebig war, gilt das f\"{u}r alle Zerlegungen, und
+	\[
+		\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int_a^b f(x)\dd{x}\le 0
+	,\]
+	also
+	\[
+		\int_a^b f(x)\dd{x}\le 0
+	,\] 
+	ein Widerspruch.
+\end{proof}
+\begin{Problem}
+	Beweisen oder widerlegen Sie die folgenden Aussagen:
+	\begin{parts}
+	\item Ist $f:[a,b]\to \R$ eine Funktion und $|f|$ integrierbar auf $[a,b]$, so ist es auch $f$.
+	\item Ist $f:[a,b]\to \R$ integrierbar und $f(x)\ge \delta$ f\"{u}r alle $x\in [a,b]$ und ein $\delta>0$, so ist auch $\frac{1}{f}$ \"{u}ber $[a,b]$ integrierbar.
+	\item Sind $f,g:[a,b]\to \R$ integrierbar, so gilt
+		\[
+			\int_a^b(f\cdot g)(x)\dd{x}=\int_a^b f(x)\dd{x}\cdot \int_a^b g(x)\dd{x}
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Sei $f:[0,1]\to \R$
+		\[
+		f(x)=\begin{cases}
+			1 & x\in \Q\\
+			-1 & x\not\in \Q
+		\end{cases}
+		.\] 
+	\item Wahr.
+	\item Falsch. Sei $f$ und $g$ Treppefunktionen, $f,g:[0,1]\to \R$:
+		\begin{align*}
+			f(x)=&\begin{cases}
+				1 & 0 \le x \le 0.5\\
+				0 & \text{sonst}.
+			\end{cases}\\
+				g(x)=&\begin{cases}
+					1 & 0.5 < x \le 1\\
+					0 & \text{sonst}.
+				\end{cases}
+		\end{align*}
+		Es gilt $(f\cdot g)(x)=0$, und daher $\int_0^1 (f\cdot g)(x)\dd{x}=0$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\textbf{(Wanderdüne)}	Man gebe eine Folge von nicht-negativen Funktionen $f_n:[0,1]\to \R$ an, sodass
+	\begin{itemize}
+		\item $\lim_{n \to \infty} \int_0^1 f_n(x)\dd{x}=0$,
+		\item $f_n\not\to0$ f\"{u}r jedes $x\in [0,1]$.
+	\end{itemize}
+\end{Problem}
+\begin{proof}
+	Sei
+	\[
+		g_{a,b}(x)=\begin{cases}
+			\sin\left( \pi \frac{x-a}{b-a} \right) & x\in [a,b]\cap [0,1]\\
+			0 & \text{sonst}.
+		\end{cases}
+	\]
+	Es gilt
+	\begin{align*}
+		\int_0^1 g_{a,b}(x)\dd{x}\le& \int_a^b g_{a,b}(x)\dd{x}\\
+		=&\int_a^b \sin\left( \pi \frac{x-a}{b-a} \right) \dd{x}\\
+		=&\frac{2(b-a)}{\pi}
+	\end{align*}
+\end{proof}
