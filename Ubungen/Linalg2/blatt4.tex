@@ -1,0 +1,59 @@
+\begin{Problem}
+	Wir definieren mit $S_n$ die Menge der bijektiven Abbildungen
+	\[
+	\sigma:\left\{ 1,\dots,n \right\} \to \left\{ 1,\dots,n \right\} 
+	.\] 
+	Dann ist bekannterweise $(S,\circ)$ mit
+	\[
+	\sigma_2\circ \sigma_1(i)=\sigma_2(\sigma_1(i))
+	\]
+	eine Gruppe. Wir führen für gewöhnlich eine Abbildungstabelle
+	\[
+		\sigma=\begin{pmatrix} 1 & 2 & \dots & n \\ i_1 & i_2 & \dots & i_n \end{pmatrix} \] 
+		mit $i_1,\dots,i_n$ paarweise verschieden, um zu signalisieren $\sigma(k)=i_k$ f\"{u}r $k=1,\dots,n$.
+		 \begin{parts}
+			 \item Eine übliche Darstellung bei Elementen aus $S_n$ ist die Zyklenschreibweise. Ein Zyklus der Länge $k$ mit $k\le n$ hat die Form
+				 \[
+				 \sigma=(i_1,i_2,\dots, i_k)
+				 \]
+				 und signalisiert $i_1\to i_2, i_2\to i_3$, usw. $i_k\to i_1$ under $\sigma$. Ist die Zahl $i_j$ nicht im Zyklus vertreten, so wird sie unter $\sigma$ auf sich selbst abgebildet. Speziell f\"{u}r $k=1$ erhalten wir die Identität und schreiben
+				 \[
+				 \sigma=(1).\]
+Geben Sie an, wie viele unterschiedliche Abbildungen $\sigma$ durch ein Zyklus der Länge $k$ realisiert werden können! Kann jedes Element in $S_3$ ($S_4$) als ein Zyklus geschriebeb werden?
+\item Wir definieren die Menge der (Permutations-)Matrizen
+	\[
+		P_n:=\left\{ P\in \mathbb{K}^{n \times  n}: P=(e_{i_1},\dots,e_{i_n},\text{ mit }i\le i_k\le n\text{ und alle }i_k\text{ paarweise verschieden} \right\} 
+	,\] 
+	mit $e_i$ der $i$-te Einheitsvektor. Verifizieren Sie: $(P_n, \cdot)$ ist mit der herkömmlichen Matrixmultiplikation eine Gruppe! Bestimmen Sie weiterhin einen bijektiven Gruppenmorphismus
+	\[
+	\Phi:(S_n,\circ)\to(P_n,\cdot)
+	,\] 
+	sodass gilt
+	\[
+	\Phi(\sigma)e_i=s_j \iff\sigma(i)=j
+	.\] 
+	Beweisen Sie, dass sich jedes $P$ aus $P_n$ schreiben lässt als
+	\[
+		P=\prod_{k=1}^{n-1} V_{i_kj_k} 
+	,\]
+	mit $V_{ij}$ definiert wie in Lemma 5.56.
+		\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gibt $n!$ Möglichkeiten f\"{u}r eine Folge $(i_1i_2\dots i_k)$, aber wir können die zyklisch permutieren und $\sigma$ verändert sich nicht. Deswegen gibt es $n! / n = (n-1)!$ unterschiedliche Abbildungen, die durch ein Zyklus der Länge $k$ realisiert werden können.
+
+		Ja, jedes Element in $S_3$ kann als ein Zyklus geschrieben werden. Das können wir explizit machen:
+		\begin{align*}
+			& (1) & (12) & (23)\\
+			& (13) & (132) & (123)
+		\end{align*}
+		Weil wir $6$ Elemente haben, und $|S_3|=3! = 6$, haben wir alle Elemente.
+
+		Das stimmt aber nicht f\"{u}r $S_4$. Sei
+		\[
+			\sigma=\begin{pmatrix} 1 & 2 & 3 & 4\\ 2 & 1 & 4 & 3 \end{pmatrix} 
+		.\] 
+		Falls es als Zyklus geschreiben werden kann, muss das Zyklus den Länge $4$ haben, weil $\sigma(i)\neq i$ f\"{u}r alle $i$. 
+	\end{parts}
+\end{proof}

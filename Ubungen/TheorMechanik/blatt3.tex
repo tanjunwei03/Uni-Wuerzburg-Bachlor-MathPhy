@@ -83,5 +83,19 @@ umgeschrieben werden, wobei $M$ und $\mu$ Funktionen von $X$ und $\xi$ sind. Bes
 \begin{proof}
 	\begin{enumerate}
 \item $l=x_2(t)-y(t)+x_1(t)-y(t)=x_1(t)+x_2(t)-2y(t)$
+\item Wir betrachten eine Koordinate $0\le \xi \le l$, die ab $x_1$ anfängt und steigt monoton, bis die andere Seite. Die Position eine kleine Masselemente ist:
+	\[
+	x(\xi)=y+|\xi-(x_2-y)|
+	.\] 
+	Daraus folgt
+	\begin{align*}
+		\dv{x}{t}(\xi)=&\dot{y}+\dv{t}|\xi-(x_2-y)|\\
+		=&\dot{y}+\text{sgn}(\xi-(x_2-y))\left( \dv{y}{t}-\dv{x_2}{t} \right) 
+	\end{align*}
+	Wir integrieren die Geschwindigkeit, um die kinetische Energie zu bekommen:
+	\begin{align*}
+		\frac{1}{2}\rho\int_0^l\left( \dv{x}{t} \right)^2 \dd{\xi}=&\frac{1}{2}\rho\left[ \int_0^{x_2-y}\left( \dot{y}-(\dot{y}-\dot{x}_2) \right)^2\dd{\xi} +\int_{x_2-y}^l \left( \dot{y}+(\dot{y}-\dot{x}_2) \right)^2\dd{\xi}  \right]\\
+		=&\frac{1}{2}\rho\left[ (x_2-y)\dot{x_2}^2+(l-x_2+y)(2\dot{y}-\dot{x}_2)^2 \right] 
+	\end{align*}
 \end{enumerate}
 \end{proof}

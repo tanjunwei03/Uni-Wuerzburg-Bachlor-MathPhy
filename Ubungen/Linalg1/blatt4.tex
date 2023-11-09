@@ -174,3 +174,49 @@ also $x\cdot y\in U$.
 	\item Bestimmen Sie die Einerstelle von $27^{101}$.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item ($\Z / 4\Z$) $\overline{6}=\overline{2}$, und es gibt kein inverse Element.
+				\begin{gather*}
+					\overline{2}\cdot \overline{0}=\overline{0}\\
+					\overline{2}\cdot \overline{1}=\overline{2}\\
+					\overline{2}\cdot \overline{2}=\overline{4}=\overline{0}\\
+					\overline{2}\cdot \overline{3}=\overline{6}=\overline{2}
+				\end{gather*}
+			\item ($\Z / 5\Z$) $\overline{6}=\overline{1}$. Daher ist $\overline{6}=\overline{6}^{-1}$.
+			\item ($\Z / 7\Z$) $\overline{6}\cdot \overline{6}=\overline{36}=\overline{1}$.
+			\item ($\Z / 35 \Z$) $\overline{6}\cdot \overline{6}=\overline{36}=\overline{1}$.
+		\end{enumerate}
+	\item Im Allgemein ist die Charakteristik von $\Z / a\Z\times \Z / b\Z$ das kleinste gemeinsame Vielfaches von $a$ und $b$. Es gilt $n\cdot 1_{\Z / a\Z}=1_{\Z / a \Z}$, und auch $n \cdot 1_{\Z / b\Z}=1_{\Z / b \Z}$. F\"{u}r $\N \ni n < kgV(a,b)$ kann die beides nicht per Definition nicht gelten. Die Antworten folgen: 
+		\begin{enumerate}[label=(\roman*)]
+			\item ($\Z / 3\Z \times \Z / 5\Z)$) 15
+			\item ($\Z / 2\Z \times \Z / 6\Z$) 6
+		\end{enumerate}
+	\item $z^2+2=0, z^2=-2$. Wir haben $|z|^2=|2|$, und $|z|=\sqrt{2} $. Daraus folgt:
+		\[
+			z=\pm\sqrt{2}i
+		.\] 
+	\item 
+		\begin{align*}
+			\frac{7+i}{6-i}=&\frac{(7+i)(6+i)}{(6-i)(6+i)}\\
+			=& \frac{42+13i-1}{36+1}\\
+			=& \frac{41+13i}{37}\\
+			=&\left( \frac{41}{37},\frac{13}{37} \right) 
+		\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Wir können analog zur Konstruktion komplexer Zahlen vorgehen, um aus $\Z / n\Z$ größere Ringe zu konstruieren, d.h. für festes  $n\in N$ definieren wir auf $\Z / n \Z\times \Z / n \Z$ die Addition $\oplus$ bzw. Multiplikation $\odot$ durch
+	\[
+		(a_1,b_2)\oplus (a_2,b_2):=(a_1+a_2,b_1+b_2)
+	\]
+	bzw.
+	\[
+		(a_1,b_1)\odot (a_2,b_2):=(a_1a_2-b_1b_2,a_1b_2+a_2b_1)
+	\]
+	f\"{u}r alle $(a_1,b_2),(a_2,b_2)\in \Z / n \Z \times \Z / n \Z$. 
+
+Entscheiden Sie, für welche $n\in \left\{ 2,3,4 \right\} $ mit dieser Konstruktion ein Körper entsteht. 
+\end{Problem}
