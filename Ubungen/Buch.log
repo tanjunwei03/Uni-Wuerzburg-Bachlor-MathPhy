@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  9 NOV 2023 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  10 NOV 2023 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1217,7 +1217,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./Buch.toc)
+ (./Buch.toc
+Overfull \hbox (2.12477pt too wide) detected at line 29
+ []\OT1/cmr/m/n/12 102
+ []
+
+)
 \tf@toc=\write5
 \openout5 = `Buch.toc'.
 
@@ -1372,44 +1377,56 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Font Info:    Calculating math sizes for size <10.00012> on input line 55
 .
 
-[39] [40] [41]) [42]
+[39] [40] [41]) (./Linalg2/blatt4.tex [42]
+Overfull \hbox (106.77133pt too wide) detected at line 26
+\OML/cmm/m/it/12 P[] \OT1/cmr/m/n/12 := [] \OML/cmm/m/it/12 ;
+ []
+
+[43]
+Overfull \hbox (0.29904pt too wide) in paragraph at lines 88--89
+[]\OT1/cmr/m/n/12 (-20) Sei $\OML/cmm/m/it/12 i$ \OT1/cmr/m/n/12 (-20) eine bi-
+jek-tive Ab-bil-dung $[] \OMS/cmsy/m/n/12 ! []$\OT1/cmr/m/n/12 (-20) . Wir schr
+eiben
+ []
+
+[44]) [45] [46
+
+]
 Chapter 3.
 (./Anal2/blatt1.tex
-Package marginnote Info: Suggest that margin note 43.1 will be on
-(marginnote)             absolute page 43.
+Package marginnote Info: Suggest that margin note 47.1 will be on
+(marginnote)             absolute page 47.
 (marginnote)             This may be wrong on input line 41.
 Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 41.
-Package marginnote Info: Margin note 43.2 is on absolute page 44 on input line 
+Package marginnote Info: Margin note 47.2 is on absolute page 48 on input line 
 41.
 Package marginnote Info: xpos seems to be 416.0419pt on input line 41.
- [43
-
-] [44] [45] [46] [47])
-Package marginnote Info: Margin note 48.1 is on absolute page 48 on input line 
-80.
-Package marginnote Info: xpos seems to be 520.72437pt on input line 80.
+ [47] [48] [49] [50] [51])
+Package marginnote Info: Margin note 52.1 is on absolute page 52 on input line 
+82.
+Package marginnote Info: xpos seems to be 520.72437pt on input line 82.
  (./Anal2/blatt2.tex
 Overfull \hbox (69.6328pt too wide) detected at line 18
 []
  []
 
-[48] [49]
+[52] [53]
 Overfull \hbox (16.1504pt too wide) in paragraph at lines 74--75
 [][] []$ \OT1/cmr/m/n/12 (-20) gle-ichm^^?a^^Yig. Deswe-gen ist $\OML/cmm/m/it/
 12 f$ \OT1/cmr/m/n/12 (-20) dif-feren-zier-bar, mit Ableitung 
  []
 
-[50] [51] [52]) (./Anal2/blatt3.tex [53] [54]
+[54] [55] [56]) (./Anal2/blatt3.tex [57] [58]
 Overfull \hbox (47.74849pt too wide) in paragraph at lines 57--58
  [] 
  []
 
-<gg.png, id=703, 80.3pt x 78.2925pt>
+<gg.png, id=747, 80.3pt x 78.2925pt>
 File: gg.png Graphic file (type png)
 <use gg.png>
 Package pdftex.def Info: gg.png  used on input line 61.
 (pdftex.def)             Requested size: 73.97603pt x 72.12912pt.
-[55 <./gg.png>]
+[59 <./gg.png>]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.3.3.
 4}) has been already used, duplicate ignored
 <to be read again> 
@@ -1441,8 +1458,8 @@ Overfull \hbox (0.53473pt too wide) detected at line 94
 
 Underfull \vbox (badness 5908) has occurred while \output is active []
 
- [56]
-[57]
+ [60]
+[61]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.3.3.
 4}) has been already used, duplicate ignored
 <to be read again> 
@@ -1466,7 +1483,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.3.3.
 <to be read again> 
                    \relax 
 l.172 		\begin{equation}
-                        \tag{5.6.41} [58]
+                        \tag{5.6.41} [62]
 LaTeX Font Info:    Trying to load font information for U+euf on input line 218
 .
 
@@ -1479,34 +1496,34 @@ File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59])
-(./Anal2/blatt4.tex [60]
+ [63])
+(./Anal2/blatt4.tex [64]
 Overfull \hbox (28.8572pt too wide) in paragraph at lines 74--76
 \OT1/cmr/m/n/12 (-20) nur be-weisen, dass $\OML/cmm/m/it/12 f$ \OT1/cmr/m/n/12 
 (-20) nicht in-te-grier-bar ist. Sei $\OMS/cmsy/m/n/12 J \OT1/cmr/m/n/12 (-20) 
 = []$.
  []
 
-[61]
+[65]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [62]
-[63]) [64]
+ [66]
+[67]) [68]
 Chapter 4.
-(./AdvAnal/blatt1.tex [65
+(./AdvAnal/blatt1.tex [69
 
 ]
-Package marginnote Info: Margin note 66.1 is on absolute page 67 on input line 
+Package marginnote Info: Margin note 70.1 is on absolute page 71 on input line 
 88.
 Package marginnote Info: xpos seems to be 345.82787pt on input line 88.
- [66]
+ [70]
 Overfull \hbox (18.39961pt too wide) in paragraph at lines 99--100
 []\OT1/cmr/m/n/12 (-20) Sei $\OML/cmm/m/it/12 P \OT1/cmr/m/n/12 (-20) = []$. Pe
 r Def-i-ni-tion ist $\OMS/cmsy/m/n/12 A[]\OT1/cmr/m/n/12 (-20) (\OMS/cmsy/m/n/1
 2 M\OT1/cmr/m/n/12 (-20) ) =
  []
 
-Package marginnote Info: Margin note 67.1 is on absolute page 67 on input line 
+Package marginnote Info: Margin note 71.1 is on absolute page 71 on input line 
 106.
 Package marginnote Info: xpos seems to be 99.47949pt on input line 106.
 
@@ -1520,10 +1537,10 @@ Overfull \hbox (113.87589pt too wide) detected at line 106
 []
  []
 
-Package marginnote Info: Margin note 67.2 is on absolute page 68 on input line 
+Package marginnote Info: Margin note 71.2 is on absolute page 72 on input line 
 145.
 Package marginnote Info: xpos seems to be 186.63617pt on input line 145.
-[67] [68]
+[71] [72]
 Overfull \hbox (27.84764pt too wide) detected at line 199
 []
  []
@@ -1534,7 +1551,7 @@ Overfull \hbox (18.48515pt too wide) in paragraph at lines 15--16
 liche Teil-men-gen von $\U/msb/m/n/12 N$ \OT1/cmr/m/n/12 (-20) wohldefiniert.
  []
 
-[69]
+[73]
 Overfull \hbox (11.82294pt too wide) in paragraph at lines 40--41
 []\OT1/cmr/m/n/12 (-20) Beweisen oder wider-legen Sie: Ist $(\OML/cmm/m/it/12 X
 ; \OMS/cmsy/m/n/12 A\OML/cmm/m/it/12 ; ^^V[]\OT1/cmr/m/n/12 (-20) )$ ein vollst
@@ -1548,22 +1565,22 @@ Overfull \hbox (4.5173pt too wide) in paragraph at lines 41--42
 ?andiger Ma^^Yraum,
  []
 
-Package marginnote Info: Margin note 70.1 is on absolute page 71 on input line 
+Package marginnote Info: Margin note 74.1 is on absolute page 75 on input line 
 56.
 Package marginnote Info: xpos seems to be 383.30128pt on input line 56.
-[70] [71]
+[74] [75]
 Overfull \hbox (91.5098pt too wide) detected at line 128
 \OML/cmm/m/it/12 M[] \OT1/cmr/m/n/12 = [] [] [] \OML/cmm/m/it/12 :
  []
 
-) (./AdvAnal/blatt3.tex [72] [73]) [74]
-Chapter 5.
-(./IntroAlg/blatt1.tex [75
+) (./AdvAnal/blatt3.tex [76] [77]) (./AdvAnal/blatt4.tex [78]) [79] [80
 
-] [76]
+]
+Chapter 5.
+(./IntroAlg/blatt1.tex [81] [82]
 Underfull \vbox (badness 5403) has occurred while \output is active []
 
- [77])
+ [83])
 (./IntroAlg/blatt2.tex
 Overfull \hbox (11.00206pt too wide) in paragraph at lines 21--22
 \OT1/cmr/m/n/12 (-20) Vektorraums $\OML/cmm/m/it/12 K[]$ \OT1/cmr/m/n/12 (-20) 
@@ -1571,7 +1588,7 @@ gibt. Unter einer geord-neten Ba-sis des $\OML/cmm/m/it/12 K$\OT1/cmr/m/n/12 (-
 20) -Vektorraums
  []
 
-[78]
+[84]
 Overfull \hbox (13.64082pt too wide) in paragraph at lines 35--37
 \OT1/cmr/m/n/12 (-20) f^^?ur \OT1/cmr/bx/n/12 (-20) alle $\OML/cmm/m/it/12 a[];
  a[]; [] ; a[] \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 K$\OT1/cmr/m/n/12 (-20) . Es
@@ -1598,29 +1615,29 @@ Overfull \hbox (3.8821pt too wide) in paragraph at lines 46--48
 mm/m/it/12 v[]; v[]; [] ; v[]\OT1/cmr/m/n/12 (-20) ) \OMS/cmsy/m/n/12 2
  []
 
-[79] [80]) (./IntroAlg/blatt3.tex [81] [82]
+[85] [86]) (./IntroAlg/blatt3.tex [87] [88]
 Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-[83]) [84]
+[89]) [90]
 Chapter 6.
-(./TheorMechanik/blatt1.tex [85
+(./TheorMechanik/blatt1.tex [91
 
-] [86] [87] [88]
+] [92] [93] [94]
 Overfull \hbox (27.45999pt too wide) detected at line 202
 []
  []
 
-[89]) (./TheorMechanik/blatt2.tex
-Package marginnote Info: Suggest that margin note 90.1 will be on
-(marginnote)             absolute page 90.
+[95]) (./TheorMechanik/blatt2.tex
+Package marginnote Info: Suggest that margin note 96.1 will be on
+(marginnote)             absolute page 96.
 (marginnote)             This may be wrong on input line 8.
 Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 8.
-Package marginnote Info: Margin note 90.2 is on absolute page 91 on input line 
+Package marginnote Info: Margin note 96.2 is on absolute page 97 on input line 
 8.
 Package marginnote Info: xpos seems to be 151.19455pt on input line 8.
- [90]
+ [96]
 
 Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
 ng it (it is [0.0:0.0]) on input line 44.
@@ -1711,15 +1728,15 @@ ng it (it is [0.0:0.0]) on input line 196.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package marginnote Info: Margin note 91.1 is on absolute page 91 on input line 
+Package marginnote Info: Margin note 97.1 is on absolute page 97 on input line 
 205.
 Package marginnote Info: xpos seems to be 268.74931pt on input line 205.
-[91]
-Package marginnote Info: Margin note 92.1 is on absolute page 93 on input line 
+[97]
+Package marginnote Info: Margin note 98.1 is on absolute page 99 on input line 
 214.
 Package marginnote Info: xpos seems to be 379.4828pt on input line 214.
- [92]
-Package marginnote Info: Margin note 93.1 is on absolute page 93 on input line 
+ [98]
+Package marginnote Info: Margin note 99.1 is on absolute page 99 on input line 
 219.
 Package marginnote Info: xpos seems to be 281.60359pt on input line 219.
 
@@ -1727,7 +1744,7 @@ Overfull \hbox (2.04562pt too wide) detected at line 230
 []
  []
 
-[93]
+[99]
 Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
  []
@@ -1735,31 +1752,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [94]
-[95]) (./TheorMechanik/blatt3.tex [96]
+ [100]
+[101]) (./TheorMechanik/blatt3.tex [102]
 Overfull \hbox (0.4189pt too wide) in paragraph at lines 42--43
 []\OT1/cmr/m/n/12 (-20) Verwenden Sie das Ergeb-nis aus Teilauf-gabe 2, um die 
 $\OML/cmm/m/it/12 '$\OT1/cmr/m/n/12 (-20) -Abh^^?angigkeit
  []
 
-[97] [98]
+[103] [104]
 Overfull \hbox (41.05623pt too wide) detected at line 99
 []
  []
 
-) [99] (./Buch.aux)
+) [105] (./Buch.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99997pt have occurred.
 
 Package rerunfilecheck Info: File `Buch.out' has not changed.
-(rerunfilecheck)             Checksum: 7588013080F2BD9AAD7FC17354A493E2;2953.
+(rerunfilecheck)             Checksum: 00001C2E49257CE371BFDB788C4BA089;3139.
  ) 
 Here is how much of TeX's memory you used:
- 47102 strings out of 477985
- 1059323 string characters out of 5840058
- 2386397 words of memory out of 5000000
- 65619 multiletter control sequences out of 15000+600000
+ 47150 strings out of 477985
+ 1059864 string characters out of 5840058
+ 2388114 words of memory out of 5000000
+ 65628 multiletter control sequences out of 15000+600000
  548136 words of font info for 265 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,25n,104p,1001b,3321s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1788,10 +1805,10 @@ s/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public
 atxfont/line10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on Buch.pdf (99 pages, 765200 bytes).
+Output written on Buch.pdf (105 pages, 781211 bytes).
 PDF statistics:
- 1394 PDF objects out of 1440 (max. 8388607)
- 1180 compressed objects within 12 object streams
- 613 named destinations out of 1000 (max. 500000)
- 76150 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1462 PDF objects out of 1728 (max. 8388607)
+ 1241 compressed objects within 13 object streams
+ 648 named destinations out of 1000 (max. 500000)
+ 76166 words of extra memory for PDF output out of 89155 (max. 10000000)
 

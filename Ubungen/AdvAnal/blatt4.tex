@@ -1,0 +1,41 @@
+\begin{Problem}
+	\begin{parts}
+		\item Seien $(X,\mathcal{A}), (Y,\mathcal{B})$ messbare R\"{a}ume, $C\in A\otimes B$ und $a\in X$. Zeigen Sie, dass
+			\[
+			\left\{ y\in Y|(a,y)\in C \right\} \in \mathcal{B}
+			.\] 
+		\item Sei $K\subseteq \R^m$ kompakt und $N\subseteq \R^n$ eine $\lambda_n$-Nullmenge. Zeigen Sie, dass dann $M \times N$ eine $\lambda_{m+n}$-Nullmenge ist.
+		\item Sei $M\subseteq \R^m$ eine $\lambda_m$-Nullmenge und $N\subseteq \R^n$ eine $\lambda_n$-Nullmenge. Zeigen Sie, dass dann $M \times N$ eine $\lambda_{m+n}$-Nullmenge ist.
+		\item Zeigen Sie Bemerkung 1.71, also dass $\mathcal{L}(m)\otimes \mathcal{L}(n)\subsetneq \mathcal{L}(m+n)$.
+
+			{\footnotesize Hinweis: Sie dürfen hierfür annehmen, dass $B\not\in \mathcal{L}(n)$ tatsächlich existiert.}
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir wissen, dass $C$ eine abzählbare Vereinigung von Mengen $A_i\times B_i,~A_i\in \mathcal{A},~B_i\in \mathcal{B}$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $A\in \mathcal{L}(n)$. Beweisen oder widerlegen Sie:
+	\begin{parts}
+	\item Es gilt
+		\[
+			\lambda_n(A)=\text{inf}\left\{ \lambda_n(K)|K\supseteq A,~K\text{ kompakt} \right\} 
+		.\] 
+	\item Es gilt
+		\[
+			\lambda_n(A)=\text{sup}\left\{ \lambda_n(O)|O\subseteq A,~O\text{ offen} \right\} 
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Betrachten Sie $A=\Q$. Weil $\Q$ nicht beschränkt ist, gibt es keine kompakte Mengen $K$ mit $K\supseteq A$. Deswegen ist 
+		\[0=\lambda_n(\Q)\neq\text{inf}\left\{ \lambda_n(K)|K\supseteq A,~K\text{ kompakt} \right\}=\infty.\] 
+		\begin{tcolorbox}[title=Bemerkung]
+			Erinnern Sie sich daran, dass wir $\text{inf}(\varnothing)=\infty$ definieren. Sonst kann man $\lambda_n(\R)$ betrachten.
+		\end{tcolorbox}
+	\item Wahr. 
+	\end{parts}
+\end{proof}

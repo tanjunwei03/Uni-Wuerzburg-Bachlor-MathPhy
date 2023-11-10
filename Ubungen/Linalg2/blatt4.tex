@@ -45,8 +45,8 @@ Geben Sie an, wie viele unterschiedliche Abbildungen $\sigma$ durch ein Zyklus d
 
 		Ja, jedes Element in $S_3$ kann als ein Zyklus geschrieben werden. Das können wir explizit machen:
 		\begin{align*}
-			& (1) & (12) & (23)\\
-			& (13) & (132) & (123)
+			& (1) & (12) & & (23)\\
+			& (13) & (132) & & (123)
 		\end{align*}
 		Weil wir $6$ Elemente haben, und $|S_3|=3! = 6$, haben wir alle Elemente.
 
@@ -54,6 +54,87 @@ Geben Sie an, wie viele unterschiedliche Abbildungen $\sigma$ durch ein Zyklus d
 		\[
 			\sigma=\begin{pmatrix} 1 & 2 & 3 & 4\\ 2 & 1 & 4 & 3 \end{pmatrix} 
 		.\] 
-		Falls es als Zyklus geschreiben werden kann, muss das Zyklus den Länge $4$ haben, weil $\sigma(i)\neq i$ f\"{u}r alle $i$. 
+		Falls es als Zyklus geschreiben werden kann, muss das Zyklus den Länge $4$ haben, weil $\sigma(i)\neq i$ f\"{u}r alle $i$. Wir fangen obdA mit $1$ an. Dann ist das Zyklus $(12\dots)$. Aber weil $\sigma(2)=1$, hört das Zyklus auf, und $\dots=\varnothing$. Dann ist das Zyklus nicht mit Länge 4. 
+	\item Sei $A,B\in P_n$ beliebige Elemente von $P_n$,
+		\begin{align*}
+			A=&(e_{i_1},e_{i_2},\dots, e_{i_n})\\
+			B=&(e_{j_1},e_{j_2},\dots, e_{j_n})
+		\end{align*}
+		\begin{enumerate}[label=(\roman*)]
+			\item $G$ ist abgeschlossen: Wir betrachten $ABe_k$ f\"{u}r $k$ beliebig.
+				\[
+					ABe_k=Ae_{j_k}=e_{i_{j_k}}
+				,\]
+				also
+				\[
+					AB=(e_{i_{j_1}},e_{i_{j_2}},\dots,e_{i_{j_n}})\in P_n
+				.\] 
+				Das $i_{j_k}$ paarweise verscheiden sind folgt daraus, dass $j_k$ alle paarweise verscheiden sind.
+			\item Neutrales element: Wir wissen aus der linearen ALgebra, dass
+				 \[
+				1_n=(e_1,e_2,\dots, e_n)\in P_n
+				\]
+				das neutrales Element ist.
+			\item Assoziativität: Wir wissen auch, dass Matrizmultiplikation assoziativ ist.
+			\item Existenz des Inverses: Sei jetzt $p_k$, sodass $i_{p_k}=k$. 
+				\begin{tcolorbox}[title=Bemerkung]
+					Man kann $i,p: \left\{ 1,\dots,n \right\} \to \left\{ 1,\dots,n \right\} $ interpretieren. Dann ist $i$ eine bijektive Abbildung, und das Existenz einer inversen Abbildung $p$ folgt daraus. Deswegen ist unsere Entscheidung immer möglich.
+				\end{tcolorbox}
+				Wir betrachten $A(e_{p_1},e_{p_2},\dots, e_{p_n})$, und dafür die Wirkung der Abbildung auf einem beliebigen Basiselement $e_k$: 
+\[
+	A(e_{p_1},e_{p_2},\dots,e_{p_n})e_k=Ae_{p_k}=e_{i_{p_k}}=e_k
+.\] 
+		\end{enumerate}
+	\item Sei $i$ eine bijektive Abbildung $\left\{ 1,\dots,n \right\}\to \left\{ 1,\dots,n \right\} $. Wir schreiben $i_k$ oder $i(k)$ als das Bild von $k$. Wir vermuten, dass die gewünschte Homomorphismus
+		\[
+		\Phi:i\to (e_{i_1},e_{i_2},\dots e_{i_n})
+		\] 
+		ist.
+		\begin{enumerate}[label=(\roman*)]
+			\item $\Phi(\sigma)e_j=e_{\sigma_j}$, also  $\Phi(\sigma)e_i=s_j\iff \sigma(i)=j$.
+			\item Injektiv: Sei $\sigma,\sigma' \in S_n$, $\sigma\neq \sigma'$, insbesondere gilt $\sigma(i)\neq \sigma'(i)$. Es gilt dann
+				 \begin{center}
+					 \begin{tikzpicture}[xscale=2,yscale=0.5]
+						\draw (0,0) node[anchor=east] {$\Phi(\cdot)$};
+						\draw[thick,->] (0,0) -- (1,1);
+						\draw[thick,->] (0,0) -- (1,-1);
+						\draw (1,1) node[anchor=west] {$(e_{\sigma_1},\dots,e_{\sigma_i},\dots,e_{\sigma_n})$};
+						\draw (1,-1) node[anchor=west] {$(e_{\sigma'_1},\dots, e_{\sigma'_i},\dots,e_{\sigma_n})$};
+						\draw (0.5,0.5) node[anchor=south east] {$\sigma$};
+						\draw (0.5,-0.5) node[anchor=north east] {$\sigma'$};
+						\draw[red,thick] (1.85,-1.5) rectangle (2.15,1.5);
+						\draw[red] (2,-1.5) node[anchor=north] {$\neq$};
+					\end{tikzpicture}
+				\end{center}
+				also $\Phi(\sigma)\neq \Phi(\sigma')$.
+			\item Surjektiv: Sei $M=(e_{i_1},e_{i_2},\dots,e_{i_n}$. Wie im letzten Teilaufgabe können wir eine Abbildung $i(k)=i_k$ definieren, und $\Phi(i)=M$.
+			\item Homomorphismusgesetz: Es ist zu zeigen, f\"{u}r $i,j\in S_n$ und 
+				\begin{align*}
+					M_1=&(e_{i_1},e_{i_2},\dots, e_{i_n})=\Phi(i)\\
+					M_2=&(e_{j_1},e_{j_2},\dots,e_{j_n})=\Phi(j),
+				\end{align*}
+				dass
+				 \[
+				\Phi(i \circ j)(e_k)=M_1M_2e_k
+				\] 
+				f\"{u}r alle $k$ gilt. Per Definition ist
+				\[
+					\Phi(i\circ j)e_k=e_{i(j(k))}=e_{i_{j_k}}
+				.\] 
+				Es gilt auch
+				\[
+					M_1M_2e_k=M_1e_{j(k)}=e_{i(j(k))}=e_{i_{j_k}}
+				.\] 
+		\end{enumerate}
 	\end{parts}
 \end{proof}
+\begin{Problem}
+	Gegeben sei die Permutation
+	\[
+		S_9\ni \sigma =\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\2 & 4 & 3 & 9 & 7 & 6 & 8 & 1 & 5 \end{pmatrix} 
+	.\] 
+	\begin{parts}
+	\item Stellen sie $\sigma$ als Produkt von Transpositionen dar.
+	\item Berechnen Sie das Signum von $\sigma$.
+	\end{parts}
+\end{Problem}
