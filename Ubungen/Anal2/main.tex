@@ -11,6 +11,7 @@
 \usepackage{transparent}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{subcaption}
 \newtheorem{Theorem}{Theorem}
 \newtheorem{Proposition}{Theorem}
 \newtheorem{Lemma}[Theorem]{Lemma}
@@ -22,10 +23,11 @@
 \theoremstyle{definition}
 \newtheorem{Definition}[Theorem]{Definition}
 \newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
-%tikz
+%tikz	
 \tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
 \usetikzlibrary{patterns}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 % definitions of number sets
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -34,7 +36,7 @@
 \newcommand{\C}{\mathbb{C}}
 \allowdisplaybreaks
 \begin{document}
-	\title{Analysis 2 Hausaufgabenblatt Nr. 3}
+	\title{Analysis 2 Hausaufgabenblatt Nr. 4}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}

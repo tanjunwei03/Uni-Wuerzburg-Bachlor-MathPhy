@@ -21,7 +21,84 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wir definieren rekursiv eine Menge
+	\item Wir betrachten eine uniforme Zerlegung
+		\[
+		\mathcal{J}_n=\left\{ 0,\frac{1}{n},\frac{2}{n},\dots, 1 \right\} 
+		,\]
+		und die Intervalle 
+		\[
+		I_n(k)=\left[ \frac{k}{n},\frac{k+1}{n} \right] 
+		.\] 
+		Es gilt $\inf_{x\in I_n(k)}f(x)=0$. Wir müssen daher nur beweisen
+		\begin{tcolorbox}[title=Ziel]
+			 F\"{u}r jedes $\epsilon>0$ gibt es eine Zerlegung $\mathcal{J}_n$, sodass
+			 \[
+				 \mathcal{O}_{\mathcal{J}(n)}<\epsilon
+			 .\] 
+		\end{tcolorbox}
+		Die wichtigste Bemerkung ist: jedes $q_x$ kommt maximal zweimal vor (das passiert im Fall wenn $q_x=k / n$ for eine $k\in \left\{ 0,\dots,n \right\} $ ). Es folgt dann f\"{u}r  $n=2p$ gerade,
+		\begin{align*}
+			\mathcal{O}_{\mathcal{J}(n)}\le&\sum_{j=1}^{p} \frac{1}{2p}\frac{2}{j}\\
+\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int_0^1 f(x)\dd{x}\le&\lim_{p \to \infty} \sum_{j=1}^{p} \frac{1}{2p}\frac{2}{j}\\
+			<&\lim_{p \to \infty} \frac{1}{p}(1+\ln p)\\
+			=&0
+		\end{align*}
+		Also $f$ ist integrierbar mit $\int_0^1 f(x)\dd{x}=0$.
+	\item Sei $\epsilon>0$ beliebig. Wir definieren f\"{u}r jedes $n\in \N$ so eine Zerlegung:
+
+		Sei $x_0=0, x_1=\frac{1}{n}$. Außer $[x_0,x_1]$ gibt es dann nur endlich viele $x=\frac{1}{n}$ (eigentlich gibt es genau $n-1$). Sei dann
+		\begin{align*}
+			\mathcal{J}_n=&\left\{ 0,\frac{1}{n},\frac{1}{n-1}-\frac{\epsilon}{2^{n-1}},\frac{1}{n-1}+\frac{\epsilon}{2^{n-1}} ,\frac{1}{n-2}-\frac{\epsilon}{2^{n-1}},\right.\\
+				      &\left. \frac{1}{n-2}+\frac{\epsilon}{2^{n-2}},\frac{1}{n-3}-\frac{\epsilon}{2^{n-3}},\dots, 1-\frac{\epsilon}{2}, 1
+				      \right\} 
+		\end{align*}
+		\textbf{Bemerkung:} In der Intervall $\left[ \frac{1}{n-p}+\frac{\epsilon}{2^{n-p}}, \frac{1}{n-p-1}-\frac{\epsilon}{2^{n-p-1}} \right] $ gibt es keine Zahlen mit dem Form $1 / n, n \in \Z$, also $\sup f=0$ auf solchen Intervalle. Es gilt dann
+		\begin{align*}
+			\mathcal{O}_{\mathcal{J}_n}=& \frac{2}{n}+\sum_{j=1}^{n-1} \frac{\epsilon}{2^{j}}\\
+			\lim_{n \to \infty} \mathcal{O}_{\mathcal{J}_n}=&\lim_{n \to \infty} \left[ \frac{2}{n}+\sum_{j=1}^{n-1} \frac{\epsilon}{2^j} \right] \\
+			=&\epsilon
+		\end{align*}
+		Weil $\epsilon$ beliebig war, ist dann
+		\[
+		\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    \int_0^1 g(x)\dd{x}=0
+		,\]
+		also $g$ ist integrierbar mit
+		\[
+			\int_0^1g(x)\dd{x}=0
+		.\] 
+	\item Es gilt
+		\[
+			(g\circ f)(x)=\begin{cases}
+				1 & x\in \Q\\
+				0 & x\in [0,1] \backslash \Q
+			\end{cases}
+		.\] 
+		Sei $h:=g\circ f$. $h$ ist nicht auf $[0,1]$ integrierbar. Sei $\mathcal{J}=\left\{ 0=t_0,t_1,\dots,t_N=1 \right\} $. Es gibt, f\"{u}r alle Intervalle $[a,b]\subseteq [0,1]$, zwei Punkte
+		\begin{align*}
+			& \Q \ni x_0 \in [a,b] & \text{dichtheit von }\Q\\
+			& \R\backslash \Q \ni  x_1 \in [a,b] & \Q\text{ ist nur abzählbar}
+		\end{align*}
+		Also gilt
+		\begin{align}
+			\text{sup}\left( h|_{\left[ a,b \right] } \right) =&1\label{eq:ana2blatt4-1}\\
+			\text{inf}\left( h|_{[a,b]} \right)=&0\label{eq:ana2blatt4-2}
+		\end{align}
+		Daraus folgt, f\"{u}r jede Zerlegung $\mathcal{J}$ von $[0,1]$, dass
+		\begin{align*}
+			\mathcal{O}_\mathcal{J}(f)=&1\\
+			\mathcal{U}_\mathcal{J}(f)=&0
+		\end{align*}
+		also $h$ ist nicht auf $[0,1]$ integrierbar.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -72,22 +149,10 @@
 			-1 & x\not\in \Q
 		\end{cases}
 		.\] 
-		Dann ist $|f|=1$ integrierbar (Proposition 6.1.6). Wir müssen jetzt nur beweisen, dass $f$ nicht integrierbar ist. Sei $\mathcal{J}=\left\{ 0=t_0,t_1,\dots,t_N=1 \right\} $. Es gibt, f\"{u}r alle Intervalle $[a,b]\subseteq [0,1]$, zwei Punkte
-		\begin{align*}
-			& \Q \ni x_0 \in [a,b] & \text{dichtheit von }\Q\\
-			& \R\backslash \Q \ni  x_1 \in [a,b] & \Q\text{ ist nur abzählbar}
-		\end{align*}
-		Also gilt
-		\begin{align*}
-			\text{sup}\left( f|_{\left[ a,b \right] } \right) =&1\\
-			\text{inf}\left( f|_{[a,b]} \right)=&-1 
-		\end{align*}
-		Daraus folgt, f\"{u}r jede Zerlegung $\mathcal{J}$ von $[0,1]$, dass
-		\begin{align*}
-			\mathcal{O}_\mathcal{J}(f)=&1\\
-			\mathcal{U}_\mathcal{J}(f)=&-1
-		\end{align*}
-		also $f$ ist nicht auf $[0,1]$ integrierbar.
+		Dann ist $|f|=1$ integrierbar (Proposition 6.1.6). Wir müssen jetzt nur beweisen, dass $f$ nicht integrierbar ist. Der Beweis ist gleich zu der Beweis in der vorherigen Aufgabe. Wir müssen nur statt \eqref{eq:ana2blatt4-2} schreiben
+		\[
+		\inf\left(h|_{[a,b]}\right)=-1
+		\]
 	\item Wahr. 
 		\begin{tcolorbox}[title=Bemerkung]
 			Sei $f:[a,b]\to \R, f\ge \delta$ f\"{u}r ein $\delta>0$. Es gilt dann
@@ -115,7 +180,7 @@
 		\[
 			\sum_{i=1}^{N}\left[ \text{sup}\left( f|_{[t_{i-1},t_i]} \right) -\text{inf}\left( f|_{[t_{i-1},t_i]} \right)  \right] < \epsilon\delta^2
 		.\]
-		Dies ist genau die gewünschte Zerlegung.
+		Dies ist genau die gewünschte Zerlegung, also nach dem Korollar ist $f$ integrierbar.
 	\item Falsch. Sei $f$ und $g$ Treppefunktionen, $f,g:[0,1]\to \R$:
 		\begin{align*}
 			f(x)=&\begin{cases}
@@ -148,17 +213,67 @@
 	\end{itemize}
 \end{Problem}
 \begin{proof}
-	Sei
-	\[
-		g_{a,b}(x)=\begin{cases}
-			\sin\left( \pi \frac{x-a}{b-a} \right) & x\in [a,b]\cap [0,1]\\
-			0 & \text{sonst}.
-		\end{cases}
-	\]
-	Es gilt
-	\begin{align*}
-		\int_0^1 g_{a,b}(x)\dd{x}\le& \int_a^b g_{a,b}(x)\dd{x}\\
-		=&\int_a^b \sin\left( \pi \frac{x-a}{b-a} \right) \dd{x}\\
-		=&\frac{2(b-a)}{\pi}
-	\end{align*}
+Sei
+\[
+	g_{a,b}(x)=\begin{cases}
+		1 & a \le x \le b\\
+		0 & \text{sonst}.
+	\end{cases}
+\] 
+Es gilt
+\[
+	\int_0^1 g_{a,b}(x)=(b-a)
+.\] 
+Sei jetzt $n\in \N$, und $k(n)$ das Zahl, sodass
+\[
+	\frac{k(k+1)}{2}\le n < \frac{(k+1)(k+2)}{2}
+\]
+gilt. Das ist immer möglich, weil $x\to x(x+1) / 2$ monoton wachsend ist. Sei 
+\begin{align*}
+p(k(n)):=&\frac{k(n)(k(n)+1)}{2}\\
+f_n(x)=&g_{\frac{n-p(n)}{k(n)+1}, \frac{n-p(n)+1}{k(n)+1}}(x)
+\end{align*}
+\begin{figure}[h]
+	\begin{subfigure}[c]{0.4\textwidth}
+		\caption{$k(n)=3$}
+		\begin{tikzpicture}
+			\begin{axis}[axis on top=true,thick,domain=0:1,xmin=0,xmax=1,ymin=0,ymax=1.2, clip mode=individual]
+				\foreach \x in {0,1,2,3}
+				\addplot[thick,color=blue,fill=blue,pattern = north east lines,pattern color=blue,domain={\x/4}:{(\x+1)/4}]{1} \closedcycle;
+				\foreach \x in {0,1,2,3} {
+					\edef\temp{\noexpand\draw ({((\x+0.5)/4},0.5)node[blue,fill=white,draw, thick,rotate=-90] {$n=p(n)+\x$};}
+					\temp
+				}
+			\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\hspace{\fill}
+	\begin{subfigure}[c]{0.4\textwidth}
+		\caption{$k(n)=5$}
+		\begin{tikzpicture}
+			\begin{axis}[axis on top=true,thick,domain=0:1,xmin=0,xmax=1,ymin=0,ymax=1.2, clip mode=individual]
+				\foreach \x in {0,1,2,3,4,5}{
+					\addplot[thick,color=red, pattern = north east lines, pattern color = red,domain={\x/6}:{(\x+1)/6}]{1} \closedcycle;	
+					\foreach \x in {0,1,2,3,4,5} {
+						\edef\temp{\noexpand\draw ({((\x+0.5)/6},0.5)node[red,fill=white,draw, thick,rotate=-90] {$n=p(n)+\x$};}
+						\temp
+					}
+				};
+			\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\caption{Im Allgemein ergibt sich f\"{u}r $p(k) \le n < p(k+1)$ eine Überdeckung von $[0,1]$ mit Treppen mit Länge $1/(k(n)+1)$.}
+\end{figure}
+Wir beweisen die gewünschte Eigenschaften:
+\begin{enumerate}[label=(\roman*)]
+	\item Es gilt $\int_0^1 f(x)\dd{x}=\frac{1}{k(n)+1}$. Weil $k(n)$ wachsend ist, und $k(n)\to \infty$ gilt, ist
+		\[
+			\lim_{n \to \infty} \int_0^1 f_n(x)\dd{x}
+		.\] 
+	\item Sei $x\in [0,1]$ und $n\in \N$ beliebig. Sei auch $q=\left\lfloor x(k(n)+2) \right\rfloor$. Es gilt dann
+		\[
+		f_{p(k(n)+1)+q}(x)\neq 0
+		,\]
+		also $f_n(x) \not\to 0$ f\"{u}r jedes $x\in [0,1]$.\qedhere
+\end{enumerate}
 \end{proof}

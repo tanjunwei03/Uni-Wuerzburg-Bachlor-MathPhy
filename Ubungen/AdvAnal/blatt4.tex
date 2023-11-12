@@ -4,7 +4,7 @@
 			\[
 			\left\{ y\in Y|(a,y)\in C \right\} \in \mathcal{B}
 			.\] 
-		\item Sei $K\subseteq \R^m$ kompakt und $N\subseteq \R^n$ eine $\lambda_n$-Nullmenge. Zeigen Sie, dass dann $M \times N$ eine $\lambda_{m+n}$-Nullmenge ist.
+		\item Sei $K\subseteq \R^m$ kompakt und $N\subseteq \R^n$ eine $\lambda_n$-Nullmenge. Zeigen Sie, dass dann $K\times N$ eine $\lambda_{m+n}$-Nullmenge ist.
 		\item Sei $M\subseteq \R^m$ eine $\lambda_m$-Nullmenge und $N\subseteq \R^n$ eine $\lambda_n$-Nullmenge. Zeigen Sie, dass dann $M \times N$ eine $\lambda_{m+n}$-Nullmenge ist.
 		\item Zeigen Sie Bemerkung 1.71, also dass $\mathcal{L}(m)\otimes \mathcal{L}(n)\subsetneq \mathcal{L}(m+n)$.
 
@@ -13,7 +13,20 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wir wissen, dass $C$ eine abzählbare Vereinigung von Mengen $A_i\times B_i,~A_i\in \mathcal{A},~B_i\in \mathcal{B}$.
+	\item Wir wissen, dass $C$ eine abzählbare Vereinigung von Mengen $A_i\times B_i,~A_i\in \mathcal{A},~B_i\in \mathcal{B}$. Sei $\Pi_2: X \times Y, \Pi_2:(a,b)\to b$. 
+	\item Sei $\epsilon>0$ gegeben, und $\left\{ A_1,A_2,\dots,A_n \right\},A_i\in\mathbb{J}(m)$ eine endliche Überdeckung von $K$, wobei jedes $\lambda_m(A_i)<\infty$. 
+		\begin{tcolorbox}
+			Das ist immer möglich, weil $K$ kompakt ist. Wir können dann eine Überdeckung $(A_i)$ von $K$ wählen, und die Kompaktheit von $K$ liefert eine endliche Teilüberdeckung. 
+		\end{tcolorbox}
+		Sei dann $A=\text{max}\left( \lambda_m(A_1),\lambda_m(A_2),\dots, \lambda_m(A_n) \right)$. Per Definition (N ist eine $\lambda_n$-Nullmenge) gibt es eine abzählbare Überdeckung $(B_j),B_j\subseteq \R^n$, sodass
+		 \[
+		\sum_{i=1}^{\infty} \lambda_n(B_i)<\frac{\epsilon}{nA}
+		.\] 
+		Wir betrachten dann
+		\[
+		M=\bigcup_{j=1}^n\left\{ A_j\times B_i|i\in \N \right\}  
+		,\]
+		was eine abzählbare Überdeckung von $K\times N$ ist, aber $\sum_{C\in M}\lambda_{n+m}(C)<\epsilon$, also $\times N$ ist eine $\lambda_{m+n}$-Nullmenge.
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -38,4 +51,43 @@
 		\end{tcolorbox}
 	\item Wahr. 
 	\end{parts}
+\end{proof}
+\begin{Problem}
+	(Maße von Matrixbildern) 
+	\begin{parts}
+	\item Sei $S \in \R^{n\times n}$ eine invertierbare Matrix und $\mu : \mathcal{B}^n \to [0, \infty]$ ein Maß. Zeigen Sie, dass $\mu_S : \mathcal{B}_n\to [0,\infty],\mu_S(A):=\mu(SA)$ wohldefiniert und ein Maß ist.
+	\item Sei $S \in \R^{n\times n}$ nicht invertierbar. Zeigen Sie, dass $\lambda_n(SA)=0$ für alle $A \in L(n)$ gilt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	Wir werden sehr oft einen Matriznorm brauchen:
+	\begin{tcolorbox}[title=Matriz $\infty$-Norm]
+		Sei  $A\in \R^{n\times n}$, und $x\in \R^n$. Wir definieren:
+		\begin{align*}
+			\|x\|=&\|x\|_{\infty},\text{ wie in der Vorlesung, und}\\
+			\|A\|=&\sup_{\|x\|=1}\|Ax\|
+		\end{align*}
+	\end{tcolorbox}
+\begin{parts}
+\item 
+	\begin{enumerate}[label=(\roman*)]
+		\item (Wohldefiniert) Wir müssen nur zeigen, dass $SA$ offen ist. Wir definieren die übliche Norm auf Matrizen $\|A\|=\text{sup}_{|x|=1}|Ax|$. Weil $S$ invertierbar ist, muss $\|A\|>0$ gelten. Sei $x\in A$ und eine $r$, sodass $B_r(x)\subseteq A$. Sei $y\in B_r(x)$. Es gilt
+			\[
+			|Ay-Ax|\le \|A\| |y-x|\le \|A\|r
+		\]
+		also $B_{\|A\|r}(Sx)\subseteq SA$. Daraus folgt, dass $SA$ offen ist, und $\mu_S$ wohldefiniert ist.
+	\item Wir haben auch, $\mu_S(\varnothing)=\mu(S\varnothing)=\mu(\varnothing)=0$.
+	\item Sei  $(A_j), A_j\in \mathcal{L}(n)$ eine Folge von messbare Mengen. Wir betrachten
+		\begin{align*}
+			\mu_S\left(\bigcup_{i=1} ^\infty A_i\right)=&\mu\left( S\bigcup_{i=1}^\infty A_i\right) \\
+			=& \sum_{i=1}^{\infty} \mu(SA_i) &(\sigma\text{-Additivität von $\mu$)}\\
+			=&  \sum_{i=1}^{\infty} \mu_S(A_i)
+		\end{align*}
+		Hier haben wir verwendet, dass $SA_i$ noch paarweise disjunkt ist, weil $S$ bijektiv (insbesondere injektiv) ist.
+	\end{enumerate}
+\item Weil $S$ nicht invertierbar ist, gibt es ein nichttriviales Kern. Wir entscheiden uns f\"{u}r ein Vektor $v_1\in \text{ker}(S)$. Dann machen wir ein Basisergänzung, um ein Basis zu konstruieren:
+	\[
+	B=\left\{ v_1,v_2,\dots, v_n \right\} 
+	.\] 
+\end{parts}	
 \end{proof}

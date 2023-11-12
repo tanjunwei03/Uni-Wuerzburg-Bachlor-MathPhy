@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  10 NOV 2023 15:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  12 NOV 2023 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -930,9 +930,16 @@ Package: transparent 2022-10-27 v1.5 Transparency with color stacks
 Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color
  stack (HO)
 ))
+(/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/02/19 v1.6 Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 239.
+\c@subfigure=\count353
+Package caption Info: New subtype `subtable' on input line 239.
+\c@subtable=\count354
+)
 (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count353
+\c@float@type=\count355
 \float@exts=\toks50
 \float@box=\box86
 \@float@everytoks=\toks51
@@ -941,13 +948,13 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip85
-\multirow@cntb=\count354
+\multirow@cntb=\count356
 \multirow@dima=\skip86
 \bigstrutjot=\dimen314
 )
-\c@Theorem=\count355
-\c@Proposition=\count356
-\c@Problem=\count357
+\c@Theorem=\count357
+\c@Proposition=\count358
+\c@Problem=\count359
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 patterns.code.tex
@@ -966,8 +973,8 @@ Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 \t@pgfplots@tokb=\toks53
 \t@pgfplots@tokc=\toks54
 \pgfplots@tmpa=\dimen315
-\c@pgfplots@coordindex=\count358
-\c@pgfplots@scanlineindex=\count359
+\c@pgfplots@coordindex=\count360
+\c@pgfplots@scanlineindex=\count361
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex)
@@ -988,13 +995,13 @@ gfutil-common-lists.tex))
 ext.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.te
 x
-\c@pgfplotsarray@tmp=\count360
+\c@pgfplotsarray@tmp=\count362
 )
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.t
 ex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.t
 ex
-\c@pgfplotstable@counta=\count361
+\c@pgfplotstable@counta=\count363
 \t@pgfplotstable@a=\toks58
 )
 (/usr/share/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.te
@@ -1003,7 +1010,7 @@ x) (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
 (/usr/share/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading
 .code.tex
-\c@pgfplotslibrarysurf@no=\count362
+\c@pgfplotslibrarysurf@no=\count364
 
 (/usr/share/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.
 pgfsys-pdftex.def)))
@@ -1027,7 +1034,7 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen318
 \pgfdecoratedinputsegmentremainingdistance=\dimen319
 \pgf@decorate@distancetomove=\dimen320
-\pgf@decorate@repeatstate=\count363
+\pgf@decorate@repeatstate=\count365
 \pgfdecorationsegmentamplitude=\dimen321
 \pgfdecorationsegmentlength=\dimen322
 )
@@ -1043,7 +1050,7 @@ decorations.pathreplacing.code.tex
 ons.pathreplacing.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua
 .code.tex)
-\pgfplots@numplots=\count364
+\pgfplots@numplots=\count366
 \pgfplots@xmin@reg=\dimen323
 \pgfplots@xmax@reg=\dimen324
 \pgfplots@ymin@reg=\dimen325
@@ -1057,33 +1064,27 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2023/02/19 v1.6 Sub-captions (AR)
-Package caption Info: New subtype `subfigure' on input line 239.
-\c@subfigure=\count365
-Package caption Info: New subtype `subtable' on input line 239.
-\c@subtable=\count366
-) (./Buch.aux)
+))) (./Buch.aux)
 \openout1 = `Buch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 52.
-LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
+LaTeX Font Info:    ... okay on input line 51.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen329
@@ -1093,24 +1094,23 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \@sidenotes@extrawidth=\skip87
-LaTeX Info: Redefining \microtypecontext on input line 52.
-Package microtype Info: Applying patch `item' on input line 52.
-Package microtype Info: Applying patch `toc' on input line 52.
-Package microtype Info: Applying patch `eqnum' on input line 52.
-Package microtype Info: Applying patch `footnote' on input line 52.
-Package microtype Info: Applying patch `verbatim' on input line 52.
+LaTeX Info: Redefining \microtypecontext on input line 51.
+Package microtype Info: Applying patch `item' on input line 51.
+Package microtype Info: Applying patch `toc' on input line 51.
+Package microtype Info: Applying patch `eqnum' on input line 51.
+Package microtype Info: Applying patch `footnote' on input line 51.
+Package microtype Info: Applying patch `verbatim' on input line 51.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 52.
+LaTeX Info: Redefining \showhyphens on input line 51.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-
-(/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+ (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
@@ -1180,7 +1180,7 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks61
 \inpenc@posthook=\toks62
 )
-Package hyperref Info: Link coloring OFF on input line 52.
+Package hyperref Info: Link coloring OFF on input line 51.
  (./Buch.out) (./Buch.out)
 \@outlinefile=\write4
 \openout4 = `Buch.out'.
@@ -1189,9 +1189,9 @@ Package hyperref Info: Link coloring OFF on input line 52.
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-LaTeX Font Info:    Calculating math sizes for size <14.39996> on input line 57
+LaTeX Font Info:    Calculating math sizes for size <14.39996> on input line 56
 .
-LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 56.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1199,7 +1199,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 56.
 
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1218,8 +1218,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
  (./Buch.toc
+Overfull \hbox (2.12477pt too wide) detected at line 28
+ []\OT1/cmr/m/n/12 101
+ []
+
+
 Overfull \hbox (2.12477pt too wide) detected at line 29
- []\OT1/cmr/m/n/12 102
+ []\OT1/cmr/m/n/12 106
  []
 
 )
@@ -1230,7 +1235,7 @@ Overfull \hbox (2.12477pt too wide) detected at line 29
 
 ]
 Chapter 1.
-LaTeX Font Info:    Calculating math sizes for size <17.28003> on input line 59
+LaTeX Font Info:    Calculating math sizes for size <17.28003> on input line 58
 .
 (./Linalg1/blatt1.tex [5]
 Overfull \hbox (12.7672pt too wide) in paragraph at lines 65--66
@@ -1403,8 +1408,8 @@ Package marginnote Info: Margin note 47.2 is on absolute page 48 on input line
 Package marginnote Info: xpos seems to be 416.0419pt on input line 41.
  [47] [48] [49] [50] [51])
 Package marginnote Info: Margin note 52.1 is on absolute page 52 on input line 
-82.
-Package marginnote Info: xpos seems to be 520.72437pt on input line 82.
+81.
+Package marginnote Info: xpos seems to be 520.72437pt on input line 81.
  (./Anal2/blatt2.tex
 Overfull \hbox (69.6328pt too wide) detected at line 18
 []
@@ -1497,33 +1502,68 @@ File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [63])
-(./Anal2/blatt4.tex [64]
-Overfull \hbox (28.8572pt too wide) in paragraph at lines 74--76
-\OT1/cmr/m/n/12 (-20) nur be-weisen, dass $\OML/cmm/m/it/12 f$ \OT1/cmr/m/n/12 
-(-20) nicht in-te-grier-bar ist. Sei $\OMS/cmsy/m/n/12 J \OT1/cmr/m/n/12 (-20) 
-= []$.
+(./Anal2/blatt4.tex [64] [65]
+Overfull \hbox (48.96233pt too wide) in paragraph at lines 85--87
+\OT1/cmr/m/n/12 (-20) Sei $\OML/cmm/m/it/12 h \OT1/cmr/m/n/12 (-20) := \OML/cmm
+/m/it/12 g \OMS/cmsy/m/n/12 ^^N \OML/cmm/m/it/12 f$\OT1/cmr/m/n/12 (-20) . $\OM
+L/cmm/m/it/12 h$ \OT1/cmr/m/n/12 (-20) ist nicht auf $[0\OML/cmm/m/it/12 ; \OT1
+/cmr/m/n/12 (-20) 1]$ in-te-grier-bar. Sei $\OMS/cmsy/m/n/12 J \OT1/cmr/m/n/12 
+(-20) = []$.
  []
 
-[65]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[66] [67]
+Underfull \vbox (badness 3039) has occurred while \output is active []
 
- [66]
-[67]) [68]
+ [68]
+LaTeX Font Info:    Calculating math sizes for size <8.00006> on input line 238
+.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.00003> not available
+(Font)              size <5> substituted on input line 238.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.00003> not available
+(Font)              size <5> substituted on input line 238.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.00003> not available
+(Font)              size <5> substituted on input line 238.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.00003> not available
+(Font)              size <5> substituted on input line 238.
+
+
+Overfull \hbox (77.14743pt too wide) in paragraph at lines 248--249
+[][] 
+ []
+
+Missing character: There is no ; in font nullfont!
+
+Overfull \hbox (77.14743pt too wide) in paragraph at lines 263--264
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [69] [70]
 Chapter 4.
-(./AdvAnal/blatt1.tex [69
+(./AdvAnal/blatt1.tex [71
 
 ]
-Package marginnote Info: Margin note 70.1 is on absolute page 71 on input line 
+Package marginnote Info: Margin note 72.1 is on absolute page 73 on input line 
 88.
 Package marginnote Info: xpos seems to be 345.82787pt on input line 88.
- [70]
+ [72]
 Overfull \hbox (18.39961pt too wide) in paragraph at lines 99--100
 []\OT1/cmr/m/n/12 (-20) Sei $\OML/cmm/m/it/12 P \OT1/cmr/m/n/12 (-20) = []$. Pe
 r Def-i-ni-tion ist $\OMS/cmsy/m/n/12 A[]\OT1/cmr/m/n/12 (-20) (\OMS/cmsy/m/n/1
 2 M\OT1/cmr/m/n/12 (-20) ) =
  []
 
-Package marginnote Info: Margin note 71.1 is on absolute page 71 on input line 
+Package marginnote Info: Margin note 73.1 is on absolute page 73 on input line 
 106.
 Package marginnote Info: xpos seems to be 99.47949pt on input line 106.
 
@@ -1537,10 +1577,10 @@ Overfull \hbox (113.87589pt too wide) detected at line 106
 []
  []
 
-Package marginnote Info: Margin note 71.2 is on absolute page 72 on input line 
+Package marginnote Info: Margin note 73.2 is on absolute page 74 on input line 
 145.
 Package marginnote Info: xpos seems to be 186.63617pt on input line 145.
-[71] [72]
+[73] [74]
 Overfull \hbox (27.84764pt too wide) detected at line 199
 []
  []
@@ -1551,7 +1591,7 @@ Overfull \hbox (18.48515pt too wide) in paragraph at lines 15--16
 liche Teil-men-gen von $\U/msb/m/n/12 N$ \OT1/cmr/m/n/12 (-20) wohldefiniert.
  []
 
-[73]
+[75]
 Overfull \hbox (11.82294pt too wide) in paragraph at lines 40--41
 []\OT1/cmr/m/n/12 (-20) Beweisen oder wider-legen Sie: Ist $(\OML/cmm/m/it/12 X
 ; \OMS/cmsy/m/n/12 A\OML/cmm/m/it/12 ; ^^V[]\OT1/cmr/m/n/12 (-20) )$ ein vollst
@@ -1565,22 +1605,30 @@ Overfull \hbox (4.5173pt too wide) in paragraph at lines 41--42
 ?andiger Ma^^Yraum,
  []
 
-Package marginnote Info: Margin note 74.1 is on absolute page 75 on input line 
+Package marginnote Info: Margin note 76.1 is on absolute page 77 on input line 
 56.
 Package marginnote Info: xpos seems to be 383.30128pt on input line 56.
-[74] [75]
+[76] [77]
 Overfull \hbox (91.5098pt too wide) detected at line 128
 \OML/cmm/m/it/12 M[] \OT1/cmr/m/n/12 = [] [] [] \OML/cmm/m/it/12 :
  []
 
-) (./AdvAnal/blatt3.tex [76] [77]) (./AdvAnal/blatt4.tex [78]) [79] [80
+) (./AdvAnal/blatt3.tex [78] [79]) (./AdvAnal/blatt4.tex [80]
+Overfull \hbox (14.16986pt too wide) in paragraph at lines 28--30
+\OT1/cmr/m/n/12 (-20) was eine abz^^?ahlbare []Uberdeckung von $\OML/cmm/m/it/1
+2 K \OMS/cmsy/m/n/12 ^^B \OML/cmm/m/it/12 N$ \OT1/cmr/m/n/12 (-20) ist, aber $[
+][] \OML/cmm/m/it/12 ^^U[]\OT1/cmr/m/n/12 (-20) (\OML/cmm/m/it/12 C\OT1/cmr/m/n
+/12 (-20) ) \OML/cmm/m/it/12 <
+ []
+
+[81] [82]) [83] [84
 
 ]
 Chapter 5.
-(./IntroAlg/blatt1.tex [81] [82]
+(./IntroAlg/blatt1.tex [85] [86]
 Underfull \vbox (badness 5403) has occurred while \output is active []
 
- [83])
+ [87])
 (./IntroAlg/blatt2.tex
 Overfull \hbox (11.00206pt too wide) in paragraph at lines 21--22
 \OT1/cmr/m/n/12 (-20) Vektorraums $\OML/cmm/m/it/12 K[]$ \OT1/cmr/m/n/12 (-20) 
@@ -1588,7 +1636,7 @@ gibt. Unter einer geord-neten Ba-sis des $\OML/cmm/m/it/12 K$\OT1/cmr/m/n/12 (-
 20) -Vektorraums
  []
 
-[84]
+[88]
 Overfull \hbox (13.64082pt too wide) in paragraph at lines 35--37
 \OT1/cmr/m/n/12 (-20) f^^?ur \OT1/cmr/bx/n/12 (-20) alle $\OML/cmm/m/it/12 a[];
  a[]; [] ; a[] \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 K$\OT1/cmr/m/n/12 (-20) . Es
@@ -1615,52 +1663,34 @@ Overfull \hbox (3.8821pt too wide) in paragraph at lines 46--48
 mm/m/it/12 v[]; v[]; [] ; v[]\OT1/cmr/m/n/12 (-20) ) \OMS/cmsy/m/n/12 2
  []
 
-[85] [86]) (./IntroAlg/blatt3.tex [87] [88]
+[89] [90]) (./IntroAlg/blatt3.tex [91] [92]
 Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
-[89]) [90]
+[93]) [94]
 Chapter 6.
-(./TheorMechanik/blatt1.tex [91
+(./TheorMechanik/blatt1.tex [95
 
-] [92] [93] [94]
+] [96] [97] [98]
 Overfull \hbox (27.45999pt too wide) detected at line 202
 []
  []
 
-[95]) (./TheorMechanik/blatt2.tex
-Package marginnote Info: Suggest that margin note 96.1 will be on
-(marginnote)             absolute page 96.
+[99]) (./TheorMechanik/blatt2.tex
+Package marginnote Info: Suggest that margin note 100.1 will be on
+(marginnote)             absolute page 100.
 (marginnote)             This may be wrong on input line 8.
 Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 8.
-Package marginnote Info: Margin note 96.2 is on absolute page 97 on input line 
-8.
+Package marginnote Info: Margin note 100.2 is on absolute page 101 on input lin
+e 8.
 Package marginnote Info: xpos seems to be 151.19455pt on input line 8.
- [96]
+ [100]
 
 Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
 ng it (it is [0.0:0.0]) on input line 44.
 
  [warning /pgfplots/warning/approx empty range enlarged]
-LaTeX Font Info:    Calculating math sizes for size <8.00006> on input line 44.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.00003> not available
-(Font)              size <5> substituted on input line 44.
-
-
-LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.00003> not available
-(Font)              size <5> substituted on input line 44.
-
-
-LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.00003> not available
-(Font)              size <5> substituted on input line 44.
-
-
-LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <4.00003> not available
-(Font)              size <5> substituted on input line 44.
-
 
 Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
 ng it (it is [0.0:0.0]) on input line 56.
@@ -1728,23 +1758,23 @@ ng it (it is [0.0:0.0]) on input line 196.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package marginnote Info: Margin note 97.1 is on absolute page 97 on input line 
-205.
+Package marginnote Info: Margin note 101.1 is on absolute page 101 on input lin
+e 205.
 Package marginnote Info: xpos seems to be 268.74931pt on input line 205.
-[97]
-Package marginnote Info: Margin note 98.1 is on absolute page 99 on input line 
-214.
+[101]
+Package marginnote Info: Margin note 102.1 is on absolute page 103 on input lin
+e 214.
 Package marginnote Info: xpos seems to be 379.4828pt on input line 214.
- [98]
-Package marginnote Info: Margin note 99.1 is on absolute page 99 on input line 
-219.
+ [102]
+Package marginnote Info: Margin note 103.1 is on absolute page 103 on input lin
+e 219.
 Package marginnote Info: xpos seems to be 281.60359pt on input line 219.
 
 Overfull \hbox (2.04562pt too wide) detected at line 230
 []
  []
 
-[99]
+[103]
 Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
  []
@@ -1752,19 +1782,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 279--280
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [100]
-[101]) (./TheorMechanik/blatt3.tex [102]
+ [104]
+[105]) (./TheorMechanik/blatt3.tex [106]
 Overfull \hbox (0.4189pt too wide) in paragraph at lines 42--43
 []\OT1/cmr/m/n/12 (-20) Verwenden Sie das Ergeb-nis aus Teilauf-gabe 2, um die 
 $\OML/cmm/m/it/12 '$\OT1/cmr/m/n/12 (-20) -Abh^^?angigkeit
  []
 
-[103] [104]
+[107] [108]
 Overfull \hbox (41.05623pt too wide) detected at line 99
 []
  []
 
-) [105] (./Buch.aux)
+) [109] (./Buch.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99997pt have occurred.
@@ -1773,11 +1803,11 @@ Package rerunfilecheck Info: File `Buch.out' has not changed.
 (rerunfilecheck)             Checksum: 00001C2E49257CE371BFDB788C4BA089;3139.
  ) 
 Here is how much of TeX's memory you used:
- 47150 strings out of 477985
- 1059864 string characters out of 5840058
- 2388114 words of memory out of 5000000
- 65628 multiletter control sequences out of 15000+600000
- 548136 words of font info for 265 fonts, out of 8000000 for 9000
+ 47218 strings out of 477985
+ 1060895 string characters out of 5840058
+ 2388612 words of memory out of 5000000
+ 65672 multiletter control sequences out of 15000+600000
+ 549125 words of font info for 271 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,25n,104p,1001b,3321s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share
@@ -1805,10 +1835,10 @@ s/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public
 atxfont/line10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on Buch.pdf (105 pages, 781211 bytes).
+Output written on Buch.pdf (109 pages, 800105 bytes).
 PDF statistics:
- 1462 PDF objects out of 1728 (max. 8388607)
- 1241 compressed objects within 13 object streams
- 648 named destinations out of 1000 (max. 500000)
+ 1503 PDF objects out of 1728 (max. 8388607)
+ 1278 compressed objects within 13 object streams
+ 668 named destinations out of 1000 (max. 500000)
  76166 words of extra memory for PDF output out of 89155 (max. 10000000)
 
