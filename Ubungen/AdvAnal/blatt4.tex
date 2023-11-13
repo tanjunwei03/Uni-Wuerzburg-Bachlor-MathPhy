@@ -26,7 +26,28 @@
 		\[
 		M=\bigcup_{j=1}^n\left\{ A_j\times B_i|i\in \N \right\}  
 		,\]
-		was eine abzählbare Überdeckung von $K\times N$ ist, aber $\sum_{C\in M}\lambda_{n+m}(C)<\epsilon$, also $\times N$ ist eine $\lambda_{m+n}$-Nullmenge.
+		was eine abzählbare Überdeckung von $K\times N$ ist, aber $\sum_{C\in M}\lambda_{n+m}(C)<\epsilon$, also $K\times N$ ist eine $\lambda_{m+n}$-Nullmenge.
+	\item Wir haben, f\"{u}r alle Würfel $I_m\in \R^m$ und $I_n\in \R^n$, dass
+		\[
+			\lambda_{n+m}^*(I_n\times I_m) =\lambda_n^*(I_n)\lambda_m^*(I_m)
+		.\] 
+	Sei $\epsilon>0$ gegeben. Per Definition gibt es eine Überdeckung $(B_i),B_i\in \R^n$ von $N$, sodass
+	\[
+	\bigcup_{i=1} ^\infty B_i\supseteq N\qquad \sum_{i=1}^{\infty} \lambda_n^*(B_i)\le 1
+	.\] 
+	Wir haben daher
+\[
+\lambda_n^*\left( \bigcup_{i=1} ^\infty B_i \right) \le \sum_{i=1}^{\infty} \lambda_n^*(B_i)\le 1
+.\] 
+Sei $B=\bigcup_{i=1}^\infty B_i$. Es ist also $\lambda_n(B)\le 1$. Sei $(A_i),A_i\in \R^m$ eine Überdeckung von $M$, f\"{u}r die gilt
+	\[
+	\sum_{i=1}^{\infty} \lambda_m^*(A_i)<\epsilon
+	.\] 
+	Jetzt ist $A_i\times B$ eine abzählbare Überdeckung von $N\times M$, und
+	\[
+		\sum_{i=1}^\infty\lambda_{n+m}^*(A_i\times B)\le \sum_{i=1}^\infty \lambda_n^*(A_i)<\epsilon
+	,\]
+	also $M\times N$ ist eine $\lambda_{n+m}$-Nullmenge.
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -85,9 +106,30 @@
 		\end{align*}
 		Hier haben wir verwendet, dass $SA_i$ noch paarweise disjunkt ist, weil $S$ bijektiv (insbesondere injektiv) ist.
 	\end{enumerate}
-\item Weil $S$ nicht invertierbar ist, gibt es ein nichttriviales Kern. Wir entscheiden uns f\"{u}r ein Vektor $v_1\in \text{ker}(S)$. Dann machen wir ein Basisergänzung, um ein Basis zu konstruieren:
+\item $\mu_S(A):=\mu(SA)$ ist noch Maß (vorherige Beweis gilt noch): Weil $S$ nicht invertierbar ist, gibt es ein nichttriviales Kern. Wir entscheiden uns f\"{u}r ein Vektor $v_1\in \text{ker}(S)$. Dann machen wir ein Basisergänzung, um ein Basis zu konstruieren:
 	\[
 	B=\left\{ v_1,v_2,\dots, v_n \right\} 
 	.\] 
+	Wir bezeichnen $[0,1)^n\in \mathcal{L}(n)$ als
+	\[
+	[0,1)^n=\left\{ a_1v_1+a_2v_2+\dots+a_nv_n|(a_1,a_2,\dots,a_n)\in M\subseteq \R^n \right\} 
+	.\] 
+	f\"{u}r eine Menge $M$. Es gilt dann
+	\begin{align*}
+		S[0,1)^n=&\left\{ a_1S(v_1)+a_2S(v_2)+\dots +a_nS(v_n)|(a_1,a_2,\dots, a_n)\in M \right\}\\
+		=&\left\{ a_2S(v_2)+\dots+a_nS(v_n)|(a_1,a_2,\dots a_n)\in M \right\} 
+\end{align*}
+	$\left\{ S(v_1),S(v_2),\dots, S(v_n) \right\}$ ist kein Basis, weil die Nullvektor darin vorkommt (vielleicht mehr als einmal). Wir können jedoch ein Basisergänzung machen, die Nullvektoren einzusetzen. Sei das neue Basis
+	\[
+	\left\{ u_1,u_2,\dots, u_n \right\} 
+	.\] 
+	Wir nehmen hier zum Beispiel an, dass $u_i=S(v_i)\forall i\ge 2$, also wir müssen nur $S(v_1)=0$ einsetzen. Das Argument ist gleich, wenn das nicht stimmt. Sei $M=(u_1,u_2,\dots, u_n)$. Dann ist $\mu'(A):=\mu(M^{-1}SA)$ ein Maß, und
+	\[
+		\mu'([0,1)^n)=\mu(\left\{\left\{ 0 \right\} \times (a_2,a_3,\dots, a_n)|(a_1,a_2,\dots, a_n)\in M\right\})=0
+	.\] 
+	Also $\mu'$ ist ein Bewegungsinvariantes Maß mit $\mu'([0,1)^n)=0$. Daraus folgt, dass
+	\[
+	\mu(SA)=0~\forall A\in \mathcal{L}(n)
+	.\qedhere\] 
 \end{parts}	
 \end{proof}
