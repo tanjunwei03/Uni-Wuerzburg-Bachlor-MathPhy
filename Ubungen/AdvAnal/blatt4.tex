@@ -70,7 +70,55 @@ Sei $B=\bigcup_{i=1}^\infty B_i$. Es ist also $\lambda_n(B)\le 1$. Sei $(A_i),A_
 		\begin{tcolorbox}[title=Bemerkung]
 			Erinnern Sie sich daran, dass wir $\text{inf}(\varnothing)=\infty$ definieren. Sonst kann man $\lambda_n(\R)$ betrachten.
 		\end{tcolorbox}
-	\item Wahr. 
+	\item Falsch. Die Intuition dafür ist, dass
+		\[\lambda_n(A)=\sup\left\{K\subseteq A, K\text{ kompakt}  \right\} \]
+		Wenn wir eingeschränkte Mengen betrachten, gilt dass, nur wenn $K$ abgeschlossen ist. Die meistens abschlossenen Mengen $K$ sind der Abschluss eine offene Menge $K=\overline{U}=U+\partial U$. Wir müssen daher nur eine offene Menge finden, sodass $\partial U$ Maß $>0$ hat.
+
+		Konkretes Gegenbeispiel: Smith-Volterra-Cantor-Menge.
+
+		Wir definieren $S_0=[0,1]$ und weiter induktiv
+\[
+	S_n=\bigcup_{k=1}^{2^{n-1}}\left(\left[a_k,\frac{a_k+b_k}{2}-\frac{1}{2^{2n+1}}\right]\cup \left[ \frac{a_k+b_k}{2}+\frac{1}{2^{2n+1}},b_k \right]   \right) 
+,\] 
+wobei $0<a_1<b_1<\dots, a_{2^{n-1}},b_{2^{n-1}}$ durch
+\[
+	S_{n-1}=\bigcup_{k=1}^{2^{n-1}}[a_k,b_k]
+\] 
+definiert sind. Sei jetzt $S=\bigcap_{i=1}^\infty S_n$. Wir beweisen jetzt die Eigenschaften der Menge:
+\begin{enumerate}[label=(\roman*)]
+	\item Alle Intervalle, aus den $S_n$ besteht, haben die gleiche Länge.
+
+		Wir beweisen es per Induktion. F\"{u}r $S_0$ ist es trivial, weil es nur ein Intervall gibt. Jetzt nehmen wir an, das es f\"{u}r beliebige $n\in \N$ gilt, also $b_k-a_k=\Delta_n~\forall k\in 2^{n-1}$. Es gilt:
+		\[
+			\frac{a_k+b_k}{2}-\frac{1}{2^{2n+1}}=a_k+\frac{\Delta_{n-1}}{2}-\frac{1}{2^{2n+1}}
+		,\] 
+		und auch
+		\[
+			\frac{a_k+b_k}{2}+\frac{1}{2^{2n+1}}=a_k+\frac{\Delta_{n-1}}{2}+\frac{1}{2^{2n+1}}
+		.\] 
+Also alle Intervalle haben die Länge
+\[
+	\Delta_{n}=\frac{\Delta_{n-1}}{2}-\frac{1}{2^{2n+1}}
+.\] 
+Die Lösung ist
+\[
+	\Delta_n=2^{-(2n+1)}(1+2^n)
+.\] 
+\item Das Innere von $S$ ist leer. 
+
+	Wir nehmen an, dass eine offene Intervall $(a,b)\subseteq S$ gibt. Das Intervall hat Länge $b-a$. Aber, weil $\lim_{n \to \infty} \Delta_n=0$ gilt, muss es ein $S_n$ geben, f\"{u}r das gilt, dass die Intervalle Länge $<b-a$ haben, also $(a,b)\not\subseteq S$. 
+\item Also $\left\{U| U\subseteq S~U\text{ offen} \right\} =\left\{ \varnothing \right\} $.
+\item $\sup\left\{ \lambda_n(O)|O\subseteq S, O\text{ offen} \right\} =\sup\left\{ 0 \right\} =0$.
+\item $\lambda_n(S) \neq 0$. In jedem Schritt nehmen wir Intervalle mit Maß
+	\[
+		\frac{2^{n}}{2^{2n+2}}
+	,\] 
+	also ingesamt nehmen wir Maß
+	\[
+		\sum_{n=0}^{\infty} \frac{2^n}{2^{2n+2}}=\frac{1}{2}
+	\]
+	raus. Daraus folgt $\lambda_n(S)=\frac{1}{2}\neq 0$.\qedhere
+\end{enumerate}
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -81,14 +129,6 @@ Sei $B=\bigcup_{i=1}^\infty B_i$. Es ist also $\lambda_n(B)\le 1$. Sei $(A_i),A_
 	\end{parts}
 \end{Problem}
 \begin{proof}
-	Wir werden sehr oft einen Matriznorm brauchen:
-	\begin{tcolorbox}[title=Matriz $\infty$-Norm]
-		Sei  $A\in \R^{n\times n}$, und $x\in \R^n$. Wir definieren:
-		\begin{align*}
-			\|x\|=&\|x\|_{\infty},\text{ wie in der Vorlesung, und}\\
-			\|A\|=&\sup_{\|x\|=1}\|Ax\|
-		\end{align*}
-	\end{tcolorbox}
 \begin{parts}
 \item 
 	\begin{enumerate}[label=(\roman*)]
