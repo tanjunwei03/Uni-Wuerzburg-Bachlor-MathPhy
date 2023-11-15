@@ -25,7 +25,9 @@
 	\item $G$ besitzt zu jedem positiven Teiler $t$ von $n$ genau eine Untergruppe der Ordnung $t$.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	(a)$\implies$ (b) ist schon in der Vorlesung bewiesen. (Satz 2.18)
+\end{proof}
 \begin{Problem}
 	\begin{parts}
 	\item  Bestimmen Sie die Ordnungen der Elemente für jede der Diedergruppen $D_n$ mit $n\ge 3$.
@@ -35,11 +37,106 @@
 		\end{tcolorbox}
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir betracten zuerst Elemente mit dem Form $r^ks^0=r^k$. Wir haben per die letzte Übungsblatt
+		\begin{tcolorbox}
+			Zeigen Sie, dass für $k \in \N$ genau dann $r^k = e$ gilt, wenn $n|k$ ist.
+		\end{tcolorbox}
+		also wir brauchen die kleinste Zahl $\text{ord}(r^k)$, sodass $(r^k)^{\text{ord}(r^k)}=r^{k\text{ord}(r^k)}=r^{pn},p\in \N$. Per Definition des kleinsten gemeinsamen Vielfaches ist
+		\[
+			\text{ord}(r^k)=\frac{\text{kgV}(k, n)}{k}=\frac{n}{\text{ggT}(k,n)}
+		.\] 
+		Wir wissen auch, dass $s^2=e$, also $\text{ord}(s)=2$.
+		
+		Jetzt betrachten wir alle Elemente mit dem Form $r^ks$. Es gilt
+		\[
+			r^ks r^k s=r^kr^{-k}s s=ee=e
+		,\]
+		also alle Elemente mit dem Form $r^ks$ haben Ordnung $2$.
+	\item Wir betrachten $D_3$. Die größte Elementordnung ist $3$, weil $\text{ggT}(3,2)=1$, und $\frac{3}{\text{ggT}(3,2)}=3$, also $r^2$ hat Ordnung $3$.
 
+		Keine größere Elementordnung ist möglich, weil $\frac{n}{\text{ggT}(n,k)}\le n=3$, und $2 \le 3$. 
+
+		Es gilt aber
+		\[
+		s^3=(s^2)s=es=s
+		,\]
+		also $s^3\neq e$, ein Widerspruch.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Sei $n\ge 3$. 
 	\begin{parts}
 	\item Zeigen Sie, dass die Menge $R:=\left\{ r^0, r^1, \dots, r^{n-1} \right\} $ ein Normalteiler von $D_n$ ist.
-	\item Zeigen Sie, dass die Gruppe $\left<x \right>$ f\"{u}r kein $D_n\backslash R$ ein Normalteiler von $D_n$ ist.
+	\item Zeigen Sie, dass die Gruppe $\left<x \right>$ f\"{u}r kein $x\in D_n\backslash R$ ein Normalteiler von $D_n$ ist.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir betrachten $x^{-1}Rx$:
+		\begin{enumerate}[label=(\roman*)]
+			\item $x=r^p$:
+
+				Es gilt $x^{-1}=r^{-p}$. und
+				\[
+					r^{-p}r^kr^p=r^k
+				,\]
+				f\"{u}r alle $k\in \Z$, also $r^{-p}Rr^p=R$, insbesondere $r^{-p}Rr^p\subseteq R$.
+			\item $x=s$:
+
+				Es gilt $s^{-1}=s$, und
+				\[
+					s r^k s= r^{-k} ss=r^{-k}\in S
+				,\]
+				(Die Behauptung, dass $r^{-k}\in S$, war im letzten Übungsblatt bewiesen).
+
+			\item $x=r^ps$:
+
+				Wir haben schon bewiesen, dass  $x^{-1}=r^ps$. Es gilt
+				 \[
+					 r^p s r^k r^p s=r^p s r^{k+p}s = r^p r^{-(k+p)}s s=r^{-k}\in R
+				.\]
+		\end{enumerate}
+		Insgesamt gilt $x^{-1}Rx\subseteq R$ f\"{u}r alle $x\in D_n$, also $R$ ist ein Normalteiler.
+	\item Noch einmal betrachten wir die unterschiedlichen Fälle
+		\begin{enumerate}[label=(\roman*)]
+			\item $x=s$, also $\left<x \right> = \left\{ e,s \right\} $:
+
+				Es gilt
+				\[
+					r^{-1}s r=r^{-1}r^{-1}s=r^{-2}s\neq s
+				.\] 
+				(Es gilt $r^{-2}\neq r^0=e$ wenn $n\ge 3$).
+			\item $x=r^ps$, also $\left<x \right> = \left\{ e, r^p s \right\} $.
+
+				Es gilt
+				\[
+					r^{-k}r^p s r^k=r^{-k}r^pr^{-k}s=r^{p-2k}s
+				,\] 
+				was nur ein Element von $\left<x \right>$ ist, wenn $p-2k\equiv p\pmod{n}$. Sei zum Beispiel $k=1$. Weil $n\ge 3$, gilt die Gleichung nie.
+				\begin{tcolorbox}
+					\begin{Lemma}
+						F\"{u}r $n\ge 3$ kann
+						\[
+							p-2\equiv p\pmod{n}
+						\]
+						nicht gelten, f\"{u}r alle $p\in \Z$
+					\end{Lemma}
+					\begin{proof}
+						Die Gleichung $p-2\equiv p\pmod{n}$ genau dann, wenn es $k\in \Z$ existiert, sodass
+						\[
+						p-p-2=kn
+						,\]
+						aber das impliziert
+\[
+2=kn
+,\] 
+was unmöglich ist, weil $n\ge 3 > 2$.
+					\end{proof}
+				\end{tcolorbox}
+				Also $r^{-1}\left<x \right>r\not\subseteq \left<x \right>$
+		\end{enumerate}
+		Die Gruppe $\left<x \right>$ ist dann keine Gruppe f\"{u}r $x\in D_n\backslash R$.\qedhere
+	\end{parts}
+\end{proof}
