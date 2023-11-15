@@ -1,6 +1,6 @@
 \begin{Problem}
 	\begin{parts}
-		\item Seien $(X,\mathcal{A}), (Y,\mathcal{B})$ messbare R\"{a}ume, $C\in A\otimes B$ und $a\in X$. Zeigen Sie, dass
+		\item Seien $(X,\mathcal{A}), (Y,\mathcal{B})$ messbare R\"{a}ume, $C\in \mathcal{A}\otimes \mathcal{B}$ und $a\in X$. Zeigen Sie, dass
 			\[
 			\left\{ y\in Y|(a,y)\in C \right\} \in \mathcal{B}
 			.\] 
@@ -13,7 +13,28 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wir wissen, dass $C$ eine abzählbare Vereinigung von Mengen $A_i\times B_i,~A_i\in \mathcal{A},~B_i\in \mathcal{B}$. Sei $\Pi_2: X \times Y, \Pi_2:(a,b)\to b$. 
+	\item Zuerst betrachten wir dem Fall, in dem $C=A\times B\in \mathcal{A}\times \mathcal{B}$. Es gilt dann
+		\[
+		\left\{ y\in Y|(a,y)\in C \right\} =\begin{cases}
+			B & x\in A\\
+			\varnothing & x \not\in A
+		\end{cases}
+		.\]
+		Weil sowohl $\varnothing$ als auch $B$ Elemente von $\mathcal{B}$ sind, gilt die Aussage f\"{u}r solche Mengen $C\in A \times B$.
+
+		Jetzt beweisen wir die Aussage im Allgemein: Sei $C\in A\otimes B$. Dann gilt entweder:
+		\begin{enumerate}[label=(\roman*)]
+			\item C ist eine abzählbare Vereinigung von Mengen $C=\bigcup_{i=1}^\infty A_i\times B_i$, wobei $A_i\times B_i\in \mathcal{A}\times \mathcal{B}$.\label{enum:advanalblatt4-1}
+			\item $C$ ist eine abzählbare Schnitt von Mengen $C=\bigcap_{i=1}^\infty A_i\times B_i$, wobei $A_i\times B_i\in \mathcal{A}\times \mathcal{B}$. \label{enum:advanalblatt4-2}
+		\end{enumerate}
+Sei dann $M\subseteq \N$ die Zahlen, sodass $a\in A_i \iff i\in M$. Es gilt, in der beiden Fälle
+\[
+\left\{ y\in Y|(a,y)\in C \right\}=\begin{cases}
+	\bigcup_{i\in M} B_i & \ref{enum:advanalblatt4-1},\\
+	\bigcap_{i\in M} B_i & \ref{enum:advanalblatt4-2}.
+\end{cases}
+\] 
+was immer ein Element von $\mathcal{B}$ ist.
 	\item Sei $\epsilon>0$ gegeben, und $\left\{ A_1,A_2,\dots,A_n \right\},A_i\in\mathbb{J}(m)$ eine endliche Überdeckung von $K$, wobei jedes $\lambda_m(A_i)<\infty$. 
 		\begin{tcolorbox}
 			Das ist immer möglich, weil $K$ kompakt ist. Wir können dann eine Überdeckung $(A_i)$ von $K$ wählen, und die Kompaktheit von $K$ liefert eine endliche Teilüberdeckung. 
@@ -48,6 +69,18 @@ Sei $B=\bigcup_{i=1}^\infty B_i$. Es ist also $\lambda_n(B)\le 1$. Sei $(A_i),A_
 		\sum_{i=1}^\infty\lambda_{n+m}^*(A_i\times B)\le \sum_{i=1}^\infty \lambda_n^*(A_i)<\epsilon
 	,\]
 	also $M\times N$ ist eine $\lambda_{n+m}$-Nullmenge.
+\item Wie im Skript betrachten wir $\left\{ 0 \right\} \times B, B\not\in  \mathcal{L}(n)$. Es gilt $\left\{ 0 \right\} \times B\in \mathcal{L}(m+n)$, weil $\left\{ 0 \right\} \times B$ eine $\lambda_{n+m}$-Nullmenge ist.
+
+	Jetzt versuchen wir, $\left\{ 0 \right\} \times B$ als eine abzählbare Schnitt
+	\[
+		\left\{ 0 \right\} \times B\overset{?}{=}\bigcap_{i=1}^\infty \underbrace{A_i\times B_i}_{\in \mathcal{L}(m)\times \mathcal{L}(n)}
+	.\] 
+
+	Aber
+	\[
+	\bigcap_{i=1}^\infty A_i\times B_i=\left( \bigcap_{i=1} ^\infty A_i \right) \times \left(\bigcap_{i=1}^\infty B_i\right)
+	,\] 
+	und wir wissen schon, dass es keine Folgen von Mengen $(B_i),B_i\in \mathcal{B}$ existiert, sodass $\bigcap_{i=1}^\infty B_i=B$, also $\left\{ 0 \right\} \times B\not\in \mathcal{M}\otimes \mathcal{N}$.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
