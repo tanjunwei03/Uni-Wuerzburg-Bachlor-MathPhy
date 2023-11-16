@@ -12,10 +12,16 @@
 \begin{proof}
 	\begin{parts}
 	\item Sei $g\in G$ beliebig und $H=\left<g \right>$. $H$ ist eine Untergruppe von $G$. Es gilt auch, dass $|H|=\text{ord}(g)$. Wir wissen, dass $|H|$ teilt $|G|$. Daraus folgt, dass $\text{ord}(g)$ teilt $|G|$, und $g$ liegt in genau einer der Mengen $M_t$ mit $t\in T$.
-	\item Sei $r$ die Erzeuger von $G$, also $G=\left\{1, r,r^2,\dots,r^{n-1} \right\} $. Wir betrachten $r^k$ f\"{u}r $1\le k \le n$ beliebig. Es gilt:
-		\[
-			\text{ord}(r^k)=\frac{kgV(k,n)}{k}
-		.\] 
+	\item Weil $G$ zyklisch ist, gibt es f\"{u}r jede Teiler $t|n$ eine Untergruppe der Ordnung $t$. 
+
+		Diese Untergruppe hat genau $\varphi(t)$ Erzeuger. F\"{u}r alle Erzeuger $p$gilt $\text{ord}(t)=|\left<t \right>|=t$. Es gilt daher, f\"{u}r jedes $t\in T$, $|M_t|\ge \varphi(t)$. 
+
+		Außerdem ist die Untergruppe der Ordnung $t$ eindeutig. Deswegen ist genau $|M_t|=\varphi(t)$. Wir nehmen an, dass es $p\in G$ gibt, sodass $\text{ord}(p)=t$, also $|\left<p \right>|=t$. Weil die zyklische Untergruppe der Ordnung $t$ eindeutig ist, ist die erzeugte Gruppe genau die Gruppe, die wir vorher diskutiert haben, also $p$ ist einer der vorherigen $\varphi(t)$ Erzeuger.
+
+		Daraus folgt, dass $|M_t|=\varphi(t)$ f\"{u}r alle $t\in T$.
+	\item Es gibt f\"{u}r jedes $n$ eine zyklische Gruppe der Ordnung $n$, z.B. $\Z / n\Z$.
+
+		Alle Element sind in einer der Mengen $M_t$. Die Zahl der Elemente ist einfach  $\sum_{t\in T} |M_t|=\varphi(t)a_n z^n$
 	\end{parts}
 \end{proof}
 \begin{Problem}
