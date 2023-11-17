@@ -1,0 +1,133 @@
+\begin{Problem}
+	Es sei $K$ ein Körper. Ferner seien $a,b\in K[t]\backslash \left\{ 0 \right\} $ Polynome. 
+
+	Wir definieren $r_0:=a,r_1:=b$ und definieren f\"{u}r $k\in \N$ $q_k$ und $r_{k+1}$ als Polynome, die
+	\[
+		r_{k-1}=q_kr_k+r_{k+1}\qquad \text{deg}(r_{k+1})<\text{deg}(r_k)
+	\]
+	erfüllen, falls $r_k\neq 0$ und ansonsten definieren wir $r_{k+1}=r_k=0$.
+	\begin{parts}
+		\item Zeigen Sie: Es gibt ein minimales $k_0\in \N$, sodass $r_k=0$ f\"{u}r alle $k>k_0$.
+		\item Zegen Sie: Mit dieser Wahl ist $r_{k_0}\neq 0$ und $r_{k_0}$ ist ein gemeinsamer Teiler von $a$ und $b$.
+		\item Zeigen Sie: Ist $s\in K[t]$ ein gemeinsamer Teiler von $a$ und $b$, dann ist $s$ auch ein Teiler von $r_{k_0}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item \label{enum:linalg1blatt5-2}	Es gilt $\text{deg}(r_k)<\text{deg}(r_k)$, also die Folge $\text{deg}(r_k)$ ist streng monoton fallend. Weil es nur endliche Möglichkeiten $k$ f\"{u}r die Grad eines Polynomes mit $k<\text{deg}(b)$ gibt, muss es ein Zahl $k_0'$ geben, mit $\text{deg}(r_{k_0'})=-\infty$.
+	
+		(Die Möglichkeiten sind $\left\{ -\infty,0,1,\dots,\text{deg}(b) \right\} $.)
+
+		$\text{deg}(r_{k_0})=-\infty$ genau dann, wenn $r_{k_0}=0$. Es folgt per Definition, $r_{k_0+1}=0$ und $r_{k}=0~\forall k\ge k_0$ per Induktion.
+
+		Weil $\left\{ 0,1,\dots, k_0' \right\} $ endlich ist, gibt es ein minimales Zahl $k_0$ mit die gewünsche Eigenschaft.
+\item 
+	\begin{tcolorbox}
+		Mit dieser Wahl ist $r_{k_0}\neq 0$.
+	\end{tcolorbox}
+	Sonst wäre es ein Widerspruch, weil $k_0$ nicht die kleinste Zahl mit diese Eigenschaft wäre. Falls $r_{k_0}=0$, wäre $k_0-1$ eine kleine Zahl mit die gewünschte Eigenschaft.
+
+	\begin{enumerate}[label=(\roman*)]
+		\item \label{enum:linalg1blatt5-1}Wir beweisen zuerst die folgende Behauptung:
+	\begin{tcolorbox}
+		Sei $p$ ein gemeinsamer Teiler von $r_{k}$ und $r_{k+1}$. Dann ist $p$ auch ein gemeinsamer Teiler von $r_k$ und $r_{k-1}$.
+	\end{tcolorbox}
+	Per Definition teilt $p$ $r_k$. Wir wissen auch, dass
+	\[
+		r_{k-1}=q_kr_k+r_{k+1}
+	.\]
+	Weil $p$ teilt $r_k$, teilt $p$ $q_kr_k$ auch. Da $p$ teilt auch $r_{k+1}$, teilt $p$ $q_kr_k+r_{k+1}$, also $p$ teilt $r_{k-1}$. Dann ist $p$ ein gemeinsamer Teiler von $r_k$ und $r_{k-1}$.
+\item Sei $p$ ein gemeinsamer Teiler von $r_{k-1}$ und $r_{k},k\le k_0$. Dann ist $p$ auch ein gemeinsamer Teiler von $a$ und $b$.
+
+	Wir beweisen es per Induktion. F\"{u}r $k=1$ ist es klar, dass alle gemeinsamer Teiler von $a$ und $b$ auch gemeinsamer Teiler von $a$ und $b$ sind. 
+
+	Jetzt nehmen wir an, dass es f\"{u}r eine beliebige $\N\ni k<k_0$ gilt, dass alle gemeinsamer Teiler von $r_k$ und $r_{k-1}$ auch gemeinsamer Teiler von $a$ und $b$ sind.
+
+	Jetzt betrachten wir $r_k$ und $r_{k+1}$. Sei $p$ ein gemeinsamer Teiler von $r_k$ und $r_{k+1}$. Aus \ref{enum:linalg1blatt5-1} folgt, dass $p$ auch ein Teiler von $r_k$ und $r_{k-1}$ ist. Per Induktionvoraussetzung ist $p$ auch ein gemeinsamer Teiler von $a$ und $b$.
+\item Insbesondere gilt, dass alle gemeinsamer Teiler $p$ von $r_{k_0}$ und $r_{k_0-1}$ auch gemeinsamer Teiler von $a$ und $b$ sind. 
+\item In \ref{enum:linalg1blatt5-2} haben wir schon bewiesen, dass $r_{k_0}$ ein Teiler von $r_{k_0-1}$ ist. Daraus folgt, dass $r_{k_0}$ ein gemeinsamer Teiler von $r_{k_0}$ und $r_{k_0-1}$ ist. Es folgt, dass $r_{k_0}$ ein gemeinsamer Teiler von $a$ und $b$ ist.
+\end{enumerate}
+\item Der Beweis läuft ähnlich:
+\begin{enumerate}[label=(\roman*)]
+	\item Wir beweisen per Induktion:
+		\begin{tcolorbox}
+			Sei $p$ ein gemeinsamer Teiler von $a$ und $b$. $p$ ist dann ein gemeinsamer Teiler von $r_k$ und $r_{k-1}$ f\"{u}r alle $k\in \left\{ 0,1,\dots, k_0 \right\} $.
+		\end{tcolorbox}
+	\item Induktionsvoraussetzung: Wir nehmen an, dass es f\"{u}r beliebige $\N \ni k \le k_0-1$, dass alle gemeinsamer Teiler von $a$ und $b$ auch gemeinsamer Teiler von $r_{k}$ und $r_{k-1}$ sind.
+	\item  
+\end{enumerate}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie: Ist $K$ ein endlicher Körper, so gibt es ein Polynom $p \neq 0$, das alle $x \in K$ als Nullstelle hat. Folgern Sie daraus, dass die Abbildung $K[t] \to \text{Abb}(K, K), f \to (x \to f (x))$ in diesem Fall nicht injektiv ist.
+	\item Zeigen Sie: Ist $p \in K[t]$ ein Polynom vom Grad 0, 1, 2 oder 3, das keine Nullstelle in $K$ hat, dann hat von zwei Polynomen $f, g$ mit $f \cdot g = p$ mindestens eines Grad 0.
+	\item Bestimmen Sie mit dem vietaschen Nullstellensatz alle rationalen Nullstellen von
+		\[
+			q=99\cdot t^3-63\cdot t^2-44\cdot t + 28\in \Q[t]
+		.\] 
+	\item Beweisen Sie, dass das Polynom $t^8-2\in \Q[t]$ keine rationalen Nullstellen hat.
+	\item Es seien $f=(2+3i)X^7-5$ und $g=X^2-2i$ in $\C[X]$ gegeben. Bestimmen Sie wie im Existenzbeweis von Satz 2.4.26 die Polynome $q,r\in \C[X]$ mit $\text{deg}(r)<\text{deg}(g)$ und
+		\[
+		f=q\cdot g+r
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir beweisen es konstruktiv. Sei $p=\prod_{r\in K} (x-r)  $. Es gilt, f\"{u}r alle $x\in K$, dass $x-x=0$, also $p(x)=0$. Aber $p\neq 0$, z.B. ist das Koeffizient $a_n=1$, wobei $n=|K|$.
+
+		Wir wissen, dass die Abbildung das konstruierte Polynom auf die Nullfunktion abbildet. Aber die Abbildung bildet auch das Nullpolynom auf die Nullfunktion ab. Also wir haben $K[t]\ni 0 \neq p\in K[t]$, aber die Abbildung bildet $0$ und $p$ auf die gleiche Funktion, also es ist nicht injektiv.
+	\item Es gilt
+		\[
+			\text{deg}(p)=\text{deg}(f)+\text{deg}(g)
+		,\]
+		also es gibt nur zwei Möglichkeiten f\"{u}r $\text{deg}(f)$ und $\text{deg}(g)$: Entweder haben wir $0+3=3$ oder $1+2=3$. 
+
+		Sei $ \text{deg}(f)=1$ und $\text{def}(g)=2$, mit $p=f\cdot g$. Per Definition ist $f(t)=a_0+a_1t,a_0,a_1\in K$. Sei $t=-a_1^{-1}a_0\in K$. Es gilt $\tilde{f}(t)=a_0-a_1a_1^{-1}a_0=0$, also $ t$ ist eine Nullstelle von $f$. 
+
+		Es folgt daraus, dass $t$ ist eine Nullstelle von $p$, ein Widerspruch zu die Annahme, dass $p$ keine Nullstellen hat.
+
+		Jetzt bleibt nur eine Möglichkeit, dass von $f,g$ mindestens eines (eigentlich genau eine) Grad $0$ hat.
+	\item F\"{u}r alle rationale Nullstellen $a / b, a\in \N\cup \left\{ 0 \right\} , b\in \Z$, $a,b$ teilerfremd gilt 
+		\[
+		a|28\qquad b|99
+		.\] 
+		Weil $28=2^2\times 7$ und $99=3^2\times 11$, sind die Möglichkeiten dafür:
+		\begin{align*}
+			a\in& \left\{1,2,4,7,14, 28 \right\} \\
+			b\in& \left\{ 1,3,9,11,33,99 \right\} 
+		\end{align*}
+	\item Wir verwenden Satz 2.4.37. Sei $x=\frac{p}{q}\in \Q$, $p,q\in \Z, q >0$ teilerfremd, eine Nullstelle von $t^8-2$. Dann gilt
+		\[
+		p|-2\qquad q|1
+		,\] 
+		also $q=1$ und $p\in\left\{ -2,-1,0,1,2 \right\} $, dann $x\in \left\{ -2,-1,0,1,2 \right\} $. Aber f\"{u}r keine mögliche $x$ gilt $x^8-2=0$, also $t^8-2\in \Q[t]$ hat keine rationale Nullstellen.
+	\item 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Beweisen oder widerlegen Sie folgende Behauptungen:
+	\begin{parts}
+	\item $\R$ wird mit der gewöhnlichen Addition und Multiplikation ein $\Q$-Vektorraum.
+	\item $\Z$ wird mit der gewöhnlichen Addition und der Multiplikation $\Z / 2\Z \to \Z: \overline{0}\cdot z=0,\overline{1}\cdot z=z$ zu einem $\Z / 2\Z$-Vektorraum.
+	\item Der Ring $\C\times \R$ wird mit der Multiplikation $a\cdot (z, r)=(az,ar)$ zu einem $\R$-Vektorraum.
+	\item Der Ring $\C\times \R$ wird mit der Multiplikation $a\cdot (z, r)=(az, ar)$ zu einem $\C$-Vektorraum.
+	\item Jeder $\C$-Vektorraum ist mit der entsprechend eingeschränkten Multiplikation auch ein $\R$-Vektorraum.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wahr. Wir wissen, dass $(\R,+,0)$ eine abelsche Gruppe ist. 
+
+		Die andere Gruppenaxiome folgen aus die analoge Axiome f\"{u}r Addition und Multiplikation in $\R$, wenn man $(\Q,+,\cdot, 0, 1)$ als Unterring von $(\R,+,\cdot, 0, 1)$ betrachtet.
+	\item Falsch. Das Distributivgesetz wird verletzt. Sei $a\in \Z, a\neq 0$ und daher $a+a\neq 0$. Es gilt
+		\begin{align*}
+			a+a=&\overline{1}\cdot a+\overline{1}\cdot a\\
+			\neq& (\overline{1}+\overline{1})a\\
+			=& \overline{0}\cdot a\\
+			=& 0
+		\end{align*}
+	\item Wahr. Ähnlich zu (a) folgt dies aus 
+	\end{parts}
+\end{proof}

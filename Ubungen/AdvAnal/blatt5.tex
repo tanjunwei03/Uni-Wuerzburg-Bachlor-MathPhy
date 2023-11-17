@@ -1,0 +1,55 @@
+
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein Maßraum und $f:X\to \R$ nicht-negativ und messbar. Es existiere eine Menge $A\in \mathcal{A}$ mit $\mu(A)>0$ und $f(x)>0$ f\"{u}r alle $x\in A$. Zeigen Sie, dass ein $\epsilon>0$ und eine Menge $B\in A$ mit $\mu(B)>0$ existieren, sodass $f(x)>\epsilon$ f\"{u}r alle $x\in B$ gibt.
+\end{Problem}
+
+\begin{proof}
+	Wir beweisen es per Widerspruch. Wir nehmen an, dass die Behauptung falsch ist. Dann f\"{u}r jedes $\epsilon>0$ ist $\left\{ f>\epsilon \right\} $ eine Nullmenge. (Wir wissen, dass die Menge messbar ist, weil $f$ bessbar ist.)
+
+	Insbesondere gilt es f\"{u}r alle $\Q\ni \epsilon >0$. Wir bezeichnen $\Q^+:=\left\{ x|x\in \Q, x>0 \right\} $. Es gilt
+	\[
+	A\subseteq \left\{ f>0 \right\} =\bigcup_{x\in \Q^+} \left\{ f>x \right\} 
+,\] 
+also
+\begin{align*}
+	\mu(A)\le& \mu(\left\{ f>0 \right\} )\\
+	\le& \sum_{x\in \Q^+} \left\{ f>x \right\} \\
+	=& \sum_{x\in \Q^+} 0\\
+	=& 0
+\end{align*}
+also $A$ ist eine Nullmenge, ein Widerspruch zu die Annahme, dass $\mu(A)>0$.
+\end{proof}
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein vollst\"{a}ndiger Maßraum und $f_n:X\to \R$ messbar f\"{u}r alle $n\in \N$. Außerdem sei $(f_n)$ punktweise $\mu$-fast überall konvergent, d.h. es existiert ein $\mu$-Nullmenge $N\in \mathcal{A}$ und eine Funktion $f:X\to \R$, sodass $\lim_{n \to \infty} f_n(x)=f(x)$ f\"{u}r alle $x\in X\backslash N$ gilt. Zeigen Sie, dass $f$ messbar ist.
+\end{Problem}
+\begin{Problem}
+	Sei $A\subsetneq \R$ nichtleer. Bestimmen Sie alle Funktionen $f:\R\to \R$, welche bezüglich der $\sigma$-Algebra $\mathcal{A}:=\left\{ \varnothing, A,A^c, \R \right\} $ messbar sind.
+\end{Problem}
+\begin{proof}
+	Es gilt immer $f^{-1}(\varnothing)=\varnothing$. Außerdem wissen wir aus der Mengentheorie, dass $f^{-1}(A)\cap f^{-1}(A^c)=\varnothing$, und das Urbild von einer nichtleeren Menge ist immer nichtleer. Die unterschiedliche Funktionen sind
+	\begin{align*}
+		& f(A)=A & f(A^c)=A^c & & f(\R)=\R, \\
+		& f(A)=A^c & f(A^c)=A & & f(\R)=\R. & \qedhere
+	\end{align*}
+\end{proof}
+\begin{Problem}
+	Der Beweis von Lemma 1.83 funktionert anstelle von $[0,1]$ auch analog f\"{u}r jede beliebige Lebesgue-messbare Menge in $\R$, die keine Nullmenge ist. Das heißt f\"{u}r jede solche Menge existiert eine Teilmenge, die nicht Lebesgue-messbar ist.
+	Sei nun $f$ die Cantor-Funktion aus Präsenzübung 3 und definiere $g:[0,1]\to [0,2],x\to x+f(x)$.
+	\begin{tcolorbox}
+		Wir definieren die Funktionenfolge $(f_n)$ durch $f_1:[0,1]\to \R$, $x\to x$ und
+		\[
+			f_{n+1}:[0,1]\to \R,\qquad x\to \begin{cases}
+				\frac{1}{2}f_n(3x) & 0 \le x \le \frac{1}{3},\\
+				\frac{1}{2}, \frac{1}{3}<x<\frac{2}{3},\\
+				\frac{1}{2}+\frac{1}{2}f_n(3x-2) & \frac{2}{3}\le x \le 1.
+			\end{cases}
+		.\] 
+		Dann konvergiert $f_n$ gleichmäßig gegen eine Grenzfunktion $f$.
+	\end{tcolorbox}
+	\begin{parts}
+		\item Zeigen Sie, dass $g$ bijektiv und die Umkehrfunktion $g^{-1}$ messbar ist.
+		\item Zeigen Sie nun, dass der Maßraum $(\R, \mathcal{B}^1, \lambda_1|_{\mathcal{B}^1})$ nicht vollständig ist.
+			
+			{\footnotesize \emph{Hinweis: Nutzen Sie eine geeignete nicht Lebesgue-messbare Menge.}}
+	\end{parts}
+\end{Problem}

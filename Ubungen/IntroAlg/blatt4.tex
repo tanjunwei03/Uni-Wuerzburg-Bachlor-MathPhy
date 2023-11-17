@@ -21,7 +21,7 @@
 		Daraus folgt, dass $|M_t|=\varphi(t)$ f\"{u}r alle $t\in T$.
 	\item Es gibt f\"{u}r jedes $n$ eine zyklische Gruppe der Ordnung $n$, z.B. $\Z / n\Z$.
 
-		Alle Element sind in einer der Mengen $M_t$. Die Zahl der Elemente ist einfach  $\sum_{t\in T} |M_t|=\varphi(t)a_n z^n$
+		Alle Element sind in einer der Mengen $M_t$. Die Zahl der Elemente ist einfach  $\sum_{t\in T} |M_t|=\varphi(t)=n$
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -32,7 +32,17 @@
 	\end{parts}
 \end{Problem}
 \begin{proof}
-	(a)$\implies$ (b) ist schon in der Vorlesung bewiesen. (Satz 2.18)
+	(a)$\implies$(b) ist schon in der Vorlesung bewiesen. (Satz 2.18). Es bleibt (b)$\implies$(a) zu zeigen. Wir betrachten dann ein Element $a\in G$ und die erzeugte zyklische Gruppe $\left<a \right>$. Falls $\left<a \right> = G$ sind wir fertig. Also nehmen wir an, $\left<a \right>\neq G$. Sei $\text{ord}(a)=k$, und $\left<a \right> = k$. Diese Gruppe besitzt genau $\varphi(k)$ Erzeuger.
+	
+	Dann wählen wir ein anderes $b$ Element aus, das kein Erzeuger von $\left<a \right>$ ist. Wir betrachten $\left<b \right>$. Es muss gelten, dass $\text{ord}(b)=\left| \left<b \right> \right| \neq k$. Sonst wäre $\left<b \right> = \left<a \right>$, weil es nur \emph{eine} Untergruppe der Ordnung $k$ gibt.
+
+	Ähnlich fahren wir fort. Wir wählen ein Element aus, das kein Erzeuger von der voherigen betrachten zyklischen Gruppen sind. Weil es f\"{u}r jeder Teiler von $n$ nur eine Untergruppe der Ordnung gibt, gilt $|M_t|=\varphi(t)$.
+
+	Sei $T$ die Menge der positiven Teiler von $n$. Wir berechnen
+	\[
+	\sum_{n\neq t\in T}\varphi(t)<n
+	,\] 
+	also wir haben Elemente, f\"{u}r die gilt, deren Ordnung kein positiver Teiler von $n$, das weniger als $n$ ist. Weil die Ordnung ein Teiler von $n$ sein muss, muss die Ordnung $n$ sein, also solche Elemente sind Erzeuger der Gruppe $G$, und $G$ ist zyklisch.
 \end{proof}
 \begin{Problem}
 	\begin{parts}
