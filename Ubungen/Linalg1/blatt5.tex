@@ -54,7 +54,11 @@
 			Sei $p$ ein gemeinsamer Teiler von $a$ und $b$. $p$ ist dann ein gemeinsamer Teiler von $r_k$ und $r_{k-1}$ f\"{u}r alle $k\in \left\{ 0,1,\dots, k_0 \right\} $.
 		\end{tcolorbox}
 	\item Induktionsvoraussetzung: Wir nehmen an, dass es f\"{u}r beliebige $\N \ni k \le k_0-1$, dass alle gemeinsamer Teiler von $a$ und $b$ auch gemeinsamer Teiler von $r_{k}$ und $r_{k-1}$ sind.
-	\item  
+	\item Wir betrachten $p$, was ein gemeinsamer Teiler von $a$ und $b$ ist, also per Induktionsvoraussetzung ist $p$ ein gemeinsamer Teiler von $r_k$ und $r_{k-1}$. 
+
+		Es gilt $r_{k+1}=r_{k-1}-q_kr_k$, also weil $p$ $r_k$ teilt, teilt $p$ $q_kr_k$. Es folgt, dass $p$ teilt $r_{k-1}-q_kr_k$, und $p$ teilt $r_{k+1}$. Also $p$ ist ein gemeinsamer Teiler von $r_{k+1}$ und $r_k$.
+
+		Insbesondere gilt, dass wenn $s\in K[t]$ ein gemeinsamer Teiler von $a$ und $b$ ist, ist $s$ ein gemeinsamer Teiler von $r_{k_0}$ und $r_{k_0-1}$, also s ist ein Teiler von $r_{k_0}$.\qedhere
 \end{enumerate}
 	\end{parts}
 \end{proof}
@@ -104,6 +108,9 @@
 		,\] 
 		also $q=1$ und $p\in\left\{ -2,-1,0,1,2 \right\} $, dann $x\in \left\{ -2,-1,0,1,2 \right\} $. Aber f\"{u}r keine mögliche $x$ gilt $x^8-2=0$, also $t^8-2\in \Q[t]$ hat keine rationale Nullstellen.
 	\item 
+		\begin{align*}
+			(2+3i)X^7-5=&(X^2-2i)((2+3i)X^5-(6-4i)X^3\\&-(8+12i)X)+\underbrace{(24-16i)X-5}_r.\qedhere
+		\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -118,7 +125,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wahr. Wir wissen, dass $(\R,+,0)$ eine abelsche Gruppe ist. 
+	\item \label{enum:linalg1blatt1-3} Wahr. Wir wissen, dass $(\R,+,0)$ eine abelsche Gruppe ist. 
 
 		Die andere Gruppenaxiome folgen aus die analoge Axiome f\"{u}r Addition und Multiplikation in $\R$, wenn man $(\Q,+,\cdot, 0, 1)$ als Unterring von $(\R,+,\cdot, 0, 1)$ betrachtet.
 	\item Falsch. Das Distributivgesetz wird verletzt. Sei $a\in \Z, a\neq 0$ und daher $a+a\neq 0$. Es gilt
@@ -128,6 +135,56 @@
 			=& \overline{0}\cdot a\\
 			=& 0
 		\end{align*}
-	\item Wahr. Ähnlich zu (a) folgt dies aus 
+	\item Wahr. Es folgt ähnlich zu \ref{enum:linalg1blatt1-3}:
+
+		Wir haben $+,\cdot:\C\to \C$. Wir wissen, dass  $(\R,+|_{\R\times \R}, \cdot|_{\R \times \R}, 0, 1)$ ein Unterring ist. Daraus folgt, dass $\C\times \R$ mit der Multiplikation $a\cdot (z,r)=(az,ar)$ ein $\R$-Vektorraum ist.
+	\item Falsch. Es gilt, z.B. $(1,1)\in \C\times \R$, $i\in \C$, aber
+		\[
+		i\cdot (1,1)=(i,i)\not\in \C\times \R
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei $(V, +)$ eine abelsche Gruppe. Zeigen Sie:
+	\begin{parts}
+	\item Die Menge $\text{End}\left(V \right) $ aller Homomorphismen von $V\to V$ bildet mit den Verknüpfungen 
+		\[
+			\oplus: \text{End}(V)\times \text{End}(V)\to \text{End}(V), f\oplus g:=(V\to V, x\to f(x)+g(x))
+		\]
+		und $\circ$ der gewöhnlichen Hintereinanderausführung von Abbildungen, einen Ring mit 1.
+	\item Enthält $\text{End}(V)$ einen Körper $K$, dann ist $(V,+)$ mit der skalaren Multiplikation $k\cdot v:=k(v)$ ein $K$-Vektorraum.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item Wir wissen, weil $(V,+)$ abelsch ist, dass $(\text{End}(V),\oplus)$ auch eine abelsche Gruppe ist.
+			\item Wir wissen auch, dass Verkettung von Funktionen assoziativ ist.
+			\item Distributivgesetz: Sei $f,g,h\in \text{End}(V)$. Es gilt, f\"{u}r beliebige $x\in V$,
+				\begin{align*}
+					\left[f\circ (g\oplus h)\right](x)=& f(g(x)+h(x))\\
+					=& f(g(x))+f(h(x)) & f\text{ ist ein Homomorphismus}\\
+					=& (f\circ g)(x)+(f\circ h)(x)\\
+					=&\left[ (f\circ g)\oplus (f\circ h) \right](x)
+				\end{align*}
+				Weil $x$ beliebig war, ist $f\circ (g\oplus h)=(f\circ g)\oplus(f\circ h)$
+			\item Sei $1\in \text{End}(V), x\to x$. Sei außerdem $f\in \text{End}(V)$, und $x\in V$ beliebig. Es gilt
+\[
+f\circ 1=1\circ f =f
+,\]
+also $\text{End}(V)$ ist ein Ring mit $1$.
+		\end{enumerate}
+	\item $V$ ist eine abelsche Gruppe (das haben wir vorausgesetzt). Wir müssen nur die andere Axiome betrachten. In folgendes Sei $\lambda,\mu\in K$ beliebiger Elemente von der Körper und $v,w\in V$. Weil $K$ ein Körper ist, enthält $K$ $1$. 
+		 \begin{enumerate}[label=(\roman*)]
+			 \item $(\lambda \oplus \mu)\cdot v=\lambda\cdot v+\mu \cdot v$ folgt per Definition von $\oplus$.
+			 \item $\lambda\cdot (v+w)=\lambda\cdot v+\lambda\cdot w$ gilt, weil $\lambda$ ein Homomorphismus ist.
+			 \item 
+				 \begin{align*}
+					 (\lambda \circ \mu)\cdot v=& \lambda(\mu(v))\\
+					 =& \lambda \cdot (\mu\cdot v)
+				 \end{align*}
+			 \item Es gilt $1\cdot v=1(v)=v$ per Definition von $1$.\qedhere
+		\end{enumerate}
 	\end{parts}
 \end{proof}
