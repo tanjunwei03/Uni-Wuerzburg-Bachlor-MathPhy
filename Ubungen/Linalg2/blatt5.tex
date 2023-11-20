@@ -1,0 +1,122 @@
+\begin{Problem}
+	Es seien $V,W$ zwei nicht notwendigerweise endlich-dimensionale Vektorräume über $\mathbb{K}$. Wir definieren eine lineare Abbildung $\Phi:V\to \text{im}(\Phi)\subseteq W$. Zeigen Sie:
+	\begin{parts}
+		\item F\"{u}r jedes Komplement $U$ von $\text{ker}(\Phi)$, d.h. $V=\text{ker}(\Phi)\oplus U$, ist
+		\[
+			\Phi|_U:U\to\text{im}(\Phi)
+		\]
+		ein Isomorphismus.
+	\item Sei $g$ eine Funktion der Art
+		\[
+			g:\text{im}(\Phi)\to V, b\to x
+		\]
+für ein ausgewähltes $x$, sodass $\Phi(x)=b$ und sei $g$ linear, dann gilt
+\[
+	V=\text{ker}(\Phi)\oplus g(\text{im}(\Phi))
+.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es ist ein Homomorphismus, weil es linear ist. Wir müssen nur zeigen, dass es bijektiv ist.
+
+		Es ist injektiv. Nehmen wir an, dass es nicht injektiv ist. Es gibt dann zwei unterschiedliche Vektoren $v,u\in U$, sodass $\Phi(v)=\Phi(u)$. Es gilt dann
+		\[
+			\Phi(\underbrace{v-u}_{\in U})=\Phi(v)-\Phi(u)=0
+		,\]
+		also $v-u\in\text{ker}(\Phi)$. Wir wissen jedoch, dass $v-u\neq 0$, ein Widerspruch zu der Voraussetzung, dass $U$ ein Komplement von $\text{ker}(\Phi)$ ist.
+
+		Es ist surjektiv. F\"{u}r jedes $0\neq v\in \text{im}(\Phi)$ gibt es ein Vektor $u\in V$, sodass $v=\Phi(u)$ (Definition des Bilds). Wenn $v\neq 0$, kann $u$ nicht in $\text{ker}(\Phi)$ sein. Also wir schreiben $u=u_1+u_2$, wobei $u_1\in \text{ker}(\Phi)$ und $u_2\in U$. Es gilt
+		\[
+		v=\Phi(u_1)+\Phi(u_2)=0+\Phi(u_2)=\Phi(u_2)
+		,\]
+		also f\"{u}r jedes $\text{im}(\Phi)\ni v\neq 0$ gibt es ein Vektor $u_2\in U$, sodass $\Phi(u_2)=v$, also $\Phi|_U$ ist surjektiv.
+
+		Schluss: $\Phi|_U$ ist ein Isomorphismus.
+	\item Wir brauchen $x \neq 0$. Sei $B$ ein Basis
+		\[
+			B=\left\{\smash{\underbrace{v_1,\dots, v_k}_{\text{Basis f\"{u}r ker}(\Phi)}, \underbrace{x, v_{k+2}, \dots, v_n}_{\text{Basis f\"{u}r }U}}\vphantom{v_1}\right\} 
+		.\] 
+
+	Sei $\Phi:\R^3\to R^2, (x,y,z)^T\to (x,y,0)$. Sei dann $g: \R^2\to \R^3, (x,y)\to (x,0,y)$
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Es sei $A,B,C,D$ Matrizen \"{u}ber $\mathbb{K}$ in den Dimensionen $m\times m, m \times n, n \times m, n \times n$. 
+	\begin{parts}
+	\item Zeigen Sie: ist $A$ invertierbar, dann gilt
+		\[
+			\text{det}\begin{pmatrix} A & B \\ C & D \end{pmatrix} =\text{det}(A)\cdot \text{det}(D-CA^{-1}B)
+		.\] 
+	\item Beweisen Sie die Gleichheit
+		\[
+			\text{det}(1_m+BC)=\text{det}(1_n+CB)
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir beweisen zuerst eine ähnliche Ergebniss zu die diagonale Matrizen: Wenn $B=0$ und $C=0$, ist
+		 \[
+			 \text{det}\begin{pmatrix} A & 0 \\ 0 & D \end{pmatrix} = \text{det}(A)\text{det}(D)
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Gegeben seien die Vektoren
+	\[
+	v_1=\begin{pmatrix} 1 \\ 2 \\ 1 \end{pmatrix} , \qquad v_2=\begin{pmatrix} 3 \\ 1 \\ 1 \end{pmatrix} , \qquad v_3(t)=\begin{pmatrix} t^3 \\ \frac{3}{2}t \\ t^2 \end{pmatrix} 
+	.\] 
+	Finden Sie alle $t\in \R$ f\"{u}r welche das Volumen des durch $v_1,v_2,v_3(t)$ aufgespannten Spat verschwindet. F\"{u}r welche $t\in [1,4]$ wird das Volumen maximal.
+\end{Problem}
+\begin{Problem}
+	Es gilt $v_1\times v_2= (1,2,-5)^T$ und
+	\[
+	v_3(t)\cdot (v_1\times v_2)=t^3+3t-5t^2=t(t^2-5t+3)
+	.\] 
+	Die Nullstellen des Polynoms $t^2-5t+3$ sind $\frac{1}{2}(5\pm \sqrt{13} )$, also das Volumen verschwindet f\"{u}r $t=0$ oder $t=\frac{1}{2}(5\pm \sqrt{13} )$. 
+
+	Wir berechnen die Ableitung
+	\[
+		\dv{t}\left( t^3-5t^2+3t \right) =3t^2-10t+3
+	.\]
+	Die Ableitung ist $0$ genau dann, wenn $t=3^{\pm 1}$. Die zweite Ableitung ist:
+	 \[
+		 \dv[2]{t}\left( t^3-5t^2+3t \right) =6t-10
+	.\] 
+	was $<0$ ist, wenn $t=\frac{1}{3}$ und $>0$ ist, wenn $t=3$, also $t=\frac{1}{3}$ ist ein lokales Maximum. Wir betrachten dann zudem die Grenzpunkte
+\end{Problem}
+\begin{Problem}
+	Berechnen Sie die Determinanten der folgenden Matrizen
+	\begin{parts}
+	\item $A\in \mathbb{K}^{n\times n}$, mit
+		\[
+			A=\begin{pmatrix}  a & b & b & \dots & b \\ b & a & b & \dots & b \\ b & b & a & \dots & b \\ \vdots & \vdots & & \ddots & \vdots \\ b & b & \dots & b & a \end{pmatrix} 
+		\] 
+		und $a\neq 0$ 
+
+		{\footnotesize\emph{Wenden Sie m\"{o}glichst geschickt 2(a) an.}}
+		\item $A\in \mathbb{K}^{(n+1)\times (n+1)}$, mit
+			\[
+				A=\begin{pmatrix} t & 0 & \dots & \dots & a_0 \\ -1 & t & \dots & \dots & a_1 \\ 0 & -1 & t & \dots & a_2 \\ \vdots & \ddots & \ddots & \ddots & \vdots \\ 0 & \dots & 0 & -1 & t+a_n \end{pmatrix} 
+			.\] 
+			{\footnotesize\emph{Sie dürfen die Entwicklungsformel nach Laplace verwenden.}}
+		\item $V_{ij}, R_{i\lambda}, S_{ij}\in \mathbb{K}^{n\times n}$ aus den Lemmata 5.56 - 5.58.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir bezeichnen die $n\times n$ solche Matriz als $A_n$ und deren Determinante als $\Delta_n(a,b)$. Per Hinweis definieren wir $A=(a), B=(b,b,\dots, b), C=B^T, D=M_{n-1}$. Falls $a\neq 0$ ist $A$ invertierbar mit inverse $A^{-1}=(1 / a)$.
+
+		Es gilt außerdem
+		\[
+			CA^{-1}B=\begin{pmatrix} b \\ b \\ \vdots \\ b \end{pmatrix} \left( \frac{1}{a} \right) \begin{pmatrix} b & b & \dots & b \end{pmatrix}  =\frac{1}{a}\begin{pmatrix} b^2 & b^2 & \dots & b^2 \\ b^2 & b^2 & \dots & b^2 \\ \vdots & \vdots & \ddots & \vdots \\ b^2 & b^2 & \dots & b^2 \end{pmatrix} 
+		.\] 
+		Daraus folgt
+		\[
+		\Delta_n(a,b)=a\Delta_n\left( a-\frac{b^2}{a},b-\frac{b^2}{a} \right), \qquad n > 2
+		.\] 
+		F\"{u}r $n=2$ ist $\Delta_n(a,b)=a^2-b^2$.
+	\end{parts}
+\end{proof}

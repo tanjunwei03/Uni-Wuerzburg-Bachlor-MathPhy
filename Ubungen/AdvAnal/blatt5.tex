@@ -22,6 +22,14 @@ also $A$ ist eine Nullmenge, ein Widerspruch zu die Annahme, dass $\mu(A)>0$.
 \begin{Problem}
 	Sei $(X,\mathcal{A},\mu)$ ein vollst\"{a}ndiger Maßraum und $f_n:X\to \R$ messbar f\"{u}r alle $n\in \N$. Außerdem sei $(f_n)$ punktweise $\mu$-fast überall konvergent, d.h. es existiert ein $\mu$-Nullmenge $N\in \mathcal{A}$ und eine Funktion $f:X\to \R$, sodass $\lim_{n \to \infty} f_n(x)=f(x)$ f\"{u}r alle $x\in X\backslash N$ gilt. Zeigen Sie, dass $f$ messbar ist.
 \end{Problem}
+\begin{proof}
+	Wie in der Vorlesung betrachten wir $\limsup_{n\to\infty} f_n(x)$ und $\liminf_{n\to \infty} f_n(x)$. Wir wissen, f\"{u}r $n$ beliebig, dass
+	\begin{align*}
+		\inf_{k\ge n}f_n(x)\in& \mathcal{A}\\
+		\sup_{k\ge n}f_n(x)\in& \mathcal{A},
+	\end{align*}
+	f\"{u}r $x\in X\backslash N$. 
+\end{proof}
 \begin{Problem}
 	Sei $A\subsetneq \R$ nichtleer. Bestimmen Sie alle Funktionen $f:\R\to \R$, welche bezüglich der $\sigma$-Algebra $\mathcal{A}:=\left\{ \varnothing, A,A^c, \R \right\} $ messbar sind.
 \end{Problem}
