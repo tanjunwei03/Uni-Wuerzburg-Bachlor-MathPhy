@@ -1,0 +1,96 @@
+\begin{Problem}
+	\begin{parts}
+		\item Begr\"{u}nden Sie, dass die Permutation $\sigma=\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 7 & 5 & 8 & 3 & 9 & 1 & 6 & 4 & 2 \end{pmatrix} \in S_9$ in der alternierenden Gruppe $A_9$ liegt.
+		\item Finden Sie $i$ und $k$, so dass die Permutation $\begin{pmatrix}  1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\ 1 & 2 & 7 & 4 & i & 5 & 6 & k & 9 \end{pmatrix} \in S_9$ gerade ist.
+		\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item Wir schreiben zuerst $\sigma$ als Zyklus
+	\[
+	\sigma=(176)(259)(384)
+	.\] 
+	Dann stellen wir die Zyklus als Produkte von Transpositionen dar, wie im Beweis von 2.44
+	\[
+	\sigma=(17)(76)(25)(59)(38)(84)
+	.\]
+	Es gibt $6$ Transpositionen, also $\sigma$ ist gerade, und $\sigma\in A_9$.
+\item Weil jede Zahl nur einmal vorkommen darf, gibt es nur zwei M\"{o}glichkeiten
+	\begin{align*}
+	& i=3 & j=8,\\
+	& i=8 & j =3.
+	\end{align*} 
+	Wir betrachten die zwei F\"{a}lle:
+	\begin{enumerate}[label=(\roman*)]
+		\item $i=3, j=8$ :
+
+			Wir schreiben es als Zyklus, und dann von Transpositionen
+			\[
+				(3765)=(37)(76)(65)
+			,\]
+			also es ist gerade.
+		\item $i=8,j=3$ wir machen ähnlich
+			\[
+				(37658)=(37)(76)(65)(58)
+			,\] 
+			also es ist in diesem Fall nicht gerade.\qedhere
+	\end{enumerate}
+\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Es sei $n\in \N^*$. Die Permutationen $\sigma, \tau\in S_n$ seien disjunkt.
+	\begin{parts}
+	\item Beweisen Sie Lemma 2.41: Es gilt $\sigma\tau=\tau\sigma$.
+	\item Folgern Sie: Es ist $\text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Kurze Erinnerung am Definition von disjunkter Permutationen:
+		\begin{tcolorbox}
+			\begin{Definition}\label{def:introalgblatt5-1}
+			Zwei Permutationen $\sigma,\tau\in S_n$ heißen \emph{disjunkt}, falls gilt
+			\begin{align*}
+				\sigma(i)\neq i\implies& \tau(i)=i,\text{ und}\\
+				\tau(i)\neq i\implies& \sigma(i)=i
+			\end{align*}
+		\end{Definition}
+		\end{tcolorbox}
+		Wir brauchen außerdem eine Ergebnis
+		\begin{tcolorbox}
+			\begin{Lemma}
+				Sei $\sigma(i)=j\neq i$. Es gilt dann $\sigma(j)\neq j$.
+			\end{Lemma}
+			\begin{proof}
+				Sonst wäre es ein Widerspruch zu die Definition, dass $S_n$ die Gruppe alle bijektive funktionen $\left\{ 1,\dots, n \right\} \to \left\{ 1, \dots, n \right\} $ ist. Die Permutation wäre dann nicht injektiv, weil $\sigma(i)=\sigma(j)$, aber per Annahme $i\neq j$ gilt.
+			\end{proof}
+			\begin{Corollary}\label{corollary:introalgblatt5-1}
+			Sei $\sigma,\tau\in S_n$ disjunkter Permutation. Falls $\sigma(i)\neq i$ gilt $\tau\sigma\left( i \right) =\sigma(i)$.
+			\end{Corollary}
+			\begin{Remark}
+				Alle Aussagen here gelten natürlich noch, wenn man die Rollen von $\sigma$ und $\tau$ vertauschen.
+			\end{Remark}
+		\end{tcolorbox}Die Ergebnis folgt jetzt fast sofort. Wir betrachten drei F\"{a}lle:
+		\begin{enumerate}[label=(\roman*)]
+			\item $\sigma(i)\neq i$, also $\tau(i)=i$.
+
+				Es gilt dann
+				\[
+					\sigma\tau(i)\overset{\ref{def:introalgblatt5-1}}{=}\sigma(i)\overset{\ref{corollary:introalgblatt5-1}}{=}\tau\sigma(i)
+				.\] 
+			\item $\tau(i)\neq i$, also $\sigma(i)=i$.
+
+				\[
+					\tau\sigma(i)\overset{\ref{def:introalgblatt5-1}}{=}\tau(i)\overset{\ref{corollary:introalgblatt5-1}}{=}\sigma\tau(i)
+				.\] 
+			\item $\tau(i)=i$ und $\sigma(i)=i$.
+
+				\[
+				\tau\sigma(i)=i=\sigma\tau(i)
+				.\] 
+		\end{enumerate}
+		Insgesamt gilt $\tau\sigma=\sigma\tau$.
+	\end{parts}
+\end{proof}
