@@ -1,0 +1,120 @@
+\begin{Problem}
+	Entscheiden Sie, welche der folgenden Mengen ein Unterraum des jeweils angegebenen Vektorraums sind.
+	\begin{parts}
+		\item $\left\{ p\in \R[t]|\text{deg}(p)\le 4 \right\} \subseteq \R[t]$.
+		\item $\R\backslash \Q$ mit $\R$ als $\Q$-Vektorraum.
+		\item $B=\left\{ z\in \C| |z|\le 1 \right\} $ mit $\C$ als $\R$-Vektorraum.
+		\item $\left\{ p\in \Q[t]|\forall a\in \Q:\tilde{p}(-a)=\tilde{p}(a) \right\} $, wobei $\tilde{p}$ die zu $p$ gehörige Polynomfunktion bezeichnet, als Teilmenge von $\Q[t]$.
+		\item $\left\{ (1,2,3)+t\cdot (4,5,6)|t\in \R \right\} \cup \left\{ (0,0,0) \right\} \subseteq \R^3$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Ja. Sei $p_1=a_0+a_1t+a_2t^2+a_3t^3+a_4t^4$ und $p_2=b_0+b_1t+b_2t^2+b_3t^3+b_4t^4$. Es gilt
+		\begin{align*}
+			p_1+p_2=&(a_0+b_0)+(a_1+b_1)t\\
+				&+(a_2+b_2)t^2+(a_3+b_3)t^3+(a_4+b_4)t^3
+	\end{align*}
+	was auch ein Polynom mit Grad $\le 4$ ist.
+
+	Sei $x\in \R$. Dann ist
+	\[
+	x p_1=xa_0+xa_1t+xa_2t^2+xa_3t^3+xa_4t^4
+	,\] 
+	noch ein Polynom mit Grad $\le 4$.
+\item Nein. Es ist sogar kein Vektorraum, weil $0\not\in \R\backslash \Q$. 
+\item Nein. Sei $z\in B$ mit $|z|=a<1$. Dann ist
+	\[
+	\left| \frac{1}{a^2}z \right| =\frac{1}{a^2}|z|=\frac{1}{a}>1
+	,\] 
+	also $B$ ist nicht unter Skalarmultiplikation abgeschlossen.
+\item Ja. Sei $p_1,p_2$ beliebige Elemente von der Menge, und $x\in \R$ beliebig. Es gilt $\tilde{p_1+p_2}=\tilde{p}_1+\tilde{p}_2$, und per Definition
+	\begin{align*}
+		\tilde{p}_1(a)=&\tilde{p}_1(-a)\\
+		\tilde{p}_2(a)=&\tilde{p}_2(-a)
+	\end{align*}
+Daraus folgt
+\[
+	\tilde{p_1+p_2}(a)=\tilde{p}_1(a)+\tilde{p}_2(a)=\tilde{p}_1(-a)+\tilde{p}_2(-a)=\tilde{p_1+p_2}(-a)
+.\] 
+Außerdem ist $\tilde{x p_1}=x\tilde{p}_1$, und
+\[
+	\tilde{x p_1}(a)=x\tilde{p}_1(a)=x\tilde{p}_1(-a)=\tilde{x p_1}(-a)
+.\] 
+\item Nein. Wir wissen, dass $(1,2,3)$ ein Element von unserer Menge ist. Dann sollte $2(1,2,3)=(2, 4, 6)$ auch ein Element sein. Wir würden dann schreiben
+	\[
+		(1,2,3)+t(4,5,6)=(2,4,6)
+	,\] 
+	also
+	\[
+	t(4,5,6)=(1,2,3)
+	.\] 
+	Aus $6t=3$ haben wir $t=\frac{1}{2}$. Dann ist $5t=\frac{5}{2}\neq 2$, ein Widerspruch, also es ist kein Untervektorraum.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Entscheiden Sie, welche der folgenden Familien im jeweiligen Vektorraum linear unabhängig sind
+	\begin{parts}
+	\item $((1, 2, 3), (5, 4, 3), (6, 6, 6))$ in $\R^3$ als $\R$-Vektorraum.
+	\item $((1, i), (i, -1))$ im $\R$-Vektorraum $\C^2$.
+	\item $((1, i), (i, -1))$ im $\C$-Vektorraum $\C^2$.
+	\item $(1,1+t,1+t+t^2)$ im $\Z / 2\Z$-Vektorraum $\Z / 2\Z[t]$.
+	\item $((1, 2, 3), (5, 4, 3), (6, 6, 7))$ in $\R^3$ als $\Q$-Vektorraum.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Nein, weil
+		\[
+			(1,2,3)+(5,4,3)+(-1)(6,6,6)=0
+		.\] 
+	\item Ja. Sei $a,b\in \R$. Es gilt
+		\[
+		a(1,i)+b(i,-1)=(a+bi,ai-b)
+	.\]
+	Wir würden $a+bi=0$ und $ai-b=0$. Aber wir wissen, dass das nur möglich ist, wenn $a=b=0$, also $(1,i)$ und $(i,-1)$ sind linear unabhängig.
+\item Nein, weil
+	\[
+	i(1,i)+(-1)(i,-1)=(i,-1)-(i,-1)=0
+	,\]
+	und wir haben $i\neq 0$.
+\item Ja. 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Entscheiden Sie, welche der folgenden Familien ein Erzeugendensystem des jeweiligen Vektorraums sind
+	\begin{parts}
+	\item $((1, 2, 3), (5, 4, 3), (6, 6, 6))$ in $\R^3$ als  $\R$-Vektorraum.
+	\item $(\exp it)_{t\in \Q}$ in $\C$ als $\R$-Vektorraum.
+	\item $(1+t^n)_{n\in \N_0}$ in $\Q[t]$ als $\Q$-Vektorraum. 
+	\item $(\tilde{p})_{p\in \R[t]}$ f\"{u}r den Vektorraum aller Funktionen $\R\to \R$.
+	\item $((1, 2, 3), (5, 4, 3), (6, 6, 7))$ in $\R^3$ als $\Q$-Vektorraum. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Nein. Wir betrachten $(6,6,5)$. Wir hoffen, dass es als Summe
+		\[
+			(6,6,5)=a(1,2,3)+b(5,4,3)+c(6,6,6)
+		\]
+		dargestellt werden kann, wobei $a,b,c\in \R$. Weil $(6,6,6)$ als linear Kombination der anderen $2$ Vektoren geschrieben werden kann, können wir oBdA schreiben
+		\[
+			(6,6,5)=a'(1,2,3)+b'(5,4,3)+(6,6,6)
+		,\]
+		oder einfach
+\[
+	(0,0,-1)=a'(1,2,3)+b'(5,4,3)
+.\] 
+		wobei $a',b'\in \R$. Dann ist $a'+5b'=0$, oder $a=-5b'$. Es gilt also
+		\begin{align*}
+			0=&2a'+4b'\\
+			=&2(-5b')+4b'\\
+			=& -6b'
+		\end{align*}
+		also $b'=0$. Daraus folgt $a'=0$. Aber
+		\[
+		0(1,2,3)+0(5,4,3)=(0,0,0)\neq (0,0,-1)
+		.\] 
+	\item Nein. Wir betrachten $i=\exp(i\pi / 2)\in \C$. Es sollte eine lineare Kombination von Vektoren $(\exp it)_{t\in \Q}$ sein. 
+	\end{parts}
+\end{proof}

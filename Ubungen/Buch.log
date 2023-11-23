@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  23 NOV 2023 08:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.27)  23 NOV 2023 16:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1064,17 +1064,7 @@ File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (./Buch.aux
-! Undefined control sequence.
-l.61 \@writefil
-               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
+))) (./Buch.aux)
 \openout1 = `Buch.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
@@ -1227,17 +1217,52 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./Buch.toc)
+ (./Buch.toc
+Overfull \hbox (2.12477pt too wide) detected at line 25
+ []\OT1/cmr/m/n/12 100
+ []
+
+
+Overfull \hbox (2.12477pt too wide) detected at line 26
+ []\OT1/cmr/m/n/12 104
+ []
+
+
+Overfull \hbox (2.12477pt too wide) detected at line 27
+ []\OT1/cmr/m/n/12 106
+ []
+
+
+Overfull \hbox (2.12477pt too wide) detected at line 28
+ []\OT1/cmr/m/n/12 110
+ []
+
+
+Overfull \hbox (2.12477pt too wide) detected at line 30
+ []\OT1/cmr/m/n/12 115
+ []
+
+
+Overfull \hbox (2.12477pt too wide) detected at line 32
+ []\OT1/cmr/m/n/12 121
+ []
+
+[3]
+Overfull \hbox (2.12477pt too wide) detected at line 33
+ []\OT1/cmr/m/n/12 126
+ []
+
+)
 \tf@toc=\write5
 \openout5 = `Buch.toc'.
 
- [3] [4
-
-]
+ [4]
 Chapter 1.
 LaTeX Font Info:    Calculating math sizes for size <17.28003> on input line 59
 .
-(./Linalg1/blatt1.tex [5]
+(./Linalg1/blatt1.tex [5
+
+]
 Overfull \hbox (12.7672pt too wide) in paragraph at lines 65--66
 []\OT1/cmr/m/n/12 (-20) Wir suchen zwei Ebe-nen, also 6 Vek-toren $[]\OML/cmm/m
 /it/12 ; []; []; []; []; [] \OMS/cmsy/m/n/12 2
@@ -1442,7 +1467,7 @@ Overfull \hbox (47.74849pt too wide) in paragraph at lines 57--58
  [] 
  []
 
-<gg.png, id=726, 80.3pt x 78.2925pt>
+<gg.png, id=872, 80.3pt x 78.2925pt>
 File: gg.png Graphic file (type png)
 <use gg.png>
 Package pdftex.def Info: gg.png  used on input line 61.
@@ -1608,25 +1633,15 @@ Overfull \hbox (4.5173pt too wide) in paragraph at lines 41--42
 ?andiger Ma^^Yraum,
  []
 
-Package marginnote Info: Suggest that margin note 84.1 will be on
-(marginnote)             absolute page 84.
-(marginnote)             This may be wrong on input line 56.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 56.
+Package marginnote Info: Margin note 84.1 is on absolute page 85 on input line 
+56.
+Package marginnote Info: xpos seems to be 383.30128pt on input line 56.
 [84] [85]
 Overfull \hbox (91.5098pt too wide) detected at line 128
 \OML/cmm/m/it/12 M[] \OT1/cmr/m/n/12 = [] [] [] \OML/cmm/m/it/12 :
  []
 
-) (./AdvAnal/blatt3.tex [86] [87]) (./AdvAnal/blatt4.tex [88]
-
-LaTeX Warning: Reference `enum:advanalblatt4-1' on page 89 undefined on input l
-ine 33.
-
-
-LaTeX Warning: Reference `enum:advanalblatt4-2' on page 89 undefined on input l
-ine 34.
-
-[89]
+) (./AdvAnal/blatt3.tex [86] [87]) (./AdvAnal/blatt4.tex [88] [89]
 Overfull \hbox (14.16986pt too wide) in paragraph at lines 49--51
 \OT1/cmr/m/n/12 (-20) was eine abz^^?ahlbare []Uberdeckung von $\OML/cmm/m/it/1
 2 K \OMS/cmsy/m/n/12 ^^B \OML/cmm/m/it/12 N$ \OT1/cmr/m/n/12 (-20) ist, aber $[
@@ -1703,29 +1718,7 @@ Overfull \hbox (17.62245pt too wide) in paragraph at lines 19--20
  zwei M^^?oglichkeiten 
  []
 
-[110]
-
-LaTeX Warning: Reference `def:introalgblatt5-1' on page 111 undefined on input 
-line 81.
-
-
-LaTeX Warning: Reference `corollary:introalgblatt5-1' on page 111 undefined on 
-input line 81.
-
-
-LaTeX Warning: Reference `def:introalgblatt5-1' on page 111 undefined on input 
-line 86.
-
-
-LaTeX Warning: Reference `corollary:introalgblatt5-1' on page 111 undefined on 
-input line 86.
-
-[111]
-
-LaTeX Warning: Reference `pr:introalgblatt5-2' on page 112 undefined on input l
-ine 144.
-
-[112]) [113] [114
+[110] [111] [112]) [113] [114
 
 ]
 Chapter 6.
@@ -1739,10 +1732,9 @@ Package marginnote Info: Suggest that margin note 120.1 will be on
 (marginnote)             absolute page 120.
 (marginnote)             This may be wrong on input line 8.
 Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 8.
-Package marginnote Info: Suggest that margin note 120.2 will be on
-(marginnote)             absolute page 120.
-(marginnote)             This may be wrong on input line 8.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 8.
+Package marginnote Info: Margin note 120.2 is on absolute page 121 on input lin
+e 8.
+Package marginnote Info: xpos seems to be 151.19455pt on input line 8.
  [120]
 
 Package pgfplots Warning: Axis range for axis z is approximately empty; enlargi
@@ -1816,20 +1808,17 @@ ng it (it is [0.0:0.0]) on input line 196.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-Package marginnote Info: Suggest that margin note 121.1 will be on
-(marginnote)             absolute page 121.
-(marginnote)             This may be wrong on input line 205.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 205.
+Package marginnote Info: Margin note 121.1 is on absolute page 121 on input lin
+e 205.
+Package marginnote Info: xpos seems to be 268.74931pt on input line 205.
 [121]
-Package marginnote Info: Suggest that margin note 122.1 will be on
-(marginnote)             absolute page 122.
-(marginnote)             This may be wrong on input line 214.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 214.
+Package marginnote Info: Margin note 122.1 is on absolute page 123 on input lin
+e 214.
+Package marginnote Info: xpos seems to be 379.4828pt on input line 214.
  [122]
-Package marginnote Info: Suggest that margin note 123.1 will be on
-(marginnote)             absolute page 123.
-(marginnote)             This may be wrong on input line 219.
-Package marginnote Info: xpos seems to be \@mn@currxpos  on input line 219.
+Package marginnote Info: Margin note 123.1 is on absolute page 123 on input lin
+e 219.
+Package marginnote Info: xpos seems to be 281.60359pt on input line 219.
 
 Overfull \hbox (2.04562pt too wide) detected at line 230
 []
@@ -1860,26 +1849,14 @@ Overfull \hbox (41.05623pt too wide) detected at line 99
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99997pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `Buch.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Buch.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  CE51F9B03A7EAB38A1F27DEE72D8EDE0;3511.
+Package rerunfilecheck Info: File `Buch.out' has not changed.
+(rerunfilecheck)             Checksum: CE51F9B03A7EAB38A1F27DEE72D8EDE0;3511.
  ) 
 Here is how much of TeX's memory you used:
- 47400 strings out of 477985
- 1062742 string characters out of 5840058
- 2388920 words of memory out of 5000000
- 65671 multiletter control sequences out of 15000+600000
+ 47437 strings out of 477985
+ 1063180 string characters out of 5840058
+ 2389193 words of memory out of 5000000
+ 65704 multiletter control sequences out of 15000+600000
  550081 words of font info for 280 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  101i,25n,104p,1001b,3321s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1909,10 +1886,10 @@ r/eufm10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10
 .pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
 r/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on Buch.pdf (129 pages, 891797 bytes).
+Output written on Buch.pdf (129 pages, 897540 bytes).
 PDF statistics:
- 1650 PDF objects out of 1728 (max. 8388607)
- 1401 compressed objects within 15 object streams
- 825 named destinations out of 1000 (max. 500000)
- 77990 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1793 PDF objects out of 2073 (max. 8388607)
+ 1543 compressed objects within 16 object streams
+ 829 named destinations out of 1000 (max. 500000)
+ 78246 words of extra memory for PDF output out of 89155 (max. 10000000)
 

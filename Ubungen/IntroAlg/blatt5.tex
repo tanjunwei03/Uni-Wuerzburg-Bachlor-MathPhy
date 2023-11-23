@@ -134,7 +134,7 @@
 		\[
 		\sigma^x i_k=i_p
 		,\] 
-		wobei $1\le p \le m$ und $p\equiv k+x\pmod{n}$. F\"{u}r $x=m$ ist es dann klar, $p=k$, also $\sigma^x=1$. 
+		wobei $1\le p \le m$ und $p\equiv k+x\pmod{n}$. $\sigma^x=1$ genau dann, wenn $\sigma^x i_k=i_k$ f\"{u}r alle $k$, also $p=k$. F\"{u}r $x=m$ ist es dann klar, $p=k$, also $\sigma^x=1$. 
 
 		F\"{u}r $x < m$ kann das nicht sein. Das Kongruenz gilt genau dann, wenn
 		\[
@@ -146,6 +146,24 @@
 			(12345)\qquad\text{und}\qquad(6789)
 		.\] 
 		mit Ordnung 4 und 5 (a). Dann hat das Produkt $(12345)(6789)$ der Ordnung $20$, weil 4 und 5 Teilerfremd sind, und daher $\text{kgV}(4,5)=4\times 5=20$.
+
+		Jetzt betrachten wir die Aufgabe im Allgemein. Sei $n\in \N$ beliebig und $\sigma$ ein Element von $S_n$ mit der Ordnung $20$. Wir können $\sigma$ als Produkt von $k$ disjunkter Zykel. Die Zykel haben länge $l_i, 2\le l_i \le k~\forall l_i$ und
+		\[
+		l_1+l_2+\dots+l_k\le n
+		.\] 
+		Der Ordnung von $\sigma$ ist
+		\[
+			\text{ord}(\sigma)=l_1l_2\dots l_n=20=2^2\times 5
+		.\] 
+		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Dann f\"{u}r $n=$
+		 \begin{enumerate}[label=(\arabic*)]
+			 \setcounter{enumi}{5}
+			 \item Nachdem wir $5$ Elemente rausgenommen haben, gibt es keine Elemente mehr. Wir können dann keine anderen disjunkten Zyklel finden.
+			 \item Ähnlich, es gibt danach nur ein Element.
+			 \item Wir können jetzt nur ein Zykel der Länge $2$ schreiben, was nicht ausreichend ist.
+			 \item Nachdem wir $3$ Elemente rausgenommen haben, haben wir nur $3$ Elemente. Dann kann man nur Zykel mit Länge $2$ oder $3$ schreiben. Man kann nicht ein Zyklus der Länge $4$ oder zwei Zykel der Länge $2$ finden.
+		\end{enumerate}
+		Dann gibt es kein Element der Ordnung $20$ und $S_n$ f\"{u}r $\N\ni n<9$, also die gewünschte $n$ ist $9$.\qedhere
 	\end{parts}
 \end{proof}
 
