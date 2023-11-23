@@ -39,7 +39,7 @@
 \end{parts}
 \end{proof}
 
-\begin{Problem}
+\begin{Problem}\label{pr:introalgblatt5-2}
 	Es sei $n\in \N^*$. Die Permutationen $\sigma, \tau\in S_n$ seien disjunkt.
 	\begin{parts}
 	\item Beweisen Sie Lemma 2.41: Es gilt $\sigma\tau=\tau\sigma$.
@@ -92,5 +92,71 @@
 				.\] 
 		\end{enumerate}
 		Insgesamt gilt $\tau\sigma=\sigma\tau$.
+	\item Es gilt
+		\[
+			(\sigma\tau)^n=\sigma^n\tau^n
+		\]
+		wegen (a), weil $\sigma$ und $\tau$ kommutiert, und wir können die Reihenfolge im Produkt
+		\[
+			\underbrace{\sigma\tau\sigma\tau\dots\sigma\tau}_{n\text{ Mal}}
+		\]
+		verändern, sodass die $\sigma$ alle an einer Seite liegen, und die $\tau$ an der anderen Seite. Sei $N\ni p\le\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Sei $p=n_1\text{ord}(\sigma)+a=n_2\text{ord}(\tau)+b,~a,b,n_1,n_2\in \N, 0\le a < \text{ord}(\sigma)$ und $0\le b <\text{ord}(\tau)$.
+		\begin{align*}
+		(\sigma\tau)^p =& \sigma^p\tau^p\\
+		=& \sigma^{n_1\text{ord}(\sigma)+a}\tau^{n_2\text{ord}(\tau)+b}\\
+				=&\sigma^{n_1\text{ord}(\sigma)+a}\tau^{n_2\text{ord}(\tau)+b}\\
+				=&\sigma^{n_1\text{ord}(\sigma)}\sigma^a\tau^{n_2\text{ord}(\tau)}\tau^b\\
+					=&\sigma^a\tau^b
+		\end{align*}
+		Per Definition, wenn $p=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$, ist $a=b=0$ und
+		\[
+			(\sigma\tau)^{\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau)}=\sigma^0\tau^0=1
+		.\] 
+		F\"{u}r $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau)$ kann die beide nicht gleichzeitig gelten. Wir betrachten dann $\sigma^a\tau^b$. Per Definition können $a$ und $b$ nicht gleichzeitig $0$ sein. Sei zum Beispiel $a\neq 0$. Dann haben wir nie das neutrale Element (es ist egal, was $b$ ist). Sei $i_k$ von $\sigma$ bewegt (hier nehmen wir an, dass $\sigma\neq 1$). Dann ist $i_k$ nicht von $\tau$ bewegt, weil $\sigma$ und $\tau$ disjunkt sind.
+		\[
+		\sigma^a\tau^b i_k =\sigma^a i_k
+		.\] 
+	Per Definition ist $\sigma^a i_k\neq i_k$ f\"{u}r alle mögliche $i_k$, sonst wäre $\text{ord}(\sigma)=i_k$. Dann ist $(\sigma\tau)^p\neq 1$ f\"{u}r alle $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Schluss:
+	 \[
+		 \text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))
+	.\qedhere\] 
 	\end{parts}
 \end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie: F\"{u}r jeden $m$-Zykel $\sigma$ gilt $\text{ord}(\sigma)=m$.
+	\item Bestimmen Sie das kleinste $n\in \N$, so dass $S_n$ ein Element der Ordnung $20$ enthält.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $\sigma=(i_1i_2\dots i_m)$, mit die $i_j$ paarweise unterschiedlich. Es gilt, f\"{u}r $\N\ni x\le m$
+		\[
+		\sigma^x i_k=i_p
+		,\] 
+		wobei $1\le p \le m$ und $p\equiv k+x\pmod{n}$. F\"{u}r $x=m$ ist es dann klar, $p=k$, also $\sigma^x=1$. 
+
+		F\"{u}r $x < m$ kann das nicht sein. Das Kongruenz gilt genau dann, wenn
+		\[
+		k+x-rx=k,~r\in \Z
+		.\] 
+		Aber per Definition, wenn $r=1$ ist $k+x-\cancelto{1}{r}x<k$. Wenn $r=0$ ist $k+x\neq k$, weil $x\ge 1>0$. Also $\sigma^x\neq 1$ f\"{u}r alle $1 < x < m$.
+	\item Mit Hilfe von \ref{pr:introalgblatt5-2} können wir einfach eine solche $S_n$ konstruieren. Sei $n=9$. Dann haben wir $2$ disjunkter Zyklus
+		\[
+			(12345)\qquad\text{und}\qquad(6789)
+		.\] 
+		mit Ordnung 4 und 5 (a). Dann hat das Produkt $(12345)(6789)$ der Ordnung $20$, weil 4 und 5 Teilerfremd sind, und daher $\text{kgV}(4,5)=4\times 5=20$.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie, dass die Menge
+		\[
+			V_4:=\left\{ \sigma\in A_4|\text{ord}(\sigma)\le 2 \right\} 
+		\]
+		eine Untergruppe der Ordnung $4$ von $A_4$ (und daher auch $S_4$) ist.
+	\item Zeigen Sie, dass $V_4$ ein Normalteiler von $S_4$ (und daher auch $A_4$) ist.
+		{\footnotesize \emph{Hinweis: $V4$ heißt auch Kleinsche Vierergruppe.}}
+	\end{parts}
+\end{Problem}

@@ -23,13 +23,32 @@ also $A$ ist eine Nullmenge, ein Widerspruch zu die Annahme, dass $\mu(A)>0$.
 	Sei $(X,\mathcal{A},\mu)$ ein vollst\"{a}ndiger Maßraum und $f_n:X\to \R$ messbar f\"{u}r alle $n\in \N$. Außerdem sei $(f_n)$ punktweise $\mu$-fast überall konvergent, d.h. es existiert ein $\mu$-Nullmenge $N\in \mathcal{A}$ und eine Funktion $f:X\to \R$, sodass $\lim_{n \to \infty} f_n(x)=f(x)$ f\"{u}r alle $x\in X\backslash N$ gilt. Zeigen Sie, dass $f$ messbar ist.
 \end{Problem}
 \begin{proof}
-	Wie in der Vorlesung betrachten wir $\limsup_{n\to\infty} f_n(x)$ und $\liminf_{n\to \infty} f_n(x)$.
+	Wir wissen, dass sowohl
+	\begin{align*}
+		& f_s=\limsup_{n\to\infty} f_n\text{ als auch}\\
+		& f_l=\liminf_{n\to\infty} f_n
+	\end{align*}
+	messbar sind. Es gilt auch $f_s(x)=f_l(x),~\forall x\in X\backslash N$. Sei jetzt $U\subseteq \R$ messbar. Es gilt $f^{-1}(U)=\left[f^{-1}(U)\cap N^c\right]\cup \left[f^{-1}(U)\cap N\right]$. 
+
+	Es ist $f^{-1}(U)\cap N\in \mathcal{A}$, weil $f^{-1}(U)\cap N\subset N$, $N$ ist eine Nullmenge und $(X,\mathcal{A},\mu)$ ist vollständig. Es gilt auch
+	\[
+		f^{-1}(U)\cap N^c=f_{l / s}^{-1}(U)\cap N^c
+	,\] 
+	wobei $f_{l / s}$ bedeutet, dass entweder $f_l$ oder $f_s$ funktionert (hier möchten wir betonen, dass die beide Funktionen auf $X \backslash N$ gleich sind). Aber weil $f_{l / s}$ messbar sind, ist
+	\[
+		f^{-1}(U)\cap N^c=\underbrace{f_{l / s}^{-1}(U)}_{\in \mathcal{A}}\cap \underbrace{N^c}_{\in \mathcal{A}}\in \mathcal{A}
+	.\] 
+	Es ist dann
+	\[
+		f^{-1}(U)\in \mathcal{A}~\forall U\subseteq \R\text{ messbar}
+	,\] 
+	also $f$ ist messbar.
 \end{proof}
 \begin{Problem}
 	Sei $A\subsetneq \R$ nichtleer. Bestimmen Sie alle Funktionen $f:\R\to \R$, welche bezüglich der $\sigma$-Algebra $\mathcal{A}:=\left\{ \varnothing, A,A^c, \R \right\} $ messbar sind.
 \end{Problem}
 \begin{proof}
-	Es gilt immer $f^{-1}(\varnothing)=\varnothing$. Außerdem wissen wir aus der Mengentheorie, dass $f^{-1}(A)\cap f^{-1}(A^c)=\varnothing$, und das Urbild von einer nichtleeren Menge ist immer nichtleer. Die unterschiedliche Funktionen sind
+	Es gilt immer $f^{-1}(\varnothing)=\varnothing$. Außerdem wissen wir aus der Mengentheorie, dass $f^{-1}(A)\cap f^{-1}(A^c)=\varnothing$, und das Bild von einer nichtleeren Menge ist immer nichtleer. Die unterschiedliche Funktionen sind
 	\begin{align*}
 		& f(A)=A & f(A^c)=A^c & & f(\R)=\R, \\
 		& f(A)=A^c & f(A^c)=A & & f(\R)=\R. & \qedhere
