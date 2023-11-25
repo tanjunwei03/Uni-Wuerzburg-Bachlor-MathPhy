@@ -1,0 +1,160 @@
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein Maßraum, $\alpha>0$ und $f:X\to \overline{R}$ messbar. Zeigen Sie:
+	\begin{parts}
+		\item Ist $f$ nichtnegativ so gilt
+			\[
+				\mu\left( \left\{ f\ge \alpha \right\}  \right) \le \frac{1}{\alpha}\int f\dd{\mu}
+			.\] 
+		\item Ist $f$ integrierbar, so haben $\left\{ f\ge\alpha \right\} $ und $\left\{ f\le -\alpha \right\} $ endliches Maß.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $A=\left\{ f\ge \alpha \right\} $. Es gilt
+		\begin{align*}
+			\int f\dd{\mu}=& \int \left( f\chi_A+f\chi_{A^c} \right) \\
+			=& \int_A f\dd{\mu}+\int_{A^c} f\dd{\mu}\\
+			\ge&\int_A f\dd{\mu} & \int_{A^c}f\dd{\mu}\ge 0,\text{ weil }f\text{ nichtnegativ ist.}\\
+		\ge&\int_A \alpha \dd{\mu} & f(x)\ge \alpha~\forall x\in A\\
+		=&\alpha\mu(A)
+		\end{align*}
+		Also
+		\[
+			\mu\left( \left\{ f\ge \alpha \right\}  \right) \le \frac{1}{\alpha}\int f\dd{\mu}
+		.\] 
+	\item Wir beweisen es per Kontraposition, also wir nehmen an, dass $\left\{ f\ge \alpha \right\} $ oder $\left\{ f\le -\alpha \right\} $ unendliches Maß hat. (Der Fall, in dem die beide unendliches Maß haben ist nicht ausgeschlossen.)
+
+		Wir nehmen an, dass $\left\{ f\ge\alpha \right\} $ unendliches Maß hat. Sei $A=\left\{ f\ge \alpha \right\} $. Es gilt
+		\begin{align*}
+			\int f^+\dd{\mu}=&\int_A f^+\dd{\mu}+\int_{A^c}f^+\dd{\mu}\\
+			\ge& \int_A f^+\dd{\mu}\\
+			\ge& \int_A \alpha\dd{\mu}\\
+			=& \alpha\mu(A)\\
+			=&\infty
+		\end{align*}
+		Dann ist $\int f^+\dd{\mu}=\infty$, also $f$ ist nicht integrierbar.  Sei jetzt ähnlich $A=\left\{ f\le -\alpha \right\} $. Wenn $A$ unendliches Maß hat, ist
+		\begin{align*}
+			\int f^-\dd{\mu}=&\int_A f^-\dd{\mu}+\int_{A^c}f^-\dd{\mu}\\
+			\le& \int_A f^-\dd{\mu}\\
+			\le&\int_A(-\alpha)\dd{\mu}\\
+			=&(-\alpha)\mu(A)\\
+			=&-\infty
+		\end{align*}
+		Also $\int f^-\dd{\mu}=-\infty$, und $f$ ist noch einmal nicht integrierbar.
+	\end{parts}
+\end{proof}
+\begin{Problem}\label{pr:advanalblatt6-2}
+	Sei $(X,\mathcal{A},\mu)$ ein Maßraum, $N,A,B\in \mathcal{A}$ mit $\mu(N)=0=\mu(A\cap B)$ und $f:X\to \overline{R}$ integrierbar. Sei außerdem $(f_j)$ eine Folge integrierbarer Funktionen von $X$ nach $\overline{R}$ mit $f_j\ge 0$ $\mu$-fast überall und $\sum_{j=1}^{\infty} f_j$ integrierbar. Zeigen Sie folgende Eigenschaften des Integrals:
+	\begin{parts}
+	\item $\int_N f\dd{\mu}=0$
+	\item $\int_{A\cup B}f\dd{\mu}=\int_A f\dd{\mu}+\int_B f\dd{\mu}$.
+	\item $\int \left( \sum_{j=1}^{\infty} f_j \right) \dd{\mu}=\sum_{j=1}^{\infty} \int f_j\dd{\mu}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt $\left| \int f\dd{\mu} \right| \le \int |f|\dd{\mu}$. Sei dann $g:X\to \overline{R}$ die konstante Funktion mit $g(x)=\infty~\forall x\in X$. Weil es konstant ist, ist $g$ messbar. Es ist klar, dass $|f(x)|\le g(x)~\forall x\in X$, insbesondere für alle $x\in N$. Dann ist
+		\[
+			\left| \int_N f\dd{\mu} \right| \le \int_N |f|\dd{\mu}\le \int_N g\dd{\mu}
+		.\] 
+		Wir müssen nur zeigen, dass $\int_N g\dd{\mu}=0$. Sei $g_j$ eine Folge einfache Funktionen, mit
+		\[
+		g_j(x)=j~\forall x\in X
+		.\] 
+		Dann konvergiert $g_j$ gegen $g$, und f\"{u}r alle $j$ gilt
+		\[
+			\int_N g_j\dd{\mu}=j\mu(N)=j(0)=0
+		.\] 
+		Per Definition gilt dann
+		\[
+			\int_N g\dd{\mu}=0
+		,\] 
+		und die Behauptung folgt.
+	\item Es gilt
+		\begin{align*}
+			\int_{A\cup B}f\dd{\mu}=& \int \chi_{A\cup B}d\dd{\mu}\\
+			=& \int\left( \chi_A+\chi_B-\chi_{A\cap B} \right) f\dd{\mu}\\
+			=& \int_A f\dd{\mu}+\int_B f\dd{\mu}-\int_{A\cap B}f\dd{\mu}\\
+			=&\int_A f\dd{\mu}+\int_B f\dd{\mu} & \text{(a)}
+		\end{align*}
+	\item Für endliche Summe wissen wir schon
+		\[
+			\int \sum_{j=1}^{n} f_j\dd{\mu}=\sum_{j=1}^{n} \int f_j\dd{\mu} 
+		.\] 
+		Die Aufgabe ist einfach
+		\[
+			\lim_{n \to \infty} \int \sum_{j=1}^{n} f_j\dd{\mu}\overset{?}{=}\int \lim_{n \to \infty} \sum_{j=1}^n f_j\dd{\mu}
+		.\] 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein Maßraum und $f:X\to [0,\infty]$ integrierbar. Definiere die Abbildung
+	\[
+		\nu:\mathcal{A}\to \overline{R},\qquad \nu(A):=\int_A f\dd{\mu}
+	.\] 
+	Zeigen Sie:
+	\begin{parts}
+	\item $(X,\mathcal{A},\nu)$ ist ein endlicher Maßraum.
+	\item Jede $\mu$-Nullmenge ist auch eine $\nu$-Nullmenge.
+	\item Gilt $f>0$ $\mu$-fast überall, so ist jede $\nu$-Nullmenge auch eine $\mu$-Nullmenge.
+	\item Sei $f>0$ $\mu$-fast überall. Dann ist eine messbare Funktion $g:X\to \overline{R}$ genau dann bezüglich $\nu$ integrierbar, wenn $gf$ bezüglich $\mu$ integrierbar ist und in diesem Fall gilt $\int gf\dd{\mu}=\int g\dd{\nu}$. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item Alle $\mu$-messbare Mengen sind auch $\nu$-messbar.
+
+			Hier müssen wir nur beobachten, dass das Integral über alle $\mu$-messbare Mengen definiert ist, also $\nu$ ist zumindest wohldefiniert.
+
+			$\nu(A)\ge 0$ f\"{u}r alle $A\in \mathcal{A}$, weil $f\ge 0$ und daher ist
+			\[
+				\int_A f\dd{\mu}\ge 0
+			.\] 
+		\item $\sigma$-Additivität
+
+			Sei $(A_j), A_j\in \mathcal{A}$ eine Folge paarweise disjunkte Mengen. Dann gilt
+			\begin{align*}
+				\lim_{n \to \infty} \sum_{j=1}^{n} \nu(A_j)=&\lim_{n \to \infty} \sum_{j=1}^{n} \int_{A_j}f\dd{\mu}\\
+				=&\lim_{n \to \infty} \sum_{i=1}^{n} \int \chi_{A_i}f\dd{\mu}\\
+				=&\lim_{n \to \infty} \int\left[ \sum_{i=1}^{n} \chi_{A_i} \right] f\dd{\mu}\\
+				=&\lim_{n \to \infty} \int \chi_{\bigcup_{i=1}^n A_i}f\dd{\mu}\\
+				=&\lim_{n \to \infty} \int_{\bigcup_{i=1}^n A_i}f\dd{\mu}\\
+				=&\int_{\bigcup_{i\in \N} A_i} f\dd{\mu}\\
+				=&\nu\left( \bigcup_{i\in \N} A_i \right).
+			\end{align*}
+			Also $\nu$ ist $\sigma$-additiv.
+		\item Endlich
+
+			Es gilt
+			\[
+			\int_X f\dd{\mu}=\underbrace{\int_X f^+\dd{\mu}}_{<\infty}<\infty
+			,\]
+			also $\nu(X)$ ist endlich, und $\nu$ ist ein endlicher Maßraum.
+		\end{enumerate}
+	\item Sei $N$ eine $\mu$-Nullmenge. Es gilt (mit Hilfe von \ref{pr:advanalblatt6-2}(a)) 
+		\[
+			\nu(N)=\int_N f\dd{\mu}=0
+		.\] 
+	\item Sei $N$ eine $\nu$-Nullmenge, also
+		\[
+			\int_N f\dd{\mu}=0
+		.\] 
+		Jetzt nehmen wir an, dass $\mu(N)>0$. Wir betrachten $g=\chi_N f$. In der letzten Übungsblatt haben wir schon bewiesen, dass es $\epsilon>0$ und eine Menge $B\in\mathcal{A}$ mit $\mu(B)>0$ gibt, sodass $g(x)>0~\forall x\in B$. Es ist klar, dass $B\subseteq N$, weil $g$ ist außer $N$ null. Dann gilt
+		\begin{align*}
+			\int_N f\dd{\mu}\ge& \int_B f\dd{\mu}\\
+			\ge& \int_B \epsilon\dd{\mu}\\
+			=& \epsilon\mu(B)\\
+			>&0
+		\end{align*}
+		was ein Widerspruch zu die Anname ist. Also wenn $\nu(N)=0$ ist auch $\mu(N)=0$.
+	\item Sei $s$ eine einfache Funktion mit Darstellung $s=\sum x_i A_i, A_i\in \mathcal{A}$. Es gilt
+		\begin{align*}
+			\int s\dd{\nu}=& \sum x_i \nu(A_i)\\
+			=& \sum x_i\int_{A_i}f\dd{\mu}
+		\end{align*}
+		Sei $(g_j^+)$ eine Folge einfache Funktionen, die gegen $ g^+$ konvergiert. 
+	\end{parts}
+\end{proof}
