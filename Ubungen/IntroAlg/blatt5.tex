@@ -1,0 +1,180 @@
+\begin{Problem}
+	\begin{parts}
+		\item Begr\"{u}nden Sie, dass die Permutation $\sigma=\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ 7 & 5 & 8 & 3 & 9 & 1 & 6 & 4 & 2 \end{pmatrix} \in S_9$ in der alternierenden Gruppe $A_9$ liegt.
+		\item Finden Sie $i$ und $k$, so dass die Permutation $\begin{pmatrix}  1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\ 1 & 2 & 7 & 4 & i & 5 & 6 & k & 9 \end{pmatrix} \in S_9$ gerade ist.
+		\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item Wir schreiben zuerst $\sigma$ als Zyklus
+	\[
+	\sigma=(176)(259)(384)
+	.\] 
+	Dann stellen wir die Zyklus als Produkte von Transpositionen dar, wie im Beweis von 2.44
+	\[
+	\sigma=(17)(76)(25)(59)(38)(84)
+	.\]
+	Es gibt $6$ Transpositionen, also $\sigma$ ist gerade, und $\sigma\in A_9$.
+\item Weil jede Zahl nur einmal vorkommen darf, gibt es nur zwei M\"{o}glichkeiten
+	\begin{align*}
+	& i=3 & j=8,\\
+	& i=8 & j =3.
+	\end{align*} 
+	Wir betrachten die zwei F\"{a}lle:
+	\begin{enumerate}[label=(\roman*)]
+		\item $i=3, j=8$ :
+
+			Wir schreiben es als Zyklus, und dann von Transpositionen
+			\[
+				(3765)=(37)(76)(65)
+			,\]
+			also es ist gerade.
+		\item $i=8,j=3$ wir machen ähnlich
+			\[
+				(37658)=(37)(76)(65)(58)
+			,\] 
+			also es ist in diesem Fall nicht gerade.\qedhere
+	\end{enumerate}
+\end{parts}
+\end{proof}
+
+\begin{Problem}\label{pr:introalgblatt5-2}
+	Es sei $n\in \N^*$. Die Permutationen $\sigma, \tau\in S_n$ seien disjunkt.
+	\begin{parts}
+	\item Beweisen Sie Lemma 2.41: Es gilt $\sigma\tau=\tau\sigma$.
+	\item Folgern Sie: Es ist $\text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Kurze Erinnerung am Definition von disjunkter Permutationen:
+		\begin{tcolorbox}
+			\begin{Definition}\label{def:introalgblatt5-1}
+			Zwei Permutationen $\sigma,\tau\in S_n$ heißen \emph{disjunkt}, falls gilt
+			\begin{align*}
+				\sigma(i)\neq i\implies& \tau(i)=i,\text{ und}\\
+				\tau(i)\neq i\implies& \sigma(i)=i
+			\end{align*}
+		\end{Definition}
+		\end{tcolorbox}
+		Wir brauchen außerdem eine Ergebnis
+		\begin{tcolorbox}
+			\begin{Lemma}
+				Sei $\sigma(i)=j\neq i$. Es gilt dann $\sigma(j)\neq j$.
+			\end{Lemma}
+			\begin{proof}
+				Sonst wäre es ein Widerspruch zu die Definition, dass $S_n$ die Gruppe alle bijektive funktionen $\left\{ 1,\dots, n \right\} \to \left\{ 1, \dots, n \right\} $ ist. Die Permutation wäre dann nicht injektiv, weil $\sigma(i)=\sigma(j)$, aber per Annahme $i\neq j$ gilt.
+			\end{proof}
+			\begin{Corollary}\label{corollary:introalgblatt5-1}
+			Sei $\sigma,\tau\in S_n$ disjunkter Permutation. Falls $\sigma(i)\neq i$ gilt $\tau\sigma\left( i \right) =\sigma(i)$.
+			\end{Corollary}
+			\begin{Remark}
+				Alle Aussagen here gelten natürlich noch, wenn man die Rollen von $\sigma$ und $\tau$ vertauschen.
+			\end{Remark}
+		\end{tcolorbox}Die Ergebnis folgt jetzt fast sofort. Wir betrachten drei F\"{a}lle:
+		\begin{enumerate}[label=(\roman*)]
+			\item $\sigma(i)\neq i$, also $\tau(i)=i$.
+
+				Es gilt dann
+				\[
+					\sigma\tau(i)\overset{\ref{def:introalgblatt5-1}}{=}\sigma(i)\overset{\ref{corollary:introalgblatt5-1}}{=}\tau\sigma(i)
+				.\] 
+			\item $\tau(i)\neq i$, also $\sigma(i)=i$.
+
+				\[
+					\tau\sigma(i)\overset{\ref{def:introalgblatt5-1}}{=}\tau(i)\overset{\ref{corollary:introalgblatt5-1}}{=}\sigma\tau(i)
+				.\] 
+			\item $\tau(i)=i$ und $\sigma(i)=i$.
+
+				\[
+				\tau\sigma(i)=i=\sigma\tau(i)
+				.\] 
+		\end{enumerate}
+		Insgesamt gilt $\tau\sigma=\sigma\tau$.
+	\item Es gilt
+		\[
+			(\sigma\tau)^n=\sigma^n\tau^n
+		\]
+		wegen (a), weil $\sigma$ und $\tau$ kommutiert, und wir können die Reihenfolge im Produkt
+		\[
+			\underbrace{\sigma\tau\sigma\tau\dots\sigma\tau}_{n\text{ Mal}}
+		\]
+		verändern, sodass die $\sigma$ alle an einer Seite liegen, und die $\tau$ an der anderen Seite. Sei $N\ni p\le\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Sei $p=n_1\text{ord}(\sigma)+a=n_2\text{ord}(\tau)+b,~a,b,n_1,n_2\in \N, 0\le a < \text{ord}(\sigma)$ und $0\le b <\text{ord}(\tau)$.
+		\begin{align*}
+		(\sigma\tau)^p =& \sigma^p\tau^p\\
+		=& \sigma^{n_1\text{ord}(\sigma)+a}\tau^{n_2\text{ord}(\tau)+b}\\
+				=&\sigma^{n_1\text{ord}(\sigma)+a}\tau^{n_2\text{ord}(\tau)+b}\\
+				=&\sigma^{n_1\text{ord}(\sigma)}\sigma^a\tau^{n_2\text{ord}(\tau)}\tau^b\\
+					=&\sigma^a\tau^b
+		\end{align*}
+		Per Definition, wenn $p=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$, ist $a=b=0$ und
+		\[
+			(\sigma\tau)^{\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau)}=\sigma^0\tau^0=1
+		.\] 
+		F\"{u}r $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau)$ kann die beide nicht gleichzeitig gelten. Wir betrachten dann $\sigma^a\tau^b$. Per Definition können $a$ und $b$ nicht gleichzeitig $0$ sein. Sei zum Beispiel $a\neq 0$. Dann haben wir nie das neutrale Element (es ist egal, was $b$ ist). Sei $i_k$ von $\sigma$ bewegt (hier nehmen wir an, dass $\sigma\neq 1$). Dann ist $i_k$ nicht von $\tau$ bewegt, weil $\sigma$ und $\tau$ disjunkt sind.
+		\[
+		\sigma^a\tau^b i_k =\sigma^a i_k
+		.\] 
+	Per Definition ist $\sigma^a i_k\neq i_k$ f\"{u}r alle mögliche $i_k$, sonst wäre $\text{ord}(\sigma)=i_k$. Dann ist $(\sigma\tau)^p\neq 1$ f\"{u}r alle $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Schluss:
+	 \[
+		 \text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))
+	.\qedhere\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie: F\"{u}r jeden $m$-Zykel $\sigma$ gilt $\text{ord}(\sigma)=m$.
+	\item Bestimmen Sie das kleinste $n\in \N$, so dass $S_n$ ein Element der Ordnung $20$ enthält.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $\sigma=(i_1i_2\dots i_m)$, mit die $i_j$ paarweise unterschiedlich. Es gilt, f\"{u}r $\N\ni x\le m$
+		\[
+		\sigma^x i_k=i_p
+		,\] 
+		wobei $1\le p \le m$ und $p\equiv k+x\pmod{n}$. $\sigma^x=1$ genau dann, wenn $\sigma^x i_k=i_k$ f\"{u}r alle $k$, also $p=k$. F\"{u}r $x=m$ ist es dann klar, $p=k$, also $\sigma^x=1$. 
+
+		F\"{u}r $x < m$ kann das nicht sein. Das Kongruenz gilt genau dann, wenn
+		\[
+		k+x-rx=k,~r\in \Z
+		.\] 
+		Aber per Definition, wenn $r=1$ ist $k+x-\cancelto{1}{r}x<k$. Wenn $r=0$ ist $k+x\neq k$, weil $x\ge 1>0$. Also $\sigma^x\neq 1$ f\"{u}r alle $1 < x < m$.
+	\item Mit Hilfe von \ref{pr:introalgblatt5-2} können wir einfach eine solche $S_n$ konstruieren. Sei $n=9$. Dann haben wir $2$ disjunkter Zyklus
+		\[
+			(12345)\qquad\text{und}\qquad(6789)
+		.\] 
+		mit Ordnung 4 und 5 (a). Dann hat das Produkt $(12345)(6789)$ der Ordnung $20$, weil 4 und 5 Teilerfremd sind, und daher $\text{kgV}(4,5)=4\times 5=20$.
+
+		Jetzt betrachten wir die Aufgabe im Allgemein. Sei $n\in \N$ beliebig und $\sigma$ ein Element von $S_n$ mit der Ordnung $20$. Wir können $\sigma$ als Produkt von $k$ disjunkter Zykel. Die Zykel haben länge $l_i, 2\le l_i \le k~\forall l_i$ und
+		\[
+		l_1+l_2+\dots+l_k\le n
+		.\] 
+		Der Ordnung von $\sigma$ ist
+		\[
+			\text{ord}(\sigma)=l_1l_2\dots l_n=20=2^2\times 5
+		.\] 
+		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Dann f\"{u}r $n=$
+		 \begin{enumerate}[label=(\arabic*)]
+			 \setcounter{enumi}{5}
+			 \item Nachdem wir $5$ Elemente rausgenommen haben, gibt es keine Elemente mehr. Wir können dann keine anderen disjunkten Zyklel finden.
+			 \item Ähnlich, es gibt danach nur ein Element.
+			 \item Wir können jetzt nur ein Zykel der Länge $2$ schreiben, was nicht ausreichend ist.
+			 \item Nachdem wir $3$ Elemente rausgenommen haben, haben wir nur $3$ Elemente. Dann kann man nur Zykel mit Länge $2$ oder $3$ schreiben. Man kann nicht ein Zyklus der Länge $4$ oder zwei Zykel der Länge $2$ finden.
+		\end{enumerate}
+		Dann gibt es kein Element der Ordnung $20$ und $S_n$ f\"{u}r $\N\ni n<9$, also die gewünschte $n$ ist $9$.\qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie, dass die Menge
+		\[
+			V_4:=\left\{ \sigma\in A_4|\text{ord}(\sigma)\le 2 \right\} 
+		\]
+		eine Untergruppe der Ordnung $4$ von $A_4$ (und daher auch $S_4$) ist.
+	\item Zeigen Sie, dass $V_4$ ein Normalteiler von $S_4$ (und daher auch $A_4$) ist.
+		{\footnotesize \emph{Hinweis: $V4$ heißt auch Kleinsche Vierergruppe.}}
+	\end{parts}
+\end{Problem}
