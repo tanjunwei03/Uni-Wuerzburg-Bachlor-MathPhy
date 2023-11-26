@@ -48,7 +48,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Kurze Erinnerung am Definition von disjunkter Permutationen:
+	\item Kurze Erinnerung am Definition von disjunkte Permutationen:
 		\begin{tcolorbox}
 			\begin{Definition}\label{def:introalgblatt5-1}
 			Zwei Permutationen $\sigma,\tau\in S_n$ heißen \emph{disjunkt}, falls gilt
@@ -67,7 +67,7 @@
 				Sonst wäre es ein Widerspruch zu die Definition, dass $S_n$ die Gruppe alle bijektive funktionen $\left\{ 1,\dots, n \right\} \to \left\{ 1, \dots, n \right\} $ ist. Die Permutation wäre dann nicht injektiv, weil $\sigma(i)=\sigma(j)$, aber per Annahme $i\neq j$ gilt.
 			\end{proof}
 			\begin{Corollary}\label{corollary:introalgblatt5-1}
-			Sei $\sigma,\tau\in S_n$ disjunkter Permutation. Falls $\sigma(i)\neq i$ gilt $\tau\sigma\left( i \right) =\sigma(i)$.
+			Sei $\sigma,\tau\in S_n$ disjunkte Permutationen. Falls $\sigma(i)\neq i$ gilt $\tau\sigma\left( i \right) =\sigma(i)$.
 			\end{Corollary}
 			\begin{Remark}
 				Alle Aussagen here gelten natürlich noch, wenn man die Rollen von $\sigma$ und $\tau$ vertauschen.
@@ -116,7 +116,7 @@
 		\[
 		\sigma^a\tau^b i_k =\sigma^a i_k
 		.\] 
-	Per Definition ist $\sigma^a i_k\neq i_k$ f\"{u}r alle mögliche $i_k$, sonst wäre $\text{ord}(\sigma)=i_k$. Dann ist $(\sigma\tau)^p\neq 1$ f\"{u}r alle $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Schluss:
+		Per Definition ist $\sigma^a i_k\neq i_k$ f\"{u}r alle mögliche $i_k$, sonst wäre $\text{ord}(\sigma)=i_k$. Dann ist $(\sigma\tau)^p\neq 1$ f\"{u}r alle $p<\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$. Ähnlich für $b\neq 0$ betrachten wir alle Elemente, die nicht von $\sigma$ bewegt sind. F\"{u}r entweder $\sigma=1$ oder $\tau=1$ ist die Behauptung klar. Sei $\sigma=1$. Dann gilt $\text{ord}(1)=1$, und $\text{ord}(\sigma\tau)=\text{ord}(\tau)=\text{kgV}(1,\text{ord}(\tau))$. Schluss:
 	 \[
 		 \text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))
 	.\qedhere\] 
@@ -155,15 +155,7 @@
 		\[
 			\text{ord}(\sigma)=l_1l_2\dots l_n=20=2^2\times 5
 		.\] 
-		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Dann f\"{u}r $n=$
-		 \begin{enumerate}[label=(\arabic*)]
-			 \setcounter{enumi}{5}
-			 \item Nachdem wir $5$ Elemente rausgenommen haben, gibt es keine Elemente mehr. Wir können dann keine anderen disjunkten Zyklel finden.
-			 \item Ähnlich, es gibt danach nur ein Element.
-			 \item Wir können jetzt nur ein Zykel der Länge $2$ schreiben, was nicht ausreichend ist.
-			 \item Nachdem wir $3$ Elemente rausgenommen haben, haben wir nur $3$ Elemente. Dann kann man nur Zykel mit Länge $2$ oder $3$ schreiben. Man kann nicht ein Zyklus der Länge $4$ oder zwei Zykel der Länge $2$ finden.
-		\end{enumerate}
-		Dann gibt es kein Element der Ordnung $20$ und $S_n$ f\"{u}r $\N\ni n<9$, also die gewünschte $n$ ist $9$.\qedhere
+		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Das heißt, dass wir mindestens $9$ Elemente brauchen. Dann ist $9$ genau dann die gewünschte Zahl.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -175,6 +167,31 @@
 		\]
 		eine Untergruppe der Ordnung $4$ von $A_4$ (und daher auch $S_4$) ist.
 	\item Zeigen Sie, dass $V_4$ ein Normalteiler von $S_4$ (und daher auch $A_4$) ist.
-		{\footnotesize \emph{Hinweis: $V4$ heißt auch Kleinsche Vierergruppe.}}
+
+		{\footnotesize \emph{Hinweis: $V_4$ heißt auch Kleinsche Vierergruppe.}}
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Jedes Element $\sigma\in S_4$ lässt sich als Produkt disjunkte Zyklen geschrieben werden. Weil wir haben genau $4$ Elemente zu permutieren, muss die Zyklen Länge $\le 4$ haben. Zyklen mit Länge $4$ sind ungerade, weil
+		\[ 
+			(i_1i_2i_3i_4)=(i_1i_4)(i_1i_3)(i_1i_2)
+		,\] 
+		also jedes Element $\sigma\in A_4$ lässt sich als Produkt von Zyklen mit Länge $\le 3$ schreiben.
+
+		Sei jetzt $\sigma\in A_4$. Wir nehmen an, dass es ein Produkt von ein Zyklus der Länge $3$ und andere Zykeln ist. Dann ist $\sigma$ genau das Zyklus der Länge $3$, dessen Ordnung $3$ ist, also $\sigma \not\in V_4$.
+
+		Jetzt wissen wir: Alle Elemente $\sigma\in V_4$ können als Produkt von Zykeln der Länge $2$ geschrieben werden. Wie viele solchen Zykeln gibt es? Wir schreiben alle Möglichkeiten
+		\begin{align*}
+			& (12) & (23) & & (34) \\ & (13) & (24) & & (14)
+		\end{align*}
+Beobachtung: Solche Zykeln sind Transpositionen, also alle Elemente von $A_4$ müssen ein Produkt von $0$ oder $2$ solche Zykeln sein. Weil die Zykeln disjunkt sind, können wir alle Elemente von $V_4$ schreiben:
+\begin{align*}
+	& 1 = \left( \right) \\
+	& (12)(34)\\
+	& (13)(24)\\
+	& (14)(23)
+\end{align*}
+Es ist abgeschlossen, weil das Produkt von zwei Elemente ist noch einmal eine gerade Permutation in $A_4$. Solche Permutationen können als Produkt von disjunkte Zykeln.
+	\end{parts}
+\end{proof}

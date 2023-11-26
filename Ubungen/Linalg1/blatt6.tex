@@ -49,7 +49,7 @@ Außerdem ist $\tilde{x p_1}=x\tilde{p}_1$, und
 	\[
 	t(4,5,6)=(1,2,3)
 	.\] 
-	Aus $6t=3$ haben wir $t=\frac{1}{2}$. Dann ist $5t=\frac{5}{2}\neq 2$, ein Widerspruch, also es ist kein Untervektorraum.
+	Aus $6t=3$ haben wir $t=\frac{1}{2}$. Dann ist $5t=\frac{5}{2}\neq 2$, ein Widerspruch, also es ist kein Untervektorraum.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -78,8 +78,27 @@ Außerdem ist $\tilde{x p_1}=x\tilde{p}_1$, und
 	i(1,i)+(-1)(i,-1)=(i,-1)-(i,-1)=0
 	,\]
 	und wir haben $i\neq 0$.
-\item Ja. 
-	\end{parts}
+\item Ja. Sei $a,b,c\in \Z / 2\Z$, sodass
+	\[
+	a(1+t+t^2)+b(1+t)+c(1)=at^2+(a+b)t+(a+b+c)=0
+	.\] 
+	Per Defintion der Nullpolynom gilt $a=0$. Dann ist $b+a=0$, oder $b=0$. Zuletzt gilt $a+b+c=0$, also $c=0$ weil $a=b=0$.
+\item  Ja. Sei $a,b,c\in \R$, sodass $a(1,2,3)+b(5,4,3)+c(6,6,7)=0$. Es gilt
+\begin{align*}
+	-6c=&a+5b\\
+	-6c=&2a+4b\\
+	-7c=&3a+3b
+\end{align*}
+Aus den zweiten und ersten Gleichungen folgt
+\[
+a+5b=2a+4b
+,\]
+also $a=b$. Aus der ersten oder zweiten Gleichung folgt $c=-a$. Aus der dritten Gleichung folgt
+\[
+-7(-a)=7a=3a+3b=6a
+.\]
+Weil $7a=6a$ muss $a=0$ sein. Dann ist $b=c=0$. Also die Vektoren sind linear unabhängig.
+	\end{parts} 
 \end{proof}
 \begin{Problem}
 	Entscheiden Sie, welche der folgenden Familien ein Erzeugendensystem des jeweiligen Vektorraums sind
@@ -115,6 +134,99 @@ Außerdem ist $\tilde{x p_1}=x\tilde{p}_1$, und
 		\[
 		0(1,2,3)+0(5,4,3)=(0,0,0)\neq (0,0,-1)
 		.\] 
-	\item Nein. Wir betrachten $i=\exp(i\pi / 2)\in \C$. Es sollte eine lineare Kombination von Vektoren $(\exp it)_{t\in \Q}$ sein. 
+	\item Nein. 
+	\item Ja. Sei $v_n=1+t^n~n\in \N_0$ der Erzeugendensystem. Es ist $v_0=1+1=2$. Dann ist $v_n-\frac{1}{2}v_0=t^n~n\in \N$. Weil wir wissen, dass $t^n$ ein Erzeugendensystem ist, ist dann auch $(1+t^n)_{n\in \N_0}$ ein Erzeugendensystem.
+	\item Nein. Alle solche Funktionen $\tilde{p}$ sind stetig, also lineare Kombinationen davon $a_1\tilde{p}_1+a_2\tilde{p}_2+\dots$ sind auch stetig. Aber es gibt unstetige Funktionen $\R\to \R$, z.B.
+		\[
+		f(x)=\begin{cases}
+			1 & x \le 0\\
+			-1 & x > 0
+		\end{cases}
+		.\] 
+	\item Ja. Es gilt
+	\begin{align*}
+		(0,0,1)=&(6,6,7)-(5,4,3)-(1,2,3)\\
+		(1,0,0)=&-2(1,2,3)+(5,4,3)+3(0,0,1)\\
+		(0,1,0)=&\frac{1}{2}\left[ (1,2,3)-(1,0,0)-3(0,0,1) \right] 
+	\end{align*}
+	Weil alle Elemente der Standardbasis als Linearkombination von unserem System geschrieben werden können, können alle Elemente in $\R^3$ auch. Dann ist es ein Erzeugendensystem. Weil es linear unabhängig ist, ist es eine Basis.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie: Ist $(b_i)_{i\in B}$ eine Basis des $\R$-Vektorraums $V$ und $i_0 \in B$, dann ist auch $(b_i - 2b_{i_0} )_{i\in B}$ eine Basis von $V$.
+	\item Zeigen Sie: Ist $K$ ein unendlicher Körper und sind $(x_i)_{i\in \N_0}$ Elemente von $K$ mit $x_i\neq x_i$ f\"{u}r $i\neq j$, so ist $(b_k)_{k\in \left\{ 0,1,2,3,\dots,n \right\} }$ mit
+		\[
+			b_k=\frac{\left(\prod_{i=0}^{k-1}(t-x_i)\right) \left(\prod_{i=k+1}^{n}(t-x_i) \right) }{\left(\prod_{i=0}^{k-1}(x_k-x_i)\right) \left(\prod_{i=k+1}^{n}(x_k-x_i) \right) }
+		\] 
+		f\"{u}r jedes $n\in \N_0$ eine Basis von $K_{\le n}[t]=\left\{ p(t)\in K[t]|\text{deg}(p)\le n \right\} $.
+	\item Geben Sie mit Hilfe der Basis aus der vorigen Teilaufgabe ein rationales Polynom vom Grad höchstens 4 an, dessen Polynomfunktion die Funktionswerte $f(1)=1,~f(2)=4,~f(3)=9,~f(4)=17,~f(5)=6000$ hat. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $(b_i-2b_{i_0})_{i\in B}$ ist\ldots
+		\begin{enumerate}[label=(\roman*)]
+			\item Linear unabhängig
+
+				Sei $(a_k)_{k\in B},a_k\in R$, nicht alle $0$, sodass
+				\[
+					\sum_{i\in B}a_i(b_i-2b_{i_0})=0
+				.\] 
+				Es ist dann
+				\[
+					\sum_{B\ni i\neq i_0}a_i b_i+2\left( \sum_{B\ni i\neq i_0}a_i \right) b_{i_0}-a_{i_0}b_{i_0}=0
+				.\] 
+				Die Koeffizienten sind nicht alle null, also $(b_i)_{i\in B}$ ist nicht linear unabhängig, ein Widerspruch, weil es ist dann kein Basis.
+			\item Ein Erzeugendesystem
+
+				Sei $v\in V$ beliebig und $a_i\in \R$, sodass
+				\[
+					v=\sum_{i\in B} a_i b_i
+				,\] 
+				was immer möglich ist, weil $(b_i)_{i\in B}$ eine Basis ist. Sei dann 
+				\[
+				c_i=\begin{cases}
+					a_i & i \neq i_0\\
+					-2\sum_{B\ni i\neq i_0} a_i-a_{i_0} & i=i_0
+				\end{cases}
+				.\] 
+				Es gilt dann
+				\begin{align*}
+					\sum_{i\in B} c_i (b_i-2b_{i_0})=&\sum_{B\ni i\neq n_0}c_i (b_i-2b_{i_0}) + c_{i_0}(b_{i_0}-2b_{i_0})\\
+						=&\sum_{B\ni i\neq 0}c_i b_i - 2\sum_{B\ni i\neq i_0} b_{i_0}-c_{i_0}b_{i_0}\\
+						=&\sum_{B\ni i \neq i_0} a_ib_i+a_{i_0}b_{i_0}\\
+						=&\sum_{i\in B }a_i b_i\\
+						=& v
+				\end{align*}
+				Weil $v$ beliebig war, haben wir einen Erzeugendensystem. Die Behauptung folgt.
+		\end{enumerate}
+	\item Wir betrachten die Wirkung der Polynomfunktion $\tilde{b}_k$ auf ein Punkt $x_i$. Es gilt, f\"{u}r $i\neq k$, $\tilde{b}_k(x_i)=0$. F\"{u}r $i=k$ ist
+		\[
+			\tilde{b}_k(x_k)=\frac{\left(\prod_{i=0}^{k-1}(x_k-x_i)\right) \left(\prod_{i=k+1}^{n}(x_k-x_i) \right) }{\left(\prod_{i=0}^{k-1}(x_k-x_i)\right) \left(\prod_{i=k+1}^{n}(x_k-x_i) \right) }=1
+		.\]
+		Sei $p\in K[t]$ ein Polynom mit Grad $\le n$. Wir wissen, dass nachdem wir $\tilde{p}(x_i)$ f\"{u}r alle $1\le i\le n$ wissen, ist das Polynom eindeutig. Sei jetzt $p(x_i)=a_i$ f\"{u}r alle $i$. Es ist $p'=\sum_{i=1}^n a_i b_i$. Dann gilt $\tilde{p}'(x_i)=a_i$ f\"{u}r alle $i$, also $p'=p$, also $(b_k)$ ist ein Erzeugendensystem.
+
+	Weil wir genau $\text{dim}(K_{\le n}[t])=n$ $b_k$ haben, ist es ein Basis, sonst wäre die Dimension nicht eindeutig.
+\item Sei $x_0=1,x_1=2,x_2=3,x_3=4,x_4=5$. Wir betrachten zuerst
+	\[
+c_k=\left(	\prod_{i=0}^{k-1} (x_k-x_i)\right)\left( \prod_{i=k+1}^{n} (x_k-x_i)  \right)  
+\]
+f\"{u}r $k=$ 
+\begin{enumerate}[label=(\arabic*),start=0]
+	\item $c_0=24$
+	\item $c_1=-6$
+	\item $c_2=4$
+	\item $c_3=-6$
+	\item $c_4=24$
+\end{enumerate}
+Dann betrachten wir die Polynomfunktion:
+\[
+	\tilde{p}=\sum_{i=0}^4\left( \frac{1}{c_i}\prod_{i\neq k = 0}^4 (t-x_i)  \right) 
+.\] 
+$p$ ist dann ein Polynom mit die gewünschte Nullstellen. Nach Vereinfachung ist
+\[
+\frac{5971 x^4}{24}-\frac{9951 x^3}{4}+\frac{208985 x^2}{24}-\frac{49751 x}{4}+5970
+.\] 
 	\end{parts}
 \end{proof}
