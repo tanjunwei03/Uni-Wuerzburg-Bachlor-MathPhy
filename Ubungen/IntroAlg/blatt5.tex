@@ -29,12 +29,12 @@
 			\[
 				(3765)=(37)(76)(65)
 			,\]
-			also es ist gerade.
+			also es ist ungerade.
 		\item $i=8,j=3$ wir machen ähnlich
 			\[
 				(37658)=(37)(76)(65)(58)
 			,\] 
-			also es ist in diesem Fall nicht gerade.\qedhere
+			also es ist in diesem Fall gerade.\qedhere
 	\end{enumerate}
 \end{parts}
 \end{proof}
@@ -155,7 +155,7 @@
 		\[
 			\text{ord}(\sigma)=l_1l_2\dots l_n=20=2^2\times 5
 		.\] 
-		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Das heißt, dass wir mindestens $9$ Elemente brauchen. Dann ist $9$ genau dann die gewünschte Zahl.\qedhere
+		Weil $5$ ein Primzahl ist, muss mindestens ein $l_1$ 5 sein. Also oBdA können wir f\"{u}r beliebiges $n$ so versuchen, ein solches Element so konstruieren: Wir nehmen $5$ Elemente raus, und versuchen weiter, ein disjunkter Zyklus mit Länge $4$ oder 2 disjunkte Zykel mit Länge $2$ zu finden. Das heißt, dass wir mindestens $9$ Elemente brauchen. Dann ist $9$ genau die gewünschte Zahl.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -173,25 +173,49 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Jedes Element $\sigma\in S_4$ lässt sich als Produkt disjunkte Zyklen geschrieben werden. Weil wir haben genau $4$ Elemente zu permutieren, muss die Zyklen Länge $\le 4$ haben. Zyklen mit Länge $4$ sind ungerade, weil
-		\[ 
-			(i_1i_2i_3i_4)=(i_1i_4)(i_1i_3)(i_1i_2)
-		,\] 
-		also jedes Element $\sigma\in A_4$ lässt sich als Produkt von Zyklen mit Länge $\le 3$ schreiben.
+	\item Wir schreiben ein beliebiges Element $\sigma\in V_4$ als Produkt von disjunkte Zykeln und nutzen die Eigenschaften:
+\begin{enumerate}[label=(\roman*)]
+	\item $\sigma\in A_4$.
+		
+		Dann kann das Produkt keine Zykeln der Ordnung $4$ enthalten, weil $\sigma$ ist dann genau das Zyklus und lässt sich als Produkt von $3$ Transpositionen schreiben, also $(i_1i_2i_3i_4)=(i_1i_4)(i_1i_3)(i_1i_2)$. 
+	\item $\text{ord}(\sigma)\le 2$. 
 
-		Sei jetzt $\sigma\in A_4$. Wir nehmen an, dass es ein Produkt von ein Zyklus der Länge $3$ und andere Zykeln ist. Dann ist $\sigma$ genau das Zyklus der Länge $3$, dessen Ordnung $3$ ist, also $\sigma \not\in V_4$.
+		Also das Produkt enthält nur Zykeln der Länge $2$.
+	\item Dann können alle $\sigma\in V_4$ als Produkt von $0$ oder $2$ Zykeln der Länge $2$ bzw. Transpositionen geschrieben werden.  Wie viele solchen Zykeln gibt es? Wir schreiben alle Möglichkeiten
+	\begin{align*}
+		& (12) & (23) & & (34) \\ & (13) & (24) & & (14)
+	\end{align*}
+	Dann können wir alle Elemente von $V_4$ schreiben:
+	\begin{align*}
+		& 1 = \left( \right) \\
+		& (12)(34)\\
+		& (13)(24)\\
+		& (14)(23)
+	\end{align*}
+\item Wir müssen keine Assoziativgesetz oder Existenz des Inverses beweisen, die folgen alle aus den Eigenschaften der Gruppe $A_4$.
+\item $V_4$ ist abgeschlossen:
 
-		Jetzt wissen wir: Alle Elemente $\sigma\in V_4$ können als Produkt von Zykeln der Länge $2$ geschrieben werden. Wie viele solchen Zykeln gibt es? Wir schreiben alle Möglichkeiten
-		\begin{align*}
-			& (12) & (23) & & (34) \\ & (13) & (24) & & (14)
-		\end{align*}
-Beobachtung: Solche Zykeln sind Transpositionen, also alle Elemente von $A_4$ müssen ein Produkt von $0$ oder $2$ solche Zykeln sein. Weil die Zykeln disjunkt sind, können wir alle Elemente von $V_4$ schreiben:
-\begin{align*}
-	& 1 = \left( \right) \\
-	& (12)(34)\\
-	& (13)(24)\\
-	& (14)(23)
-\end{align*}
-Es ist abgeschlossen, weil das Produkt von zwei Elemente ist noch einmal eine gerade Permutation in $A_4$. Solche Permutationen können als Produkt von disjunkte Zykeln.
+	Wir schreiben die Verknüpfungstafel
+\[
+\left(
+\begin{array}{cccc}
+ \text{()} & \text{(12)(34)} & \text{(13)(24)} & \text{(14)(23)} \\
+ \text{(12)(34)} & \text{()} & \text{(14)(23)} & \text{(13)(24)} \\
+ \text{(13)(24)} & \text{(14)(23)} & \text{()} & \text{(12)(34)} \\
+ \text{(14)(23)} & \text{(13)(24)} & \text{(12)(34)} & \text{()} \\
+\end{array}
+\right)
+.\] 
+\item Alle Elemente in $V_4$ sind invertierbar, weil $\text{ord}(\sigma)$ ist entweder $1$, also $\sigma=1$ und $\sigma^2=1$, oder $\text{ord}(\sigma)=2$, also $\sigma^2=1$. In beiden Fälle ist $\sigma=\sigma^{-1}$.
+\end{enumerate}
+\item Sei $(v_1v_2)(v_3v_4)=v\in V_4$ und $\sigma\in S_4$. Sei $f=\sigma^{-1}$. Das Ziel ist
+\[
+	\sigma^{-1}v\sigma=(f(v_1)f(v_2))(f(v_3)f(v_3))
+.\] 
+Wir betrachten die Wirkung $f v f^{-1} u$. Weil sowohl $\sigma$ als auch $f$ bijektiv sind, können wir statt $u$ $f(x)$ schreiben. Sei $v(x)=y$. Es gilt dann
+\[
+	fvf^{-1}f(x)=fv(x)=f(y)
+.\]
+Weil $f$ bijektiv ist, ist $\left\{ f(v_1),f(v_2),f(v_3),f(v_4) \right\} =\left\{ 1,2,3,4 \right\} $, also wir haben ein Produkt von $2$ disjunkte Zykeln der Länge $2$ bzw. Permutationen, also $\sigma^{-1}v\sigma\in V_4$.\qedhere
 	\end{parts}
 \end{proof}

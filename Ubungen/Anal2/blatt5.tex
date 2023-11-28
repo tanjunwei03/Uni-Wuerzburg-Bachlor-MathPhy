@@ -1,0 +1,212 @@
+\begin{Problem}
+	\textbf{(Stückweise Integrierbarkeit)} Zeigen Sie: ist $f:[a,b]\to \R$ Riemann-integrierbar auf $[a,c]$ und $[c,b]$ f\"{u}r ein $c\in (a,b)$, so auch auf $[a,b]$.	
+\end{Problem}
+\begin{proof}
+	Sei $\epsilon>0$ beliebig. Weil $f$ auf sowohl $[a,c]$ als auch $[c,b]$ integrierbar ist, gibt es eine Zerlegung $\mathcal{J}_1=\left\{ x_0=a,x_1,\dots,x_n=c \right\} $ bzw. $\mathcal{J}_2=\left\{ x_n=c,x_{n+1},\dots, x_{n+k} \right\} $ von $[a,c]$ bzw. $[c,b]$, so dass
+	\begin{align*}
+		\mathcal{O}_{\mathcal{J}_1}-\mathcal{U}_{\mathcal{J}_1}(f)<& \frac{\epsilon}{2}\\
+		\mathcal{O}_{J_2}-\mathcal{U}_{J_2}<\frac{\epsilon}{2}
+	\end{align*}
+	Dann ist $\mathcal{J}=\mathcal{J}_1\cup \mathcal{J}_2$ eine Zerlegung von $[a,b]$ und
+	\[
+		\mathcal{O}_{\mathcal{J}}-\mathcal{U}_{\mathcal{J}}<\epsilon
+	.\] 
+	Weil $\epsilon$ beliebig war, ist $f$ integrierbar.
+\end{proof}
+\begin{Problem}
+	\textbf{(Bestimmte Integrale)} Berechnen Sie die folgenden bestimmten und unbestimmten Integrale
+:
+\begin{parts}
+	\item $\int_1^4 \sin(\sqrt{x})\dd{x}$,
+	\item $\int_0^{1 / 2}\arcsin(x)\dd{x}$,
+	\item $\int \frac{1}{(1+x^2)^2}\dd{x}$,
+	\item $\int_0^1 x\sqrt{1-x^2} \dd{x}$.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $u=\sqrt{x},\dd{u}=\frac{1}{2\sqrt{x} }\dd{x}$, also $\dd{x}=2u\dd{u}$. Wenn $x=1$ ist $u=1$, und $x= 4$ ist $u=2$. Es gilt
+		\begin{align*}
+			\int_1^4\sin(\sqrt{x} )\dd{x}=&\int_1^2 \sin(u)(2u\dd{u})\\
+			=&2\int_1^2 u\sin u\dd{u}\\
+			=&2\left[ u(-\cos u)|_1^2 + \int_1^2 \cos u \dd{u} \right] & \text{partielle Integration}\\
+			=& 2\left[ (\cos(1)-2\cos(2))+[\sin u]_1^2 \right] \\
+			=&2\cos 1-4\cos 2 + 2\sin 2-2\sin 1
+		\end{align*}
+	\item 
+		\begin{align*}
+			\int_0^{1 / 2}\arcsin(x)\dd{x}=&x\arcsin(x)|_0^{1 / 2}-\int_0^{1 / 2}\frac{x}{\sqrt{1-x^2} }\dd{x}\\
+			=&\frac{1}{2}\arcsin\left( \frac{1}{2} \right) -\int_0^{1 / 2}\frac{x}{\sqrt{1-x^2} }\dd{x}\\
+			u =& 1-x^2,\qquad \dd{u}=-2x\dd{x}.\\
+			\text{Wenn }x=&0,\text{ ist }u=1.\\
+			\text{Wenn }x=&1 / 2,\text{ ist }u=3 / 4.\\
+			\int_0^{1 / 2}\arcsin(x)\dd{x}=&\frac{\pi}{2}-\int_1^0 \frac{1}{(-2)} \frac{1}{\sqrt{u} }\dd{u}\\
+			=&\frac{\pi}{12}+\frac{1}{2}\int_1^{3 / 4} u^{-1 / 2}\dd{u}\\
+			=&\frac{\pi}{12}-\frac{1}{2}\int^1_{3 / 4} u^{-1 / 2}\dd{u}\\
+			=&\frac{\pi}{12}-\frac{1}{2}\left[ 2u^{1 / 2} \right]_{3 / 4}^1\\
+			=&\frac{\pi}{12}-1+\sqrt{\frac{3}{4}} \\
+			=&-1+\frac{\sqrt{3} }{2}+\frac{\pi}{12}.
+		\end{align*}
+	\item Substitution: $x=\tan\theta,~\dd{x}=\sec^2\theta\dd{\theta}$, f\"{u}r $-\frac{\pi}{2}<\theta<\frac{\pi}{2}$. Es gilt $\tan^2\theta+1=\sec^2\theta$. Es folgt
+		\begin{align*}
+			\int \frac{1}{(1+x^2)^2}\dd{x}=& \int \frac{1}{(1+\tan^2\theta)^2}(\sec^2\theta\dd{\theta})\\
+			=& \int \frac{1}{\sec^4\theta}\sec^2\theta\dd{\theta}\\
+			=& \int \cos^2\theta\dd{\theta} \\
+			=& \frac{1}{2}\int\left( 1+\cos 2\theta \right) \dd{\theta}   \\
+			=& \frac{1}{2}\left[ \theta+\frac{1}{2}\sin 2\theta \right] 
+		\end{align*}
+		Es gilt auch $\sin\theta=\sin\tan^{-1}x=\frac{x}{\sqrt{1+x^2} }$ und $\cos\theta=\cos\tan^{-1}x=\frac{1}{\sqrt{1+x^2} }$. Daraus folgt
+		\[
+		\sin 2\theta=\sin\theta\cos\theta=\frac{x}{1+x^2}
+		.\] 
+		Dann ist
+		\[
+			\int \frac{1}{(1+x^2)^2}\dd{x}=\frac{1}{2}\left( \tan^{-1}x+\frac{x}{1+x^2} \right) 
+		.\] 
+	\item 
+		\begin{align*}
+			\int_0^1 x\sqrt{1-x^2} \dd{x}=& \frac{x^2}{2}\sqrt{1-x^2} |_0^1+\int_0^1 \frac{x^2}{2} \frac{1}{2\sqrt{1-x^2} }(-2x)\dd{x}\\
+			=&0-\frac{1}{2}\int_0^1 \frac{x^3}{\sqrt{1-x^2} }\dd{x}\\
+			u=&1-x^2\qquad \dd{u}=-2x\dd{x}\\
+			x^3\dd{x}=&\frac{1}{-2}x^2 (-2x\dd{x})\\
+			=&-\frac{1}{2}x^2\dd{u}\\
+			=&-\frac{1}{2}(1-u)\dd{u}\\
+			\text{Wenn }x=&0\text{ ist }u=1\\
+			\text{Wenn }x=&1\text{ ist }u=0\\
+			\int_0^1 x\sqrt{1-x^2} \dd{x}=&+\frac{1}{2}\int_1^0\left( -\frac{1}{2}\frac{1-u}{\sqrt{u} } \right) \dd{u}\\
+			=&\frac{1}{4}\int_0^1 \frac{1-u}{\sqrt{u} }\dd{u}\\
+			=&\frac{1}{4}\left[ 2\sqrt{u} -\frac{2}{3}u^{\frac{3}{2}} \right]_0^1\\
+			=&\frac{1}{4}\left[ 2-\frac{2}{3} \right]\\
+			=&\frac{1}{4}\frac{4}{3}\\
+			=& \frac{1}{3}.\qedhere
+		\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\textbf{(Der Hauptsatz)} Beweisen oder widerlegen Sie die folgenden Aussagen:
+	\begin{parts}
+	\item Eine integrierbare Funktion $f:[a,b]\to \R$ besitzt eine Stammfunktion.
+	\item Eine stetige Funktion $f:[a,b]\to \R$ besitzt ein Stammfunktion.
+	\item Ein Funktion $f:[a,b]\to \R$, welche eine Stammfunktion auf $[a,b]$ besitzt, ist integrierbar.
+
+	{\footnotesize\emph{Hinweis:} $F(x)=\sqrt{x^3}\sin\left(\frac{1}{x}\right)$ f\"{u}r $x\neq 0$ }
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Sei $f:[0,1]\to \R$,
+		\[
+		f(x)=\begin{cases}
+			0 & 0 \le x \le \frac{1}{2}\\
+			1 & \frac{1}{2}< x < 1.
+		\end{cases}
+	\]
+	Es gilt dann
+	\[
+		\int_0^x f(x)\dd{x}=\begin{cases}
+			0 & x\le \frac{1}{2}\\
+			x-\frac{1}{2} & x\ge \frac{1}{2}.
+		\end{cases}
+	.\] 
+\item Ja (Proposition 6.4.1 und Definition 6.4.2).
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\textbf{(Riemann-Lemma)} Es sei $f:[a,b]\to \R$ Riemann-integrierbar. Zeigen Sie, dass
+	\begin{equation}\tag{5.1}\label{eq:anal2blatt5-1}
+		\lim_{n \to \infty} \int_a^b f(x)\sin(nx)\dd{x}=0
+	\end{equation}
+		gilt. Verifizieren Sie dazu:
+		\begin{enumerate}[label=(\roman*)]
+			\item Zeigen Sie, dass zu jedem $\epsilon>0$ eine stückweise konstante Funktion $T : [a, b] \to \R$ existiert mit
+				\[
+					\int_a^b |f(x)-T(x)|\dd{x}\le\epsilon
+				.\] 
+			\item Zeigen Sie \eqref{eq:anal2blatt5-1} f\"{u}r beliebige, stückweise konstakte Funktionen.
+			\item Folgern Sie die Behauptung.
+		\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}[label=(\roman*)]
+		\item Weil $f$ integrierbar ist, können wir eine Zerlegung $\mathcal{J}=\left\{ x_0=a,x_1,\dots, x_n=b \right\} $ finden, so dass
+			\[
+				\mathcal{O}_{\mathcal{J}}(f)-\mathcal{U}_{\mathcal{J}}(f)\le \epsilon
+			.\] 
+			Wir definieren zwei stückweise konstante Funktionen:
+			\begin{align*}
+				\tau(x)=&\begin{cases}\sup_{x_i \le x \le x_{i+1}} & x_i \le x < x_{i+1}, 0\le i <n-1\\
+					\sup_{x_{n-1}\le x \le x_n} & x_{n-1} \le x \le x_n
+				\end{cases}\\
+				\sigma(x)=&\begin{cases}\inf_{x_i \le x \le x_{i+1}} & x_i \le x < x_{i+1}, 0\le i <n-1\\
+					\inf_{x_{n-1}\le x \le x_n} & x_{n-1} \le x \le x_n
+					\end{cases}
+			\end{align*}
+			Dann sind $\tau$ und $\sigma$ Treppenfunktionen mit $\sigma \le f \le \tau$ auf $[a,b]$. Es gilt außerdem per Definition
+			\begin{align*}
+				\epsilon\ge&\mathcal{O}_{\mathcal{J}}(f)-\mathcal{U}_{\mathcal{J}}(f)\\
+				=&\sum_{i=0}^{n-1}\left( \sup_{x_i\le x\le x_{i+1}}f(x)-\inf_{x_i\le x\le x_{i+1}}f(x) \right)(x_{i+1}-x_i) \\
+					=&\sum_{i=0}^{n-1}(\tau(x_i)-\sigma(x_i))(x_{i-1}-x_i)\\
+					\ge&\sum_{i=0}^{n-1}\left( \tau(x_i)-f(x_i) \right)\left( x_{i+1}-x_i \right) \\
+					=&\mathcal{O}_{\mathcal{J}}(\tau-\sigma)\\
+					\ge& \mathcal{O}_{\mathcal{J}}(\tau - f)\\
+					\ge& \int_a^b (\tau - f)(x)\dd{x}\\
+					=&\int_a^b |\tau(x)-f(x)|\dd{x}
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+\begin{Problem}
+	F\"{u}r eine gegebene Funktion $f:[a,b]\to \R$ kann unter bestimmten Voraussetzungen (z.B. $f\in C^1([a,b])$, wir kommen in der Vorlesung darauf zurück) die Länge des Funktionsgraphen durch
+	\[
+		L(f)=\int_a^b \sqrt{1+|f'(x)|^2} \dd{x}\] 
+		bestimmt werden.
+		\begin{enumerate}[label=(\roman*)]
+			\item Begründen Sie kurz anschaulich, warum diese Formel wahr sein kann.\emph{Hinweis: Pythagoras.}
+			\item Bestimmen Sie über obige Identität den Umfang eines Einheitskreises.
+		\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}[label=(\roman*)]
+		\item\noindent
+
+			\begin{center}
+				\begin{tikzpicture}[scale=4]
+					\draw[thick] (0,0) arc (-90:-20:1);
+					\draw[thick,->] (0,0) -- (1.5,0);
+					\draw[thick,->] (0,0) -- (0,1);
+					\draw[thick, dashed] ({cos(60)},{1-sin(60)}) -- ++(0.2,0) -- ({cos(60)+0.2},{1-sqrt(0.51)}) -- cycle;
+					\draw ({cos(60)+0.1},{1-sin(60)}) node[anchor=north] {$\dd{x}$};
+					\draw ({cos(60)+0.2},{((2-sin(60))-sqrt(0.51))/2}) node[anchor=west] {$\dv{f}{x}\dd{x}$};
+					\draw (1.5,0) node[anchor=west] {$x$};
+					\draw (0,1) node[anchor=south] {$y$};
+				\end{tikzpicture}
+			\end{center}
+			also intuitiv wäre
+			\[
+				L(f)=\int_a^b \sqrt{(\dd{x})^2+\left( \dv{f}{x}\dd{x} \right) ^2} =\int_a^b \sqrt{1+f'(x)^2} \dd{x}
+			.\] 
+		\item Wir berechnen zuerst die Länge eines Hälftes des Kreises, also
+			\begin{center}
+				\begin{tikzpicture}[scale=3]
+					\draw[thick, ->] (-1,0) -- (1,0);
+					\draw[thick, ->] (0,-0.25) -- (0,1);
+					\draw (0.7,0) arc (0:180:0.7);
+					\draw ({0.7*cos(45)},{0.7*sin(45)}) node[anchor=south west] {$f(x)=\sqrt{1-x^2} $};
+					\draw (1,0) node[anchor=west] {$x$};
+					\draw (0,1) node[anchor=south] {$y$};
+				\end{tikzpicture}
+			\end{center}
+			Es gilt
+\[
+f'(x)=-\frac{x}{\sqrt{1-x^2} }
+,\]
+und
+			\begin{align*}
+				L(f)=&\int_{-1}^1 \sqrt{1+\frac{x^2}{1-x^2}} \dd{x}\\
+				=&\int_{-1}^1 \sqrt{\frac{1}{1-x^2}} \dd{x}\\
+				=&\int_{-1}^1 \frac{1}{\sqrt{1-x^2} }\dd{x}\\
+				=&\arcsin(x)|_{-1}^1\\
+				=&\frac{\pi}{2}-\left( -\frac{\pi}{2} \right) =\pi,
+			\end{align*}
+			also der Umfang ist $2\pi$.\qedhere
+	\end{enumerate}
+\end{proof}

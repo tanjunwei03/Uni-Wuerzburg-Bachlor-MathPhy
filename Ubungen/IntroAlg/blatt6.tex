@@ -1,0 +1,145 @@
+\begin{Problem}
+	Seien $G,H$ Gruppen und $\Phi:G\to H$ ein Homomorphismus.
+	\begin{parts}
+		\item Sei $g\in G$ ein Element mit Ordnung $n\in \N^*$. Zeigen Sie, dass $\text{ord}(\Phi(g))|n$ gilt.
+		\item Sei $N\trianglelefteq G$. Ist dann stets auch $\Phi(N)\trianglelefteq H$?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt
+		\[
+		\Phi(g)^n=\Phi(g^n)=\Phi(1_G)=1_H
+	,\]
+	also $\text{ord}(\Phi(g))\le n$. Wir beweisen die Aussage per Widerspruch. Sei $\text{ord}(\Phi(g))=p\nmid n$. Wir schreiben
+	\[
+	n=qp+r,\qquad r<p
+\]
+(Division mit Rest). Es gilt dann
+\begin{align*}
+	\Phi(g)^n=&\Phi(g)^{qp+r}\\
+	=&\Phi(g)^{qp}\Phi(g)^r\\
+	=&\left( \Phi(g)^p \right)^q\Phi(g)^r\\
+	=&1^q\Phi(g)^r\\
+	=&\Phi(g)^r\\
+	\neq& 1
+\end{align*}
+Im letzten Schritt haben wir benutzt, dass $r<p=\text{ord}(\Phi(g))$, also $\Phi(g)^r\neq 1$, sonst wäre $\text{ord}(\Phi(g))=r$.
+\item Nein. Wir betrachten eine ``Einbettung" $\text{em}:S_n\to S_m$, wobei $m>n$. Sei $\sigma\in S_n$. Es gilt $\text{em}(\sigma)=\sigma'$ genau dann, wenn
+	\[
+	\sigma'(i)=\begin{cases}
+		\sigma(i) & i\le n\\
+		i & \text{sonst.}
+	\end{cases}
+	.\] 
+	Es ist klar, dass $\Phi$ ein Homomorphismus ist. Sei $\sigma_1,\sigma_2\in S_n$, mit $\Phi(\sigma_1)=\sigma_1'$ und $\Phi(\sigma_2)=\sigma_2'$. Dann ist
+	\[
+	\sigma_1'\sigma_2'(i)=\sigma_1'(i)=i\qquad n < i \le m
+,\]
+also $\sigma_1'\sigma_2'|_{\left\{ 1,2,\dots, n \right\} }$ ein Element von $S_n$, dessen Bild $\sigma_1'\sigma_2'$ ist.
+
+Wir wissen, dass $A_n\trianglelefteq S_n$. 
+
+\textbf{Konkretes Gegenbeispiel:} Sei $n=3,m=5$. Wir betrachten $\text{em}:S_3\to S_4$, und $\Phi(A_3)$, wobei $A_3\trianglelefteq S_3$.
+
+Dann ist $\Phi(A_3)$ kein Normalteiler von $S_4$. Unter Zweckentfremdung der Notation stellen wir $A_3$ und $\Phi(A_3)$ in Zykelnotation dar
+\[
+	A_3=\Phi(A_3)=\{(123), (132)\}
+	.\]
+Es gilt auch $(14)\in S_4$ und $(14)^{-1}=(14)$.
+
+Es gilt aber
+\[
+	(14)(123)(14)=(14)(1234)=(234)\not\in  \Phi(A_3)
+,\] 
+also $\Phi(A_3)\not\trianglelefteq H$.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Seien $G$ eine Gruppe und $M:=\left\{ x^2|x\in G \right\} $.
+	\begin{parts}
+	\item Zeigen Sie, dass $N:=\left<M \right>$ ein Normailteiler von $G$ ist.
+	\item Beweisen Sie, dass für jedes Element $gN$ der Faktorgruppe $G / N$ gilt: $\text{ord}(gN)\le 2$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $x,y\in G$ beliebig. Es gilt $x^2\in M$. Es ist $y^{-1}xy\in G$. Dann gilt
+		\begin{align*}
+			y^{-1}x^2y=&y^{-1}x xy\\
+			=&y^{-1}xyy^{-1}xy\\
+			=&(y^{-1}xy)^2\\
+			\in& M,
+		\end{align*}
+		also $M$ ist ein Normalteiler von $G$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Geben Sie ein Beispiel für eine Gruppe mit Untergruppen $A,B\le G$ an, so dass
+	\[
+		A\trianglelefteq B\qquad\text{und}\qquad B\trianglelefteq G
+	\]
+	gelten, nicht jedoch $A\trianglelefteq G$.
+
+	{\footnotesize \textbf{Hinweis:} Dies zeigt, dass das Normalteiler-Sein im Allgemeinen nicht transitiv ist.}
+\end{Problem}
+
+\begin{Problem}
+	Zeigen Sie, dass
+	\[
+	S_n=\left<(12),(123\dots n) \right>\] 
+	f\"{u}r jedes $n\in \N^*$ gilt.
+\end{Problem}
+\begin{proof}
+	Wir zeigen, dass Elemente mit bestimmte Formen Elemente von $\left<(12),(123\dots n) \right>$ sind. Im Beweis begründen wir alle Schritte mit ``Sonst wäre $\left<(12),(123\dots n) \right>$ keine Gruppe, weil es nicht abgeschlossen wäre".
+
+	Außerdem bedeutet hier Addition immer die Addition ähnlich zu $\Z / n \Z$: $a+b=((a-1)\oplus(b-1))\oplus 1$, wobei $\oplus$ die ``normale" Addition in $\Z / n\Z$ ist. Wir bezeichnen $(12)=s$ und $(123\dots n)=T$. 
+	\begin{enumerate}[label=(\roman*)]
+		\item Alle Transpositionen $(i(i+1))$. Die Proposition ist
+			\[
+				T^{x}sT^{n-x}=((x+1)(x+2)
+			.\] 
+			Es gilt
+			\[
+				T^{n-x}=\begin{pmatrix} 1 & 2 & \dots & n-1 & n \\ 1+(n-x) & 2+(n-x) & \dots & n-1+(n-x) & n+(n-x) \end{pmatrix} 
+			.\]
+			Dann ist
+			\[
+				sT^{n-x}=\begin{pmatrix} 1 & \dots & 1+x & 2 + x & \dots & n\\
+				1+(n-x) & \dots & 2 & 1 & \dots & 2n-x\end{pmatrix} 
+			,\] 
+			also
+			\begin{align*}
+				T^xsT^{n-x}=& \begin{pmatrix} 1 & \dots & 1+x & 2+x & \dots & n \\ 1+(n-x)+x & \dots & 2+x & 1+x & \dots & 2n-x+x \end{pmatrix} \\
+				=& \begin{pmatrix}  1 & \dots & 1+x & 2+x & \dots & n \\ 1 + n & \dots & 2 + x & 1 + x & \dots & 2n \end{pmatrix} \\
+				=& \begin{pmatrix} 1 & \dots & 1+x & 2+x & \dots & n \\ 1 & \dots & 2+x & 1+x & \dots & n \end{pmatrix} 
+			\end{align*}
+		\item Alle Transpositionen $(i(i+k))$, f\"{u}r alle $i\in \left\{ 1,2,\dots, n \right\} $ und $k\in \left\{ 1,2,\dots,n-1 \right\} $.
+
+			Wir beweise es per Induktion über $k$. Wir wissen es schon f\"{u}r $k=1$. Jetzt nehmen wir an, dass alle Transpositionen $i(i+k')\in \left<(12)(123\dots n) \right>$ f\"{u}r alle $i\in \left\{ 1,2,\dots n \right\} $ und $k'\in \left\{ 1,2,\dots, k-1 \right\} $.
+
+			Wir betrachten $(i(i+k))$ f\"{u}r $i$ beliebig. Ziel:
+			\begin{equation}\label{eq:introalgblatt4-1}
+				(i(i+k))=(i(i+k-1))((i+k-1)(i+k))(i(i+k-1))
+			.\end{equation} 
+			Wir betrachten die Wirkung auf $i$, $i+k-1$ und $i+k$. Es ist klar, dass keine andere Zahlen nicht davon bewegt werden. Es gilt
+\begin{align*}
+	&(i(i+k-1))((i+k-1)(i+k))(i(i+k-1))i\\
+	&=(i(i+k-1))((i+k-1)(i+k))(i+k-1)\\
+	&=(i(i+k-1))(i+k)\\
+	&= i+k\\
+	&(i(i+k-1))((i+k-1)(i+k))(i(i+k-1))(i+k)\\
+	&=(i(i+k-1))((i+k-1)(i+k))(i+k)\\
+	&=(i(i+k-1))(i+k-1)\\
+	&=i\\
+	&(i(i+k-1))((i+k-1)(i+k))(i(i+k-1))(i+k-1)\\
+	&=(i(i+k-1))((i+k-1)(i+k))i\\
+	&=(i(i+k-1))i\\
+	&=i+k-1,
+\end{align*}
+also die Gleichheit in \eqref{eq:introalgblatt4-1} gilt.
+\item Alle Elemente $\sigma \in S_n$.
+
+	Wir schreiben ein beliebiges Element $\sigma\in S_n$ als Produkt von Transpositionen. Weil alle Transpositionen Elemente von $\left<(12)(123\dots n) \right>$ sind, müssen dann $\sigma\in \left<(12)(123\dots n) \right>$ auch.\qedhere
+	\end{enumerate}
+\end{proof}

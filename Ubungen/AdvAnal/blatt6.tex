@@ -40,7 +40,7 @@
 			=&(-\alpha)\mu(A)\\
 			=&-\infty
 		\end{align*}
-		Also $\int f^-\dd{\mu}=-\infty$, und $f$ ist noch einmal nicht integrierbar.
+		Also $\int f^-\dd{\mu}=-\infty$, und $f$ ist noch einmal nicht integrierbar.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}\label{pr:advanalblatt6-2}
@@ -153,8 +153,22 @@
 	\item Sei $s$ eine einfache Funktion mit Darstellung $s=\sum x_i A_i, A_i\in \mathcal{A}$. Es gilt
 		\begin{align*}
 			\int s\dd{\nu}=& \sum x_i \nu(A_i)\\
-			=& \sum x_i\int_{A_i}f\dd{\mu}
+			=& \sum x_i\int_{A_i}f\dd{\mu}\\
+			=&\int \sum x_i \chi_{A_i}f\dd{\mu}\\
+			=&\int sf\dd{\mu}
 		\end{align*}
-		Sei $(g_j^+)$ eine Folge einfache Funktionen, die gegen $ g^+$ konvergiert. 
+		Sei $(g_j^+)$ eine Folge einfache Funktionen, die gegen $ g^+$ konvergiert. Es gilt
+		\begin{align*}
+			\int g^+\dd{\nu}=&\lim_{j \to \infty} \int g^+_j\dd{\nu}\\
+			=&\lim_{j \to \infty} \int g^+_j f\dd{\mu}
+		\end{align*}
+		Ähnlich gilt, f\"{u}r $g_j^-\searrow g^-$, dass
+		\[
+			\int g^-\dd{\nu}=\lim_{j \to \infty} \int g^-_j f\dd{\mu}
+		.\] 
+		Also ist $\int g^+\dd{\nu}$ bzw. $\int g^- \dd{\nu}$ endlich genau dann, wenn $\int g^+f\dd{\mu}$ bzw. $\int g^- f\dd{\nu}$ endlich ist. Dann ist $g$ bzgl. $\nu$ integrierbar genau dann, wenn $gf$ bzgl. $\mu$ integrierbar ist und in diesem Fall ist das Integral
+		\[
+			\int g\dd{\nu}=\int gf\dd{\mu}
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
