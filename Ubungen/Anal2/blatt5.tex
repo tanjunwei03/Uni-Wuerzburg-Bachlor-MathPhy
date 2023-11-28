@@ -109,6 +109,18 @@
 		\end{cases}
 	.\] 
 \item Ja (Proposition 6.4.1 und Definition 6.4.2).
+\item Nein. Sei $F:[0,\infty)\to \R$,
+	\[
+	F=\begin{cases}
+		\sqrt{x^2} \sin\left( \frac{1}{x} \right) & x > 0 \\
+		0 & x = 0
+	\end{cases}
+\]
+und
+\[
+F'=	f=-x^{- 1 / 2}\cos\left( \frac{1}{x} \right) +\frac{3\sqrt{x} }{2}\sin\left( \frac{1}{x} \right) 
+.\]
+Dann ist $f$ nicht integrierbar, weil es nicht auf $[0,1]$ eingeschränkt ist ($x^{1 / 2}\to \infty$ wenn $x\to 0$).\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -152,6 +164,23 @@
 					\ge& \int_a^b (\tau - f)(x)\dd{x}\\
 					=&\int_a^b |\tau(x)-f(x)|\dd{x}
 			\end{align*}
+		\item \ldots
+		\item Sei 
+			\begin{align*}
+				\lim_{n \to \infty} \int_a^b f(x)\sin nx\dd{x}=& \lim_{n \to \infty} \int_a^b \left[ f(x)-\tau(x)+\tau(x) \right] \sin nx\dd{x}\\
+				=&\lim_{n \to \infty} \left[ \int_a^b (f(x)-\tau(x))\sin nx\dd{x}+\int_a^b \tau(x)\sin nx\dd{x} \right] \\
+				\left| \lim_{n \to \infty} \int_a^b f(x)\sin nx\dd{x} \right| \le& \lim_{n \to \infty} \left[ \left| \int_a^b (f(x)-\tau(x))\sin nx\dd{x} \right|+\left| \int_a^b \tau(x)\sin nx \dd{x} \right|   \right] \\
+				\le& \lim_{n \to \infty} \left[ \int_a^b |f(x)-\tau(x)|\dd{x}+\int_a^b\sin nx\dd{x} \right]
+			\end{align*}
+			Wir nehmen dann $N\in \N$ hinreichend groß, so dass f\"{u}r alle $n>N$ gilt
+			\[
+				\int_a^b \tau(x)\sin nx\dd{x}\le \frac{\epsilon}{2}
+			\]
+			(Möglich wegen (b)). Dann ist
+			\[
+				\left| \lim_{n \to \infty} \int_a^b f(x)\sin nx\dd{x} \right| \le \epsilon
+			.\] 
+			Weil $\epsilon$ beliebig war, gilt die Behauptung.
 	\end{enumerate}
 \end{proof}
 \begin{Problem}
