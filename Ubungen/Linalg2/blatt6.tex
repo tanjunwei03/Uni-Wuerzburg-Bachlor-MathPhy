@@ -1,0 +1,137 @@
+\begin{Problem}
+	Betrachten Sie eine obere Dreiecksmatrix $A\in \R^{n\times n}$ mit den Zahlen $d_1,\dots d_n\in \R$ auf der Diagonalen.
+	\begin{parts}
+		\item Zeigen Sie, dass $A$ genau dann invertierbar ist, wenn $D:= d_1\dots d_n\neq 0$ gilt. Beweisen Sie, dass in diesem Fall die zu $A$ inverse Matrix ebenfalls eine obere Dreiecksmatrix ist.
+		\item  Seien nun alle Einträge von $A$ ganze Zahlen und $A$ invertierbar. Zeigen Sie, dass die inverse Matrix $A^{-1}$ aus rationalen Einträgen besteht, wobei (im gekürzten Fall) als Nenner höchstens $D$ auftritt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es genügt zu zeigen, dass $\text{det}(D)=d_1\dots d_n$ f\"{u}r ein Dreiecksmatrix gilt. Wir beweisen es per Induktion auf $n$. F\"{u}r $n=1$ ist $\text{det}(M)=M_{11}$. Wir nehmen an, dass die Behauptung f\"{u}r $n-1$ gilt, wobei $n\in \N$ beliebig ist. Wir betrachten ein $n\times n$ Dreiecksmatrix $D_n$ und ein Laplaceentwicklung auf der ersten Spalte.
+		\begin{center}
+		\begin{tikzpicture}
+				\matrix (M)[matrix of math nodes, row sep = 0.5cm, column sep = 0.5cm,left delimiter={(},right delimiter={)}]{
+					a_{11} & a_{12} & a_{13} & \dots & a_{1n}\\
+					0 & a_{22} & a_{23} & \dots & a_{2n}\\
+					0 & 0 & a_{33} & \dots & a_{3n}\\
+					\vdots & \vdots & \vdots & \ddots & \vdots\\
+					0 & 0 & 0 & \dots & a_{nn}\\
+				};
+				\draw[thick, blue] (-2.6,2.5) -- (-2.6,-2.5);
+				\draw[thick, blue] (-1.7,-2.5) rectangle (3,1.6);
+				\draw (0.5,-0.5) node[blue] {$D_{n-1}$};
+			\end{tikzpicture}
+		\end{center}
+		Also $\text{det}(D_n)=a_{11}\text{det}(D_{n-1})$. Als Induktionsannahme haben wir angenommen, dass $\text{det}(D_{n-1})=a_{22}a_{33}\dots a_{nn}$. Daraus folgt:
+		\[
+			\text{det}(D_n)=a_{11}a_{22}\dots a_{nn}
+		.\] 
+		Die Ergebnis folgt daraus und aus Proposition 6.28.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei im Folgenden $\mathbb{K}=\R$ oder $\mathbb{K}=\C$. Wir definieren die Spur
+	\[
+		\text{tr}:M_n(\mathbb{K})\to \mathbb{K}, \qquad A \to \sum_{i=1}^n (A)_{ii}
+	.\] 
+	Zeigen Sie:
+	\begin{parts}
+	\item Die Spur ist ein lineares Funktional in $M_n(\mathbb{K})^*$.
+	\item F\"{u}r $A,B\in M_n(\mathbb{K})$ gilt
+		\[ 
+			\text{tr}(AB)=\text{tr}(BA)
+		.\] 
+	\item F\"{u}r $A\in GL_n(\mathbb{K})$ und $B\in M_n(\mathbb{K})$ gilt
+		\[
+			\text{tr}(ABA^{-1})=\text{tr}(B)
+		.\] 
+	\item Ist $f\in M_N(\mathbb{K})^*$ ein lineares Funktional mit
+		\[
+		f(AB)=f(BA),\qquad f(1)=n\] 
+		f\"{u}r $A,B\in M_n(\mathbb{K})$, dann gilt bereits $f=\text{tr}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $x,y\in \R$ und $A,B\in M_n(\mathbb{K})$. Es gilt
+		\begin{align*}
+			\text{tr}(xA+yB)=&\sum_{i=1}^n\left( xA+yB \right)_{ii}\\
+			=& \sum_{i=1}^n \left[ (xA)_{ii}+(yB)_{ii} \right] \\
+			=&\sum_{i=1}^n \left( xA \right)_{ii}+\sum_{i=1}^n \left( yB \right)_{ii}\\
+			=& x\sum_{i=1}^n (A)_{ii}+y\sum_{i=1}^n (B)_{ii}\\
+			=&x\text{tr}(A)+y\text{tr}(B).
+		\end{align*}
+	\item Es gilt
+		\[
+			(AB)_{ij}=\sum_{k=1}^n A_{ik}B_{kj}
+		.\] 
+		Dann ist
+		\begin{align*}
+			\sum_{i=1}^n (AB)_{ii}=&\sum_{i=1}^n\sum_{k=1}^n A_{ik}B_{ki}\\
+			=&\sum_{k=1}^n\sum_{i=1}^n A_{ik}B_{ki} & \text{wir dürfen endliche Summe umordnen}\\
+			=&\sum_{i=1}^n\sum_{k=1}^n A_{ki}B_{ik} & \text{wir vertauschen }i\text{ und }k\\
+			=&\sum_{i=1}^n\sum_{k=1}^n B_{ik}A_{ki} & \mathbb{K}\text{ ist kommutativ}\\
+			=&\text{tr}(BA)
+		\end{align*}
+	\item Es gilt
+		\begin{align*}
+			\text{tr}(ABA^{-1})=&\text{tr}\left( (AB)A^{-1} \right) \\
+			=&\text{tr}\left( A^{-1}(AB) \right) \\
+			=& \text{tr}(A^{-1}AB)\\
+			=&\text{tr}(AB)
+		\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Bestimmen Sie zu den folgenden linearen Abbildungen jeweils alle Eigenwerte und Eigenräume. Entscheiden Sie weiterhin, ob die entsprechende Abbildung diagonalisierbar ist.
+	\begin{parts}
+	\item 
+		\[
+		T:\R^n\to \R^n,\qquad x\to Ax,\] mit
+		\[
+			A=\begin{pmatrix} -1 & 0 & 1 \\ 1 & -1 & 0 \\ -4 & 2 & 2 \end{pmatrix} 
+		.\] 
+	\item 
+		\[
+		T:\C^n\to \C^n\qquad x\to Ax,\] mit $A$ wie in (a).
+	\item 
+		\[
+			T:M_n(\mathbb{K})\to M_N(\mathbb{K}),\qquad A\to \text{tr}(A)1
+		.\] 
+	\item
+		 \[
+			 T: M_n(\mathbb{K})\to M_n(\mathbb{K}),\qquad A\to A^T
+		.\] 
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			\text{det}(A-\lambda I)=&\text{det}\begin{pmatrix} -1-\lambda & 0 & 1 \\ 1 & -1-\lambda & 0 \\ -4 & 2 & 2-\lambda \end{pmatrix} \\
+			=&(-1-\lambda)(-(1+\lambda)(2-\lambda)-0)+(2-(1+\lambda)(4))\\
+			=&-\lambda-\lambda^3\\
+			=&-\lambda(1+\lambda^2)
+		\end{align*}
+		also $\lambda=0$ ist ein Eigenwert, aber $1+\lambda^2=0$ hat keine Lösung in $\R$, also es gibt nur ein Eigenwert, also $T$ ist nicht diagonaliserbar.
+	\item Das charakteristische Polynom hat $3$ unterschiedliche Eigenwerte, $\lambda=0$ und $\lambda=\pm 1$. Weil alle Eigenwerte unterschiedlich sind und der Eigenraum mindestens Dimension $1$ hat, ist es diagonalisierbar. 
+	\item Sei $A\in M_n(\mathbb{K})$. $A$ ist ein Eigenvektor von $T$ genau dann, wenn
+		\[
+			A=\lambda\text{tr}(A)1_n
+		.\] 
+		Also gilt, dass $A$ diagonal ist und
+		\[
+			n\text{tr}(A)=\lambda\text{tr}(A)
+	\]
+	also es gibt nur ein Eigenwert $n$ und der Eigenraum ist gespannte durch
+	\[
+		\text{span}\left( 1_n \right) 
+	,\] 
+	was ein $1$-dimensionaler Vektorraum ist. F\"{u}r $n>1$ kann es kein Basis sein, und $T$ ist nicht diagonaliserbar. F\"{u}r $n=1$ ist $T$ das Identität, also es ist schon diagonal.
+\item Sei $A\in M_n(\mathbb{K})$. $A$ ist ein Eigenvektor genau dann, wenn
+	\[
+	A^T=\lambda A
+	.\] 
+	\end{parts}
+\end{proof}

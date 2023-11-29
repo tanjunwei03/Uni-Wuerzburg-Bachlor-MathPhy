@@ -164,7 +164,21 @@ Dann ist $f$ nicht integrierbar, weil es nicht auf $[0,1]$ eingeschränkt ist ($
 					\ge& \int_a^b (\tau - f)(x)\dd{x}\\
 					=&\int_a^b |\tau(x)-f(x)|\dd{x}
 			\end{align*}
-		\item \ldots
+		\item Wir beweisen es zuerst für konstante Funktionen
+			\[
+				\int_a^b k\sin nx\dd{x}=\frac{k}{n}(-\cos nx)|_a^b
+			,\]
+			also
+			\begin{align*}
+				\left| \int_a^b k\sin nx\dd{x} \right| =& \left| \frac{k}{n}\left( \cos nb-\cos na \right)  \right|\\
+				\le& \frac{k}{n}\left[|\cos nb|+|\cos na| \right]\\
+				\le& \frac{k}{n}(2)
+			\end{align*}
+			also
+			\[
+				\lim_{n \to \infty} \left| \int_a^b k\sin nx\dd{x} \right| \le \lim_{n \to \infty} \frac{2k}{n}=0
+			.\] 
+			Statt eine stückweise konstante Funktion integrieren wir dann mehrere Male eine konstante Funktion. Danach summieren wir die Ergebnisse. Weil alle Ergebnisse geht gegen $0$, geht die Summe auch gegen $0$, also die Behauptung gilt für stückweise konstante Funktionen.
 		\item Sei 
 			\begin{align*}
 				\lim_{n \to \infty} \int_a^b f(x)\sin nx\dd{x}=& \lim_{n \to \infty} \int_a^b \left[ f(x)-\tau(x)+\tau(x) \right] \sin nx\dd{x}\\
@@ -180,7 +194,7 @@ Dann ist $f$ nicht integrierbar, weil es nicht auf $[0,1]$ eingeschränkt ist ($
 			\[
 				\left| \lim_{n \to \infty} \int_a^b f(x)\sin nx\dd{x} \right| \le \epsilon
 			.\] 
-			Weil $\epsilon$ beliebig war, gilt die Behauptung.
+			Weil $\epsilon$ beliebig war, gilt die Behauptung.\qedhere
 	\end{enumerate}
 \end{proof}
 \begin{Problem}
