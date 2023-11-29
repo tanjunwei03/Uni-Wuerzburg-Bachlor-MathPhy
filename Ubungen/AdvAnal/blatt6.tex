@@ -81,9 +81,13 @@
 		\[
 			\int \sum_{j=1}^{n} f_j\dd{\mu}=\sum_{j=1}^{n} \int f_j\dd{\mu} 
 		.\] 
-		Die Aufgabe ist einfach
+		Sei $p_n=\sum_{i=1}^n f_i$. $p_n$ konvergiert gegen eine Funktion $p$, weil $f_i$ nichtnegativ sind, also die Reihe $\sum_{i=1}^n f(x)$ ist für alle $x$ monoton wachsend und in $\overline{R}$ konvergent. Dann gilt
 		\[
-			\lim_{n \to \infty} \int \sum_{j=1}^{n} f_j\dd{\mu}\overset{?}{=}\int \lim_{n \to \infty} \sum_{j=1}^n f_j\dd{\mu}
+			\int p_n\dd{\mu}\nearrow \int p\dd{\mu}
+		,\]
+		also
+		\[
+			\sum_{n=1}^{\infty} \int f_n\dd{\mu}=\int \sum_{n=1}^{\infty} f_n\dd{\mu}
 		.\] 
 	\end{parts}
 \end{proof}
@@ -142,7 +146,7 @@
 		\[
 			\int_N f\dd{\mu}=0
 		.\] 
-		Jetzt nehmen wir an, dass $\mu(N)>0$. Wir betrachten $g=\chi_N f$. In der letzten Übungsblatt haben wir schon bewiesen, dass es $\epsilon>0$ und eine Menge $B\in\mathcal{A}$ mit $\mu(B)>0$ gibt, sodass $g(x)>0~\forall x\in B$. Es ist klar, dass $B\subseteq N$, weil $g$ ist außer $N$ null. Dann gilt
+		Jetzt nehmen wir an, dass $\mu(N)>0$. Wir betrachten $g=\chi_N f$. In der letzten Übungsblatt haben wir schon bewiesen, dass es $\epsilon>0$ und eine Menge $B\in\mathcal{A}$ mit $\mu(B)>0$ gibt, sodass $g(x)>0~\forall x\in B$. Es ist klar, dass $B\subseteq N$, weil $g$ außerhalb $N$ null ist. Dann gilt
 		\begin{align*}
 			\int_N f\dd{\mu}\ge& \int_B f\dd{\mu}\\
 			\ge& \int_B \epsilon\dd{\mu}\\

@@ -1,0 +1,94 @@
+\documentclass[prb,12pt]{revtex4-2}
+%fonts
+% Palatino for main text and math
+\usepackage[osf,sc]{mathpazo}
+
+% Helvetica for sans serif
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.90]{helvet}
+
+% Bera Mono for monospaced
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.85]{beramono}
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+\title{Mechanics}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\section{The Problem}
+\begin{Problem}
+	Consider an $n$-dimensional harmonic oscillator with Lagrangian
+	\[
+		L=\frac{1}{2}m\dot{x}_i\dot{x}_i-\frac{1}{2}m\omega^2x_ix_i
+	.\] 
+	(We sum over repeated indices here, so there is an implicit sum due to the repeated $i$). Show that
+	\[
+		x_i\to x_i+\varphi_{ij}\dot{x}_j
+	\]
+	is a symmetry transformation of the system if $\varphi$ is a symmetric $n\times n$ matrix, and find the corresponding conserved quantities.
+\end{Problem}
+\begin{proof}
+	We consider the variation in L
+	\begin{align*}
+		\delta L=&\pdv{L}{x_i}\delta x_i+\pdv{L}{\dot{x}_i}\delta\dot{x}_i\\
+		=&m\dot{x}_i\varphi_{ij}\ddot{x}_j-m\omega^2x_i\varphi_{ij}\dot{x}_j\\
+		=&\frac{1}{2}\dv{t}\left[ \dot{x}_i\varphi_{ij}\dot{x}_j-\omega^2 x_i\varphi_{ij}x_j \right]\equiv \dv{G}{t}
+	\end{align*}
+	where we have used the symmetry of $\varphi$ in the last step (one can verify this by direct differentiation). It then follows from Noether's Theorem that
+	\[
+		M=\pdv{L}{x_i}\delta x_i-G
+	\] 
+	(the Noether Charge) is a conserved quantity. We compute this explicitly and get
+	\begin{align*}
+		M&=m\dot{x}_i\varphi_{ij}\dot{x}_j-G\\
+		 &=\frac{1}{2}m\dot{x}_i\varphi_{ij}\dot{x}_j+\frac{1}{2}m\omega^2 x_i\varphi_{ij}x_j\\
+		 &=\frac{1}{2}m\left( \dot{x}_i\varphi_{ij}\dot{x}_j+x_i\varphi_{ij}x_j \right) 
+	\end{align*}
+	Now, since $\varphi$ is an arbitrary symmetric matrix, we can actually impose additional conditions on it, such as $\varphi_{ij}\neq 0$ for all except a certain pair $(i,j)$. It then follows that for the above quantity to be conserved for \emph{all} $(i,j)$, we must have
+	\[
+		\Lambda_{ij}=	\dot{x}_i\dot{x}_j+x_ix_j
+	\]
+	be conserved for \emph{all} $(i,j)$. \qedhere 
+\end{proof}
+\section{Interpretation}
+It is clear that the trace is simply the Hamiltonian (energy function) of the system. The other components are not so easy to interpret. 
+
+\section{The Issue}
+A serious issue in the interpretation arises when we let $n=6$ (physically, this is achieved by considering 2 3-dimensional simple harmonic oscillators). The two oscillators should then be independent. However, the cross terms relate the velocities of the two oscillators\ldots
+
+We can draw even more nonsensical conclusions by translating the 2nd harmonic oscillator a distance $d$ away (this is achieved by the transformation $x_4\to x_4+d$). Then the composition of the inverse transformation and the transformation we considered above is a symmetry transformation, with almost identical conserved quantities. 
+
+These conserved quantities are then equations relating the first and second harmonic oscillators (which could be arbitrarily far away). Is there a physical way to understand this? Is there some coincidental cancellation?
+\end{document}
