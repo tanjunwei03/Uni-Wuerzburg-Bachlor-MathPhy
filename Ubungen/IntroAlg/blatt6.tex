@@ -72,6 +72,11 @@ also $\Phi(A_3)\not\trianglelefteq H$.\qedhere
 			\in& M,
 		\end{align*}
 		also $M$ ist ein Normalteiler von $G$.
+	\item Wir betrachten das Quadrat eine Linksnebenklasse. Sei $a\in G$ beliebig, also $aN$ ist eine beliebige Linksnebenklasse.
+		\[
+		aN\cdot aN=(a^2)N
+		.\] 
+		Wir wissen aber, dass $a^2 \in N$ (per Definition). Weil $N$ ein Normalteiler ist, gilt dann $a^2N=N$. Es folgt, dass $\text{ord}(aN)\le 2$.\qedhere 
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -83,7 +88,31 @@ also $\Phi(A_3)\not\trianglelefteq H$.\qedhere
 
 	{\footnotesize \textbf{Hinweis:} Dies zeigt, dass das Normalteiler-Sein im Allgemeinen nicht transitiv ist.}
 \end{Problem}
+\begin{proof}
+	Wir betrachten $G=D_4$, $B=\left<r^2,s \right>$ und $A=\left<s \right>$. Wir zeigen die Eigenschaften
+	\begin{enumerate}[label=(\roman*)]
+		\item $B\trianglelefteq G$.
 
+			Es gilt $|D_4|=8$ und $B=\left\{ 1,r^2,s,r^2s \right\} $, also $|B|=4,~[G:B]=2$. Dann ist $B$ stets ein Normalteiler (Bsp 2.35).
+
+		\item $A\trianglelefteq B$.
+
+			Wir betrachten $x^{-1}Ax$ f\"{u}r $x\in B$. F\"{u}r $x\in\left\{ 1,s \right\} $ ist es klar. F\"{u}r $x\in \left\{ r^2,r^2s \right\} $ muss wir direkt das Produkt mit $x^{-1}sx$ berechnen.
+
+			Es gilt
+			\[
+				r^{-2}s r^{2}=s r^4=s
+			,\]
+			$(r^2s)^{-1}=s r^2$ (man kann das durch direktes Multiplikation verifizieren)
+			\[
+			s r^2 s s r^2=s r^4=s
+			.\]
+			Insgesamt ist $A\trianglelefteq B$.
+		\item $A\not\trianglelefteq G$. 
+
+			Es gilt $r^{-1} s r=r^{-2} s=r^2s\neq 0$. Wenn wir $D_4\subseteq S_{\C}$ betrachten, ist $r^2s(1_C)=-1$, wobei $1_C$ das $1$ in $\C$ ist (also nicht das neutrale Element in $\text{Sym}_{\C}$).
+	\end{enumerate}
+\end{proof}
 \begin{Problem}
 	Zeigen Sie, dass
 	\[
@@ -93,11 +122,11 @@ also $\Phi(A_3)\not\trianglelefteq H$.\qedhere
 \begin{proof}
 	Wir zeigen, dass Elemente mit bestimmte Formen Elemente von $\left<(12),(123\dots n) \right>$ sind. Im Beweis begründen wir alle Schritte mit ``Sonst wäre $\left<(12),(123\dots n) \right>$ keine Gruppe, weil es nicht abgeschlossen wäre".
 
-	Außerdem bedeutet hier Addition immer die Addition ähnlich zu $\Z / n \Z$: $a+b=((a-1)\oplus(b-1))\oplus 1$, wobei $\oplus$ die ``normale" Addition in $\Z / n\Z$ ist. Wir bezeichnen $(12)=s$ und $(123\dots n)=T$. 
+	Außerdem bedeutet hier Addition immer die Addition in $\Z / n \Z$, aber durch 1 verschoben, also die mögliche Ergebnisse sind $1,2,\dots n$ statt $0,1,\dots, n-1$. Wir bezeichnen $(12)=s$ und $(123\dots n)=T$. 
 	\begin{enumerate}[label=(\roman*)]
 		\item Alle Transpositionen $(i(i+1))$. Die Proposition ist
 			\[
-				T^{x}sT^{n-x}=((x+1)(x+2)
+				T^{x}sT^{n-x}=((x+1)(x+2))
 			.\] 
 			Es gilt
 			\[
@@ -116,7 +145,7 @@ also $\Phi(A_3)\not\trianglelefteq H$.\qedhere
 			\end{align*}
 		\item Alle Transpositionen $(i(i+k))$, f\"{u}r alle $i\in \left\{ 1,2,\dots, n \right\} $ und $k\in \left\{ 1,2,\dots,n-1 \right\} $.
 
-			Wir beweise es per Induktion über $k$. Wir wissen es schon f\"{u}r $k=1$. Jetzt nehmen wir an, dass alle Transpositionen $i(i+k')\in \left<(12)(123\dots n) \right>$ f\"{u}r alle $i\in \left\{ 1,2,\dots n \right\} $ und $k'\in \left\{ 1,2,\dots, k-1 \right\} $.
+			Wir beweisen es per Induktion über $k$. Wir wissen es schon f\"{u}r $k=1$. Jetzt nehmen wir an, dass alle Transpositionen $i(i+k')\in \left<(12)(123\dots n) \right>$ f\"{u}r alle $i\in \left\{ 1,2,\dots n \right\} $ und $k'\in \left\{ 1,2,\dots, k-1 \right\} $.
 
 			Wir betrachten $(i(i+k))$ f\"{u}r $i$ beliebig. Ziel:
 			\begin{equation}\label{eq:introalgblatt4-1}

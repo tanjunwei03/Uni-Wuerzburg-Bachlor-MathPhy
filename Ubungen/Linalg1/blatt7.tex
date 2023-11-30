@@ -1,0 +1,205 @@
+\begin{Problem}
+	Wir betrachten den Unterraum $U$ von $\Z / 101\Z[t]$, der von
+	\[
+	B=\left( \overline{1},t^2+t,t^3-2t^2,t+t^3,t^7,t^6+t^5+t^3,t^4-\overline{5} \right)\] erzeugt wird.
+	\begin{parts}
+		\item Entscheiden Sie, ob $B$ eine Basis von $U$ ist. Finden Sie andernfalls eine Basis $B'$ von $U$, die nur aus Elementen von $B$ besteht.
+		\item Zeigen Sie: Die Polynome
+			\[
+				(t^7-t^3-t-\overline{5}, \overline{2}t^7-\overline{27},t^6+t^5-t^4+t^3+\overline{5})\] liegen alle in $U$ und sie sind linear unabhängig.
+			\item Bestimmen Sie eine Umnummerierung von $B'$, die die Aussage des Austauschsatzes 2.6.8 mit $(w_1,w_2,w_3)=(t^7-t^3-t-\overline{5},\overline{2}t^7-\overline{27},t^6+t^5-t^4+t^3+\overline{5})$ erfüllt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Ja. Per Definition ist $B$ ein Erzeugendensystem. Aber 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+Bestimmen Sie die Dimension der folgenden Vektorräume.	
+\begin{parts}
+	\item $V_1=\left\{ p\in \Q[x]|p(0)=0\wedge \text{deg}(p)\le 6 \right\} $ 
+	\item $V_2=\left\{ p\in \Q[x]|\forall a\in \Q:p(-a)=-p(a) \right\} $ 
+	\item $V_3=\left\{ v\in \R^n|\forall i\in \left\{ 1,2,3,\dots, n \right\} :v_i-v_{n-i+1}=0 \right\} $
+\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Gegeben sei die Matrix
+	\[
+		A=\begin{pmatrix} \overline{1} & \overline{2} & \overline{3} & \overline{4}\\ \overline{5} & \overline{6} & \overline{7} & \overline{8} \\ \overline{4}& \overline{3} & \overline{2} & \overline{1} \end{pmatrix} \in (\Z / 11\Z)^{3\times 4}
+	.\] 
+	\begin{parts}
+	\item Bringen Sie $A$ mit elementaren Zeilenoperationen auf Zeilenstufenform. Lesen Sie anschließend den Zeilenrang von $A$ ab.  
+	\item Bringen Sie $B=A^T$ mit elementaren Zeilenoperationen auf Zeilenstufenform. Lesen Sie anschließend den Zeilenrang von B ab. 
+	  \end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item
+		\begin{gather*}
+		\left(
+\begin{array}{cccc}
+ \overline{1} & \overline{2} & \overline{3} & \overline{4} \\
+ \overline{5} & \overline{6} & \overline{7} & \overline{8} \\
+ \overline{4} & \overline{3} & \overline{2} & \overline{1} \\
+\end{array}
+\right) \xrightarrow{R_2+\overline{6}R_1} \left(
+\begin{array}{cccc}
+ \overline{1} & \overline{2} & \overline{3} & \overline{4} \\
+ \overline{0} & \overline{7} & \overline{3} & \overline{10} \\
+ \overline{4} & \overline{3} & \overline{2} & \overline{1} \\
+\end{array}
+\right) \xrightarrow{R_3+\overline{7}R_1} \\\left(
+\begin{array}{cccc}
+ \overline{1} & \overline{2} & \overline{3} & \overline{4} \\
+ \overline{0} & \overline{7} & \overline{3} & \overline{10} \\
+ \overline{0} & \overline{6} & \overline{1} & \overline{7} \\
+\end{array}
+\right) \xrightarrow{R_2\times \overline{8}} \left(
+\begin{array}{cccc}
+ \overline{1} & \overline{2} & \overline{3} & \overline{4} \\
+ \overline{0} & \overline{1} & \overline{2} & \overline{3} \\
+ \overline{0} & \overline{6} & \overline{1} & \overline{7} \\
+\end{array}
+\right) \xrightarrow{R_3+5R_2} \left(
+\begin{array}{cccc}
+ \overline{1} & \overline{2} & \overline{3} & \overline{4} \\
+ \overline{0} & \overline{1} & \overline{2} & \overline{3} \\
+ \overline{0} & \overline{0} & \overline{0} & \overline{0} \\
+\end{array}
+\right)	
+		\end{gather*}
+		also der Zeilenrang von $A$ ist $2$.
+	\item 
+		\begin{gather*}
+		\left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{2} & \overline{6} & \overline{3} \\
+ \overline{3} & \overline{7} & \overline{2} \\
+ \overline{4} & \overline{8} & \overline{1} \\
+\end{array}
+\right) \xrightarrow{R_2+\overline{9}R_1} \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{7} & \overline{6} \\
+ \overline{3} & \overline{7} & \overline{2} \\
+ \overline{4} & \overline{8} & \overline{1} \\
+\end{array}
+\right) \xrightarrow{R_3+\overline{8}R_1}\\ \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{7} & \overline{6} \\
+ \overline{0} & \overline{3} & \overline{1} \\
+ \overline{4} & \overline{8} & \overline{1} \\
+\end{array}
+\right) \xrightarrow{R_4+\overline{7}R_1} \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{7} & \overline{6} \\
+ \overline{0} & \overline{3} & \overline{1} \\
+ \overline{0} & \overline{10} & \overline{7} \\
+\end{array}
+\right) \xrightarrow{R_2\times \overline{8}}\\ \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{1} & \overline{4} \\
+ \overline{0} & \overline{3} & \overline{1} \\
+ \overline{0} & \overline{10} & \overline{7} \\
+\end{array}
+\right) \xrightarrow{R_3+\overline{8}R_2} \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{1} & \overline{4} \\
+ \overline{0} & \overline{0} & \overline{0} \\
+ \overline{0} & \overline{10} & \overline{7} \\
+\end{array}
+\right) \xrightarrow{R_4+R_2} \left(
+\begin{array}{ccc}
+ \overline{1} & \overline{5} & \overline{4} \\
+ \overline{0} & \overline{1} & \overline{4} \\
+ \overline{0} & \overline{0} & \overline{0} \\
+ \overline{0} & \overline{0} & \overline{0} \\
+\end{array}
+\right)	
+		\end{gather*}
+		also der Zeilenrank von $A^T$ ist $2$.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Wir betrachten $U=\text{span}\left( \left( 1,2,5,6 \right) , \left( 5,4,3,2 \right) , \left( 4,3,6,5 \right)  \right) \subseteq \Q^4$.
+	\begin{parts}
+	\item Bringen Sie
+		\[
+			A=\begin{pmatrix} 1 & 2 &5 & 6 \\ 5 & 4 & 3 & 2 \\ 4 & 3 & 6 & 5 \end{pmatrix} 
+		\]
+mit elementaren Zeilenoperationen auf Zeilenstufenform. Die entstandenen Zeilenvektoren nennen wir ab jetzt $b_1,b_2,b_3$.
+\item Begründen Sie, dass $b_1,b_2,b_3$ linear unabhängig sind.
+\item Begründen Sie, dass $b_1,b_2,b_3$ in $U$ liegen.
+\item Folgern Sie mit Hilfe der vorigen beiden Aussagen, dass sowohl $((1, 2, 4, 5), (5, 4, 3, 2), (4, 3, 6, 5))$ als auch $(b_1,b_2,b_3)$ eine Basis von $U$ bilden.
+\item Nutzen Sie die Basis $(b_1,b_2,b_3)$, um herauszufinden, welche der Vektoren $u_1=(1,1,1,1),u_2=(1,1,0,0)$ bzw. $u_3=(1,2,3,4)$ in $U$ enthalten sind. Geben Sie in diesem Fall zudem die Koeffizienten der Linearkombination
+	\[
+	\lambda_i(1,2,5,6)+\mu_i(5,4,3,2)+\tau_i(4,3,6,5)=u_i\] an.
+	\end{parts}
+\end{Problem}
+\begin{parts}
+\item 
+	\begin{gather*}
+	\left(
+\begin{array}{cccc}
+ 1 & 2 & 5 & 6 \\
+ 5 & 4 & 3 & 2 \\
+ 4 & 3 & 6 & 5 \\
+\end{array}
+\right) \xrightarrow{R_2-5R_1} \left(
+\begin{array}{cccc}
+ 1 & 2 & 5 & 6 \\
+ 0 & -6 & -22 & -28 \\
+ 4 & 3 & 6 & 5 \\
+\end{array}
+\right) \xrightarrow{R_3-4R_1}\\ \left(
+\begin{array}{cccc}
+ 1 & 2 & 5 & 6 \\
+ 0 & -6 & -22 & -28 \\
+ 0 & -5 & -14 & -19 \\
+\end{array}
+\right) \xrightarrow{R_2\times -\frac{1}{6}} \left(
+\begin{array}{cccc}
+ 1 & 2 & 5 & 6 \\
+ 0 & 1 & \frac{11}{3} & \frac{14}{3} \\
+ 0 & -5 & -14 & -19 \\
+\end{array}
+\right) \xrightarrow{R_3+5R_2} \left(
+\begin{array}{cccc}
+ 1 & 2 & 5 & 6 \\
+ 0 & 1 & \frac{11}{3} & \frac{14}{3} \\
+ 0 & 0 & \frac{13}{3} & \frac{13}{3} \\
+\end{array}
+\right)	
+	\end{gather*}
+\item Sei $q_1,q_2,q_3\in \Q$, so dass
+	\[
+	q_1b_1+q_2b_2+q_3b_3=0
+	.\] 
+	Wir betrachten zuerst die erste Komponent. Weil die erste Komponent nur in $b_1$ ungleich $0$ ist, muss $q_1=0$. Die zweite Komponent ist nur in $b_2$ ungleich $0$, also $q_2=0$. Daraus folgt, weil $b_3\neq 0$, dass $q_3=0$, also $b_1,b_2,b_3$ sind linear unabhängig.
+\item Durch elementare Zeilenoperationen arbeiten wir immer nur mit linear Kombinationen von Zeilen, also das Ergebnis muss eine lineare Kombination sein.
+\item Wir wissen aus Satz 2.4.18, dass die Erzeugendensysteme sind. Dann ist es nur zu zeigen: Die Systeme sind linear unabhängig. Wir wissen, dass $b_1,b_2,b_3$ linear unabhängig sind. 
+
+	Wir nehmen an, dass es Zahlen $x,y,z\in \Q$ gibt, nicht alle null, so dass
+	\[
+	x(1,2,4,5)+y(5,4,3,2)+z(4,3,6,5)=(0,0,0,0)
+	.\] 
+	Dann können wir $x(1,2,4,5)+y(5,4,3,2)+z(4,3,6,5)$ als Summe von $b_1,b_2,b_3$ schreiben. Dann haben wir ein linear Kombination von $b_1,b_2,b_3$ mit Koeffizienten nicht alle 0, aber das Kombination ist $0$, also $b_1,b_2,b_3$ wäre dann nicht linear unabhängig.
+\item 
+	\begin{enumerate}[label=(\arabic*)]
+		\item Es gilt
+			 \[
+			x_1(1,2,5,6)+y_1(0,1,\frac{11}{3},\frac{14}{3})+z_1(0,0,\frac{13}{3},\frac{13}{3})=(1,1,1,1)
+			.\] 
+			Daraus folgt: $x_1=1$ und $y_1=-1$, also
+			\[
+			z_1(0,0,\frac{13}{3},\frac{13}{3})+(1,1,4 / 3, 4 / 3)=(1,1,1,1).\]
+Wir entscheiden uns f\"{u}r $z_1=-\frac{1}{13}$ und die Behauptung folgt.
+	\end{enumerate}
+\end{parts}

@@ -1,0 +1,78 @@
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein Maßraum und $f:X\to \R$ integrierbar. Zeigen Sie:
+	\begin{parts}
+		\item F\"{u}r $(E_j)\subseteq \mathcal{A}$ paarweise disjunkt mit $E:=\bigcup_{j=1}^\infty E_j$ gilt
+			\[
+				\int_E f\dd{\mu}=\sum_{j=1}^\infty \int_{E_j} f\dd{\mu}
+			.\] 
+		\item Sei nun $X:=\R$ und $A_n:=\left\{ x\in \R| |x|\ge n \right\} =(-\infty,n] \cup [n,\infty)$. F\"{u}r alle $\epsilon>0$ existiert ein $N\in \N$, sodass
+			\[
+				\left| \int_{A_n}f\dd{\mu} \right| <\epsilon
+			\]
+			f\"{u}r alle $n\ge N$ gilt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir wissen (Satz 2.39), dass $|f|$ integrierbar ist mit Integral $\int |f|\dd{\mu}<\infty$. 
+
+		Wir betrachten dann die Funktionfolge
+		\[
+			f_n=\sum_{j=1}^n \chi_{E_j}f
+		.\] 
+		$f_n$ konvergiert gegen $f$, und es gilt $|f_n(x)|\le |f(x)|$ f\"{u}r alle $x$, also die Folge ist durch $|f(x)|$ dominiert. Es folgt:
+		\begin{align*}
+			\int_E f\dd{\mu}=&\lim_{n \to \infty} \left[ \int_E f_n \dd{\mu} \right] \\
+			=& \lim_{n \to \infty}\left[ \sum_{j=1}^n \int_{E_j}f\dd{\mu} \right] \\
+			=&\lim_{n \to \infty} \sum_{j=1}^n\int_{E_i} f\dd{\mu}\\
+			=&\sum_{j=1}^\infty \int_{E_j}f\dd{\mu}.
+		\end{align*}
+	\item Es gilt $\left| \int_{A_n}f\dd{\mu} \right| \le \int_{A_n}|f|\dd{\mu}$, also wir müssen es nur f\"{u}r $|f|$ beweisen. Wir betrachten die Funktionfolge $g_n=\chi_{A_n}|f|$. $g_n$ konvergiert gegen $0$ f\"{u}r alle $x$. Außerdem gilt $|g_n|\le f$ f\"{u}r alle $n$. Wir verwenden dann den dominierte konvergenz Satz:
+		\[
+			\lim_{n \to \infty} \int_{A_n}|f|\dd{\mu}=\lim_{n \to \infty} \int g_n\dd{\mu}=\int 0\dd{\mu}=0
+		.\]
+		Aus dem Definition von Konvergenz einer Folge bekommen wir f\"{u}r jedes $\epsilon>0$ eine ganze Zahl $N\in \N$, so dass
+		\[
+			\int_{A_n}|f|\dd{\mu}<\epsilon
+		\]
+		f\"{u}r alle $n\ge N$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $(X,\mathcal{A},\mu)$ ein endlicher Maßraum, $f_k:X\to \R$ eine Folge integrierbare Funktionen, die gleichmäßig gegen ein Funktion $f:X\to \R$ konvergiert.
+	\begin{parts}
+	\item Zeigen Sie, dass $f$ integrierbar ist mit
+		\[
+			\int f\dd{\mu}=\lim_{k \to \infty} \int f_k\dd{\mu}
+		.\] 
+	\item Zeigen Sie, dass auf Voraussetzung $\mu(X)<\infty$ im Allgemein nicht verzichtet werden kann.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $f$ ist messbar (Folgerung 2.25).
+
+	Sei $\epsilon>0$ beliebig. Wir bezeichnen mit $\epsilon$ gleichzeitig eine Zahl und die konstante Funktion $\epsilon(x)=\epsilon~\forall x\in X$. 
+
+	$\epsilon$ ist integrierbar, weil $\int |\epsilon|\dd{\mu}=|\epsilon|\mu(X)<\infty$. Dann sind $|f|+\epsilon:= g$ integrierbar. Weil $f_k$ gleichmäßig konvergiert, gibt es $N\in \N$, so dass $|f(x)-f_n(x)|<\epsilon$ f\"{u}r alle $n\ge N$. Das heißt, dass
+	\[
+	|f_n(x)|\le |f(x)|+\epsilon
+	.\] 
+	Dann ist die Funktionfolge f\"{u}r alle $n\ge N$ durch $g$ dominiert: $|f_n|\le g$. Weil nur das Verhalten f\"{u}r $n$ groß wichtig f\"{u}r Konvergenz ist, können wir den Satz von dominierte Konvergenz verwenden, also 
+	\[
+		\int f\dd{\mu}=\lim_{n \to \infty} \int f_n\dd{\mu}
+	.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Sei $(X,\mathcal{A},\mu)$ ein $\sigma$-endlicher Maßraum mit $\mu(X)>0$. Zeigen Sie, dass dann eine messbare Funktion $f:X\to \overline{R}$ existiert mit $f>0$ auf $X$ und $0<\int |f|\dd{\mu}<\infty$.
+\item Geben Sie einen Maßraum an, f\"{u}r den $\mathcal{L}^1(\mu)=\left\{ 0 \right\} $ gilt.
+	\end{parts}
+\end{Problem}
+\begin{Problem}
+\begin{parts}
+\item Sei $(X,\mathcal{A},\mu)$ ein Maßraum und $A,B\in \mathcal{A}$ mit $\mu(A)<\infty$ und $\mu(B)<\infty$. Zeigen Sie, dass dann $|\mu(A)-\mu(B)|\le\mu(A\triangle B)$ gilt.
+\item Seien $(X,\mathcal{A})$ und $(Y,\mathcal{B})$ messbare Räume und $f:X\times Y\to \overline{R}$ sei $\mathcal{A}\otimes \mathcal{B}$-messbar. Zeigen Sie, dass dann f\"{u}r jedes $x\in X$ die Funktion $f_x(y):=f(x,y)$ $\mathcal{B}$-messbar ist.
+\end{parts}
+\end{Problem}

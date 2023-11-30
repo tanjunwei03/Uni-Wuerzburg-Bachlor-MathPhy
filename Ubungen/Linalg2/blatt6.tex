@@ -7,7 +7,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Es genügt zu zeigen, dass $\text{det}(D)=d_1\dots d_n$ f\"{u}r ein Dreiecksmatrix gilt. Wir beweisen es per Induktion auf $n$. F\"{u}r $n=1$ ist $\text{det}(M)=M_{11}$. Wir nehmen an, dass die Behauptung f\"{u}r $n-1$ gilt, wobei $n\in \N$ beliebig ist. Wir betrachten ein $n\times n$ Dreiecksmatrix $D_n$ und ein Laplaceentwicklung auf der ersten Spalte.
+	\item Es genügt zu zeigen, dass $\text{det}(A)=d_1\dots d_n$ f\"{u}r ein Dreiecksmatrix gilt. Wir beweisen es per Induktion auf $n$. F\"{u}r $n=1$ ist $\text{det}(A_1)=A_{11}$. Wir nehmen an, dass die Behauptung f\"{u}r $n-1$ gilt, wobei $n\in \N$ beliebig ist. Wir betrachten ein $n\times n$ Dreiecksmatrix $A_n$ und ein Laplaceentwicklung auf der ersten Spalte.
 		\begin{center}
 		\begin{tikzpicture}
 				\matrix (M)[matrix of math nodes, row sep = 0.5cm, column sep = 0.5cm,left delimiter={(},right delimiter={)}]{
@@ -19,14 +19,45 @@
 				};
 				\draw[thick, blue] (-2.6,2.5) -- (-2.6,-2.5);
 				\draw[thick, blue] (-1.7,-2.5) rectangle (3,1.6);
-				\draw (0.5,-0.5) node[blue] {$D_{n-1}$};
+				\draw (0.5,-0.5) node[blue] {$A_{n-1}$};
 			\end{tikzpicture}
 		\end{center}
-		Also $\text{det}(D_n)=a_{11}\text{det}(D_{n-1})$. Als Induktionsannahme haben wir angenommen, dass $\text{det}(D_{n-1})=a_{22}a_{33}\dots a_{nn}$. Daraus folgt:
+		Also $\text{det}(A_n)=a_{11}\text{det}(A_{n-1})$. Als Induktionsannahme haben wir angenommen, dass $\text{det}(A_{n-1})=a_{22}a_{33}\dots a_{nn}$. Daraus folgt:
 		\[
-			\text{det}(D_n)=a_{11}a_{22}\dots a_{nn}
+			\text{det}(A_n)=a_{11}a_{22}\dots a_{nn}
 		.\] 
 		Die Ergebnis folgt daraus und aus Proposition 6.28.
+	\item Wir beweisen es durch Durchfürung des Gauß-Algorithismus.
+
+		Wir fangen an mit dem zweiten Spalte bzw. zweiten Zeile. Wir dividieren das zweite Zeile durch $a_{22}$. Das Matrix sieht so aus
+		\[
+			\left( 
+				\begin{array}{ccccc|ccccc}
+					a_{11} & a_{12} & a_{13} & \dots & a_{1n} & 1 & 0 & 0 & \dots & 0\\
+					0 & 1 & a_{23} / a_{22} & \dots & a_{2n} / a_{22} & 0 & 1 / a_{22} & 0 & \dots & 0\\
+					0 & 0 & a_{33} & \dots & a_{3n} & 0 & 0 & 1 & \dots & 0\\
+					\vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+					0 & 0 & 0 & \dots & a_{nn} & 0 & 0 & 0 & \dots & 1
+				\end{array}
+			\right)  
+		.\] 
+		Dann subtrahtieren wir $a_{12}$ mal die zweite Zeile von die erste Zeile. Weil der Einträg in der linken Seite der zweiten Zeile eine rationale Zahl mit Nenner höchstens $a_{22}$ ist, werden alle Einträge in der zweiten Spalte des ehemaligen Einheitsmatrix auch rationale Zahlen mit Nenner höchstens $\frac{1}{a_{22}}$.
+
+		Danach dividieren wir die dritte Zeile durch $a_{22}a_{33}$. Dann sieht das Matrix so aus
+			\[
+		\left( 
+		\begin{array}{ccccc|ccccc}
+			a_{11} & 0 & a_{13} & \dots & a_{1n} & 1 & -1/a_{22} & 0 & \dots & 0\\
+			0 & 1 & a_{23} / a_{22} & \dots & a_{2n} / a_{22} & 0 & 1 / a_{22} & 0 & \dots & 0\\
+			0 & 0 & 1/a_{22} & \dots & 1 & 0 & 0 & 1/(a_{22}a_{33}) & \dots & 0\\
+			\vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \dots & a_{nn} & 0 & 0 & 0 & \dots & 1
+		\end{array}
+		\right)  
+		.\] 
+		Alle Einträge in der dritten Spalte sind Vielfachen von $1/a_{22}$, also wir können alle Einträge darin $0$ machen durch subtrahtieren ein Vielfaches von die dritte Zeile, was das Nenner nicht erhöhen kann. 
+		
+		Ähnlich machen wir weiter. Wir dividieren die vierte Zeile durch $1/a_{22}a_{33}a_{44}$. Alle Einträge in die vierte Spalte werden nur Vielfachen von $1/a_{22}a_{33}$. Zuletzt dividieren wir die erste Zeile durch $a_{11}$, damit das Matrix auf der linken Seite das Einheitsmatrix ist. Dann kann das Nenner höchstens $a_{11}\dots a_{nn}$ sein.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -80,6 +111,25 @@
 			=& \text{tr}(A^{-1}AB)\\
 			=&\text{tr}(AB)
 		\end{align*}
+	\item Wir betrachten ein Basis f\"{u}r $M_n(\mathbb{K})$. Das gewählte Basis ist die Elementarmatrizen $E_{ij}$ (s. Proposition 5.54). Es gilt
+		\[
+			E_{ii}E_{ij}=E_{ij}\qquad E_{ij}E_{ii}=0\qquad i\neq j
+		.\] 
+		Es folgt $f(E_{ij})=f(E_{ii}E_{ij})=f(E_{ij}E_{ii})=f(0)=0$, also $f(M)$ ist nicht von nichtdiagonale Elemente abhängig. 
+
+		Danach betrachten wir die diagonale Elemente. Wir können ein Permutationsmatrix (ein Matrix mit die Zeilen $i$ und $j$ vertauscht) $P$ betrachten. Es gilt $P^{-1}=P$ und
+	\[
+		P^{-1}\text{diag}(\lambda_1,\dots,\lambda_i,\dots,\lambda_j,\dots,\lambda_n)P=\text{diag}(\lambda_1,\dots,\lambda_j,\dots,\lambda_i,\dots,\lambda_n)
+	.\] 
+	Weil $f$ angewandt auf die beide Seite der Gleichung wegen (c) gleich sein muss, ist $f$ unabhängig von ein Umordnung der diagonale Elemente. Zuletzt gilt
+	\[
+		f(1)=\sum_{i=1}^n f(E_{ii})=nf(E_{11})=n
+	,\] 
+	also
+	\[
+		f(E_{ii})=1\qquad\text{f\"{u}r alle }i
+	.\] 
+	Dann ist $f=\text{tr}$.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -133,5 +183,44 @@
 	\[
 	A^T=\lambda A
 	.\] 
+	Wir können hier sofort zwei Eigenwerte und deren Eigenräume lesen:
+	\begin{align*}
+		\lambda=1:& A\in \text{SM}_n(\mathbb{K})\\
+		\lambda=-1:&A\in \text{AS}_n(\mathbb{K})
+	\end{align*}
+	Das Dimension der Eigenraum wissen wir schon
+	\begin{align*}
+		\text{dim}\left( \text{SM}_n(\mathbb{K}) \right) =&\frac{n(n+1)}{2}\\
+		\text{dim}(\text{AS}_n(\mathbb{K}))=&\frac{n(n-1)}{2}
+	\end{align*}
+	Es gilt
+	\[
+		\frac{n(n+1)}{2}+\frac{n(n-1)}{2}=n^2
+	,\]
+	also wir können ein Basis für $M_n(\mathbb{K})$ finden mit genau $\frac{n(n+1)}{2}$ Vektoren aus $\lambda=1$ Eigenraum und $\frac{n(n-1)}{2}$ Vektoren aus dem $\lambda=-1$ Eigenraum. Daraus folgt: $T$ ist diagonaliserbar.\qedhere
 	\end{parts}
+\end{proof}
+\begin{Problem}
+	Über einen algebraisch vollständigen Körper $\mathbb{K}$ zerfällt das charakteristische Polynom $\chi_A (x)$ einer Matrix $A\in M_n(\mathbb{K})$ immer in Linearfaktoren
+	\[
+		\chi_A(x):=\text{det}(A-x 1)=(\lambda_1-x)^{\mu_1}\cdot\dots\cdot(\lambda_m-x)^{\mu_m}
+	.\] 
+	Dabei ist der Exponent $\mu_i$ die algebraische Vielfachheit zum Eigenwert $\lambda_i$ und $n=\mu_1+\dots+\mu_m$. Es sei $V_{\lambda_i}$ der Eigenraum zum Eigenwert $\lambda_i$, dann bezeichnen wir die Dimension des Eigenraums
+	\[
+		d_i:=\text{dim}(V_{\lambda_i})\] als geometrische Vielfachheit von $\lambda_i$. Zeigen Sie: Es gilt immer
+		\[
+		\mu_i\ge d_i,\qquad\forall i=1,\dots,m
+		.\] 
+		{\footnotesize\emph{Hinweis: Führen Sie einen Basiswechsel mit einer möglichst geschickt gewählten Basis B durch.}} 
+\end{Problem}
+\begin{proof}
+	Sei $\lambda_i$ ein Eigenwert mit geometrische Vielfachheit $d_i$. Das heißt, dass wir $d_i$ linear unabhängige Vektoren finden können, so dass $Av=\lambda_i v$ f\"{u}r alle solche Vektoren. Dann ergänzen wir die Basis, so dass die erste $d_i$ Vektoren in der Basis Eigenvektoren mit Eigenwert $\lambda_i$ sind. Das charakteristische Polynom verändert sich nicht, wenn wir ein Basiswechsel machen. Also das charakterische Polynom ist gleich das charakteristische Polynom von
+	\[
+		A'=\begin{pmatrix} \lambda 1_{d_i} & B \\ 0 & C \end{pmatrix} 
+	.\] 
+	Es gilt
+	\[
+		\text{det}(A'-x 1_n)=(x-\lambda)^{d_i}\text{det}(C) 
+	,\]
+	also die algebraische Vielfachheit von $\lambda_i$ ist mindestens die geometrische Vielfachheit.
 \end{proof}
