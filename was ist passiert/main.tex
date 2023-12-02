@@ -91,4 +91,17 @@ A serious issue in the interpretation arises when we let $n=6$ (physically, this
 We can draw even more nonsensical conclusions by translating the 2nd harmonic oscillator a distance $d$ away (this is achieved by the transformation $x_4\to x_4+d$). Then the composition of the inverse transformation and the transformation we considered above is a symmetry transformation, with almost identical conserved quantities. 
 
 These conserved quantities are then equations relating the first and second harmonic oscillators (which could be arbitrarily far away). Is there a physical way to understand this? Is there some coincidental cancellation?
+\newpage
+\section{Solution}
+Wir zeigen, dass wir nur die diagonale Elemente brauchen. Sei  $i,j\in \N$. Wir wissen, dass 
+\begin{gather*}
+	\dot{x}_i^2+\omega^2 x_i^2\\
+	\dot{x}_j^2+\omega^2 x_j^2
+\end{gather*}
+erhalten sind. Es gilt
+\begin{align*}
+	(\dot{x}_i^2+\omega^2 x_i^2)(\dot{x}_j^2+\omega^2 x_j^2)=&\dot{x}_i^2\dot{x}_j^2+\omega^2\left( \dot{x}_i^2x_j^2+\dot{x}_j^2x_i^2 \right) +\omega^4x_i^2x_j^2\\
+	=&\left[ \dot{x}_i^2\dot{x}_j^2+\omega^4 x_i^2x_j^2 \right] +\omega^2\left( \dot{x}_i^2 x_j^2+\dot{x}_j^2x_i^2 \right)\\
+	 &-(\dot{x}_jx_i-\dot{x}_ix_j)+(\dot{x}_jx_i-\dot{x}_ix_j)
+\end{align*}
 \end{document}

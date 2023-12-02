@@ -35,7 +35,7 @@
 		\[
 			\int_{A_n}|f|\dd{\mu}<\epsilon
 		\]
-		f\"{u}r alle $n\ge N$.
+		f\"{u}r alle $n\ge N$.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -54,7 +54,7 @@
 
 	Sei $\epsilon>0$ beliebig. Wir bezeichnen mit $\epsilon$ gleichzeitig eine Zahl und die konstante Funktion $\epsilon(x)=\epsilon~\forall x\in X$. 
 
-	$\epsilon$ ist integrierbar, weil $\int |\epsilon|\dd{\mu}=|\epsilon|\mu(X)<\infty$. Dann sind $|f|+\epsilon:= g$ integrierbar. Weil $f_k$ gleichmäßig konvergiert, gibt es $N\in \N$, so dass $|f(x)-f_n(x)|<\epsilon$ f\"{u}r alle $n\ge N$. Das heißt, dass
+	$\epsilon$ ist integrierbar, weil $\int |\epsilon|\dd{\mu}=|\epsilon|\mu(X)<\infty$. Dann ist $|f|+\epsilon:= g$ integrierbar. Weil $f_k$ gleichmäßig konvergiert, gibt es $N\in \N$, so dass $|f(x)-f_n(x)|<\epsilon$ f\"{u}r alle $n\ge N$. Das heißt, dass
 	\[
 	|f_n(x)|\le |f(x)|+\epsilon
 	.\] 
@@ -62,6 +62,46 @@
 	\[
 		\int f\dd{\mu}=\lim_{n \to \infty} \int f_n\dd{\mu}
 	.\] 
+\item Wir betrachten $(1,\infty)$ mit das eingeschränkte Lebesgue $\sigma$-Algebra und Maß. Sei $\epsilon_j$ eine Folge, $\epsilon_j\in \R,~\epsilon_j\searrow 0$ und die Funktionfolge
+	\[
+		f_j(x)=\frac{1}{x^{1+\epsilon_j}}
+	.\] 
+	Die Folge $f_j$ konvergiert gegen $f(x) = 1 / x$. Wir zeigen die Eigenschaften:
+	\begin{enumerate}[label=(\roman*)]
+		\item Die Funktionfolge konvergiert gleichmäßig.
+
+			Wir berechnen den Fehler f\"{u}r beliebiges $\epsilon>0$ :
+			\begin{align*}
+				\Delta(x)=&\frac{1}{x}-\frac{1}{x^{1+\epsilon}}\\
+				=&\frac{x^{\epsilon}-1}{x^{1+\epsilon}}\\
+				\dv{\Delta(x)}{x}=&-x^{-2}+(1+\epsilon)x^{-(2+\epsilon)}=0\\
+				-1+(1+\epsilon)x^{-\epsilon}=&0\\
+				x^{-\epsilon}=&\frac{1}{1+\epsilon}\\
+				x^{\epsilon}=&1+\epsilon\\
+				x=&(1+\epsilon)^{1 / \epsilon}\\
+				\Delta(x)\le& \frac{\epsilon}{(1+\epsilon)^{\frac{1 + \epsilon}{\epsilon}}}\\
+				=& \frac{\epsilon}{(1+\epsilon)^{1+1 /\epsilon}},
+			\end{align*}
+			also der Fehler ist durch eine streng monoton fallende Funktion eingeschränkt, und die Folge konvergiert gleichmäßig.
+		\item $f_j$ ist integrierbar f\"{u}r alle $j\in \N$.
+
+			Dies folgt nicht aus Satz 2.61, weil wir nicht über einem kompakten Interval integrieren. Wir wissen nur, dass das Riemann-integral konvergent ist. Sei $j$ fest und definiere
+			\[
+				f_{j,n}=\chi_{[1,n]}f_h
+			.\] 
+			Dann stimmt das Lebesgue-integral mit das Riemann-Integral f\"{u}r alle $n\in \N\cup \left\{ 0 \right\} $. Die Funktionfolge ist auch durch $f_j$ dominiert, also
+		\begin{align*}
+			\int f_j \dd{\mu}=& \lim_{n \to \infty} \int f_{j,n}\dd{\mu} & \text{dominierte Konvergenz}\\
+			=&\lim_{n \to \infty} R-\int_1^n f_j(x)\dd{x} & \text{Satz 2.61}\\
+			=&R-\int_1^\infty f_j(x)\dd{x} & \text{Definition}
+		\end{align*} 
+		Weil wir wissen, dass das uneigentliche Riemann-Integral existiert, ist $f_j$ auch integrierbar f\"{u}r alle $j\in \N$.
+		\item Ähnlich haben wir
+			\[
+				\int \frac{1}{x}\dd{\mu}=R-\int_1^\infty \frac{1}{x}\dd{x}
+			.\] 
+			Weil das Riemann-Integral auf der rechten Seite nicht existiert, ist $\frac{1}{x}$ auch nicht Lebesgue-integrierbar.\qedhere
+	\end{enumerate}
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -70,9 +110,39 @@
 \item Geben Sie einen Maßraum an, f\"{u}r den $\mathcal{L}^1(\mu)=\left\{ 0 \right\} $ gilt.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Per Definition gibt es eine Folge $(A_j),A_j\in \mathcal{A}$, so dass alle $A_j$ endliche Maß haben und $\bigcup_{j=1} ^\infty A_j=X$. Wir definieren $f=\sum_{j=1}^\infty \frac{2^{-j}}{\mu(A_i)}\chi_{A_i}$. Per Definition als eine Reihe von einfache Funktionen gilt ($f$ ist positiv, also wir müssen kein Betrag schreiben):
+		\begin{align*}
+			\int f\dd{\mu}=\sum_{j=1}^\infty \frac{2^{-j}}{\mu(A_i)}\mu(A_i)=\sum_{j=1}^\infty 2^{-j}.
+		\end{align*}
+		Die Summe konvergiert und ist endlich.
+	\item $(\R, \mathcal{P}(\R), \mu)$, wobei
+		\[
+		\mu(X)=\begin{cases}
+			0 & X=\varnothing\\
+			\infty & \text{sonst.}
+		\end{cases}
+		.\] 
+		Sei $f\neq 0$, also es gibt ein Punkt $x_0\in \R$,so dass $|f(x_0)|>0$. Es gilt $|f|\ge |f(x_0)|\chi_{\left\{ x_0 \right\} }$. Es gilt auch
+		\[
+			\int |f(x_0)|\chi_{\left\{ x_0 \right\} }\dd{\mu}=|f(x_0)|\mu(\left\{ x_0 \right\} )=\infty
+		,\]
+		also $f$ ist nicht in $\mathcal{L}^1(\mu)$.\qedhere 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 \begin{parts}
 \item Sei $(X,\mathcal{A},\mu)$ ein Maßraum und $A,B\in \mathcal{A}$ mit $\mu(A)<\infty$ und $\mu(B)<\infty$. Zeigen Sie, dass dann $|\mu(A)-\mu(B)|\le\mu(A\triangle B)$ gilt.
 \item Seien $(X,\mathcal{A})$ und $(Y,\mathcal{B})$ messbare Räume und $f:X\times Y\to \overline{R}$ sei $\mathcal{A}\otimes \mathcal{B}$-messbar. Zeigen Sie, dass dann f\"{u}r jedes $x\in X$ die Funktion $f_x(y):=f(x,y)$ $\mathcal{B}$-messbar ist.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt $\mu(A\triangle B)=\mu(A)+\mu(B)-2\mu(A\cap B)$. Außerdem ist
+		\[
+		\left| \mu(A)-\mu(B) \right| =\left| \mu(A)+\mu(B)-2\mu(B) \right| 
+		.\] 
+		Daraus folgt:
+	\end{parts}
+\end{proof}

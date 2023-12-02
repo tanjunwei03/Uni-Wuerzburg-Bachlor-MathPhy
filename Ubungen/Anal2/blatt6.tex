@@ -1,0 +1,200 @@
+\begin{Problem}
+	Im Folgenden ist $a\in \R$ und $b\in \R \cup \left\{ +\infty \right\} $. Zeigen oder widerlegen Sie:
+	\begin{parts}
+		\item Sind $f,g:[a,b)\to \R$ uneigentlich integrierbar, so auch $f+g$.
+		\item Sind $f,g:[a,b)\to \R$ uneigentlich integrierbar, so auch $f\cdot g$.
+		\item Sind $f:[a,b)\to \R$ uneigentlich integrierbar und $g:\R \to \R$ stetig, so auch $g\circ f$.
+		\item Es sei $f:(0,1]\to \R$ stetig, nicht-negativ und uneigentlich integrierbar. Dann konvergiert
+			\[
+				\int_0^1 \sqrt{f(x)} \dd{x}
+			.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $a<c<b$. Wir wissen, dass $f+g$ auf $[a,c]$ integrierbar f\"{u}r alle solchen $c $ ist und außerdem
+		\[
+			\int_a^c (f+g)(x)\dd{x}=\int_a^c f(x)\dd{x}+\int_a^c f(x)\dd{x}
+		.\] 
+		Es gilt dann
+		\begin{align*}
+			\lim_{c \to b} \int_a^b (f+g)(x)\dd{x}=&\lim_{c \to b} \int_a^c f(x)\dd{x}+\lim_{c \to \infty} \int_a^c g(x)\dd{x}\\
+			=&\int_a^b f(x)\dd{x}+\int_a^b g(x)\dd{x}
+		\end{align*}
+		also $f+g$ ist integrierbar.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+Untersuchen Sie die folgenden uneigentlichen Riemannintegrale auf Konvergenz bzw. absolute Konvergenz:
+\begin{parts}
+\item $\int_{-\infty}^\infty e^{-x^2}\dd{x}$,
+\item $\int_{-\infty}^\infty \frac{\sin x}{x}\dd{x}$,
+\item $\int_{-\infty}^\infty \sin\left( x^2 \right) \dd{x}$.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir betrachten zuerst $\int_1^\infty e^{-x^2}\dd{x}$. Weil $e^{-x^2}$ monoton fallend ist, konvergiert das Integral genau dann, wenn
+		\[
+			\sum_{k=1}^\infty e^{-k^2}
+		\]
+		konvergiert. Es gilt $e^{-k^2}\ge e^{-k}$ f\"{u}r $k\in \N$ und
+		\[
+			\sum_{k=1}^\infty e^{-k}
+		\]
+		konvergiert, weil es eine geometrische Reihe ist. 
+
+		Nachdem wir gezeigt haben, dass $\int_{-\infty}^{1}f(x)\dd{x}$ existiert, existiert auch das Integral $\int_{-\infty}^\infty e^{-x^2}\dd{x}$. Es gilt, f\"{u}r $c\le -1$, dass
+		\[
+			\int_{c}^1 f(x)\dd{x}=\int_{c}^{-1} f(x)\dd{x}+\int_{-1}^1 f(x)\dd{x}
+		\]
+		und
+		\[
+			\lim_{c \to -\infty} \int_c^1 f(x)\dd{x}=\lim_{c \to -\infty} \int_{c}^{-1}f(x)\dd{x}+\int_{-1}^1f(x)\dd{x}
+		.\] 
+		Weil $\exp(-x^2)$ auf $\R$ stetig ist, ist $\exp(-x^2)$ auf $[-1,1]$ integrierbar, also das Grenzwert $\int_{-\infty}^1 e^{-x^2}\dd{x}$ existiert genau dann, wenn $\int_c^{-1}e^{-x^2}\dd{x}$. Aber wir wissen, weil $\exp(-(-x)^2)=\exp(-x^2)$, dass
+		\[
+			\int_{c}^{-1}e^{-x^2}\dd{x}=\int_1^c e^{-x^2}\dd{x}
+		,\] 
+		also
+		\[
+			\lim_{c \to -\infty} \int_{c}^{-1}e^{-x^2}\dd{x}=\lim_{c \to \infty} \int_1^c e^{-x^2}\dd{x}
+		.\] 
+		Weil das Grenzwert auf der rechten Seite existiert existiert das auf der linken Seite, also $\int_{-\infty}^\infty e^{-x^2}\dd{x}$ existiert.
+
+		Weil $e^{-x^2}>0$ f\"{u}r alle $x\in \R$, konvergiert das Integral genau dann, wenn es absolut konvergiert, also es konvergiert absolut.
+	\item Es steht schon im Skript, dass
+		\[
+			\int_0^\infty \frac{\sin x}{x}\dd{x}
+		\]
+		existiert. Aus
+		\[
+			\frac{\sin(-x)}{-x}=\frac{\sin x}{x}
+		.\] 
+		existiert auch $\int_{-\infty}^0 \frac{\sin x}{x}$, daher auch
+		\[
+			\int_{-\infty}^\infty \frac{\sin x}{x}\dd{x}
+		.\] 
+		Wir untersuchen es also f\"{u}r absolut Konvergenz. Es gilt
+		\begin{align*}
+			\int_0^{2\pi N}\left|\frac{\sin x}{x}\right|\dd{x}=&\sum_{j=0}^{N-1}\int_{2\pi j}^{2\pi(j+1)}\left|\frac{\sin x}{x}\right|\dd{x}\\
+			\ge&\sum_{j=0}^{N-1}\frac{1}{2\pi (j+1)}\int_{2\pi j}^{2\pi(j+1)}|\sin x|\dd{x}\\
+			=&\sum_{j=1}^{N-1}\frac{2}{\pi(j+1)}
+		\end{align*}
+		Dann nehmen wir die Limes $N\to \infty$. Weil die Summe divergent ist, ist das Integral auch divergent.
+	\item Wie vorher ist $\sin((-x)^2)=\sin x$, also wir müssen nur zeigen, dass $\int_0^\infty \sin(x^2)$ konvergiert bzw. absolut konvergiert.
+
+		Sei $u=x^2,~\dd{u}=2x\dd{x}=2\sqrt{u} \dd{x}$ und $\R\ni a,b, 0<a<b$. Es folgt:
+		\[
+			\int_a^b \sin x^2\dd{x}=\int_{a^2}^{b^2} \frac{\sin u}{2\sqrt{u} }\dd{u} 
+		.\] 
+		Dann machen wir partielle Integration
+		\begin{align*}
+			\int_{a^2}^{b^2}\frac{\sin u}{\sqrt{u} }\dd{u}=&\left.\frac{-\cos u}{\sqrt{u} }\right|_{a^2}^{b^2}-\int_{a^2}^{b^2}\frac{\cos u}{2u^{\frac{3}{2}}}\dd{u}\\
+				\left| \int_{a^2}^{b^2}\frac{\sin u}{\sqrt{u} }\dd{u} \right|\le&\left| \left.\frac{-\cos u}{\sqrt{u} }\right|_{a^2}^{b^2} \right|+\int_{a^2}^{b^2} \frac{1}{2u^{3 / 2}}\dd{u}\\
+					\ge& \frac{1}{b}+\frac{1}{a}-\left. \frac{1}{\sqrt{u} }\right|_{a^2}^{b^2}\\
+						=& \frac{2}{a},
+		\end{align*}
+		was unabhängig von der oberen Grenze ist. Also $\int_a^\infty x^2 \sin(x^2)	$ konvergiert f\"{u}r alle $a$. Da $\sin(x^2)$ überall in $\R$ definiert und stetig ist, ist auch
+		\[
+			\int_0^\infty \sin(x^2)\dd{x}
+		\]
+		konvergent. Daraus folgt, dass
+		\[
+			\int_{-\infty}^\infty\sin(x^2)\dd{x}
+		\]
+		konvergent ist. Wir untersuchen es dann f\"{u}r absolut Konvergenz. Es gilt
+		\begin{align*}
+			\int_0^{2\pi N}\left| \frac{\sin x}{2\sqrt{x} } \right| \dd{x}=&\sum_{j=1}^{N-1}\int_{2\pi j}^{2\pi (j+1)}\frac{\sin x}{2\sqrt{x} }\dd{x}\\
+			\ge&\sum_{j=0}^{N-1}\frac{1}{2\sqrt{2\pi j} }\int_{2\pi j}^{2\pi (j+1)}|\sin x|\dd{x}\\
+			=&\sum_{j=0}^{N-1}\frac{2}{\sqrt{2\pi} \sqrt{j} }
+		\end{align*}
+	\end{parts}
+	Weil die Summe divergent ist, divergiert auch das Integral.
+\end{proof}
+\begin{Problem}
+	Beweisen Sie
+	\[
+	\lim_{n \to \infty} \left( \frac{1}{n+1}+\frac{1}{n+2}+\dots+\frac{1}{2n} \right)=\ln 2 
+	.\] 
+\end{Problem}
+\begin{proof}
+	Es gilt, f\"{u}r alle $n\in \N$,
+\begin{align*}
+	\ln 2=&\ln 2n-\ln n\\
+	=&\int_1^{2n} \frac{1}{x}\dd{x}-\int_1^n \frac{1}{x}\dd{x}\\
+	=& \int_n^{2n}\frac{1}{x}\dd{x}
+\end{align*}
+also wir brauchen
+\[
+	\lim_{n \to \infty} \int_n^{2n}\frac{1}{x}\dd{x}=\lim_{n \to \infty} \sum_{j=n}^{2n}\frac{1}{j}
+.\] 
+Es gilt
+\[
+	\sum_{j=n}^{2n}\frac{1}{j}\le \int_n^{2n}\frac{1}{x}\dd{x}\le \sum_{j=n}^{2n} \frac{1}{j+1}
+\]
+weil $\frac{1}{x}$ auf $(0,\infty)$ monoton fallend ist. Außerdem ist
+\begin{align*}
+	\lim_{n \to \infty} \left[ \sum_{j=n}^{2n}\frac{1}{j}-\sum_{j=n}^{2n}\frac{1}{j+1} \right] =& \lim_{n \to \infty} \left[ \frac{1}{n}-\frac{1}{2n+1} \right] \\
+	=& 0
+\end{align*}
+also wenn wir die Limes gegen $\infty$ nehmen, konvergiert die beide Summen nach dem gleichen Wert, also das Integral. 
+\[
+	\lim_{n \to \infty} \sum_{j=n}^{2n}\frac{1}{j}=\lim_{n \to \infty} \int_n^{2n}\frac{1}{x}\dd{x}
+.\] 
+Die Behauptung folgt.
+\end{proof}
+\begin{Problem}
+	Wir zeigen die Irrationalität von $\pi$ durch einen Widerspruch. Angenommen, es gälte $\pi=\frac{a}{b}$ f\"{u}r $a,b\in \N$. Außerdem seien $f,F:[0,\pi]\to \R$ definiert durch
+	\begin{align*}
+		f(x)=&x^n\frac{(a-bx)^n}{n!},\\
+		F(x)=&f(x)-f^{(2)}(x)+f^{(4)}(x)-\dots+(-1)^nf^{(2n)}(x).
+	\end{align*}
+	f\"{u}r $n\in \N$.
+	\begin{parts}
+	\item Zeigen Sie, dass $f^{(k)}(0),f^{(k)}(\pi)\in \N$ f\"{u}r alle $k\in \N$ gilt.
+	\item Zeigen Sie
+		\[
+		f(x)\sin x=\left( F'(x)\sin x-F(x)\cos x \right)'
+		.\] 
+		Folgern Sie anschließend, dass $F(\pi)+F(0)$ ebenfalls eine natürliche Zahl ist, was allerdings nicht mit den Eigenschaften von $x\to f(x)\sin x$ f\"{u}r hinreichend großes $n\in \N$ vereinbar ist. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir leiten es ab. Sei $g(x)=x^n,~h(x)=(a-bx)^n$. Es gilt
+		\[
+			f^{(p)}(x)=\frac{1}{n!}\sum_{k=0}^n \binom{p}{k}g^{(k)}(x)h^{(p-k)}(x)
+		.\] 
+		Es gilt außerdem
+		\[
+			g^{(k)}(x)=n(n-1)\dots(n-k+1)x^{n-k}
+		,\]
+		also $g^{(k)}(0)\neq 0$ genau dann, wenn $k=n$ und in diesem Fall ist $g^{(n)}(0)=n!$. Ähnlich ist $h^{(k)}(x)=n(n-1)\dots(n-k+1)(-b)^k(a-bx)^{n-k}$, also $h^{(k)}(0)\in \N$. Dann im Summe müssen wir nurdem Fall $k=n$ betrachten, also
+		\[
+			f^{(p)}(0)=\binom{p}{n}h^{(p-k)}(0)\in \N
+		.\] 
+		Ähnlich bei $\pi$ gilt $g^{(k)}(\pi)=n(n-1)\dots (n-k+1)\pi^{n-k}$ und
+		\begin{align*}
+			g^{(k)}(\pi)=&n(n-1)\dots(n-k+1)(-b)^k(a-b\pi)^{n-k}
+=&n(n-1)\dots(n-k+1)(-b)^k(a-b(a / b))^{n-k}\\
+=&\begin{cases}
+	0 & k \neq n\\
+	n!(-b)^n & k = n
+\end{cases}
+		\end{align*}
+		also wir betrachten im Summe nur den Fall $p-k=n$, also
+		\[
+		f^{(p)}(x)=\frac{1}{n!}\binom{p}{p-n}g^{(p-n)}(\pi)h^{(n)}(\pi)=\binom{p}{p-n}g^{(p-n)}(\pi)(n!)(-b)^n\in \N
+		.\] 
+	\item Es gilt
+		\begin{align*}
+			\left( F'(x)\sin x-F(x)\cos x \right)'=& F''(x)\sin x+F'(x)\cos x-F'(x)\cos x+F(x)\sin x\\
+			=& \left[ F''(x)+F(x) \right] \sin x\\
+			=&\sin(x)[\cancel{f^{(2)}(x)}-\cancel{f^{(4)}(x)}+\cancel{f^{(6)}(x)}-\dots+(-1)^nf^{(2n+2)}(x)\\
+			 &+f(x)-\cancel{f^{(2)}(x)}+\cancel{f^{(4)}(x)}-\dots+\cancel{(-1)^n f^{(2n)}(x)}]\\
+			=&f(x)\sin x+(-1)^n f^{(2n+2)}(x).
+		\end{align*}
+		Es bleibt zu zeigen: $f^{(2n+2)}(x)=0$. Wir wissen: $g^{(n+1)}(x)=h^{(n+1)}(x)=0$. Daraus folgt:
+	\end{parts}
+\end{proof}

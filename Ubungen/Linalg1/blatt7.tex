@@ -1,7 +1,7 @@
 \begin{Problem}
 	Wir betrachten den Unterraum $U$ von $\Z / 101\Z[t]$, der von
 	\[
-	B=\left( \overline{1},t^2+t,t^3-2t^2,t+t^3,t^7,t^6+t^5+t^3,t^4-\overline{5} \right)\] erzeugt wird.
+	B=\left( \overline{1},t^2+t,t^3-t^2,t+t^3,t^7,t^6+t^5+t^3,t^4-\overline{5} \right)\] erzeugt wird.
 	\begin{parts}
 		\item Entscheiden Sie, ob $B$ eine Basis von $U$ ist. Finden Sie andernfalls eine Basis $B'$ von $U$, die nur aus Elementen von $B$ besteht.
 		\item Zeigen Sie: Die Polynome
@@ -12,7 +12,33 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Ja. Per Definition ist $B$ ein Erzeugendensystem. Aber 
+	\item Nein. Per Definition ist $B$ ein Erzeugendensystem. Es bleibt nur zu zeigen, dass es linear unabhängig ist.
+
+		Es ist aber nicht linear unabhängig. Es gilt
+		\[
+			-(t^3+t)+(t^2+t)+(t^3-t^2)=0
+		,\] 
+		also es ist nicht linear unabhängig. Eine Basis $B'$ ist
+		\[
+		B'=\left\{ \overline{1},t^2+t,t^3+t,t^7,t^6+t^5+t^3,t^4-\overline{5} \right\} 
+		\] 
+		(also $B$ ohne $t^3-t^2$.)
+	\item Es gilt
+		\begin{align*}
+			t^7-t^3-t-\overline{5}=&t^7-(t^3+t)-\overline{5}(\overline{1})\\
+			\overline{2}t^7-\overline{27}=&\overline{2}t^7-\overline{27}(\overline{1})\\
+			t^6+t^5-t^4+t^3+\overline{5}=&(t^6+t^5+t^3)-(t^4-\overline{5})
+		\end{align*}
+		also die liegen alle in $U$. Sei $x_1,x_2,x_3\in \Z / 101\Z$, so dass
+		\begin{align*}
+			&x_1(t^7-t^3-t-\overline{5})+x_2(\overline{2}t^7-\overline{27})\\
+			&+x_3(t^6+t^5-t^4+t^3+\overline{5})=0
+		\end{align*}
+		Aus Vergleich des Koeffizienten von $t$ gilt $x_1=\overline{0}$. Dann vergleich wir den Koeffizient von $t^7$ und erhalten $x_2=\overline{0}$. Dann muss $x_3=\overline{0}$, also sie sind linear unabhängig.
+	\item 
+		\[
+			B'=\left\{ t^3+t,t^7,t^4-\overline{5},\overline{1},t^2+t,t^6+t^5+t^3 \right\} 
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -23,7 +49,21 @@ Bestimmen Sie die Dimension der folgenden Vektorräume.
 	\item $V_3=\left\{ v\in \R^n|\forall i\in \left\{ 1,2,3,\dots, n \right\} :v_i-v_{n-i+1}=0 \right\} $
 \end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Sei $p=a_0+a_1x+a_2x^2+a_3x^3+a_4x^4+a_5x^5+a_6x^5$. Es gilt $p(0)=a_0$. Also wir müssen $a_0=0$. Dann ist $V_1$ gespannte durch
+		\[
+		B_1=\left\{ t,t^2,t^3,t^4,t^5,t^6 \right\} 
+	.\]
+	Die Vektoren sind linear unabhängig, also ist $\text{dim}(V_1)=6$.
+\item Ein Polynom in $V_2$ muss dan nur gerade Potenzen enthalten. Dann ist ein Basis for $V_2$ 
+	\[
+		B_2=\left\{ x^{2n}, n\in \N\cup \left\{ 0 \right\}  \right\} 
+	\]
+	also $\text{dim}(B_2)$ ist abzählbar.
+\item Ein Basis f\"{u}r $V_3$ ist
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Gegeben sei die Matrix
 	\[
@@ -143,6 +183,7 @@ mit elementaren Zeilenoperationen auf Zeilenstufenform. Die entstandenen Zeilenv
 	\lambda_i(1,2,5,6)+\mu_i(5,4,3,2)+\tau_i(4,3,6,5)=u_i\] an.
 	\end{parts}
 \end{Problem}
+\begin{proof}
 \begin{parts}
 \item 
 	\begin{gather*}
@@ -184,13 +225,20 @@ mit elementaren Zeilenoperationen auf Zeilenstufenform. Die entstandenen Zeilenv
 	.\] 
 	Wir betrachten zuerst die erste Komponent. Weil die erste Komponent nur in $b_1$ ungleich $0$ ist, muss $q_1=0$. Die zweite Komponent ist nur in $b_2$ ungleich $0$, also $q_2=0$. Daraus folgt, weil $b_3\neq 0$, dass $q_3=0$, also $b_1,b_2,b_3$ sind linear unabhängig.
 \item Durch elementare Zeilenoperationen arbeiten wir immer nur mit linear Kombinationen von Zeilen, also das Ergebnis muss eine lineare Kombination sein.
+
+	Wir berechnen es explizit, weil wir es später brauchen werden:
+	\begin{align*}
+		b_1=&(1,2,5,6)\\
+		b_2=&\frac{5}{6}(1,2,5,6)-\frac{1}{6}(5,4,3,2)\\
+		b_3=&\frac{1}{6}(1,2,5,6)-\frac{5}{6}(5,4,3,2)+(4,3,6,5)
+	\end{align*}
 \item Wir wissen aus Satz 2.4.18, dass die Erzeugendensysteme sind. Dann ist es nur zu zeigen: Die Systeme sind linear unabhängig. Wir wissen, dass $b_1,b_2,b_3$ linear unabhängig sind. 
 
 	Wir nehmen an, dass es Zahlen $x,y,z\in \Q$ gibt, nicht alle null, so dass
 	\[
 	x(1,2,4,5)+y(5,4,3,2)+z(4,3,6,5)=(0,0,0,0)
 	.\] 
-	Dann können wir $x(1,2,4,5)+y(5,4,3,2)+z(4,3,6,5)$ als Summe von $b_1,b_2,b_3$ schreiben. Dann haben wir ein linear Kombination von $b_1,b_2,b_3$ mit Koeffizienten nicht alle 0, aber das Kombination ist $0$, also $b_1,b_2,b_3$ wäre dann nicht linear unabhängig.
+	Dann können wir $x(1,2,4,5)+y(5,4,3,2)+z(4,3,6,5)$ als Summe von $b_1,b_2,b_3$ schreiben. Dann haben wir ein linear Kombination von $b_1,b_2,b_3$ mit Koeffizienten nicht alle 0, aber das Kombination ist $0$, also $b_1,b_2,b_3$ wären dann nicht linear unabhängig.
 \item 
 	\begin{enumerate}[label=(\arabic*)]
 		\item Es gilt
@@ -201,5 +249,42 @@ mit elementaren Zeilenoperationen auf Zeilenstufenform. Die entstandenen Zeilenv
 			\[
 			z_1(0,0,\frac{13}{3},\frac{13}{3})+(1,1,4 / 3, 4 / 3)=(1,1,1,1).\]
 Wir entscheiden uns f\"{u}r $z_1=-\frac{1}{13}$ und die Behauptung folgt.
+\begin{align*}
+	(1,1,1,1)=&(1,2,5,6)-(0,1, 11 /3, 14 / 3)-\frac{1}{13}(0,0,13 / 3, 13 /3)\\
+	=&(1,2,5,6)-\left[ \frac{5}{6}(1,2,5,6)-\frac{1}{6}(5,4,3,2) \right] \\
+	 &-\frac{1}{13}\left[ \frac{1}{6}(1,2,5,6)-\frac{5}{6}(5,4,3,2)+(4,3,6,5) \right]\\
+	=&\frac{2}{13}(1,2,5,6)+\frac{3}{13}(5,4,3,2)-\frac{1}{13}(4,3,2,5)
+\end{align*}
+\item Es würde gelten
+	\[
+		(1,1,0,0)=x_2(1,2,5,6)+y_2\left( 0,1,\frac{11}{3},\frac{14}{3} \right) +z_2\left( 0,0,\frac{13}{3},\frac{13}{3} \right) 
+	.\] 
+	Daraus folgt: $x_2=1$ und $y_2=-1$, also
+	\[
+		\left( 1,1,\frac{4}{3},\frac{4}{3} \right) +z_2\left( 0,0,\frac{13}{3},\frac{13}{3} \right) =(1,1,0,0)
+	.\] 
+	Wir entscheiden uns f\"{u}r $z_2=-4 / 13$, und die Gleichung ist erfüllt, also $(1,1,0,0)$ liegt in $U$. Es folgt:
+	\begin{align*}
+		(1,1,1,1)=&(1,2,5,6)-(0,1, 11 /3, 14 / 3)-\frac{4}{13}(0,0,13 / 3, 13 /3)\\
+		=&(1,2,5,6)-\left[ \frac{5}{6}(1,2,5,6)-\frac{1}{6}(5,4,3,2) \right] \\
+		&-\frac{4}{13}\left[ \frac{1}{6}(1,2,5,6)-\frac{5}{6}(5,4,3,2)+(4,3,6,5) \right]\\
+		=&\frac{3}{26}(1,2,5,6)+\frac{11}{26}(5,4,3,2)-\frac{4}{13}(4,3,2,5)
+	\end{align*}
+\item Es würde gelten
+	\[
+		(1,2,3,4)=x_3(1,2,5,6)+y_3\left( 0,1,\frac{11}{3},\frac{14}{3} \right) +z_3\left( 0,0,\frac{13}{3},\frac{13}{3} \right) 
+	.\] 
+	Daraus folgt: $x_3=1$ und $y_3=0$, also
+	\[
+		(1,2,3,4)=(1,2,5,6)+z_3\left( 0,0,\frac{13}{3},\frac{13}{3} \right) 
+	.\] 
+	Dann sei $z_3=-\frac{6}{13}$, und die Gleichung wurde erfüllt, also es liegt in $U$. Dann ist
+	\begin{align*}
+		(1,2,3,4)=&(1,2,5,6)-\frac{6}{13}\left( 0,0,\frac{13}{3},\frac{13}{3} \right) \\
+		=&(1,2,5,6)-\frac{6}{13}\left( \frac{1}{6}(1,2,5,6)\right.\\
+		 &\left.-\frac{5}{6}(5,4,3,2)+(4,3,6,5)\right)\\
+		=&\frac{12}{13}(1,2,5,6)+\frac{5}{13}(5,4,3,2)-\frac{6}{13}(4,3,6,5).\qedhere
+	\end{align*}
 	\end{enumerate}
 \end{parts}
+\end{proof}
