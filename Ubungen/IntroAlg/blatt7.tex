@@ -1,0 +1,113 @@
+\begin{Problem}\label{pr:introalgblatt7-1}
+	Sei $G$ eine Gruppe.
+	\begin{parts}
+		\item Zeigen Sie, dass die Menge aller Automorphismen von $G$ zusammen mit der Verkettung von Funktionen als Verknüpfung eine Gruppe bildet. 
+		
+			Man nennt diese Gruppe die \emph{Automorphismengruppe} von $G$ und schreibt $\text{Aut}(G)$ f\"{u}r sie.
+		\item Zeigen Sie, dass f\"{u}r jedes $g\in G$ durch
+			\[
+				k_g:G\to G\qquad x\to gxg^{-1}
+			\]
+			ein Automorphismus von $G$ gegeben ist.
+
+Dies zeigt, dass die Konjugation mit einem beliebigen Gruppenelement $g$ einen Automorphismus von $G$ liefert. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir beweisen die Eigenschaften
+		\begin{enumerate}[label=(\roman*)]
+			\item Neutrales Element:
+
+				Sei $1:G\to G,~1(x)=x~\forall x\in G$. Es ist klar, dass $1$ bijektiv ist. Außerdem ist
+				\[
+				1(xy)=xy=1(x)1(y)
+			,\]
+			also $1$ ist ein Automorphismus. Außerdem gilt f\"{u}r alle $f\in \text{Aut}(G)$ :
+			 \[
+			f 1(x)=f(x)~\forall x\in G
+		,\]
+		also $1$ ist das neutrale Element.
+	\item Existenz des Inverses: Sei $f\in\text{Aut}(G)$. Weil $f$ bijektiv ist, gibt es auch eine bijektive inverse Abbildung $f^{-1}$. Es bleibt zu zeigen, dass $f^{-1}$ eine Homomorphismus ist. Sei $x,y\in G$ beliebig. Weil $f$ bijektiv ist, gibt es Elemente $a,b\in G$, so dass $x=f(a)$ und $y=f(b)$ gilt. Per Definition eine inverse Abbildung ist $f^{-1}(x)=a,~f^{-1}(y)=b$.
+
+		Es folgt:
+		\begin{align*}
+			f^{-1}(xy)&=f^{-1}(f(a)f(b))\\
+				  &=f^{-1}(f(ab)) & f\text{ ist ein Homomorphismus}\\
+				  &=ab=f^{-1}(x)f^{-1}(y)
+		\end{align*}
+		also $f^{-1}\in \text{Aut}(G)$.
+	\item Assoziatiativität
+
+		Folgt sofort aus der Assoziativität von Funktionverknüpfungen.
+	\item Abgeschlossenheit
+
+		Die Verkettung bijektive Abbildungen ist noch einmal bijektiv. Die Verkettung ist auch ein Homomorphismus (Definition 2.58), also $\text{Aut}(G)$ ist abgeschlossen.
+		\end{enumerate}
+	\item Noch einmal zeigen wir alle Eigenschaften. Sei $g\in G$ beliebig. Wir betrachten $k_g$.
+		\begin{enumerate}[label=(\roman*)]
+			\item Sie ist ein Homomorphismus.
+
+				Sei $x,y\in G$. Es gilt $k_g(x)=gxg^{-1}$ und $k_g(y)=gyg^{-1}$. Daraus folgt:
+				\[
+					k_g(x)k_g(y)=gxg^{-1}gyg^{-1}=gxyg^{-1}=k_g(xy)
+				.\] 
+			\item Sie ist injektiv.
+
+				Wir zeigen, dass $\text{Ker}(k_g)=\left\{ 1 \right\} $. Wir nehmen an, dass es $1\neq x\in G$ gibt, so dass $k_g(x)=1$. Dann ist
+				\[
+					gxg^{-1}=1\implies gx=g
+				.\] 
+				Aus der Kurzungsregel folgt $x=1$, ein Widerspruch.
+			\item Sie ist surjektiv. 
+				Sei $y\in G$ und $x=g^{-1}yg$. Dann gilt
+				\[
+					k_g(x)=gxg^{-1}=gg^{-1}ygg^{-1}=y
+				,\]
+				also sie ist surjektiv.
+		\end{enumerate}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Unter dem \emph{Zentrum} $Z(G)$ einer Gruppe $G$ versteht man die Menge aller Elemente von $G$, die mit allen Elementen von $G$ vertauschen, also die Menge $Z(G)=\left\{ g\in G|\text{es gilt }gxg^{-1}=x\text{ f\"{u}r alle }x\in G \right\} $. Wir definieren die Menge der \emph{inneren Automorphismen von} $G$ durch
+\[
+	\text{Inn}(G):=\left\{ k_g|g\in G \right\} \qquad\text{mit }k_g\text{ wie in \ref{pr:introalgblatt7-1}(b)}
+.\] 
+Zeigen Sie, dass $Z(G)\trianglelefteq G,\text{Inn}(G)\le \text{Aut}(G)$ und $G / Z(G)\cong \text{Inn}(G)$ gelten.
+\end{Problem}
+\begin{proof}
+	Wir schreiben zuerst einen alternativen Definition:
+	\[
+		Z(G)=\left\{ g\in G|\text{ es gilt }gx=xg\text{ f\"{u}r alle }x\in G \right\} 
+	.\] 
+	Dann ist auch $1\in Z(G)$, weil $1x=x 1=x$ f\"{u}r alle $x\in G$ gilt.
+	\begin{parts}
+	\item $Z(G)\trianglelefteq G$.
+
+		Folgt fast sofort per Definition: Wir betrachten die Nebenklassen. Sei $x\in G$. Es gilt
+		\begin{align*}
+			xZ(G)=&\left\{ xg|g\in Z(G) \right\}\\
+		=&\left\{ gx|g\in Z(G) \right\} \\
+		=& Z(G)x
+		\end{align*}
+	\item $\text{Inn}(G)\le \text{Aut}(G)$
+
+		Sei $f_1,f_2\in\text{Inn}(G)$, also es gibt $g_1,g_2\in Z(G)$, so dass
+		\begin{align*}
+			f_1(x)=&g_1xg_1^{-1}\\
+			f_2(x)=&g_2xg^{-1}
+		\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Nach Beispiel 2.71 operiert $S_N$ auf sich selbst per Konjugation. Beschreiben Sie die Bahnen dieser Operation.
+	\item Wir nennen eine Transposition der $S_3$ \emph{schön}, wen Sie von der Form $(1x)$ mit $x\in \left\{ 2,3 \right\} $ ist. Sei das Neutrale von $S_3$ als Produkt schöner Transpositionen dargestellt. Kommen in diesem Produkt die einzelnen schönen Transpositionen dann stets in gerader Anzahl vor? 
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Die Gruppe $G$ operiere auf der Menge $M$. Weiter sei $U$ eine Untergruppe von $G$, so dass die auf $U$ eingeschränkte Operation transitiv auf $M$ sei.
+
+	Zeigen Sie, dass dann $G=U\cdot G_m$ f\"{u}r alle $m\in M$ gilt.
+\end{Problem}

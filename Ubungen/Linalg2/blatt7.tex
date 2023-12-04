@@ -1,0 +1,119 @@
+\begin{Problem}
+	Beweisen oder Widerlegen Sie:
+	\begin{parts}
+		\item Es sei $A\in \mathbb{K}^{n\times n}$ und $p\in\mathbb{K}[x]$ ein beliebiges Polynom, dann gilt: Ist $\lambda$ ein Eigenwert von $A$, dann ist $p(\lambda)$ ein Eigenwert von $p(A)$.
+		\item Angenommen wir haben in (a) eine Konstellation in der $\lambda$ ein Eigenwert von $A$ und $p(\lambda)$ ein Eigenwert von $p(A)$ ist, dann stimmen jeweils auch die geometrischen Vielfachheiten überein.  
+		\item Eine $n\times n$ Matrix mit $n$ paarweise verscheidenen Eigenwerten ist invertierbar.
+		\item Im Falle der Intervierbarkeit ist $\lambda$ ein Eigenwert von $A\in \mathbb{K}^{n\times n}$ genau dann, wen $\lambda^{-1}$ ein Eigenwert von $A^{-1}$ ist.
+		\item Sind zwei Matrizen $A$ und $B$ ähnlich, dann haben sie dieselben Eigenwert.
+		\item Sind zwei Matrizen $A$ und $B$ äquivalent, dann haben sie dieselben Eigenwert.
+		\item Sind zwei Matrizen $A$ und $B$ ähnlich so folgt: Ist $\lambda$ ein Eigenwert von $A$ dann ist $\lambda$ ein Eigenwert von $(A + B) / 2$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wahr. Sei $p=a_0+a_1x+a_2x^2+\dots + a_n x^n$. 
+
+		Sei $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt
+		\begin{align*}
+			p(A)v=& \left( a_0+a_1A+a_2 A^2+\dots+a_n A^n \right)v\\
+			=&a_0v+a_1Av+a_2A^2v+\dots+a_n A^nv\\
+			=&a_0v+a_1\lambda v+a_2\lambda^2 v+\dots+a_n\lambda^n v\\
+			=&(a_0+a_1\lambda+a_2\lambda^2+\dots+a_n\lambda^n)v\\
+			=&p(\lambda)v
+		\end{align*}
+	\item Wahr. Aus (a) wissen wir, dass die Eigenvektoren sich nicht verändern. Also bezüglich $A$ entscheiden wir uns f\"{u}r eine Basis, deren Dimension die geometrische Vielfachheit ist, dann bleibt die auch eine Basis f\"{u}r das Eigenraum bezüglich das Eigenwert $p(\lambda)$.
+	\item Wahr. Es gibt eine Basis von $n$ Eigenvektoren (es ist eine Basis, weil die linear unabhängig sind (Korollar 6.59)). 
+
+		Dann ist $\left\{ \lambda_i v_i|i\in 1,2,\dots,n \right\} $ auch eine Basis, weil Multiplikation durch ein Konstant kann die linear Unabhängigkeit nicht verletzten.
+	\item Wahr. Sei $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt per Definition
+		\[
+		Av=\lambda v
+		.\] 
+		Außerdem gilt
+		\[
+			Av=A^{-1}A Av=A^{-1}A(\lambda v)=\lambda A^{-1}Av
+		,\] 
+		also
+		\[
+			\frac{1}{\lambda}Av=A^{-1}(Av)
+		.\] 
+		Das heißt, dass $Av$ ein Eigenvektor von $A^{-1}$ mit Eigenwert $\lambda^{-1}$ ist.
+
+		Sei jetzt $v$ ein Eigenvektor von $A^{-1}$ mit Eigenwert $\lambda$. Ähnlich gilt
+		\[
+			A^{-1}v=A A^{-1}A^{-1}v=A A^{-1}(\lambda v)=\lambda A A^{-1}v
+		\]
+		und die andere Richtung folgt.
+	\item Wahr. Sei $A=Q^{-1}BQ$. Sei außerdem $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt $QA=BQ$ und
+		\begin{align*}
+			QAv=&Q\lambda v=\lambda(Qv)\\
+			=&BQv=B(Qv)
+		\end{align*}
+		also $Qv$ ist ein Eigenvektor von $B$ mit Eigenwert $\lambda$. Wir können die Rollen von $A$ und $B$ vertauschen. 
+	\item Falsch.
+		\begin{tcolorbox}[title=Definition]
+			Seien $A,B\in M_{n\times m}(\mathbb{K})$. Dann heißen $A$ und $B$ äquivalent, falls es $Q\in\text{GL}_n(\mathbb{K})$ und $P\in \text{GL}_m(\mathbb{K})$ gibt, sodass
+			\[
+			A=QBP
+			.\] 
+		\end{tcolorbox}
+		Sei $A=\text{diag}(4,4),~B=1_2,~Q=P=\text{diag}(2,2)$. Dann hat $A$ nur das Eigenwert $4$ während $B$ nur das Eigenwert $1$ hat.
+	\item Falsch.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es seien $A,B$ in $\mathbb{K}^{n\times n}$ diagonalisierbar und $D_A$, $D_B$ zugehörige Diagonalmatrizen. Zeigen Sie:
+	\begin{parts}
+	\item Existiert ein $U\in \text{GL}_n(\mathbb{K})$ mit
+		\[
+			D_A=U^{-1}AU,\qquad D_B=U^{-1}BU
+		\]
+		so gilt f\"{u}r den Kommutator $[A,B]=0$.
+	\item Ist $[A,B]=0$, dann existiert eine geordnete Basis $V=\left\{ v_1,\dots, v_n \right\} $ aus Eigenvektoren von $A$ zu den Eigenwerten $\lambda_1,\dots, \lambda_r$ bezüglich derer gilt
+		\[
+			_V[B]_V=\begin{pmatrix} B_1 & & &\\ & B_2 & &\\& & \ddots &\\ & & & B_r \end{pmatrix} 
+		\]
+		mit $B_1\in\mathbb{K}^{d_i\times d_i}$ und $d_i$ die geometrische Vielfachheit von $\lambda_i$ f\"{u}r $i=1,\dots, r$.
+	\item Jedes der $B_i$ wie in (b) ist selbst wieder diagonalisierbar f\"{u}r $i=1,\dots, r$.
+	\item Ist $[A,B]=0$, so existiert ein $U$ mit
+		\[
+			D_A=U^{-1}AU,\qquad D_B=U^{-1}BU
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt
+		\begin{align*}
+			[A,B]=&AB-BA\\
+			=&UD_AU^{-1}UD_BU^{-1}-UD_BU^{-1}UD_AU^{-1}\\
+			=&UD_AD_BU^{-1}-UD_BD_AU^{-1}\\
+			=&UD_AD_BU^{-1}-UD_AD_BU^{-1} & \text{Diagonalmatrizen kommutieren}\\
+			=&0
+		\end{align*}
+	\item Sei $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt
+		\begin{align*}
+			[A,B]v=&0v=0\\
+			=&(AB-BA)v\\
+			=&ABv=B(\lambda v)\\
+			\lambda Bv=&A(Bv)
+		\end{align*}
+		Dann ist $Bv$ ein Eigenvektor von $A$ mit gleichen Eigenwert.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei
+	\[
+		A=\begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & -1 & 1 \\ 2 & -1 & 1 & 1\\3 & -1 & -1 & 3 \end{pmatrix} 
+	\]
+	ein reelle Matrix.
+	\begin{parts}
+	\item Bestimmen Sie das charakteristische Polynom von $A$.
+	\item Bestimmen Sie alle Eigenwerte und dazugehörige Eigenräume.
+	\item Im Falle der Diagonalisierbarkeit, bestimmen Sie explizit die Projektoren $P_1,\dots, P_r$ auf die $r$-vielen Eigenräume, sodass gilt
+	\[
+		A=\sum_{i=1}^r \lambda_i P_i
+	.\] 
+	\end{parts}
+\end{Problem}
