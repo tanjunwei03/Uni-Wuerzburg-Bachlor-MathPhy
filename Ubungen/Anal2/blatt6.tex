@@ -12,7 +12,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Sei $a<c<b$. Wir wissen, dass $f+g$ auf $[a,c]$ integrierbar f\"{u}r alle solchen $c $ ist und außerdem
+	\item Wahr. Sei $a<c<b$. Wir wissen, dass $f+g$ auf $[a,c]$ integrierbar f\"{u}r alle solchen $c $ ist und außerdem
 		\[
 			\int_a^c (f+g)(x)\dd{x}=\int_a^c f(x)\dd{x}+\int_a^c f(x)\dd{x}
 		.\] 
@@ -22,6 +22,37 @@
 			=&\int_a^b f(x)\dd{x}+\int_a^b g(x)\dd{x}
 		\end{align*}
 		also $f+g$ ist integrierbar.
+	\item Falsch. Sei $f,g:[-1,0)\to \R, f(x)=g(x)=\frac{1}{\sqrt{-x} }$. Das uneigentliche Integral existiert:
+		\begin{align*}
+			\int_{-1}^0 \frac{1}{\sqrt{-x} }\dd{x}=&\int_0^1 \frac{1}{\sqrt{x} }\dd{x}
+			=&\lim_{x_0 \to 0}\int_{x_0}^1 \frac{1}{\sqrt{x} }\dd{x}\\
+			=&\lim_{x_0 \to 0} 2\sqrt{x} |_{x_0}^1\\
+			=&\lim_{x_0 \to 0} (2-\sqrt{x_0} )\\
+			=&2
+		\end{align*}
+		Aber $fg=\frac{1}{-x}$ und
+		\begin{align*}
+			\int_{-1}^0 \frac{1}{-x}\dd{x}=& \int_0^1 \frac{1}{x}\dd{x}\\
+			=&\lim_{x_0 \to 0} \ln x|_{x_0}^1\\
+			=&\lim_{x_0 \to 0} (-\ln x_0)
+		\end{align*}
+		Der Grenzwert existiert nicht.
+	\item Falsch. Sei $g:\R\to \R, g(x)=x^2$ und $f:[0,1)\to \R, f(x)=\frac{1}{-\sqrt{x} }$. Dann ist $g\circ f = \frac{1}{-x}$.
+
+		Wir haben schon gezeigt, dass $f$ integrierbar ist, $g\circ f$ aber nicht.
+	\item Wir betrachten nur das Fall, in dem $f\ge 1$. Sonst können wir $f+1$ betrachten. Weil die konstante Funktion $1$ uneigentlich (sogar eigentlich) auf $[0,1]$ integrierbar ist, konvergiert das uneigentliche Integral $\int_0^1 f(x)\dd{x}$ genau dann, wenn $\int_0^1 f(x)+1\dd{x}$ konvergiert.
+
+		Wir betrachten der Grenzwert, durch den das uneigentliche Riemann-Integral definiert ist. Weil $f$ nichtnegativ ist, ist
+		\[
+			I(x_0)=\int_{x_0}^1 \sqrt{f(x)} \dd{x}
+		\]
+		ein Monoton fallend Funktion von $x_0$. Der Grenzwert existiert also genau dann, wenn $I(x_0)$ von oben beschränkt ist.
+
+		Wir definieren außerdem:
+		\[
+			J(x_0)=\int_{x_0}^1 f(x)\dd{x}
+		.\] 
+		Weil $f$ integrierbar ist, ist $J(x_0)$ von oben beschränkt. Weil $\sqrt{f} \le f$ gilt, ist $I(x_0)\le J(x_0)~\forall x_0\in (0,1]$. Daraus folgt, dass $I$ beschränkt ist, also $\sqrt{f} $ ist uneigentlich Riemann-integrierbar.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -52,7 +83,7 @@ Untersuchen Sie die folgenden uneigentlichen Riemannintegrale auf Konvergenz bzw
 		\[
 			\lim_{c \to -\infty} \int_c^1 f(x)\dd{x}=\lim_{c \to -\infty} \int_{c}^{-1}f(x)\dd{x}+\int_{-1}^1f(x)\dd{x}
 		.\] 
-		Weil $\exp(-x^2)$ auf $\R$ stetig ist, ist $\exp(-x^2)$ auf $[-1,1]$ integrierbar, also das Grenzwert $\int_{-\infty}^1 e^{-x^2}\dd{x}$ existiert genau dann, wenn $\int_c^{-1}e^{-x^2}\dd{x}$. Aber wir wissen, weil $\exp(-(-x)^2)=\exp(-x^2)$, dass
+		Weil $\exp(-x^2)$ auf $\R$ stetig ist, ist $\exp(-x^2)$ auf $[-1,1]$ integrierbar, also der Grenzwert $\int_{-\infty}^1 e^{-x^2}\dd{x}$ existiert genau dann, wenn $\int_c^{-1}e^{-x^2}\dd{x}$. Aber wir wissen, weil $\exp(-(-x)^2)=\exp(-x^2)$, dass
 		\[
 			\int_{c}^{-1}e^{-x^2}\dd{x}=\int_1^c e^{-x^2}\dd{x}
 		,\] 
@@ -60,7 +91,7 @@ Untersuchen Sie die folgenden uneigentlichen Riemannintegrale auf Konvergenz bzw
 		\[
 			\lim_{c \to -\infty} \int_{c}^{-1}e^{-x^2}\dd{x}=\lim_{c \to \infty} \int_1^c e^{-x^2}\dd{x}
 		.\] 
-		Weil das Grenzwert auf der rechten Seite existiert existiert das auf der linken Seite, also $\int_{-\infty}^\infty e^{-x^2}\dd{x}$ existiert.
+		Weil der Grenzwert auf der rechten Seite existiert, existiert der Grenzwert auf der linken Seite, also $\int_{-\infty}^\infty e^{-x^2}\dd{x}$ existiert.
 
 		Weil $e^{-x^2}>0$ f\"{u}r alle $x\in \R$, konvergiert das Integral genau dann, wenn es absolut konvergiert, also es konvergiert absolut.
 	\item Es steht schon im Skript, dass
@@ -138,7 +169,7 @@ weil $\frac{1}{x}$ auf $(0,\infty)$ monoton fallend ist. Außerdem ist
 	\lim_{n \to \infty} \left[ \sum_{j=n}^{2n}\frac{1}{j}-\sum_{j=n}^{2n}\frac{1}{j+1} \right] =& \lim_{n \to \infty} \left[ \frac{1}{n}-\frac{1}{2n+1} \right] \\
 	=& 0
 \end{align*}
-also wenn wir die Limes gegen $\infty$ nehmen, konvergiert die beide Summen nach dem gleichen Wert, also das Integral. 
+also wenn wir die Limes gegen $\infty$ nehmen, konvergiert die beide Summen gegen den gleichen Wert, also das Integral. 
 \[
 	\lim_{n \to \infty} \sum_{j=n}^{2n}\frac{1}{j}=\lim_{n \to \infty} \int_n^{2n}\frac{1}{x}\dd{x}
 .\] 
@@ -164,7 +195,7 @@ Die Behauptung folgt.
 	\begin{parts}
 	\item Wir leiten es ab. Sei $g(x)=x^n,~h(x)=(a-bx)^n$. Es gilt
 		\[
-			f^{(p)}(x)=\frac{1}{n!}\sum_{k=0}^n \binom{p}{k}g^{(k)}(x)h^{(p-k)}(x)
+			f^{(p)}(x)=\frac{1}{n!}\sum_{k=0}^p \binom{p}{k}g^{(k)}(x)h^{(p-k)}(x)
 		.\] 
 		Es gilt außerdem
 		\[
@@ -176,12 +207,13 @@ Die Behauptung folgt.
 		.\] 
 		Ähnlich bei $\pi$ gilt $g^{(k)}(\pi)=n(n-1)\dots (n-k+1)\pi^{n-k}$ und
 		\begin{align*}
-			g^{(k)}(\pi)=&n(n-1)\dots(n-k+1)(-b)^k(a-b\pi)^{n-k}
+			g^{(k)}(\pi)=&n(n-1)\dots(n-k+1)(-b)^k(a-b\pi)^{n-k}\\
 =&n(n-1)\dots(n-k+1)(-b)^k(a-b(a / b))^{n-k}\\
 =&\begin{cases}
 	0 & k \neq n\\
 	n!(-b)^n & k = n
-\end{cases}
+\end{cases}\\
+	\in& \Z
 		\end{align*}
 		also wir betrachten im Summe nur den Fall $p-k=n$, also
 		\[
@@ -195,6 +227,29 @@ Die Behauptung folgt.
 			 &+f(x)-\cancel{f^{(2)}(x)}+\cancel{f^{(4)}(x)}-\dots+\cancel{(-1)^n f^{(2n)}(x)}]\\
 			=&f(x)\sin x+(-1)^n f^{(2n+2)}(x).
 		\end{align*}
-		Es bleibt zu zeigen: $f^{(2n+2)}(x)=0$. Wir wissen: $g^{(n+1)}(x)=h^{(n+1)}(x)=0$. Daraus folgt:
+		Es bleibt zu zeigen: $f^{(2n+2)}(x)=0$. Wir wissen: $g^{(n+1)}(x)=h^{(n+1)}(x)=0$. Aus
+		\[
+			f^{(2n+2)}(x)=\frac{1}{n!}\sum_{k=0}^{2n+2} g^{(k)}(x)h^{(2n+2-k)}(x)
+		.\] 
+		Weil entweder $k$ oder $2n+2-k\ge n+1$ ist, sind alle Terme im Summe $0$, also $f^{(2n+2)}=0$ und
+\[
+f(x)\sin x=(F'(x)\sin x-F(x)\cos x)'
+.\] 
+\item $F(x)$ und $F(\pi)$ sind natürliche Zahlen, weil sie Summen von Ableitungen von $f$ sind, und wir wissen, dass alle Ableitungen bei $0$ oder $\pi$ ganze Zahlen sind. 
+
+	Wir integrieren die beide Seite
+	\begin{align*}
+		\int_0^\pi f(x)\sin x\dd{x}=&\int_0^\pi (F'(x)\sin x-F(x)\cos x)'\dd{x}\\
+		=& \left[ F'(x)\sin x-F(x)\cos x \right]_0^\pi\\
+		=& -F(\pi)\cos\pi + F(0)\cos 0\\
+		=& F(0)+F(\pi)
+	\end{align*}
+	Wir wissen auch, dass $f(x)$ und $\sin x \ge 0$ f\"{u}r $x\in [0,\pi]$ sind, also $F(0)+F(\pi)\ge 0$ und $F(0)+F(\pi)$ ist eine natürliche Zahl. Aber:
+	\begin{align*}
+		\left| \int_0^\pi f(x)\sin x\dd{x} \right| \le& \int_0^\pi |f(x)\sin x|\dd{x}\\
+		\le& \int_0^\pi |f(x)|\dd{x}\\
+		\le& \pi\sup_{x\in [0,\pi]} f(x)\\
+	\end{align*}
+	Weil $\lim_{n \to \infty} \frac{n!}{x^n}=0$ f\"{u}r alle $x>0$, können wir $f(x)$ beliebig klein machen. Insbesondere gilt f\"{u}r hinreichend groß n $f(x)\le 1$. Dann ist das Integral keine ganze Zahl, ein Widerspruch.\qedhere
 	\end{parts}
 \end{proof}

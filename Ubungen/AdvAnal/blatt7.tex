@@ -139,10 +139,17 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Es gilt $\mu(A\triangle B)=\mu(A)+\mu(B)-2\mu(A\cap B)$. Außerdem ist
+	\item Es gilt $\mu(A\triangle B)=\mu(A)+\mu(B)-2\mu(A\cap B)$. Wir nehmen oBdA an, dass $\mu(A)\ge \mu(B)$. Dann gilt
+		\begin{align*}
+			|\mu(A)-\mu(B)|\le& \mu(A)-\mu(B)\\
+			=&\mu(A)+\mu(B)-2\mu\left( B \right) \\
+			\le& \mu(A)+\mu(B)-2\mu(A\cap B)
+		\end{align*}
+		da $A\supseteq A\cap B\subseteq B$ und daher $\mu(A)\ge \mu(A\cap B)\le \mu(B)$.
+	\item Wir betrachten $C=\left\{ f\le k \right\} \in \mathcal{A}\otimes \mathcal{B}$ (weil $f$ messbar ist). Sei $x\in X$ beliebig. Es gilt
 		\[
-		\left| \mu(A)-\mu(B) \right| =\left| \mu(A)+\mu(B)-2\mu(B) \right| 
+		\left\{ f_x\le k \right\} =\left\{ y|f(x,y)\le k \right\}=\left\{ y|(x,y)\in C \right\}  
 		.\] 
-		Daraus folgt:
+		Aber wir wissen aus Übungsblatt 4, Aufgabe 1(a), dass die Menge $\left\{ y|(x,y)\in C \right\} $ $\mathcal{B}$-messbar ist, also $f_x$ ist messbar f\"{u}r alle $x\in X$.\qedhere
 	\end{parts}
 \end{proof}
