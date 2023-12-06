@@ -65,7 +65,7 @@
 		.\] 
 		Dann hat $B$ die Eigenwerte 3 und -1, aber $(A+B) / 2$ hat characteristisches Polynom $x^2-2x-4$. Durch Einsetzen können wir zeigen, dass weder 3 noch -1 Nullstellen sind, aber die Diskriminante ist $>0$, also wir haben zwei unterschiedliche Nullstellen.
 
-		Das zeigt, dass $B$ bzw. $A$ Eigenwerte hat, die keine Eigenwerte von $(A+ B) / 2$ sind und $(A + B) / 2$ hat Eigenwerte, die keine Eigenwerte von $A$ bzw. $B$ sind.
+		Das zeigt, dass $B$ bzw. $A$ Eigenwerte hat, die keine Eigenwerte von $(A+ B) / 2$ sind und $(A + B) / 2$ hat Eigenwerte, die keine Eigenwerte von $A$ bzw. $B$ sind.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -108,19 +108,15 @@
 		Dann ist $Bv$ ein Eigenvektor von $A$ mit gleichen Eigenwert. Wir wählen eine geordnete Basis aus Eigenvektoren, so dass alle Eigenvektoren mit gleichen Eigenwerte nebeneinander stehen. 
 
 		Wir haben schon gezeigt, dass $B v$ ein Vektor mit dem gleichen Eigenwert ist, also er liegt noch im Eigenraum. Das heißt, das die nicht (block-)diagonal Terme null sein müssen und das Matrix ist block-diagonal (wobei die Spalten die Wirkung von $B$ auf einem Vektor der Basis bzw. Eigenvektor von $A$ darstellen). Als Darstellung der Wirkung eines Eigenräumes ist es auch klar, dass die Dimension die Dimension des Eigenräumes ist, was per Definition die geometrische Vielfachhheit ist.
+	\item Wir betrachten das charakterische Polynom von $B_i$, und bezeichnen es mit $p_i(\lambda)$. Es gilt $p_1(\lambda)p_2(\lambda)\dots p_r(\lambda)=p(\lambda)$, wobei $p(\lambda)$ das charakteristische Polynom f\"{u}r $_V[B]_V$ ist.
+		
+		Dann ist jede Eigenwert von einem $B_i$ auch ein Eigenwert von $_V[B]_V$, und zu jedem Eigenwert von $B$ gehört einen Eigenvektor. Wir wissen, dass wir aus solche Eigenvektoren eine Basis bilden können (weil $B$ diagonaliserbar ist), also wir können aus eine Teilmenge eine Basis f\"{u}r $B_i$ bilden.
+	\item Wir können das Bild und Zielbereich von $B_i$ als einen Eigenraum von $A$ betrachten. Aus (c) wissen wir, dass wir durch ein Basiswechsel $B_i$ diagonalisieren können. Weil das Bild genau ein Eigenraum ist, enthält die Basis nur Eigenvektoren von $A$, also $A$ bleibt diagonal, während $B$ jetzt nach der Basiswechsel diagonal ist. 
 
-	Insbesondere können wir den Vektorraum als direkte Summe von Eigenräume von $A$ schreiben:
-	\[
-	V=ER_1(A)\oplus ER_2(A)\oplus\dots ER_r(A)
-	,\] 
-	und jedes $B_i$ ist $B_i:ER_i(A)\to ER_i(A)$.
-	\item Weil $B$ diagonaliserbar ist, können wir den Vektorraum als direkte Summe von Eigenräume schreiben
-		\[
-		V=ER_1(B)\oplus ER_2(B)\oplus ER_3(B)\oplus\dots \oplus ER_p(B)
-		.\] 
-Wir müssen nur zeigen, dass die Eigenräume von $A$ als direkte Summe von Eigenräume von $B$ geschrieben werden können.
-
-
+		Wir haben dann $A$ und $B$ gleichzeitig diagonalisiert. Sei $U$ das Matrix mit Vektoren von die Basis als Spalten. Dann gilt
+\[
+	D_A=U^{-1}AU\qquad D_B=U^{-1}BU
+.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -171,24 +167,55 @@ Wir müssen nur zeigen, dass die Eigenräume von $A$ als direkte Summe von Eigen
 		\[
 			ER_2=\text{span}\left(\left\{ \begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \end{pmatrix} , \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}  \right\}\right) 
 		.\] 
-	\item Wir schreiben $ER_1$ als
+	\item 
+		Wir schreiben eine neue Basis von Eigenvektoren:
 		\[
-			ER_1=\text{span}\left( \left\{ \begin{pmatrix} 0 \\ 1 \\ 1 \\ 1 \end{pmatrix} , \begin{pmatrix} 1 \\ 1 \\ 0 \\ -1 \end{pmatrix}  \right\}  \right) 
+			ER_1=\text{span}\left( \left\{\frac{1}{\sqrt{6} } \begin{pmatrix}1 \\ 2 \\ 1 \\ 0  \end{pmatrix}, \frac{1}{\sqrt{6} }\begin{pmatrix} 1 \\ 0 \\ -1 \\ -2 \end{pmatrix}   \right\}  \right) 
+		\]
+		und
+		\[
+			ER_2=\text{span}\left( \left\{ \frac{1}{\sqrt{6} }\begin{pmatrix} 0 \\ 1 \\ -2 \\ 1 \end{pmatrix} , \frac{1}{\sqrt{6} }\begin{pmatrix} 2 \\ -1 \\ 0 \\ 1 \end{pmatrix}  \right\}  \right) 
 		.\] 
+		Dann sind die Projektoren
 		\begin{align*}
-			P_1=&\frac{1}{3}\begin{pmatrix} 0 \\ 1 \\ 1 \\ 1 \end{pmatrix} \begin{pmatrix} 0 & 1 & 1 & 1 \end{pmatrix} +\frac{1}{3}\begin{pmatrix} 1 \\ 1 \\ 0 \\ -1 \end{pmatrix} \begin{pmatrix} 1 & 1 & 0 & -1 \end{pmatrix} \\
-			=&\frac{1}{3}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \end{pmatrix} +\frac{1}{3}\begin{pmatrix} 1 & 1 & 0 & -1 \\ 1 & 1 & 0 & -1 \\ 0 & 0 & 0 & 0 \\ -1 & -1 & 0 & 1 \end{pmatrix}\\
-			=&\frac{1}{3} \begin{pmatrix} 1 & 1 & 0 & -1 \\ 1 & 2 & 1 & 0 \\ 0 & 1 & 1 & 1 \\ -1 & 0 & 1 & 2 \end{pmatrix} 
-		\end{align*}
-		Dann schreiben wir $ER_2$ als
-		\[
-			ER_2=\text{span}\left( \left\{ \begin{pmatrix} 0 \\ 1 \\ -1 / 2 \\ 1 /2 \end{pmatrix} , \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \end{pmatrix}  \right\}  \right) 
-		,\]
-		also
-		\begin{align*}
-			P_2=&\frac{2}{3}\begin{pmatrix}  0 \\ 1 \\ -1 / 2 \\ 1 / 2 \end{pmatrix} \begin{pmatrix}  0 & 1 & -1 / 2 & 1 / 2 \end{pmatrix} +\frac{1}{2}\begin{pmatrix}  0 \\ 0 \\ 1 \\ 1 \end{pmatrix} \begin{pmatrix} 0 & 0 & 1 & 1 \end{pmatrix}\\
-			=&\frac{1}{6}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 4 & -2 & 2 \\ 0 & -2 & 1 & -1 \\ 0 & 2 & -1 & 1 \end{pmatrix}+\frac{1}{2}\begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & 1 \end{pmatrix} \\
-			=& \frac{1}{3}\begin{pmatrix}  0 & 0 & 0 & 0 \\ 0 & 2 & -1 & 1 \\ 0 & -1 & 2 & 1 \\ 0 & 1 & 1 & 2 \end{pmatrix} 
-		\end{align*}
+			P_1'=&\frac{1}{6}\begin{pmatrix} 1 \\ 2 \\ 1 \\ 0 \end{pmatrix} \begin{pmatrix} 1 & 2 & 1 & 0 \end{pmatrix} +\frac{1}{6}\begin{pmatrix} 1 \\ 0 \\ -1 \\ -2 \end{pmatrix} \begin{pmatrix} 1 & 0 & -1 & -2 \end{pmatrix} \\
+		=&\frac{1}{3}\left(
+\begin{array}{cccc}
+ 1 & 1 & 0 & -1 \\
+ 1 & 2 & 1 & 0 \\
+ 0 & 1 & 1 & 1 \\
+ -1 & 0 & 1 & 2 \\
+\end{array}
+\right) \\
+			P_2'=&\frac{1}{6}\begin{pmatrix}  0 \\ 1 \\ -2 \\ 1 \end{pmatrix} \begin{pmatrix} 0 & 1 & -2 & 1 \end{pmatrix} +\frac{1}{6}\begin{pmatrix} 2 \\ -1 \\ 0 \\ 1 \end{pmatrix} \begin{pmatrix} 2 & -1 & 0 & 1 \end{pmatrix}\\
+			=&\frac{1}{3}\left(
+\begin{array}{cccc}
+ 2 & -1 & 0 & 1 \\
+ -1 & 1 & -1 & 0 \\
+ 0 & -1 & 2 & -1 \\
+ 1 & 0 & -1 & 1 \\
+\end{array}
+\right) 
+	\end{align*}
+	Dann ist $P_1',P_2'$ eine Zerlegung der Eins. Die gewünschte Projektoren sind
+	\begin{gather*}
+		P_1=AP_1'=\frac{1}{3}\left(
+\begin{array}{cccc}
+ 1 & 1 & 0 & -1 \\
+ 1 & 2 & 1 & 0 \\
+ 0 & 1 & 1 & 1 \\
+ -1 & 0 & 1 & 2 \\
+\end{array}
+\right)\\
+P_2=AP_2'=\frac{1}{3}\left(
+\begin{array}{cccc}
+ 2 & -1 & 0 & 1 \\
+ 2 & 1 & -4 & 3 \\
+ 6 & -4 & 2 & 2 \\
+ 10 & -3 & -4 & 7 \\
+\end{array}
+\right) 
+	\end{gather*}
+	und es gilt $A=P_1+P_2$.\qedhere
 	\end{parts}
 \end{proof}
