@@ -82,6 +82,26 @@ Zeigen Sie, dass $Z(G)\trianglelefteq G,\text{Inn}(G)\le \text{Aut}(G)$ und $G /
 	.\] 
 	Dann ist auch $1\in Z(G)$, weil $1x=x 1=x$ f\"{u}r alle $x\in G$ gilt.
 	\begin{parts}
+	\item $Z(G)\le G$.
+
+		Sei $g,h\in Z(G)$. Dann gilt, f\"{u}r alle $x\in G$:
+		\begin{align*}
+			ghx(gh)^{-1}=&ghxh^{-1}g^{-1}\\
+			=&gxg^{-1} & h\in Z(G)\\
+			=&x & g\in Z(G),
+		\end{align*}
+		also $Z(G)$ ist abgeschlossen.
+
+		Sei jetzt $g\in Z(G)$ mit Inverse $g^{-1}$ (momentan nicht angenommen, dass es in $Z(G)$ ist). Das Ziel ist:
+		\[
+			g^{-1}xg=x~\forall x\in G
+		.\] 
+		Weil $G$ eine Gruppe ist, können wir $x$ als $y^{-1}$ schreiben f\"{u}r ein $y\in G$. Es gilt
+		\begin{align*}
+			g^{-1}y^{-1}g=&(g^{-1}yg)^{-1}\\
+			=&y^{-1} & g\in Z(G).
+		\end{align*}
+		Das heißt: $g^{-1}xg=x$ f\"{u}r alle $x\in G$, und alle Elemente in $Z(G)$ sind invertierbar.
 	\item $Z(G)\trianglelefteq G$.
 
 		Folgt fast sofort per Definition: Wir betrachten die Nebenklassen. Sei $x\in G$. Es gilt
@@ -98,16 +118,93 @@ Zeigen Sie, dass $Z(G)\trianglelefteq G,\text{Inn}(G)\le \text{Aut}(G)$ und $G /
 			f_2(x)=&g_2xg^{-1}
 		\end{align*}
 	\end{parts}
+	Dann ist $(f_1\circ f_2)(x)=g_1g_2xg_2^{-1}g_1^{-1}=g_1g_2x(g_1g_2)^{-1}$, also $f_1\circ f_2\in\text{Inn}(G)$.
+
+	Die Abbildung $f:G\to G,~f\left( x \right) =x=1x 1^{-1}$ ist auch ein Element von $\text{Inn}(G)$. Es ist klar, dass es das neutrale Element ist. 
+
+	Sei jetzt
+	\begin{align*}
+		f_1(x)=&g_1xg_1^{-1}\\
+		f_1^{-1}(x)=g_1^{-1}xg
+	\end{align*}
+	$f_1^{-1}\in \text{Inn}(G)$, weil $g_1^{-1}\in G$ und $f_1=k_{g_1^{-1}}$. Es gilt f\"{u}r alle $x\in X$, dass
+	\[
+		(f_1\circ f_1^{-1})(x)=g_1g_1^{-1}xg_1g_1^{-1}=x
+	\]
+	Also $\text{Inn}(G)$ ist eine Gruppe.
+\item $G / Z(G)\cong \text{Inn}(G)$. 
+
+	Per Definition ist $\Lambda: g\to k_g$ eine surjektive Abbildung. Weiter ist $\Lambda$ ein Homomorphismus: Sei $g,h\in G$. Dann ist $\Lambda(gh)=k_{gh}$, wobei $k_{gh}(x)=(gh)x(gh)^{-1}$ f\"{u}r alle $x\in G$. Es gilt
+	\begin{align*}
+		k_{gh}(x)=&(gh)x(gh)^{-1}\\
+		=&(gh)xh^{-1}g^{-1}\\
+		=&g(hxh^{-1})g^{-1}\\
+		=&(k_g\circ k_h)(x)
+	\end{align*}
+	Was ist der Kern des Homomorphismus? $k_g=1$ genau dann, wenn
+	\[
+		k_g(x)=gxg^{-1}=x~\forall x\in G
+	.\] 
+	Der Kern ist per Definition genau das Zentrum. Dann folgt $G / Z(G)\cong \text{Inn}(G)$ aus dem Homomorphiesatz.
+	\begin{center}
+\begin{tikzcd}[scale=2]
+			G \arrow[r, "g\to k_g"] \arrow[d] & \text{Inn}(G)\\
+			G / Z(G) \arrow[ur,"\cong"]
+	\end{tikzcd}
+	\end{center}
 \end{proof}
 \begin{Problem}
 	\begin{parts}
-	\item Nach Beispiel 2.71 operiert $S_N$ auf sich selbst per Konjugation. Beschreiben Sie die Bahnen dieser Operation.
+	\item Nach Beispiel 2.71 operiert $S_n$ auf sich selbst per Konjugation. Beschreiben Sie die Bahnen dieser Operation.
 	\item Wir nennen eine Transposition der $S_3$ \emph{schön}, wen Sie von der Form $(1x)$ mit $x\in \left\{ 2,3 \right\} $ ist. Sei das Neutrale von $S_3$ als Produkt schöner Transpositionen dargestellt. Kommen in diesem Produkt die einzelnen schönen Transpositionen dann stets in gerader Anzahl vor? 
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir brauchen hier
+		\begin{tcolorbox}[title=Satz 2.52]
+Sei $\varphi = (a_1a_2\dots)(b_1b_2\dots)\dots\in S_n$ in Zykelnotation und $\psi \in S_n$. Dann
+\[
+	\psi\varphi\psi^{-1}=(\psi(a_1)\psi(a_2)\dots)(\psi(b_1)\psi(b_2)\dots)\dots
+.\] 
+		\end{tcolorbox}
+		Per Definition sind die Bahnen definiert durch
+		\[
+			\left\{ \sigma'\sigma\sigma^{\prime-1}|\sigma'\in S_n \right\} 
+		.\] 
+		Zu jedem $\sigma\in S_n$ gehört eine (vielleicht nicht eindeutige) Bahn. Wir schreiben $\sigma$ als Produkt disjunkte Zykeln (im Sinne von Satz 2.41) 
 
+		Dann zeigen wir zwei Richtungen
+		\begin{enumerate}[label=(\roman*)]
+			\item Wenn zwei Permutationen die gleichen Zykellänge haben, sind sie konjugiert (Satz 2.53)
+
+				Dies zeigt, dass sie in der gleichen Bahn sind.
+			\item Wenn zwei Permutationen bzw. Elemente in $S_n$ unterschiedliche Darstellungen als Produkt disjunkte Zykeln haben, wobei unterschiedliche heißt \emph{nicht} bis auf die Reihenfolge der Faktoren), sind die Permutation nicht konjugiert.
+
+				Dies folgt aus die Eindeutigkeit der Darstellung von $\sigma$ als Produkt von disjunkte Zykeln. 
+		\end{enumerate}
+		Insgesamt gilt: Zwei Elemente liegen in der gleichen Bahn genau dann, wenn die Elemente die gleiche Darstellung als Produkt disjunkte Zykeln haben. Dann gibt es, f\"{u}r jede endliche monoton wachsende Folge
+		\[
+			(a_1,a_2,\dots, a_p),~a_i\in \N,~\sum_{i=1}^p a_i\le n,~a_1\le a_2\le\dots\le a_p
+		\]
+		eine Bahn.
+	\item Nein. Es gilt $(12)(23)=(123)$, ein Zyklus der Länge 3. Also gilt $\left[ (12)(23) \right]^3=(123)^3=1$, aber die einzelnen Transpositionen kommen in ungerade Zahlen (3) vor.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Die Gruppe $G$ operiere auf der Menge $M$. Weiter sei $U$ eine Untergruppe von $G$, so dass die auf $U$ eingeschränkte Operation transitiv auf $M$ sei.
 
 	Zeigen Sie, dass dann $G=U\cdot G_m$ f\"{u}r alle $m\in M$ gilt.
 \end{Problem}
+\begin{proof}
+	Sei $m\in M$ fest, aber beliebig. Sei $U'\subseteq U$ eine minimale Teilmenge von $U$, so dass $\left\{ xm|x\in U' \right\} =M$ (möglich weil die Operation transitiv ist). Wir können eine solche Teilmenge konstruieren, indem wir das Ergebnis der Operation $xm$ betrachten und alle andere Elemente mit dem gleichen Ergebnis wegwerfen.  
+	\begin{enumerate}[label=(\roman*)]
+		\item Sei $a,b\in G_m,~a\neq b$ und $x\in U'$. Dann gilt $xa\neq xb$ (Kürzungsregel)
+		\item Sei $x,y\in U',~x\neq y$ und $a,b\in G_m$. Dann gilt $xa\neq yb$, weil $xam=xm$ und $ybm=ym$, aber $xm\neq ym$ per Definition von $U'$ als minimale Teilmenge.
+		\item Dann betrachten wir alle Elemente von der Form $xa,x\in U', a\in G_m$. Wir haben schon gezeigt, dass alle solche Elemente unterschiedlich sind. Wie viele Elemente gibt es? $|U'|=|M|$ per Konstruktion und $|G_m|=|G| / |M|$ (Satz 2.71). Daraus folgt, dass
+			\[
+			|U\cdot G_m|\ge |M|(|G| / |M|)=|G|
+			,\]
+			also $G\subseteq U\cdot G_M$. Weil wir offenbar per Definition keine Elemente außerhalb $G$ erreichen können, haben wir also $U\cdot G_m\subseteq G$ und daher Gleichheit.
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,234 @@
+\begin{Problem}\label{pr:linalg1blatt8-1}
+Entscheiden Sie, welche der folgenden Abbildungen linear sind.	
+\begin{parts}
+	\item $f:\R^2\to \R~(x,y)\to x\cdot y$ 
+	\item $g:\R^2\to \R~(x,y)\to x+y$ 
+	\item $h:\Q[t]\to \Q[t]~p(t)\to p(t^2)$ 
+	\item $k:\Q\to \Q$ mit $k(t)=t+2$ 
+	\item $l:\C\to \C$ mit $l(z)=\overline{z}$ mit $\C$ als $\R$-Vektorraum
+	\item $l$, aber mit $\C$ als $\C$-Vektorraum
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Nein. $f((1,1))=1\cdot 1 = 1$, aber $f(2(1,1))=f((2,2))=2\cdot 2=4\neq 2(1)$.
+	\item Ja. Sei $(x_1,x_2),(y_1,y_2)\in \R^2$. Es gilt
+		\begin{align*}
+			f((x_1,x_2)+(y_1,y_2))=&f((x_1+y_1,x_2+y_2))\\
+			=&(x_1+y_1)+(x_2+y_2)\\
+			=&(x_1+x_2)+(y_1+y_2)\\
+			=&f((x_1,x_2))+f((y_1,y_2))
+		\end{align*}
+		Sei außerdem $\lambda \in \R$. Es gilt
+		\begin{align*}
+			f(\lambda(x_1,x_2))=&f((\lambda x_1, \lambda x_2))\\
+			=& \lambda x_1+\lambda x_2\\
+			=& \lambda(x_1+x_2)\\
+			=&\lambda f((x_1,x_2))
+		\end{align*}
+	\item Ja. Sei $p,q\in Q[t]$, $p=p_0+p_1t+p_2t^2+\dots + p_n t^n$ und $q=q_0+q_1t+q_2t^2+\dots+q_nt^n$. Es gilt
+		\begin{align*}
+			h(p(t))=&p_0+p_1t^2+p_2t^4+\dots+p_nt^{2n}\\
+			h(q(t))=&q_0+q_1t^2+q_2t^4+\dots+q_nt^{2n}\\
+			h(p(t))+h(q(t))=&(p_0+q_0))+(p_1+q_1)t^2+\dots+(p_n+q_n)t^{2n}\\
+			=&h(p+q)
+		\end{align*}
+		Sei außerdem $\lambda\in \Q$. Es gilt
+		\begin{align*}
+			h(\lambda p(t))=&\lambda p_0+\lambda p_1t^2+\lambda p_2t^4+\dots+\lambda p_n t^{2n}\\
+			=& \lambda\left( p_0+p_1t^2+\dots+p_nt^{2n} \right) \\
+			=&\lambda h(p(t))
+		\end{align*}
+	\item Nein. Es gilt $k(2)=4$, aber $k(2\cdot 2)=k(4)=6\neq 2 k(2)=8$.
+	\item Ja. Sei $z_1,z_2\in \C$, Es gilt $\overline{z_1+z_2}=\overline{z}_1+\overline{z}_2$. 
+
+		Sei außerdem $\lambda\in \R$. Es gilt dann
+		\[
+		\overline{\lambda z_1}=\overline{\lambda}\overline{z}_1=\lambda \overline{z}_1
+		.\] 
+	\item Nein. Die erste Eigenschaft bleibt wie in (e), aber die zweite nicht. Sei $\lambda\in \C$. Es gilt
+		\[
+		\overline{\lambda z_1}=\overline{\lambda}\overline{z}_1\neq \lambda \overline{z_1}
+	\]
+	solange $\lambda \not\in \R$. Sei z.B. $\lambda=i,~z_1=i$. Dann gilt $\lambda z_1=-1$ und $\overline{\lambda z_1}=-1$. Das ist aber ungleich $\lambda \overline{z}_1=i(\overline{i})=i(-i)=1$.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+Entscheiden Sie, welche der folgenden linearen Abbildungen injektiv, surjektiv bzw. bijektiv sind.
+\begin{parts}
+\item $\R^3\to \R^2,x\to Ax$ mit
+	\[
+		A=\begin{pmatrix} 3 & 4 & 5\\0 & 42 & 0 \end{pmatrix} 
+	.\] 
+\item $\R^3\to \R^3,x\to Ax$ mit
+	\[
+		A=\begin{pmatrix} 3 & 4 & 5 \\ 0 & 42 & 0 \\ 4 & 3 & 2 \end{pmatrix} 
+	.\] 
+\item $\Q[t]\to \Q[t],p(t)\to p'(t)$
+\item $\C^2\to \C^2$ mit $(z,w)\to (z+w,z-\overline{w})$, wobei wir $\C^2$ als $\R$-Vektorraum auffassen.
+\item $\text{End}_{\R}(\C)\to\text{End}_{\R}$ mit $f\to \text{Re}(f|_\R)+\text{Im}(f|_{\R})$, wobei $f|_{\R}:\R\to \R$ mit $f|_{\R}(x):+f(x)$ f\"{u}r $x\in \R$ und $\Re$ bzw. $\Im$ den Real bzw. Imaginärteil bezeichnen.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Nicht injektiv, weil die Spalten nicht linear unabhängig sind. Insbesondere gilt
+		\[
+		A\begin{pmatrix} 5 \\ 0 \\ 0 \end{pmatrix} =A\begin{pmatrix} 0 \\ 0 \\ 3 \end{pmatrix} =\begin{pmatrix} 15 \\ 0 \end{pmatrix} 
+		.\] 
+		Es ist surjektiv, weil die erste zwei Spalten eine Basis sind.
+	\item
+		\begin{gather*}
+		\left(
+\begin{array}{ccc}
+ 3 & 4 & 5 \\
+ 0 & 42 & 0 \\
+ 4 & 3 & 2 \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{1}{3}} \left(
+\begin{array}{ccc}
+ 1 & \frac{4}{3} & \frac{5}{3} \\
+ 0 & 42 & 0 \\
+ 4 & 3 & 2 \\
+\end{array}
+\right) \xrightarrow{R_3-4R_1} \\\left(
+\begin{array}{ccc}
+ 1 & \frac{4}{3} & \frac{5}{3} \\
+ 0 & 42 & 0 \\
+ 0 & -\frac{7}{3} & -\frac{14}{3} \\
+\end{array}
+\right) \xrightarrow{R_3\times 18} \left(
+\begin{array}{ccc}
+ 1 & \frac{4}{3} & \frac{5}{3} \\
+ 0 & 42 & 0 \\
+ 0 & -42 & -84 \\
+\end{array}
+\right) \xrightarrow{R_3+R_2} \left(
+\begin{array}{ccc}
+ 1 & \frac{4}{3} & \frac{5}{3} \\
+ 0 & 42 & 0 \\
+ 0 & 0 & -84 \\
+\end{array}
+\right)	
+		\end{gather*}
+		also es ist injektiv und surjektiv, daher bijektiv.
+	\item Nicht injektiv. Sei $p=x+1$ und $q=x+2$. Dann ist $p'=q'=1$, aber $p\neq q$. 
+
+		Es ist aber surjektiv. Sei $\Q[t]\ni p=a_0+a_1t+a_2t^2+\dots + a_nt^n$. Dann ist $q=a_0t+\frac{a_1}{2}t^2+\frac{a_2}{3}t^3+\dots + \frac{a_n}{n+1}t^{n+1}$ ein Polynom, dessen Bild $p$ ist.
+	\item Es ist injektiv. Sei $(z_1,w_1),(z_2,w_2)\in \C^2$ mit
+		\[
+			(z_1+w_1, z_1-\overline{w}_1)=(z_2+w_2,z_2-\overline{w}_2)
+		.\] 
+	Wir trennen es in zwei Gleichungen:
+	\begin{align*}
+		z_1+w_1=&z_2+w_2\\
+		z_1-\overline{w}_1=&z_2-\overline{w}_2
+	\end{align*}
+	Wir subtrahtieren die zwei Gleichungen. Daraus folgt: $w_1+\overline{w}_1=w_2+\overline{w}_2$. Dies zeigt, dass das Realteil f\"{u}r $w_1$und daher $z_1$ gleich sein muss. Dann additieren wir die zwei Gleichungen:
+	\[
+	2z_1+(w_1-\overline{w}_1)=2z_2+(w_2-\overline{w}_2)
+	.\] 
+	Weil $w_1-\overline{w_1}=2\Im(w_1)\in \R$, müssen das Imaginärteil f\"{u}r die beide auch gleich sein. Dann ist $z_1=z_2,w_1=w_2$.
+
+	Es ist auch surjektiv. Sei $(z_3,w_3)\in \C^2$. Es ist zu zeigen, dass es $(z_1,w_1)$ gibt, so dass
+	\[
+		(z_1+w_1,z_1-\overline{w}_1)=(z_3,w_3)
+	,\]
+	also
+	\begin{align*}
+		z_1+w_1=&z_3\
+	\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+Geben Sie je eine lineare Abbildung mit den folgenden Eigenschaften an. Sie müssen Ihre Aussagen ausnahmsweise nicht beweisen. 	
+\begin{parts}
+\item $L_1:\R^2\to \R$ mit $L(x)=x$ nur f\"{u}r $x=(0,0)$.
+\item $L_2:\R^3\to \R^2$, sodass $L_2((1,1,1))=L_2((1,1,0))$.
+\item $L_3:\Q[t]\to \Q[t]$, sodass $\text{deg}(L_3(p(t)))\ge 3\text{deg}(p(t))$ f\"{u}r alle $p\in \Q[t]$.
+\item $L_3:V \to V$, die injektiv, aber nicht surjektiv ist, für einen $\Q$-Vektorraum Ihrer Wahl. 
+\item $L_5:(\Z / 3\Z)^2\to (\Z / 3\Z)^2$, sodass es genau drei verschiedene Elemente $x,y,z\in (\Z / 3\Z)^2$ mit $L_5(x)=L_5(y)=L_5(z)=(1,0)$ gibt. 
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $L_1((x,y))=(2x,2y)$ ist linear, aber $L(x)=x$ nur f\"{u}r $x=(0,0)$.
+	\item Projektor: $L_2((x,y,z))=(x,y)$.
+	\item $p(t)\to p(t^3)$ (wie in \ref{pr:linalg1blatt8-1})
+	\item F\"{u}r $\Q$ als $\Q$-Vektorraum: $L_4(q)=2q$.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+Die folgenden linearen Abbildungen können jeweils auch in der Form $x\to Ax$ mit einer Matrix $A$ geschrieben werden. Bestimmen Sie für jede der Abbildungen eine geeignete Matrix. 	
+\begin{parts}
+\item $f:\R^3\to \R^2$ mit
+	\[
+	\begin{pmatrix} a \\ b \\ c \end{pmatrix} \to \begin{pmatrix} a +b\\b-c \end{pmatrix} 
+	.\] 
+\item $g:\R^2\to \R^3$ mit
+	\[
+	\begin{pmatrix} x \\ y \end{pmatrix} \to \begin{pmatrix} x+y\\x-y\\x+y \end{pmatrix} 
+	.\] 
+\item $f\circ g$.
+\item $g\circ f$.
+\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item 
+		\[
+			\begin{pmatrix} 1 & 1 & 0 \\0 & 1 & -1 \end{pmatrix} 
+		.\] 
+		Wir verifizieren es:
+		\[
+			\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & -1 \end{pmatrix} \begin{pmatrix} a \\ b \\ c \end{pmatrix} =\begin{pmatrix} a+b\\b-c \end{pmatrix} 
+		.\] 
+	\item 
+		\[
+			\begin{pmatrix} 1 & 1 \\ 1 & -1 \\ 1 & 1 \end{pmatrix} 
+		.\] 
+		Noch einmal können wir direkt verifizieren:
+		\[
+			\begin{pmatrix} 1 & 1 \\ 1 & -1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} =\begin{pmatrix} x + y \\ x - y \\ x + y \end{pmatrix} 
+		.\] 
+	\item Die Matrixdarstellung ist nur das Produkt:
+\[
+	\begin{pmatrix} 1 & 1 \\ 1 & -1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & -1 \end{pmatrix}=\begin{pmatrix} 1 & 2 & -1 \\ 1 & 0 & 1 \\ 1 & 2 & -1 \end{pmatrix}  
+.\] 
+\item Noch einmal:
+	\[
+		\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & -1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 1 & -1 \\ 1 & 1 \end{pmatrix} =\begin{pmatrix} 2 & 0 \\ 0 & -2 \end{pmatrix} 
+	.\qedhere\] 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Wir betrachten die Abbildung $S_n:\Q[t]_{\le n}\to \Q[t]_{\le n}$ mit $p(t)\to p'(t)+\tilde{p}(0)t^n$.
+	\begin{parts}
+	\item Beweisen Sie: $S_n$ ist f\"{u}r jedes $n\in \N$ linear.
+	\item Untersuchen Sie $S_n$ auf Injektivität, Surjektivität und Bijektivität.
+	\item Beweisen Sie: $S_n^k(t^k)=k!$ und $S_n^{n-k}(t^n)=n! / k!t^k$ f\"{u}r $k=0,\dots,n$.
+	\item Folgern Sie: $S_n^{n+1}(p(t))=n!p(t)$ f\"{u}r alle $n\in \N$, $p(t)\in \Q[t]_{\le n}$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $q,p\in \Q[t]_{\le n}$. Es gilt
+		\begin{align*}
+			S_n(q+p)=&(q+p)'(t)+\widetilde{q+p}(0)t^n\\
+			=&q'(t)+p'(t)+\tilde{q}(0)t^n+\tilde{p}(0)t^n\\
+			=&(q'(t)+\tilde{q}(0)t^n)+(p'(t)+\tilde{p}(0)t^n)\\
+			=&S_n(q)+S_n(p).
+		\end{align*}
+		Sei außerdem $\lambda\in \Q$. Es gilt
+		\begin{align*}
+			S_n(\lambda q)=&(\lambda q)'(t)+\widetilde{\lambda q}(0)t^n\\
+			=&\lambda q'(t)+\lambda\tilde{q}(0)t^n\\
+			=&\lambda\left( q'(t)+\tilde{q}(0)t^n \right) \\
+			=&\lambda S_n(q)
+		\end{align*}
+	\item \ldots
+	\end{parts}
+\end{proof}
