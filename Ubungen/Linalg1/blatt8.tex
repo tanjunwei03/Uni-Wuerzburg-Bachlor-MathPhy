@@ -50,7 +50,7 @@ Entscheiden Sie, welche der folgenden Abbildungen linear sind.
 		\[
 		\overline{\lambda z_1}=\overline{\lambda}\overline{z}_1\neq \lambda \overline{z_1}
 	\]
-	solange $\lambda \not\in \R$. Sei z.B. $\lambda=i,~z_1=i$. Dann gilt $\lambda z_1=-1$ und $\overline{\lambda z_1}=-1$. Das ist aber ungleich $\lambda \overline{z}_1=i(\overline{i})=i(-i)=1$.
+	solange $\lambda \not\in \R$. Sei z.B. $\lambda=i,~z_1=i$. Dann gilt $\lambda z_1=-1$ und $\overline{\lambda z_1}=-1$. Das ist aber ungleich $\lambda \overline{z}_1=i(\overline{i})=i(-i)=1$.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -67,7 +67,7 @@ Entscheiden Sie, welche der folgenden linearen Abbildungen injektiv, surjektiv b
 	.\] 
 \item $\Q[t]\to \Q[t],p(t)\to p'(t)$
 \item $\C^2\to \C^2$ mit $(z,w)\to (z+w,z-\overline{w})$, wobei wir $\C^2$ als $\R$-Vektorraum auffassen.
-\item $\text{End}_{\R}(\C)\to\text{End}_{\R}$ mit $f\to \text{Re}(f|_\R)+\text{Im}(f|_{\R})$, wobei $f|_{\R}:\R\to \R$ mit $f|_{\R}(x):+f(x)$ f\"{u}r $x\in \R$ und $\Re$ bzw. $\Im$ den Real bzw. Imaginärteil bezeichnen.
+\item $\text{End}_{\R}(\C)\to\text{End}_{\R}$ mit $f\to \text{Re}(f|_\R)+\text{Im}(f|_{\R})$, wobei $f|_{\R}:\R\to \R$ mit $f|_{\R}(x):=f(x)$ f\"{u}r $x\in \R$ und $\Re$ bzw. $\Im$ den Real bzw. Imaginärteil bezeichnen.
 \end{parts}
 \end{Problem}
 \begin{proof}
@@ -115,29 +115,33 @@ Entscheiden Sie, welche der folgenden linearen Abbildungen injektiv, surjektiv b
 	\item Nicht injektiv. Sei $p=x+1$ und $q=x+2$. Dann ist $p'=q'=1$, aber $p\neq q$. 
 
 		Es ist aber surjektiv. Sei $\Q[t]\ni p=a_0+a_1t+a_2t^2+\dots + a_nt^n$. Dann ist $q=a_0t+\frac{a_1}{2}t^2+\frac{a_2}{3}t^3+\dots + \frac{a_n}{n+1}t^{n+1}$ ein Polynom, dessen Bild $p$ ist.
-	\item Es ist injektiv. Sei $(z_1,w_1),(z_2,w_2)\in \C^2$ mit
+	\item Es ist nicht injektiv. Sei $(z_1,w_1),(z_2,w_2)\in \C^2$, $z_1=0,z_2=i,w_1=2+3i,w_2=2+2i$. Es gilt dann
+		\begin{align*}
+			(z_1+w_1,z_1-\overline{w}_1)=&(2+3i,-2+3i)\\
+			(z_2+w_2,z_2-\overline{w}_2)=&(2+3i,-2+3i)
+		\end{align*}
+		Es ist auch nicht surjektiv. Es gilt
 		\[
-			(z_1+w_1, z_1-\overline{w}_1)=(z_2+w_2,z_2-\overline{w}_2)
-		.\] 
-	Wir trennen es in zwei Gleichungen:
-	\begin{align*}
-		z_1+w_1=&z_2+w_2\\
-		z_1-\overline{w}_1=&z_2-\overline{w}_2
-	\end{align*}
-	Wir subtrahtieren die zwei Gleichungen. Daraus folgt: $w_1+\overline{w}_1=w_2+\overline{w}_2$. Dies zeigt, dass das Realteil f\"{u}r $w_1$und daher $z_1$ gleich sein muss. Dann additieren wir die zwei Gleichungen:
+		\Im(z_1+w_1)=\Im(z_1)+\Im(w_1)
+	\]
+	und
 	\[
-	2z_1+(w_1-\overline{w}_1)=2z_2+(w_2-\overline{w}_2)
+	\Im(z_1-\overline{w}_1)=\Im(z_1)-\Im(\overline{w}_1)=\Im(z_1)+\Im(z_2)
 	.\] 
-	Weil $w_1-\overline{w_1}=2\Im(w_1)\in \R$, müssen das Imaginärteil f\"{u}r die beide auch gleich sein. Dann ist $z_1=z_2,w_1=w_2$.
-
-	Es ist auch surjektiv. Sei $(z_3,w_3)\in \C^2$. Es ist zu zeigen, dass es $(z_1,w_1)$ gibt, so dass
-	\[
-		(z_1+w_1,z_1-\overline{w}_1)=(z_3,w_3)
-	,\]
-	also
+	Dann gilt f\"{u}r alle $(z,w)$ im Bild, dass $\Im(z)=\Im(z)$. Da es gibt Punkte in $\C^2$, die das nicht erfüllen, ist die Abbildung nicht surjektiv.
+\item Es ist nicht injektiv. Sei $h:\R\to \R, h(x)=x$. Dadurch definieren wir zwei Abbildungen $f,g:\R\to \C$:
 	\begin{align*}
-		z_1+w_1=&z_3\
+		f(x)=&h(x)\\
+		g(x)=&i h(x)
 	\end{align*}
+	Dann gilt $f\neq g$. Aber
+	\begin{align*}
+		\Re(f)=&\Im(g)=h\\
+		\Im(f)=&\Re(g)=0
+	\end{align*}
+	also die zwei Funktionen werden auf die gleiche Funktion abgebildet.
+
+	Es ist aber surjektiv. F\"{u}r jede $f:\R\to \R$ definieren wir $g:\R\to \C$ mit $g=f$. Dann wird $g$ auf $f$ abgebildet.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -155,7 +159,7 @@ Geben Sie je eine lineare Abbildung mit den folgenden Eigenschaften an. Sie müs
 	\item $L_1((x,y))=(2x,2y)$ ist linear, aber $L(x)=x$ nur f\"{u}r $x=(0,0)$.
 	\item Projektor: $L_2((x,y,z))=(x,y)$.
 	\item $p(t)\to p(t^3)$ (wie in \ref{pr:linalg1blatt8-1})
-	\item F\"{u}r $\Q$ als $\Q$-Vektorraum: $L_4(q)=2q$.
+	\item F\"{u}r $V=\Q[t]$: $L_5:p(t)\to p(t)t$.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -229,6 +233,14 @@ Die folgenden linearen Abbildungen können jeweils auch in der Form $x\to Ax$ mi
 			=&\lambda\left( q'(t)+\tilde{q}(0)t^n \right) \\
 			=&\lambda S_n(q)
 		\end{align*}
-	\item \ldots
+	\item Wir schreiben die Wirkung von $S_n$ auf einem Polynom:
+		\[
+		S_n:(a_0,a_1,a_2,\dots, a_n)\to (a_1,2a_2,3a_3,\dots, na_n, a_0)
+		.\] 
+		Daraus folgt die Injektivität und Surjektivität: Sei $p=(a_0,a_1,\dots, a_n)$ und $q=(b_0,b_1,\dots, b_n)$. Wann ist $S_n(p)=q$? Es gilt genau dann, wenn
+		\[
+			(a_1,2a_2,3a_3,\dots, na_n, a_0)=(b_0,b_1,b_2,\dots, b_n)
+		.\] 
+		Dann ist es klar: $a_1=b_0$, $2a_2=b_1$, $\dots$. Weil alle Koeffizienten noch rational sind, gilt: 
 	\end{parts}
 \end{proof}
