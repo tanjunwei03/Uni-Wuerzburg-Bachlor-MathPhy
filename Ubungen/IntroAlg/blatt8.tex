@@ -1,0 +1,47 @@
+\begin{Problem}
+	\begin{parts}
+		\item Eine Gruppe $G$ der Ordnung 21 operiere auf einer Menge $M$ mit 11 Elementen. Zeigen Sie, dass diese Operation eine Bahn der Länge 1 besitzt.
+
+			{\footnotesize (Ist $\left\{ m \right\} \subseteq M$ eine solche einelementige Bahn, dann gilt $g.m=m$ f\"{u}r alle $g\in G$. Jedes $g\in G$ fixiert also $m$. Man nennt $m$ daher auch einen Fixpunkt der Operation.)} 
+		\item Sei $G:=\text{GL}(2,\C)$ die Gruppe der invertierbaren komplexen $(2\times 2)$-Matrizen und $M$ die Menge aller komplexen $(2\times 2)$-Matrizen, die nur reelle Eigenwerte besitzen. Dann operiert $G$ per Konjukation auf $M$. (Dies brauchen Sie nicht zu zeigen.) Geben Sie ein Repräsentantensystem der Bahnen der Operation an)
+		\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir schreiben die Klassengleichung
+		\[
+			|M|=\sum_{i=1}^r [G:G_m]
+		.\] 
+		Jeder Term im Summe ist eine Teiler von $21$, also $1,3,7$ oder $21$. Die Operation besitzt eine Bahn der Länge 1 genau dann, wenn $1$ zumindest einmal vorkommt. Wir schreiben die mögliche Summen:
+	\begin{align*}
+		11=&1\times 11\\
+		11=&3+1\times 8\\
+		11=&3\times 2+1\times 5\\
+		11=&3\times 3+1\times 2\\
+		11=&7+1\times 4\\
+		11=&7+3+1
+	\end{align*} 
+	Weil $1$ immer vorkommt, gibt es immer eine Bahn der Länge 1.
+	\item Konjukation ist genau eine Ähnlichkeitstransformation. Trotz der Aufgabenstellung brauchen wir noch die Eigenschaften.
+		\begin{tcolorbox}
+			\begin{Lemma}
+			Sind zwei Matrizen $A$ und $B$ ähnlich, dann haben sie dieselben Eigenwert.	
+			\end{Lemma}
+			\begin{proof}
+			Sei $A=Q^{-1}BQ$. Sei außerdem $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt $QA=BQ$ und
+		\begin{align*}
+			QAv=&Q\lambda v=\lambda(Qv)\\
+			=&BQv=B(Qv)
+		\end{align*}
+		also $Qv$ ist ein Eigenvektor von $B$ mit Eigenwert $\lambda$. Wir können die Rollen von $A$ und $B$ vertauschen, um die andere Richtung zu zeigen. 	
+			\end{proof}
+			\begin{Remark}
+				Die Umkehrrichtung gilt nicht immer. Es gilt wenn die Matrizen diagonalisierbar sind.
+			\end{Remark}
+		\end{tcolorbox}
+		Es folgt sofort: Wenn zwei Matrizen in der gleichen Bahn liegen, haben die die gleichen Eigenwerte. Wenn die Matrizen nicht diagonaliserbarsind, schreiben wir die in Jordan-Normalform. Daraus ergibt sich ein Repräsentantensystem der Bahnen:
+		\[
+			\left\{ \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} |a,b\in \R \right\} \cup \left\{ \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} |a\in \R \right\} 
+		.\] 
+	\end{parts}
+\end{proof}
