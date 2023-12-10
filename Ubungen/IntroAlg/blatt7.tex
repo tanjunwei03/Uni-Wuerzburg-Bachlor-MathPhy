@@ -44,7 +44,7 @@ Dies zeigt, dass die Konjugation mit einem beliebigen Gruppenelement $g$ einen A
 
 		Die Verkettung bijektive Abbildungen ist noch einmal bijektiv. Die Verkettung ist auch ein Homomorphismus (Definition 2.58), also $\text{Aut}(G)$ ist abgeschlossen.
 		\end{enumerate}
-	\item Noch einmal zeigen wir alle Eigenschaften. Sei $g\in G$ beliebig. Wir betrachten $k_g$.
+	\item Noch einmal zeigen wir alle Eigenschaften. Sei $g\in G$ beliebig. Wir betrachten die Abbildung $k_g$.
 		\begin{enumerate}[label=(\roman*)]
 			\item Sie ist ein Homomorphismus.
 
@@ -66,6 +66,7 @@ Dies zeigt, dass die Konjugation mit einem beliebigen Gruppenelement $g$ einen A
 				,\]
 				also sie ist surjektiv.
 		\end{enumerate}
+		Dann ist $k_g$ ein bijektiver Homomorphismus, also ein Automorphismus.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -82,7 +83,7 @@ Zeigen Sie, dass $Z(G)\trianglelefteq G,\text{Inn}(G)\le \text{Aut}(G)$ und $G /
 	.\] 
 	Dann ist auch $1\in Z(G)$, weil $1x=x 1=x$ f\"{u}r alle $x\in G$ gilt.
 	\begin{parts}
-	\item $Z(G)\le G$.
+	\item $Z(G)\le G$ bzw. $Z(G)$ ist eine Gruppe.
 
 		Sei $g,h\in Z(G)$. Dann gilt, f\"{u}r alle $x\in G$:
 		\begin{align*}
@@ -183,11 +184,7 @@ Sei $\varphi = (a_1a_2\dots)(b_1b_2\dots)\dots\in S_n$ in Zykelnotation und $\ps
 
 				Dies folgt aus die Eindeutigkeit der Darstellung von $\sigma$ als Produkt von disjunkte Zykeln. 
 		\end{enumerate}
-		Insgesamt gilt: Zwei Elemente liegen in der gleichen Bahn genau dann, wenn die Elemente die gleiche Darstellung als Produkt disjunkte Zykeln haben. Dann gibt es, f\"{u}r jede endliche monoton wachsende Folge
-		\[
-			(a_1,a_2,\dots, a_p),~a_i\in \N,~\sum_{i=1}^p a_i\le n,~a_1\le a_2\le\dots\le a_p
-		\]
-		eine Bahn.
+		Insgesamt gilt: Zwei Elemente liegen in der gleichen Bahn genau dann, wenn die Elemente die gleiche Darstellung als Produkt disjunkte Zykeln haben. 
 	\item Nein. Es gilt $(12)(23)=(123)$, ein Zyklus der Länge 3. Also gilt $\left[ (12)(23) \right]^3=(123)^3=1$, aber die einzelnen Transpositionen kommen in ungerade Zahlen (3) vor.\qedhere
 	\end{parts}
 \end{proof}
@@ -205,6 +202,6 @@ Sei $\varphi = (a_1a_2\dots)(b_1b_2\dots)\dots\in S_n$ in Zykelnotation und $\ps
 			\[
 			|U\cdot G_m|\ge |M|(|G| / |M|)=|G|
 			,\]
-			also $G\subseteq U\cdot G_M$. Weil wir offenbar per Definition keine Elemente außerhalb $G$ erreichen können, haben wir also $U\cdot G_m\subseteq G$ und daher Gleichheit.
+			also $G\subseteq U\cdot G_M$. Weil wir offenbar per Definition keine Elemente außerhalb $G$ erreichen können, haben wir also $U\cdot G_m\subseteq G$ und daher Gleichheit.\qedhere
 	\end{enumerate}
 \end{proof}
