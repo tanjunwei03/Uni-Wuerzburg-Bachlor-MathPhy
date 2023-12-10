@@ -241,6 +241,47 @@ Die folgenden linearen Abbildungen können jeweils auch in der Form $x\to Ax$ mi
 		\[
 			(a_1,2a_2,3a_3,\dots, na_n, a_0)=(b_0,b_1,b_2,\dots, b_n)
 		.\] 
-		Dann ist es klar: $a_1=b_0$, $2a_2=b_1$, $\dots$. Weil alle Koeffizienten noch rational sind, gilt: 
+		Dann ist es klar: $a_1=b_0$, $2a_2=b_1$, $\dots$. Weil alle Koeffizienten noch rational sind, ist $p$ in $\Q[t]_{\le n}$. Es folgt auch daraus, das $p$ eindeutig ist, also es ist injektiv.
+	\item Wir zeigen es per Induktion: Sei $k=0$. Dann ist $t^0=1=0!$. Wir nehmen jetzt an, dass f\"{u}r beliebiges $\N\ni k < n$ gilt
+		\[
+		S_n^k(t^k)=k!
+		.\]
+		Dann betrachten wir
+		\begin{align*}
+			S_n^{k+1}(t^{k+1})=&S_n^k(S_n(t^{k+1}))\\
+			=& S_n^k((k+1)t^k)\\
+			=&(k+1)S_n^k(t^k)\\
+			=&(k+1)k!\\
+			=&(k+1)!
+		\end{align*}
+		Wie beweisen die andere Behauptung per Rückwartsinduktion. Es gilt, f\"{u}r $k=n$:
+		\[
+			S_n^{n-n}(t^n)=S_n^0(t^n)=t^n=n! / k! t^k
+		.\] 
+		Dann nehmen wir an, dass es f\"{u}r $1\le k\le n$ gilt. Es gilt
+		\begin{align*}
+			S_n^{n-(k-1)}(t^n)=&S_n(S_n^{n-k}(t^n))\\
+			=&S_n(n! / k! t^k)\\
+			=&\frac{n!}{k!}S_n(t^k)\\
+			=&\frac{n!}{k!}kt^{k-1}\\
+			=&\frac{n!}{(k-1)!}t^{k-1}
+		\end{align*}
+	\item Wir schreiben ein beliebiges Polynom $p\in \Q[t]_{\le n}$ als Linearkombination von Potenzen von $t$. F\"{u}r $0\le k\le n$ gilt
+	\begin{align*}
+		S_n^{n+1}(t^k)=&S_n^{n-k}(S_n(S_n^k(t^k)))\\
+		=&S_n^{n-k}(S_n(k!))\\
+		=&S_n^{n-k}(k! t^n)\\
+		=&k! S_n^{n-k}(t^n)\\
+		=&\frac{k!n!}{k!}t^k\\
+		=&n!t^k
+	\end{align*}
+	Daraus folgt, f\"{u}r ein beliebiges Polynom $p\in\Q[t]_{\le n}$:
+	\begin{align*}
+		S_n^{n+1}p=&S_n^{n+1}(a_0+a_1t+\dots+a_n t^n)\\
+		=& S_n^{n+1}(a_0)+S_n^{n+1}(a_1t)+\dots+S_n^{n+1}(a_nt^n)\\
+		=&n!a_0+n!a_1t+\dots+n!a_nt^n\\
+		=&n!(a_0+a_1t+\dots+a_n t^n)\\
+		=&n!p.\qedhere
+	\end{align*}
 	\end{parts}
 \end{proof}

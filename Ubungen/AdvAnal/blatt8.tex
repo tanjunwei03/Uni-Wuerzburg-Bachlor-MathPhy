@@ -1,0 +1,70 @@
+\begin{Problem}
+	Seien $(X,\mathcal{A},\mu),(Y,\mathcal{B},\nu)$ und $(Z,\mathcal{C},\eta)$ $\sigma$-endliche Maßraume. Definiere $A\otimes B\otimes C:=\mathcal{A}_{\sigma}(\mathcal{A}\boxtimes\mathcal{B}\boxtimes\mathcal{C})$. Zeigen Sie:
+	\begin{parts}
+		\item Es gilt $(\mathcal{A}\otimes \mathcal{B})\otimes \mathcal{C}=\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C}=\mathcal{C}\otimes (\mathcal{B}\otimes \mathcal{C})$.
+			
+			{\footnotesize \emph{Hinweis: Betrachten Sie} $\Pi_{*}(\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C})$ \emph{mit}
+				\[
+				\Pi:X\times Y\times Z\to X\times Y,~\Pi(x,y,z):=(x,y)
+		.\]} 
+			\item Es gilt $(\mu\otimes \nu)\otimes \eta=\mu\otimes(\nu\otimes\eta)$ auf $\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C}$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Sei $x_0\in \R^2,a<b\in \R,r:[a,b]\to [0,\infty)$ eine stetige Funktion und
+	\[
+		A:=\left\{ (x,y,z)\in \R^3|x^2+y^2<r(z)^2,z\in [a,b] \right\} 
+	.\] 
+	\begin{parts}
+	\item Bestimmen Sie $\lambda_2(B_R(x_0))$ f\"{u}r $R>0$ mittels dem Satz von Fubini.
+	\item Zeigen Sie:
+		\[
+			\lambda_3(A)=\pi\int_a^b r(z)^2\dd{z}
+		.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Aus Bewegungsinvarianz der Lebesgue-Maß genügt es, $B_R(0)$ zu betrachten. Per Definition ist es definiert durch
+		\[
+		x^2+y^2<R^2
+		.\]
+		Insbesondere ist, f\"{u}r jedes $x\in [-1,1]$, 
+			\[
+			\left\{ y|(x,y)\in B_R(0) \right\} =[-\sqrt{R^2-x^2} ,\sqrt{R^2-x^2} 
+			.\] 
+			Aus Satz 2.81 folgt
+			\begin{align*}
+				\lambda_2(B_R(0))=&\int_{-R}^R \lambda_1([-\sqrt{R^2-x^2} ,\sqrt{R^2-x^2} ])\dd{x}\\
+				=&\int_{-R}^R 2\sqrt{R^2-x^2} \dd{x}
+			\end{align*}
+			Die Funktion ist Riemann-integrierbar, also wir dürfen Sätze vom Riemann-Integral verwenden. Hier integrieren wir es per Substitution. Sei $x=R\sin\theta,\dd{x}=R\cos\theta\dd{\theta}$. Wenn $x=-R$, ist $\theta=-\pi / 2$ und wenn $x=R$ ist $\theta=\pi / 2$. 
+			\begin{align*}
+				\lambda_2(B_R(0))=&\int_{-\pi / 2}^{\pi / 2} 2R\sqrt{1-\sin^2\theta} R\cos\theta\dd{\theta}\\
+				=&\int_{-\pi / 2}^{\pi / 2}2R^2\cos^2\theta\dd{\theta}\\
+				=&2R^2\int_{-\pi / 2}^{\pi / 2}\frac{\cos 2\theta+1}{2}\dd{\theta}\\
+				=&2R^2\left[ \frac{\sin 2\theta}{4}+\frac{\theta}{2} \right]_{-\pi / 2}^{\pi /2}\\
+				=&2R^2\left[ \sin \pi - \sin 0 + \frac{\pi}{2} \right] \\
+				=&\pi R^2\\
+				=&\lambda_2(B_R(x_0))
+			\end{align*}
+		\item Wir vorher ist $(\R, \mathcal{L}(1), \lambda_1)$ $\sigma$-endlich. Wir können daher das Maß als Integral schreiben:
+			\begin{align*}
+				\lambda_3(A)=&\int_{[a,b]} A_z\dd{\lambda_1}\\
+				=&\int_{[a,b]} \pi r(z)^2\dd{\lambda_1}\\
+				=&\pi \int_a^b r(z)^2\dd{z}.\qedhere
+			\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Seien $a,b,c\in \R$ mit $c\ge |a|+|b|$. Definiere
+	\[
+	E:=\left\{ (x,y,z)\in \R^3|x^2+y^2<1,0\le z\le ax+by+c \right\} 
+	.\] 
+	Bestimmen Sie $\lambda_3(E)$.
+\end{Problem}
+
+\begin{Problem}
+	Seien $B_1:=B_1(0,0,0)\subseteq \R^3$ und $B_2:=B_1(0,0,1)\subseteq \R^3$ die offenen Kugeln mit Radius 1 um die Punkte $(0,0,0)$ und $(0,0,1)$. Bestimmen Sie $\lambda_3(B_1\cap B_2)$.
+\end{Problem}
