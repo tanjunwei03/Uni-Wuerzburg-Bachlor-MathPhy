@@ -10,8 +10,12 @@
 			\item Es gilt $(\mu\otimes \nu)\otimes \eta=\mu\otimes(\nu\otimes\eta)$ auf $\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C}$.
 	\end{parts}
 \end{Problem}
-
-\begin{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Per Hinweis betrachten wir $\Pi_*(\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C})$. Sei $P\in \mathcal{A}\otimes \mathcal{B}$. $P\in \Pi_*(\mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C})$ genau dann, wenn $P\times Z\in \mathcal{A}\otimes \mathcal{B}\otimes \mathcal{C}$.
+	\end{parts}
+\end{proof}
+\begin{Problem}\label{pr:advanalblatt8-2}
 	Sei $x_0\in \R^2,a<b\in \R,r:[a,b]\to [0,\infty)$ eine stetige Funktion und
 	\[
 		A:=\left\{ (x,y,z)\in \R^3|x^2+y^2<r(z)^2,z\in [a,b] \right\} 
@@ -26,13 +30,13 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Aus Bewegungsinvarianz der Lebesgue-Maß genügt es, $B_R(0)$ zu betrachten. Per Definition ist es definiert durch
+	\item Aus Bewegungsinvarianz des Lebesgue-Maßes genügt es, $B_R(0)$ zu betrachten. Per Definition ist es definiert durch
 		\[
 		x^2+y^2<R^2
 		.\]
 		Insbesondere ist, f\"{u}r jedes $x\in [-1,1]$, 
 			\[
-			\left\{ y|(x,y)\in B_R(0) \right\} =[-\sqrt{R^2-x^2} ,\sqrt{R^2-x^2} 
+				\left\{ y|(x,y)\in B_R(0) \right\} =[-\sqrt{R^2-x^2} ,\sqrt{R^2-x^2}] 
 			.\] 
 			Aus Satz 2.81 folgt
 			\begin{align*}
@@ -49,7 +53,7 @@
 				=&\pi R^2\\
 				=&\lambda_2(B_R(x_0))
 			\end{align*}
-		\item Wir vorher ist $(\R, \mathcal{L}(1), \lambda_1)$ $\sigma$-endlich. Wir können daher das Maß als Integral schreiben:
+		\item Wir vorher ist $(\R, \mathcal{L}(1), \lambda_1)$ $\sigma$-endlich. Das Innere der Menge $\{ (x,y,z)\in \R^3|x^2+ y^2<r(z)^2,z\in (a,b) \} $ ist offen und daher messbar. Da $A$ das Innere mit eine Nullmenge hinzugefügt ist, ist $A$ auch messbar. Wir können daher das Maß als Integral schreiben:
 			\begin{align*}
 				\lambda_3(A)=&\int_{[a,b]} A_z\dd{\lambda_1}\\
 				=&\int_{[a,b]} \pi r(z)^2\dd{\lambda_1}\\
@@ -64,7 +68,47 @@
 	.\] 
 	Bestimmen Sie $\lambda_3(E)$.
 \end{Problem}
-
+\begin{proof}
+	Ähnlich betrachten wir $\{(x,y,z)\in\R^3|x^2+y^2<1,0 <z<ax+by+c\} $. Da die Menge offen ist, ist sie messbar. Weil $E$ gleich die Menge mit eine Nullmenge hinzugefügt ist, ist $E$ auch messbar. Wir schreiben dann das Maß als Doppel bzw. Tripelintegral. Hierbei nutzen wir, dass $x^2\le 1$, also $x\in (-1,1)$ aus die Gleichung $x^2+y^2<1$. Sei $x$ fest. Dann ist $y^2 < 1-x^2$, also $y\in (-\sqrt{1-x^2},\sqrt{1-x^2})$.
+	\begin{align*}
+		\lambda_3(E)=&\int_{-1}^1 \lambda_2(E_x)\dd{\lambda_2} &\text{Satz 2.81}\\
+		=&\int_{-1}^1\int_{-\sqrt{1-x^2} }^{\sqrt{1-x^2} }\lambda_1([0,ax+by+c])\dd{\lambda_1(y)}\dd{\lambda_1\left(x \right) } & \text{Satz 2.81}\\
+		=&\int_{-1}^1\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2} }ax+by+c\dd{\lambda_1(y)}\dd{\lambda_1(x)}\\
+		=&\int_{-1}^1 \left[ axy+by^2 / 2 + cy \right]_{-\sqrt{1-x^2} }^{\sqrt{1-x^2} }\dd{\lambda_1(x)}\\
+		=&\int_{-1}^1 2ax\sqrt{1-x^2} +2c\sqrt{1-x^2} \dd{\lambda_1(x)}\\
+		=&2\int_{-1}^1 (ax+c)\sqrt{1-x^2} \dd{\lambda_1(x)}\\
+		=&2\left[ \int_{-1}^1 (ax)\sqrt{1-x^2} \dd{x}+c\int_{-1}^1 \sqrt{1-x^2} \dd{x} \right] \\
+		=&2c\int_{-1}^1 \sqrt{1-x^2} \dd{x} & x\sqrt{1-x^2}\text{ ist ungerade}\\
+		=&c\pi. & \qedhere
+	\end{align*}
+\end{proof}
 \begin{Problem}
 	Seien $B_1:=B_1(0,0,0)\subseteq \R^3$ und $B_2:=B_1(0,0,1)\subseteq \R^3$ die offenen Kugeln mit Radius 1 um die Punkte $(0,0,0)$ und $(0,0,1)$. Bestimmen Sie $\lambda_3(B_1\cap B_2)$.
 \end{Problem}
+\begin{proof}
+	Per Definition ist
+	\begin{align*}
+		B_1=&\{(x,y,z)\in \R^3| x^2+y^2+z^2<1\} \\
+		B_2=& \{(x,y,z)\in \R^3|x^2+y^2+(z-1)^2<1\} 
+	\end{align*}
+	Weil $\lambda_1$ bzw. das Lebesgue-Maß $\sigma$-endlich ist, werden wir das Maß als Integral gemäß Satz 2.81 schreiben. Daher betrachten wir $(B_1\cap B_2)_z$ f\"{u}r beliebiges $z\in [0,1]$. Es gilt
+	\begin{align*}
+		(B_1\cap B_2)_z=&\{(x,y)\in \R^2|x^2+y^2<\text{min}(1-(z-1)^2,1-z^2)\}\\
+		=&B_{\text{min}(\sqrt{1-(z-1)^2} ,\sqrt{1-z^2} )}(0) \subseteq \R^2
+	\end{align*}
+	Offenbar ist 
+	\[
+		\text{min}(\sqrt{1-(z-1)^2} ,\sqrt{1-z^2} )=\begin{cases}
+			\sqrt{1-z^2}  & z \ge 1 / 2,\\
+			\sqrt{1-(z-1)^2}  & z \le 1 / 2.
+		\end{cases}
+	\] 
+	Aus \ref{pr:advanalblatt8-2} ist $\lambda_2(B_R(0))=\pi R^2$. Dann ist
+	\begin{align*}
+		\lambda_3(B_1\cap B_2)=&\int_0^1 \lambda_2(B_{\text{min}(\sqrt{1-(z-1)^2} ,\sqrt{1-z^2} )}(0))\dd{\lambda_{1}(z)}\\
+		=&\int_0^1\pi\text{min}(\sqrt{1-(z-1)^2} ,\sqrt{1-z^2} )^2\dd{\lambda_1(z)}\\
+		=&2\int_{1 / 2}^{1}\pi (1-z^2) \dd{\lambda_1(z)}\\
+		=&2\pi (z-z^3 / 3)|_{1 / 2}^{1}\\
+		=&\frac{5\pi}{12}.\qedhere
+	\end{align*}
+\end{proof}
