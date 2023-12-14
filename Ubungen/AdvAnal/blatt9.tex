@@ -55,32 +55,34 @@
 \begin{proof}
 	Nach Satz 1.83 und Bewegungsinvarianz ist $\varphi(A)$ messbar mit Maß $\lambda_n(\varphi(A))=|\text{det}(S)|\lambda_n(A)$. $\chi_{\varphi(A)}$ ist dann messbar. Weil $\varphi$ affin ist, ist $\varphi$ messbar. Dann ist $f\circ\varphi$ messbar, und als Produkt von messbare Funktionen ist $\chi_A(f\circ \varphi)$ $\lambda_n$-messbar.
 
-	Wir zeigen es f\"{u}r $f$ einfach, $f$ positiv und dann $f$ messbar. Wir brauchen: Weil $\varphi$ affin ist, ist $\varphi$ auch bijektiv. 
-	\begin{enumerate}[label=(\roman*)]
-		\item $f$ einfach. 
-
-			Sei $f=\sum_{i=1}^n b_i\chi_{B_i},B_i\in \mathcal{L}(n)$ und $B_i=\varphi(A_i),1\le i\le n$ (möglich weil $\varphi$ bijektiv ist). Alle $A_i$ sind auch messbar, weil $\varphi$ messbar ist. Es gilt
-			\begin{align*}
-				\int_{\varphi(A)}f\dd{\lambda_n}=&\int \chi_{\varphi(A)}\sum_{i=1}^n b_i \chi_{B_i}\dd{\lambda_n}\\
-				=&\int\sum_{i=1}^n b_i\chi_{B_i\cap \varphi(A)}\dd{\lambda_n}\\
-				=&\sum_{i=1}^n b_i\lambda_n(B_i\cap \varphi(A))\\
-				=&\sum_{i=1}^n b_i\lambda_n(\varphi(A_i)\cap \varphi(A))\\
-				=&\sum_{i=1}^n b_i \lambda_n(\varphi(A_i\cap A)) & \varphi\text{ injektiv}\\
-				=&\sum_{i=1}^n b_i|\text{det}(S)|\lambda_n(A_i\cap A) & \text{Satz 1.83 und Bewegungsinvarianz}\\
-				=&|\text{det}(S)|\int\sum_{i=1}^n b_i\chi_{A_i\cap A}\dd{\lambda_n}\\
-				=&|\text{det}(S)|\int\sum_{i=1}^n b_i \chi_{A}\chi_{A_i}\dd{\lambda_n}\\
-				=&|\text{det}(S)|\int_A\sum_{i=1}^n b_i\chi_{\varphi^{-1}(B_i)}(x)\dd{\lambda_n}\\
-				=&|\text{det}(S)|\int_A\sum_{i=1}^n b_i\chi_{B_i}(\varphi(x))\dd{\lambda_n}\\
-				=&|\text{det}(S)|\int_A f\circ \varphi\dd{\lambda_n}
-			\end{align*}
-		\item $f$ positiv
-
-			Sei $s_n\nearrow f$ eine Folge messbare einfache Funktionen. Es ist klar, dass $\chi_{\varphi(A)}s_n\nearrow \chi_{\varphi(A)} f$, Dann ist
-			\[
-				\int_{\varphi(A)}s_n\dd{\lambda_n}\nearrow \int_{\varphi(A)}f\dd{\lambda_n}
-			.\] 
-	\end{enumerate}
+	Wir verwenden Lemma 2.93 und betrachten $f^+$. Es gilt
+	\begin{align*}
+		\int_{\varphi(A)}f^+\dd{\mu}=&\int f^+\chi_{\varphi(A)}\dd{\mu}\\
+		=&\int_{(0,+\infty)}\mu(\{x:f^+(x)\chi_{\varphi}(A)>t\})\dd{\lambda_1(t)}\\
+		=&\int_0^\infty \mu(\{x:x\in \varphi(A)\wedge f^+(x)>t\} \dd{\lambda_1(t)}\\
+		=&\int_0^\infty\mu(\{x:f^+(x)>t\} \cap \varphi(A))\dd{\lambda_1(t)}
+	\end{align*}
+	Weil $\varphi$ bijektiv ist, gibt es f\"{u}r jedes Punkt  $x\in\varphi(A),~f^+(x)>t$ auch ein Punkt $y:=\varphi^{-1}(x),~y\in A,~f^+(\varphi(y))>t$ und andersherum. Daher ist 
+	\[
+	\{x:x\in \varphi(A)\wedge f^+(x)>t\} =\varphi(\{x:x\in A\wedge f^+(\varphi(x))>t\})
+	.\] 
+	Daraus folgt:
+	\begin{align*}
+		\int_{\varphi(A)}f^+\dd{\mu}=&\int_0^\infty \mu(\varphi(\{x:x\in A\wedge f^+(\varphi(x))>t\} ))\\
+		=&\int_0^\infty|\text{det}(S)|\mu(\{x:x\in A\wedge f^+(\varphi(x))>t\})\dd{\lambda_1(t)}  \\
+		&\text{(Satz 1.83 und Bewegungsinvarianz)}\\
+		=&|\text{det}(S)|\int_0^\infty \mu(\{x:f^+(\varphi(x))>t\}\cap A)\\
+		=&|\text{det}(S)|\int_0^\infty \mu(\{x:f^+(\varphi(x))\chi_A(x)>t\} )\dd{\lambda_1(t)}\\
+		=&|\text{det}(S)|\int (f^+\circ\varphi)\chi_A\dd{\lambda_n}\\
+		=&|\text{det}(S)|\int_A (f^+\circ\varphi)\dd{\lambda_n}
+	\end{align*}
+	Ähnlich gilt es auch für $f^-$ und aus
+	\[
+	\int_{\varphi(A)}f\dd{\mu}=\int_{\varphi(A)} f^+\dd{\mu}-\int_{\varphi(A)}(-f^-)\dd{\mu}
+	\]
+	auch für $f$.
 \end{proof}
+
 \begin{Problem}
 	Sei $f\in \mathcal{L}^1(\lambda_n)$. F\"{u}r $h\in \R^n$ definiere die Funktion $f_h:\R^n\to \R$ durch $f_h(x):=f(x+h)$. Definiere außerdem die Abbildung
 	\[
