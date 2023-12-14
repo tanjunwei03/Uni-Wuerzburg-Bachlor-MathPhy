@@ -1,0 +1,90 @@
+\begin{Problem}
+	Sei
+	\begin{align*}
+&		f:\R\times \R\backslash \{0\} \to \R, (x,y)\to \frac{x^2}{y^2},\\
+&		A:=\left\{ (x,y)\in \R^2|0\le y\le x, 0\le x \le 2, xy\ge 1 \right\} .
+	\end{align*}
+	Bestimmen Sie $\int_A f\dd{\lambda_2}$.
+\end{Problem}
+\begin{proof}
+	Zuerst zeigen wir: $f$ ist messbar. Wir ebtrachten dazu $\{f< \alpha\} ,\alpha\in \R,\alpha >0$ (Wenn $\alpha<0$ ist die Menge die Leermenge, weil $f\ge 0$ stets). Es gilt dann
+	\begin{align*}
+		x^2<& \alpha y^2\\
+		|x|<&\sqrt{\alpha}|y|
+	\end{align*}
+	Dann ist $\{f<\alpha\} $ eine Borelmenge, also $f$ ist messbar.
+
+	Ähnlich wie in Übungen 8.2 ist $A$ eine Borelmenge. Die dritte Voraussetzung kann umgeformt werden:
+	\begin{align*}
+		y\ge& 1 / x\\
+		x \ge& y \ge 1 / x
+	\end{align*}
+	was nur möglich ist, wenn $2\ge x\ge 1$ und in diesem Fall ist der Schnitt $\{y|(x,y)\in A\} $ nichtleer. Also wir berechnen das Integral über die Teilmenge nach die Präsenzübung
+	\begin{align*}
+		\int_A f\dd{\lambda_2}=&\int_{[1,2]}\int_{A_x} f\dd{\lambda_1}\\
+		=&\int_1^2 \int_{1 / x}^x \frac{x^2}{y^2}\dd{\lambda_1(y)}\dd{\lambda_1(x)}\\
+		=&\int_1^2 -x^2 y^{-1}|_{1 / x}^x\dd{\lambda_1(x)}\\
+		=&\int_1^2 x^2\left( x-\frac{1}{x} \right) \dd{\lambda_1(x)}\\
+		=& \left.\frac{x^4}{4}-\frac{x^2}{2}\right|_1^2\\
+			=&\frac{9}{4}.\qedhere
+	\end{align*}
+\end{proof}
+\begin{Problem}
+	Sei
+	\[
+	A:=\left\{ (x,y,z)\in \R^3|x^2+y^2\le 1,\frac{1}{2}(x+y)^2+z^2\le 1 \right\} 
+	.\] 
+	Bestimmen Sie $\lambda_3(A)$.
+
+	{\footnotesize \emph{Hinweis: Rotation}}
+\end{Problem}
+\begin{proof}
+	$A$ ist eine Borelmenge und daher messbar. Wir schreiben $A_z$. Es gilt
+	\begin{align*}
+		1\ge& \frac{1}{2}(x+y)^2+z^2\\
+		2(1-z^2)\ge& (x+y)^2
+	\end{align*}
+\end{proof}
+\begin{Problem}
+	Sei $S\in \R^{n\times n}$ ein invertierbare Matrix und $a\in \R^n$. Definere damit die Abbildung $\varphi:\R^n\to \R^n, x\to a+Sx$. Sei außerdem $A\in \mathcal{L}(n)$ und $f:\R^n\to \R$ $\mathcal{L}(n)-B^1$ messbar, sodass $\chi_{\varphi(A)}f$ $\lambda_n$ integrierbar ist. Zeigen Sie, dass dann $\chi_A(f\circ \varphi)$ $\lambda_n$-integrierbar ist mit
+	\[
+		\int_{\varphi(A)}f\dd{\lambda_n}=|\text{det}(S)|\int_A (f\circ\varphi) \dd{\lambda_n}
+	.\] 
+	{\footnotesize \emph{Hinweis: Lemma 2.92}}
+\end{Problem}
+\begin{proof}
+	Nach Satz 1.83 und Bewegungsinvarianz ist $\varphi(A)$ messbar mit Maß $\lambda_n(\varphi(A))=|\text{det}(S)|\lambda_n(A)$. $\chi_{\varphi(A)}$ ist dann messbar. Weil $\varphi$ affin ist, ist $\varphi$ messbar. Dann ist $f\circ\varphi$ messbar, und als Produkt von messbare Funktionen ist $\chi_A(f\circ \varphi)$ $\lambda_n$-messbar.
+
+	Wir zeigen es f\"{u}r $f$ einfach, $f$ positiv und dann $f$ messbar. Wir brauchen: Weil $\varphi$ affin ist, ist $\varphi$ auch bijektiv. 
+	\begin{enumerate}[label=(\roman*)]
+		\item $f$ einfach. 
+
+			Sei $f=\sum_{i=1}^n b_i\chi_{B_i},B_i\in \mathcal{L}(n)$ und $B_i=\varphi(A_i),1\le i\le n$ (möglich weil $\varphi$ bijektiv ist). Alle $A_i$ sind auch messbar, weil $\varphi$ messbar ist. Es gilt
+			\begin{align*}
+				\int_{\varphi(A)}f\dd{\lambda_n}=&\int \chi_{\varphi(A)}\sum_{i=1}^n b_i \chi_{B_i}\dd{\lambda_n}\\
+				=&\int\sum_{i=1}^n b_i\chi_{B_i\cap \varphi(A)}\dd{\lambda_n}\\
+				=&\sum_{i=1}^n b_i\lambda_n(B_i\cap \varphi(A))\\
+				=&\sum_{i=1}^n b_i\lambda_n(\varphi(A_i)\cap \varphi(A))\\
+				=&\sum_{i=1}^n b_i \lambda_n(\varphi(A_i\cap A)) & \varphi\text{ injektiv}\\
+				=&\sum_{i=1}^n b_i|\text{det}(S)|\lambda_n(A_i\cap A) & \text{Satz 1.83 und Bewegungsinvarianz}\\
+				=&|\text{det}(S)|\int\sum_{i=1}^n b_i\chi_{A_i\cap A}\dd{\lambda_n}\\
+				=&|\text{det}(S)|\int\sum_{i=1}^n b_i \chi_{A}\chi_{A_i}\dd{\lambda_n}\\
+				=&|\text{det}(S)|\int_A\sum_{i=1}^n b_i\chi_{\varphi^{-1}(B_i)}(x)\dd{\lambda_n}\\
+				=&|\text{det}(S)|\int_A\sum_{i=1}^n b_i\chi_{B_i}(\varphi(x))\dd{\lambda_n}\\
+				=&|\text{det}(S)|\int_A f\circ \varphi\dd{\lambda_n}
+			\end{align*}
+		\item $f$ positiv
+	\end{enumerate}
+\end{proof}
+\begin{Problem}
+	Sei $f\in \mathcal{L}^1(\lambda_n)$. F\"{u}r $h\in \R^n$ definiere die Funktion $f_h:\R^n\to \R$ durch $f_h(x):=f(x+h)$. Definiere außerdem die Abbildung
+	\[
+	T_f:\R^n\to \mathcal{L}^1(\lambda_n),\qquad h\to f_h
+	.\] 
+	Zeigen Sie:
+	\begin{parts}
+		\item $T_f$ ist wohldefiniert.
+		\item $T_f$ ist stetig.
+	\end{parts}
+{\footnotesize \emph{Hinweis: Approximieren Sie die Funktion }$f$ }
+\end{Problem}
