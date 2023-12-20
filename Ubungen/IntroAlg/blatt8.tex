@@ -45,3 +45,44 @@
 		.\] 
 	\end{parts}
 \end{proof}
+
+\begin{Problem}
+Von der endlichen Gruppe $G$ sei bekannt, dass sie nicht abelsch ist und zu jedem positiven Teiler $t$ von $|G|$ mindestens eine Untergruppe der Ordnung $t$ besitzt. Zeigen Sie, dass $G$ nicht einfach ist. (Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt, und $U$ eine Untergruppe von $G$ vom Index $p$. Lassen Sie $G$ auf den Nebenklassen von $U$ operieren und betrachten Sie den Kern des zugehörigen Homomorphismus.)	
+\end{Problem}
+
+\begin{Problem}
+Benutzen Sie die Beweisidee aus Korollar 2.79, um folgende Aussage zu zeigen: Seien $p$ eine Primzahl, $n \in \N^*$, $G$ eine Gruppe der Ordnung $p^n$ und $\{e\} < N \trianglelefteq G$ ein nicht-trivialer Normalteiler von G. Dann gilt $|Z(G) \cap N| > 1$.	
+\end{Problem}
+
+\begin{Problem}
+	Die Gruppe $G$ operiere auf einer Menge $M$. Sei $\Phi:G\to \text{Sym}(M)$ der zugehörige Homomorphismus und $K$ sein Kern. Zeigen Sie, dass durch die Abbildung
+	\[
+G / K \times M \to M,\qquad gK.m:=g.m
+\]
+eine treue Operation von $G / K$ auf $M$ gegeben ist.
+\end{Problem}
+\begin{proof}
+	Wir schreiben noch einmal die Klassengleichung:
+	\[
+		|G|=|Z(G)|+\sum_{i=1}^r [G:C_G(x_i)]
+	.\] 
+	Als Normalteiler ist $N$ eine Vereinigung von Konjugationsklassen. Wir nehmen die solchen Konjugationsklassen raus, und schreibe stattdessen
+	\[
+		|G|=|Z(G)|+[G:N]+\sum_{i=1}^{r'}[G:C_G(x_i)]
+	.\] 
+\end{proof}
+\begin{proof}
+	Wir zeigen zuerst, dass es wohldefiniert ist. Sei $k_1,k_2\in K$ und $m\in M$. Es gilt
+	\begin{align*}
+		gk_1.m=&\Phi(gk_1)(m)\\
+		=&\Phi(g)(\Phi(k_1)(m))\\
+		=&\Phi(g)(e(m))\\
+		=&\Phi(g)(m)\\
+		=&g.m
+	\end{align*}
+	und ähnlich für $gk_2.m=g.m$. Sei jetzt $g_1,g_2\in G$, so dass $g_1K.m=g_2K.m$ f\"{u}r alle $m\in M$. Dann ist
+	\[
+		g_2^{-1}g_1.m=m
+	\]
+	f\"{u}r alle $m\in M$ oder $g_2^{-1}g_1\in K$. Daraus folgt: $g_1$ und $g_2$ liegen in der gleichen Nebenklasse.
+\end{proof}

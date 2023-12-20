@@ -1,0 +1,58 @@
+\begin{Problem}
+Berechnen Sie die JNF und die jeweiligen Basisvektoren für die Matrix	
+\[
+	A=\begin{pmatrix} -4 & 22 & 7 \\ -1 & 5 & 1 \\ 0 & 1 & 2 \end{pmatrix} 
+.\] 
+\end{Problem}
+\begin{proof}
+	Das charakteristische Polynom von $A$ ist $-(x-1)^3$, also der einzige Eigenwert ist $1$. Wir schreiben
+	\[
+		A-1I_3=\begin{pmatrix} -5 & 22 & 7 \\ -1 & 4 & 1 \\ 0 & 1 & 1 \end{pmatrix} 
+	\]
+	und
+	\[
+		(A-1I_3)^2=\begin{pmatrix} 3 & -15 & -6 \\ 1 & -5 & -2 \\ -1 & 5 & 2 \end{pmatrix} 
+	.\] 
+	Dies zeigt, dass $(\lambda-1)^2$ kein Minimalpolynom ist. Da das Minimalpolynom das charakteristische Polynom teilen muss, ist das Minimalpolynom $(\lambda-1)^3$. Wir berechnen den Kern von $(A-I_3)^2$:
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ 3 & -15 & -6 \\
+ 1 & -5 & -2 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{1}{3}} \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 1 & -5 & -2 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_2-R_1}\\ \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 0 & 0 & 0 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 0 & 0 & 0 \\
+ 0 & 0 & 0 \\
+\end{array}
+\right)	
+	\end{gather*}
+	also der Kern ist
+	\[
+		\text{ker}(A-I_3)^2=\text{span}\left( \begin{pmatrix} 5 \\ 1 \\ 0 \end{pmatrix} ,\begin{pmatrix} 2 \\ 0 \\ 1 \end{pmatrix}  \right) 
+	.\] 
+	Wir suchen einen Vektor, der nicht im Kern liegt, aber im Kern von $(A-I_3)^3$ liegt. Ein solcher Vektor ist $(0,1,1)^T$. Dann wählen wir als Basis
+	\begin{align*}
+		b_1=&(0,1,1)^T\\
+		b_2=&(A-I_3)(0,1,1)=(29,5,2)^T\\
+		b_3=&(A-I_3)b_2=(-21,-7,7)
+	\end{align*}
+	Bzgl. diese Basis $B:=\{b_1,b_2,b_3\} $ ist
+	\[
+		_B[A]_B=\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix} 
+	.\qedhere\] 
+\end{proof}

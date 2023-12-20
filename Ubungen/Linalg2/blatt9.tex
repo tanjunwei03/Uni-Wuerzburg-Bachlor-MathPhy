@@ -13,7 +13,48 @@ Berechnen Sie die JNF und die jeweiligen Basisvektoren für die Matrix
 	\[
 		(A-1I_3)^2=\begin{pmatrix} 3 & -15 & -6 \\ 1 & -5 & -2 \\ -1 & 5 & 2 \end{pmatrix} 
 	.\] 
-	Dies zeigt, dass $(\lambda-1)^2$ kein Minimalpolynom ist. Da das Minimalpolynom das charakteristische Polynom teilen muss, ist das Minimalpolynom $(\lambda-1)^3$. Wir berechnen die Nullräume
+	Dies zeigt, dass $(\lambda-1)^2$ kein Minimalpolynom ist. Da das Minimalpolynom das charakteristische Polynom teilen muss, ist das Minimalpolynom $(\lambda-1)^3$. Wir berechnen den Kern von $(A-I_3)^2$:
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ 3 & -15 & -6 \\
+ 1 & -5 & -2 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{1}{3}} \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 1 & -5 & -2 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_2-R_1}\\ \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 0 & 0 & 0 \\
+ -1 & 5 & 2 \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc}
+ 1 & -5 & -2 \\
+ 0 & 0 & 0 \\
+ 0 & 0 & 0 \\
+\end{array}
+\right)	
+	\end{gather*}
+	also der Kern ist
+	\[
+		\text{ker}(A-I_3)^2=\text{span}\left( \begin{pmatrix} 5 \\ 1 \\ 0 \end{pmatrix} ,\begin{pmatrix} 2 \\ 0 \\ 1 \end{pmatrix}  \right) 
+	.\] 
+	Wir suchen einen Vektor, der nicht im Kern liegt, aber im Kern von $(A-I_3)^3$ liegt. Ein solcher Vektor ist $(0,1,1)^T$. Dann wählen wir als Basis
+	\begin{align*}
+		b_1=&(0,1,1)^T\\
+		b_2=&(A-I_3)(0,1,1)=(29,5,2)^T\\
+		b_3=&(A-I_3)b_2=(-21,-7,7)
+	\end{align*}
+	Bzgl. diese Basis $B:=\{b_1,b_2,b_3\} $ ist
+	\[
+		_B[A]_B=\begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix} 
+	.\qedhere\] 
 \end{proof}
 \begin{Problem}
 	Wir befinden uns im $\R^n$. Sei $U\subset \R^n$ ein Unterraum und w\"{a}hle eine Basis $\{b_1,\dots, b_M\} $ von $U$. Wir definieren die Matrix
@@ -23,7 +64,7 @@ Berechnen Sie die JNF und die jeweiligen Basisvektoren für die Matrix
 	\begin{parts}
 		\item Zeigen Sie: Die Matrix
 			\[
-				P=A(A^TA)^{-1}A^t
+				P=A(A^TA)^{-1}A^T
 			.\] 
 			ist wohldefiniert und ein Projektor auf $U$.
 
@@ -51,3 +92,130 @@ Berechnen Sie die JNF und die jeweiligen Basisvektoren für die Matrix
 				.\] 
 	\end{parts}
 \end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item Wohldefiniertheit: $A^ T\in \R^{m\times n}$, also $A^TA\in \R^{m\times m}$ ist wohldefiniert. Weil $\{b_1,\dots, b_M\} $ eine Basis ist, ist $A^TA$ surjektiv und daher injektiv, also $A^TA$ ist invertierbar.
+
+		Jetzt ist $(A^TA)^{-1}\in R^{m\times m}$, $A\in \R^{n\times m}$ und $A^T\in \R^{m\times n}$, also das ganze Produkt ist wohldefiniert und liegt in $\R^{n\times n}$.
+
+		Idempotent:
+		\begin{align*}
+			P^2=&A(A^TA)^{-1}A^TA(A^TA)^{-1}A^T\\
+			=&A(A^TA)^{-1}(A^TA)(A^TA)^{-1}A^t\\
+			=&A(A^TA)^{-1}A^T=P
+		\end{align*}
+
+		Weil $A$ am links vorkommt, ist $\text{im}(P)\subseteq \text{im}(A)=U$
+		 \begin{align*}
+			 P\R^n=&A(A^TA)^{-1}A^T\R^n\\
+			 =&A\left[ (A^TA)^{-1}A^T\R^n \right] \\
+			 \subseteq& A\R^n\\
+			 =&\text{im}(A)=U
+		\end{align*}
+
+		Jetzt ist es nur zu zeigen: $U\subseteq \text{im}(P)$. Es gilt
+	\item Wir nehmen an, dass es nicht gilt. Wir betrachten
+		\[
+			x=x^*-y\frac{x^{*T}y}{y^Ty} 
+		.\] 
+		$x$ erf\"{u}llt die Bedingungen:
+		\begin{align}
+			(x-y)^Ty=&\left( x^*-y\frac{x^{*T}y}{y^T y} \right)^Ty\\ 
+			=&x^{*T}y-x^{*T}y=0
+		\end{align}
+		Wir definieren $v:=y\frac{x^{*T}y}{y^Ty}$
+		\begin{align*}
+			\|x-y\|_2^2=&(x-y)^T(x-y)\\
+			=&(x^*-v-y)^T(x^*-v-y)\\
+			=&\|x^*\|_2^2-x^{*T}v-x^{*T}y\\
+			 &-v^Tx^*+\|v\|_2^2+v^Ty\\
+			 &-y^Tx^*+y^Tv+\|y\|_2^2\\
+			=&\|x^*\|_2^2+\|v\|_2^2+\|y\|_2^2\\
+			 &-2x^{*T}v-2x^{*T}y+2v^Ty\\
+			=&\|x^*-y\|_2^2+\|v\|_2^2\\
+			 &-2x^{*T}v+2v^Ty
+		\end{align*}
+		Wir betrachten die Terme separat:
+		\begin{align*}
+			\|v\|_2^2=&x^{*T}y\\
+			2v^Ty=&2x^*y\\
+			2x^*v=&2\frac{(x^{*T}y)^2}{y^Ty}
+		\end{align*}
+		dann zusammen
+		\begin{align*}
+			\|v\|_2^2-2x^{*T}v+2v^Ty=&3x^{*T}y-2\frac{(x^{*T}y)^2}{y^Ty}\\
+			=&(x^{*T}y)\left[ 3-2\frac{x^{*T}y}{y^Ty} \right] 
+		\end{align*}
+		Wir nehmen an, dass es nicht gilt. Weil $y$ fest ist, betrachten wir
+		\[
+		x=x^*+v
+		.\] 
+		Es gilt
+		\begin{align*}
+			\|x-y\|_2^2=&(x-y)^T(x-y)\\
+			=&(x+v-y)^T(x+v-y)\\
+			=&(x-y)^T(x-y)+v^T(x-y)\\
+			 &+
+		\end{align*}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Wir nennen eine Matrix $A\in M_n(\R)$ symmetrisch, wenn gilt $A=A^T$ und $A\in M_n(\C)$ hermitsch, wenn $A^H=A$ mit $A^h=\overline{A}^T$(d.h. die Einträge in A werden komplex konjugiert und die Matrix anschließend transponiert). Wir definieren zu $A$ die Bilinearform, bzw. die Sesquilinearform 
+	\[
+	\left<x,y \right>_R:=x^TAy,\qquad \left<x,y \right>_C:=x^HAy
+	.\] 
+	\begin{parts}
+		\item Beweisen Sie: Es ist $\langle x, x\rangle_R\ge 0$ ($\langle x,x\rangle>0$ ) f\"{u}r alle $x\in \R^n \backslash \{0\} $ genau dann, wenn der symmetrische Anteil $(A+A^T) / 2$ von $A$ nur nichtnegativ (strikt positive) Eigenwerte hat. Widerlegen Sie: $A$ muss selbst nicht symmetrisch sein.
+	\item Beweisen Sie: Es ist $\langle x,x\rangle_\C\ge 0$. ($\langle x,x\rangle_\C>0$) f\"{u}r alle $x\in \C^n\backslash \{0\} $ genau dann, wenn $A$ nur nichtnegative (strikt positive) Eigenwerte hat. Insbesondere folgt bereits $A^H=A$.
+	
+		{\footnotesize\emph{Die Rückrichtung wird später mal ein Einzeiler werden. Aktuell können Sie wie folgt herangehen (exemplarisch für (a), analog für (b)):}
+		
+		\emph{Nehmen Sie in einem Widerspruch an, es gibt ein} $x$, \emph{sodass} $\langle x,x\rangle_{\R}<0$. \emph{Betrachten wir nur Vektoren} $x / \|x\|_2$ \emph{der Länge 1 so muss ein }$x^*$ \emph{existieren, sodass}
+		\[
+		0>\text{ (bzw. }0\ge\text{)}r=\frac{(x^{*})^TAx^*}{\|x^*\|_2^2}=\min_x \frac{x^TAx}{\|x\|_2^2}
+		\] 
+		\emph{also hat die (differenzierbare) Funktion}
+		\[
+		p_v:\R\to \R,\qquad t\to \frac{(x^*+tv)^TA(x^*+tv)}{\|x^*+tv\|_2^2}
+		\]
+		\emph{ein Minimum in $t=0$ f\"{u}r jeden beliebigen Vektor} $v$\ldots}
+	
+		Es sei nun $V$ ein Vektorraum von Dimensinon $n$ und $B$ eine beliebige Basis.
+	\item Sei $A$ symmetrisch. Zeigen Sie: F\"{u}r $x,y\in V$ definiert $\langle x,y\rangle=({}_B[x])^TA{}_B[y]$ eine symmetrische Bilinearform. Umgekehrt gibt es f\"{u}r jede symmetrische Bilinearform $\langle\cdot,\cdot\rangle$ eine symmetrische Matrix $A$, sodass $\langle x,y\rangle=({}_B[x])^TA{}_B[y]$ f\"{u}r alle $x,y\in V$.
+	\item Sei $A$ hermitesch. Zeigen Sie: F\"{u}r $x,y\in V$ definiert $\langle x,y\rangle=\overline{({}_B[x])^T}A{}_B[y]$ eine hermetische Sesquilinearform. Umgekehrt gibt es f\"{u}r jede hermitesche Sesquilinearform $\langle\cdot,\cdot\rangle$ eine hermitesche Matrix $A$, sodass $\langle x,y\rangle=\overline{({}_B[x])^T}A{}_B[y]$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt
+		\begin{align*}
+			x^TAy=&x^T\left[ \frac{A+A^T}{2}+\frac{A-A^T}{2} \right] y\\
+			=&x^T\left( \frac{A+A^T}{2} \right)y+x^T\left( \frac{A-A^T}{2} \right) y
+		\end{align*}
+		Wir betrachten das antisymmetrische Teil. Weil es ein Skalar ist, gilt
+		\begin{align*}
+			\left[ x^T\left( \frac{A-A^T}{2} \right) x \right]^T=& x^T\left( \frac{A^T-A}{2} \right) x\\
+			=&-x^T\left( \frac{A-A^T}{2} \right) x
+			=&x^T\left( \frac{A-A^T}{2} \right) x
+		\end{align*}
+		also es muss gelten, dass
+		\[
+		x^T\left( \frac{A-A^T}{2} \right) x=0
+		.\] 
+		Dies zeigt, dass $A$ nicht symmetrisch sein muss, weil wir einfach ein antisymmetrisches Teil addieren können. Daher betrachten wir nur $A_{sym}:=(A+A^T) / 2$.
+
+		In zwei Richtungen: Zunächstnehmen wir an, dass $A$ negative (nicht positive) Eigenwerte hat. Sei $v$ ein Eigenvektor mit Eigenwert $\lambda$. Es gilt
+		\[
+			v^TAv=\lambda\underbrace{(v^Tv)}_{\ge 0}
+		,\]
+		also das Signum ist gleich das Signum von $\lambda$, und eine Richtung wurde gezeigt.
+
+		Nach Hinweis leiten wir die Funktion ab:
+		\begin{align*}
+			\dv{t}\frac{(x^*+tv)^TA(x^*+tv)}{\|x^*+tv\|_2^2}=&\frac{v^TA(x^*+tv)}{\|x^*+tv\|_2^2}+\frac{(x^*+tv)^TAv}{\|x^*+tv\|_2^2}\\
+									 &-\frac{(x^*+tv)^TA(x^*+tv)}{}
+		\end{align*}
+	\end{parts}
+\end{proof}
