@@ -1,0 +1,53 @@
+\begin{Problem}
+Berechnen Sie die JNF und die jeweiligen Basisvektoren für die Matrix	
+\[
+	A=\begin{pmatrix} -4 & 22 & 7 \\ -1 & 5 & 1 \\ 0 & 1 & 2 \end{pmatrix} 
+.\] 
+\end{Problem}
+\begin{proof}
+	Das charakteristische Polynom von $A$ ist $-(x-1)^3$, also der einzige Eigenwert ist $1$. Wir schreiben
+	\[
+		A-1I_3=\begin{pmatrix} -5 & 22 & 7 \\ -1 & 4 & 1 \\ 0 & 1 & 1 \end{pmatrix} 
+	\]
+	und
+	\[
+		(A-1I_3)^2=\begin{pmatrix} 3 & -15 & -6 \\ 1 & -5 & -2 \\ -1 & 5 & 2 \end{pmatrix} 
+	.\] 
+	Dies zeigt, dass $(\lambda-1)^2$ kein Minimalpolynom ist. Da das Minimalpolynom das charakteristische Polynom teilen muss, ist das Minimalpolynom $(\lambda-1)^3$. Wir berechnen die Nullräume
+\end{proof}
+\begin{Problem}
+	Wir befinden uns im $\R^n$. Sei $U\subset \R^n$ ein Unterraum und w\"{a}hle eine Basis $\{b_1,\dots, b_M\} $ von $U$. Wir definieren die Matrix
+	\[
+		A=(b_1,\dots, b_m)\in \R^{n\times m}
+	.\] 
+	\begin{parts}
+		\item Zeigen Sie: Die Matrix
+			\[
+				P=A(A^TA)^{-1}A^t
+			.\] 
+			ist wohldefiniert und ein Projektor auf $U$.
+
+			(Projektor auf $U$ bedeutet, $P$ ist idempotent und $\text{im}(P)=U$).
+
+			Es sei die $2$-Norm gegeben durch $\|x\|_2:=\sqrt{x^Tx} $. Wir definieren die (euklidische) Projektion $P_U$ auf den Unterraum $U$ als diejenige Abbildung, f\"{u}r die gilt $x^*=P_U(y)$ genau dann, wenn $x^*$ das Problem
+			\begin{equation}\label{eq:linalg2blatt9-1}
+				\min_{x\in U}\|x-y\|_2^2
+			\end{equation}
+			löst.
+		\item Zeigen Sie: $x^*$ ist eine Lösung von \eqref{eq:linalg2blatt9-1} genau dann, wenn
+			\[
+				(x^*-y)^Tx^*=0\] und äquivalent
+				\[
+				\|x^*-y\|_2^2=\|y\|_2^2-\|x^*\|_2^2
+				.\] 
+			\item Die Lösung $x^*$ von \eqref{eq:linalg2blatt9-1} ist eindeutig und gegeben durch
+				\[
+					x^*=A(A^TA)^{-1}A^Ty
+				.\] 
+				{\footnotesize \emph{Sie können für die Eindeutigkeit natürlich auch (d) zu Rate ziehen.} }
+			\item Angenommen die Menge $\{b_1,\dots, b_m\} $ bildet eine Orthonomalbasis von $U$ Zeigen Sie, dass in dem Fall f\"{u}r die Projektion gilt
+				\[
+					x^*=Py=\sum_{i=1}^m b_i b_i^Ty
+				.\] 
+	\end{parts}
+\end{Problem}

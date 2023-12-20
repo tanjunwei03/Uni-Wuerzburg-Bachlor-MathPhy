@@ -179,50 +179,18 @@
 			=&\int |f|\dd{\lambda_n}<\infty & \text{Voraussetzung}
 		\end{align*}
 also $f_h\in \mathcal{L}^1(\lambda_n)$.
-\item Zuerst beweisen wir es f\"{u}r $f$ einfach, dann $f$ im Allgemein. Sei $f=\sum_{j=1}^n a_i A_i,~A_i\in \mathcal{L}(n)$ eine Darstellung von $f$. Sei außerdem $\epsilon>0$ gegeben. Das Ziel ist: Wir finden ein $h\in\R^n,|h|<\delta$, so dass
-	\begin{align*}
-		\|f-f_h\|_{\mathcal{L}^1(\lambda_n)}=&\int\left| \sum_{i=1}^n a_i \chi_{A_i}-\sum_{i=1}^n a_i\chi_{A_i+h} \right| \dd{\lambda_n}\\
-		=&\int\left| \sum_{i=1}^n\left[ a_i\left( \chi_{A_i}-\chi_{A_i+h} \right)  \right]  \right| \dd{\lambda_n}\\
-		\le&\int \sum_{i=1}^n a_i|\chi_{A_i}-\chi_{A_i+h}|\dd{\lambda_n}\\
-		=&\sum_{i=1}^n a_i\int |\chi_{A_i}-\chi_{A_i+h}|\dd{\lambda_n}\\
-		=&\sum_{i=1}^n a_i\int |\chi_{A_i\triangle A_i+h}|\dd{\lambda_n}\\
-		=&\sum_{i=1}^n a_i \lambda_n(A_i\triangle A_i+h)\\
-	\end{align*}
-	Jetzt sei $f$ beliebig. Nach Satz 2.101 und Satz 2.100 gibt es eine stetige Funktion mit kompaktem Support $f_\epsilon$, so dass
+\item 
+Nach Satz 2.101 gibt es eine stetige Funktion mit kompaktem Support $f_\epsilon$, so dass
 	\[
 		\|f-f_\epsilon\|_{\mathcal{L}^1(\mu)}<\epsilon
 	.\] 
-	\begin{tcolorbox}[title=Existenz der Funktion]
-		\begin{enumerate}[label=(\roman*)]
-			\item Nach Satz 2.101 gibt es eine integrierbare Funktion mit kompaktem Support $g_\epsilon$, so dass $\|f-g_\epsilon\|<\epsilon$. Sei $A$ der Träger von $g_\epsilon$.
-			\item Wir betrachten den Maßraum $(A, \mathcal{L}(n)|_A, \lambda_n|_A)$ und die Funktion $g_\epsilon$. Satz 2.100 angewandt auf diesen Maßraum ergibt eine Funktion $h_\epsilon'$, so dass $\|g_\epsilon-h_\epsilon\|<\epsilon < 2$.
-			\item Sei jetzt $B\subseteq A$ die Teilmenge $B:=\{x|g_\epsilon(x)=0\} $. Falls $\lambda_n(B)=0$, definiere
-				\[
-				h_\epsilon=\begin{cases}
-					h_\epsilon(x) & x\in A^c\\
-					1 & x\in A
-				\end{cases}
-				.\] 
-				und sonst
-				\[
-				h_\epsilon=\begin{cases}
-					h_\epsilon'(x) & x\in A^c\\
-					\frac{\epsilon}{2\lambda_n(B)} & x\in A
-				\end{cases}
-				.\] 
-				Damit hat $h_\epsilon$ kompakten Träger, weil sie überall in $A$ nicht null ist. 
-			\item Daraus folgt:
-				\begin{align*}
-					\|g_\epsilon-h_\epsilon\|_{\mathcal{L}^1(\lambda_n)}=&\int |g_\epsilon-h_\epsilon|\dd{\lambda_n}\\
-					=&\int_{B^c}|g_\epsilon-h_\epsilon|\dd{\lambda_n}+\int_{B}|
-				\end{align*}
-				\begin{align*}
-					\|f-h_\epsilon\|=&\|f-g_\epsilon+g_\epsilon-h_\epsilon\|\\
-					\le&\|f-g_\epsilon\|+\|g_\epsilon-h_\epsilon\|
-				\end{align*}
-		\end{enumerate}
-	\end{tcolorbox}
-	Wir definieren außerdem $f_{\epsilon,h}=f_\epsilon(x+h)$, was auch messbar und einfach ist. Aus Bewegungsinvarianz gilt
+	Dann beweisen wir die Behauptung für stetige Funktionen mit kompaktem Träger, also sei $f$ eine solche Abbildung. Weil $f$ stetig auf einer kompakten Menge ist, ist $f$ gleichmäßig stetig. Sei $A$ der Träger von $f$. Sei $\epsilon>0$ gegeben. Dann gibt es ein $\delta<0$, so dass $|x-y|<\delta\implies |f(x)-f(y)|<\epsilon$. Daraus folgt:
+	\[
+		\|f-f_h\|_{\mathcal{L}^1(\lambda_n)}\le \int \epsilon\dd{\lambda_n}=\epsilon\lambda_n(A)
+	.\] 
+	Weil $A$ kompakt ist, hat $A$ endliches Maß. Die Behauptung folgt.
+
+	Jetzt sind wir fertig, die Behauptung f\"{u}r beliebiges $f$ zu beweisen. Wir definieren außerdem $f_{\epsilon,h}=f_\epsilon(x+h)$, was auch messbar, stetig und mit kompaktem Support ist. Aus Bewegungsinvarianz gilt
 \[
 	\|f_h-f_{\epsilon,h}\|_{\mathcal{L}^1(\lambda_n)}=\|f-f_\epsilon\|_{\mathcal{L}^1(\lambda_n)}<\epsilon
 .\] 
@@ -233,8 +201,8 @@ also $f_h\in \mathcal{L}^1(\lambda_n)$.
 		\le&\epsilon + \|f_\epsilon-f_{\epsilon,h}+f_{\epsilon,h}-f_h\|_{\mathcal{L}^1(\lambda_n)}\\
 		\le&\epsilon+\|f_\epsilon-f_{\epsilon,h}\|_{\mathcal{L}^1(\lambda_n)}+\|f_{\epsilon,h}-f_h\|_{\mathcal{L}^1(\lambda_n)}\\
 		\le&2\epsilon+\|f_\epsilon-f_{\epsilon,h}\|_{\mathcal{L}^1(\lambda_n)}\\
-		\le&3\epsilon
+		\le&3\epsilon\qquad |h|<\delta
 	\end{align*}
-	wobei im letzten Schritt wir die vorherigen Gezeigten benutzt haben, um $h$ hinreichend klein zu wählen, damit $\|f_\epsilon-f_{\epsilon,h}\|_{\mathcal{L}^1(\lambda_n)}<\epsilon$.\qedhere
+	wobei im letzten Schritt wir die vorherigen Gezeigten benutzt haben, um $\delta$ hinreichend klein zu wählen, damit $\|f_\epsilon-f_{\epsilon,h}\|_{\mathcal{L}^1(\lambda_n)}<\epsilon$ f\"{u}r alle $|h|<\delta$.\qedhere
 	\end{parts}
 \end{proof}

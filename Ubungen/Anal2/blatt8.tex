@@ -1,0 +1,165 @@
+\begin{Problem}
+	Untersuchen Sie die folgenden Abbildungen auf Stetigkeit:
+	\begin{parts}
+		\item $f(x,y)=\begin{cases}
+				\frac{xy^2}{x^2+y^4} & (x,y)\neq (0,0)\\
+				0 & \text{sonst.}
+		\end{cases}$ 
+	\item $g:(\mathcal{C}^1((a,b)),\|\cdot\|_\infty)\to (\mathcal{C}(a,b)),\|\cdot\|_\infty)$ mit
+		\[
+		g(u(x)):=u'(x)
+		.\] 
+	\item Eine beliebige Funktion $h:(X,d_{disk})\to (Y,d)$, wobei $d_{disk}$ die diskrete Metrik und $(Y,d)$ ein beliebiger metrischer Raum ist.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Nicht stetig. Wir betrachten eine Folge $(y_n), y_n\in \R, y_n\searrow 0$ und die Folge $(1,y_n)\in \R^2$. Dann ist $(1,y_n)\to (1,0)$ und
+	\[
+	f(1,0)=0
+	.\] 
+	Aber
+	\begin{align*}
+		f(1,y_n)&=\frac{y_n^2}{1+y_n^4}\\
+			&=\frac{1}{y_n^{-2}+y_n^2}\\
+			&\ge \frac{1}{y^{2}_n}=y^{-2}_n
+	\end{align*}
+	und
+	\[
+		\lim_{n \to \infty} f(1,y_n)\ge \lim_{n \to \infty} y_n^{-2}=\infty\neq 0
+	.\]
+\item Nicht stetig. Sei $f_n$ die Funktionfolge
+	\[
+	f_n(x)=\frac{1}{\sqrt{n} }\exp(-nx^2)
+	.\] 
+	Weil $\exp(-nx^2)\le 1~\forall n\in \N,x\in \R$ konvergiert $f_n\to 0$ mit Ableitung $0'=0$. 
+
+	Aber
+	\[
+	f_n'(x)=-2x\sqrt{n}\exp(-nx^2)
+	.\] 
+	Wir berechnen das Maximumpunkt:
+	\[
+	f_n''(x)=2\sqrt{n} \exp(-nx^2)(2nx^2-1)=0
+\]
+also $x^2=\frac{1}{2n}$ und
+\[
+f_n'\left( \sqrt{\frac{1}{2n}}  \right) =-\sqrt{\frac{2}{e}} 
+.\] 
+Daraus folgt, dass $g(f_n)$ keine konvergente Folge ist, obwohl $f_n$ eine konvergente Folge ist, also $g$ kann nicht stetig sein.
+\item Wir brauchen hier: Alle Mengen sind bzgl. der diskreten Metrik offen. Wegen $\{x_0\} =B_{1 / 2}(x_0)$ sind alle Punktmengen in der Topologie. Weil beliebige Vereinigungen von offene Mengen auch offen sind, sind alle Mengen in der Topologie, also die Topologie ist einfach die Potenzmenge.
+
+	Sei $U\subseteq Y$ offen. $h^{-1}(U)\subseteq X$, aber wir haben schon gezeigt, dass alle Teilmengen offen sind, also $h^{-1}(U)$ ist offen. Daraus folgt: $h$ ist stetig.\qedhere
+\end{parts}
+\end{proof}
+\begin{Problem}
+	Untersuchen Sie die folgenden metrischen Räume auf Vollständigkeit:
+	\begin{parts}
+	\item $(X,d)$, wobei $X\neq \varnothing$ und $d$ die diskrete Metrik darstellt.
+	\item $(\mathcal{P},\|\cdot\|_\infty)$.
+	\item $(\mathcal{C},\|\cdot\|_p)$ f\"{u}r $1\le p < \infty$.
+
+		{\footnotesize Hinweis: Finden Sie stetige Funktionen, welche eine Treppenfunktion approximieren.}  
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Vollständig. Sei $(a_n),a_n\in X$ eine Cauchy-folge, also es gibt $N\in \N$, so dass $|a_n-a_m|<1 / 2~\forall n,m>N$. Aus der Definition folgt, dass $a_n=a_m~\forall n,m>N$. Dann ist $a_n,~n>N$ (egal welche N) der Grenzwert, weil $a_n$ nach $N$ eine konstante Folge ist.
+	\item Vollständig. (Hier ist es angenommen, dass $\mathcal{P}$ die Menge der Polynome ist). 
+
+		Sei $p,q$ Polynome. Dann ist $p-q$ ein Polynom. Alle Polynome sind bei $\pm\infty$ divergent, also $\|p-q\|=\infty$. Daraus folgt, dass wenn $(a_n),a_n\in \mathcal{P}$ eine Cauchy-folge ist, ist $(a_n)$ nach einer Zahl eine konstante Folge, also es konvergiert gegen ein Polynom (das Konstant).
+	\item Nicht vollständig. Wir betrachten die Funktionfolge $f_n:[=1,1]\to \R$
+		\[
+		f_n=\begin{cases}
+			-1 & -1 \le x \le - 1 / n\\
+			n x & - 1 / n\le x \le 1 / n\\
+			1 & 1 / n \le x \le 1
+		\end{cases}
+		.\] 
+		Sei $x>0$. Es gibt dann $N\in \N$, so dass $1 / N < x$. Dann ist $f_n(x)=1$ f\"{u}r alle $n\ge N$, also $f_n(x)\to 1$. Ähnlich ist $f_n(x)\to -1$ f\"{u}r alle $x<0$. Außerdem ist $f_n(0)=0$ f\"{u}r alle $n\in \N$ (eine konstante Folge), also $f_n(0)\to 0$. Dann ist die Grenzfunktion
+		\[
+		f=\begin{cases}
+			-1 & 1 \le x < 0\\
+			0 & x = 0\\
+			1 & 0 < x \le 1
+		\end{cases}
+		\]
+		was offenbar nicht stetig ist. Es bleibt zu zeigen: Die Folge ist eine Cauchyfolge. Wir betrachten $n,m\in \N$ mit $M=\text{min}(n,m)$. Dann ist
+		\begin{align*}
+			\|f_n-f_m\|=&\int_{-1}^1 |f_n-f_m|\dd{x}\\
+			=&\left[\int_{-1}^{-1 / M}|f_n-f_m|^p\dd{x}\right]^{1 / p}+\left[\int_{-1 / M}^{1 / M}|f_n-f_m|^p\dd{X}\right]^{1 / p}\\
+			 &+\left[\int_{1 / M}^1 |f_n-f_m|^p\dd{x}\right]^{1 / p}\\
+			=&\left[\int_{-1 / M}^{1 / M}|f_n-f_m|^p\dd{x}\right]^{1 / p}\\
+			\le&\left[ \int_{-1 / M}^{1 / M}2^p\dd{x} \right] ^{1 / p}\\
+			=&2\left( \frac{2}{M} \right)^{1 / p}\\
+			\to& 0 \qquad M\to \infty
+		\end{align*}
+		also die Folge ist eine Cauchyfolge.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+Wir beweisen den Existenz- und Eindeutigkeitssatz von Picard-Lindelöf für Anfangswertprobleme. Er besagt (vereinfacht): Ist $f:\R\to \R$ Lipschitz-stetig (mit Konstante $L$), so besitzt die Gleichung
+\begin{equation}\label{eq:anal2blatt8-1}
+	x'(t)=f(x(t)),\qquad x(a)=x_0,\qquad\forall t\in [a,b]
+\end{equation}
+	f\"{u}r jedes $b>a$ eine eindeutige Lösung (dies ist eine Differentialgleichung, die Lösung ist also eine Funktion $x:[a,b]\to \R$, welche stetig differenzierbar ist). Gehen Sie wie folgt vor:
+	\begin{parts}
+	\item Es sei
+		\begin{equation}\label{eq:anal2blatt8-2}
+			x(t)=x_0+\int_a^t f(x(s))\dd{s},\qquad\forall t\in [a,b].
+		\end{equation}
+		Zeigen Sie f\"{u}r $x\in \mathcal{C}^1([a,b])$:
+		\[
+			\text{x erf\"{u}llt \eqref{eq:anal2blatt8-1}}\iff\text{x erf\"{u}llt \eqref{eq:anal2blatt8-2}}
+		.\] 
+	\item Beweisen Sie, dass die Abbildung $F:(\mathcal{C}([a,b]),\|\cdot\|_\infty)\to (\mathcal{C}([a,b]),\|\cdot\|_\infty)$ definiert durch
+		\[
+			F(y(t))=y_0+\int_a^t f(y(s))\dd{s}\] eine Lipschitz-stetige Selbstabbildung ist mit Lipschitz-Konstante $L(b-a)$ ist.
+		\item Folgern Sie mithilfe des Banachschen Fixpunktsatzes die Existenz einer eindeutigen Lösung zu \eqref{eq:anal2blatt8-1}, in dem Sie zunächst $b-a$ klein genug wählen. Anschließend iterieren Sie das Argument endliche Male (warum?), um eine Lösung für ein beliebiges $b>a$ zu konstuieren. Begründen Sie außerdem, warum die Lösung $x\in \mathcal{C}^1([a,b])$ erfüllt. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	Keine Zeit T\_T
+\end{proof}
+\begin{Problem}
+	Zur Wiederholung: Der Rang $\partial A$ einer Menge $A\subset X$ ist definiert als die Menge der Punkte in $X$, welche sowohl Berührpunkte von $A$ als auch $A^c$ sind.
+
+	Es seien $(X,d)$ ein metrischer Raum, $x_0\in X$ und $r>0$. Zeigen Sie, dass f\"{u}r $B_r(x_0):=\{x\in X:d(x,x_0)<r\} $ die folgenden Relationen gelten:
+	\begin{align*}
+		\partial B_r(x_0)\subset S_r(x_0)&:=\{x\in X:d(x,x_0)=r\} \\
+		B_r(x_0)^{cl}\subset K_r(x_0)&:=\{x\in X:d(x,x_0)\le r\} .
+	\end{align*}
+Beweisen oder widerlegen Sie: Es gelten auch die umgekehrten Inklusionen.
+\end{Problem}
+\begin{proof}
+Sei $x\in X, d(x,x_0)>r$. Sei $\epsilon = (d(x,x_0) - r) / 2$. Wir behaupten, dass $B_\epsilon(x)\cap B_r(x_0)=\varnothing$. Sei $y\in B_r(x_0)$. Es folgt aus der Dreiecksungleichung: 
+\begin{align*}
+	d(x,x_0)\le& d(x_0,y)+d(y,x)\\
+	d(y,x)\ge& d(x,x_0)-d(x_0,y)\\
+	\ge& d(x,x_0)-r\\
+	=& 2\epsilon
+\end{align*}
+also $x$ ist kein Berührpunkt von $B_r(x_0)$ und
+\[
+	B_r(x_0)^{cl}\subset K_r(x_0) 
+.\]
+Jetzt sei $x\in B_r(x_0)$. Es gilt $B_r(x_0)^c=\{x\in X:d(x,x_0)>r\} $. Sei noch einmal $\epsilon=\frac{r - d(x,x_0)}{2}$. Wir zeigen: $x$ ist kein Berührspunkt von $B_r(x_0)^c$, also $B_\epsilon(x)\cap B_r(x_0)^c=\varnothing$. Sei $y\in B_r(x_0)^c$. Es gilt
+\begin{align*}
+	d(x_0,y)\le& d(x_0,x)+d(x,y)\\
+	d(y,x)\ge& d(y,x_0)-d(x_0,x)\\
+	\ge& r-d(x_0,x)\\
+	=& 2\epsilon
+\end{align*}
+also alle solche Punkte sind keine Berührspunkte von $B_r(x_0)^c$ und es folgt daraus:
+\[
+\partial B_r(x_0)\subset S_r(x_0)
+.\] 
+Die Umkehrrichtung ist falsch. Sei $X=\{a,b\} $ und die Metrik definiert:
+\[
+d(x,y)=\begin{cases}
+	1 & (x,y)=(a,b)\text{ oder }(x,y)=(b,a)\\
+	0 & \text{sonst}.
+\end{cases}
+.\] 
+Wir betrachten $B_1(a) =\{a\} $. Dann ist $b$ kein Berührspunkt von $B_1(a)$, weil $B_1(b)=\{b\} $ und $\{b\} \cap \{a\} =\varnothing$. Dann ist $b$ in weder $\partial B_r(x_0)$ noch $B_r(x_0)^{cl}$, obwohl $d(a,b)=1\le 1$.
+\end{proof}
