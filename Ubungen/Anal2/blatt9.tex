@@ -1,0 +1,69 @@
+\begin{Problem}
+	Sei $M$ eine Menge mit $\# M=\infty$. Ein Menge $A\subset M$ sei als offen definiert, falls $M=\varnothing$ oder $M\backslash A$ endlich ist. Zeigen Sie, dass dies tatsächlich eine Topologie definiert. Ist diese Topologie metrisierbar? 
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}[label=(\roman*)]
+		\item $\varnothing$ ist per Definition offen.
+		\item $M\backslash M=\varnothing$, was endlich ist, also $M$ ist offen. 
+		\item Sei $A_i,i\in I$ offene Mengen. Es gilt
+			\[
+			M\backslash \bigcup_{i\in I} A_i\subseteq M\backslash A_j 
+		\]
+		f\"{u}r alle $j\in I$. Da $M\backslash A_j$ endlich ist, ist auch $\bigcup_{i\in I} A_i$ offen.
+	\item Sei $A_i, i\in \{1,\dots,n\} :=I$ offene Mengen. Es gilt
+		\[
+			M\backslash \bigcap_{i\in I} A_i\subseteq \bigcup_{i \in  I} (M\backslash  A_i)
+		.\] 
+		Weil $I$ endlich ist, und alle Mengen $M\backslash A_i$ endlich sind, ist $\bigcap_{i\in I} A_i$ offen.
+	\end{enumerate}
+	Es ist aber nicht metrisierbar, weil es nicht Hausdorff ist. Sei $x,y\in M,~x\neq y$. Wir nehmen an, dass es offene Mengen $U,V$ gibt, so dass $U\cap V=\varnothing$ und $x\in U,y\in V$. Weil $U\cap V=\varnothing$, ist $V\subseteq M\backslash U$, also $V$ ist endlich. Aber $M\backslash V$ ist dann unendlich, also $V$ ist nicht offen, ein Widerspruch.
+\end{proof}
+\begin{Problem}
+	Zeigen Sie, dass
+	\[
+		M=\left\{ \left( x, \sin\left( \frac{1}{x} \right) \right)^T|x\in (0,1) \right\} \cup \{0\} \times [-1,1]
+	\]
+zusammenhängend, aber nicht wegzusammenhängend in $\R^n$ ist.
+\end{Problem}
+\begin{proof}
+	Sei
+	\begin{align*}
+		M_1=&\left\{ \left.\left( x,\sin\left( \frac{1}{x} \right)\right)^T \right|x\in (0,1)   \right\}\\
+			M_2=& \{0\} \times [-1,1]\
+	\end{align*}
+	$M_1$ und $M_2$ sind offenbar wegzusammenhängend (und daher zusammenhängend). Wir fahren per Widerspruch fort: Nehme an, dass es $U,V$ offen gibt, so dass $U\cup V=M$. Es muss gelten, dass $M_1$ und $M_2$ Teilmengen von entweder $U$ oder $V$ sind, sonst wäre $M_1$ oder $M_2$ nicht zusammenhängend. Die beide müssen in unterschiedliche Mengen sein, also oBdA $M_1\subseteq U$ und $M_2\subseteq V$, sonst wäre die andere Menge leer.
+
+	Wir betrachten $(0,0)\in M_2\subseteq V$. Weil $V$ offen ist, gibt es einen Kugel $B_r((0,0))\subseteq V$. Per Definition von $U$ und $V$ ist $B_r((0,0))\cap M_1=\varnothing$. Wir zeigen, dass dies nicht der Fall ist.
+	
+	Es gilt
+	\[
+	M_1=\left\{\left.\left( \frac{1}{x},\sin x \right)^T\right| x\in (1,\infty) \right\} 
+	.\] 
+	Es gibt $N$, so dass $\frac{1}{N}<r$. Weil $\sin x$ unendlich viele Nullstellen hat, gibt es einen Nullstelle nach $N$, also es gibt ein Punkt $(x,0)\in \R^2$ mit $x<r$, also $(x,0)\in B_r((0,0))$, ein Widerspruch.
+
+	Jetzt zeigen wir: $M$ ist nicht wegzusammenhängend. Wir zeigen, dass es keinen Weg zwischen $M_2$ und $(1,\sin 1)$ gibt. Falls es einen solchen Weg gibt, gibt es $t_1\ge 0$, so dass $\gamma(t)\not\in M_2~\forall t\ge t_1$, also wir nehmen oBdA an, dass $\gamma(0)\in M_2$ und $\gamma(t)\in M_1~\forall t\in (0,1]$. Sei $\gamma(0)=(0,a)$.  
+
+	Weil $\text{im}(\gamma)\subseteq M$, muss dann gelten, dass $\gamma((0,1])=M_1$. Sei $B_r((0,a))$ ein offener Kugel um $(0,a)$ bzw. $\gamma(0)$, mit $r$ hinreichend klein, so dass $|1-a|>r$ oder $|r|<|a|$ gilt (also der Kugel enthält keine Punkte von der Form $(x,1)$ oder $(x,0)$).
+
+	Sei $[0,x)$ ein offener Kugel von $[0,1]$ um $0$. Wie vorher gibt es dann mindestens ein Punkt (eigentlich unendlich viel) $t$, so dass $\gamma(t)=(x,1)$ bzw. $(x,0)$ f\"{u}r $x\in [0,1]$, also $B_x(0)\not\subseteq B_r((0,a))$. Dann kann $K$ nicht wegzusammenhängend sein.
+\end{proof}
+\begin{Problem}
+	Es seien $x_0,x_1\in \R^n$ sowie $r>0$. Wir betrachten die Menge $K:=\{x_0\} \cup K_r(x_1)$ und die konvexe Hülle dieser Menge ist gegeben durch
+	\[
+		\text{conv}K:=\{tx_0+(1-t)x|t\in [0,1],x\in K_r(x_1)\} 
+	.\] 
+	Zeigen Sie, dass $\text{conv}K$ kompakt ist.
+
+	{\footnotesize\emph{Hinweis: Wählen Sie geschickt eine stetige Funktion auf einer kompakten Menge.}} 
+\end{Problem}
+\begin{proof}
+	Wir betrachten $K'\subseteq\R^{2n+1}$ mit
+	 \[
+		 K'=\{(x,x_0,t)|x\in K_r(x_1)\text{ und }t\in [0,1]\} 
+	.\] 
+	Als Produkt kompakte Mengen ist $K'$ kompakt. Sei $f:\R^{2n+1}\to \R^n$ mit
+	\[
+	f(x,x_0,t)=tx_0+(1-t)x
+	.\] 
+	$f$ ist stetig und das Bild von $K'$ ist $K$. Daraus folgt: $K$ ist kompakt.
+\end{proof}
