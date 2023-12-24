@@ -1,4 +1,4 @@
-\begin{Problem}
+\begin{Problem}\label{pr:advanalblatt10-1}
 	Sei $R>0$ und $a<b$. Definiere $Z:=B_R(0)\times (a,b)\subseteq \R^3$, wobei $B_R(0)\subseteq \R^2$ die (offene) Kreisscheibe um $0$ mit Radius $R$ ist. Definiere außerdem die Abbildung
 	\[
 	\Phi:U\to \R^3, \qquad \Phi(r,\varphi,z):=\begin{pmatrix} r\cos\varphi \\ r\sin\varphi \\ z \end{pmatrix} 
@@ -60,7 +60,7 @@ mit $U:=(0,R)\times (0,2\pi)\times (a,b)$.
 	\end{align*}
 	\end{parts}
 \end{proof}
-\begin{Problem}
+\begin{Problem}\label{pr:advanalblatt10-2}
 	Sei $R>0$ und $K:=B_R(0)\subseteq \R^3$. Definiere die Abbildung
 	\[
 	\Phi:U\to \R^3,\qquad\Phi(r,\theta,\varphi):=\begin{pmatrix} r\sin\theta\cos\varphi \\ r\sin\theta\sin\varphi \\ r\cos\theta \end{pmatrix} 
@@ -78,11 +78,11 @@ mit $U:=(0,R)\times (0,\pi)\times(0,2\pi)$.
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Ähnlich ist die Nullmenge $\{(0,0,R),(0,0,-R)\} $. Wir lösen die Gleichungen
+	\item Ähnlich ist die Nullmenge $\{(0,0,R),(0,0,-R),(0,0,0)\} $. Wir lösen die Gleichungen
 		\[
 			\begin{pmatrix} x \\ y \\ z \end{pmatrix} =\begin{pmatrix} r\sin\theta\cos\varphi \\ r\sin\theta\sin\varphi \\ r\cos\theta \end{pmatrix} 
 		\]
-		f\"{u}r $(x,y,z)^T\in B_R(0)$. Ähnlich ist $r=\sqrt{x^2+y^2+z^2}, \tan\theta = (\sqrt{x^2+y^2} ) / z$ und $\tan\varphi=y / x$ eine Lösung, solange $z\neq\pm R$ (sonst wäre $\theta=0$ oder $\pi$, welche nicht in $U$ sind. Als endliche Menge ist $N$ eine Nullmenge.
+		f\"{u}r $(x,y,z)^T\in B_R(0)$. Ähnlich ist $r=\sqrt{x^2+y^2+z^2}, \tan\theta = (\sqrt{x^2+y^2} ) / z$ und $\tan\varphi=y / x$ eine Lösung, solange $z\neq\pm R$ (sonst wäre $\theta=0$ oder $\pi$, welche nicht in $U$ sind. Das Punkt $(0,0,0)$ ist auch ausgeschlossen, weil $r$ nicht null sein darf. Als endliche Menge ist $N$ eine Nullmenge.
 	\item Es gilt
 		\[
 			\Phi'=\begin{pmatrix} \sin\theta\cos\varphi & \sin\theta\sin\varphi & \cos\theta \\ r\cos\theta\cos\varphi & r\cos\theta\sin\varphi & -r\sin\theta \\ -r\sin\theta\sin\varphi & r\sin\theta\cos\varphi & 0 \end{pmatrix} 
@@ -116,3 +116,56 @@ mit $U:=(0,R)\times (0,\pi)\times(0,2\pi)$.
 		\int_{\R^3}\exp(-x^TAx)\dd{\lambda_3}=\frac{\pi^{3 / 2}}{\sqrt{\text{det}(A)} }
 	.\] 
 \end{Problem}
+\begin{proof}
+	Da $A$ symmetrisch ist, ist $A$ orthogonal diagonalisierbar, also $A=P^{-1}DP$ bzw. $A=P^TDP$, wobei $P$ orthogonal ist. Die Matrix $D$ besitzt nur positive Einträge, weil $A$ positiv definit ist. Dann besitzt $A$ (mehr als) eine quadratische Würzel. Sei $A=P^TSSP=P^TS^TSP$, wobei $S^2=D$. 
+
+	Es gilt
+	\[
+	\exp(-x^TAx)=\exp(-x^TP^TS^TSPx)=\exp(-(SPx)^TSPx)
+	.\] 
+	Dann betrachten wir $\Phi:x\to SPx$, was offenbar ein Diffeomorphismus ist, weil es linear ist. Es gilt (Transformationssatz):
+	\begin{align*}
+		\int \exp(-x^Tx)\dd{\lambda_3}=&\int |\text{det}\Phi|\exp(-(SPx)^T(SPx))\dd{\lambda_3}\\
+		=&\int |\text{det}S| |\text{det}P|\exp(-(SPx)^T(SPx))\dd{\lambda_3}\\
+		=&\sqrt{\text{det}A} \int \exp(-(SPx)^T(SPx))\dd{\lambda_3}\addtocounter{equation}{1}\tag{\theequation}\label{eq:advanalblatt10-1}
+	\end{align*}
+	Wobei wir die folgende benutzt haben: Als orthogonale Matrix ist $\text{det}P=1$. Da $S$ eine quadratische Würzel von $A$ ist, ist $(\text{det}S)^2=\text{det}A\ge 0$ und $|\text{det}S|=\sqrt{\text{det}A} $. Es genügt also, $\int \exp(-x^Tx)\dd{\lambda_3}=\int\exp(-(x^2+y^2+z^2))\dd{\lambda_3}$ zu berechnen.
+
+	Wir berechnen das Integral in Kugelkoordinaten. Sei alle Definitionen wie in Aufgabe \ref{pr:advanalblatt10-2} mit $R=\infty$. Hier ist $N=\{0\} $. Es gilt
+	\begin{align*}
+	&\int\exp(-(x^2+y^2+z^2))\dd{\lambda_3}\\
+	&=\int_{R\backslash N}\exp(-(x^2+y^2+z^2))\dd{\lambda_3}\\
+	&=\int_{U} (r^2\sin\theta)\exp(-r^2)\dd{\lambda_3}\\
+	&=\int_{U_\theta}\int_0^\pi r^2\exp(-r^2)\sin\theta\dd{\theta}\dd{\lambda_2}\\
+	&=2\int_{U_\theta}r^2\exp(-r^2)\dd{\lambda_2}\\
+	&=2\int_{(U_\theta)_\varphi}\int_0^{2\pi}r^2\exp(-r^2)\dd{\varphi}\dd{\lambda_1}\\
+	&=4\pi\int_0^\infty r^2\exp(-r^2)\dd{r}\\
+	&=4\pi\left[ \left. -\frac{r}{2}\exp(-r^2)\right|_0^\infty+\frac{1}{2}\int_0^\infty \exp(-r^2)\dd{r} \right]\\
+	&=2\pi\int_0^\infty \exp(-r^2)\dd{r}\addtocounter{equation}{1}\tag{\theequation}\label{eq:advanalblatt10-2}
+	\end{align*}
+	Jetzt berechnen wir:
+	\begin{align*}
+		\left( \int_0^\infty \exp(-r^2)\dd{r} \right)^2=& \left( \int_0^\infty \exp(-x^2)\dd{x} \right) \left( \int_0^\infty \exp(-y^2)\dd{y} \right) \\
+		=&\int_0^\infty \int_0^\infty \exp(-(x^2+y^2))\dd{y}\dd{z}\\
+		=&\int_{\R^2}\exp(-(x^2+y^2))\dd{\lambda_2} \\ &\text{Satz von Fubini}\\
+		=&\int_{(0,\infty)\times(0,\pi / 2)}r\exp(-r^2)\dd{\lambda_2} \\ &\text{Folgerung 2.121 (Polarkoordinaten)}\\
+		=&\int_0^\infty\int_0^{\pi /2}r\exp(-r^2)\dd{\phi}\dd{r}\\
+		=&\frac{\pi}{2}\int_0^\infty r\exp(-r^2)\dd{r}\\
+		=&\frac{\pi}{4}\int_0^\infty \exp(-u)\dd{u} \\
+		 & u=r^2\text{ ist Diffeomorphismus mit Ableitung }2r\\
+		=&\left.-\frac{\pi}{4}\exp(-u)\right|_0^\infty\\
+			=&\frac{\pi}{4}
+	\end{align*}
+	Da $\exp(-r^2)$ immer positiv ist, ist auch $\int_0^\infty \exp(-r^2)\dd{r}$ positiv, also wir nehmen das positive Würzel:
+	\[
+		\int_0^\infty\exp(-r^2)\dd{r}=\frac{\sqrt{\pi}}{2}
+	.\] 
+	Durch Einsetzen in alle den vorherigen Gleichungen erhalten wir
+	\begin{equation}
+		\int_{\R^3}\exp(-x^Tx)\dd{\lambda_3}=\pi^{3 / 2}\tag{\ref{eq:advanalblatt10-2}}
+	\end{equation}
+	und
+	\begin{equation}
+		\int_{\R^3}\exp(-x^TAx)=\frac{\pi^{3 / 2}}{\sqrt{\text{det} A} }\tag{\ref{eq:advanalblatt10-1}}
+	\end{equation}
+\end{proof}

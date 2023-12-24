@@ -49,11 +49,23 @@
 \begin{Problem}
 Von der endlichen Gruppe $G$ sei bekannt, dass sie nicht abelsch ist und zu jedem positiven Teiler $t$ von $|G|$ mindestens eine Untergruppe der Ordnung $t$ besitzt. Zeigen Sie, dass $G$ nicht einfach ist. (Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt, und $U$ eine Untergruppe von $G$ vom Index $p$. Lassen Sie $G$ auf den Nebenklassen von $U$ operieren und betrachten Sie den Kern des zugehörigen Homomorphismus.)	
 \end{Problem}
-
+\begin{proof}
+	Wie im Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt und $U$ eine Untergruppe von $G$ vom Index $p$. $G$ operiere auf den Linksnebenklassen von $U$ operieren. Sei $xU$ eine beliebige Linksnebenklasse von $U$. Ein Element $g\in G$ liegt im Kern des Homomorphismus genau dann, wenn $gxU=xU~\forall x\in G$. Dann wäre $x^{-1}gxU=U$ oder $x^{-1}gx\in U~\forall x\in G$.
+\end{proof}
 \begin{Problem}
 Benutzen Sie die Beweisidee aus Korollar 2.79, um folgende Aussage zu zeigen: Seien $p$ eine Primzahl, $n \in \N^*$, $G$ eine Gruppe der Ordnung $p^n$ und $\{e\} < N \trianglelefteq G$ ein nicht-trivialer Normalteiler von G. Dann gilt $|Z(G) \cap N| > 1$.	
 \end{Problem}
-
+\begin{proof}
+	Als Normalteiler (insbesondere Untergruppe) teilt der Ordnung von $N$ den Ordnung von $G$, also $|N|=p^m,~0<m\le n$. $0$ ist ausgeschlossen, weil $N$ nicht trivial ist. Dann ist $p$ ein Teiler von $|N|$. Wir schreiben noch einmal die Klassengleichung:
+	\[
+	|G|=|Z(G)|+\sum_{i=1}^r [G:C_G(x_i)]
+	.\] 
+	Als Normalteiler ist $N$ per Definition eine Vereinigung von Konjugationsklassen, sonst wäre $N$ unter Konjugation nicht abgeschlossen. Eine solche Konjukationsklasse ist $\{e\} $, weil $N$ eine Untergruppe ist. Der Ordnung von Konjugationsklassen sind Teiler von $p^n$, also Potenzen von $p$. Dann ist der Ordnung von $N$ eine Summe
+	\[
+		|N|=\sum_{m=1}^k [G:G_m]=1+p^{m_1}+p^{m_2}+\dots+p^{m_k}
+	.\] 
+	Es ist nicht möglich, dass alle $m_1,\dots, m_k>0$ sind, weil dann $p$ ein Teiler von alle $p^{m_i}$ und $|N|$ wäre, jedoch kein Teiler von $1$ und daher kein Teiler von die rechte Seite. Dann muss es f\"{u}r eine $m_i$ gelten, dass $m_i=0$. Dann enthält $N$ Konjugationsklassen der größe $1$ bzw. Elememente im Zentrum, die nicht $e$ sind, also $N\cap Z(G)\neq \{e\} $.
+\end{proof}
 \begin{Problem}
 	Die Gruppe $G$ operiere auf einer Menge $M$. Sei $\Phi:G\to \text{Sym}(M)$ der zugehörige Homomorphismus und $K$ sein Kern. Zeigen Sie, dass durch die Abbildung
 	\[
@@ -61,16 +73,7 @@ G / K \times M \to M,\qquad gK.m:=g.m
 \]
 eine treue Operation von $G / K$ auf $M$ gegeben ist.
 \end{Problem}
-\begin{proof}
-	Wir schreiben noch einmal die Klassengleichung:
-	\[
-		|G|=|Z(G)|+\sum_{i=1}^r [G:C_G(x_i)]
-	.\] 
-	Als Normalteiler ist $N$ eine Vereinigung von Konjugationsklassen. Wir nehmen die solchen Konjugationsklassen raus, und schreibe stattdessen
-	\[
-		|G|=|Z(G)|+[G:N]+\sum_{i=1}^{r'}[G:C_G(x_i)]
-	.\] 
-\end{proof}
+
 \begin{proof}
 	Wir zeigen zuerst, dass es wohldefiniert ist. Sei $k_1,k_2\in K$ und $m\in M$. Es gilt
 	\begin{align*}
