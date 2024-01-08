@@ -1,0 +1,410 @@
+\begin{Problem}
+	Die Fibonacci-Folge ist definiert durch $f_0 := 0, f_1 := 1 und f_{n+1} = f_n + f_{n-1}$ für alle $n \in \N$. Zeigen Sie: F\"{u}r alle $n\in \N$ gilt
+	\[
+		\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^n \begin{pmatrix} 0 \\ 1 \end{pmatrix} =\begin{pmatrix} f_n \\ f_{n+1} \end{pmatrix} 
+	.\]
+\end{Problem}
+
+\begin{proof}
+	Per Definition gilt
+	\[
+		\begin{pmatrix} f_n \\ f_{n+1} \end{pmatrix} =\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} f_{n-1} \\ f_n \end{pmatrix} 
+	.\] 
+	Dann beweisen wir die Behauptung per Induktion. Weil $M^0=E_2$ f\"{u}r alle 2x2 Matrizen, gilt die Behauptung f\"{u}r $n=0$. Jetzt nehmen wir an, dass es f\"{u}r beliebiges $n\in \N$ gilt. Es folgt:
+	\begin{align*}
+		\begin{pmatrix} f_{n+1} \\ f_{n+2} \end{pmatrix} =& \begin{pmatrix} 0 & 1 \\ 1 & 1  \end{pmatrix} \begin{pmatrix} f_{n} \\ f_{n+1} \end{pmatrix} \\
+		=& \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^n \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+		=& \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}^{n+1}\begin{pmatrix} 0 \\ 1 \end{pmatrix} 
+	\end{align*}
+	Die Behauptung f\"{u}r alle $n\in \N$ folgt.
+\end{proof}
+
+\begin{Problem}
+	Es sei $A\in K^{n\times n}$ eine Matrix mit $A^m=0$. Zeigen Sie: Dann gilt $(E_n-A)(E_n+A+A^2+\dots + A^{m-1})=E_n$.
+\end{Problem}
+
+\begin{proof}
+	Es gilt
+	\begin{align*}
+		(E_n-A)(E_n+A+\dots +A^{m-1})=&E_n+A+\dots + A^{m-1}\\
+					      &-A - A^2-\dots - \cancelto{0}{A^m}\\
+		=& E_n.\qedhere
+	\end{align*}
+\end{proof}
+
+\begin{Problem}
+Entscheiden Sie jeweils, ob es eine lineare Abbildung $\R^2 \to \R^2$ gibt, die die gegebenen Eigenschaften erfüllt. Entscheiden Sie zudem, ob diese eindeutig ist. Falls es genau eine solche Abbildung gibt, skizzieren Sie das Bild des Quadrates mit den Eckpunkten $P=(0,0),Q=(1,0),R=(1,1),S=(0,1)$ unter dieser Abbildung in einem geeigneten Koordinatensystem. Sie müssen Ihre Skizze nicht begründen.   
+\begin{parts}
+	\item $fro$ mit $fro((1,0))=(1,0)$ und $fro((0,1))=(1,1)$.
+	\item $pa$ mit $pa((3,6))=(1,1),pa((4,7))=(3,4)$ und $pa((7,13))=(9, 3 / 4)$.
+	\item $hewe$ mit $hewe((1,3))=(2,6),hewe((2,3))=(8,12)$ und $hewe((3,6))=(10,18)$.
+	\item $ihn$ mit $ihn((2,4))=(6,16)$ und $ihn((-1,2))=(-3,4)$.
+	\item $un$ mit $un((2,3))=(3,4)$ und $un((4,6))=(6,8)$.
+	\item $ach$ mit $ach((1,0))=(1,0)$ und $ach(3 / 5, - 1 / 5)=(12 / 25, -4 / 25)$.
+	\item $ten$ mit $ten((2,4))=(1,2)$ und $ten((1,1))=(2,4)$
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es existiert und ist eindeutig. 
+		\begin{center}
+			\begin{tikzpicture}[scale=0.5]
+				\draw[ultra thick, ->] (-5,0) -- (5,0);
+				\draw[ultra thick,->] (0,-5) -- (0,5);
+				\foreach \x in {-5,-4,...,4}{
+					\foreach \y in {-5,-4,..., 4}{
+						\draw[thick] ({\x*1+\y*1,\y*1}) -- ++(1,1);
+						\draw[thick] ({\x*1+\y*1,\y*1}) -- ++(1,0);
+					}
+				}
+				\draw[thick] (0,5) -- (10,5);
+				\draw[thick] (0,-5) -- (10,5);
+				\fill[red] (0,0) circle (3pt);
+				\draw (0,0) node[anchor=north east] {$P$};
+				\fill[red] (1,0) circle (3pt);
+				\draw (1,0) node[anchor=north] {$Q$};
+				\fill[red] (1,1) circle (3pt);
+					\draw (1,1) node[anchor=south] {$S$};
+					\fill[red] (2,1) circle (3pt);
+					\draw (2,1) node[anchor=north] {$R$};
+			\end{tikzpicture}
+		\end{center}
+	\item Existiert nicht, weil
+		\begin{align*}
+			pa((3,6))=&(1,1)\\
+			pa((4,7))=&(3,4)\\
+			pa((3,6)+(4,7))=&pa((7,13))\\
+			=&(9, 3 / 4)\\
+			\neq& (1,1)+(3,4)\\
+			=&pa((3,6))+pa((4,7))
+		\end{align*}
+	\item Existiert und ist eindeutig
+		\begin{center}
+\begin{tikzpicture}
+	\begin{axis}[grid=both,ymin=-15,ymax=15,xmax=15,xmin=-15,xticklabels=\empty,yticklabel=\empty, xtick = {-15,-14,..., 15}, ytick = {-15,-14,..., 15},
+               minor tick num=0,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
+               {at={(ticklabel cs:1.1)}}]
+	       \foreach \xValue in {-5.00,-4.00, ..., 5.00}{
+\foreach \yValue in {-20.00,-19.00,...,20.00} {
+	\edef\temp{\noexpand\draw [thick,blue] (axis cs:{\xValue*6-\yValue*4/3},{6*\xValue}) -- ++(axis cs:6,6);}
+		\edef\tempt{\noexpand\draw [thick,blue] (axis cs:{\xValue*6-\yValue*4/3},{6*\xValue}) -- (axis cs:{\xValue*6-\yValue*4/3-4/3},{6*\xValue});}
+    \temp
+    \tempt
+}
+}
+\fill[red] (axis cs:0,0) circle (1pt);
+\draw (axis cs:0,0) node[anchor=north,red] {$P$};
+\fill[red] (axis cs:6,6) circle (1pt);
+\draw (axis cs:6,6) node[anchor=south,red] {$Q$};
+\fill[red] (axis cs:{-4/3},0) circle (1pt);
+\draw (axis cs:{6-4/3},6) node[anchor=east,red] {$R$};
+\draw (axis cs:{-4/3},0) node[anchor=east,red] {$S$};
+\fill[red] (axis cs:{6-4/3},6) circle (1pt);
+  \end{axis}
+\end{tikzpicture}
+		\end{center}
+	\item Existiert und ist eindeutig.
+			\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[grid=both,ymin=-10,ymax=10,xmax=10,xmin=-10,xticklabels=\empty,yticklabel=\empty, xtick = {-10,-9,..., 10}, ytick = {-10,-9,..., 10},
+				minor tick num=0,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
+				{at={(ticklabel cs:1.1)}}]
+				\foreach \xValue in {-5.00,-4.00, ..., 5.00}{
+					\foreach \yValue in {-20.00,-19.00,...,20.00} {
+						\edef\temp{\noexpand\draw [thick,blue] (axis cs:{\xValue*3},{2*\xValue+3*\yValue}) -- (axis cs:{\xValue*3+3},{2*\xValue+3*\yValue+2});}
+						\edef\tempt{\noexpand\draw [thick,blue] (axis cs:{\xValue*3},{2*\xValue+3*\yValue}) -- (axis cs:{\xValue*3},{2*\xValue+3*\yValue+3});}
+						\temp
+						\tempt
+					}
+				}
+				\fill[red] (axis cs:0,0) circle (1pt);
+				\draw (axis cs:0,0) node[anchor=north,red] {$P$};
+				\fill[red] (axis cs:3,2) circle (1pt);
+				\draw (axis cs:3,2) node[anchor=south,red] {$Q$};
+				\fill[red] (axis cs:0,3) circle (1pt);
+				\draw (axis cs:0,3) node[anchor=south,red] {$S$};				
+				\fill[red] (axis cs:3,5) circle (1pt);
+				\draw (axis cs:3,5) node[anchor=south,red] {$R$};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\item Existiert, ist aber nicht eindeutig, weil die Wirkung auf einem 1-Dimensionale Unterraum definiert ist.
+	\item Existiert und ist eindeutig.
+				\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[grid=both,ymin=-5,ymax=5,xmax=5,xmin=-5,xticklabels=\empty,yticklabel=\empty, xtick = {-5,-4,..., 5}, ytick = {-5,-4,..., 5},
+				minor tick num=0,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
+				{at={(ticklabel cs:1.1)}}]
+				\foreach \xValue in {-8.00,-7.00, ..., 8.00}{
+					\foreach \yValue in {-6.00,-5.00,...,6.00} {
+						\edef\temp{\noexpand\draw [thick,blue] (axis cs:{\xValue+\yValue*3/5},{\yValue*4/5}) -- (axis cs:{\xValue+\yValue*3/5+1},{\yValue*4/5}) ;}
+						\edef\tempt{\noexpand\draw [thick,blue] (axis cs:{\xValue+\yValue*3/5},{\yValue*4/5}) -- (axis cs:{\xValue+\yValue*3/5+3/5},{\yValue*4/5+4/5}) ;}
+						\temp
+						\tempt
+					}
+				}
+				\fill[red] (axis cs:0,0) circle (1pt);
+				\draw (axis cs:0,0) node[anchor=south,red] {$P$};
+				\fill[red] (axis cs:1,0) circle (1pt);
+				\draw (axis cs:1,0) node[anchor=south,red] {$Q$};
+				\fill[red] (axis cs:{3/5,4/5}) circle (1pt);
+				\draw (axis cs:{3/5,4/5}) node[anchor=south,red] {$S$};				
+				\fill[red] (axis cs:{8/5,4/5}) circle (1pt);
+				\draw (axis cs:{8/5,4/5}) node[anchor=south,red] {$R$};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\item Existiert und ist eindeutig
+					\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[grid=both,ymin=-15,ymax=15,xmax=15,xmin=-15,xticklabels=\empty,yticklabel=\empty, xtick = {-15,-14,..., 15}, ytick = {-15,-14,..., 15},
+				minor tick num=0,axis lines = middle,xlabel=$x$,ylabel=$y$,label style =
+				{at={(ticklabel cs:1.1)}}]
+				\draw[thick,blue] (axis cs:-7,-14) -- (axis cs:7,14);
+				\fill[red] (axis cs:0,0) circle (1pt);
+\draw (axis cs:0,0) node[anchor=south,red] {$P$};
+\fill[red] (axis cs:3.5,7) circle (1pt);
+\draw (axis cs:3.5,7) node[anchor=south,red] {$Q$};
+\fill[red] (axis cs:{-3/2,-3}) circle (1pt);
+\draw (axis cs:{-3/2,-3}) node[anchor=south,red] {$S$};				
+\fill[red] (axis cs:{2,4}) circle (1pt);
+\draw (axis cs:{2,4}) node[anchor=south,red] {$R$};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	F\"{u}r einen Körper $K$ und zwei quadratische, gleich große Matrizen $A,B\in K^{n\times n}$ definieren wir den Kommutator $[A,B]$ von $A$ und $B$ als $[A,B]:=AB-BA\in K^{n\times n}$.
+	\begin{enumerate}[label=(\alph*)]
+	\item Berechnen Sie $[A,B]$ f\"{u}r $K=\R$, $n=3$ und
+		\[
+			A=\begin{pmatrix} 0 & 2 & 4 \\ 0 & 1 & 2 \\ 0 & 2 & 3 \end{pmatrix} \qquad B=\begin{pmatrix} 3 & 1 & 0 \\ 1 & 2 & 0 \\ 2 & 3 & 0 \end{pmatrix} 
+		.\] 
+	\item Finden Sie ein Beispiel f\"{u}r $A\neq B$ mit $[A,B]=0$, wobei $A$ und $B$ keine skalaren Vielfachen der Einheitsmatrix sein sollen.
+	\end{enumerate}
+	Es definiert also $[\cdot, \cdot]:K^{n\times n}\times K^{n\times n}\to K^{n\times n}$ eine Verknüpfung auf $K^{n\times n}$. Zeigen Sie:
+	\begin{enumerate}[label=(\alph*),resume]
+		\item Die Verknüpfung hat f\"{u}r kein $n\in \N$ ein Linksneutrales, d.h. es existiert f\"{u}r kein $E\in K^{n\times n}$ mit $[E,A]=A$ f\"{u}r alle $A\in K^{n\times n}$.
+		\item Zeigen Sie f\"{u}r die Matrizen $A,B$ aus Teilaufgabe (a) $[[A,B],B]\neq 0$ und folgern Sie: Die Verknüpfung $[\cdot, \cdot]$ ist f\"{u}r $n=3$ nicht assoziativ.
+	\end{enumerate}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+		\item Es gilt
+		\begin{align*}
+			AB=&\left(
+			\begin{array}{ccc}
+				10 & 16 & 0 \\
+				5 & 8 & 0 \\
+				8 & 13 & 0 \\
+			\end{array}
+			\right)\\
+			BA=& \left(
+			\begin{array}{ccc}
+				0 & 7 & 14 \\
+				0 & 4 & 8 \\
+				0 & 7 & 14 \\
+			\end{array}
+			\right)\\
+			[A,B]=&\left(
+			\begin{array}{ccc}
+				10 & 9 & -14 \\
+				5 & 4 & -8 \\
+				8 & 6 & -14 \\
+			\end{array}
+			\right)
+		\end{align*}
+		\item Irgendeine skalare Vielfache gilt: Wenn $A=kB$, ist $AB=kB^2=BA$ und $AB-BA=0$. Ein konkretes Beispiel ist
+		\[A=\begin{pmatrix}1 & 0 \\ 0 & 0\end{pmatrix}\qquad B=\begin{pmatrix}2 & 0 \\ 0 & 0\end{pmatrix}\]
+		\item Sei $A=E_n$. F\"{u}r alle Matrizen $E\in K^{n\times n}$ gilt:
+		\begin{align*}
+			[E,E_n]=& EE_n - E_nE\\
+			=& E - E = 0\neq E_n
+		\end{align*}
+		\item Es gilt
+		\begin{align*}
+		[A,B]B=& \left(
+		\begin{array}{ccc}
+			11 & -14 & 0 \\
+			3 & -11 & 0 \\
+			2 & -22 & 0 \\
+		\end{array}
+		\right)\\
+		B[A,B]=& \left(
+		\begin{array}{ccc}
+			35 & 31 & -50 \\
+			20 & 17 & -30 \\
+			35 & 30 & -52 \\
+		\end{array}
+		\right)
+		\end{align*}
+		Jetzt ist es klar, dass $[[A,B],B]\neq 0$, weil die Matrizen ungleich sind.
+		
+		Aber $[A,[B,B]]=0$, weil $[B,B]=B^2-B^2=0$.\qedhere 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Sind $v_1,\dots, v_n$ linear unabhängige Vektoren in $\R^m$, dann nennen wir
+	\[P (v_1 ,\dots , v_n ) = \{\lambda_1 v_1 + \dots + \lambda_n v_n |\forall i \in \{1, \dots , n\} : 0 \le \lambda_i \le 1\}\]
+	das von $v_1 , .  , v_n$ aufgespannte $n$-Parallelotop.
+	\begin{parts}
+		\item Zeigen Sie: Jedes Rechteck $[0, a] \times [0, b] = \{(x, y) \in \R^2|0 \le x \le a, 0 \le y \le b\}$ ist ein 2-Parallelotop und jeder Quader $[0, a] \times [0, b] \times [0, c] = \{(x, y, z) \in \R^3 |0 \le x \le a, 0 \le y \le b, 0 \le z \le c\}$ ist ein 3-Parallelotop.
+		\item Es sei $L:\R^3\to \R^3$ gegeben durch die Matrix
+		\[\begin{pmatrix}
+			1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 2
+		\end{pmatrix}.\]
+		Skizzieren Sie $L([0, 2] \times [0, 3] \times [0, 1])$ in einem geeigneten Koordinatensystem. Eine Begründung ist nicht erforderlich.
+		\item Zeigen Sie: Ist $\phi : \R^m \to \R^m$ eine bijektive lineare Abbildung und $P (v_1 , \dots , v_n )$ ein $n$-Parallelotop, dann ist $\phi(P (v_1 , \dots , v_n )) = P (\phi(v_1), \dots , \phi(v_n ))$ und dies ist ein $n$-Parallelotop.
+		\item Es sei $p : \R^3 \to \R^2$ mit $p(x, y, z) = (x, y)$. Bestimmen und skizzieren Sie $p(P ((1, 0, 0), (0, 1, 0), (2, 2, 1)))$. Begründen Sie, dass dies kein Parallelotop ist.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Per Definition ist $[0,1]\times [0,1]=P((a,0),(0,1))$ und  $[0,a]\times [0,b]\times [0,c]=P((a,0,0),(0,b,0),(0,0,c))$.
+	\item \noindent \\
+\tdplotsetmaincoords{60}{125}
+\begin{center}
+\begin{tikzpicture}
+		[tdplot_main_coords,
+			cube/.style={very thick,black},
+			grid/.style={very thin,gray},
+			axis/.style={->,blue,thick}]
+
+	%draw a grid in the x-y plane
+	\foreach \x in {-0.5,0,...,5.5}
+		\foreach \y in {-0.5,0,...,5.5}
+		{
+			\draw[grid] (\x,-0.5) -- (\x,5.5);
+			\draw[grid] (-0.5,\y) -- (5.5,\y);
+		}
+			
+
+	%draw the axes
+	\draw[axis] (0,0,0) -- (6,0,0) node[anchor=west]{$x$};
+	\draw[axis] (0,0,0) -- (0,6,0) node[anchor=west]{$y$};
+	\draw[axis] (0,0,0) -- (0,0,3) node[anchor=west]{$z$};
+
+	%draw the top and bottom of the cube
+	\draw[thick] (0,0,0) -- (2,0,0) -- (5,3,0) -- (3,3,0) -- cycle;
+	\draw[thick] (0,0,2) -- (2,0,2) -- (5,3,2) -- (3,3,2) -- cycle;
+	
+	%draw the edges of the cube
+	\draw[thick] (0,0,0) -- (0,0,2);
+	\draw[thick] (2,0,0) -- (2,0,2);
+	\draw[thick] (3,3,0) -- (3,3,2);
+	\draw[thick] (5,3,0) -- (5,3,2);
+\end{tikzpicture}
+\end{center}
+	\item Es gilt wegen Linearität
+		\[
+			\phi(\lambda_1v_1+\dots+\lambda_n v_n)=\lambda_1\phi(v_1)+\dots+\lambda_n\phi(v_n)
+		,\]
+		also
+		\[
+		\phi(P(v_1,\dots v_n))=P(\phi(v_1),\dots, \phi(v_n))
+		.\] 
+	Es bleibt linear Unabhängigkeit zu zeigen. Per Definition müssen $v_1,\dots, v_n$ linear unabhängig sein. Alle $v_1,\dots, v_n$ sind unterschiedlich und ungleich null, weil $\phi$ bijektiv (insbesondere injektiv) ist. Falls $\phi(v_1),\dots \phi(v_n)$ linear abhängig wäre, wäre
+	\begin{align*}
+		0=&a_1\phi(v_1)+\dots+a_n\phi(v_n)\\
+		=&\phi(a_1v_1+\dots+a_nv_n) & \text{Linearität}
+	\end{align*}
+	Weil $\phi$ bijektiv ist, ist deren Kern trivial und $a_1v_1+\dots+a_n v_n=0$, was nur möglich ist, wenn $a_1=a_2=\dots a_n=0$. Daraus folgt: $\phi(v_1),\dots, \phi(v_n)$ sind linear unabhängig und die Behauptung folgt.
+\item Sei $v_1=(1,0,0),~v_2=(0,1,0),~v_3=(2,2,1)$. Weil $p$ linear ist, ist
+	\begin{align*}
+		p(\lambda_1v_1+\dots+\lambda_3v_3)=&\lambda_1p(v_1)+\dots+\lambda_3p(v_3)\\
+		=&\lambda_1(1,0)+\lambda_2(0,1)+\lambda_3(2,2)
+	\end{align*}
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[grid=both,ymin=0,ymax=3.5,xmax=3.5,xmin=0,xtick = {0,1,...,3}, ytick = {0,1,..., 3},xlabel=$x$, axis lines = left, ylabel=$y$]
+				\filldraw[thick, fill = blue, fill opacity = 0.2] (axis cs:0,0) -- (axis cs:1,0) -- (axis cs:3,2) -- (axis cs:3,3) -- (axis cs:2,3) -- (axis cs:0,1) -- cycle;
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	Es ist klar, dass die Menge entweder ein $1$ oder $2$-Parallelotop sein kann, weil es keine $3$ linear unabhängige Vektoren in $\R^2$ gibt. Ein $1$-Parallelotop ist eine Teilmenge $P(v)\subseteq \text{span}v$, also die Menge ist kein $1$-Parallelotop.
+
+	Dann muss es ein $2$-Parallelotop sein. Aber das ist auch unmöglich, weil $2$-Parallelotops Dreiecke sind, also die Menge ist kein Parallelotop. \qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei $K$ ein Körper und $V$ ein endlich dimensionaler $K$-Vektorraum. Wir betrachten den Vektorraum $V^* := \text{Hom}_K (V, K)$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Zeigen Sie: Ist $B = (b_1 , \dots , b_n )$ eine Basis von $V$, dann wird für jedes $i \in \{1, \dots , n\}$ durch $b^*_i (b_j) := \delta_{ij}$ für $j = 1, \dots , n$ eine eindeutig bestimmte lineare Abbildung festgelegt.
+		\item Zeigen Sie: $(b_1^*,\dots b_n^*)$ ist ein Erzeugendensystem von $V^*$,
+		\item Zeigen Sie: $(b_1^*,\dots, b_n^*)$ ist linear unabhängig.
+	\end{enumerate}
+	Sei $W$ ein weiterer endlich dimensionaler Vektoraum mit Basis $(\beta_1, \dots , \beta_m )$ und $L : V \to W$ linear.
+		\begin{enumerate}[label=(\alph*),resume]
+			\item Zeigen Sie: Die Abbildung $L^* : W^* \to V^*$ mit $\omega \to \omega \circ L$ ist linear.
+			\item Die Abbildung $L$ habe bezglich der Basen $(b_1,\dots, b _n)$ und $(\beta_1,\dots, \beta_m)$ die Darstellungsmatrix $A$. Zeigen Sie, dass $L^*$ bezüglich der Basen $(\beta_1^*,\dots, \beta_m^*)$ und $(b_1^*,\dots, b_n^*)$ die Darstellungsmatrix $A^T$ hat.
+		\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Wirkung auf einem Vektor ist eindeutig bestimmt. Sei $v\in V$ mit Basisdarstellung $v=v_1b_1+\dots+v_n b_n$. Es gilt
+		\begin{align*}
+			b_i^*(v)=&b_i^*(v_1b_1+\dots+v_nb_n)\\
+			=&v_1b_i^*(b_1)+\dots+v_nb_i^*(b_n) & \text{Linearität}\\
+			=&v_i
+		\end{align*}
+	\item Sei $v^*\in V^*$, also eine lineare Abbildung $V\to K$. 
+
+	Wir setzen $a_i=v^*(b_i)\in K$. Das Ziel ist:
+	\[
+		v^*=\sum_{i=1}^n a_i b_i^*
+	.\] 
+	Sei $V\ni v = v_1b_1+\dots+v_nb_n$. Es gilt
+	\begin{align*}
+		\left(\sum_{i=1}^na_i b_i^*\right)(v)=&\left( \sum_{i=1}^n a_i b_i^* \right)\left( \sum_{j=1}^n v_j b_j \right) \\
+	=&\sum_{i=1}^n \sum_{j=1}^{n} a_i v_j b_i^*(b_j)\\
+	=&\sum_{i=1}^n\sum_{j=1}^n a_iv_j\delta_{ij}\\
+	=&\sum_{i=1}^n a_i v_i\\
+	=&\sum_{i=1}^n v_i v^*(b_i)\\
+	=&v^*\left( \sum_{i=1}^n v_i b_i \right) \\
+	=&v^*(v).
+	\end{align*}
+	Weil $v$ beliebig war, ist $v^*\in\text{span}(b_1^*,\dots, b_n^*)$. Weil $v^*$ beliebig war, ist es ein Erzeugendensystem.
+\item Sei $\lambda_1b_1^*+\dots+\lambda_n b_n^*=0$. Wir wenden die Gleichung auf einem Basisvektor $b_i$ an. Die rechte Seite ist natürlich $0$. Die linke Seite ist
+	\[
+		(\lambda_1 b_1^*+\dots+\lambda_n b_n^*)(b_i)=\lambda_i=0
+	.\] 
+	Daraus folgt: $\lambda_i=0$ f\"{u}r alle $i$. 
+\item Sei $k\in K$, $\omega \in W^*$ und $v\in V$. Es gilt
+	\begin{align*}
+		(L^*(a\omega))v=&a\omega(L(v))\\
+		=&a(\omega(L(v)))\\
+		=&a(L^*(\omega)(v))
+	\end{align*}
+	Weil $v$ beliebig war, ist
+	\[
+	L^*(a\omega)=aL^*(\omega)
+	.\] 
+	Sei jetzt $\omega_1,\omega_2\in W^*$. Es gilt
+	\begin{align*}
+		L^*(\omega_1+\omega_2)(v)=&(\omega_1+\omega_2)(L(v))\\
+	=&\omega_1(L(v))+\omega_2(L(v))\\
+	=&(L^*(\omega_1)+L^*(\omega_2))(v)
+	\end{align*}
+	also
+	\[
+		L^*(\omega_1+\omega_2)=L^*(\omega_1)+L^*(\omega_2)
+	.\] 
+\item Es gilt $L^*(\beta_i^*)=\beta_i^*\circ L$. Wir möchten diese als linear Kombination von $b_j^*$ darstellen. Sei die Matrixdarstellung von $L^*$ $B$, also
+	\[
+		\beta_i^*\circ L=\sum_{j=1}^n B_{ji}b_j^*
+	.\]
+	Wir wenden die Gleichung auf $b_k$ an und erhalten, weil $b_j^*(b_k)=\delta_{jk}$ 
+	\[
+		\beta_i^*(L(b_k))=B_{ki}
+	.\] 
+	Aus der Matrixdarstellung erhalten wir $L(b_k)=\sum_{i=1}^m A_{ik}\beta_i$. Daraus folgt:
+\[
+	\beta_i^*\left( \sum_{j=1}^m A_{jk}\beta_j \right) =A_{ik}=B_{ki}
+.\] 
+Weil f\"{u}r die Komponente der Matrizen $A$ und $B$ gilt $A_{ik}=B_{ki}$, ist $B=A^T$.\qedhere
+	\end{parts}
+\end{proof}

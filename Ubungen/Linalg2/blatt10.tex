@@ -1,0 +1,259 @@
+\begin{Problem}
+	Betrachten Sie den Vektorraum $\C^n$, $n\in \N$ mit dem Standardskalarprodukt $\left<v,w \right> = \overline{v}^Tw$ f\"{u}r alle $v,w\in \C^n$. Sei $A\in M_n(\C)$. Zeigen Sie die folgenden Aussagen.
+	\begin{enumerate}[label=(\alph*)]
+		\item Die adjungierte Abbildung von $A$, wie in Definition 7.66, ist gerade durch die in Definition 7.13 beschriebene adjungierte Matrix $A^*=\overline{A^T}$ gegeben.
+		\item Es gilt $\text{tr}(A^*)=\overline{\text{tr}(A)}$.
+		\item Es gilt $\text{det}(A^*)=\overline{\text{det}(A)}$.
+		\item $\lambda\in \C$ ist genau dann Eigenwert von $A$, wenn $\overline{\lambda}$ Eigenwert von $A^*$ ist.
+	\end{enumerate}
+Sei $A$ nun ein invertierbarer und adjungierbarer Endomorphismus auf dem unitären Vektorraum $V$. Dann gilt
+\begin{enumerate}[label=(\alph*),resume]
+	\item $\left( A^{-1} \right)^*=\left( A^* \right)^{-1}$.
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+\begin{parts}
+\item Es gilt
+	\begin{align*}
+		\left<A^*v,w \right> =& (A^* v)^Tw\\
+		=&v^T \overline{(A^*)^T}w\\
+		=&v^T \overline{(\overline{A^T})^T}w\\
+		=& v^T \overline{(\overline{A}^T)^T}w\\
+		=& v^T\overline{\overline{A}}w\\
+		=& v^TAw\\
+		=&\left<v,Aw \right>
+	\end{align*}
+\item 
+	\begin{align*}
+		\text{tr}(A^*)=&\sum_{i=1}^n (A^*)_{ii}\\
+		=&\sum_{i=1}^n (\overline{A^T})_{ii}\\
+		=&\sum_{i=1}^n \overline{A^T_{ii}}\\
+		=&\sum_{i=1}^n \overline{A_{ii}}\\
+		=&\overline{\sum_{i=1}^n A_{ii}}\\
+		=& \overline{\text{tr}(A)}.
+	\end{align*}
+\item Wir brauchen aus den vorherigen Übungsblätter: $\text{det}(A^T)=\text{det}A$. Wir wissen auch aus den Eigenschaften der komplexe Konjugierte
+\begin{equation}\label{eq:linalg2blatt10-1}
+	\overline{\sum_{i=1}^n\prod_{j=1}^k a_{ij}}=\sum_{i=1}^n\prod_{j=1}^k \overline{a_{ij}}	
+\end{equation}
+	Es folgt daraus:
+	\begin{align*}
+		\text{det}(A^*)=&\text{det}(\overline{A^T})\\
+		=&\overline{\text{det}(A^T)} & \eqref{eq:linalg2blatt10-1}\\
+		=& \overline{\text{det}(A)}
+	\end{align*}
+\item 
+	Sei $\lambda$ ein Eigenwert von $A$. Es gilt dann
+	\begin{align*}
+		\text{det}(A^*-\overline{\lambda} I)=&\text{det}(\overline{A^T}-\overline{\lambda} I)\\
+		=& \text{det}(\overline{A}^T-\overline{\lambda}I^T)\\
+		=&\text{det}(\overline{(A-\lambda I)}^T)\\
+		=& 0
+	\end{align*}
+Umgekehrt: Sei $\overline{\lambda}$ ein Eigenwert von $A^*$. Es gilt:
+\begin{align*}
+	\text{det}(A-\lambda I)=&\text{det}(\overline{(\overline{A}-\overline{\lambda}I}))\\
+	=&\text{det}((\overline{(\overline{A}^T-\lambda I^T)})^T)\\
+	=& 0
+\end{align*}
+\item Sei $v,w\in V$. Es gilt
+	\begin{align*}
+		\left<(A^*)^{-1}w,v \right> =& \left< (A^*)^{-1}w,A A^{-1}v \right>\\
+		=&\left< A^*(A^*)^{-1}w,A^{-1}v \right>\\
+		=&\left<w,A^{-1}v \right> \\
+	\end{align*}
+	also $(A^*)^{-1}=(A^{-1})^*$.\qedhere
+\end{parts}
+\end{proof}
+\begin{Problem}
+	Betrachten Sie die Vektoren
+	\[
+	v_1=\begin{pmatrix} i \\ 0 \\ -1 \\ -2 \end{pmatrix},\qquad v_2=\begin{pmatrix} 2 \\ 2 \\ i \\ 0 \end{pmatrix} 
+\]
+im unitären Vektorraum $\C^4$, versehen mit dem Standardskalarprodukt $\langle x,y\rangle:=\overline{x}^Ty$. Sei $U=\text{span}\{v_1,v_2\}$. Bestimmen Sie eine Orthonomalbasis von $U$ sowie von $U^\perp$.
+\end{Problem}
+\begin{proof}
+	\[
+		U^\perp=\text{ker}\begin{pmatrix} -i & 0 & -1 & -2 \\ 2 & 2 & -i &0 \end{pmatrix} 
+	.\] 
+Es gilt
+\begin{gather*}
+\left(
+\begin{array}{cccc}
+ -i & 0 & -1 & -2 \\
+ 2 & 2 & -i & 0 \\
+\end{array}
+\right) \xrightarrow{R_2-2iR_1} \left(
+\begin{array}{cccc}
+ -i & 0 & -1 & -2 \\
+ 0 & 2 & i & 4 i \\
+\end{array}
+\right) \xrightarrow{R_1\times i} \left(
+\begin{array}{cccc}
+ 1 & 0 & -i & -2 i \\
+ 0 & 2 & i & 4 i \\
+\end{array}
+\right)	
+\end{gather*}
+Eine Basis f\"{u}r den Kern ist dann
+\[
+\begin{pmatrix} i \\ -i / 2 \\ 1 \\ 0 \end{pmatrix} , \begin{pmatrix}  2i \\ -2i \\ 0 \\ 1\end{pmatrix} 
+.\] 
+Der Gram-Schmidt-Algorithismus ergibt dann Orthonomalbasen. F\"{u}r $U$ ist $\langle v_2,v_1\rangle=3i,~\left<v_1,v_1 \right> = 6$. Dann ist eine Basis
+\[
+	\left\{	v_1,v_2-\frac{\left<v_2,v_1 \right>}{\left<v_1,v_1 \right>}v_1\right\}=\left\{ \begin{pmatrix} i \\ 0 \\ -1 \\ -2 \end{pmatrix} , \begin{pmatrix} 5 / 2 \\ 2 \\ 3i / 2 \\ i \end{pmatrix}  \right\} 
+.\] 
+Daraus ergibt sich eine Orthonomalbasis f\"{u}r $U$:
+\[
+\left\{ \frac{1}{\sqrt{6} }\begin{pmatrix} i \\ 0 \\ -1 \\ -2 \end{pmatrix} , \frac{1}{3\sqrt{6} }\begin{pmatrix} 5 \\ 4 \\ 3i \\ 2i \end{pmatrix}  \right\} 
+.\] 
+F\"{u}r $U^\perp$ ist ähnlich eine Basis
+\[
+\left\{ 3\begin{pmatrix} 2i \\ -i \\ 2 \\ 0 \end{pmatrix} , \frac{1}{3\sqrt{5} }\begin{pmatrix} 2i \\ -4i \\ -4 \\ 3 \end{pmatrix}  \right\} 
+.\qedhere\] 
+\end{proof}
+\begin{Problem}
+	Sei $V_n\subset \C[x]$ der Unterraum der Polynome vom Grad $\leq n$. Sei
+	\[
+		\left<f,g \right> = \int_0^1 \overline{f(x)}g(x)\dd{x}
+	\]
+	f\"{u}r $f,g\in V_n$.
+	\begin{parts}
+	\item Zeigen Sie, dass durch $\langle\cdot,\cdot\rangle$ ein Skalarprodukt auf $V_n$ definiert ist.
+	\item Starten Sie mit der Basis der Monome $1,x,x^2,x^3$ und f\"{u}hren Sie den Gram-Schmidt-Algorithmus durch, um eine Orthonomalbasis von $V_3$ bezüglich $\langle\cdot,\cdot\rangle$ zu finden.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die linearität Eigenschaften folgen alle aus die Linearität des Integrals. Es bleibt positiv Definitheit zu zeigen.
+
+		(Es wurde nicht geschrieben, welche Definition des Integrals hier benutzt wurde. Ich benutze das Lebesgue-Integral, weil es einfacher ist).
+		
+		Es gilt
+		\[
+			\left<f,f \right> =\int_0^1 |f(x)|^2\dd{x}
+		.\] 
+		Weil $|f|\ge 0$, ist das Integral $\ge 0$. Es ist $0$ genau dann, wenn $|f(x)|^2$ $\lambda_1$-fast überall $0$ ist. Das Integral ist $0$ genau dann, wenn $|f(x)|^2$ $\lambda_1$-fast überall $0$ ist. Aber alle Polynome sind stetig. $|f|^2$ ist dann als Verkettung stetige Funktionen auch stetig und eine $\lambda_1$-fast überall 0 stetige Funktion ist überall $0$. Daraus folgt: $f=0$, das Nullpolynom. 
+	\item 
+		\begin{enumerate}[label=(\roman*)]
+			\item Das erste Element ist $1$. Es gilt
+				\[
+					\left<1,1 \right> = \int_0^1 1\dd{x}=1
+				.\] 
+			\item $\langle x,1\rangle=\int_0^1 |x|\dd{x}=1 / 2$. Das zweite Element ist $x-1 / 2$. Es gilt
+				\[
+				\left<x -\frac{1}{2},x-\frac{1}{2} \right> = \frac{1}{12}
+				.\] 
+			\item 
+				\begin{align*}
+					\left<x^2,1 \right> =& \int_0^1 x^2 \dd{x}=1 / 3\\
+					\left<x^2, x - \frac{1}{2} \right> =& 1 / 12
+				\end{align*}
+				Das zweite Element ist
+				\[
+				x^2-\frac{1}{3}-(x-\frac{1}{2})=x^2-x+\frac{1}{6}
+				.\] 
+				Es gilt
+				\[
+				\left<x^2-x+\frac{1}{6},x^2-x+\frac{1}{6} \right> = \frac{1}{180}
+				.\] 
+			\item
+				\begin{align*}
+					\left<x^3,1 \right> =& 1 / 4\\
+					\left<x^3, x - \frac{1}{2} \right> =& \frac{3}{40}\\
+					\left<x^3, x^2-x+\frac{1}{6} \right> =&\frac{1}{120}
+				\end{align*}
+				Dann ist das dritte Element
+				\[
+					x^3-\frac{1}{4}-\frac{9}{10}\left( x-\frac{1}{2} \right) -\frac{3}{2}\left( x^2-x+\frac{1}{6} \right)=x^3-\frac{3x^2}{2}+\frac{3x}{5}-\frac{1}{20} 
+				.\] 
+				Insgesamt ist die Basis
+				\[
+				\left\{ 1,x-\frac{1}{2},x^2-x+\frac{1}{6},x^3-\frac{3x^2}{2}+\frac{3x}{5}-\frac{1}{20} \right\}  
+				.\qedhere\] 
+		\end{enumerate}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $V$ ein euklidischer oder unitärer Vektorraum und $M,N\subseteq V$ Teilmengen von $V$.
+	\begin{enumerate}[label=(\alph*)]
+	\item Sei $N\subseteq M$. Zeigen Sie, dass dann $M^{\perp}\subseteq N^{\perp}$ gilt.
+	\item Zeigen Sie $M\subseteq \left( M^\perp \right)^\perp$ und geben Sie ein Beispiel f\"{u}r einen euklidischen oder unitären Vektorraum $V$, sowie eine Teilmenge $M\subseteq V$ an, sodass $M\neq (M^\perp)^\perp$.
+	\item Zeigen Sie, dass das Orthogonalkomplement von $M$ durch
+		\[
+			M^\perp=\bigcap_{v\in M} \text{ker}v^\flat
+		\]
+		gegeben ist, wobei $v^\flat = \langle v,\cdot\rangle\in V^*$ wie in Bemerkung 7.2iii.
+	\item Zeigen Sie, dass $(M^\perp)^{\perp\perp}=(M^{\perp\perp})^\perp$ gilt.
+	\item Zeigen Sie, dass $M^\perp+N^\perp\subset (M\cap N)^\perp$ gilt.
+	\item Zeigen Sie, dass $(M+N)^\perp=M^\perp\cap N^\perp$ gilt, wenn $M$ und $N$ Unterräume von $V$ sind.
+	\end{enumerate}
+	Beweisen oder widerlegen Sie:
+	\begin{enumerate}[label=(\alph*),resume]
+		\item Es gilt $M^\perp\cup N^\perp\subset (M\cup N)^\perp$.
+		\item Es gilt $(M\cup N)^\perp\subset M^\perp \cup N^\perp$.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+\begin{parts}
+\item Sei $v\in M^\perp$. Per Definition gilt $\langle v, w\rangle=0$ f\"{u}r alle $w\in M$. Dann gilt es auch f\"{u}r alle $w\in N$, weil $N\subseteq M$. Dann ist $M^\perp\subseteq N^\perp$.
+\item Sei $v\in M^\perp,~w\in M$. Per Definition ist $\langle v,w\rangle$ f\"{u}r alle solche $w$. Daraus folgt: $v\in (M^\perp)^\perp$ und $M\subseteq (M^\perp)^\perp$.
+
+	Gegenbeispiel: Sei $V=\C[x]$ mit innerem Produkt 
+	 \[
+		 \left<a_0+a_1x+\dots+a_n x_n, b_0+b_1x+\dots+b_mx_m \right> = \sum_{i=0}^{\text{max}(n,m)}a_ib_i
+	 \]
+	 und $M$ die Menge alle Polynome $f$, so dass f\"{u}r die Polynomefunktion $f(1)=1$ gilt. Dann ist $M^\perp=\{0\} $ und $(M^\perp)^\perp=V$. Aber $M\neq V$ offenbar gilt.
+\item Die Definitionen sind gleich: Auf der linken Seite haben wir alle Vektoren $w\in V$, so dass $\langle v, w\rangle=0$ f\"{u}r alle $v\in M$.
+
+	Per Definition ist $w\in \text{ker }v^\flat$ genau dann, wenn $\langle v, w\rangle=0$. Wenn $w$ in alle $\text{ker }v^\flat$ liegt, gilt das f\"{u}r alle $v$, was genau der Definition von $M^\perp$ ist.
+\item 
+	\[
+		(M^\perp)^{\perp\perp}=((M^\perp)^\perp)^\perp=(M^{\perp\perp})^\perp
+	.\] 
+\item Sei
+	\[
+		v:=\underbrace{v_M}_{\in M^\perp}+\underbrace{V_N}_{\in N^\perp}\in M^\perp+N^\perp
+	\] 
+	und $w\in M\cap N$. Dann ist
+	\begin{align*}
+	\left<w,v \right> =& \cancelto{0}{\left<w, v_M \right>} & w\in M\\
+			   &+\cancelto{0}{\left<w,v_N \right>} & w\in N\\
+	=&0
+	\end{align*}
+	also $v\in (M\cap N)^\perp$. Daraus folgt: $M^\perp+N^\perp \subseteq (M\cap N)^\perp$.
+\item Sei $v\in M^\perp\cap N^\perp$ und
+	\[
+		w:=\underbrace{w_M}_{\in M}+\underbrace{w_N}_{\in N}\in M+N
+	\]
+	Dann gilt
+	\begin{align*}
+		\left<v,w \right> =& \cancelto{0}{\left<v, w_M \right>} & v\in M^\perp\\
+				   &+\cancelto{0}{\left<v,w_N \right>} & v\in N^\perp\\
+		=&0
+	\end{align*}
+	also $(M+ N)^\perp \supseteq M^\perp \cap N^\perp$.
+
+	Sei jetzt $v\in (M+ N)^\perp$ und $w\in M$. Da $M+N\supseteq M$ und $M+N\supseteq N$ gilt, ist
+	\begin{align*}
+		(M+N)^\perp \subseteq& M^\perp\\
+		(M+N)^\perp \subseteq& N^\perp
+	\end{align*}
+	und daher
+	\[
+		(M+N)^\perp\subseteq M^\perp\cap N^\perp
+	.\] 
+\item Falsch. Sei $V=\R^3,~M=\text{span}((1,0,0)^T),~N=\text{span}((0,1,0)^T$. Es gilt
+	\begin{align*}
+		M^\perp=&\text{span}\left( \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \right)\\
+		N^\perp=&\text{span}\left( \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \right) \\
+		(M\cup N)^\perp =& \text{span}\left( \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \right) 
+	\end{align*}
+\item Wahr. Es gilt $M\cup N\supseteq M$ und $M\cup N\supseteq N$. Daraus folgt:
+	\begin{align*}
+		(M\cup N)^\perp \subseteq& M^\perp\\
+		(M\cup N)^\perp\subseteq& N^\perp
+	\end{align*}
+	Die Behauptung folgt.\qedhere
+\end{parts}	
+\end{proof}

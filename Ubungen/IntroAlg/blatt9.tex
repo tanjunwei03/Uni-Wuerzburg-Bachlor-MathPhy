@@ -1,0 +1,42 @@
+\begin{Problem}
+	\begin{parts}
+		\item Beweisen Sie, dass alle Gruppen der Ordnung 15 zyklisch sind.
+		\item Funktioniert die Schlussweise aus Aufgabenteil (a) auch bei Gruppen der Ordnung 45? 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $15=3\times 5$, zwei Primzahlen, also die Teiler von $15$ sind $1,3,5$ und $15$. Da $3$ teilt $15$, $3^2=9$ aber nicht, gibt es mindestens eine $3$-Sylowgruppe $G_3$. F\"{u}r die Zahl der $3$-Sylowgruppen $n_3$ gilt:
+		\begin{align*}
+			n_3\equiv& 1\pmod{3}\\
+			n_3|&[G:G_3]=5
+		\end{align*}
+		Aus den ersten Gleichung folgt: $n_3$ ist $1$ oder $4$. Da $4\nmid 5$, ist $n_3=1$, also es gibt genau eine Gruppe der Ordnung $3$. Ähnlich gibt es genau eine Gruppe der Ordnung $5$. Es gibt genau eine Gruppe der Ordnung $1$, die triviale Gruppe und genau eine Gruppe der Ordnung $15$, die ganze Gruppe.
+
+		Da es f\"{u}r jeder Teiler $t$ von $15$ genau eine Untergruppe der Ordnung $t$ gibt, sind alle solche Gruppen zyklisch.
+	\item Nein. Es kann mehr als eine Gruppe der Ordnung $5$ geben, weil f\"{u}r die Zahl der $5$-Sylowgruppen $n_5$ gilt:
+		\begin{align*}
+			n_5\equiv& 1\pmod{5}\\
+			n_5|9
+		\end{align*}
+		Eine Möglichkeit ist $n_5=6$, also wir dürfen den Fall, in dem mehr als eine Untergruppe der Ordnung $5$ gibt, nicht ausschließen.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Seien $p$ eine Primzahl, $G$ eine Gruppe, $P$ eine $p$-Sylowgruppe von $G$ und $n_p$ die Anzahl der $p$-Sylowgruppen von $G$. Zeigen Sie, dass $P\trianglelefteq G$ genau dann gilt, wenn $n_p=1$ ist.
+	\item Zeigen Sie, dass eine Gruppe der Ordnung $12$ nicht einfach ist.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Sei $G$ eine Gruppe der Ordnung $392=2^3\cdot 7^2$. Zeigen Sie, dass $G$ nicht einfach ist.
+\end{Problem}
+
+\begin{Problem}
+	\begin{parts}
+	\item Sei $G$ eine endliche Gruppe mit zyklischer \emph{Zentrumsfaktorgruppe} $Z / Z(G)$. Zeigen Sie, dass dann $G=Z(G)$ gilt.
+	\item Zeigen Sie: Sind $p\in \mathbb{P}$ eine Primzahl und $G$ ein Gruppe der Ordnung $p^2$, so ist $G$ abelsch.
+	\item Sind auch Gruppen der Ordnung $p^3$ (mit primem $p\in \mathbb{P}$) stets abelsch?
+	\end{parts}
+\end{Problem}

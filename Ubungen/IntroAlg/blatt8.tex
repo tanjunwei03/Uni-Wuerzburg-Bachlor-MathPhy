@@ -12,7 +12,7 @@
 		\[
 			|M|=\sum_{i=1}^r [G:G_m]
 		.\] 
-		Jeder Term im Summe ist eine Teiler von $21$, also $1,3,7$ oder $21$. Die Operation besitzt eine Bahn der Länge 1 genau dann, wenn $1$ zumindest einmal vorkommt. Wir schreiben die mögliche Summen:
+		Jeder Term im Summe ist eine Teiler von $21$, also $1,3,7$ oder $21$. Die Operation besitzt eine Bahn der Länge 1 genau dann, wenn $1$ zumindest einmal vorkommt. Wir schreiben die möglichen Summen:
 	\begin{align*}
 		11=&1\times 11\\
 		11=&3+1\times 8\\
@@ -22,27 +22,15 @@
 		11=&7+3+1
 	\end{align*} 
 	Weil $1$ immer vorkommt, gibt es immer eine Bahn der Länge 1.
-	\item Konjukation ist genau eine Ähnlichkeitstransformation. Trotz der Aufgabenstellung brauchen wir noch die Eigenschaften.
+	\item Konjukation ist genau eine Ähnlichkeitstransformation. Wir brauchen: 
 		\begin{tcolorbox}
-			\begin{Lemma}
-			Sind zwei Matrizen $A$ und $B$ ähnlich, dann haben sie dieselben Eigenwert.	
-			\end{Lemma}
-			\begin{proof}
-			Sei $A=Q^{-1}BQ$. Sei außerdem $v$ ein Eigenvektor von $A$ mit Eigenwert $\lambda$. Es gilt $QA=BQ$ und
-		\begin{align*}
-			QAv=&Q\lambda v=\lambda(Qv)\\
-			=&BQv=B(Qv)
-		\end{align*}
-		also $Qv$ ist ein Eigenvektor von $B$ mit Eigenwert $\lambda$. Wir können die Rollen von $A$ und $B$ vertauschen, um die andere Richtung zu zeigen. 	
-			\end{proof}
-			\begin{Remark}
-				Die Umkehrrichtung gilt nicht immer. Es gilt wenn die Matrizen diagonalisierbar sind.
-			\end{Remark}
+			Zwei Matrizen sind ähnlich genau dann, wenn sie die gleichen Jordan-Normalform haben.
 		\end{tcolorbox}
-		Es folgt sofort: Wenn zwei Matrizen in der gleichen Bahn liegen, haben die die gleichen Eigenwerte. Wenn die Matrizen nicht diagonaliserbarsind, schreiben wir die in Jordan-Normalform. Daraus ergibt sich ein Repräsentantensystem der Bahnen:
+Daraus ergibt sich ein Repräsentantensystem der Bahnen:
 		\[
-			\left\{ \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} |a,b\in \R \right\} \cup \left\{ \begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} |a\in \R \right\} 
-		.\] 
+			\left\{ \left.\begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix} \right|a,b\in \R \right\} \cup \left\{ \left.\begin{pmatrix} a & 1 \\ 0 & a \end{pmatrix} \right|a\in \R \right\} 
+		,\] 
+		wobei die erste diagonalisierbare Matrizen darstellt und die zweite nicht diagonalisierbare Matrizen darstellt.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -50,7 +38,9 @@
 Von der endlichen Gruppe $G$ sei bekannt, dass sie nicht abelsch ist und zu jedem positiven Teiler $t$ von $|G|$ mindestens eine Untergruppe der Ordnung $t$ besitzt. Zeigen Sie, dass $G$ nicht einfach ist. (Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt, und $U$ eine Untergruppe von $G$ vom Index $p$. Lassen Sie $G$ auf den Nebenklassen von $U$ operieren und betrachten Sie den Kern des zugehörigen Homomorphismus.)	
 \end{Problem}
 \begin{proof}
-	Wie im Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt und $U$ eine Untergruppe von $G$ vom Index $p$. $G$ operiere auf den Linksnebenklassen von $U$ operieren. Sei $xU$ eine beliebige Linksnebenklasse von $U$. Ein Element $g\in G$ liegt im Kern des Homomorphismus genau dann, wenn $gxU=xU~\forall x\in G$. Dann wäre $x^{-1}gxU=U$ oder $x^{-1}gx\in U~\forall x\in G$.
+	Wie im Hinweis: Sei $p$ die kleinste Primzahl, die $|G|$ teilt und $U$ eine Untergruppe von $G$ vom Index $p$. $G$ operiere auf den Linksnebenklassen von $U$. Die Operation ist ein Homomorphismus $G\to S_p$. Deren Kern $K$ ist eine Untergruppe von $U$, weil $xU\neq U$ f\"{u}r $x\not\in  U$. Das Ziel ist: Der Kern ist nicht trivial.
+
+Die Faktorgruppe $G / K$ ist isomorph zu eine Untergruppe von $S_p$, also es teilt $|S_p|=p!$. Als Faktorgruppe teilt $|G / K|$ den Ordnung von $G$ auch. Weil $p\neq 1$, ist $U$ eine echte Untergruppe, also $|G / K| \neq 1$. Dann ist die einzige Zahl, die sowohl $p!$ als auch $|G|$ teilt, $p$. Daraus folgt: $|K|=|U|$. Weil $K\subseteq U$, ist $K=U$, also $U$ ist ein Normalteiler.
 \end{proof}
 \begin{Problem}
 Benutzen Sie die Beweisidee aus Korollar 2.79, um folgende Aussage zu zeigen: Seien $p$ eine Primzahl, $n \in \N^*$, $G$ eine Gruppe der Ordnung $p^n$ und $\{e\} < N \trianglelefteq G$ ein nicht-trivialer Normalteiler von G. Dann gilt $|Z(G) \cap N| > 1$.	
