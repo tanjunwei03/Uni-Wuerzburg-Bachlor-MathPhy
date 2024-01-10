@@ -28,11 +28,31 @@
 	\item Zeigen Sie, dass eine Gruppe der Ordnung $12$ nicht einfach ist.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $n_p\neq 1$, also $n_p>1$. Dann gibt es eine andere $p$-Sylowgruppe $U$. Weil alle Sylowgruppen konjugiert sind, gibt es $x\in G$, so dass $x^{-1}Px=U\neq P$, also $x^{-1}Px\neq P$ f\"{u}r alle $x\in G$, und $P$ ist kein Normalteiler.
 
+		Sei umgekehrt $P$ kein Normalteiler. Es gibt dann $x\in G$, so dass $x^{-1}Px=U\neq P$, Weil die Abbildung $p\to x^{-1}px$ injektiv ist, ist $U$ auch eine $p$-Sylowgruppe, also $n_p>1$.
+	\item $12=2^2\times 3$. Wir betrachten die Zahl der $3$-Sylowgruppen $n_3$. Es gilt
+		\begin{align*}
+			n_3\equiv& 1\pmod{3}\\
+			n_3|&4
+		\end{align*}
+		Die eindeutige Lösung ist $n_3=1$, also die $3$-Sylowgruppe ist ein Normalteiler und die Gruppe der Ordnung 12 ist nicht einfach.
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Sei $G$ eine Gruppe der Ordnung $392=2^3\cdot 7^2$. Zeigen Sie, dass $G$ nicht einfach ist.
 \end{Problem}
-
+\begin{proof}
+	Es gibt Sylow-Untergruppen der Ordnung $7^2$ und $2^3$. F\"{u}r die Zahl solche Untergruppen $n_7$ und $n_2$ gilt:
+	\begin{align*}
+		n_2\equiv& 1\pmod{2}\\
+		n_2|&7\\
+		n_7\equiv& 1\pmod{7}\\
+		n_7|&8
+	\end{align*}
+\end{proof}
 \begin{Problem}
 	\begin{parts}
 	\item Sei $G$ eine endliche Gruppe mit zyklischer \emph{Zentrumsfaktorgruppe} $Z / Z(G)$. Zeigen Sie, dass dann $G=Z(G)$ gilt.
@@ -40,3 +60,20 @@
 	\item Sind auch Gruppen der Ordnung $p^3$ (mit primem $p\in \mathbb{P}$) stets abelsch?
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Zentrumsfaktorgruppe ist zyklisch genau dann, wenn es ein Element $x\in G$ gibt, so dass die Potenzen $x^nZ(G)$ alle Elemente erreichen können. Das heißt, dass f\"{u}r jedes $y\in G$ ein $p\in Z(G)$ und ein $n\in \N$ gibt, so dass $y=x^np$. Sei $y'\in G$ beliebig. Ähnlich gibt es $p'\in Z(G)$ und $n'\in \N$, so dass $y'=x^{n'}p'$. Wir betrachten die Menge
+		\[
+			\{p,x^n, p',x^{n'}\} 
+		.\] 
+		Da $p\in Z(G)$ ist, kommutiert $p$ mit alle Elemente aus $G$, insbesondere $x$ und daher $x^n$ und $x^{n'}$. Das gilt auch f\"{u}r $p'$. Weil $x^n$ und $x^{n'}$ Potenzen von $x$ sind, kommutiert die miteinander. Also alle Elemente sind paarweise kommutativ und
+		\[
+			yy'=x^n px^{n'}p'=x^{n'}p'x^np=y'y
+		.\] 
+		Da $y$ und $y'$ beliebig waren, kommutiert jedes beliebiges $y\in G$ mit alle andere Elemente $y' \in G$, also $G=Z(G)$.
+	\item Das Zentrum ist eine Untergruppe. Weil $Z(G)$ nicht trivial ist (Korollar 2.78), ist $Z(G)$ entweder $p$ oder $p^2$. Falls $|Z(G)|=p^2$, wäre $G=Z(G)$ und wir sind dann fertig.
+
+		Falls $|Z(G)|=p$, hat die Faktorgruppe $G / Z(G)$ Ordnung $p$. Nach der Satz von Cauchy gibt es ein Element der Ordnung $p$ in $G / Z(G)$, also das Element ist ein Erzeuger von $G / Z(G)$, und $G / Z(G)$ ist zyklisch. Daraus folgt: $G = Z(G)$, und $G$ ist abelsch. 
+	\item Nein. $2^3=8$ und es gibt eine Diedergruppe $D_4$ der Ordnung $ 8$. Die Diedergruppe ist aber nicht abelsch.\qedhere
+	\end{parts}
+\end{proof}

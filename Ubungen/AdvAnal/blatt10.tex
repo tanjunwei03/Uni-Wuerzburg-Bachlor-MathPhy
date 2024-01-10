@@ -147,7 +147,7 @@ mit $U:=(0,R)\times (0,\pi)\times(0,2\pi)$.
 	\begin{align*}
 		\left( \int_0^\infty \exp(-r^2)\dd{r} \right)^2=& \left( \int_0^\infty \exp(-x^2)\dd{x} \right) \left( \int_0^\infty \exp(-y^2)\dd{y} \right) \\
 		=&\int_0^\infty \int_0^\infty \exp(-(x^2+y^2))\dd{y}\dd{z}\\
-		=&\int_{\R^2}\exp(-(x^2+y^2))\dd{\lambda_2} \\ &\text{Satz von Fubini}\\
+		=&\int_{(0,\infty)^2 }\exp(-(x^2+y^2))\dd{\lambda_2} \\ &\text{Satz von Fubini}\\
 		=&\int_{(0,\infty)\times(0,\pi / 2)}r\exp(-r^2)\dd{\lambda_2} \\ &\text{Folgerung 2.121 (Polarkoordinaten)}\\
 		=&\int_0^\infty\int_0^{\pi /2}r\exp(-r^2)\dd{\phi}\dd{r}\\
 		=&\frac{\pi}{2}\int_0^\infty r\exp(-r^2)\dd{r}\\
