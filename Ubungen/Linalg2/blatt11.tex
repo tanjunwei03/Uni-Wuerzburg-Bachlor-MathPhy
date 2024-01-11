@@ -1,0 +1,189 @@
+\begin{Problem}
+	Betrachten Sie die folgenden $3\times 3$-Matrizen
+	\[
+		A=\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{pmatrix} ,\qquad B\begin{pmatrix} 1+i & 1 - i & 0 \\ -1 + i & 1 + i & 0 \\ 0 & 0 & 1+i \end{pmatrix} 
+	.\] 
+	\begin{parts}
+		\item Berechnen Sie die adjungierten Abbildungen $A^*$ und $B^*$.
+		\item Bestimmen Sie die Eigenwerte von $A$ und $B$.
+		\item Überprüfen Sie, dass sich aus den Eigenvektoren der Matrix $A$ eine Orthonomalbasis des $\C^3$ mit Standardskalarprodukt bauen lässt. Führen Sie das selbe auch mit Matrix $B$ durch.
+		\item Bestimmen Sie unitäre Matrizen $U,V\in M_3(\C^3)$, sodass $UAU^*$ und $VBV^*$ diagonal sind. Können Sie zudem erreichen, dass $U$ und $V$ orthogonal sind?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\[
+			A^*=A,\qquad B^*=\begin{pmatrix} 1 - i & -1-i & 0 \\ 1+i & 1-i & 0 \\ 0 & 0 & 1-i \end{pmatrix} 
+		.\] 
+	\item $A$:
+		\begin{align*}
+			\text{det}(A-\lambda I)=&
+			\begin{vmatrix}
+				2-\lambda & 1 & 1 \\ 1 & 2-\lambda & 1 \\ 1 & 1 & 2-\lambda
+			\end{vmatrix}\\
+			=&(2-\lambda)
+			\begin{vmatrix}
+				2-\lambda & 1 \\ 1 & 2-\lambda
+			\end{vmatrix}
+			-
+			\begin{vmatrix}
+				1 & 1 \\ 1 & 2-\lambda
+			\end{vmatrix}
+			+
+			\begin{vmatrix}
+				1 & 2-\lambda \\ 1 & 1
+			\end{vmatrix}\\
+			=&(2-\lambda)((2-\lambda)^2-1)-(1-\lambda)+(\lambda-1)\\
+			=&(2-\lambda)^3-(2-\lambda)-2+2\lambda\\
+			=&-\lambda^3+6\lambda^2-9\lambda+4
+		\end{align*}
+		Offensichtlich ist $\lambda=1$ ein Nullstelle des Polynoms. Es gilt
+		\begin{align*}
+			-\lambda^3+6\lambda^2-9\lambda+4=&(\lambda-1)(-\lambda^2+5\lambda-4)\\
+			=&-(\lambda-1)^2(\lambda-4)
+		\end{align*}
+		also die Eigenwerte von $A$ sind $1$ und $4$.
+
+		Ähnlich für $B$:
+\begin{align*}
+	\text{det}(B-\lambda I)=&
+	\begin{vmatrix}
+		1-i-\lambda & -1-i & 0 \\ 1+i & 1-i-\lambda & 0 \\ 0 & 0 & 1-i-\lambda
+	\end{vmatrix}\\
+	=&-\lambda^3+3(1-i)\lambda^2+4i\lambda\\
+	=&-\lambda(\lambda-(1-i))(\lambda-(2-2i))
+\end{align*}
+also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
+\item Wir berechnen die Eigenvektoren:
+
+	F\"{u}r $A$:
+	\begin{align*}
+		\text{EW}=4:&(1,1,1)^T\\
+		\text{EW}=1:&(-1,0,1)^T\\
+		\text{EW}=1:&(-1,1,0)^T
+	\end{align*} 
+	Die Eigenräume f\"{u}r die Eigenwerte $4$ und $1$ sind schon orthogonal. Im Eigenraum EW=1 können wir den Gram-Schmidt-Algorithismus durchführen, da lineare Kombinationen von Eigenvektoren mit gleichen Eigenwerte noch Eigenvektoren sind. Eine Orthonormalbasis ist dann
+	\begin{align*}
+		\text{EW}=4:&\frac{1}{\sqrt{3} }(1,1,1)^T\\
+		\text{EW}=1:&\frac{1}{\sqrt{2} }(-1,0,1)^T\text{ und}\\
+			    &\frac{1}{\sqrt{6} }(-1,2,-1)^T
+	\end{align*}
+	Die Eigenvektoren von $B$ sind
+	\begin{align*}
+		\text{EW}=0:&(i,1,0)^T\\
+		\text{EW}=1-i:&(0,0,1)^T\\
+		\text{EW}=2-2i:&(-i,1,0)^T
+	\end{align*}
+	Die Vektoren sind schon orthogonal, also wir normalisieren die Vektoren, um eine Orthonormalbasis zu bekommen.
+	\begin{align*}
+		\text{EW}=0:&\frac{1}{\sqrt{2} }(i,1,0)^T\\
+		\text{EW}=1-i:&(0,0,1)^T\\
+		\text{EW}=2-2i:&\frac{1}{\sqrt{2} }(-i,1,0)
+	\end{align*}
+\item Wir schreiben die Orthonomalbasis von Eigenvektoren von $A$ als die Zeilen der Matrix $U$. 
+	\[
+		U=\begin{pmatrix} \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{3} } & \frac{1}{\sqrt{3} } \\ -\frac{1}{\sqrt{2} } & 0 & \frac{1}{\sqrt{2} }\\ -\frac{1}{\sqrt{6} } & \sqrt{\frac{2}{3}} & -\frac{1}{\sqrt{6} } \end{pmatrix} 
+	.\] 
+	Ähnlich f\"{u}r $V$:
+	\[
+		V=\begin{pmatrix} \frac{i}{\sqrt{2} } & \frac{1}{\sqrt{2} } & 0 \\ 0 & 0 & 1 \\ -\frac{i}{\sqrt{2} } & \frac{1}{\sqrt{2} } & 0 \end{pmatrix} 
+	.\] 
+	$U$ ist schon orthogonal. $V$ ist unitär und kann nicht orthogonal werden.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Betrachten Sie die reelle Matrix
+	\[
+		P=\frac{1}{6}\begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix} 
+	.\] 
+	\begin{parts}
+	\item Zeigen Sie, dass $P$ ein Orthogonalprojektor bezüglich des Standardskalarprodukts ist.
+	\item Bestimmen Sie den Rang von $P$.
+	\item Bestimmen Sie eine Orthonomalbasis des Bildes und des Kerns von $P$ sowie den Basiswechsel $O$ von der Standardbasis auf diese Basis.
+	\item Verifizieren Sie, dass $O$ orthogonal ist, Können Sie einen solchen orthonomalen Basiswechsel finden, dass $\text{det }O=1$ gilt?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Schritt 1: $P$ ist ein Projektor. Durch direktes Rechnung:
+		\[
+			P^2=\frac{1}{36}\begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix} \begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix}=P 
+		.\]
+	Da $P^*=P$, ist $P$ ein Orthogonalprojektor nach Proposition 7.79.
+\item 
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \\
+ -\frac{1}{6} & \frac{1}{3} & \frac{5}{6} \\
+\end{array}
+\right) \xrightarrow{R_2\times 5} \left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ \frac{5}{3} & \frac{5}{3} & \frac{5}{3} \\
+ -\frac{1}{6} & \frac{1}{3} & \frac{5}{6} \\
+\end{array}
+\right) \xrightarrow{R_2-2R_1} \left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ 0 & 1 & 2 \\
+ -\frac{1}{6} & \frac{1}{3} & \frac{5}{6} \\
+\end{array}
+\right) \\\xrightarrow{R_3\times 5} \left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ 0 & 1 & 2 \\
+ -\frac{5}{6} & \frac{5}{3} & \frac{25}{6} \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ 0 & 1 & 2 \\
+ 0 & 2 & 4 \\
+\end{array}
+\right) \xrightarrow{R_3-2R_2} \left(
+\begin{array}{ccc}
+ \frac{5}{6} & \frac{1}{3} & -\frac{1}{6} \\
+ 0 & 1 & 2 \\
+ 0 & 0 & 0 \\
+\end{array}
+\right)	
+	\end{gather*}
+	Der Rang ist $2$. 
+\item Eine Basis des Bildes ist die erste 2 Spalten, also
+	\[
+	\left\{ \begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix}  \right\} 
+	.\] 
+	Daraus ergibt sich eine Orthonomalbasis durch den Gram-Schmidt-Verfahren:
+	\[
+	\left\{ \frac{1}{\sqrt{30} }\begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \frac{1}{\sqrt{5} }\begin{pmatrix}  0 \\ 1 \\ 2 \end{pmatrix}   \right\} 
+	.\] 
+	Wir entscheiden uns für einen Vektor, der senkrecht auf den vorherigen beiden Vektoren liegt.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Beweisen oder widerlegen Sie:
+	\begin{parts}
+	\item Jede Matrix $P\in M_n(\C)$ mit $P^2=P$ ist ein Orthogonalprojektor bezüglich eines \emph{geeigneten} Skalarprodukts auf $V$.
+	\item Eine invertierbare Matrix $A\in M_n(\R)$ ist orthogonal f\"{u}r ein geeignet gewähltes Skalarprodukt auf $\R^n$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Seien $V,W$ euklidische Vektorräume und $A$ eine lineare Abbildung $V\to W$. 
+	\begin{parts}
+	\item Zeigen Sie die Äquivalenz der folgenden drei Aussagen:
+		\begin{enumerate}[label=\roman*.]
+			\item F\"{u}r alle $v_1,v_2\in V$ gilt: $\left<v_1,v_2 \right>_V=0\implies \left<Av_1, Av_2 \right>_W=0$.
+			\item F\"{u}r alle $v_1,v_2\in V$ gilt: $\|v_1\|_V=\|v_2\|_V\implies \|Av_1\|_W=\|Av_2\|_W$.
+			\item Es existieren eine Konstante $\alpha>0$ und eine Isometrie $\Phi:V\to W$ mit $A=\alpha\Phi$.
+		\end{enumerate}
+	\item Zeigen Sie, dass es genau dann Konstanten $C_1,C_2>0$ gibt, sodass
+		\[
+		C_1\left<v_1,v_2 \right>_V\le \left<Av_1,Av_2 \right>_W\le C_2\left<v_1,v_2 \right>_V
+	\]
+	f\"{u}r alle $v_1,v_2\in V$ gilt, wenn $A=\alpha\Phi$ f\"{u}r eine Konstante $\alpha>0$ und eine Isometrie $\Phi:V\to W$ erf\"{u}llt ist. Bestimmen Sie die bestmöglichen Parameter $C_1$ und $C_2$.
+	\end{parts}
+\end{Problem}
