@@ -187,3 +187,18 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 	f\"{u}r alle $v_1,v_2\in V$ gilt, wenn $A=\alpha\Phi$ f\"{u}r eine Konstante $\alpha>0$ und eine Isometrie $\Phi:V\to W$ erf\"{u}llt ist. Bestimmen Sie die bestmöglichen Parameter $C_1$ und $C_2$.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Der Plan ist: (i)$\iff$(iii)$\iff$(ii).
+
+		Angenommen (i). Sei $v_1,v_2\in V$, so dass $\langle v_1,v_2\rangle=k$. Sei $U=\text{span}v_1$, was ein Orthogonalkomplement hat. Also wir zerlegen $v_2=k_1v_1+v_2'$, wobei $v_2'$ senkrecht auf $v_1$ liegt. Daraus folgt:
+		\begin{align*}
+			\left<v_1,v_2 \right> =&\left<v_1,k_1 v_1+v_2' \right>\\
+			=&k_1\left<v_1,v_1 \right>+\left<v_1,v_2' \right>\\
+			=&k_1\left<v_1,v_1 \right>\\
+			\left<Av_1,Av_2 \right> =& \left<Av_1,k_1 Av_1+Av_2' \right>\\
+			=&k_1 \left<Av_1,Av_1 \right>+ \left<Av_1,Av_2' \right>\\
+			=&k_1\left<Av_1,Av_1 \right> & \text{(i) angenommen}
+		\end{align*}
+	\end{parts}
+\end{proof}
