@@ -22,7 +22,7 @@
 		Eine Möglichkeit ist $n_5=6$, also wir dürfen den Fall, in dem mehr als eine Untergruppe der Ordnung $5$ gibt, nicht ausschließen.\qedhere
 	\end{parts}
 \end{proof}
-\begin{Problem}
+\begin{Problem}\label{pr:introalgblatt9-2}
 	\begin{parts}
 	\item Seien $p$ eine Primzahl, $G$ eine Gruppe, $P$ eine $p$-Sylowgruppe von $G$ und $n_p$ die Anzahl der $p$-Sylowgruppen von $G$. Zeigen Sie, dass $P\trianglelefteq G$ genau dann gilt, wenn $n_p=1$ ist.
 	\item Zeigen Sie, dass eine Gruppe der Ordnung $12$ nicht einfach ist.
@@ -33,12 +33,20 @@
 	\item Sei $n_p\neq 1$, also $n_p>1$. Dann gibt es eine andere $p$-Sylowgruppe $U$. Weil alle Sylowgruppen konjugiert sind, gibt es $x\in G$, so dass $x^{-1}Px=U\neq P$, also $x^{-1}Px\neq P$ f\"{u}r alle $x\in G$, und $P$ ist kein Normalteiler.
 
 		Sei umgekehrt $P$ kein Normalteiler. Es gibt dann $x\in G$, so dass $x^{-1}Px=U\neq P$, Weil die Abbildung $p\to x^{-1}px$ injektiv ist, ist $U$ auch eine $p$-Sylowgruppe, also $n_p>1$.
-	\item $12=2^2\times 3$. Wir betrachten die Zahl der $3$-Sylowgruppen $n_3$. Es gilt
+	\item $12=2^2\times 3$. F\"{u}r die Zahlen der $3$ bzw. $2$-Sylowgruppen gilt 
 		\begin{align*}
+			n_2\equiv& 1\pmod{2}\\
+			n_2|&3\\
 			n_3\equiv& 1\pmod{3}\\
 			n_3|&4
 		\end{align*}
-		Die eindeutige Lösung ist $n_3=1$, also die $3$-Sylowgruppe ist ein Normalteiler und die Gruppe der Ordnung 12 ist nicht einfach.
+		Falls irgendeine Zahl $n_2$ oder $n_3$ $1$ ist, sind wir nach (a) fertig. Also wir nehmen an, dass weder $n_2$ noch $n_3$ $1$ sind. Die einzige Lösung ist dann $n_2=3,~n_3=4$. 
+
+		 Die $3$-Sylowgruppen sind außer das Neutrale disjunkt. In andere Worte: Sei $H'$ und $H$ $3$-Sylowgruppen. Dann ist $H'\cap H=\{e\} $. Beweis: Wir beweisen es per Widerspruch. Weil $H=H'$ angenommen ist, ist $|H\cap H'|=2$. Alle Elemente in $H$ bzw. $H'$ haben die Ordnung $3$, weil die Ordnung ein Teiler von der Gruppenordnung (3) ist, was nicht $1$ ist, wenn das Element nicht das Neutrale ist. Dann ist $H\cap H'=\{e, p\} $, wobei $p$ die Ordnung $3$ hat. Das ist aber ein Widerspruch, weil $3$ teilt $2$ nicht. 
+
+		 Das heißt: Aus $4$ $3$-Sylowgruppen bekommen wir $8$ unterschiedliche Elemente, die nicht $e$ sind. Es gibt eine $2$-Sylowgruppe der Ordnung $4$, z.B. $H$. Da Sylowgruppen von unterschiedliche Ordnung einen trivialen Schnitt haben, bekommen wir daraus $3$ neue Elemente. Es gibt aber mehr als eine $2$-Sylowgruppe, z.B. $H'$. Da $H=H'$, bekommen wir zumindest ein neues Element. Aus dem gleichen Argument ist dies nicht in den $8$ Elemente aus der $3$-Sylowgruppen enthalten.
+
+		 Insgesamt: Die Gruppe besitzt ein neutrales Element. Aus den $3$-Sylowgruppen bekommen wir $8$ nicht neutrale Elementen. Aus den $2$-Sylowgruppen bekommen wir mindestens $4$ Elemente. Alle diese Elemente sind unterschiedlich. Dann hat die Gruppe mindestens $13$ Elemente, ein Widerspruch.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -48,10 +56,19 @@
 	Es gibt Sylow-Untergruppen der Ordnung $7^2$ und $2^3$. F\"{u}r die Zahl solche Untergruppen $n_7$ und $n_2$ gilt:
 	\begin{align*}
 		n_2\equiv& 1\pmod{2}\\
-		n_2|&7\\
+		n_2|&49\\
 		n_7\equiv& 1\pmod{7}\\
 		n_7|&8
 	\end{align*}
+	Angenommen $n_2\neq 1\neq n_7$, sonst wären wir nach \ref{pr:introalgblatt9-2}(a) fertig. Also es gilt $n_7=8$. Die Gruppe $G$ operiere auf die Menge der $7$-Sylowgruppen per Konjugation. Die Operation ist ein Homomorphismus $\varphi:G\to S_8$, dessen Kern ein Normalteiler ist. Wir zeigen, dass der Kern nicht trivial und nicht die ganze Gruppe ist.
+
+	Wenn der Kern die ganze Gruppe wäre, gibt es eine $7$-Sylowgruppe $H$, so dass $gHg^{-1}=H$ f\"{u}r alle $g\in G$. Dann sind die $7$-Sylowgruppen nicht konjugiert, ein Widerspruch. (Außerdem wäre $H$ ein Normalteiler.)
+
+Wenn der Kern trivial wäre, wäre das Bild $\varphi(G)$ eine Untergruppe von $S_8$. Weil $\varphi$ injektiv wäre, hätte diese der Ordnung $392$. Die Ordnung alle Untergruppen teilt die Ordnung der ganzen Gruppe, also
+\[
+392|8!
+.\] 
+Aber $7$ kommt nur einmal in der Primfaktorzerlegung von $8!$ vor, während es zweimal in der Primfaktorzerlegung von $392$ zweimal vorkommt. Das heißt: $392\nmid 8!$, ein Widerspruch. 
 \end{proof}
 \begin{Problem}
 	\begin{parts}

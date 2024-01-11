@@ -1,0 +1,61 @@
+\begin{Problem}
+	\textbf{(Stetigkeit, partielle und totale Differenzierbarkeit)}	Sind die Funktionen mit den Funktionswerten
+	\begin{parts}
+		\item $f(x,y)=(x^2+y^2)^{1 / 4}$,
+		\item $f(x,y)=\begin{cases}
+				(x^2+y^2)\sin\left( \frac{1}{\sqrt{x^2+y^2} } \right) & \text{f\"{u}r }(x,y)\neq (0,0),\\
+				0 & \text{sonst,}
+		\end{cases}$ 
+	\item $f(x,y)=\begin{cases}
+			\frac{y(x^2+y^2)^{3 / 2}}{(x^2+y^2)^2+y^2} & \text{f\"{u}r }(x,y)\neq (0,0),\\
+			0 & \text{sonst}
+	\end{cases}$
+	\end{parts}
+	stetig, partiell oder total differenzierbar in $(0,0)$?
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Funktion ist stetig. Sei $\epsilon>0$ gegeben. Sei $\delta=\epsilon^2$. Dann f\"{u}r alle $r\in \R^2$, so dass $\|r-0\|=\|r\|<\delta$ gilt $f(x,y)=(\|r\|^2)^{1 / 4}=\|r\|^{1 / 2}<\epsilon$.
+
+		Die Funktion ist nicht partiell differenzierbar. F\"{u}r die Gerade $x=0$ gilt $f(0,y)=(y^2)^{1 / 4}=\sqrt{|y|} $. Aber $g(y)=\sqrt{|y|} $ ist nicht bei $0$ differenzierbar. Ähnlich ist sie auch nicht durch $x$ partiell differenzierbar.
+
+		Weil die Funktion nicht partiell differenzierbar ist, ist sie auch nicht total differenzierbar.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\textbf{(Tangenten von Kurven)} Für eine stetig differenzierbare Kurve $\gamma:[a,b]\to \R$ heißt $t\in [a,b]$ ein regulärer Punkt, falls $\gamma'(t)\neq 0$. Andernfalls nennen wir $t$ ein singulären Punkt.
+
+Bestimmen Sie die Menge der regulären/singulären Punkte folgender Kurven:	
+\begin{parts}
+\item $\gamma_1:\R\to \R^2$ mit $\gamma_1(t)=(t^2,t^3)^T$,
+\item $\gamma_2:[0,2\pi]\to \R^3$ mit $\gamma_2(t)=(\cos^3(t),\sin^3(t))^T$,
+\item $\gamma_3:[0,2\pi]\to \R^3$ mit $\gamma_3(t)=(t\cos t,t\sin t, t)^T$.
+\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	\textbf{(Rechnen mit der Kettenregel)} Der reelwertigen Funktionen $f(u_1,\dots, u_n)$ und $u_1(x_1,\dots, x_m),\dots, u_n(x_1,\dots, x_m)$ seien auf den offenen Mengen $U\subset \R^n$ bzw. $G\subset \R^m$ erklärt, und die Funktion
+	\[
+	\varphi(x_1,\dots, x_m):=f(u_1(x_1,\dots, x_m),\dots, u_n(x_1,\dots, x_m))
+\]
+existiere auf $G$.
+
+Im Folgenden ist jeweils die Ableitung $D\varphi$ der Funktion $\varphi$ zu berechnen:
+\begin{parts}
+\item $f(u,v,w)=u^2+v^2+w^2;\qquad u(t)=e^t\cos t,~v(t)=e^t\sin t,~w(t)=e^t$,
+\item $f(u,v)=\ln(u^2+v^2)$ f\"{u}r $(u,v)\neq (0,0)$; $u(x,y)=xy,~v(x,y)=\sqrt{x} / y$ f\"{u}r $x,y>0$,
+\item $f(u,v,w)=uv+vw-uw;\qquad u(x,y)=x+y,v(x,y)=x+y^2,w(x,y)=x^2+y$.
+\end{parts}
+\end{Problem}
+
+\begin{Problem}
+Beweisen Sie die Differenzierbarkeit der folgenden Funktionen und geben Sie die Ableitung an:	
+\begin{parts}
+\item $f(x)=x^TAx$ f\"{u}r $x\in \R^n$ und ein $A\in \R^{n\times n}$,
+\item $f(X,Y)=XY$ f\"{u}r $(X,Y)\in \R^{m\times n}\times \R^{n\times k}$.
+\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Zeigen Sie, dass die Funktion $f(x,y)=xy$ f\"{u}r $(x,y)\in \R^2$ einen kritischen Punkt in $(x,y)=(0,0)$ besitzt, aber kein Extremum.
+\end{Problem}
