@@ -156,11 +156,41 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 	\[
 	\left\{ \begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix}  \right\} 
 	.\] 
+	Wir ergänzen es bis eine Basis f\"{u}r den ganzen Vektorraum: \[
+	\left\{ \begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \begin{pmatrix} 2 \\ 2 \\ 2 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}  \right\} 
+	.\] 
 	Daraus ergibt sich eine Orthonomalbasis durch den Gram-Schmidt-Verfahren:
 	\[
-	\left\{ \frac{1}{\sqrt{30} }\begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \frac{1}{\sqrt{5} }\begin{pmatrix}  0 \\ 1 \\ 2 \end{pmatrix}   \right\} 
+	\left\{ \frac{1}{\sqrt{30} }\begin{pmatrix} 5 \\ 2 \\ -1 \end{pmatrix}, \frac{1}{\sqrt{5} }\begin{pmatrix}  0 \\ 1 \\ 2 \end{pmatrix}, \frac{1}{\sqrt{6} }\begin{pmatrix} 1 \\ -2 \\ 1 \end{pmatrix}    \right\} 
 	.\] 
-	Wir entscheiden uns für einen Vektor, der senkrecht auf den vorherigen beiden Vektoren liegt.
+	Die ersten 2 Vektoren sind eine Orthonomalbasis des Bildes, der dritte eine Orthonomalbasis des Kerns. Der Basiswechselmatrix ist
+	\[
+	O=\left(
+\begin{array}{ccc}
+ \sqrt{\frac{5}{6}} & 0 & \frac{1}{\sqrt{6}} \\
+ \sqrt{\frac{2}{15}} & \frac{1}{\sqrt{5}} & -\sqrt{\frac{2}{3}} \\
+ -\frac{1}{\sqrt{30}} & \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{6}} \\
+\end{array}
+\right) 
+	.\] 
+\item 
+	\[
+	A A^T=\left(
+\begin{array}{ccc}
+ \sqrt{\frac{5}{6}} & 0 & \frac{1}{\sqrt{6}} \\
+ \sqrt{\frac{2}{15}} & \frac{1}{\sqrt{5}} & -\sqrt{\frac{2}{3}} \\
+ -\frac{1}{\sqrt{30}} & \frac{2}{\sqrt{5}} & \frac{1}{\sqrt{6}} \\
+\end{array}
+\right) 
+\left(
+\begin{array}{ccc}
+ \sqrt{\frac{5}{6}} & \sqrt{\frac{2}{15}} & -\frac{1}{\sqrt{30}} \\
+ 0 & \frac{1}{\sqrt{5}} & \frac{2}{\sqrt{5}} \\
+ \frac{1}{\sqrt{6}} & -\sqrt{\frac{2}{3}} & \frac{1}{\sqrt{6}} \\
+\end{array}
+\right)=\text{diag}(1,1,1)
+	.\] 
+	Er hat schon Determinante $1$. Sonst könnten wir die erste zwei Spalten vertauschen.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -172,7 +202,18 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Wahr. Da $P^2=P$, muss $P$ das Neutrale auf $\text{im }P$ sein.
+	\item Da $P$ ein Projektor ist, ist $\C^n=\text{ker }P\oplus \text{im }P$. Die Frage ist: Können wir uns für ein Skalarprodukt entscheiden, so dass  $\text{ker }P=(\text{im }P)^\perp$? 
+		
+		Wir entscheiden uns für eine Basis von $\text{ker }P$ bzw. von $\text{im }P$, was wir mit $\{b_1,b_2,\dots, b_n\} $ bezeichnen. Sei die Matrix $A^{-1}$ so definiert: Die Spalten sind die Basisvektoren von $\text{ker }P$ bzw. $\text{im }P$. Dann schickt $A$ die Basisvektoren nach der Standardbasis. Wir definieren dann $B=A^TA$. Wir definieren dann ein Skalarprodukt $\langle v_1, v_2\rangle = (v_1)^TBv_2$, was noch ein Skalarprodukt ist, da $B$ positiv definit ist. 
+
+		Es gilt dann, f\"{u}r $b_i\neq b_j$:
+		\begin{align*}
+			\langle b_i, b_j\rangle=& (b_i)^TBb_j\\
+			=&(b_i)^TA^TAb_j\\
+			=&(Ab_i)^T(Ab_j)\\
+			=&0
+		\end{align*}
+		wobei wir benutzt haben, dass die Standardbasis bzgl. des Standardskalarprodukts orthonomal ist. Daraus folgt, dass $\text{ker }P=(\text{im }P)^\perp$ bzgl. dieses Standardskalarprodukts, also nach Proposition 7.79 ist $P$ ein Orthogonalprojektor.
 	\end{parts}
 \end{proof}
 \begin{Problem}
