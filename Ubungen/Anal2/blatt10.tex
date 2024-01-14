@@ -20,6 +20,16 @@
 		Die Funktion ist nicht partiell differenzierbar. F\"{u}r die Gerade $x=0$ gilt $f(0,y)=(y^2)^{1 / 4}=\sqrt{|y|} $. Aber $g(y)=\sqrt{|y|} $ ist nicht bei $0$ differenzierbar. Ähnlich ist sie auch nicht durch $x$ partiell differenzierbar.
 
 		Weil die Funktion nicht partiell differenzierbar ist, ist sie auch nicht total differenzierbar.
+	\item Die Funktion ist stetig. Es gilt
+		\[
+		\left|(x^2+y^2)\sin\left( \frac{1}{\sqrt{x^2+y^2} } \right)  \right| \le (x^2+y^2)
+	.\]
+	Da $x^2+y^2\to 0$ wenn $(x,y)\to (0,0)$, gilt es auch f\"{u} $f(x,y)$ und $f(x,y)$ ist in $(0,0)$ stetig.
+
+	Sie ist nicht partiell differenzierbar. z.B. F\"{u}r die Gerade $y=0$ ist $f(x,0)=x^2 \sin(1 / |x|)$, was nicht differenzierbar bei $0$ ist. Ähnlich existiert auch $\pdv{f}{y}(0,0)$ nicht. 
+
+	Weil $f$ nicht partiell differenzierbar ist, ist $f$ nicht total differenzierbar.
+\item \ldots
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -32,7 +42,26 @@ Bestimmen Sie die Menge der regulären/singulären Punkte folgender Kurven:
 \item $\gamma_3:[0,2\pi]\to \R^3$ mit $\gamma_3(t)=(t\cos t,t\sin t, t)^T$.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $\gamma_1(t)=(2t,3t^2)^T$.
 
+		Singulären Punkte: $\{0\} $.
+		
+		Regularären Punkte: $\R\backslash \{0\} $.
+	\item $\gamma_2'(t)=(3\cos^2(t)(-\sin t), 2\sin^2(t)\cos t$, also
+
+		Singulären Punkte: $S=\{0,\pi / 2, \pi, 3\pi / 2, 2\pi\} $
+		Regulären Punkte: $[0,2\pi] \backslash S$.
+	\item  $\gamma_3'(t)=(\cos t-t\sin t,\sin t-t\cos t,1)^T$
+
+		Die Ableitung ist nie der Nullvektor, also
+
+		Singulären Punkte: $\varnothing$ 
+
+		Regulären Punkte: $[0,2\pi]$.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	\textbf{(Rechnen mit der Kettenregel)} Der reelwertigen Funktionen $f(u_1,\dots, u_n)$ und $u_1(x_1,\dots, x_m),\dots, u_n(x_1,\dots, x_m)$ seien auf den offenen Mengen $U\subset \R^n$ bzw. $G\subset \R^m$ erklärt, und die Funktion
 	\[
@@ -47,7 +76,43 @@ Im Folgenden ist jeweils die Ableitung $D\varphi$ der Funktion $\varphi$ zu bere
 \item $f(u,v,w)=uv+vw-uw;\qquad u(x,y)=x+y,v(x,y)=x+y^2,w(x,y)=x^2+y$.
 \end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Sei $g:\R\to \R^3,t\to (u(t), v(t), w(t))^T$. Es gilt
+\begin{align*}
+	D(f\circ g)(t)=&Df(g(t))Dg(t)\\
+	=&(2u, 2v, 2w)(u'(t), v'(t), w'(t))^T\\
+	=&2uu'(t)+2vv'(t)+2ww'(t)\\
+	=&2(e^t\cos t)(e^t\cos t-e^t\sin t)\\
+	 &+2(e^t\sin t)(e^t\sin t+e^t\cos t)+2e^{2t}\\
+	=&4e^{2t}.
+\end{align*}
+\item Sei $g:\R^2\to \R^2, (x,y)\to (u(x,y),v(x,y))^T$. Es gilt
+	\begin{align*}
+		Df=&\left( \frac{2u}{u^2+v^2}, \frac{2v}{u^2+v^2} \right)\\
+		Dg=&\begin{pmatrix} y & x \\ \frac{1}{2\sqrt{x} y} & \sqrt{x}  \end{pmatrix} 
+	\end{align*}
+und daher
+	\begin{align*}
+		D(f\circ g)(x,y)=&Df(g(x,y))Dg(x,y)\\
+		=&\left( \frac{2xy}{x^2y^2+\frac{x}{y^2}}, \frac{2\sqrt{x} /y}{x^2y^2+\frac{x}{y^2}} \right) \begin{pmatrix} y & x \\ \frac{1}{2\sqrt{x} y}& \sqrt{x}  \end{pmatrix} \\
+		=&\left( \frac{1+2xy^4}{x+x^2y^4}, \frac{2y(1+xy^2)}{1+xy^4} \right) 
+	\end{align*}
+\item Sei $g:\R^2\to \R^3, (x,y)\to (u(x,y), v(x,y), w(x,y))^T$. Es gilt
+	\begin{align*}
+		Df(u,v,w)=&(v-w, u+w, v-u)\\
+		Dg(x,y,z)=&\begin{pmatrix} 1 & 1\\ 1 & 2y\\2x & 1 \end{pmatrix} 
+	\end{align*}
+	Daraus folgt:
+	\begin{align*}
+		D(f\circ g)(x,y)=&Df(g(x,y))Dg(x,y)\\
+		=&(x+y^2-x^2-y, x^2+x+2y, y^2-y)\\
+		 &\cdot\begin{pmatrix} 1 & 1 \\ 1 & 2y \\ 2x & 1 \end{pmatrix}\\
+		=&(y(1+y)+2x(1-y+y^2),\\
+		 &x+2xy+x^2(2y-1)+2y(3y-1)).\qedhere
+	\end{align*}
+	\end{parts}
+\end{proof}
 \begin{Problem}
 Beweisen Sie die Differenzierbarkeit der folgenden Funktionen und geben Sie die Ableitung an:	
 \begin{parts}
@@ -55,7 +120,38 @@ Beweisen Sie die Differenzierbarkeit der folgenden Funktionen und geben Sie die 
 \item $f(X,Y)=XY$ f\"{u}r $(X,Y)\in \R^{m\times n}\times \R^{n\times k}$.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir berechnen $f'(x_0)$. Es gilt
+		\begin{align*}
+			f(x_0+\delta x)=&(x_0+\delta x)^T A(x_0+\delta x)\\
+			=&x_0Ax_0+(\delta x)^TAx_0+(x_0)^TA(\delta x)\\
+			 &+(\delta x)^T A(\delta x)\\
+			=&f(x_0)+((x_0)^TA^T\delta x)^T+(x_0)^TA(\delta x)\\
+			 &+(\delta x)^T A(\delta x)\\
+			=&f(x_0)+x_0^T A^T(\delta x)+(x_0)^TA(\delta x) & (x_0)^TA^T \delta x\in \R\\
+			 &+(\delta x)^TA(\delta x)\\
+			=&f(x_0)+x_0^T(A^T+A)(\delta x)+(\delta x)^T A(\delta x)
+		\end{align*}
+		Wir idenfizieren $Df(x_0)=x_0^T(A^T+A)$. Es bleibt zu zeigen, dass $(\delta x)^T A(\delta x)$ eigentlich die Restabbildung ist. Da
+		\[
+			\lim_{\|\delta x\| \to 0} \left|\frac{(\delta x)^T}{\|\delta x\|} A\delta x\right|\le\lim_{\|\delta x\| \to 0} \|A\| \|\delta x\|=0
+		,\]
+		gilt die Behauptung.
+	\item Ähnlich berechnen wir $f'(X_0,Y_0)$. Es gilt
+		\begin{align*}
+			f(X_0+\delta X, Y_0+\delta Y)=&(X_0+\delta X)(Y_0+\delta Y)\\
+			=&X_0Y_0+(\delta X)Y_0+X_0(\delta Y)+(\delta X)(\delta Y)
+		\end{align*}
+	\end{parts}
+\end{proof}
 
 \begin{Problem}
 	Zeigen Sie, dass die Funktion $f(x,y)=xy$ f\"{u}r $(x,y)\in \R^2$ einen kritischen Punkt in $(x,y)=(0,0)$ besitzt, aber kein Extremum.
 \end{Problem}
+\begin{proof}
+	\[
+	f'(x,y)=(y,x)^T
+\]
+und $f'(0,0)=(0,0)$. Die Funktion besitzt in $(0,0)$ daher einen kritischen Punkt. Es ist aber kein Extremum. Es gilt $f(0,0)=0$. Es ist kein Maximum, weil auf der Gerade $x=y=t$ gilt $f(t,t)=t^2>0$ f\"{u}r $t\neq 0$, also in jede offene Menge bzw. offenem Kugel gibt es mindestens ein Punkt $(x,y)=(t,t)$, so dass $f(x,y)>0=f(0,0)$. Ähnlich gilt, auf der Gerade $(x,y)=(t,-t)$, $f(t,-t)=-t^2<0$, also $f(0,0)$ ist kein Minimum. Dann  besitzt $f$ kein Extremum in $(0,0)$.
+\end{proof}

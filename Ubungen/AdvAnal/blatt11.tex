@@ -1,0 +1,44 @@
+\begin{Problem}
+	\textbf{(Hyperbelfunktion)} Sei $d\in \{1,2,3\} , R>0, 1\le p<\infty$ und $\alpha>0$. Definiere
+	\[
+	B_R(d;0):=\{x\in \R^d|\|x\|<R\} , \qquad f:\R^d\to \R, x\to \begin{cases}
+		0 & x=0,\\
+		\frac{1}{\|x\|^\alpha} & x\neq 0.
+	\end{cases}
+	.\] 
+	\begin{parts}
+		\item Sei zunächst $d=1$. F\"{u}r welche $\alpha, p$ ist die Funktion $\chi_{B_R(1;0)}f$ in $L^p(\lambda_1)$? F\"{u}r welche $\alpha,p$ ist die Funktion $\chi_{\R\backslash B_R(1;0)}f$ in $L^p(\lambda_1)$?
+		\item Welche Bedingungen müssen in den Fällen $d=2,3$ f\"{u}r $\alpha, p$ gelten, damit $\chi_{B_R(d;0)}f\in L^p(\lambda_d)$ ist?
+		\item Sei $1<p<r<q<\infty$. Geben Sie eine Funktion $g:\R\to \R$ an mit $g\in L^r(\lambda_1)$, $g \not\in L^p(\lambda_1)$, $g \not\in L^q(\lambda_1)$.
+		\item Geben Sie ein Beispiel f\"{u}r eine Funktion $g:(0,1)\to \R$ an, sodass $g\in L^p(\lambda_1)$ f\"{u}r alle $p\in [1,\infty)$ gilt, aber $g \not\in L^\infty(\lambda_1)$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Sei $(X, \mathcal{A},\mu)$ ein Maßraum und $1\le p<q\le\infty$.
+	\begin{parts}
+	\item Zeigen Sie, dass $L^p(\mu)\cap L^q(\mu)\subseteq L^r(\mu)$ f\"{u}r alle $r\in (p,q)$ gilt und außerdem
+		\[
+			\|f\|_{L^r(\mu)}\le \|f\|_{L^p(\mu)}^\theta \|f\|_{L^q(\mu)}^{1-\theta}
+		\] 
+		f\"{u}r alle $f\in L^p(\mu)\cap L^q(\mu)$ und $\theta\in (0,1)$ mit
+		\[
+		\frac{1}{r}=\frac{\theta}{p}+\frac{1-\theta}{q}
+		.\] 
+	\item Sei der Maßraum $(X,\mathcal{A},\mu)$ nun endlich. Zeigen Sie, dass dan $L^q(\mu)\subseteq L^p(\mu)$ und
+		\[
+			\|f\|_{L^p(\mu)}\le \mu(X)^{\frac{1}{p}-\frac{1}{q}}\|f\|_{L^q(\mu)}
+		\] 
+		f\"{u}r alle $f\in L^q(\mu)$ gilt.
+
+		\emph{Hinweis: Betrachten Sie den Raum $L^r(\mu)$ f\"{u}r $r:=\frac{q}{p}$.}
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Sei $f:\R^3\to \R$ definiert durch $f(x,y,z):=|xyz|$ und
+	\[
+		A:=\left\{ (x,y,z)\in \R^3|x^2+y^2+z^2\le 1, z\ge \frac{1}{2} \right\} 
+	.\] 
+	Bestimmen Sie $\int_A f\dd{\lambda_3}$.
+\end{Problem}
