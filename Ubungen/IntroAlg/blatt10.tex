@@ -1,0 +1,67 @@
+\begin{Problem}
+	Bestimmen Sie alle Isomorphietypen f\"{u}r Gruppen der Ordnung $45=3^2\cdot 5$.
+\end{Problem}
+\begin{proof}
+	Wir betrachten die Zahl der $3$- bzw. $5$-Sylowgruppen $n_3$ bzw. $n_5$. Es gilt
+	\begin{align*}
+		n_3\equiv& 1\pmod{3}\\
+		n_3|& 5\\
+		n_5\equiv& 1\pmod{5}\\
+		n_5|& 9
+	\end{align*}
+	Die einzige Lösung ist $n_3=1$ und $n_5=1$. Da die Zahlen $1$ sind, sind die Untergruppen normal. Sei $A$ die $3$-Sylowgruppe und $B$ die $5$-Sylowgruppe. Die Gruppen müssen sich trivial schneiden, weil die Ordnung alle Elemente darin ein Teiler von der Gruppenordnung sein müssen. 
+
+	Da $9\times 5=45$, ist $|AB|=45$, also $AB$ ist einfach die ganze Gruppe. Da $n_3=n_5=1$, sind die Untergruppen normal. Es folgt daraus, dass die ganze Gruppe (isomorph zu) $A\times B$ ist.
+
+	Also ist jetzt die Frage: Wie viele Gruppen der Ordnung $5$ und $9$ gibt es?
+
+	Es gibt nur eine (bis auf Isomorphie) eindeutige Gruppe der Ordnung $5$, weil $5$ eine Primzahl ist, also es enthält ein Element der Ordnung $5$, was ein Erzeuger ist. Daher ist die Gruppe $C_5$.
+
+	Wir wissen aus der vorherigen Übungsblatt, dass eine Gruppe der Ordnung $3^2$ abelsch ist. Dann ist eine Gruppe der Ordnung $9$ ein direktes Produkt von zyklische Gruppen von Primpotenzordnung. Die einzige Möglichkeit ist $C_3\times C_3$. Natürlich ist $C_9$ auch eine Gruppe der Ordnung $9$. 
+
+	Insgesamt gibt es nur zwei Gruppen der Ordnung $45$: $C_5\times C_9$ und $C_5\times C_3\times C_3$.
+\end{proof}
+\begin{Problem}\label{pr:introalgblatt10-2}
+	Seien $N$ und $U$ zwei Gruppen. Zeigen Sie: Genau dann gilt $N\rtimes_{\phi}U=N\times U$, wenn $\phi_u=\text{id}_N$ f\"{u}r alle $u\in U$ gilt.
+\end{Problem}
+\begin{proof}
+	Die beide Gruppen sind auf der Menge $N\times U$ (kartesisches Produkt von Mengen) definiert. Jetzt die Rückrichtung: Falls $\phi_u=\text{id}_N$ f\"{u}r alle $N$ gilt, ist das Produkt
+	\[
+		(n_1,u_1)\circ (n_2,n_2)=(n_1\phi_{u_1}(n_2),u_1u_2)=(n_1n_2,u_1u_2)
+	\]
+	f\"{u}r alle $n_1,n_2\in N, u_1,u_2\in U$. Dann bekommen wir per Definition das direktes Produkt.
+
+	Sei jetzt $N\rtimes_{\phi}U=N\times U$. Dann stimmen alle Produkte überein. Sei $u_1,u_2\in U$ und $n_1,n_2\in N$. Es gilt
+	\[
+		(n_1\phi_{u_1}(n_2),u_1u_2)=(n_1n_2,u_1u_2)
+	\]
+	insbesondere
+	\[
+		n_1\phi_{u_1}(n_2)=n_1n_2
+	.\] 
+	Aus der Kurzungsregel folgt
+	\[
+		\phi_{u_1}(n_2)=n_2
+	.\] 
+	Da $u_1,u_2,n_1,n_2$ beliebig waren, muss dies f\"{u}r alle $u_1,n_2$ gelten, also $\phi_{u_1}=\text{id}_N$ f\"{u}r alle $u_1\in U$.
+\end{proof}
+\begin{Problem}
+	Von einer Gruppe $G$ seien bekannt:
+	\begin{enumerate}[label=(\arabic*)]
+		\item Sie habe Ordnung $p^2\cdot q^2$ mit zwei verschiedenen Primzahlen $p,q\in \mathbb{P}$.
+		\item Die $q$-Sylowgruppe $Q$ von $G$ sei normal.
+		\item $p$ Sei kein Teiler von $|\text{Aut}(Q)|$.
+	\end{enumerate}
+	Zeigen Sie, dass $G$ abelsch ist.
+
+	(Hinweis: Denken Sie an semidirekte Produkte. Verwenden Sie an geeigneter Stelle Übung \ref{pr:introalgblatt10-2}.)  
+\end{Problem}
+\begin{proof}
+	Sei die $p$-Sylowgruppe bzw. $q$-Sylowgruppe von $G$ $P$ bzw. $Q$. Es gilt $|P| |Q|=|G|$, also $G=PQ$. Da $Q$ normal ist, ist $G\cong Q\rtimes P$.  
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie, dass jede abelsche Gruppe der Ordnung $100$ ein Element der Ordnung $10$ enthält
+	\item Zeigen Sie, dass $A_4$ keine Untergruppe der Ordnung $6$ besitzt (vgl. auch Bemerkung 2.29 im Skript).
+	\end{parts}
+\end{Problem}

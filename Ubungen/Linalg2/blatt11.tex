@@ -175,7 +175,7 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 	.\] 
 \item 
 	\[
-	A A^T=\left(
+	O O^T=\left(
 \begin{array}{ccc}
  \sqrt{\frac{5}{6}} & 0 & \frac{1}{\sqrt{6}} \\
  \sqrt{\frac{2}{15}} & \frac{1}{\sqrt{5}} & -\sqrt{\frac{2}{3}} \\
@@ -214,6 +214,11 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 			=&0
 		\end{align*}
 		wobei wir benutzt haben, dass die Standardbasis bzgl. des Standardskalarprodukts orthonomal ist. Daraus folgt, dass $\text{ker }P=(\text{im }P)^\perp$ bzgl. dieses Standardskalarprodukts, also nach Proposition 7.79 ist $P$ ein Orthogonalprojektor.
+	\item Falsch. Sei $n=1$ und Endomorphismus $Ax=2x$, dann ist
+		\[
+		\left<2x, 2x \right> = 4\left<x,x \right>\neq \left<x,x \right>
+	\]
+	unabhängig vom Wahl von $x$.
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -245,5 +250,12 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 			=&k_1 \left<Av_1,Av_1 \right>+ \left<Av_1,Av_2' \right>\\
 			=&k_1\left<Av_1,Av_1 \right> & \text{(i) angenommen}
 		\end{align*}
+	\item Es gilt
+		\begin{align*}
+			\langle Av_1, Av_2\rangle =& \langle \alpha \Phi v_1, \alpha\Phi v_2\rangle \\
+			=&\alpha^2 \langle \Phi v_1, \Phi v_2\rangle\\
+			=&\alpha^2 \langle v_1, v_2\rangle & \Phi\text{ ist Isometrie}
+		\end{align*}
+		also $C_1=C_2=\alpha^2$, und wir haben Gleichheit.
 	\end{parts}
 \end{proof}

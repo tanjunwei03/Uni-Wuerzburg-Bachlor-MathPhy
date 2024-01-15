@@ -13,7 +13,40 @@
 		\item Geben Sie ein Beispiel f\"{u}r eine Funktion $g:(0,1)\to \R$ an, sodass $g\in L^p(\lambda_1)$ f\"{u}r alle $p\in [1,\infty)$ gilt, aber $g \not\in L^\infty(\lambda_1)$.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Funktion $\chi_{B_R(1;0)}f$ ist in $L^p(\lambda_1)$ genau dann, wenn
+	\begin{align*}
+		\int \chi_{B_R(1;0)}|f|^p \dd{\lambda_1}=&\int_{B_R(1;0)} |f|^p \dd{\lambda_1}\\
+		=&\int_{B_R(1;0)}\frac{1}{\|x\|^{\alpha p}}\dd{\lambda_1}\\
+		=&\int_0^R \frac{1}{\|x\|^{\alpha p}}\dd{\lambda_1}+\int_{-R}^0 \frac{1}{\|x\|^{\alpha p}}\dd{\lambda_1}
+	\end{align*}
+	Weil die Funktionen positiv sind, sind sie Lebesgue-Integrierbar genau dann, wenn sie (uneigentlich) Riemann-Integrierbar sind. Wir wissen aber auch, dass
+	\begin{align*}
+		\int_0^R \frac{1}{\|x\|^{\alpha p}}\dd{\lambda_1}=&\int_0^R \frac{1}{x^{\alpha p}}\dd{\lambda_1} & x>0\\
+		=&\lim_{a \to 0} \int_a^R \frac{1}{x^{\alpha p}}\dd{x}\\
+		=&\lim_{a \to 0}\left[ \frac{x^{-\alpha p + 1}}{1-\alpha p} \right] 
+	\end{align*}
+	was existiert genau dann, wenn $-\alpha p + 1 \ge 0$. Das Ergebnis stimmt nicht f\"{u}r $\alpha p=1$. In diesem Fall ist
+	\[
+		\int_a^R \frac{1}{x}\dd{x}=[\ln x]_a^R
+	\]
+	und der Grenzwert existiert nicht. Aus der Symmetrie von $x\to -x$ gilt genau die gleiche f\"{u}r $\int_{-R}^0 \frac{1}{\|x\|^{\alpha p}}\dd{x}$. Insgesamt ist die Funktion genau dann integrierbar, wenn $-\alpha p + 1 >0$. 
 
+	Ähnlich berechnen wir das Riemann-Integral f\"{u}r $\chi_{\R\backslash B_R(1;0)}$. Es gilt
+	\begin{align*}
+		\int_R^\infty \frac{1}{\|x\|^{\alpha p}}=&\int_R^\infty \frac{1}{x^{\alpha p}}\dd{x}\\
+		=&\lim_{a \to \infty} \int_R^a \frac{1}{x^{\alpha p}}\dd{x}\\
+		=&\lim_{a \to \infty} \left[ \frac{x^{-\alpha p+1}}{1-\alpha p} \right]
+	\end{align*}
+	was genau dann existiert, wwenn $-\alpha p + 1\le 0$. Ähnlich stimmt das Ergebnis nicht f\"{u}r $-\alpha p = 1$ nicht. In diesem Fall ist
+	\[
+		\int_R^\infty \frac{1}{x}\dd{x}=\lim_{a \to \infty} \ln x |_R^a
+	,\]
+	was nicht existiert. Also es ist genau dann integrierbar, wenn $-\alpha p + 1 < 0$.
+\item $d=2$: Wir berechnen das Integral in Kugelkoordinaten 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Sei $(X, \mathcal{A},\mu)$ ein Maßraum und $1\le p<q\le\infty$.
 	\begin{parts}
@@ -25,7 +58,7 @@
 		\[
 		\frac{1}{r}=\frac{\theta}{p}+\frac{1-\theta}{q}
 		.\] 
-	\item Sei der Maßraum $(X,\mathcal{A},\mu)$ nun endlich. Zeigen Sie, dass dan $L^q(\mu)\subseteq L^p(\mu)$ und
+	\item Sei der Maßraum $(X,\mathcal{A},\mu)$ nun endlich. Zeigen Sie, dass dann $L^q(\mu)\subseteq L^p(\mu)$ und
 		\[
 			\|f\|_{L^p(\mu)}\le \mu(X)^{\frac{1}{p}-\frac{1}{q}}\|f\|_{L^q(\mu)}
 		\] 
@@ -34,7 +67,31 @@
 		\emph{Hinweis: Betrachten Sie den Raum $L^r(\mu)$ f\"{u}r $r:=\frac{q}{p}$.}
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Sei $f\in L^p(\mu)\cap L^q(\mu)$. Das Ziel ist: $f\in L^r(\mu)$ f\"{u}r alle $r\in (p,q)$. Sei
+\begin{align*}
+	A=&\{x|x\in X,~|f(x)|<1\} \\
+	B=&\{x|x\in X,~|f(x)|\ge 1\}=X\backslash A
+\end{align*}
+Weil $|f|^p$ bzw. $|f|^q$ auf der ganzen Menge $X$ integrierbar sind, sind $|f|^p$ bzw. $|f|^q$ auf $A$ und $B$ integrierbar. Es gilt, f\"{u}r alle $x\in A$,
+\[
+|f|^q \le |f|^r \le |f|^p
+\]
+also $|f|^r$ ist auf $A$ integrierbar. Ähnlich ist f\"{u}r alle $x\in B$ 
+\[
+|f|^p\le |f|^r\le |f|^q
+\]
+und das Integral von $|f|^r$ auf $B$ existiert. Da
+\[
+	\int |f|^r\dd{\mu}=\int_A |f|^r\dd{\mu}+\int_B |f|^r\dd{\mu}
+,\]
+ist $|f|^r$ integrierbar und $f\in L^r(\mu)$. Aus der Höldersche Ungleichung folgt, f\"{u}r $1 / p + 1 / q = 1, p,q\in [1,\infty]$
+\[
+	\|f^2\|_{\mathcal{L}^1(\mu)}\le \|f\|_{\mathcal{L}^p(\mu)}\|f\|_{\mathcal{L}^q(\mu)}
+.\] 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Sei $f:\R^3\to \R$ definiert durch $f(x,y,z):=|xyz|$ und
 	\[

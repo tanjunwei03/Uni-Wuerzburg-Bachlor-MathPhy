@@ -1,0 +1,454 @@
+\begin{Problem}
+	Bestimmen Sie f\"{u}r $b\in \left\{ \begin{pmatrix} i+2 \\ 2 \\ -i-1 \end{pmatrix} , \begin{pmatrix} -2i-6 \\ -5 \\ 3i+2 \end{pmatrix} , \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \right\} \subseteq \C^3$ jeweils die Lösungsmenge des Gleichungssystems $Ax=b$ mit $x\in \C^3$.	
+	\begin{parts}
+		\item 
+			\[
+			A=\left(
+\begin{array}{ccc}
+ 1 & i & 2 \\
+ i & 1 & 1 \\
+ 0 & i & 1 \\
+\end{array}
+\right)\in \C^{3\times 3} 
+			.\] 
+		\item 
+			\[
+			A=\left(
+\begin{array}{ccc}
+ 6+2 i & -i & -2 \\
+ 5 & -1 & -1 \\
+ -3-2 i & i & 1 \\
+\end{array}
+\right)\in \C^{3\times 3} 
+			.\] 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item 
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 2+i \\
+ i & 1 & 1 & 2 \\
+ 0 & i & 1 & -1-i \\
+\end{array}
+\right) \xrightarrow{R_2-iR_1} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 2+i \\
+ 0 & 2 & 1-2 i & 3-2 i \\
+ 0 & i & 1 & -1-i \\
+\end{array}
+\right) \xrightarrow{R_3-\frac{i}{2}R_2} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 2+i \\
+ 0 & 2 & 1-2 i & 3-2 i \\
+ 0 & 0 & -\frac{i}{2} & -2-\frac{5 i}{2} \\
+\end{array}
+\right)\\ \xrightarrow{R_1-\frac{i}{2}R_2} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & 1-\frac{i}{2} \\
+ 0 & 2 & 1-2 i & 3-2 i \\
+ 0 & 0 & -\frac{i}{2} & -2-\frac{5 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_2-(4+2i)R_3} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & 1-\frac{i}{2} \\
+ 0 & 2 & 0 & 6+12 i \\
+ 0 & 0 & -\frac{i}{2} & -2-\frac{5 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_1-(1+2i)R_3}\\ \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -2+6 i \\
+ 0 & 2 & 0 & 6+12 i \\
+ 0 & 0 & -\frac{i}{2} & -2-\frac{5 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_3\times 2 i} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -2+6 i \\
+ 0 & 2 & 0 & 6+12 i \\
+ 0 & 0 & 1 & 5-4 i \\
+\end{array}
+\right) \xrightarrow{R_2\times \frac{1}{2}} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -2+6 i \\
+ 0 & 1 & 0 & 3+6 i \\
+ 0 & 0 & 1 & 5-4 i \\
+\end{array}
+\right)	
+			\end{gather*}
+			Die Lösungsmenge ist $\{(-2+yi,3+6i,5-4i)^T\} $.
+
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & -6-2 i \\
+ i & 1 & 1 & -5 \\
+ 0 & i & 1 & 2+3 i \\
+\end{array}
+\right) \xrightarrow{R_2\times i} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & -6-2 i \\
+ -1 & i & i & -5 i \\
+ 0 & i & 1 & 2+3 i \\
+\end{array}
+\right) \xrightarrow{R_2+R_1} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & -6-2 i \\
+ 0 & 2 i & 2+i & -6-7 i \\
+ 0 & i & 1 & 2+3 i \\
+\end{array}
+\right)\\ \xrightarrow{R_2\times \frac{1}{2}} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & -6-2 i \\
+ 0 & i & 1+\frac{i}{2} & -3-\frac{7 i}{2} \\
+ 0 & i & 1 & 2+3 i \\
+\end{array}
+\right) \xrightarrow{R_3-R_2} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & -6-2 i \\
+ 0 & i & 1+\frac{i}{2} & -3-\frac{7 i}{2} \\
+ 0 & 0 & -\frac{i}{2} & 5+\frac{13 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_1-R_2}\\ \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & -3+\frac{3 i}{2} \\
+ 0 & i & 1+\frac{i}{2} & -3-\frac{7 i}{2} \\
+ 0 & 0 & -\frac{i}{2} & 5+\frac{13 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_2+(1-2i)R_3} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & -3+\frac{3 i}{2} \\
+ 0 & i & 0 & 15-7 i \\
+ 0 & 0 & -\frac{i}{2} & 5+\frac{13 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_1-(1+2i)R_3} \\\left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & 5-15 i \\
+ 0 & i & 0 & 15-7 i \\
+ 0 & 0 & -\frac{i}{2} & 5+\frac{13 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_2\times -i} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & 5-15 i \\
+ 0 & 1 & 0 & -7-15 i \\
+ 0 & 0 & -\frac{i}{2} & 5+\frac{13 i}{2} \\
+\end{array}
+\right) \xrightarrow{R_3\times 2 i} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & 5-15 i \\
+ 0 & 1 & 0 & -7-15 i \\
+ 0 & 0 & 1 & -13+10 i \\
+\end{array}
+\right)	
+			\end{gather*}
+			also die Lösungsmenge ist $\{(5-15i,-5-15i,-13+10i)^T\} $.
+
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 0 \\
+ i & 1 & 1 & 0 \\
+ 0 & i & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_2\times i} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 0 \\
+ -1 & i & i & 0 \\
+ 0 & i & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_2+R_1} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 0 \\
+ 0 & 2 i & 2+i & 0 \\
+ 0 & i & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_2\times \frac{1}{2}}\\ \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 0 \\
+ 0 & i & 1+\frac{i}{2} & 0 \\
+ 0 & i & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3-R_2} \left(
+\begin{array}{ccc|c}
+ 1 & i & 2 & 0 \\
+ 0 & i & 1+\frac{i}{2} & 0 \\
+ 0 & 0 & -\frac{i}{2} & 1 \\
+\end{array}
+\right) \xrightarrow{R_1-R_2} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & 0 \\
+ 0 & i & 1+\frac{i}{2} & 0 \\
+ 0 & 0 & -\frac{i}{2} & 1 \\
+\end{array}
+\right)\\ \xrightarrow{R_2+(1-2i)R_3} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 1-\frac{i}{2} & 0 \\
+ 0 & i & 0 & 1-2 i \\
+ 0 & 0 & -\frac{i}{2} & 1 \\
+\end{array}
+\right) \xrightarrow{R_1-(1+2 i)R_3} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -1-2 i \\
+ 0 & i & 0 & 1-2 i \\
+ 0 & 0 & -\frac{i}{2} & 1 \\
+\end{array}
+\right)\\ \xrightarrow{R_2\times -i} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -1-2 i \\
+ 0 & 1 & 0 & -2-i \\
+ 0 & 0 & -\frac{i}{2} & 1 \\
+\end{array}
+\right) \xrightarrow{R_3\times 2 i} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & 0 & -1-2 i \\
+ 0 & 1 & 0 & -2-i \\
+ 0 & 0 & 1 & 2 i \\
+\end{array}
+\right)	
+			\end{gather*}
+			also die Lösungsmenge ist $\{(-1-2i,-2-i,2i)^T\} $.
+		\item 
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & 2+i \\
+ 5 & -1 & -1 & 2 \\
+ -3-2 i & i & 1 & -1-i \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & 2+i \\
+ 5 & -1 & -1 & 2 \\
+ 3 & 0 & -1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3-\frac{3}{5}R_2}\\ \left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & 2+i \\
+ 5 & -1 & -1 & 2 \\
+ 0 & \frac{3}{5} & -\frac{2}{5} & -\frac{1}{5} \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{3}{20}-\frac{i}{20}} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & \frac{7}{20}+\frac{i}{20} \\
+ 5 & -1 & -1 & 2 \\
+ 0 & \frac{3}{5} & -\frac{2}{5} & -\frac{1}{5} \\
+\end{array}
+\right) \\\xrightarrow{R_2-5R_1} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & \frac{7}{20}+\frac{i}{20} \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & \frac{1}{4}-\frac{i}{4} \\
+ 0 & \frac{3}{5} & -\frac{2}{5} & -\frac{1}{5} \\
+\end{array}
+\right) \xrightarrow{R_2\times -\frac{2}{3}-\frac{2 i}{3}}\\ \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & \frac{7}{20}+\frac{i}{20} \\
+ 0 & 1 & -\frac{2}{3} & -\frac{1}{3} \\
+ 0 & \frac{3}{5} & -\frac{2}{5} & -\frac{1}{5} \\
+\end{array}
+\right) \xrightarrow{R_3-\frac{3}{5}R_2} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & \frac{7}{20}+\frac{i}{20} \\
+ 0 & 1 & -\frac{2}{3} & -\frac{1}{3} \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right) \\\xrightarrow{R_1\times 20} \left(
+\begin{array}{ccc|c}
+ 20 & -1-3 i & -6+2 i & 7+i \\
+ 0 & 1 & -\frac{2}{3} & -\frac{1}{3} \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right) \xrightarrow{R_1+(1+3i)R_2}\\ \left(
+\begin{array}{ccc|c}
+ 20 & 0 & -\frac{20}{3} & \frac{20}{3} \\
+ 0 & 1 & -\frac{2}{3} & -\frac{1}{3} \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{1}{20}} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & -\frac{1}{3} & \frac{1}{3} \\
+ 0 & 1 & -\frac{2}{3} & -\frac{1}{3} \\
+ 0 & 0 & 0 & 0 \\
+\end{array}
+\right)	
+			\end{gather*}
+			Die Lösungsmenge ist dann
+			\[
+			\left\{\begin{pmatrix} \frac{1}{3}t+\frac{1}{3} \\ \frac{2}{3}t-\frac{1}{3}\\ t \end{pmatrix} ,t\in \C \right\} 
+			.\] 
+
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & -6-2 i \\
+ 5 & -1 & -1 & -5 \\
+ -3-2 i & i & 1 & 2+3 i \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & -6-2 i \\
+ 5 & -1 & -1 & -5 \\
+ 3 & 0 & -1 & -4+i \\
+\end{array}
+\right) \\\xrightarrow{R_1\times \frac{3}{20}-\frac{i}{20}} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 5 & -1 & -1 & -5 \\
+ 3 & 0 & -1 & -4+i \\
+\end{array}
+\right) \xrightarrow{R_3-3R_1}\\ \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 5 & -1 & -1 & -5 \\
+ 0 & \frac{3}{20}+\frac{9 i}{20} & -\frac{1}{10}-\frac{3 i}{10} & -1+i \\
+\end{array}
+\right) \xrightarrow{R_2-5R_1} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & 0 \\
+ 0 & \frac{3}{20}+\frac{9 i}{20} & -\frac{1}{10}-\frac{3 i}{10} & -1+i \\
+\end{array}
+\right) \\\xrightarrow{R_3\times 20} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & 0 \\
+ 0 & 3+9 i & -2-6 i & -20+20 i \\
+\end{array}
+\right) \xrightarrow{R_3+4R_2}\\ \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & 0 \\
+ 0 & 12 i & -8 i & -20+20 i \\
+\end{array}
+\right) \xrightarrow{R_2\times -\frac{2}{3}-\frac{2 i}{3}} \\\left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 0 & 1 & -\frac{2}{3} & 0 \\
+ 0 & 12 i & -8 i & -20+20 i \\
+\end{array}
+\right) \xrightarrow{R_3+-12 iR_2} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & -1 \\
+ 0 & 1 & -\frac{2}{3} & 0 \\
+ 0 & 0 & 0 & -20+20 i \\
+\end{array}
+\right) 	
+			\end{gather*}
+			Das Gleichungssystem besitzt keine Lösung, die Lösungsmenge ist $\varnothing$.
+
+			\begin{gather*}
+			\left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & 0 \\
+ 5 & -1 & -1 & 0 \\
+ -3-2 i & i & 1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3+R_1} \left(
+\begin{array}{ccc|c}
+ 6+2 i & -i & -2 & 0 \\
+ 5 & -1 & -1 & 0 \\
+ 3 & 0 & -1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_1\times \frac{3}{20}-\frac{i}{20}} \\\left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 5 & -1 & -1 & 0 \\
+ 3 & 0 & -1 & 1 \\
+\end{array}
+\right) \xrightarrow{R_3-3R_1} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 5 & -1 & -1 & 0 \\
+ 0 & \frac{3}{20}+\frac{9 i}{20} & -\frac{1}{10}-\frac{3 i}{10} & 1 \\
+\end{array}
+\right) \xrightarrow{R_2-5R_1}\\ \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & 0 \\
+ 0 & \frac{3}{20}+\frac{9 i}{20} & -\frac{1}{10}-\frac{3 i}{10} & 1 \\
+\end{array}
+\right) \xrightarrow{R_3\times \frac{2}{3}-2 i} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 0 & -\frac{3}{4}+\frac{3 i}{4} & \frac{1}{2}-\frac{i}{2} & 0 \\
+ 0 & 1 & -\frac{2}{3} & \frac{2}{3}-2 i \\
+\end{array}
+\right) \\\xrightarrow{R_2\times -\frac{2}{3}-\frac{2 i}{3}} \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 0 & 1 & -\frac{2}{3} & 0 \\
+ 0 & 1 & -\frac{2}{3} & \frac{2}{3}-2 i \\
+\end{array}
+\right) \xrightarrow{R_3-R_2}\\ \left(
+\begin{array}{ccc|c}
+ 1 & -\frac{1}{20}-\frac{3 i}{20} & -\frac{3}{10}+\frac{i}{10} & 0 \\
+ 0 & 1 & -\frac{2}{3} & 0 \\
+ 0 & 0 & 0 & \frac{2}{3}-2 i \\
+\end{array}
+\right) \xrightarrow{R_1+\frac{1}{20}+\frac{3 i}{20}R_2} \left(
+\begin{array}{ccc|c}
+ 1 & 0 & -\frac{1}{3} & 0 \\
+ 0 & 1 & -\frac{2}{3} & 0 \\
+ 0 & 0 & 0 & \frac{2}{3}-2 i \\
+\end{array}
+\right)	
+			\end{gather*}
+			Das Gleichungssystem besitzt keine Lösungen. Die Lösungsmenge ist $\varnothing$.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+\begin{parts}
+\item Bestimmen Sie für $m = 3$ die Elementarmatrizen $S_1 (\lambda), Q_{12} (\lambda), P_{12}$ aus 3.6.1 als explizite 3 × 3- Matrizen und überprüfen Sie für damit die Behauptungen 1-6 aus 3.6.2 exemplarisch im Fall $i = 1, j = 2, m = 3$. 
+\item Beweisen Sie für alle $i, j, m \in \N, \lambda \in K$ mit $i\neq j$ und $i,j\le m$ die Behauptungen
+	\[
+		S_i(\lambda)^{-1}=S_i(\lambda^{-1}),~Q_{ij}(\lambda)^{-1}=Q_{ij}(-\lambda),~P_{ij}^{-1}=P_{ij}
+	\]
+	aus Bemerkung 3.6.2.
+\end{parts}	
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			S_1(\lambda)=& \begin{pmatrix} \lambda & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} 	\\
+			Q_{12}(\lambda)=&\begin{pmatrix} 1 & \lambda & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \\
+			P_{12}(\lambda)=& \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} 
+		\end{align*}
+		\begin{enumerate}[label=(\arabic*)]
+			\item Es gilt
+		\[
+			\begin{pmatrix} \lambda & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} A_{11} & A_{12} & \dots & A_{1n} \\ A_{21} & A_{22} & \dots & A_{2n} \\ A_{31} & A_{32} & \dots & A_{3n} \end{pmatrix}=\begin{pmatrix} \lambda A_{11} & \lambda A_{12} & \dots & \lambda A_{1n} \\ A_{21} & A_{22} & \dots & A_{2n} \\ A_{31} & A_{32} & \dots & A_{3n}\end{pmatrix} 
+		.\] 			
+	\item Es gilt
+		\begin{align*}
+			&\begin{pmatrix} 1 & \lambda & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} A_{11} & A_{12} & \dots & A_{1n} \\ A_{21} & A_{22} & \dots & A_{2n} \\ A_{31} & A_{32} & \dots & A_{3n} \end{pmatrix}\\
+			=&\begin{pmatrix} A_{11}+\lambda A_{21} & A_{12}+\lambda A_{22} & \dots & A_{1n} +\lambda A_{2n} \\ A_{21} & A_{22} & \dots & A_{2n}\\ A_{31} & A_{32} & \dots & A_{3n}\end{pmatrix} 
+		\end{align*}
+	\item Es gilt
+		\[
+			\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} A_{11} & A_{12} & \dots & A_{1n} \\ A_{21} & A_{22} & \dots & A_{2n} \\ A_{31} & A_{32} & \dots & A_{3n} \end{pmatrix}=\begin{pmatrix} A_{21} & A_{22} &\dots & A_{2n} \\ A_{11} & A_{12} & \dots A_{1n} \\ A_{31} & A_{32} & \dots & A_{3n} \end{pmatrix} 
+		.\] 
+	\item Es gilt
+		\[
+			\begin{pmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ \vdots & \vdots & \vdots \\ A_{n 1} & A_{n 2} & A_{n 3} \end{pmatrix}\begin{pmatrix} \lambda & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}=\begin{pmatrix}\lambda A_{11} & A_{12} & A_{13} \\ \lambda A_{21} & A_{22} & A_{23} \\ \vdots & \vdots & \vdots \\ \lambda A_{n 1} & A_{n 2} & A_{n 3}  \end{pmatrix}  
+		.\] 
+	\item Es gilt
+		\[
+			\begin{pmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ \vdots & \vdots & \vdots \\ A_{n 1} & A_{n 2}& A_{n 3} \end{pmatrix} \begin{pmatrix} 1 & \lambda & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}=\begin{pmatrix} A_{11} & A_{12} +\lambda A_{11} & A_{13} \\ A_{21} & A_{22}+\lambda A_{21} & A_{23} \\ \vdots & \vdots & \vdots \\ A_{n 1} & A_{n 2}+\lambda A_{n 1} & A_{n 3} \end{pmatrix}  
+		.\] 
+	\item 
+			\[\begin{pmatrix} A_{11} & A_{12} & A_{13} \\ A_{21} & A_{22} & A_{23} \\ \vdots & \vdots & \vdots \\ A_{n 1} & A_{n 2}& A_{n 3} \end{pmatrix} \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}=\begin{pmatrix}A_{12} & A_{11} & A_{13} \\ A_{22} & A_{21} & A_{23} \\ \vdots & \vdots & \vdots \\ A_{n 2} & A_{n 1}& A_{n 3}  \end{pmatrix} .\] 
+		\end{enumerate}
+	\item Es gilt
+\begin{align*}
+	(E_m+(\lambda -1)E_{i,i})\left( E_m+\left( \frac{1}{\lambda}-1 \right) E_{i,i} \right) =&\cancelto{E_m}{E_m^2}+(\lambda-1)E_{i,i}\\&+\left( \frac{1}{\lambda}-1 \right)E_{i,i}\\&+(\lambda -1)\left( \frac{1}{\lambda}-1 \right) \cancelto{E_{i,i}}{E_{i,i}^2}\\
+	=&E_m
+\end{align*} 
+Es gilt
+\begin{align*}
+	(E_m+\lambda E_{ij})(E_m-\lambda E_{ij})=&\cancelto{E_m}{E_m^2}+\lambda E_{ij}-\lambda E_{ij}+\lambda^2 \cancelto{0}{E_{ij}^2}\\
+	=& E_m
+\end{align*}
+Aus (3) wissen wir, dass $P_{ij}^2 A=A$ f\"{u}r alle $A\in K^{m\times n}$. Daraus folgt: $P_{ij}^2=E_m$ und $P_{ij}=P_{ij}^{-1}$.\qedhere
+	\end{parts}
+\end{proof}
