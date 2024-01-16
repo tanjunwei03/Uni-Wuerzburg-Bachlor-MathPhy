@@ -29,7 +29,36 @@
 	Sie ist nicht partiell differenzierbar. z.B. F\"{u}r die Gerade $y=0$ ist $f(x,0)=x^2 \sin(1 / |x|)$, was nicht differenzierbar bei $0$ ist. Ähnlich existiert auch $\pdv{f}{y}(0,0)$ nicht. 
 
 	Weil $f$ nicht partiell differenzierbar ist, ist $f$ nicht total differenzierbar.
-\item \ldots
+\item Die Funktion ist stetig. Es gilt
+	\begin{align*}
+		f(x,y)=& \frac{y(x^2+y^2)^{3 / 2}}{(x^2+y^2)^2+y^2}\\
+		=&\frac{y}{\sqrt{x^2+y^2} +\frac{y}{(x^2+y^2)^{3 / 2}}}
+	\end{align*}
+	Da $\frac{y}{(x^2+y^2)^{3 / 2} }\to \infty$ wenn $(x,y)\to (0,0)$, geht die Funktion $f(x,y)\to 0$. Dann ist $\lim_{(x,y)\to (0,0)}f(x,y)=0$, also die Funktion ist stetig.
+
+	Sie ist auch partiell differenzierbar. Da $f(x,0)=0$, ist $\pdv{f}{x}(0,0)=0$. Es gilt
+	\[
+		f(0,y)=\frac{y(y^2)^{3 / 2}}{y^4+y^2}
+	.\] 
+	Daraus folgt:
+	\begin{align*}
+		\lim_{y \to 0} \frac{f(0,y)-f(0,0)}{y}=&\lim_{y \to 0}  \frac{(y^2)^{3 / 2}}{y^4+y^2}\\
+		=&\lim_{y \to 0} \frac{|y|^{3}}{y^4+y^2}\\
+		=&\lim_{y \to 0} \frac{|y|}{y^2+1} 
+	\end{align*}
+	Da $\frac{1}{y^2+1}$ stetig ist und $\frac{1}{y^2+1}\to 0$ wenn $y\to 0$, existiert der Grenzwert. Der Grenzwert ist auch $0$. 
+
+	Sie ist aber nicht total differenzierbar. Falls eine Ableitung existiere, kann die Ableitung durch die partielle Ableitungen dargestellt werden. Diese Darstellung liefert eine totale Ableitung von $0$. Es würde also gelten:
+	\[
+		\lim_{(x,y) \to (0,0)} \frac{f(x,y)-f(0,0)}{\|(x,y)\|}=\lim_{(x,y) \to (0,0)} \frac{f(x,y)}{\|(x,y)\|}= 0
+	.\]
+	Es gilt aber
+	\begin{align*}
+		\lim_{(x,y) \to (0,0)} \frac{f(x,y)}{\|(x,y)\|}=& \lim_{(x,y) \to (0,0)}  \frac{f(x,y)}{\sqrt{x^2+y^2} }\\
+		=&\lim_{(x,y) \to (0,0)} \frac{y(x^2+y^2)}{(x^2+y^2)^2+y^2}\\
+		=&\lim_{(x,y) \to (0,0)} \frac{y}{(x^2+y^2)+\frac{y^2}{x^2+y^2}}\\
+		=&\lim_{(x,y) \to (0,0)} \frac{1}{\frac{x^2}{y}+y+\frac{y}{x^2+y^2}}
+	\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}

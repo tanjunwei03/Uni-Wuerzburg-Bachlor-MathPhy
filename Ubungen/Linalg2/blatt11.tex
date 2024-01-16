@@ -239,16 +239,44 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Der Plan ist: (i)$\iff$(iii)$\iff$(ii).
-
-		Angenommen (i). Sei $v_1,v_2\in V$, so dass $\langle v_1,v_2\rangle=k$. Sei $U=\text{span}v_1$, was ein Orthogonalkomplement hat. Also wir zerlegen $v_2=k_1v_1+v_2'$, wobei $v_2'$ senkrecht auf $v_1$ liegt. Daraus folgt:
+	\item 
+		(i)$\implies$ (ii)
+		Sei $v_1,v_2\in V$, so dass $\|v_1\|=\|v_2\|$. Es gilt
 		\begin{align*}
-			\left<v_1,v_2 \right> =&\left<v_1,k_1 v_1+v_2' \right>\\
-			=&k_1\left<v_1,v_1 \right>+\left<v_1,v_2' \right>\\
-			=&k_1\left<v_1,v_1 \right>\\
-			\left<Av_1,Av_2 \right> =& \left<Av_1,k_1 Av_1+Av_2' \right>\\
-			=&k_1 \left<Av_1,Av_1 \right>+ \left<Av_1,Av_2' \right>\\
-			=&k_1\left<Av_1,Av_1 \right> & \text{(i) angenommen}
+			\langle v_1+v_2, v_1-v_2\rangle=& \left<v_1,v_1 \right>-\left<v_2,v_2 \right>\\
+			=&0 & \text{Voraussetzung}
+		\end{align*}
+Aus (i) folgt dann
+\[
+\left<A(v_1+v_2),A(v_1-v_2) \right> = 0
+\]
+und
+\[
+\|Av_1\|= \|Av_2\|
+.\] 
+		(ii)$\implies$ (iii)
+		Sei $v_1,v_2\in V$ mit $|v_1|=|v_2|$. Es gilt $|A v_1| = |A v_2|$. Wir teilen die zweite Gleichung durch die erste Gleichung und erhalten
+		\[
+		\frac{|A v_1|}{|v_1|}=\frac{|A v_2|}{|v_2|}:=\alpha
+		.\] 
+		Da dies f\"{u}r alle Paare $v_1,v_2$ gilt, gilt es f\"{u}r alle Vektoren, also $|Av|=\alpha |v|$ f\"{u}r alle $v\in V$. Außerdem ist.
+		\begin{align*}
+			\langle u, v\rangle =& \frac{1}{2}\left( |u+v|^2-|u|^2-|v|^2 \right)\\
+			\left<Au, Av \right> =&\frac{1}{2}\left( |A(u+v)|^2 - |Au|^2- |Av|^2 \right) \\
+			=&\frac{1}{2}(\alpha^2|u+v|^2-\alpha^2|u|^2-\alpha^2|v|^2)\\
+			=&\frac{\alpha^2}{2}(|u+v|^2-|u|^2-|v|^2)\\
+			=&\alpha^2 \left<u,v \right>\\
+			\left<\frac{A}{\alpha}u, \frac{A}{\alpha}v \right> =& \left<u,v \right>	
+		\end{align*}
+		Dann ist $A / \alpha$ ein Isometrie.
+
+		(iii)$\implies$(i)
+
+		Sei $A=\alpha \Phi$. Seien $v_1,v_2\in V$, so dass $\langle v_1, v_2\rangle=0$. Es folgt
+		\begin{align*}
+			\left<Av_1, Av_2 \right> =& \left<\alpha\Phi v_1, \alpha\Phi v_2 \right>\\
+			=&\alpha^2 \left<\Phi v_1, \Phi v_2 \right>\\
+			=&\alpha^2 (0)=0
 		\end{align*}
 	\item Es gilt
 		\begin{align*}
@@ -256,6 +284,6 @@ also die Eigenwerte sind $0$, $1-i$ und $2-2i$.
 			=&\alpha^2 \langle \Phi v_1, \Phi v_2\rangle\\
 			=&\alpha^2 \langle v_1, v_2\rangle & \Phi\text{ ist Isometrie}
 		\end{align*}
-		also $C_1=C_2=\alpha^2$, und wir haben Gleichheit.
+		also $C_1=C_2=\alpha^2$, und wir haben Gleichheit.\qedhere
 	\end{parts}
 \end{proof}

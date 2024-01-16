@@ -44,7 +44,15 @@
 		\int_R^\infty \frac{1}{x}\dd{x}=\lim_{a \to \infty} \ln x |_R^a
 	,\]
 	was nicht existiert. Also es ist genau dann integrierbar, wenn $-\alpha p + 1 < 0$.
-\item $d=2$: Wir berechnen das Integral in Kugelkoordinaten 
+\item $d=2$: Wir berechnen das Integral in Polarkoordinaten. Da die Funktion positiv ist, ist das Integral wohldefiniert. Sie ist genau dann integrierbar, wenn die transformierte Funktion integrierbar ist. Wir wissen, dass $\|x\|=r$. Daraus folgt:
+	\begin{align*}
+		\int_{B_R(2;0)} \frac{1}{\|x\|^{\alpha p}}\dd{\lambda_2}=&\int_0^R\int_0^{2\pi} \frac{1}{r^{\alpha p}}\dd{\theta}r\dd{r}\\
+		=& 2\pi\int_0^R \frac{1}{r^{\alpha p-1}}\dd{r}
+	\end{align*}
+	Aus dem Argument in (a) existiert das Integral genau dann, wen
+	\[
+		-(\alpha p - 1)+1=\alpha p+2>0
+	.\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
