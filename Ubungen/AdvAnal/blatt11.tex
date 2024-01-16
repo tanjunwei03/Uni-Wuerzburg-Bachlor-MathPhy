@@ -15,7 +15,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Die Funktion $\chi_{B_R(1;0)}f$ ist in $L^p(\lambda_1)$ genau dann, wenn
+	\item \label{part:advanalblatt11-1a}Die Funktion $\chi_{B_R(1;0)}f$ ist in $L^p(\lambda_1)$ genau dann, wenn
 	\begin{align*}
 		\int \chi_{B_R(1;0)}|f|^p \dd{\lambda_1}=&\int_{B_R(1;0)} |f|^p \dd{\lambda_1}\\
 		=&\int_{B_R(1;0)}\frac{1}{\|x\|^{\alpha p}}\dd{\lambda_1}\\
@@ -49,10 +49,80 @@
 		\int_{B_R(2;0)} \frac{1}{\|x\|^{\alpha p}}\dd{\lambda_2}=&\int_0^R\int_0^{2\pi} \frac{1}{r^{\alpha p}}\dd{\theta}r\dd{r}\\
 		=& 2\pi\int_0^R \frac{1}{r^{\alpha p-1}}\dd{r}
 	\end{align*}
-	Aus dem Argument in (a) existiert das Integral genau dann, wen
+	Aus dem Argument in \ref{part:advanalblatt11-1a} ist das Integral endlich genau dann, wenn
 	\[
-		-(\alpha p - 1)+1=\alpha p+2>0
+		-(\alpha p - 1)+1=-\alpha p+2>0
 	.\] 
+	Ähnlich für $d=3$ berechnen die das Integral in Kugelkoordinaten. Die Funktion ist integrierbar genau dann, wenn die transformierte Funktion integrierbar ist. Es gilt
+	\begin{align*}
+		\int_{B_R(3;0)}\frac{1}{\|x\|^{\alpha p}}\dd{\lambda_3}=& \int_0^R\int_0^{2\pi}\int_0^\pi \frac{1}{r^{\alpha p}}r^2\sin\theta\dd{\theta}\dd{\varphi}\dd{r}\\
+		=&2\int_0^R \int_0^{2\pi}\frac{1}{r^{\alpha p - 2}}\dd{\varphi}\dd{r}\\
+		=&4\pi\int_0^R \frac{1}{r^{\alpha p - 2}}\dd{r}
+	\end{align*}
+	Das Integral ist endlich genau dann, wenn
+	\[
+		-(\alpha p - 2)+1=-\alpha p + 3>0
+	.\] 
+\item Sei $p=1,r=2,q=3$. Sei außerdem
+	\[
+	g(x)=\begin{cases}
+		x^{- 1 / 3} & |x|<1\\
+		1 / x & |x| \ge 1
+	\end{cases}
+	.\] 
+	Wir zeigen alle drei Eigenschaften.
+	\begin{align*}
+		\int |g|\dd{\lambda_1}\ge& \int_{\R \backslash B_1(1;0)} |g|\dd{\lambda_1}\\
+		=&\int_{\R\backslash B_1(1;0)} \frac{1}{|x|}\dd{\lambda_1}\\
+		=&\infty & \text{\ref{part:advanalblatt11-1a}}
+	\end{align*}
+	also $g\not\in L^1(\lambda_1)$. Jetzt ist
+	\begin{align*}
+		\int |g|^3 \dd{\lambda}\ge& \int_{B_1(1;0)} |g|^3 \dd{\lambda_1}\\
+		=& \int_{-1}^1 \frac{1}{|x|}\dd{\lambda_1}\\
+		=&\infty & \text{\ref{part:advanalblatt11-1a}}
+	\end{align*}
+	also $g\not\in L^3(\lambda_1)$. Zuletzt ist
+	\begin{align*}
+		\int |g|^2\dd{\lambda_1}=& \int_{B_1(1;0)}|g|^2\dd{\lambda_1}+\int_{\R\backslash B_1(1;0)}|g|^2\dd{\lambda_1}\\
+		=&\underbrace{\int_{B_1(1;0)} x^{-2 / 3}\dd{\lambda_1}}_{<\infty}+\underbrace{\int_{\R\backslash B_1(1;0)} \frac{1}{x^2}\dd{\lambda_1}}_{<\infty}\\
+		<& \infty
+	\end{align*}
+	wobei die zwei Integrale weniger als unendlich aus \ref{part:advanalblatt11-1a} sind, also $g\in L^2(\lambda_1)$. 
+\item Sei $g:(0,1)\to \R$ definiert durch $g(x)=\ln x$. Es gilt $\lim_{x \to 0} |g(x)|=\infty$, also $g\not\in L^\infty(\lambda_1)$. $g$ ist jedoch ein Element von $L^p(\lambda_1)$ f\"{u}r alle $p\in [1,\infty)$. 
+
+	Wir zeigen es zunächst für all $p\in \N$ per Induktion. Außerdem berechnen wir das Integral über $(0,1]$, was das Ergebnis nicht verändert, weil $\{1\} $ eine Nullmenge ist. Da $\ln x$ entweder $>0$ oder $<0$ f\"{u}r alle $x\in (1,0]$ ist, schreiben wir $|\ln x|=k\ln x$, wobei $k\in \{-1,1\} $. 
+
+	$p=1$ Fall:
+	\begin{align*}
+		\int_0^1 \ln x\dd{\lambda_1}=&\lim_{a \to 0} \int_0^1 \ln x\dd{\lambda_1}\\
+		=&\lim_{a \to 0}\left[ x\ln x|_a^1 - \int_a^1 \dd{\lambda_1} \right] \\
+		=&\lim_{a \to 0} \left[ a\ln x-(1-a) \right] \\
+		=&-1
+	\end{align*}
+	also
+	\[
+		\int_0^1 |\ln x|\dd{\lambda_1}=1
+	.\] 
+	Wir nehmen jetzt an, dass es f\"{u}r beliebiges $p\in \N$ gilt. 
+	\begin{align*}
+		\int_0^1 |\ln x|^{p}\dd{\lambda_1}=& k^{p+1} \int_0^1 (\ln x)^{p+1}\dd{\lambda_1}\\
+		=&k^{p+1}\left[ x(\ln x)^{p+1}|_0^1-\int_0^1 x(p+1)(\ln x)^p \frac{1}{x} \right] \\
+		=&k^{p+1}\left[ -(p+1)\int_0^1(\ln x)^p\dd{\lambda_1}\right] 
+	\end{align*}
+	Per Voraussetzung ist das Integral von $|\ln x|^p$ endlich, also das Integral von $|\ln x|^{p+1}$ ist auch endlich. Insgesamt ist $\ln x\in L^p(\lambda_1)$ f\"{u}r alle $p\in \N$.
+
+	Sei jetzt $p$ beliebig. Es gilt
+	\[
+		\int_0^1 |\ln x|^p\dd{\lambda_1}=\int_0^{1 / e}|\ln x|^p\dd{\lambda_1}+\int_{1 / e}^1 |\ln x|^p\dd{\lambda_1}
+	.\] 
+	Da $|\ln x|^p$ auf $(1 / e, 1)$ stetig f\"{u}r alle $p$ ist, existiert das Integral von $1 / e$ bis $1$ stets. Also wir vergleichen $|\ln x|^p$ f\"{u}r $x\in (0,1 / e)$. 
+
+	Weil $|\ln x|>1$ f\"{u}r alle $x\in (0, 1 / e)$, ist
+	\[
+		\int_0^{1 / e}|\ln x|^p\dd{\lambda_1}\le \int_0^{1 / e}|\ln x|^{\left\lceil  p \right\rceil}\dd{\lambda_1} 
+	.\] 
+	Per Definition ist $\left\lceil p \right\rceil \in \N$ und $|\ln x|^{\left\lceil p \right\rceil }$ integrierbar. Dann ist $|\ln x|^p$ auch integrierbar und $\ln x\in L^p(\lambda_1)~\forall p\in [1,\infty)$.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -107,3 +177,39 @@ ist $|f|^r$ integrierbar und $f\in L^r(\mu)$. Aus der Höldersche Ungleichung fo
 	.\] 
 	Bestimmen Sie $\int_A f\dd{\lambda_3}$.
 \end{Problem}
+\begin{proof}
+	Weil $f$ stetig auf einer kompakten Menge definiert ist, ist $f$ auf $A$ integrierbar. F\"{u}r den Schnitt $A_z$ gilt
+	\[
+	A_z=\left\{ (x,y)\in \R^2|x^2+y^2\le 1 - z^2 \right\} 
+	.\] 
+	Dann verwenden wir den Satz von Fubini, um das Integral als Doppelintegral zu schreiben. $z$ muss in $(1 / 2, 1)$ sein, damit $A_z$ nichtleerist. $z\ge 1 / 2$ per Definition und $z\le 1$, weil sonst $x^2+y^2\le 1 - z^2\le 0$. Da $x^2+y^2$ positiv ist, wäre der Schnitt dann leer.
+	\[
+		\int_A f\dd{\lambda_3}=\int_{1 / 2}^1\int_{A_z}|xy| |z|\dd{\lambda_2}\dd{z}
+	.\] 
+	Wir berechnen jetzt das Integral
+	\[
+		\int_{A_z}|xy|\dd{\lambda_2}
+	\]
+	in Polarkoordinaten. Das Integral existiert zumindest f\"{u}r fast alle $z\in (1 / 2, 1)$, weil $|xyz|$ integrierbar in $\R^3$ ist, also wir verwenden den Transformationssatz
+	\begin{align*}
+		\int_{A_z}|x y|\dd{\lambda_2}=&\int_{(0,\sqrt{1-z^2} )}\int_{(0,2\pi)} |r^2\cos\varphi\sin\varphi|r\dd{\varphi}\dd{r}\\
+		=&\int_0^{\sqrt{1-z^2} } 2r^3\dd{r}\\
+		=&\frac{1}{2}(1-z^2)^2
+	\end{align*}
+	Nebenrechnung:
+	\begin{align*}
+		\int_0^{2\pi} |\sin\varphi\cos\varphi|\dd{\varphi}=&4\int_0^{\pi / 2}|\sin\varphi\cos\varphi|\dd{\varphi}\\
+		=&4\int_0^{\pi /2}\left| \frac{1}{2}\sin 2\varphi \right| \dd{\varphi}\\
+		=&2\int_0^{\pi / 2}\sin 2\varphi\dd{\varphi}\\
+		=&2\left[ -\frac{\cos 2\varphi}{2} \right]_0^{\pi / 2}\\
+		=&(1 - (-1))=2\\
+	\end{align*}
+	Daraus folgt:
+	\begin{align*}
+		\int_A f\dd{\lambda_3}=&\int_{1 / 2}^1 \frac{|z|}{2}(1-z^2)^2\dd{z}\\
+		=&\frac{1}{2}\int_{1 / 2}^1 z(1-z^2)^2\dd{z}\\
+		=&\frac{1}{2}\int_{1 / 2}^1 z(1-2z^2+z^4)\dd{z}\\
+		=&\frac{1}{2}\left[ \frac{z^2}{2}-\frac{z^4}{2}+\frac{z^6}{6} \right]_{1 / 2}^1\\
+		=&\frac{9}{256}.\qedhere
+	\end{align*}
+\end{proof}
