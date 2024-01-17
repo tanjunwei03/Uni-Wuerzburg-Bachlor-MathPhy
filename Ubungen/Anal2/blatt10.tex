@@ -55,10 +55,9 @@
 	Es gilt aber
 	\begin{align*}
 		\lim_{(x,y) \to (0,0)} \frac{f(x,y)}{\|(x,y)\|}=& \lim_{(x,y) \to (0,0)}  \frac{f(x,y)}{\sqrt{x^2+y^2} }\\
-		=&\lim_{(x,y) \to (0,0)} \frac{y(x^2+y^2)}{(x^2+y^2)^2+y^2}\\
-		=&\lim_{(x,y) \to (0,0)} \frac{y}{(x^2+y^2)+\frac{y^2}{x^2+y^2}}\\
-		=&\lim_{(x,y) \to (0,0)} \frac{1}{\frac{x^2}{y}+y+\frac{y}{x^2+y^2}}
+		=&\lim_{(x,y) \to (0,0)} \frac{y(x^2+y^2)}{(x^2+y^2)^2+y^2}
 	\end{align*}
+	was nicht existiert.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -173,6 +172,10 @@ Beweisen Sie die Differenzierbarkeit der folgenden Funktionen und geben Sie die 
 			f(X_0+\delta X, Y_0+\delta Y)=&(X_0+\delta X)(Y_0+\delta Y)\\
 			=&X_0Y_0+(\delta X)Y_0+X_0(\delta Y)+(\delta X)(\delta Y)
 		\end{align*}
+		Da $\frac{(\delta X)(\delta Y)}{|(\delta X, \delta Y)}\to 0$ wenn $|(\delta X, \delta Y)|\to 0$, ist die Ableitung
+		\[
+		J_f((\delta X, \delta Y))=(\delta X)Y_0+X_0(\delta Y)
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
 
