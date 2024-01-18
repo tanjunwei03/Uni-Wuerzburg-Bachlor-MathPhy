@@ -48,10 +48,38 @@
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\section{Direktes Produkt von Zyklische Gruppen}
-	\begin{Remark}
-		Sei $A,B\le G$. I.A. ist $AB$ keine Gruppe.
-	\end{Remark}
+	\section{Zahlentheorie}
+	\section{Allgemein Gruppentheorie}
+	\section{Gruppenhomomorphismen}
+	\begin{Theorem}
+		Sei $\phi:G\to H$ ein Homomorphismus. Es gilt $\text{ord}(\phi(g))|\text{ord}(g)$.
+	\end{Theorem}
+	\section{Gruppenoperationen}
+	\section{Abelsche Gruppen}
+\begin{Theorem}
+Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = e$ für alle $g \in G$.	
+\end{Theorem}
+\begin{Theorem}
+	$G$ ist genau dann abelsch, wenn die Zentrumsfaktorgruppe $G / Z(G)$ zyklisch ist.
+\end{Theorem}
+\begin{Theorem}
+	Sei $p$ eine Primzahl. Alle Gruppen der Ordnung $p^2$ sind abelsch.
+\end{Theorem}
+	\section{Zyklische Gruppen}
+	\begin{Theorem}
+		$G$ ist zyklisch genau dann, wenn $G$ zu jedem positiven Teiler $t$ von $|G|$ genau eine Untergruppe der Ordnung $t$ besitzt.
+	\end{Theorem}
+	\section{Symmetrische Gruppen}
+	\begin{Theorem}
+		Sei $\sigma, \tau\in S_n$ disjunkt. Es gilt $\text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$
+	\end{Theorem}
+	\begin{Theorem}
+		\[
+		S_n=\langle (12),(123\dots n)\rangle
+		.\] 
+	\end{Theorem}
+	\section{Einfache Gruppen}
+	\section{Produktgruppen}
 	\begin{Theorem}
 		Sei  $A,B\le G$. $AB$ ist eine Gruppe genau dann, wenn $AB=BA$.
 
@@ -68,4 +96,8 @@
 	\begin{Theorem}
 		Internes semidirektes Produkt: $A\trianglelefteq G, B\le G,A\cap B=\{e\} \implies AB\cong A\rtimes B$
 	\end{Theorem}
+	\begin{Definition}
+		$A\rtimes_{\varphi} B=(A\times B, \circ, (e,e))$, wobei $(u,v)\circ (\tilde{u},\tilde{v})=(u\varphi_{v}(\tilde{u}), v\tilde{v})$
+	\end{Definition}
+	\section{Beispielverzeichnis}
 	\end{document}
