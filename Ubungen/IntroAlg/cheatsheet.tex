@@ -1,0 +1,71 @@
+\documentclass[prb,12pt]{revtex4-2}
+%fonts
+% Palatino for main text and math
+\usepackage[osf,sc]{mathpazo}
+
+% Helvetica for sans serif
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.90]{helvet}
+
+% Bera Mono for monospaced
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.85]{beramono}
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usepackage{tikz-cd}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\title{Einf\"{u}rung in die Algebra Hausaufgaben Blatt Nr. 9}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\section{Direktes Produkt von Zyklische Gruppen}
+	\begin{Remark}
+		Sei $A,B\le G$. I.A. ist $AB$ keine Gruppe.
+	\end{Remark}
+	\begin{Theorem}
+		Sei  $A,B\le G$. $AB$ ist eine Gruppe genau dann, wenn $AB=BA$.
+
+		Erfüllt, wenn $A$ oder $B$ normal in $G$ sind.
+	\end{Theorem}
+	\begin{Theorem}
+		\[
+		|AB|=\frac{|A| |B|}{|A\cap B|}
+		.\] 
+	\end{Theorem}
+	\begin{Theorem}
+		Internes direktes Produkt: $A,B\trianglelefteq G,~A\cap B=\{e\}\implies AB\cong A\times B $.
+	\end{Theorem}
+	\begin{Theorem}
+		Internes semidirektes Produkt: $A\trianglelefteq G, B\le G,A\cap B=\{e\} \implies AB\cong A\rtimes B$
+	\end{Theorem}
+	\end{document}

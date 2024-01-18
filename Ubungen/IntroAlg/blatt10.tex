@@ -50,14 +50,22 @@
 	\begin{enumerate}[label=(\arabic*)]
 		\item Sie habe Ordnung $p^2\cdot q^2$ mit zwei verschiedenen Primzahlen $p,q\in \mathbb{P}$.
 		\item Die $q$-Sylowgruppe $Q$ von $G$ sei normal.
-		\item $p$ Sei kein Teiler von $|\text{Aut}(Q)|$.
+		\item $p$ sei kein Teiler von $|\text{Aut}(Q)|$.
 	\end{enumerate}
 	Zeigen Sie, dass $G$ abelsch ist.
 
 	(Hinweis: Denken Sie an semidirekte Produkte. Verwenden Sie an geeigneter Stelle Übung \ref{pr:introalgblatt10-2}.)  
 \end{Problem}
 \begin{proof}
-	Sei die $p$-Sylowgruppe bzw. $q$-Sylowgruppe von $G$ $P$ bzw. $Q$. Es gilt $|P| |Q|=|G|$, also $G=PQ$. Da $Q$ normal ist, ist $G\cong Q\rtimes P$.  
+	Sei die $p$-Sylowgruppe bzw. $q$-Sylowgruppe von $G$ $P$ bzw. $Q$. Weil $p$ und $q$ teilerfremd sind, schneiden die Sylowgruppen trivial. Daher gilt $|P| |Q|=|G|$, also $G=PQ$. Da $Q$ normal ist, ist $G\cong Q\rtimes P$.  
+
+	Als quadratische Primordnung sind sowohl $Q$ als auch $P$ abelsch. Falls wir zeigen könnten, dass $G\cong Q\times P$, wären wir dann fertig.
+
+	Aus \ref{pr:introalgblatt10-2} und Transitivität ist es zu zeigen
+	\[
+		Q\rtimes P\cong Q\times P \iff k_u(v)=v~\forall u\in P,v\in Q
+	,\] 
+	wobei wir hier mit $k_u(\cdot)$ die Konjugation $k_u(p)=upu^{-1}$ bezeichnen. Dies induziert den Homomorphismus $\varphi: P\to \text{Aut}(Q)$. 
 \end{proof}
 \begin{Problem}
 	\begin{parts}
@@ -65,3 +73,59 @@
 	\item Zeigen Sie, dass $A_4$ keine Untergruppe der Ordnung $6$ besitzt (vgl. auch Bemerkung 2.29 im Skript).
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Als abelsche Gruppe ist die Gruppe isomorph zu ein Produkt zyklische Gruppen von Primpotenzordnung. Da $100=5^2\cdot 2^2$, sind die möglichen Gruppen
+	\begin{align*}
+		&C_{5^2}\times C_{2^2}\\
+		&C_5\times C_5 \times C_{2^2}\\
+		&C_{5^2}\times C_2\times C_2\\
+		&C_5\times C_5\times C_2\times C_2
+	\end{align*}
+	Wir zeigen, dass alle diese Gruppen ein Element der Ordnung $10$ enthalten.
+	\begin{enumerate}[label=(\arabic*)]
+		\item $C_{5^2}\times C_{2^2 }$:
+
+			Da $25$ und $4$ teilerfremd sind, ist $C_{5^2}\times C_{2^2}\cong C_{100}$. Da $10$ ein Teiler von $100$ ist, und die zyklische Gruppe $C_{100}$ f\"{u}r jede Teiler $t$ von $100$ eine zyklische Untergruppe der Ordnung $t$ besitzt, gibt es ein Element der Ordnung $10$.
+		\item $C_5\times C_5\times C_{2^2}$:
+
+			Wir ziehen $C_5$ und $C_4$ zusammen, weil $5$ und $4$ teilerfremd sind. Also $C_5\times C_4\cong C_{20}$, was auch ein Element der Ordnung $10$ besitzt, weil $10$ ein Teiler von $20$ ist. Sei das Element $g$. Dann ist
+			\[
+				(e,g)\in C_5\times C_{20}
+			\]
+			ein Element der Ordnung $10$.
+		\item Es gilt
+			\[
+				C_{5^2}\times C_2\times C_2\cong C_{50}\times C_2
+			\]
+			da $25$ und $2$ teilerfremd sind. Ähnlich gibt es $g\in C_{50}$ der Ordnung $10$. Dann ist
+			\[
+				(g, e)\in C_{50}\times C_2
+		\]
+		ein Element der Ordnung $10$.
+	\item Gleich ist
+		\[
+		C_5\times C_5\times C_2\times C_2=C_5\times C_{10}\times C_2
+	.\]
+	Sei $g$ ein Erzeuger von $C_{10}$. Dann ist
+	\[
+		(e, g, e')\in C_5\times C_{10}\times C_2
+	\]
+	ein Element der Ordnung $10$.
+	\end{enumerate}
+\item $|A_4|= 4! / 2 = 12=3\times 2^2$.
+
+	Da $6 = 12 / 2$, wäre eine Untergruppe der Ordnung $6$ ein Normalteiler. Weil $6=2\times 3$, enthält die Elemente der Ordnung $2$ und Elemente der Ordnung $3$. Die Gruppe $A_4$ enthält die Folgende Elemente
+	\begin{align*}
+		&e\\
+		&\left.
+			\begin{aligned}
+				&(12)(34)\\
+				&(13)(24)\\
+				&(14)(23)
+			\end{aligned}
+		\right\}\text{\parbox{4cm}{Produkt von disjunkte Transpositionen}}\\
+		&\text{3-Zykeln (genau 8)}
+	\end{align*}
+\end{parts}
+\end{proof}
