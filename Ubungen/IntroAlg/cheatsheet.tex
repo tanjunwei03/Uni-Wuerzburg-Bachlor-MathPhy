@@ -49,12 +49,83 @@
 	\date{\today}
 	\maketitle
 	\section{Zahlentheorie}
+	\begin{Theorem}
+		(Division mit Rest)
+	\[
+	a=bq+r,~0\le r\le |b|-1
+	.\] 
+\end{Theorem}
+\begin{Theorem}
+	Sei $\Z^2\ni (a,b)\neq (0,0)$. Dann gibt es $s,t\in \Z$ mit
+	\[
+	ggT(a,b)=sa+tb
+	.\] 
+\end{Theorem}
+\begin{Theorem}
+	Sei $\Z^2\ni (a,b)\neq (0,0)$ und $d$ ein Teiler von $a$ und $b$. Es gilt
+	\[
+		d\cdot \text{ggT}\left( \frac{a}{b},\frac{b}{d} \right) =\text{ggT}(a,b)
+	.\] 
+\end{Theorem}
+\begin{Theorem}
+	Seien $a,b,c\in \Z$. Sind $a,b$ teilerfremd, gilt
+	\begin{parts}
+		\item $a|bc\implies a|c$ 
+		\item $a|c$ und $b|c\implies ab|c$.
+		\item $\text{ggT}(a,bc)=\text{ggT}(a,c)$
+	\end{parts}
+\end{Theorem}
+\begin{Theorem}
+	Sei $a,b\in \N^*$.
+	\[
+		ab=\text{ggT}(a,b)\cdot \text{kgV}(a,b)
+	.\] 
+\end{Theorem}
+\begin{Theorem}
+	 Sei $a\in \Z$, $p$ eine Primzahl, $a\nmid p$. Dann ist
+	 \[
+		 a^{p-1}-1\equiv 0\pmod{p}
+	 .\] 
+\end{Theorem}
 	\section{Allgemein Gruppentheorie}
 	\section{Gruppenhomomorphismen}
 	\begin{Theorem}
 		Sei $\phi:G\to H$ ein Homomorphismus. Es gilt $\text{ord}(\phi(g))|\text{ord}(g)$.
 	\end{Theorem}
+	\begin{Theorem}
+		Sei $U\le G,N\trianglelefteq G$. 
+		\[
+		U / U\cap N \cong UN / N
+		.\] 
+	\end{Theorem}
+	\begin{Theorem}
+		Sei $K\trianglelefteq G, K\subseteq H\le G$. $H\trianglelefteq G$ genau dann, wenn $H / K \trianglelefteq G / K$. In diesem Fall ist
+		\[
+		\frac{G}{H}\cong \frac{G / K}{H / K}
+		.\] 
+	\end{Theorem}
 	\section{Gruppenoperationen}
+	\begin{Definition}
+		Eine Operation ist ein Homomorphismus $G\to \text{Sym}(M)$.
+	\end{Definition}
+	\begin{Theorem}
+		Die Länge der Bahn durch $m\in M$ ist $[G : G_m]$.
+	\end{Theorem}
+	\begin{Theorem}
+		Sei $m,n\in M$ in der gleichen Bahn. Dann sind die Stabilisatoren konjugiert.
+	\end{Theorem}
+	\begin{Theorem}
+		Sei $m_1,\dots, m_r$ Repräsentanten der Bahnen.
+		\[
+			|M|=\sum_{i=1}^r [G:G_{m_i}]
+		.\] 
+	\end{Theorem}
+	\begin{Theorem}
+		Sei $m_1,\dots, m_r$ Repräsentanten der Konjugationsklassen, die großer als $1$ sind. Es gilt
+		\[
+			|G|=|Z(G)|+\sum_{i=1}^r [G:G_{m_i}]
+		.\] 
+	\end{Theorem}
 	\section{Abelsche Gruppen}
 \begin{Theorem}
 Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = e$ für alle $g \in G$.	
@@ -67,9 +138,12 @@ Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = 
 \end{Theorem}
 	\section{Zyklische Gruppen}
 	\begin{Theorem}
+		Sei $a$ ein Erzeuger der zyklischen Gruppe $G$ mit $|G|=n$. $a^m$ ist genau dann Erzeuger, wenn $m$ und $n$ teilerfremd sind.
+	\end{Theorem}
+	\begin{Theorem}
 		$G$ ist zyklisch genau dann, wenn $G$ zu jedem positiven Teiler $t$ von $|G|$ genau eine Untergruppe der Ordnung $t$ besitzt.
 	\end{Theorem}
-	\section{Symmetrische Gruppen}
+	\section{Symmetrische \& Alternierende Gruppen}
 	\begin{Theorem}
 		Sei $\sigma, \tau\in S_n$ disjunkt. Es gilt $\text{ord}(\sigma\tau)=\text{kgV}(\text{ord}(\sigma),\text{ord}(\tau))$
 	\end{Theorem}
@@ -78,12 +152,17 @@ Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = 
 		S_n=\langle (12),(123\dots n)\rangle
 		.\] 
 	\end{Theorem}
+	\begin{Theorem}
+		Sei $\phi=(a_1a_2\dots)(b_1b_2\dots)\dots\in S_n$ in Zykelnotation und $\psi\in S_n$. Es gilt
+		\[
+			\psi\phi\psi^{-1}=(\psi(a_1)\psi(a_2)\dots)(\psi(b_1)\psi(b_2)\dots)\dots
+		.\] 
+	\end{Theorem}
 	\section{Einfache Gruppen}
 	\section{Produktgruppen}
 	\begin{Theorem}
 		Sei  $A,B\le G$. $AB$ ist eine Gruppe genau dann, wenn $AB=BA$.
 
-		Erfüllt, wenn $A$ oder $B$ normal in $G$ sind.
 	\end{Theorem}
 	\begin{Theorem}
 		\[
