@@ -1,0 +1,62 @@
+\begin{Problem}
+	Seien $M,N\subseteq \R^n$ $k$-dimensionale Untermannigfaltigkeiten der Klasse $C^\alpha$ sowie $P\subseteq \R^m$ eine $l$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$. Zeigen Sie:
+	\begin{parts}
+		\item $M\times P\subseteq \R^{n+m}$ ist eine $(k+l)$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+		\item Gilt $M\cap \overline{N}=\varnothing = \overline{M}\cap N$, so ist $M\cup N$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+		\item Die Mengen
+			\begin{align*}
+				A:=& \{(x,y)\in \R^2|x\in (-1,1),y=x^2\} ,\\
+				B:=& \{(x,y)\in \R^2|x\in (-1,0)\cup (0,1),y=-|x|\} ,
+			\end{align*}
+			sind jeweils 1-dimensionale Untermannigfaltigkeiten der Klasse $C^1$.
+		\item Die Aussage aus (b) ist unter der schwächeren Voraussetzung $M \cap N = \varnothing$ im Allgemeinen nicht richtig.
+		\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $(m,p)\in M\times P$. Per Definition gibt es offene Mengen $U\subseteq \R^n,~V\subseteq \R^m$, $f$ und $g$ $\alpha$-mal differenzierbare Funktionen $f:U\to \R^{n-k},~g:V\to \R^{m-l}$, so dass
+		\begin{align*}
+			&m\in U,~p\in V\\
+			&M\cap U=\{x\in U:f(x)=0\}\\
+			&\text{Rang}(f'(m))=n-k\\
+			&P\cap V=\{x\in V:g(x)=0\} \\
+			&\text{Rang}(g'(p))=m-l
+		\end{align*}
+		Dann ist $U\times V\subseteq \R^{k+l}$ offen Sei außerdem $h:U\times V\to \R^{n+m-(n+k)}$ definiert durch $h(x,y)=(f(x),g(y))$, wobei $x\in \R^{n}$ und $y\in \R^m$. 
+
+Dann ist $h(x,y)=0$ genau dann, wenn $f(x)=0$ und $g(y)=0$. Außerdem ist
+\[
+	h'=\begin{pmatrix} f' & 0 \\ 0 & g' \end{pmatrix} 
+.\] 
+Da $h'$ eine Blockmatrix ist, ist $\text{Rang}(h'(m,p))=\text{Rang}(f'(m))+\text{Rang}(g'(p))$. (Man kann das beweisen, indem man das Gauss-Algorithismus durchführt, bis $f'$ und $g'$ in Zeilenstufenform sind.)
+
+Weil $f$ und $g$ $\alpha$-mal stetig differenzierbar sind, ist $h$ auch $\alpha$-mal stetig differenzierbar
+
+Es gilt dann
+\begin{align*}
+	&(U\times V)\cap (M\times P)=\{x\in U\times V:h(x)=0\} \\
+	&\text{Rang}(h'(m,p))=n+m-(k+l)
+\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $a<b,\alpha\in \N$ und $r:(a,b)\to \R$ sei $\alpha$-mal stetig differenzierbar mit $r(z)>0$ f\"{u}r alle $z\in (a,b)$. Definiere
+	\[
+	R:=\left\{ (x,y,z)\in \R^3|z\in (a,b), \sqrt{x^2+y^2} =r(z) \right\} 
+	.\] 
+	Dann ist $R$ durch die Abbildung
+	\[
+	\varphi:(a,b)\times (0,2\pi)\to \R^3,~\varphi(z,\alpha):=\begin{pmatrix} r(z)\cos\alpha \\ r(z)\sin\alpha \\ z \end{pmatrix} 
+\]
+parametrisiert.
+\begin{parts}
+\item Zeigen Sie, dass $R$ eine 2-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$ ist.
+\item Zeigen Sie, dass $R$ eine $\lambda_3$-Nullmenge ist.
+\item Bestimmen Sie das Integral
+	\[
+		I:=\int_{(a,b)\times (0,2\pi)} \sqrt{\text{det}(\varphi'^T\varphi'} \dd{\lambda_2(z,\alpha)}
+	\]
+	in Abhängigkeit der Funktion $r$.
+\item Bestimmen Sie das Integral $I$ in (c) f\"{u}r den Fall $r(z):=\cosh(z)$ und $(a,b):=(0,1)$.
+\end{parts}
+\end{Problem}

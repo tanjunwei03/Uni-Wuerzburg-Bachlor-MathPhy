@@ -115,7 +115,7 @@
 	\end{enumerate}
 \item $|A_4|= 4! / 2 = 12=3\times 2^2$.
 
-	Da $6 = 12 / 2$, wäre eine Untergruppe der Ordnung $6$ ein Normalteiler. Weil $6=2\times 3$, enthält die Elemente der Ordnung $2$ und Elemente der Ordnung $3$. Die Gruppe $A_4$ enthält die Folgende Elemente
+	Da $6 = 12 / 2$, wäre eine Untergruppe der Ordnung $6$ ein Normalteiler. Wir bezeichnen diese mit $H$. 
 	\begin{align*}
 		&e\\
 		&\left.
@@ -127,5 +127,8 @@
 		\right\}\text{\parbox{4cm}{Produkt von disjunkte Transpositionen}}\\
 		&\text{3-Zykeln (genau 8)}
 	\end{align*}
+	Das Ziel ist: Alle $3$-Zykeln sind in $H$ enthalten. Bemerkung (oder Errinerung): $3$-Zykeln haben alle die Ordnung $3$. Sei ein beliebiges $3$-Zyklus $x$. Es gilt $(xH)^3=x^3H=H$. Außerdem gilt in der Faktorgruppe $G / H$ der Ordnung $2$: $(xH)^{2}=H$. Aus der Kurzungsregel folgt  $xH=H$, also $x\in H$.
+
+	Dann hat $H$ mehr als $8$ Elemente, ein Widerspruch.\qedhere
 \end{parts}
 \end{proof}
