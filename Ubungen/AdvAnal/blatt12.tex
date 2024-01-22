@@ -37,6 +37,33 @@ Es gilt dann
 	&(U\times V)\cap (M\times P)=\{x\in U\times V:h(x)=0\} \\
 	&\text{Rang}(h'(m,p))=n+m-(k+l)
 \end{align*}
+\item Sei $x\in M\cup N$, also $x\in M$ oder $x\in N$. OBdA betrachten wir den Fall, $x\in M$. Per Definition gibt es $U\in \R^n$ offen und $f:U\to \R^{n-k}$ $\alpha$-mal stetig differenzierbar, so dass
+	\begin{align*}
+		M\cap U=&\{y\in U:f(y)=0\} \\
+		\text{Rang}(f'(x))=&n-k
+	\end{align*}
+	Da $M\cap \overline{N}=\varnothing$, ist $M\subseteq \overline{N}^c$. Per Definition ist $\overline{N}^c$ offen. Seien $V:=U\cap \overline{N}^c$ und $g:=f|_V$. Weil $f$ $\alpha$-mal stetig differenzierbar ist, ist $g$ auch $\alpha$-mal stetig differenzierbar. Es gilt
+	\begin{align*}
+		(M\cup N)\cap V=&M\cap V=\{y\in V:g(y)=0\} \\
+		\text{Rang}(g'(x))=&n-k
+	\end{align*}
+	Ähnlich gilt f\"{u}r $x\in N$. Dann ist $M\cup N$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+\item Sei $f:\R^2\to \R, f(x,y)=x^2-y$. Sei $p\in A$ und $U$ offen, so dass $p\in U$. Per Definition ist
+	\[
+	A\cap U=\{x\in U: f(x)=0\} 
+	.\] 
+	Außerdem ist $f$ mindestens einmal stetig differenzierbar, mit Ableitung $f'=(2x,-1)$. Da $f'$ eine $1\times 2$-Matrix ist, ist $f$ vom höchstens Rang $1$. Weil die zweite Komponente konstant $-1\neq 0$ ist, ist $f$ nie von Rang $0$. Dann ist $f$ immer vom Rang $1$, also $A$ ist eine $1$-dimensionale Untermannigfaltigkeit der Klasse $C^1$.
+
+	Sei jetzt $p\in B$. Wir betrachten den Fall, $\pi_1(p)>0$, wobei $\pi_1((x,y))=x$. Sei $f:\R^2\to \R, f((x,y))=x+y$ und $U$ offen mit $p\in U$. OBdA ist $\pi_1(U)\subseteq (0,\infty)$, sonst ist $(0,\infty)\times \R \cap U$ offen mit gleiche Eigenschaften.
+
+	Dann ist
+	\begin{align*}
+		U\cap B=&\{x\in U:f(x)=0\} \\
+		f'(p)=&(1,1)\\
+		\text{Rang}(f'(p))=&1
+	\end{align*}
+	und analog f\"{u}r $p$ mit $\pi_1(p)<0$. Dann ist $B$ eine Untermannigfaltigkeit der Klasse $C^1$.
+\item Wir betrachten $A\cap B$. Es gilt $A\cap B=\varnothing$, weil $x^2=|x|$ nur wenn $|x|=0$ oder $|x|=1$, aber die beide Fälle sind ausgeschlossen.
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -60,3 +87,50 @@ parametrisiert.
 \item Bestimmen Sie das Integral $I$ in (c) f\"{u}r den Fall $r(z):=\cosh(z)$ und $(a,b):=(0,1)$.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $p\in R$. 
+\begin{tcolorbox}[title=Lemma]
+	\begin{Lemma}
+		Ist $p\in \{(0,0,z)|z\in \R\} $, so ist $p\not\in R$.
+	\end{Lemma}
+	\begin{proof}
+		Es gälte dann $\sqrt{x^2+y^2} =0$, also $0>r(z)$, was unmöglich ist, weil $r(z)>0$ per Definition.
+	\end{proof}
+\end{tcolorbox}
+Sei jetzt $f:\R^{3}\to \R,f((x,y,z))=\sqrt{x^2+y^2} -r(z)$. Sei jetzt $p\in R$ und $U\subseteq \R^3$ offen mit $p\in U$. Per Definition ist
+\begin{equation}\label{eq:advanalblatt12-1}
+R\cap U=\{q\in U:f(q)=0\} 
+.\end{equation}
+Außerdem ist $f$ stetig differenzierbar mit
+ \[
+f'=\left( \frac{x}{\sqrt{x^2+y^2} }, \frac{y}{\sqrt{x^2+y^2} },r'(z) \right) 
+,\]
+solange $(x,y,z) \not\in \{(0,0,z)|z\in \R\} $. Dies ist aber kein Problem wegen des Lemmas. Als Verkettung von elementäre Funktionen sind die ersten zwei Komponenten unendlich mal stetig differenzierbar. $r(z)$ ist bekanntermaßen $\alpha$-mal stetig differenzierbar.
+
+Wenn $f'$ Null ist, muss $x=y=0$ gelten, da $(x^2+y^2)^{-1 / 2}>0$. Dies ist noch einmal wegen des Lemmas ausgeschlossen, also $f'$ ist immer vom Rang $1$.
+
+Zusammen mit Eq.~\eqref{eq:advanalblatt12-1} ist $R$ eine $2$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+\item $R$ ist messbar, weil $R$ abgeschlossen (und daher eine Borelmenge) ist.
+
+	Da $(\R^3,\lambda_3,\mathcal{L}(3))$ $\sigma$-endlich ist (oder weil es in der Vorlesung beweisen wurde), schreiben wir das Maß als Integral.
+\[
+	\lambda_3(R)=\int_a^b \lambda_2(R_z)\dd{z}
+.\] 
+Jetzt betrachten wir $R_z$ und schreiben das Maß aus dem gleichen Grund noch einmal als Integral.
+\[
+	R_z=\{(x,y)|\sqrt{x^2+y^2} =r(z)\} \subseteq \R^2\\
+.\]
+Weil $\sqrt{\cdot} $ monoton wachsend ist, muss $|x|<r(z)$ gelten, sonst kann die Bedingung nicht erfüllt werden. Sei jetzt $x$ fest. Es gilt $y^2=r(z)^2-x^2$, oder
+\[
+y=\pm \sqrt{r(z)^2-x^2} 
+.\] 
+also $(R_z)_x=\{(x,\sqrt{r(z)^2-x^2} ,z), (x,-\sqrt{r(z)^2-x^2} ,z)\} $. Als endliche Menge ist $\lambda_1((R_z)_x)=0$. Daraus folgt:
+\begin{align*}
+	\lambda_3(R)=&\int_a^b \lambda_2(R_z)\dd{z}\\
+	=&\int_a^b \int_{-r(z)}^{r(z)} \lambda_1((R_z)_x)\dd{x}\dd{z}\\
+	=&\int_a^b \int_{-r(z)}^{r(z)} 0\dd{x}\dd{z}\\
+	=&0
+\end{align*}
+	\end{parts}
+\end{proof}

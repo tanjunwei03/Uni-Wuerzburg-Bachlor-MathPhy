@@ -108,7 +108,7 @@
 \begin{Problem}
 	E sei $L:\R^3\to \R^3$ definiert durch $x\to Ax$ mit
 	\[
-		A=\begin{pmatrix} 7 & -15 & 5 \\ -96 & 268 & -63 \\ -400 & 1110 & 263 \end{pmatrix} 
+		A=\begin{pmatrix} 7 & -15 & 5 \\ -96 & 268 & -63 \\ -400 & 1110 & -263 \end{pmatrix} 
 \]
 sowie $B:=(b_1,b_2,b_3):=((13,6,4),(10,6,10),(6,8,24))$. 
 \begin{parts}
@@ -170,9 +170,9 @@ sowie $B:=(b_1,b_2,b_3):=((13,6,4),(10,6,10),(6,8,24))$.
 		deren Determinante ungleich null ist. Daher ist $\text{det }B\neq 0$, und die Vektoren sind linear unabhängig. Da wir $3$ linear unabhängige Vektoren in $\R^3$ haben, wobei $\text{dim }\R^3=3$, sind die Vektoren eine Basis.
 	\item Es gilt
 		\[
-			T_{E}^B=\begin{pmatrix} 14 & 10 & 6 \\ 6 & 6 & 8 \\ 4 & 10 & 24 \end{pmatrix} =:B
+			C^{-1}:=T_{E}^B=\begin{pmatrix} 14 & 10 & 6 \\ 6 & 6 & 8 \\ 4 & 10 & 24 \end{pmatrix}
 		.\] 
-		Da $T_B^E=(T_E^B)^{-1}$, ist
+		Da $T_B^E=(T_E^B)^{-1}$, berechnen wir die inverse Matrix.
 		\begin{gather*}
 		\left(
 \begin{array}{ccc|ccc}
@@ -242,5 +242,184 @@ sowie $B:=(b_1,b_2,b_3):=((13,6,4),(10,6,10),(6,8,24))$.
 \end{array}
 \right) 	
 		\end{gather*}
+		also
+		\[
+			C=\begin{pmatrix} -8 & \frac{45}{2} & -\frac{11}{2} \\ 14 & -39 & \frac{19}{2} \\ -\frac{9}{2} & \frac{25}{2} & -3\end{pmatrix} 
+		.\] 
+	\item $C^{-1}$ wurde schon in (b) gegeben. Durch direkte Rechnung erhalten wir
+\[
+	CAC^{-1}=\begin{pmatrix}  2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 7 \end{pmatrix} 
+.\] 
+\item Die Darstellungsmatrix ist genau $CAC^{-1}$.
+\item $A$:
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ 7 & -15 & 5 \\
+ -96 & 268 & -63 \\
+ -400 & 1110 & -263 \\
+\end{array}
+\right) \xrightarrow{R_2+\frac{96}{7}R_1} \left(
+\begin{array}{ccc}
+ 7 & -15 & 5 \\
+ 0 & \frac{436}{7} & \frac{39}{7} \\
+ -400 & 1110 & -263 \\
+\end{array}
+\right) \\\xrightarrow{R_3+\frac{400}{7}R_1} \left(
+\begin{array}{ccc}
+ 7 & -15 & 5 \\
+ 0 & \frac{436}{7} & \frac{39}{7} \\
+ 0 & \frac{1770}{7} & \frac{159}{7} \\
+\end{array}
+\right) \xrightarrow{R_3-\frac{885}{218}R_2} \left(
+\begin{array}{ccc}
+ 7 & -15 & 5 \\
+ 0 & \frac{436}{7} & \frac{39}{7} \\
+ 0 & 0 & \frac{21}{218} \\
+\end{array}
+\right)	
+	\end{gather*}
+	also $\text{det}(A)=7(436 / 7)(21 / 218)=42$. F\"{u}r $C$ gilt:
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ 14 & 10 & 6 \\
+ 6 & 6 & 8 \\
+ 4 & 10 & 24 \\
+\end{array}
+\right) \xrightarrow{R_1\times 3} \left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 6 & 6 & 8 \\
+ 4 & 10 & 24 \\
+\end{array}
+\right) \xrightarrow{R_2\times 7} \\\left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 42 & 42 & 56 \\
+ 4 & 10 & 24 \\
+\end{array}
+\right) \xrightarrow{R_2-R_1} \left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 12 & 38 \\
+ 4 & 10 & 24 \\
+\end{array}
+\right) \xrightarrow{R_3\times \frac{21}{2}} \\\left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 12 & 38 \\
+ 42 & 105 & 252 \\
+\end{array}
+\right) \xrightarrow{R_3-R_1} \left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 12 & 38 \\
+ 0 & 75 & 234 \\
+\end{array}
+\right) \xrightarrow{R_3\times 4} \\\left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 12 & 38 \\
+ 0 & 300 & 936 \\
+\end{array}
+\right) \xrightarrow{R_2\times 25} \left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 300 & 950 \\
+ 0 & 300 & 936 \\
+\end{array}
+\right) \xrightarrow{R_3-R_2} \left(
+\begin{array}{ccc}
+ 42 & 30 & 18 \\
+ 0 & 300 & 950 \\
+ 0 & 0 & -14 \\
+\end{array}
+\right)	
+	\end{gather*}
+	also $\text{det}(C)=-8$. F\"{u}r $C^{-1}$:
+	\begin{gather*}
+	\left(
+\begin{array}{ccc}
+ -8 & \frac{45}{2} & -\frac{11}{2} \\
+ 14 & -39 & \frac{19}{2} \\
+ -\frac{9}{2} & \frac{25}{2} & -3 \\
+\end{array}
+\right) \xrightarrow{R_2+\frac{7}{4}R_1} \left(
+\begin{array}{ccc}
+ -8 & \frac{45}{2} & -\frac{11}{2} \\
+ 0 & \frac{3}{8} & -\frac{1}{8} \\
+ -\frac{9}{2} & \frac{25}{2} & -3 \\
+\end{array}
+\right) \xrightarrow{R_3-\frac{9}{16}R_1} \\\left(
+\begin{array}{ccc}
+ -8 & \frac{45}{2} & -\frac{11}{2} \\
+ 0 & \frac{3}{8} & -\frac{1}{8} \\
+ 0 & -\frac{5}{32} & \frac{3}{32} \\
+\end{array}
+\right) \xrightarrow{R_3+\frac{5}{12}R_2} \left(
+\begin{array}{ccc}
+ -8 & \frac{45}{2} & -\frac{11}{2} \\
+ 0 & \frac{3}{8} & -\frac{1}{8} \\
+ 0 & 0 & \frac{1}{24} \\
+\end{array}
+\right)	
+	\end{gather*}
+	also $\text{det}(C^{-1})=-1 / 8$. Zuletzt ist $\text{det}(CAC^{-1})=2\cdot 3\cdot 7=42$.\qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	In dieser Aufgabe sei stets $D:\text{Mat}(n\times n,K)\to K$ eine Abbildung, die linear in jeder Spalte ist, d.h. Eigenschaft 1 von Definition 4.2.1 erfüllt.
+	\begin{parts}
+	\item Zeigen Sie: Ist die Charakteristik von $K$ nicht $2$, dann ist $D$ genau dann alternierend, wenn f\"{u}r $D$ die Aussage $3$ von Satz 4.2.2, also
+\begin{center}
+	``Entsteht $B$ aus $A$ durch Vertauschung zweier Spalten, so ist $D(B)=-D(A)$."
+\end{center}
+gilt. Diese Eigenschaft nennt man auch ``schiefsymmetrisch"
+\item Zeigen Sie: Die Abbildung $D_1:\text{Mat}(2\times 2, \Z / 2\Z)$ mit $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \to ab+cd$ ist linear in jeder Spalte und schiefsymmetrisch, aber nicht alternierend. 
+\item Zeigen Sie: F\"{u}r jedes $k\in K$ gibt es genau eine Abbildung $D:\text{Mat}(n\times n,K)\to K$, die linear in jeder Spalte und alternierend ist und zusätzlich $D(E_n)=k$ erfüllt. Diese ist gegeben durch die Abbildungsvorschrift $D(A)=k\text{det}(A)$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Rückrichtung ist trivial. Angenommen $A$ hat zwei gleiche Spalten. $B$ entstehe aus $A$ durch die Vertauschung diese Spalten. Deswegen gilt $B=A$. Aber $D(B)=D(A)=-D(A)$, oder $2D(A)=0$. Da die Charakteristik nicht $2$ ist, impliziert dies $D(A)=0$. 
+
+		Sei jetzt $D$ alternierend. Sei $A\in\text{Mat}(n\times n, K)$. $B$ entstehe aus $A$ durch die Vertauschung zwei Spalten. Sei die Spalten $v_1,v_2$. Da die andere Spalten fest sind, bezeichnen wir $f(v_1,v_2):=D((\dots, v_1, v_2,\dots))$. $f$ ist auch linear in $v_1$ und $v_2$. Außerdem ist $D(A)=f(v_1,v_2)$ und $D(B)=f(v_2,v_1)$. Es gilt
+		\begin{align*}
+			f(v_1+v_2,v_1+v_2)=& 0 & D\text{ ist alternierend}\\
+			=&f(v_1,v_1)+f(v_1,v_2)+f(v_2,v_1)+f(v_2,v_2) & \text{Linearität}\\
+			=&f(v_1,v_2)+f(v_2,v_1)
+		\end{align*}
+		Daraus folgt:
+		\[
+		D(A)=f(v_1,v_2)=-f(v_2,v_1)=-D(B)
+		.\] 
+	\item Linearität: Es gilt
+		\[
+			D_1\left( \begin{pmatrix} k a & b \\ k c & d \end{pmatrix}  \right) = k(ab+cd)=D_1\left( \begin{pmatrix} a & kb \\ c & kd \end{pmatrix}  \right) 
+		.\] 
+		Außerdem gilt
+		\begin{align*}
+			&D_1\left( \begin{pmatrix} a+a' & b \\ c + c' & d \end{pmatrix}  \right)\\
+			=&(a+a')b+(c+c')d\\
+			=&(ab+cd)+(a'b+c'd)\\
+			=&D_1\left( \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \right) +D_1\left( \begin{pmatrix} a' & b \\ c' & d \end{pmatrix}  \right) 
+		\end{align*}
+		und
+		\begin{align*}
+			&D_1\left( \begin{pmatrix} a & b+b' \\ c & d+d' \end{pmatrix}  \right)\\
+		=&a(b+b')+c(d+d')\\
+		=&(ab+cd)+(ab'+cd')\\
+		=&D_1\left( \begin{pmatrix} a & b \\ c & d \end{pmatrix} \right) +D_1\left( \begin{pmatrix} a & b' \\ c & d' \end{pmatrix}  \right)
+		\end{align*}
+		also $D_1$ ist linear. $D_1$ ist auch schiefsymmetrisch, da
+		\[
+			D\left( \begin{pmatrix} b & a \\ d & c \end{pmatrix} \right) =ab-cd
+		.\]
+		Aber $ab-cd=-(ab-cd)$, weil es nur $2$ Elemente in $\Z / 2\Z$ gibt, und f\"{u}r alle Elemente $x\in \Z / 2\Z$ gilt $x+x=0$. Dann ist $D_1$ schiefsymmetrisch. $D_1$ ist jedoch nicht alternierend. 
+		\[
+			D_1\left( \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}  \right) =1\cdot 1-0\cdot 0 =1\neq 0
+		.\] 
 	\end{parts}
 \end{proof}

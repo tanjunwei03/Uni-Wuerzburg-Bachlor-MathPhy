@@ -1,0 +1,105 @@
+\begin{Problem}
+	Der Laplace-Operator $\Delta$ ist f\"{u}r $f\in C^1(\R^n)$ definiert durch
+	\[
+		\Delta f=\sum_{i=1}^n \partial_i^2 f
+	.\] 
+	Allgemeiner ist ein (homogener) Differentialoperator $P$ zweiter Ordnung f\"{u}r $f\in C^2(\R^n)$ definiert durch
+	\[
+		Pf=\sum_{i,j=1}^n a_{ij}\partial_i\partial_j f
+	.\] 
+	Zeigen Sie, dass die einzigen rotationsinvarianten Differentialoperatoren, d.h. solche, welche
+	\[
+		P(f(Qx))=(Pf)(Qx)
+	.\] 
+	f\"{u}r alle $x\in \R^n$ und alle orthogonalen Matrizen $Q\in \R^{n\times n}$ erfüllen, Vielfache des Laplace-Operators darstellen.
+\end{Problem}
+\begin{proof}
+	Sei $Q$ orthogonal und beliebig mit Elemente $Q_{ij},i,j\in \{1,\dots, n\} $. Sei auch $x\in \R^n$ beliebig. Die Voraussetzung ist dann
+	\[
+		\sum_{i,j=1}^n a_{ij}\partial_i\partial_j \left(f\left( Qx \right)\right) =
+	.\] 
+\end{proof}
+
+\begin{Problem}
+	Beweisen Sie: Ist $f\in \mathcal{C}([a,b],\R)$, so existiert f\"{u}r jedes $\epsilon>0$ ein Polynom $p:[a,b]\to \R$ mit
+	\[
+	\|f-p\|_\infty\le\epsilon
+	.\] 
+	Die Menge der Polynome auf dem Intervall $[a,b]$ ist also dicht im Raum der stetigen Funktionen bzgl. der Supremumsnorm.
+
+	Gehen Sie wie folgt vor:
+	\begin{parts}
+		\item (Hutfunktionen) Es sei
+			\[
+				h_{a,b}(x)=\max\left\{ 0,1-\frac{|x-a|}{b} \right\} ,x\in \R
+			\]
+			f\"{u}r $a\in \R,b>0$. Begründen Sie, dass auf jedem kompakten Intervall $I$ f\"{u}r jedes $\epsilon$ ein Polynom $p$ existiert mit $\|h_{a,b}-p\|_{\infty,I}\le\epsilon$.
+		\item (Lineare Interpolante) Zu einer gegebenen Partition von $[a,b]$ mit St\"{u}tzstellen $x_0=a<x_1<\dots<x_N=b$ definieren wir die lineare Interpolante von $f$ durch
+			\[
+				H(x)=\sum_{i=0}^N h_{x_i, \Delta x_i}(x)f(x_i)
+			,\]
+			wobei $\Delta x_i=x_i-x_{i-1}$ f\"{u}r $i=1,\dots, n$ und $\Delta x_0=x_1-a$. Bestimmen Sie zu gegebenem $\epsilon>0$ eine Partition von $[a,b]$, sodass $\|H-f\|_\infty\le\epsilon$ gilt.
+		\item Beweisen Sie den Approximationssatz von Weierstraß. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir brauchen hier die Aufgaben
+		\begin{tcolorbox}
+			Zeigen Sie, dass die Funktion
+	\[f:[-1,1]\to\R\qquad f(x)=\text{max}\left\{ x,0 \right\} \]
+	gleichmäßig durch Polynome approximiert werden kann.	
+		\end{tcolorbox}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Zeigen Sie, dass die Funktion
+	\[
+	f:\R^2\to\R,~f(x,y)=\begin{cases}
+		\frac{xy(x^2-y^2)}{x^2+y^2} & (x,y)\neq (0,0)\\
+		0 & (x,y)=(0,0)
+	\end{cases}
+	\] 
+	in $(0,0)$ zweimal partiell differenzierbar ist und dass
+	\[
+	\frac{\partial^2 f}{\partial x\partial y}(0,0)\neq \frac{\partial^2 f}{\partial y\partial x}(0,0)
+\]
+gilt. Ist $f$ in $\R^2$ stetig differenzierbar?
+\end{Problem}
+
+\begin{Problem}
+	Betrachten Sie die Funktion $f:\R^2\to\R$ mit
+	\[
+	f(x,y)=(y-x^2)(y-2x^2)
+	.\] 
+	Zeigen Sie:
+	\begin{parts}
+	\item F\"{u}r jede Richtung $v\in \R^2\backslash \{0\} $ nimmt $f_v(t)=f(tv),~t\in \R$ ein striktes lokales Minimum in $t=0$ an.
+	\item Die Funktion $f$ besitzt in $(0,0)$ kein lokales Minimum
+	\end{parts}
+\end{Problem}
+\begin{proof}
+\begin{parts}
+\item Sei $v=(a,b)^T$. Es gilt 
+	\begin{align*}
+		f_v(t)=& f(tv)\\
+		=&(bt-a^2t^2)(bt-2a^2t^2)\\
+		=&b^2t^2+2a^4t^4-2ba^2t^3-ba^2t^3\\
+		=&b^2t^2+2a^4t^4-3ba^2t^3\\
+		=&t^2(2a^4t^2-3ba^2t+b^2)
+	\end{align*}
+	Die Ableitungen sind\ldots
+\item Offensichtlich ist $f(0,0)=0$. Sei $ x$ fest. Wir wählen $x^2<y<2x^2$. Damit ist
+	\[
+		f(x,y)=\underbrace{(y-x^2)}_{>0}\underbrace{(y-2x^2)}_{<0}<0
+	,\]
+	also $f(x,y)<0$. Da
+	\begin{align*}
+		\|(x,y)\|=& \sqrt{x^2+y^2} \\
+		\le& \sqrt{x^2+(2x^2)^2} \\
+		=& \sqrt{x^2+4x^4} \\
+		=& |x|\sqrt{1+4x^2} 
+	\end{align*}
+	was wir beliebig klein wählen kann, gibt es f\"{u}r jedes $\epsilon>0$ ein Punkt $p\in B_\epsilon((0,0))$ so dass $f(p)<f((0,0))$, also $f$ besitzt kein lokales Minimum in $(0,0)$.
+\end{parts}
+\end{proof}
