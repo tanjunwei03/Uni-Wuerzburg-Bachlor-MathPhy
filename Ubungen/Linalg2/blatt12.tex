@@ -1,0 +1,76 @@
+\begin{Problem}
+	Betrachten Sie die komplexen $3\times 3$-Matrizen
+	\[
+		A_1=\begin{pmatrix} 5 & 2 & -1 \\ 2 & 2 & 2 \\ -1 & 2 & 5 \end{pmatrix},~A_2=\begin{pmatrix} 1 & 3 & -i \\ 0 & 3 & 4 \\ 0 & 0 & 2 \end{pmatrix},~A_3=\begin{pmatrix} 2 & 0 & 0 \\ 0 & 5 & 2 \\ 0 & 2 & 1 \end{pmatrix} 
+	.\] 
+	Welche der Matrzen sind positiv, welche sogar positiv definit?
+\end{Problem}
+\begin{proof}
+	Wir berechnen das Spektrum von $A_1$. Es gilt f\"{u}r das charakteristiches Polynom
+	\[
+		P(\lambda)=\text{det}(A_1-\lambda I)=-\lambda^3+12\lambda^2-36\lambda
+	.\] 
+	Die Nullstellen bzw. Eigenwerte sind $\lambda=0$ und $\lambda=6$. Dann ist $A_1$ positiv. Weil $\lambda=0$ ein Eigenwert ist, ist $\text{det}(A_1)=0$ und $A_1$ ist nicht invertierbar. 
+
+	$A_2$ ist nicht positiv, weil $A_2\neq A_2^*$. 
+
+	Wir berechnen noch einmal das Spektrum von $A_3$. Es gilt f\"{u}r das charakteristische Polynom.
+\[
+	P_3(\lambda)=\text{det}(A-\lambda I)=-x^3+8x^2-13x+2
+.\] 
+Die Nullstellen sind $x=2$ und $x=3\pm 2\sqrt{2} $, also $A_3$ ist positiv. Da $0$ kein Nullstelle ist, ist $\text{det}(A_3)\neq 0$ und $A_3$ ist invertierbar, also $A$ ist positiv definit.
+\end{proof}
+\begin{Problem}
+	Betrachten Sie den unitären Vektorraum $\C^n$ mit dem Standardskalarprodukt.
+	\begin{parts}
+		\tem Sei $A\in M_n(\C)$ selbstadjungiert und $A=U^{-1}DU$, wobei $U$ eine invertierbare Matrix und $D$ eine Diagonalmatrix sind. Sei $P_i=U^{-1}M_iU$ mit Diagonalmatrix $M_i$, sodass
+		\[
+			(M_i)_{kk}=\begin{cases}
+				1 & D_{kk}=\lambda_i\\
+				0 & \text{sonst.}
+			\end{cases}
+		\]
+		gilt. Zeigen Sie, dass $P_i$ eine Orthogonalprojektion auf den Eigenraum von $\lambda_i$ ist.
+		\item Bestimmen Sie den Positivteil $(A_i)_+$, den Negativteil $(A_i)_{-}$ und den Absolutbetrag $|A_i|$ f\"{u}r $i=1,2$ der folgenden Matrizen
+			\[
+				A_1=\begin{pmatrix} 1 & -1 & -1 \\ -1 & 1 & -1 \\ -1 & -1 & 1 \end{pmatrix},~A_2=\begin{pmatrix} 0 & 3 & 0 & 0 \\ 3 & 0 & 0 & 0 \\ 0 & 0 & 0 & -2i \\ 0 & 0 & 2i & 0 \end{pmatrix} 
+			.\] 
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Beweisen oder widerlegen Sie:
+	\begin{parts}
+	\item Eine obere Dreiecksmatrix ist nie orthogonal.
+	\item Sei $V$ ein unitärer Vektorraum. Ein Endomorphismus $A$ ist genau dann normal, wenn $\|Av\|=\|A^*v\|$ f\"{u}r alle $v\in V$ gilt.  
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Die Identität $\text{diag}(1,1,\dots, 1)$ ist eine obere Dreiecksmatrix und jedoch orthogonal.
+	\end{parts}
+\end{proof}
+
+\begin{PRoblem}
+	Sei $V$ ein endlich-dimensionaler euklidischer oder unitärer Vektorraum. Sei weiter $\text{End}_{sa}(V)\subset \text{End}(V)$ die Teilmenge der selbstadjungierten Endomorphismen auf $V$. F\"{u}r $A,B\in \text{End}_{sa}(V)$ definieren wir $A\le B$, falls $B-A$ ein positiver Endomorphismus ist.
+	\begin{parts}
+	\item Zeigen Sie, dass $\text{End}_{sa}(V)$ ein reeller Unterraum von $\text{End}(V)$ ist.
+	\item Zeigen Sie, dass f\"{u}r $\lambda,\mu\ge 0$ und $A,B,C,D\in \text{End}_{sa}(V)$ mit $A\le B$ und $C\le D$ folgt, dass
+		\[
+		\lambda A+\mu C\le \lambda B+\mu D
+	\]
+	gilt.
+\item Zeigen Sie, dass f\"{u}R alle $A\le B$ 
+	\[
+	CAC^*\le CBC^*
+\]
+f\"{u}r alle $C\in \text{End}(V)$ gilt.
+\item Zeigen Sie, dass f\"{u}r $A\ge 0$ und $\lambda>0$ der Endomorphismus $A+\lambda$ invertierbar ist.
+\item Betrachten Sie $V=\C^2$ mit Standardskalarprodukt und
+	\[
+		A=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} ,~B=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} 
+	.\]
+	Zeigen Sie, dass $0\le A \le B$ gilt. Zeigen Sie, dass $A^2\le B^2$ \emph{nicht} gilt.
+	\end{parts}
+\end{PRoblem}
