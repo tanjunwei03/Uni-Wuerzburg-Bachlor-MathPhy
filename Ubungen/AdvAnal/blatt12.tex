@@ -64,6 +64,21 @@ Es gilt dann
 	\end{align*}
 	und analog f\"{u}r $p$ mit $\pi_1(p)<0$. Dann ist $B$ eine Untermannigfaltigkeit der Klasse $C^1$.
 \item Wir betrachten $A\cap B$. Es gilt $A\cap B=\varnothing$, weil $x^2=|x|$ nur wenn $|x|=0$ oder $|x|=1$, aber die beide Fälle sind ausgeschlossen.
+
+	Es gilt $(0,0)\in A\cup B$, weil $(0,0)\in A$. Wir fahren per Widerspruch fort. Wir nehmen an, dass $M\cup N$ eine $1$-dimensionale Untermannigfaltigkeit der Klasse $C^1$ ist. 
+
+	Dann gibt es eine offene Menge $U$ mit $(0,0)\in U$ sowie eine stetig differenzierbare Funkton $f:U\to \R$, so dass
+	 \[
+		 (A\cup B)\cap U=\{x\in U: f(x)=0\} 
+	\] 
+	und $\text{Rang}(f'((0,0)))=1$. Wir zeigen, dass der Rang eigentlich $0$ ist. Wir wissen, entlang die Kurve $y=x^2$ ist $f=0$. Sei $\gamma(t)= (t,t^2)^T$. Weil $f\circ \gamma=0$ in eine offene Umgebung um $0$, gilt
+	\begin{align*}
+		0=&D(f\circ \gamma)\\
+		=&(Df)(\gamma')\\
+		D(f\circ \gamma)(0)=&(Df)(\gamma'(0))\\
+		=&Df((1,0)^T)\\
+		=&0
+	\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}

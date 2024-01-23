@@ -15,9 +15,19 @@
 \end{Problem}
 \begin{proof}
 	Sei $Q$ orthogonal und beliebig mit Elemente $Q_{ij},i,j\in \{1,\dots, n\} $. Sei auch $x\in \R^n$ beliebig. Die Voraussetzung ist dann
+	Es gilt (Kettensregel)
 	\[
-		\sum_{i,j=1}^n a_{ij}\partial_i\partial_j \left(f\left( Qx \right)\right) =
-	.\] 
+		\partial_i f(Qx)=\sum_{j=1}^n(\partial_j f)(Qx)Q_{ji}
+	.\]
+	Dann ist 
+	\begin{align*}
+		\sum_{i,j=1}^n a_{ij}\partial_i \partial_j f(Qx)=&	\sum_{i,j=1}^n a_{ij}\partial_i \left( \sum_{k=1}^n (\partial_k f)(Q_{kj}) \right) \\
+		=&\sum_{i,j=1}^n \sum_{l=1}^n\sum_{k=1}^n a_{ij}(\partial_l \partial_k f)(Qx)Q_{kj}Q_{li}\\
+		=&\sum_{k,l=1}^n (\partial_l\partial_k f)\sum_{i,j=1}^n Q_{li}a_{ij}Q_{kj}\\
+		=&\sum_{k,l=1}^n (\partial_l\partial_k f)\sum_{i,j=1}^n Q_{li}a_{ij}(Q^T)_{jk}\\
+		\overset{?}{=}&\sum_{i,j=1}^n a_{ij}(\partial_i\partial_j f)(Qx)
+	\end{align*}
+	Sei $B:=QAQ^T$. Offensichtlich muss dann, f\"{u}r alle orthogonale Matrizen $Q$, $QAQ^T=A$ gelten.
 \end{proof}
 
 \begin{Problem}
