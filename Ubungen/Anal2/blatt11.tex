@@ -76,7 +76,29 @@
 \]
 gilt. Ist $f$ in $\R^2$ stetig differenzierbar?
 \end{Problem}
-
+\begin{proof}
+	Wir berechnen die Ableitung auf der Gerade $(x,0)$, also $y=0$. Es gilt $f(x,0)=0$. Daraus folgt
+	\begin{align*}
+		\left.	\pdv{f(x,y)}{y}\right|_{y=0}=&\lim_{y \to 0} \frac{1}{y}f(x,y)\\
+		=&\lim_{y \to 0} \frac{x(x^2-y^2)}{x^2+y^2}\\
+		=&x
+	\end{align*}
+	Dies ist genug, um die partielle Ableitung $\pdv{f}{x}{y}$ zu berechnen. Es gilt $\pdv{x}{x}=1$, also
+	\[
+		\left.\pdv{f}{x}{y}\right|_{(0,0)}=1
+	.\] 
+	Ähnlich berechnen wir die Ableitung auf der Gerade $(0,y)$, also $x=0$. Es gilt
+	\begin{align*}
+		\left.\pdv{f(x,y)}{x}\right|_{x=0}=&\lim_{x \to 0} \frac{1}{x}f(x,y)\\
+			=&\lim_{x \to 0} \frac{y(x^2-y^2)}{x^2+y^2}\\
+			=&-y
+	\end{align*}
+	Dann ist
+	\[
+		\left.\pdv{f}{y}{x}\right|_{(0,0)}=-1
+	.\] 
+	Die sind ungleich, also $f$ kann in $(0,0)$ nicht stetig differenzierbar sind, sonst wären die Ableitungen gleich.
+\end{proof}
 \begin{Problem}
 	Betrachten Sie die Funktion $f:\R^2\to\R$ mit
 	\[
@@ -98,7 +120,14 @@ gilt. Ist $f$ in $\R^2$ stetig differenzierbar?
 		=&b^2t^2+2a^4t^4-3ba^2t^3\\
 		=&t^2(2a^4t^2-3ba^2t+b^2)
 	\end{align*}
-	Die Ableitungen sind\ldots
+	Die Ableitungen sind
+	\begin{align*}
+		f_v'(t)=& t(8a^4t^2-9a^2 bt+2b^2)\\
+		f_v'(0)=&0\\
+		f_v''(t)=& 2(12a^4 t^2-9a^2bt+b^2)\\
+		f_v''(0)=&2b^2>0
+	\end{align*}
+	Da $f_v''(0)>0$ und $f_v'(0)=0$, ist $f_v'(0)$ ein lokales Minimum. Weil $f_v(t)$ ein Polynom vom Grad $4$ ist, besitzt $f_v(t)$ maximal $4$ Nullstellen, also $f_v(0)$ ist ein strikt lokales Minimum.
 \item Offensichtlich ist $f(0,0)=0$. Sei $ x$ fest. Wir wählen $x^2<y<2x^2$. Damit ist
 	\[
 		f(x,y)=\underbrace{(y-x^2)}_{>0}\underbrace{(y-2x^2)}_{<0}<0
@@ -110,6 +139,6 @@ gilt. Ist $f$ in $\R^2$ stetig differenzierbar?
 		=& \sqrt{x^2+4x^4} \\
 		=& |x|\sqrt{1+4x^2} 
 	\end{align*}
-	was wir beliebig klein wählen kann, gibt es f\"{u}r jedes $\epsilon>0$ ein Punkt $p\in B_\epsilon((0,0))$ so dass $f(p)<f((0,0))$, also $f$ besitzt kein lokales Minimum in $(0,0)$.
+	was wir beliebig klein wählen kann, gibt es f\"{u}r jedes $\epsilon>0$ ein Punkt $p\in B_\epsilon((0,0))$ so dass $f(p)<f((0,0))$, also $f$ besitzt kein lokales Minimum in $(0,0)$.\qedhere
 \end{parts}
 \end{proof}

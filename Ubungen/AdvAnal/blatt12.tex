@@ -62,7 +62,7 @@ Es gilt dann
 		f'(p)=&(1,1)\\
 		\text{Rang}(f'(p))=&1
 	\end{align*}
-	und analog f\"{u}r $p$ mit $\pi_1(p)<0$. Dann ist $B$ eine Untermannigfaltigkeit der Klasse $C^1$.
+	und analog f\"{u}r $p$ mit $\pi_1(p)<0$. Weil $x\neq 0$, ist $\pi_1(p)$ nie $0$. Also wir sind fertig, und $B$ ist eine Untermannigfaltigkeit der Klasse $C^1$.
 \item Wir betrachten $A\cap B$. Es gilt $A\cap B=\varnothing$, weil $x^2=|x|$ nur wenn $|x|=0$ oder $|x|=1$, aber die beide Fälle sind ausgeschlossen.
 
 	Es gilt $(0,0)\in A\cup B$, weil $(0,0)\in A$. Wir fahren per Widerspruch fort. Wir nehmen an, dass $M\cup N$ eine $1$-dimensionale Untermannigfaltigkeit der Klasse $C^1$ ist. 
@@ -79,6 +79,12 @@ Es gilt dann
 		=&Df((1,0)^T)\\
 		=&0
 	\end{align*}
+	Ähnlich gilt, weil $f$ entlang $y=-|x|$ ist, definieren wir die Kurve $\gamma:[0,a]\to \R^2,~\gamma(t)=(t,-t)$ f\"{u}r ein $a>0$. Daraus folgt, weil $\gamma'(t)=(1,-1)$.
+	\begin{align*}
+		D(f\circ\gamma)(0)=&(Df)(\gamma'(0))\\
+		=&(Df)((1,-1)^T)
+	\end{align*}
+	also sowohl $(1,0)^T$ als auch $(1,-1)$ liegen in $\text{ker }Df(0)$. Da diese linear unabhängig sind, ist $\text{ker }D=2$ und wegen des Rangsätzes ist $\text{Rang}(f'((0,0)))=0$, ein Widerspruch.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -96,7 +102,7 @@ parametrisiert.
 \item Zeigen Sie, dass $R$ eine $\lambda_3$-Nullmenge ist.
 \item Bestimmen Sie das Integral
 	\[
-		I:=\int_{(a,b)\times (0,2\pi)} \sqrt{\text{det}(\varphi'^T\varphi'} \dd{\lambda_2(z,\alpha)}
+		I:=\int_{(a,b)\times (0,2\pi)} \sqrt{\text{det}(\varphi'^T\varphi')} \dd{\lambda_2(z,\alpha)}
 	\]
 	in Abhängigkeit der Funktion $r$.
 \item Bestimmen Sie das Integral $I$ in (c) f\"{u}r den Fall $r(z):=\cosh(z)$ und $(a,b):=(0,1)$.
@@ -128,7 +134,7 @@ Wenn $f'$ Null ist, muss $x=y=0$ gelten, da $(x^2+y^2)^{-1 / 2}>0$. Dies ist noc
 Zusammen mit Eq.~\eqref{eq:advanalblatt12-1} ist $R$ eine $2$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
 \item $R$ ist messbar, weil $R$ abgeschlossen (und daher eine Borelmenge) ist.
 
-	Da $(\R^3,\lambda_3,\mathcal{L}(3))$ $\sigma$-endlich ist (oder weil es in der Vorlesung beweisen wurde), schreiben wir das Maß als Integral.
+	Da $(\R^3,\lambda_3,\mathcal{L}(3))$ $\sigma$-endlich ist (oder weil es in der Vorlesung bewiesen wurde), schreiben wir das Maß als Integral.
 \[
 	\lambda_3(R)=\int_a^b \lambda_2(R_z)\dd{z}
 .\] 
@@ -147,5 +153,30 @@ also $(R_z)_x=\{(x,\sqrt{r(z)^2-x^2} ,z), (x,-\sqrt{r(z)^2-x^2} ,z)\} $. Als end
 	=&\int_a^b \int_{-r(z)}^{r(z)} 0\dd{x}\dd{z}\\
 	=&0
 \end{align*}
+\item Als offene Menge ist $(a,b)\times (0,2\pi)\subseteq\R^2$ eine messbare Menge. Es gilt
+	\begin{align*}
+		\varphi'=&\begin{pmatrix} r'(z)\cos\alpha & -r(z)\sin\alpha \\ r'(z)\sin\alpha & r(z)\cos\alpha \\ 1 & 0 \end{pmatrix} \\
+		\varphi'^T=&\begin{pmatrix} r'(z)\cos\alpha & r'(z)\sin\alpha & 1 \\ -r(z)\sin\alpha & r(z)\cos\alpha & 0 \end{pmatrix}\\
+		\varphi'^T\varphi=&\begin{pmatrix} r'(z)^2\cos^2\alpha +r'(z)^2\sin^2\alpha+1 & 0 \\ 0 & r(z)^2\sin^2\alpha + r(z)^2\cos^2\alpha \end{pmatrix} \\
+		=&\begin{pmatrix} r'(z)^2 + 1 & 0 \\ 0 & r(z)^2 \end{pmatrix} 
+	\end{align*}
+	Offensichtlich ist $\text{det}(\varphi'^T\varphi)=(r'(z)^2+1)(r(z)^2)$. Weil $\R^2$ $\sigma$-endlich ist, dürfen wir den Satz von Fubini verwenden. Wir erhalten 
+	\begin{align*}
+		&\int_{(a,b)\times (0,2\pi)}\sqrt{\text{det}(\varphi'^T\varphi)} \dd{\lambda_2(z,\alpha)}\\
+		=&\int_a^b\int_0^{2\pi}\sqrt{\text{det}(\varphi'^T\varphi)} \dd{\alpha}\dd{z}\\
+		=&\int_a^b\int_0^{2\pi}r(z)\sqrt{1+r'(z)^2}\dd{\alpha}\dd{z}\\
+		=&2\pi\int_a^b r(z)\sqrt{1+r'(z)^2} \dd{z}
+	\end{align*}
+\item In diesem Fall ist $r(z):=\cosh z$ und $(a,b)=(0,1)$. Das Integral ist
+	\begin{align*}
+		&2\pi\int_a^b r(z)\sqrt{1+r'(z)^2} \dd{z}\\
+		=&2\pi\int_0^1 \cosh z\sqrt{1+\sinh^2 z} \dd{z}\\
+		=&2\pi\int_0^1 \cosh^2 z\dd{z}\\ 
+		=&2\pi\int_0^1 \left( \frac{e^z+e^{-z}}{2} \right)^2 \dd{z}\\
+		=&\frac{\pi}{2}\int_0^1 (e^{2z}+2+e^{-2z})\dd{z}\\
+		=&\frac{\pi}{2}\left[ \frac{1}{2}e^{2z}-\frac{1}{2}e^{-2z}+2z \right]_0^1\\
+		=&\frac{\pi}{2}\left[ \frac{1}{2}e^2-\frac{1}{2}e^{-2}+2 \right] \\
+		=&\frac{\pi}{4}\left[ e^2-e^{-2}+4 \right].\qedhere 
+	\end{align*}
 	\end{parts}
 \end{proof}
