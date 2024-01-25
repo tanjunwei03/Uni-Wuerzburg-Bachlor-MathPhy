@@ -87,9 +87,41 @@
 		 a^{p-1}-1\equiv 0\pmod{p}
 	 .\] 
 \end{Theorem}
-	\section{Allgemein Gruppentheorie}
+\begin{Theorem}
+	Sei $n\in \N^*$. $\varphi(n)$ ist die Anzahl der natürlichen Zahlen $1\le m < n$, die zu $n$ teilerfremd sind.
+\end{Theorem}
+	\section{Allgemeine Gruppentheorie}
 	\begin{Theorem}
 		Es gilt $x^{|G|}=1~\forall x\in G$.
+	\end{Theorem}
+	\begin{Theorem}
+		Sei $a$ ein Element der Ordnung $n\in \N^*$. F\"{u}r $m\in \Z$ sei $d=\text{ggT}(n,m)$. Dann hat $a^m$ die Ordnung $\frac{n}{d}$.
+	\end{Theorem}
+	\begin{Theorem}
+		Eine Untergruppe $N$ ist genau dann Normalteiler, wenn $g^{-1}Ng\subseteq N $ f\"{u}r alle $g\in G$ gilt.
+	\end{Theorem}
+	\begin{Theorem}
+		Die Primzahl $p$ teile die Ordnung der endlichen Gruppe $G$. Dann enthält $G$ ein Element der Ordnung $p$.
+	\end{Theorem}
+	\begin{Theorem}
+		Es gibt Untergruppen von Primpotenzordnung $p^r$, wenn $p^r| |G|$.
+	\end{Theorem}
+	\begin{Theorem}
+		Jede $p$-Untergruppe von $G$ liegt in einer $p$-Sylowgruppe von $G$.
+	\end{Theorem}
+	\begin{Theorem}
+		Die $p$-Sylowgruppen sind konjugiert.
+	\end{Theorem}
+	\begin{Definition}
+		Sei $S\subseteq G$. Die Normalisator $N_G(S)$ ist die Elemente $g\in G$, so dass $gSg^{-1}=S$.
+	\end{Definition}
+	\begin{Theorem}
+		Sei $n_p$ die Anzahl der $p$-Sylowgruppen von $G$. Es gilt
+		\begin{enumerate}
+			\item $n_p\equiv 1\pmod{p}$.
+			\item $n_p=[G: N_G(P)]$ 
+			\item $n_p | [G:P]$
+		\end{enumerate}
 	\end{Theorem}
 	\section{Gruppenhomomorphismen}
 	\begin{Theorem}
@@ -106,6 +138,9 @@
 		\[
 		\frac{G}{H}\cong \frac{G / K}{H / K}
 		.\] 
+	\end{Theorem}
+	\begin{Theorem}
+		Die Menge der Konjugationsautomorphismen bezeichnen wir mit $\text{Inn}(G)$. Es gilt $G / Z(G)\cong \text{Inn}(G)$.
 	\end{Theorem}
 	\section{Gruppenoperationen}
 	\begin{Definition}
@@ -128,6 +163,13 @@
 		\[
 			|G|=|Z(G)|+\sum_{i=1}^r [G:G_{m_i}]
 		.\] 
+	\end{Theorem}
+	\begin{Theorem}
+		F\"{u}r $g\in G$ sei $\chi(g)$ die Anzahl $m\in M$ mit $g.m=m$. Dann ist
+		\[
+			\frac{1}{|G|}\sum_{g\in G}\chi(g)
+		\]
+		die Anzahl der Bahnen auf $M$.
 	\end{Theorem}
 	\section{Abelsche Gruppen}
 \begin{Theorem}
@@ -161,6 +203,15 @@ Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = 
 			\psi\phi\psi^{-1}=(\psi(a_1)\psi(a_2)\dots)(\psi(b_1)\psi(b_2)\dots)\dots
 		.\] 
 	\end{Theorem}
+	\begin{Theorem}
+	Seien $\alpha, \beta \in S_n$ Permutationen mit den gleichen Zykellängen. Dann sind $\alpha$ und $\beta$ in $S_n$ konjugiert.	
+	\end{Theorem}
+	\begin{Theorem}
+	Jede gerade Permutation in $S_n$ ist ein Produkt von 3-Zykeln. Insbesondere wird $A_n$ von den 3-Zykeln aus $S_n$ erzeugt.	
+	\end{Theorem}
+	\begin{Theorem}
+	Sei $n \ge 5$. Dann sind alle 3-Zykel in $A_n$ konjugiert.	
+	\end{Theorem}
 	\section{Einfache Gruppen}
 	\section{Produktgruppen}
 	\begin{Theorem}
@@ -181,5 +232,38 @@ Sei n die größte Elementordnung in einer abelschen Gruppe G. Dann gilt $g^n = 
 	\begin{Definition}
 		$A\rtimes_{\varphi} B=(A\times B, \circ, (e,e))$, wobei $(u,v)\circ (\tilde{u},\tilde{v})=(u\varphi_{v}(\tilde{u}), v\tilde{v})$
 	\end{Definition}
+	\section{Auflösbare Gruppen}
+	\begin{Definition}
+		Elemente der Form $aba^{-1}b^{-1}$ heißen Kommutatoren. Die durch die Kommutatoren erzeugte Gruppe heißt die Kommutatorgruppe $G'$ von $G$. Wir bezeichnen die höhere Kommutatorgruppen mit $G^{(i)}$.
+	\end{Definition}
+	\begin{Theorem}
+		Die Gruppen $G^{(i)}$ sind alle normal in $G$.
+	\end{Theorem}
+\begin{Theorem}
+	Untergruppen, Faktorgruppen und homomorph Bilder von auflösbaren Gruppen sind auflösbar.
+\end{Theorem}
+\begin{Theorem}
+	Semidirekte Produkten (und daher direkte Produkten) von auflösbaren sind auflösbar.
+\end{Theorem}
+\begin{Theorem}
+	
+\end{Theorem}
+\begin{Theorem}
+	(Nicht zu nutzen) Burnside: Gruppen der Ordnung $p^aq^b$ sind auflösbar.
+
+	Feit Thompson: Endliche Gruppen von ungerade Ordnung sind auflösbar.
+\end{Theorem}
 	\section{Beispielverzeichnis}
+	\begin{Example}
+		\textbf{(Diedergruppe)} Die Diedergruppe $D_n$ hat Ordnung $2n$. 
+		
+		$r$ hat Ordnung $n$, $s$ hat Ordnung $2$, alle Elemente der Form $r^k s$ haben Ordnung $2$
+	\end{Example}
+	\begin{Example}
+		\textbf{(Kleinsche Vierergruppe)} $V_4=\{\sigma \in A_4|\text{ord}(\sigma)\le 2\} $. $4$ Elemente und nicht zyklisch.
+	\end{Example}
 	\end{document}
+	\begin{Example}
+		$A_n$ und $S_n$ f\"{u}r $n\ge 5$ sind \emph{nicht} auflösbar.
+	\end{Example}
+

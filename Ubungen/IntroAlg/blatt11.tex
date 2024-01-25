@@ -42,6 +42,25 @@
 			=&1-2ba+ba\\
 			=&1-ba
 		\end{align*}
+	\item Es gilt
+		\begin{align*}
+		\left[ b^n(1-ba)b^n(1-ba) \right] =& b^n (b^n -b ab^n)(1-ba)\\
+		=&b^n(b^n -b\cancelto{1}{ab}b^{n-1})(1-ba)\\
+		=&b^n(b^n-b^n)(1-ba)\\
+		=&b^n 0 (1-ba)\\
+		=& 0
+		\end{align*}
+	\item Falls wir zeigen könnten, dass $b^n(1-ba)$ f\"{u}r unterschiedliche $n$ unterschiedlich sind, wäre wir schon fertig. 
+
+		Wir betrachten $b^{n_1}(1-ba)$ und $b^{n_2}(1-ba)$ mit $n_2>n_1$ und $n_1,n_2\in \N^*$. Wir nehmen dann an, dass $b^{n_1}(1-ba)=b^{n_2}(1-ba)$. Es gilt
+		\begin{align*}
+			b^{n_1}(1-ba)=& b^{n_2}(1-ba)\\
+			a^{n_1}b^{n_1}(1-ba)=& a^{n_1}b^{n_2}(1-ba)\\
+			(1-ba)=&b^{n_2-n_1}(1-ba)\\
+			\left[ (1-ba) \right]^2=&\left[ b^{n_2-n_1}(1-ba) \right]^2\\
+			\underbrace{(1-ba)}_\text{(a)}=&0\text{ (b)}
+		\end{align*}
+		ein Widerspruch, weil $ba\neq 1$ und daher $1-ba\neq 0$.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -89,5 +108,14 @@
 		2(2r^3 s+3r^2s^2+2 rs^3)=2(-1)=0
 		.\] 
 		Aber $-1\neq 0$, also $2=0$.
+	\item Wir konstruieren die ``kompleze Zahlen" auf der Menge $(\Z / 2 \Z)^2$, also wenn $(a_1,b_1), (a_2,b_2)\in (\Z / 2\Z)^2$ definieren wir
+		\begin{align*}
+			(a_1,b_1)+(a_2,b_2):=&(a_1+a_2,b_1+b_2)\\
+			(a_1,b_1)\times (a_2,b_2)=&(a_1a_2-b_1b_2,a_1b_2+a_2b_1)
+		\end{align*}
+		Als Eigenschaft der komplexen Zahlen haben wir das neutrale Element $(\overline{1},\overline{0})$ bzgl. Multiplikation und $(\overline{0},\overline{0})$ bzgl. Addition. Kommutativität folgt auch aus der entsprechenden Eigenschaft der komplexen Zahlen. Es gilt $2=0$, weil $(\overline{1},\overline{0})+(\overline{1},\overline{0})=(\overline{2},\overline{0})=(\overline{0},\overline{0})$. Es ist aber kein Körper, weil es nicht nullteilerfrei ist. Es gilt
+		\[
+			(\overline{1},\overline{1})\times (\overline{1},\overline{1})=(\overline{2},\overline{2})=(\overline{0},\overline{0})
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
