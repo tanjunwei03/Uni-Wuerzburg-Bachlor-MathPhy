@@ -4,12 +4,12 @@
 \begin{proof}
 	Sei $p=q$. Dann ist $G$ eine Gruppe der Ordnung $p^2$. Wir wissen, dass solche Gruppen abelsch ist, also $G'=\{e\} $ und $G$ ist auflösbar.
 
-	Sei jetzt $p\neq q$. Nach den Sylowsätze gibt es Untergruppen der Ordnung $p$, f\"{u}r deren Anzahl $n_p$ gilt:
+	Sei jetzt $p\neq q$. ObdA nehmen wir an, $p>q$. Nach den Sylowsätze gibt es Untergruppen der Ordnung $p$, f\"{u}r deren Anzahl $n_p$ gilt:
 	\begin{align*}
 		n_p\equiv& 1\pmod{p}\\
 		n_p|q
 	\end{align*}
-	Da $q$ eine Primzahl ist, muss $n_p=1$ gelten. Ähnlich gilt auch $n_q=1$. Sei $P$ die Untergruppe der Ordnung $p$. Als Gruppe einer Primzahlordnung ist $P$ zyklisch, insbesondere abelsch und daher auflösbar. $|G / P|=q$, also $|G / Q|$ ist zyklisch, abelsch und auflösbar. 
+	Die erste Gleichung liefert $n_p=1,p+1,\dots$. Da $n_p|q$, ist die einzige Möglichkeit $1$. Sei $P$ die Untergruppe der Ordnung $p$. Als Gruppe einer Primzahlordnung ist $P$ zyklisch, insbesondere abelsch und daher auflösbar. Da $n_p=1$, ist $P$ ein Normalteiler und $G / P$ ist wohldefiniert. $|G / P|=q$, also $|G / Q|$ ist zyklisch, abelsch und auflösbar. 
 
 	Dann ist $G$ auflösbar.
 \end{proof}

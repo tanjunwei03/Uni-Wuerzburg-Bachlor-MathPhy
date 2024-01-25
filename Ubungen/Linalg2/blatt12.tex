@@ -39,8 +39,51 @@ Die Nullstellen sind $x=2$ und $x=3\pm 2\sqrt{2} $, also $A_3$ ist positiv. Da $
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item \ldots
-	\item Wir berechnen die Eigenvektoren und Eigenwerte von 
+	\item $P_i^2=U^{-1}M_i U U^{-1}M_i U=U^{-1} M_i^2 U=U^{-1}M_iU=P_i$. Sei $v$ ein Eigenvektor mit Eigenwert $\lambda$. D.h. $Uv=e_i$ f\"{u}r eine geeignete Basisvektor $e_i$. Dann ist $(M_j)_{kk} Uv = 0$, wenn $j$ einen anderen Eigenwert entspricht. Dann ist $\text{im }P_i$ der Eigenraum mit Eigenwert $\lambda_i$.
+
+		Da $A$ selbstadjugiert und daher normal ist, sind die Eigenräume orthogonal, und $P_i$ ist ein Orthogonalprojektor.
+	\item Wir berechnen die Eigenvektoren und Eigenwerte von den Matrizen. F\"{u}r $A_1$ sind die Eigenwerte $2,2$ und $-1$. Die Eigenvektoren sind $(-1,0,1)$ und $(-1,2,-1)$ bzgl. des Eigenwerts $2$ und $(1,1,1)$ bzg. des Eigenwerts $-1$. 
+
+		Dann diagonalisieren wir $A_1$:
+		\begin{align*}
+			U=&\begin{pmatrix} -1 & -1 & 1 \\ 0 & 2 & 1 \\ 1 & -1 & 1 \end{pmatrix}\\
+			A_1=&U\text{diag}(2,2,-1)U^{-1}
+		\end{align*}
+		Dann ist das Positivteil $U\text{diag}(2,2,0)U^{-1}$, oder
+		 \[
+			 (A_1)_+=\frac{1}{3}\begin{pmatrix} 4 & -2 & -2 \\ -2 & 4 & -2 \\ -2 & -2 & 4 \end{pmatrix} 
+		.\] 
+		und
+		\[
+			(A_1)_{-}=\frac{1}{3}\begin{pmatrix} -1 & -1 & -1 \\ -1 & -1 & -1 \\ -1 & -1 & -1 \end{pmatrix} 
+		.\] 
+	Der Betrag ist
+	\[
+		|A_1|=\begin{pmatrix} 5 & -1 & -1 \\ -1 & 5 & -1 \\ -1 & -1 & 5 \end{pmatrix} 
+	.\] 
+		Ähnlich sind die Eigenwerte von $B$ $\pm 3$ und $\pm 2$. Die Eigenvektoren sind
+		\begin{align*}
+			\text{EW}=-3:& (-1,1,0,0)^T\\
+			\text{EW}=3:&(1,1,0,0)^T\\
+			\text{EW}=-2:&(0,0,i,1)\\
+			\text{EW}=2:& (0,0,-i,1)
+		\end{align*}
+		Dann definieren wir
+		 \[
+			 U_2=\begin{pmatrix} -1 & 1 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 0 & 0 & i & -i \\ 0 & 0 & 1 & 1 \end{pmatrix} 
+		.\] 
+		Es gilt $A_2=U_2\text{diag}(-3,3,-2,2)U_2^{-1}$. Das Positivteil ist durch $A_2=U_2\text{diag}(0,3,0,2)$ definiert und
+		\[
+			(A_2)_+=\begin{pmatrix} 3 / 2 & 3 / 2 & 0 & 0 \\ 3 / 2 & 3 / 2 & 0 & 0 \\ 0 & 0 & 1 & -i \\ 0 & 0 & i & 1 \end{pmatrix} 
+		.\] 
+		Das Negativteil ist ähnlich
+		\[
+			(A_2)_{-}=\begin{pmatrix} - 3 / 2 & 3 / 2 & 0 & 0 \\ 3 / 2 & - 3 / 2 & 0 & 0 \\ 0 & 0 & -1 & -i \\ 0 & 0 & i & -1 \end{pmatrix} 
+		.\] 
+		Der Betrag ist
+		\[
+			|A_2|=\text{diag}(3,3,2,2)
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -66,7 +109,7 @@ Die Nullstellen sind $x=2$ und $x=3\pm 2\sqrt{2} $, also $A_3$ ist positiv. Da $
 		\lambda A+\mu C\le \lambda B+\mu D
 	\]
 	gilt.
-\item Zeigen Sie, dass f\"{u}R alle $A\le B$ 
+\item Zeigen Sie, dass f\"{u}r alle $A\le B$ 
 	\[
 	CAC^*\le CBC^*
 \]
@@ -79,3 +122,54 @@ f\"{u}r alle $C\in \text{End}(V)$ gilt.
 	Zeigen Sie, dass $0\le A \le B$ gilt. Zeigen Sie, dass $A^2\le B^2$ \emph{nicht} gilt.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Linearität von die adjungierte Endomorphismus:
+		\begin{align*}
+			(\lambda_1A+\lambda_2 B)^*=&(\lambda_1 A)^*+(\lambda_2 B)^*\\
+			=&\lambda_1^* A^*+\lambda_2^* B^*\\
+			=&\lambda_1 A^*+\lambda_2 B^* & \lambda\text{ reell}\\
+			=&\lambda_1 A+\lambda_2 B & A,B\text{ selbstadjugiert}
+		\end{align*}
+	\item Es gilt
+		\begin{align*}
+			&\lambda B+\mu D-(\lambda A +\mu C)\\
+			=&\lambda(B-A)+\mu(D-C)
+		\end{align*}
+		Da sowohl $B-A$ als auch $D-C$ positiv sind, ist die lineare Kombination auch positiv. Die Behauptung folgt.
+	\item Es gilt $CBC^*-CAC^*=C(B-A)C^*$. Sei $v\in V$. Es gibt dann $w\in W$, so dass $\langle v, C(B-A)C^* v\rangle= \langle w, (B-A)w\rangle$. Dies ist definiert genau durch $w=C^*v$. Da $B-A$ positiv ist, ist das innere Produkt auch immer positiv. 
+	\item Ein Endomorphismus ist genau dann invertierbar, wenn $0$ kein Eigenwert ist. Da $A\ge 0$, besitzt $A$ nichtnegative Eigenwerte. Wir zeigen: Sei $\lambda_1\ge 0$ ist genau dann Eigenwert von $A$, wenn $\lambda_1+\lambda$ Eigenwert von $A+\lambda$ ist.
+		
+		Sei zunächst $\lambda_1$ Eigenwert von $A$. Es gilt
+		\begin{align*}
+			\text{det}(A+\lambda-(\lambda_1+\lambda))=&\text{det}(A-\lambda_1)\\
+			=& 0
+		\end{align*}
+		Dann ist $\lambda+\lambda_1$ Eigenwert von $A+\lambda$. Sei umgekehrt $\lambda_1+\lambda$ Eigenwert von $A+\lambda$. Es gilt dann
+		\begin{align*}
+			\text{det}(A-\lambda_1)=&\text{det}(A-\lambda_1+\lambda-\lambda)\\
+			=&\text{det}(A+\lambda-(\lambda_1+\lambda))\\
+			=&0
+		\end{align*}
+		Dann ist $\lambda_1$ Eigenwert von $A$.
+
+		Weil $\lambda>0$, sind die Eigenwerte alle strikt positiv. Dann ist $0$ kein Eigenwert, und $A +\lambda$ ist invertierbar.
+\item 
+	\[
+		B-A=\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
+	.\] 
+	Die Eigenwerte sind $2$ und $0$, also $B-A$ ist positiv. Es gilt
+	\[
+		B^2=\begin{pmatrix} 5 & 3 \\ 3 & 2 \end{pmatrix} 
+	\]
+	und
+	\[
+		A^2=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} 
+	.\] 
+	Dann ist
+	\[
+		B^2-A^2=\begin{pmatrix} 4 & 3 \\ 3 & 2 \end{pmatrix} 
+	.\] 
+	Die Eigenwerte von $B^2-A^2$ sind $3\pm \sqrt{10} $. Aber $3-\sqrt{10} <0$, also $B^2-A^2$ ist nicht positiv.
+	\end{parts}
+\end{proof}

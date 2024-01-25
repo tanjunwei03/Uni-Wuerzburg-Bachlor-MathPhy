@@ -1,0 +1,44 @@
+\begin{Problem}
+	Begründen Sie, warum die Determinante $\text{det}:\R^{n\times n}\to \R$ unendlich oft differenzierbar ist, und bestimmen Sie die Ableitung im Punkt $X\in \R^{n\times n}$. Welche besondere Form nimmt $(D\text{det})(\text{Id})$ an?  	
+\end{Problem}
+
+\begin{Problem}
+	Ist $U\subset \R^n$ offen und $f:U\to \R$ zweimal differenzierbar, so kann die zweite Ableitung $D^2f$ in jedem Punkt $x\in U$ durch eine blineare Abbildung $\text{Hom}(\R^n,\R^n;\R)$ darstellen. F\"{u}r eine gegebene Basis auf dem $\R^n$-wir wählen die kanonische Basis hier - lassen sich bilineare Abbildungen durch eine Matrix $A\in \R^{n\times n}$ darstellen, die sog. Hesse-Matrix $Hf$ mit
+	\[
+		Hf(x,y)=\left[ \pdv[2]{f}{x_i}{x_j}(x) \right]_{i,j=1,\dots, n}=\begin{pmatrix} \pdv[2]{f}{x_1}{x_1} & \dots & \pdv[2]{f}{x_1}{x_n} \\ \vdots & \ddots & \vdots \\ \pdv[2]{f}{x_1}{x_n} & \dots & \pdv[2]{f}{x_n}{x_n}\end{pmatrix} 
+	.\] 
+Hier wurde schon ausgenutzt, dass die partiellen Ableitungen nach dem Satz von Schwarz vertauschen, die Hesse-Matrix ist also symmetrisch.
+
+Es sei nun $f:\R^n\to \R$ mit
+\[
+	f(x)=\frac{1}{2}x^T Ax=\frac{1}{2}\sum_{i,j=1}^n a_{ij}x_i x_j
+\]
+f\"{u}r eine Matrix $A\in \R^{n\times n}$.
+\begin{parts}
+	\item Zeigen Sie, dass $f$ in $(0,0)$ ein Minimum, Maximum oder Sattelpunkt genau dann besitzt, wenn die Hesse-Matrix von $f$ (in (0,0)) positiv semi- negativ semi- bzw. indefinit ist. 
+	\item Zeigen Sie durch ein Beispiel, dass für allgemeine Funktionen mit positiv (bzw. negativ) semidefiniter Hesse-Matrix im kritischen Punkt kein lokales Minimum (bzw. Maximum) vorliegen muss.  
+\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Es sei
+	\[
+		F:\R^2\to \R^2, \qquad F(x,y)=(x^2-y^2,2xy)^T
+	.\] 
+	\begin{parts}
+	\item Berechnen Sie die Jacobi-Matrix von $F$.
+	\item In welchem Punkt $p\in \R^2$ existiert die Inverse von $JF(p)$?
+	\item Finden Sie eine lokale inverse Abbildung $F^{-1}$ von $F$ in einer Umgebung von $p=(1,0)=F(1,0)$ und berechnen Sie die Ableitung von $F^{-1}$ in $p$.
+	\item Ist $F$ auf dem ganzen Gebiet $\{p\in \R^2|JF(p)\text{ invertierbar}\} $ global invertierbar?
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Mithilfe des Satzes über implizite Funktionen beweisen wir die Glattheit der Inversen-Abbildung $\text{inf}:GL(n)\to GL(n)$. Gehen Sie wie folgt vor:
+	\begin{parts}
+	\item Begründen Sie, dass die Abbildung $A\cdot B\to AB$ auf $\R^{(n\times n)^2}$ unendlich oft differenzierbar ist.
+	\item Nutzen Sie dan Satz über implizite Funktionen, um $\text{inf}\in \mathcal{C}^\infty (GL(n),GL(n))$ zu beweisen.
+
+		\emph{Hinweis: Betrachten Sie $A\cdot B=\text{Id}$ }
+	\end{parts}
+\end{Problem}
