@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1705870619 "main.aux" "main.bbl" "main" 1705870805 0
-  "./mainNotes.bib" 1705870805 104 4d8bb863c86f3d7b03a471e9d4707f34 ""
+["bibtex main"] 1706377405 "main.aux" "main.bbl" "main" 1706378115 0
+  "./mainNotes.bib" 1706378115 104 4d8bb863c86f3d7b03a471e9d4707f34 ""
   "/usr/share/texmf-dist/bibtex/bst/revtex/apsrev4-2.bst" 1689853683 69609 e9dea59f0e753ccda3ddc8f5806d846d ""
-  "main.aux" 1705870805 886 82a8a5e1957f1178967da15a84a2c7c8 "pdflatex"
+  "main.aux" 1706378115 887 2f807be5af135985f9abfea5fc374a35 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1705870804 "main.tex" "main.pdf" "main" 1705870805 0
+["pdflatex"] 1706378114 "main.tex" "main.pdf" "main" 1706378115 0
   "/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc" 1689853683 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1689853683 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm" 1689853683 2532 9ad73cf4dd2173a847f2a5f5608e0b9a ""
@@ -28,7 +28,6 @@
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1689853683 1288 655e228510b4c2a1abe905c368440826 ""
   "/usr/share/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1689853683 1124 6c73e740cf17375f03eec0ee63599741 ""
   "/usr/share/texmf-dist/fonts/tfm/public/mathpazo/fplmb.tfm" 1689853683 984 3dcde7360ef3d34302e591b511cba83c ""
-  "/usr/share/texmf-dist/fonts/tfm/public/mathpazo/fplmbb.tfm" 1689853683 564 cb1a5fc3f0326dd000c6e6c0fce59d7c ""
   "/usr/share/texmf-dist/fonts/tfm/public/mathpazo/fplmr.tfm" 1689853683 1032 7fa31d93ecd4cbdfac02c7a1ebc6facc ""
   "/usr/share/texmf-dist/fonts/tfm/public/mathpazo/fplmri.tfm" 1689853683 1148 56b0fdf7ca3f800294e968f64cfdcb87 ""
   "/usr/share/texmf-dist/fonts/tfm/public/mathpazo/zplmr7m.tfm" 1689853683 2080 40a71f65088bdd047622ce295520749e ""
@@ -40,7 +39,7 @@
   "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1689853683 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb" 1689853683 64555 1bdfd101450d8daa1682251ffcdf0074 ""
   "/usr/share/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb" 1689853683 62231 6fa2851364e6117779162ea79cb96ef4 ""
-  "/usr/share/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb" 1689853683 12410 7504dd653d0e7cf266cb973aeafd597c ""
+  "/usr/share/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb" 1689853683 9356 a3851bc942e9b6995883193472ba1847 ""
   "/usr/share/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb" 1689853683 15213 d999bbe8bd9c8f231f3f66a737c76478 ""
   "/usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb" 1689853683 52406 dad2f72863a03727d5f536c64a69c452 ""
   "/usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb" 1689853683 52665 661b1e6b26edb5f50dd491f8a701cb57 ""
@@ -98,6 +97,7 @@
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex" 1689853683 8843 5533436db3e30fbad1e0440db6027dac ""
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex" 1689853683 7474 f05a7223b140f230922562ac6a9fede5 ""
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex" 1689853683 31874 89148c383c49d4c72114a76fd0062299 ""
+  "/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex" 1689853683 58801 1e750fb0692eb99aaac45698bbec96b1 ""
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex" 1689853683 2563 d5b174eb7709fd6bdcc2f70953dbdf8e ""
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex" 1689853683 85938 8e4ba97c5906e1c0d158aea81fe29af7 ""
   "/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex" 1689853683 7936 49e55444d57eb69a380c6baa35094828 ""
@@ -241,7 +241,6 @@
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1pplj.fd" 1689853683 869 9765301c678d5ab1879edc807ef55670 ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1pplx.fd" 1689853683 869 d5724c6202887be8690c71fe9df2f441 ""
   "/usr/share/texmf-dist/tex/latex/psnfss/ot1zplm.fd" 1689853683 436 5e7baa1a259bab50a2bdffad6426f38c ""
-  "/usr/share/texmf-dist/tex/latex/psnfss/ufplmbb.fd" 1689853683 321 077609d8fc08b1f1181795378b603500 ""
   "/usr/share/texmf-dist/tex/latex/refcount/refcount.sty" 1689853683 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1689853683 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/usr/share/texmf-dist/tex/latex/revtex/aps12pt4-2.rtx" 1689853683 4804 2744af0f203134af90d666c0e5372e88 ""
@@ -280,11 +279,11 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1689853683 40684 9b9ec0b4288972636ff6a3b9c4238efc ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1695822456 4483110 adb1e1d04498b9576f1f17c4219c5e03 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1695822446 6768054 8f12a98fbddbb5a8929994f25b9bf7ef ""
-  "blatt12.tex" 1705870804 15501 6dc2726dc93dfe39a17e5f73bc5dc60f ""
-  "main.aux" 1705870805 886 82a8a5e1957f1178967da15a84a2c7c8 "pdflatex"
-  "main.bbl" 1705870619 1980 28c19e8c34138b62d4af8c2d0ed844b0 "bibtex main"
-  "main.out" 1705870805 264 9afacfb5c6aaec3f0ee324ea84a417b4 "pdflatex"
-  "main.tex" 1705503130 1909 24b4b7db28d9b3c992d58c1731cff49c ""
+  "blatt13.tex" 1706378113 6506 911279874e735a6c962d8d90e0afb0ef ""
+  "main.aux" 1706378115 887 2f807be5af135985f9abfea5fc374a35 "pdflatex"
+  "main.bbl" 1706377405 1980 28c19e8c34138b62d4af8c2d0ed844b0 "bibtex main"
+  "main.out" 1706378115 269 5e8c7fcf34dffdf0bbb5d4ae0882a852 "pdflatex"
+  "main.tex" 1706375930 1960 cb20352f7f18da02e1b80689b030dfcb ""
   (generated)
   "main.aux"
   "main.log"

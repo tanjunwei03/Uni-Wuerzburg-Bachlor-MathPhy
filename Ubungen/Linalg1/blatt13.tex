@@ -1,0 +1,104 @@
+\begin{Problem}
+	Es seien
+	\[
+		A:=\begin{pmatrix} 10 & -31 & -60 & 180 \\ 0 & 3 & -21 & 63 \\ 2 & -8 & 0 & 0 \\ 10 & -31 & -60 & 183 \end{pmatrix},~B:=\begin{pmatrix} 1 & 3 & 0 & 0 \\ 2 & 3 & 1 & 0 \\ 1 & 0 & 0 & 2 \\ 0 & 0 & 1 & 0 \end{pmatrix} 
+	.\] 
+	\begin{parts}
+		\item Bestimmen Sie die Determinante von $B$ direkt mit dem Laplace’schen Entwicklungssatz  
+		\item Bestimmen Sie die Determinante von $A$ einmal, indem Sie den Laplace’schen Entwicklungssatz direkt anwenden, und einmal, indem Sie vorher eine geschickte Zeilenumformung durchführen.   
+		\item Wie verhält es sich mit dem Aufwand jetzt gegenüber letzter Woche? Beschreiben Sie eine Strategie zum geschickten Berechnen von Determinanten bei Matrizen geeigneter Struktur.  
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Es sei $K$ ein Körper. F\"{u}r eine Matrix $A\in\text{Mat}(n\times n,K)$ und $k\le n$ bezeichnen wir mit $A[1:k,1:k]$ die Untermatrix von $A$, die aus den ersten $k$ Spalten der ersten $k$ Zeilen besteht, dh. f\"{u}r
+	\[
+		A=\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix} 
+	\]
+	wäre
+	\[
+		A[1:2,1:2]=\begin{pmatrix} 1 & 2 \\ 4 & 5 \end{pmatrix} 
+	.\] 
+	\begin{parts}
+	\item Beweisen Sie: Sind $L,R,D\in \text{Mat}(n\times n,K)$ der Reihe nach eine linke untere Dreiecksmatrix mit ausschließlich Einsen auf der Diagonalen, eine rechte obere Dreiecksmatrix mit ausschließlich Einsen auf der Diagonalen und eine Diagonalmatrix, deren Diagonaleinträge alle $\neq 0$ sind, dann gilt f\"{u}r $A=LDR$ und alle $k=1,\dots, n$ $\text{det}(A[1:k,1:k])\neq 0$.
+	\item Beweisen Sie: Ist $A\in \text{Mat}(n\times n,K)$ eine Matrix, f\"{u}r die f\"{u}r alle $k\le n$ $\text{det}(A[1:k,1:k])\neq 0$ gilt, ann gibt es eine linke untere Dreiecksmatrix $L$ mit ausschließlich Einsen auf der DIagonalen, eine rechte obere Dreiecksmatrix $R$ mit ausschließlich Ensen auf der Diagonalen und eine Diagonalmatrix $D$, deren Diagonaleinträge alle $\neq 0$ snd, sodass $A=LDR$ gilt.
+	\item Erklären Sie, was dieses Resultat mt elementaren Zeilenumformungen zu tun hat.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Es sei $A\in \text{Mat}(n\times n, K)$ eine invertierbare Matrix. Zeigen Sie, dass die folgenden Aussagen äquivalent sind.
+	\begin{parts}
+		\item $A$ ist invertierbar.
+		\item $\text{det}(A)\neq 0$.
+		\item Die Spalten von $A$ sind linear unabhängig.
+		\item Der Rang von $A$ ist $n$.
+		\item Die Zeilen von $A$ sind linear unabhängig.
+		\item Die Abbildung $L_A:K^n\to K^n,x\to Ax$ ist surjektiv.
+		\item Die Abbildung  $L_A$ ist injektiv.
+		\item Die Abbildung $L_A$ ist bijektiv.
+		\item Es gilt $\text{ker}(A)=\{0\} $.
+		\item Jedes Gleichungssystem der Form $Ax=b$ mit $b\in K^n$ ist eindeutig lösbar.
+		\item Es gilt $Ax=0$ nur f\"{u}r $x=0$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+Hier ist der Plan
+\begin{center}
+	\begin{tikzpicture}[ implies/.style={double,double equal sign distance,-implies}, iimplies/.style={double,double equal sign distance,implies-implies},scale=2]  
+		\draw (0,0) node (A){(a)};
+		\draw (1,0) node (H) {(h)};
+		\draw (2,1) node (F) {(f)};
+		\draw (2,-1) node (G) {(g)};
+		\draw (3,0) node (D) {(d)};
+		\draw (4,1) node (C) {(c)};
+		\draw (4,-1) node (E) {(e)};
+		\draw[iimplies] (A) -- (H);
+		\draw[implies] (H) -- (F);
+		\draw[implies] (H) -- (G);
+		\draw[implies] (G) -- (D);
+		\draw[implies] (D) -- (C);
+		\draw[iimplies] (C) -- (E);
+		\draw[implies] (F) -- (D);
+		\draw (2,2) node (B) {(b)};
+		\draw[implies] (C) -- (B);
+		\draw[implies] (B) -- (A);
+		\draw (2,-2) node (I) {(i)};
+		\draw (1,-2) node (K) {(k)};
+		\draw (1,-1) node (J) {(j)};
+		\draw[iimplies] (G) -- (I);
+		\draw[iimplies] (I) -- (K);
+		\draw[iimplies] (H) -- (J);
+	\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+	\item Per Definition ist $A$ invertierbar genau dann, wenn die Abbildung invertierbar ist. Abbildungen sind invertierbar genau dann, wenn die bijektiv sind.
+	\item Bijektive Abbildungen sind sowohl injektiv als auch surjektiv.
+	\item Per Definition ist der Rang die Dimension des Bildraums. Sei jetzt die Abbildung surjektiv. Dann ist $\text{Bild}(L_A)=K^n$ mit dimension $n$, also (f) $\implies$ (d).
+	\item Sei jetzt $L_A$ injektiv. Dann ist $\text{dim}(L_A(K^n))=\text{dim}(K^n)=n$, also Dimension des Bilds ist gleich Dimension des Definitionsbereiches.
+	\item Rang ist $n$ genau dann, wenn die Spalten linear unabhängig sind (Zeilenstufenform).
+	\item Spalten sind linear unabhängig genau dann wenn Zeilen linear unabhängig sind (Zeilenrang = Spaltenrang, im Skript).
+	\item Per letzte Übungsblatt: Linear unabhängige Spalten $\implies$ $\text{det}(A)\neq 0$. 
+	\item (g) $\iff$ (i) per Satz 5.3.10 (Homomorphiesatz). 
+	\item (i) $\iff$ (k) per Definition des Kerns.
+	\item Bijektivität liefert eine eindeutige Lösung. Surjektivität liefert eine Lösung, Injektivität liefert Eindeutigkeit.\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{Problem}
+	Es sei $V$ ein endlich dimensionaler $K$-Vektorraum. Beweisen oder widerlegen Sie:
+\begin{parts}
+\item Sind $U,V\subseteq V$ Unterräume mit $U\not\subseteq W$ und $W\not\subseteq U$, dann ist $U\cup W$ kein Unterraum von $V$.
+\item Sind $U,W\subset V$ Unterräume mit $\text{dim}(U)=\text{dim}(W)=2$ und gilt $\text{dim}(V)=3$, dann gilt $U=W$ oder $\text{dim}(U\cap W)=1$.
+\item Sind $U,W$ Unterräume von $V$ und sind $\phi:U\to K,\psi:W\to K$ lineare Abbildungen, dann gibt es eine lineare Abbildung $\phi:U+W\to K$ mit $\Psi(u)=\phi(u)$ f\"{u}r alle $u\in U$ und $\Psi(w)=\psi(w)$ f\"{u}r $w\in W$.
+\item Ist $U\subseteq V$ ein Unterraum, dann gibt es genau einen Unterraum $W\subseteq V$ mit $U\oplus W=V$.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wahr. Per Definition gibt es $u\in U$, aber $u \not\in W$ und $w\in W$, aber $w\not\in U$. Falls $U\cup W$ ein Unterraum wäre, würde $u+w\in U\cup W$, also entweder $u+w\in U$ oder $u+w\in W$. Sei $u+w=v\in U$. Dann gilt $w=v-u\in U$, also $w\in U$, ein Widerspruch. Analog bekommt man ein Widerspruch falls $u+v\in W$.
+	\item Wahr. Aus $U\cap W\subseteq U$ gilt $\text{dim}(U\cap W)\le 2$. Wenn es $2$ wäre, ist $U=U\cap W$. Daraus folgt: $U=W$.
+
+	Wir müssen daher nur den Fall $\text{dim}(U\cap W)=0$ ausschließen. In diesem Fall: Sei $u_1,u_2$ eine Basis von $U$ sowie $w_1,w_2$ eine Basis von $W$. Da $\text{dim}(U\cap W)=0$, st $U\cap W=\{e\} $ und $\{u_1,u_2,w_1,w_2\} $ ist linear unabhängig. Dadurch haben wir $4$ linear unabhängige Vektoren in einem Raum mit Dimension $3$, ein Widerspruch.
+	\end{parts}
+\end{proof}
