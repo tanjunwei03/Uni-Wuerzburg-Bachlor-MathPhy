@@ -1,7 +1,45 @@
 \begin{Problem}
 	Begründen Sie, warum die Determinante $\text{det}:\R^{n\times n}\to \R$ unendlich oft differenzierbar ist, und bestimmen Sie die Ableitung im Punkt $X\in \R^{n\times n}$. Welche besondere Form nimmt $(D\text{det})(\text{Id})$ an?  	
 \end{Problem}
+\begin{proof}
+	Per Definition ist
+	\[
+		\text{det}(X)=\sum_{\sigma\in S_n} \text{sgn}(\sigma)X_{1\sigma(1)}X_{2\sigma(2)}\dots X_{n\sigma(n)}
+	.\] 
+	Da dies eine Summe von Produkte der Komponenten sind, ist $\text{det}$ unendlich oft differenzierbar.
 
+	Es gilt $\text{det}':\R^{n\times n}\to\text{Hom}(\R^{n\times n},\R)$. Wir betrachten eine parameterabhängige Matrix $A(t)$. Es gilt
+	\begin{align*}
+	\dv{t}\text{det}A(t)=&\dv{t}\sum_{\sigma\in S_n}\text{sgn}(\sigma)A_{1\sigma(1)}(t)\dots A_{n\sigma(n)}(t)\\
+		=&\sum_{\sigma\in S_n}\left[ (A_{1\sigma(1)}\dots A_{n\sigma(n)}) \sum_{j=1}^n\frac{A_{j\sigma(j)}'(t)}{A_{j\sigma(j)}} \right] \\
+				=&\sum_{j=1}^n\sum_{\sigma\in S_n}\left[ (A_{1\sigma(1)}\dots A_{n\sigma(n)}) \frac{A_{j\sigma(j)}'(t)}{A_{j\sigma(j)}} \right] 
+	\end{align*}
+	F\"{u}r festes $j$ kann dieser Ausdruck so vorgestellt werden: Wir setzten in der $j$-te Zeile $A'$ statt $A$, also 
+			\begin{center}
+		\begin{tikzpicture}
+			\matrix (M)[matrix of math nodes, row sep = 0.5cm, column sep = 0.5cm,left delimiter={(},right delimiter={)}]{
+				A_{11}(t) & A_{12}(t) & \dots & A_{1n}(t)\\
+				A_{21}(t) & A_{22}(t) & \dots & A_{2n}(t)\\
+				\vdots & \vdots  & \ddots & \vdots\\
+				A_{j1}'(t) & A_{j2}'(t) & \dots & A_{jn}'(t)\\
+				\vdots & \vdots & \ddots & \vdots\\
+				A_{n1}(t) & A_{n2}(t) & \dots & A_{nn}(t)\\
+			};
+			\draw[thick, blue] (-3.5,-0.5) -- (3.5,-0.5);
+			\draw (3.6,-0.5) node[anchor=west,blue] {$j$-te Zeile};
+		\end{tikzpicture}
+	\end{center}
+	und berechnen deren Determinante. Wir führen eine Laplaceentwicklung um die $j$-te Zeile durch und erhalten, mit $A^\#$ die adjugierte Matrix
+	\begin{align*}
+		\dv{t}\text{det} A(t)=&\sum_{j=1}^n\sum_{k=1}^n A_{jk}'(t)A^{\#}_{kj}\\
+		=&\sum_{k=1}^n\sum_{j=1}^n A^{\#}_{kj}A_{jk}'(t)\\
+		=&\sum_{k=1}^n (A^{\#} A')_{kk}\\
+		=&\text{tr}(A^{\#}A')
+	\end{align*}
+	Also die Ableitung $\text{det}'$ im Punkt $A$ ist die Abbildung, die $B$ nach $\text{tr}(A^{\#}B)$ abbildet. 
+
+	Im Punkt $I$: Es gilt $I^\#=I$, also $D\text{det}(I)=\text{tr}$.
+\end{proof}
 \begin{Problem}
 	Ist $U\subset \R^n$ offen und $f:U\to \R$ zweimal differenzierbar, so kann die zweite Ableitung $D^2f$ in jedem Punkt $x\in U$ durch eine blineare Abbildung $\text{Hom}(\R^n,\R^n;\R)$ darstellen. F\"{u}r eine gegebene Basis auf dem $\R^n$-wir wählen die kanonische Basis hier - lassen sich bilineare Abbildungen durch eine Matrix $A\in \R^{n\times n}$ darstellen, die sog. Hesse-Matrix $Hf$ mit
 	\[
@@ -19,7 +57,16 @@ f\"{u}r eine Matrix $A\in \R^{n\times n}$.
 	\item Zeigen Sie durch ein Beispiel, dass für allgemeine Funktionen mit positiv (bzw. negativ) semidefiniter Hesse-Matrix im kritischen Punkt kein lokales Minimum (bzw. Maximum) vorliegen muss.  
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Offensichtlich ist $A$ die Hesse-Matrix und $f(0)=0$. Wir drücken $f(x)$ als $\frac{1}{2}\langle x, Ax\rangle$ aus.
 
+	Dann per Definition: Falls $A$ positiv semidefinit ist, ist $f(x)=\frac{1}{2}\langle x, Ax\rangle\ge 0$ f\"{u}r alle $x$, also $f$ besitzt ein Minimum in $(0,0)$. Die Umkehrrichtung gilt auch per Definition. Sei $U$ eine Umgebung. F\"{u}r $x\in U$ ist $\langle x, Ax\rangle \ge 0$ per Definition eines Minimums. 
+
+	Das gleiche Argument (per Definition) gilt f\"{u}r $f$ ein Maximum in $(0,0)$.
+\item Die Funktion $f:\R\to\R$ mit $f(x)=x^3$ besitzt in $0$ Ableitung $0$. $0$ ist sowohl positiv als auch negativ definit. Die Funktion besitzt aber weder ein Maximum noch ein Minimum in $0$.
+\end{parts}
+\end{proof}
 \begin{Problem}
 	Es sei
 	\[
@@ -32,7 +79,35 @@ f\"{u}r eine Matrix $A\in \R^{n\times n}$.
 	\item Ist $F$ auf dem ganzen Gebiet $\{p\in \R^2|JF(p)\text{ invertierbar}\} $ global invertierbar?
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item
+		\[
+			JF=\begin{pmatrix} 2x & -2y \\ 2y & 2x \end{pmatrix} 
+		.\] 
+	\item $\text{det}(JF)=4x^2+4y^2$. Dies ist genau dann Null, wenn $x=y=0$. Sonst ist $JF$ invertierbar.
+	\item Wir lösen das Gleichungssystem:
+		\begin{align*}
+			x^2-y^2=&\xi\\
+			2xy=&\zeta\\
+			y=&\frac{\zeta}{2x}\\
+			x^2-\left( \frac{\zeta}{2x} \right)^2=&\xi\\
+			x^4-\frac{\zeta^2}{4}=&\xi x^2\\
+			x^4 - \xi x^2-\frac{\zeta^2}{4}=&0\\
+			x^2=\frac{1}{2}\left[ \xi\pm \sqrt{\xi^2+\zeta^2}  \right] 
+		\end{align*}
+		Beim Punkt $(x,y)=(1,0)$ ist $(\xi,\zeta)=(1,0)$. In einer genug kleinen Umgebung nehmen wir daher die positive Nullstelle und danach positive Würzel.
+		\[
+			x=\left[ \frac{\xi+\sqrt{\xi^2+\zeta^2} }{2} \right]^{1 / 2}
+		.\] 
+		Daraus folgt:
+		\[
+			y=\frac{\zeta}{2}\left[ \frac{2}{\xi+\sqrt{\xi^2+\zeta^2} } \right]^{1 / 2}
+		.\] 
+		Dies ist die Umkehrabbildung.	
+	\item Nein, weil sie nicht injektiv ist. Es gilt $F(1,1)=(0,2)$ und $F(-1,-1)=(0,2)$, aber $(1,1)\neq (-1,-1)$.\qedhere 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Mithilfe des Satzes über implizite Funktionen beweisen wir die Glattheit der Inversen-Abbildung $\text{inf}:GL(n)\to GL(n)$. Gehen Sie wie folgt vor:
 	\begin{parts}

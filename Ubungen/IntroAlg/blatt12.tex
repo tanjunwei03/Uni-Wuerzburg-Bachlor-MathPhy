@@ -1,0 +1,68 @@
+\begin{Problem}
+	Sei $R:=K^{n\times n}$ der Ring der $n\times n$-Matrizen über einem Körper $K$. Zeigen Sie, dass $\{0\} $ und $R$ die einzigen Ideale von $R$ sind, vgl. Bemerkung 3.13.
+\end{Problem}
+\begin{proof}
+	Sei $I\neq \{0\} $ ein Ideal von $R$. Wir nehmen an, dass $m\in I$ gibt mit $m$ invertierbar. Dann ist $m^{-1}\in R$ und $1 = m m^{-1}\in I$. Sei jetzt $m\in R$ beliebig. Da $1\in I$, ist $1m=m\in I$, also $I=R$.
+
+	Deswegen nehmen wir an, dass $I$ nur nichtinvertierbare Elemente enthält.Sei $m\in I$. Aus dem Spektralsatz bzw. Jordannormalform haben wir eine Zerlegung $m=m_d+m_n$ mit $[m_d,m_n]=0$, $m_d$ diagonalisierbar und $m_n$ nilpotent. Da $m^n=m_d+m_n\in I$ f\"{u}r alle $n\in \N^*$, enthält $I$ ein diagonalisierbares Element. 
+
+	Wir diagonalisieren das Element, also $I$ enthält ein diagonales Element, z.B. $\text{diag}(\lambda_1,\lambda_2,\dots, \lambda_n)\in I$. Wir wissen, dass Zeilenumformungen durch Matrixmulplikationen dargestellt werden kann. Durch diese Zeilenumformungen erhalten wir f\"{u}r jedes Diagonalelement zumindest ein Element, das keine Nullstelle in diesem Eintrag besitzt. 
+
+	Wir additieren alle solche Elemente und erhalten daher eine diagonale Matrix, mit alle diagonale Elemente ungleich Null. Dies ist invertierbar, und die Behauptung folgt.
+\end{proof}
+\begin{Problem}
+	Seien $R$ ein kommutativer Ring und $g\in R[x]$ ein normiertes Polynom vom Grad $n\in \N^*$. Sei $I:=gR\trianglelefteq R[X]$ das von $g$ erzeugte Ideal von $R[X]$. Zeigen Sie:
+	\begin{parts}
+		\item Jedes ELement des Faktorrings $R[X] / I$ lässt sich in der Form
+			\[
+				r_0+r_1X+\dots, +r_{n-1}X^{n-1}+I\qquad\text{mit gewissen}r_i\in R
+			\]
+			darstellen. Es gilt also $R[X] / I=\{r_0+r_1X+\dots+r_{n-1}X^{n-1}|r_0,\dots, r_{n-1}\in R\} $.
+		\item Die Elemente $\sum_{i=0}^{n-1}r_i X^i +I$ aus der Menge in Teil (a) sind paarweise verschieden, d.h. f\"{u}r beliebige $r_0,\dots, r_{n-1},s_0,\dots, s_{n-1}$ gilt
+			\[
+				(r_0,\dots, r_{n-1})\neq (s_0,\dots, s_{n-1})\implies \sum_{i=0}^{n-1} r_i X^i+I\neq \sum_{i=0}^{n-1}s_i X^i+I
+			.\] 
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Zur Abkürzung schreiben wir $\Z_n$ f\"{u}r den Ring $\Z / n\Z$. Zeigen Sie, dass die vier Ringe
+	\[
+		R_1:=\Z_4,~R_2:=\Z_2\times \Z_2,~R_3:=\Z_2[X] / X^2 \Z_2[X],~R_4:=\Z_2[X] / (X^2+X+1)\Z_2[X]
+	\]
+	paarweise nicht isomorph sind.
+\end{Problem}
+
+\begin{Problem}
+	Sei $R$ ein kommutativer Ring. Ein Element $a\in R$ heißt \emph{nilpotent}, falls $a^n=0$ f\"{u}r ein $n\ge 1$ gilt.
+	\begin{parts}
+	\item Begründen Sie, warum Null in einem Körper das einzige nilpotente Element ist.
+	\item Zeigen Sie, dass das \emph{Nullradikal} $N:=\{a\in R|a\text{ ist nilpotent}\} $ ein Ideal ist.
+	\item Zeigen Sie, dass das Nilradikal in jedem Primideal $P$ von $R$ enthalten ist.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $K$ ein Körper mit $K\ni a\neq 0$. Da $K \backslash\{0\} $ multiplikativ abgeschlossen sein sollte, wäre $a^k\in K \backslash \{0\} $, also  $a^k\neq 0$ f\"{u}r alle $k\in \N^*$
+	\item $N$ ist eine additive Untergruppe:
+		\begin{enumerate}[label=(\roman*)]
+			\item $0$ ist nilpotent (siehe oben)
+			\item Sei $a$ nilpotent mit $a^n=0$. Es gilt dann $(-a)^n=(-1)^n a^n=(-1)^n 0=0$.
+			\item Sei $a,b$ nilpotent mit $a^n=b^m=0$. Da $R$ kommutativ ist, dürfen wir den Binomialsatz verwenden. Wir betrachten
+				\[
+					(a+b)^{n+m}=\sum_{k=0}^n \binom{n}{k} a^k b^{n+m-k}
+				.\]
+				Falls $k\ge n$ wäre, gälte dann $a^k=0$ und $a^k b^{n+m-k}=0$. Falls $k\le n$ wäre, gälte $n+m-k\ge m$ und $b^{n+m-k}=0$, daher $a^k b^{n+m-k}=0$. Dann ist $(a+b)^{n+m}=0$, und $a+b$ ist nilpotent.
+		\end{enumerate}
+		Sei jetzt $a\in N,b\in R$ mit $a^n=0$. Es gilt $(ab)^n=a^nb^n=0b^n=0$.
+	\item Sei $P$ ein Ideal von $R$ mit $N\not\subseteq P$. Wir zeigen, dass $P+N\supseteq P\cup N$ ein Ideal ist, also $P$ ist nicht maximal. 
+
+		Die additive Eigenschaften folgen, da sowohl $P$ als auch $N$ Untergruppen sind. Da die additive Gruppe abelsch ist, ist $P+N=N+P$, also $P+N$ ist eine abelsche Untergruppe der additive Gruppe.
+
+		Sei jetzt $p\in P, a\in N,r\in R$, also $p+a\in P+N$. Da sowohl $P$ als auch $N$ Ideale sind, ist
+		\[
+			r(p+a)=\underbrace{rp}_{\in P}+\underbrace{ra}_{\in N}\in P+N
+		.\] 
+		$P+N$ ist also ein Ideal. Da $N\not\subseteq P$, ist $P\subsetneq P+N$, also $P$ ist nicht maximal.\qedhere
+	\end{parts}
+\end{proof}
