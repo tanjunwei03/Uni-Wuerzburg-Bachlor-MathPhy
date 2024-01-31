@@ -112,8 +112,16 @@ f\"{u}r eine Matrix $A\in \R^{n\times n}$.
 	Mithilfe des Satzes über implizite Funktionen beweisen wir die Glattheit der Inversen-Abbildung $\text{inf}:GL(n)\to GL(n)$. Gehen Sie wie folgt vor:
 	\begin{parts}
 	\item Begründen Sie, dass die Abbildung $A\cdot B\to AB$ auf $\R^{(n\times n)^2}$ unendlich oft differenzierbar ist.
-	\item Nutzen Sie dan Satz über implizite Funktionen, um $\text{inf}\in \mathcal{C}^\infty (GL(n),GL(n))$ zu beweisen.
+	\item Nutzen Sie den Satz über implizite Funktionen, um $\text{inf}\in \mathcal{C}^\infty (GL(n),GL(n))$ zu beweisen.
 
-		\emph{Hinweis: Betrachten Sie $A\cdot B=\text{Id}$ }
+	\emph{Hinweis: Betrachten Sie} $A\cdot B=\text{Id}$
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Das Produkt $AB$ besitzt Komponente $(AB)_{ij}=\sum_{k=1}^n A_{ik}B_{kj}$. Dann sind alle Komponenten von $AB$ nach alle Komponenten von $A$ und $B$ unendlich stetig differenzierbar, da die lineare Kombinationen von Produkten von $AB$ sind.
+	\item Wir betrachten $g:\R^{(n\times n)^2}\to \R^{n\times n}$ mit $g(A,B)\to AB-I$. Falls die Ableitung $(D_2g)(A,B)$ invertierbar ist, ist die Abbildung $\text{inv}:A\mapsto B$ glatt. 
+
+		Da $I$ konstant ist, leiten wir also das Produkt $AB$ nach $B$ ab. Dies ist aber bekanntermaßen glatt, also nach dem Satz von inverse Funktionen ist $\text{inv}$ glatt.\qedhere
+	\end{parts}
+\end{proof}
