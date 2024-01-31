@@ -1,0 +1,31 @@
+\begin{Problem}
+	\textbf{(Parametrisierung)} Sei $M\subseteq \R^n$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$ und $f\in \mathcal{L}^1(\lambda_M)$. Außerdem existieren offene Mengen $U,V\subseteq \R^k$ und lokale Parameterdarstellungen $\varphi:U\to \R^n$ und $\psi:V\to\R^n$ von $M$ mit $\varphi(U)\cup \psi(V)=M$ und $\varphi(U)=M\backslash A$, wobei $A=\psi(N)$ mit einer $\lambda_k$-Nullmenge $N\subseteq V$ gilt. Zeigen Sie, dass $A$ messbar ist und
+          \[
+		\int_M f\dd{\lambda_M}=\int_{M\backslash A} f\dd{\lambda_M}=\int_U f\circ \varphi \cdot \sqrt{\text{det}\varphi'^T\varphi'} \dd{\lambda_k}
+	.\] 
+\end{Problem}
+
+\begin{Problem}
+	\textbf{(Nullmengen)} Sei $M\subseteq \R^n$ eine $k$-dimensionale Untermannigfaltigkeit.
+	\begin{parts}
+		\item Sei $N\in \mathcal{L}_m$ mit $\lambda_M(N)=0$. Dann gilt $\lambda_{M,V}(N)=0$ f\"{u}r alle in $M$ offenen Mengen $V\subseteq \R^n$ f\"{u}r die eine lokale Parameterdarstellung $\varphi:T\to V$, mit $T\subseteq \R^k$ offen, existiert.
+		\item Zeigen Sie, dass $M$ eine $\lambda_n$-Nullmenge ist.
+			
+			{\footnotesize \emph{Hinweis: Satz 3.5}}
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Seien $0<r<R$ und
+	\[
+	T:=\left\{ (x,y,z)\in \R^3|(R-\sqrt{x^2+y^2})^2+z^2-r^2=0 \right\} 
+\]
+die $2$-dimensionale Untermannigfaltigkeit aus Präzenzaufgabe 10.1. Definiere außerdem die Funktion
+\[
+\varphi:U:=(0,2\pi)\times (0,2\pi)\to \R^3,\varphi(\alpha,\beta):=\begin{pmatrix} \cos\alpha \cdot (R+r\cos\beta)\\ \sin\alpha \cdot (R+r\cos\beta) \\ r\sin\beta \end{pmatrix} 
+.\] 
+\begin{parts}
+\item Zeigen Sie, dass eine Menge $A\subseteq T$, eine offene Menge $V\subseteq \R^2$, ein Homömorphismus $\psi:V\to \psi(V)\subseteq T$ und eine $\lambda_2$-Nullmenge $N\subseteq V$ existiert, sodass $\varphi:U\to T\setminus A$ ein Homömorphismus ist und $\psi(N)=A$ gilt.
+\item Zeigen Sie, dass $\lambda_T(T)=4\pi^2 Rr$ gilt.
+\end{parts}
+\end{Problem}
