@@ -5,7 +5,7 @@
 	.\] 
 \end{Problem}
 
-\begin{Problem}
+\begin{Problem}\label{pr:advanalblatt13-1}
 	\textbf{(Nullmengen)} Sei $M\subseteq \R^n$ eine $k$-dimensionale Untermannigfaltigkeit.
 	\begin{parts}
 		\item Sei $N\in \mathcal{L}_m$ mit $\lambda_M(N)=0$. Dann gilt $\lambda_{M,V}(N)=0$ f\"{u}r alle in $M$ offenen Mengen $V\subseteq \R^n$ f\"{u}r die eine lokale Parameterdarstellung $\varphi:T\to V$, mit $T\subseteq \R^k$ offen, existiert.
@@ -14,7 +14,72 @@
 			{\footnotesize \emph{Hinweis: Satz 3.5}}
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $(\varphi_j),~\varphi_j:T_j\to V_j$ eine abzählbare Atlas von $M$ und $V $ beliebig, aber wie in Aufgabenstellung.  Da $\lambda_M(N)=0$, gilt, f\"{u}r eine Folge von Mengen $(A_j), j\in 1,\dots$,
+		\[
+			\sum_{j=1}^\infty \lambda_{M,V_j}(A_j)=0
+		.\] 
+		Jetzt fügen wir die Menge $V$ hinzu, mit $V_0:=V$, also jetzt ist $(\varphi_j),~j=0,\dots$ ein abzählbarer Atlas. Wir setzen $A_0'=A\cap V$ und  $A_j'=A_j\cap V^c$ sonst, wobei die $A_j$ hier die vorherigen $A_j$ sind. Es gilt dann
+		\begin{align*}
+			0=&\sum_{j=0}^\infty \lambda_{M,V_j}(A_j')\\
+			=&\lambda_{M,V}(A_0')+\sum_{i=1}^\infty \lambda_{M,V_i}(A_i')
+		\end{align*}
+		Aber $A_j'\subset A_j$ f\"{u}r $j\in \N$, also
+		\[
+			\sum_{j=1}^\infty \lambda_{M,V_j}(A_j')\le \sum_{j=1}^\infty \lambda_{M,V_j}(A_j)=0
+		.\] 
+		Da das Maß positiv ist, muss der Ausdruck Null sein. Daraus folgt:
+		\[
+			\lambda_{M,V}(A_0')=\lambda_{M,V}(A\cap V)=0
+		.\] 
+	\item Wir brauchen zunächst ein
+		\begin{tcolorbox}
+		\begin{Lemma}
+			$\lambda_n(E_k)=0$ f\"{u}r $k<n$. 
+		\end{Lemma}
+		\begin{proof}
+			Sei $d=r-k$. Da $E_k$ offensichtlich diffeomorph zu $\R^k$ ist, gibt es eine Überdeckung von Mengen $A_j\subseteq \R^k$ mit $\lambda_k(A_j)<\infty$ und $A_j\times (a,b)^d\subseteq \R^n $. Weil $\R^p$ $\sigma$-endlich f\"{u}r alle $p\in \N$ ist, ist das Maß
+			\[
+			\lambda_n(A_i\times (a,b)^d)=\lambda_k(A)\cdot (b-a)^d
+			.\] 
+			Sei jetzt $\epsilon>0$. Wir betrachten die Folge von Mengen
+			\[
+			B_j=\begin{cases}
+				A_j\times (-1,1)^d & \lambda_k(A_j)=0\\
+				A_j\times \left( -\frac{\epsilon}{2^j\lambda_k(A_j)}, \frac{\epsilon}{2^j\lambda_k(A_j)} \right) & \lambda_k(A_j)>0 
+			\end{cases}
+			.\] 
+			Damit ist $\lambda_n(B_j)\le \frac{2\epsilon}{2^j}$ und außerdem $E_k\subseteq \bigcup_{j\in \N} B_j$. Daraus folgt:
+			\begin{align*}
+				\lambda_n(E_k)\le& \sum_{j=1}^\infty \lambda_n(B_i)\\
+				\le& \sum_{i=1}^\infty \frac{2\epsilon}{2^i}\\
+				=&2\epsilon
+			\end{align*}
+			Da $\epsilon$ beliebig war, ist $\lambda_n(E_k)=0$.
+		\end{proof}
+	\end{tcolorbox}
+	Wir nutzen jetzt Satz 3.5, um eine abzählbare Überdeckung von Mengen $U_j$ zu finden, so dass $\bigcup_{j\in \N} U_j\supseteq M$ und ein $C^\alpha$ Diffeomorphismus $F$ existiert, so dass f\"{u}r jedes $j$ eine $V_j\subseteq \R^n$ existiert mit $M\cap U_j=F(E_k\cap V_j)$ 
 
+	Daraus folgt f\"{u}r alle $i\in \N$:
+	\begin{align*}
+		\lambda_n(M\cap U_i)=&\int_{M\cap U_i}1\dd{\lambda_n}\\
+		=&\int_{E_k\cap V_i}|\text{det}F'|\dd{\lambda_n}\\
+		\le&\int_{E_l\cap V_i}\infty\dd{\lambda_n}\\
+		=&\infty \int_{E_k\cap V_i}\dd{\lambda_k}\\
+		=&\infty\lambda_n(E\cap V_i)\\
+		\le&\infty\lambda_n(E_k)\\
+		=&\infty\cdot 0\\
+		=&0
+	\end{align*}
+	Dann ist
+\begin{align*}
+	\lambda_n(M)\le&\sum_{i=1}^\infty \lambda_n(U_i)\\
+	=&\sum_{i=1}^\infty 0\\
+	=&0\qedhere
+\end{align*}
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Seien $0<r<R$ und
 	\[
@@ -29,3 +94,70 @@ die $2$-dimensionale Untermannigfaltigkeit aus Präzenzaufgabe 10.1. Definiere a
 \item Zeigen Sie, dass $\lambda_T(T)=4\pi^2 Rr$ gilt.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $x,y,z\in T$. Es gilt
+		\begin{align*}
+			(R-\sqrt{x^2+y^2} )^2+z^2-r^2=&0\\
+			\frac{(R-\sqrt{x^2+y^2} )^2}{r^2}+\frac{z^2}{r^2}=&0
+		\end{align*}
+		Da das Punkt
+		\[
+			\left(\frac{(R-\sqrt{x^2+y^2} )}{r},\frac{z}{r}\right)
+		\]
+		auf dem Einheitskreis liegt, gibt es bekanntermaßen genau eine Winkel $\beta\in(0,2\pi)$, so dass
+		\begin{align*}
+			z=&r\sin\beta\\
+			R-\sqrt{x^2+y^2}=&r\cos\beta.
+		\end{align*}
+		Da $0\neq \beta\neq 2\pi$, ist der Fall $(1,0)$ ausgeschlossen, also der Fall
+\begin{align*}
+	R-\sqrt{x^2+y^2} =&r\\
+	z=&0
+\end{align*}
+ist ausgeschlossen. Sei jetzt $\beta$ fest. Es gilt
+		\[
+			x^2+y^2=(R-r\cos\beta)^2
+		.\] 
+		Daher liegt das Punkt
+		\[
+			\left( \frac{x}{R-r\cos\beta},\frac{y}{R-r\cos\beta} \right) 
+		\]
+		auch auf dem Einheitskreis, und noch einmal gibt es \emph{genau eine} $\alpha\in (0,2\pi)$
+		\begin{align*}
+			x=&\cos\alpha\cdot(R+r\cos\beta)\\
+			y=&\sin\alpha\cdot(R+r\cos\beta)
+		\end{align*}
+		Noch einmal ist der Fall $\alpha=0$, also ist
+		\begin{align*}
+			x=&R+r\cos\beta\\
+			y=&0
+		\end{align*}
+		ausgeschlossen. Wir definieren dann
+		\begin{align*}
+		A=& \left\{ \begin{pmatrix} R+r\cos\beta \\ 0 \\ r\sin\beta \end{pmatrix}, \beta\in (0,2\pi) \right\}\\
+			  &\cup \left\{ \begin{pmatrix} \cos\alpha \cdot(R+r)\\ \sin\alpha\cdot(R+r)\\0 \end{pmatrix}, \alpha\in (0,2\pi) \right\} 	
+		\end{align*}
+		Jetzt definieren wir den gewünschten Homöomorphmus $\psi$ ähnlich wie $\varphi$
+	\item Nach \ref{pr:advanalblatt13-1} gilt
+		\begin{align*}
+			\lambda_T(T)=&\int_T 1\dd{\lambda_T}\\
+			=&\int_{T\backslash A}1\dd{\lambda_T}\\
+			=&\int_U  \sqrt{\text{det}\varphi^{\prime T}\varphi'} \dd{\lambda_M}.
+		\end{align*}
+		Es gilt
+		\[
+			\varphi'=\begin{pmatrix} -\sin\alpha\cdot (R+r\cos\beta) & -r\cos\alpha\sin\beta \\ \cos\alpha\cdot (R+r\cos\beta) & -r\sin\alpha\sin\beta \\ 0 & r\cos\beta \end{pmatrix} 
+		.\] 
+			Daraus folgt: $\text{det}(\varphi^{\prime T}\varphi')=r^2(R+r\cos\beta)^2$ und daher
+			\begin{align*}
+				\lambda_T(T)=&\int_U r(R+r\cos\beta)\dd{\lambda_2}\\
+				=&\int_0^{2\pi}\int_0^{2\pi} r(R+r\cos\beta)\dd{\alpha}\dd{\beta}\\
+				=&\int_0^{2\pi}2\pi r(R+r\cos\beta)\dd{\beta}\\
+				=&2\pi r\left[ R\beta+r\sin\beta \right]_0^{2\pi}\\
+				=&2\pi r(2\pi R)\\
+				=&4\pi^2 rR
+			\end{align*}
+			wobei wir den Satz von Fubini benutzt haben, um das Integral als Doppelintegral zu schreiben, weil $\R^2$ $\sigma$-endlich ist.
+	\end{parts}
+\end{proof}

@@ -13,9 +13,9 @@
 \begin{Problem}
 	Seien $R$ ein kommutativer Ring und $g\in R[x]$ ein normiertes Polynom vom Grad $n\in \N^*$. Sei $I:=gR\trianglelefteq R[X]$ das von $g$ erzeugte Ideal von $R[X]$. Zeigen Sie:
 	\begin{parts}
-		\item Jedes ELement des Faktorrings $R[X] / I$ lässt sich in der Form
+		\item Jedes Element des Faktorrings $R[X] / I$ lässt sich in der Form
 			\[
-				r_0+r_1X+\dots, +r_{n-1}X^{n-1}+I\qquad\text{mit gewissen}r_i\in R
+				r_0+r_1X+\dots, +r_{n-1}X^{n-1}+I\qquad\text{mit gewissen}~r_i\in R
 			\]
 			darstellen. Es gilt also $R[X] / I=\{r_0+r_1X+\dots+r_{n-1}X^{n-1}|r_0,\dots, r_{n-1}\in R\} $.
 		\item Die Elemente $\sum_{i=0}^{n-1}r_i X^i +I$ aus der Menge in Teil (a) sind paarweise verschieden, d.h. f\"{u}r beliebige $r_0,\dots, r_{n-1},s_0,\dots, s_{n-1}$ gilt
@@ -24,7 +24,24 @@
 			.\] 
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Per Definition können wir die Elemente als $p+I,p\in R[X]$. Es ist einfach zu zeigen, dass wir oBdA $\text{grad}(p)<n$. Wir betrachten $p+I$ mit $\text{grad }p\ge n$. Dann führen wir Division mit Rest durch und erhalten
+		\[
+			p=gq+r,~g,r\in R[x],\text{grad }r<n
+		.\] 
+		Es gilt deswegen
+		\[
+		p+I=(gq+r)+I
+		.\] 
+		Weil $gq\in I$ per Definition, ist $gq+I=I$ und
+		\[
+		p+I=r+I
+	,\]
+	also wir dürfen oBdA annehmen, dass $\text{grad }p<n$.
+\item Sei die Polynome $r=(r_0,\dots, r_{n-1}$ und $s=(s_0,\dots, s_{n-1})$. Falls $r+I=s+I$, wäre $r-s\in I$. Da $\text{grad}r$ und $\text{grad}(s)<n$ sind, ist $\text{grad}(r-s)<n$. $r-s\in I$ liefert dann $r-s=gq$. Aber $g$ ist vom Grad $n$ und $gq$ ist daher vom Grad $\ge n$, ein Widerspruch.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Zur Abkürzung schreiben wir $\Z_n$ f\"{u}r den Ring $\Z / n\Z$. Zeigen Sie, dass die vier Ringe
 	\[
@@ -32,7 +49,21 @@
 	\]
 	paarweise nicht isomorph sind.
 \end{Problem}
-
+\begin{proof}
+	Die Elemente sind
+	\begin{align*}
+		\Z_4:&\overline{0},\overline{1},\overline{2},\overline{3}\\
+		\Z_2\times \Z_2:&(\overline{0},\overline{0}),(\overline{0},\overline{1})\\
+				&(\overline{1},\overline{0}),(\overline{1},\overline{1})\\
+		\Z_2[X] / X^2:&0+X^2,1+X^2\\
+			      &X+X^2,X+1+X^2\\
+		\Z_2[X] / (X^2+X+1):&0+(X^2+X+1),\\
+				    &1+(X^2+X+1),\\
+				    &X+(X^2+X+1),\\
+				    &X+1+(X^2+X+1)
+	\end{align*}
+	Es gilt $\overline{1}+\overline{1}=\overline{2}\neq \overline{0}$ in $\Z_4$, aber das additive Neutrale hat immer die Ordnung $2$ in die letzte drei.
+\end{proof}
 \begin{Problem}
 	Sei $R$ ein kommutativer Ring. Ein Element $a\in R$ heißt \emph{nilpotent}, falls $a^n=0$ f\"{u}r ein $n\ge 1$ gilt.
 	\begin{parts}
