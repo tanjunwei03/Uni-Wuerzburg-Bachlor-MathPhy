@@ -1,0 +1,225 @@
+import math
+from collections.abc import Iterator
+from dataclasses import dataclass
+
+Position = tuple[float, float]
+Line = list[Position]
+
+
+@dataclass
+class LSystem:
+    axiom: str
+    rules: dict[str, str]
+    angle: float
+
+
+def pos_close(t1: Position, t2: Position) -> bool:
+    """Determine whether given positions are close to each other.
+
+    This function is provided for tests only. It will not be required
+    for any of the tasks.
+    """
+    if not isinstance(t1, tuple):
+        raise TypeError(f'not a tuple: {repr(t1)}')
+    if not isinstance(t2, tuple):
+        raise TypeError(f'not a tuple: {repr(t2)}')
+    return math.isclose(t1[0], t2[0], rel_tol=1e-6, abs_tol=1e-12) and math.isclose(t1[1], t2[1], rel_tol=1e-6,
+                                                                                    abs_tol=1e-12)
+
+
+def lines_close(line1: list[Position], line2: list[Position]) -> bool:
+    """Determine whether given lines are close to each other.
+
+    This function is provided for tests only. It will not be required
+    for any of the tasks.
+    """
+    if len(line1) != len(line2):
+        return False
+    for c1, c2 in zip(line1, line2):
+        if not pos_close(c1, c2):
+            return False
+    return True
+
+
+def update_word(word: str, rules: dict[str, str]) -> str:
+    """Return the next word by applying all replacement rules.
+
+    >>> update_word('F', {'F': 'F+F-F-F+F'})
+    'F+F-F-F+F'
+
+    >>> update_word('F', {'G': 'F+F-F-F+F'})
+    'F'
+
+    >>> update_word('FF', {'F': 'F+F-F-F+F'})
+    'F+F-F-F+FF+F-F-F+F'
+    """
+    # TODO
+    pass
+
+
+def generate_word(axiom: str, rules: dict[str, str], iteration: int) -> str:
+    """Generate an iteration of the word according to the rules, starting at axiom.
+
+    >>> generate_word('F', dict(), 0)
+    'F'
+
+    >>> generate_word('F', dict(), 1)
+    'F'
+
+    >>> generate_word('F', {'F': 'FF'}, 1)
+    'FF'
+
+    >>> generate_word('F', {'F': 'G', 'G': 'F'}, 2)
+    'F'
+
+    >>> generate_word('F', {'F': 'F+F'}, 2)
+    'F+F+F+F'
+
+    >>> generate_word('F', {'F': 'G+G', 'G': 'F-F'}, 2)
+    'F-F+F-F'
+    """
+    # TODO
+    pass
+
+
+def turn_right(direction: float, angle: float) -> float:
+    """Return the new angle after a clockwise rotation from direction.
+
+    >>> turn_right(0, 90)
+    270
+
+    >>> turn_right(30, 90)
+    300
+    """
+    # TODO
+    pass
+
+
+def turn_left(direction: float, angle: float) -> float:
+    """Return the new angle after a counter-clockwise rotation from direction.
+
+    >>> turn_left(0, 90)
+    90
+
+    >>> turn_left(270, 180)
+    90
+    """
+    # TODO
+    pass
+
+
+def move_forward(pos: Position, direction: float) -> Position:
+    """Move distance 1 from position pos in the given direction.
+
+    Returns the new position.
+
+    # NOTE: these tests use the `pos_close` function defined above for simplicity
+
+    >>> pos_close(move_forward((0, 0), 0), (1, 0))
+    True
+
+    >>> pos_close(move_forward((0, 0), 90), (0, 1))
+    True
+
+    >>> pos_close(move_forward((0, 0), 180), (-1, 0))
+    True
+
+    >>> pos_close(move_forward((0, 0), 270), (0, -1))
+    True
+    """
+    # TODO
+    pass
+
+
+def word_to_lines(word: str, angle: float, short: bool = False) -> Iterator[Line]:
+    """Generate line segments drawn by a roboter from a given word.
+
+    Each line returned by this generator describes a number of the robot's steps until
+    the next positional restore (load) operation. Therefore, each reset operation
+    (control character "]") triggers the end of a line which is then emitted (yielded)
+    by this generator. The robot starts at position (0, 0) facing upwards and follows
+    the established rules for L-systems.
+
+    # NOTE: these tests use the `lines_close` function defined above for simplicity
+
+    # empty word: no movement
+    >>> lines = word_to_lines('', 0)
+    >>> lines_close(next(lines), [(0, 0)])
+    True
+    >>> next(lines)
+    Traceback (most recent call last):
+    ...
+    StopIteration
+
+    # uppercase letter: one step up
+    >>> [lines_close(line, [(0, 0), (0, 1)]) for line in word_to_lines('F', 0)]
+    [True]
+
+    # lowercase letter: ignored, no movement
+    >>> [lines_close(line, [(0, 0)]) for line in word_to_lines('xyz', 0)]
+    [True]
+
+    # With a 90-degree angle, the word 'F+F' describes a right-angle path
+    #   +-E <- end
+    #   |
+    #   S  <- start
+    >>> [lines_close(line, [(0, 0), (0, 1), (1, 1)]) for line in word_to_lines('F+F', 90)]
+    [True]
+
+    # Minus (-): turn counter-clockwise
+    >>> [lines_close(line, [(0.0, 0.0), (0.0, 1.0), (math.cos(math.radians(210)), 1+math.sin(math.radians(210)))]) for line in word_to_lines('F-F', 120)]
+    [True]
+    """
+    """
+    # NOTE: Join the doc comments (delete the 2 previous lines) to activate tests for systems with storage
+
+    # Systems with storage
+    # Store the state after the first move
+    >>> lines = word_to_lines('F[F]', 0)
+    >>> lines_close(next(lines), [(0, 0), (0, 1), (0, 2)])
+    True
+    >>> lines_close(next(lines), [(0, 1)])
+    True
+
+    # Store state and direction after first move
+    >>> lines = word_to_lines('F[-F]F', 90)
+    >>> lines_close(next(lines), [(0, 0), (0, 1), (-1, 1)])
+    True
+    >>> lines_close(next(lines), [(0, 1), (0, 2)])
+    True
+    """
+    """
+    # NOTE: Join the doc comments (delete the 2 previous lines) to activate the remaining tests
+    # Bonus task
+    # shorten line for two consecutive steps in the same direction
+    >>> [lines_close(line, [(0, 0), (0, 2)]) for line in word_to_lines('FF', 0, True)]
+    [True]
+
+    # Do not shorten in case of changed direction
+    >>> [lines_close(line, [(0, 0), (0, 1), (1, 1)]) for line in word_to_lines('F+F', 90, True)]
+    [True]
+
+    # Shorten line also when storing intermediate state
+    >>> lines = word_to_lines('F[F+]F', 0, True)
+    >>> lines_close(next(lines), [(0, 0), (0, 2)])
+    True
+    >>> lines_close(next(lines), [(0, 1), (0, 2)])
+    True
+    """
+    # TODO
+    pass
+
+
+def lsystem_guess() -> LSystem:
+    """Return L-System to generate the fractal from the task.
+
+    # NOTE: Obtain an L-System using 'LSystem(axiom, rules, angle)' with explicit values for the arguments.
+    """
+    # TODO
+    pass
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

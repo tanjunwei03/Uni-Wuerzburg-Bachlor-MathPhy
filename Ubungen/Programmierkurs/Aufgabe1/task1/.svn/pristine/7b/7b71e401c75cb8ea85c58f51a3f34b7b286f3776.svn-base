@@ -1,0 +1,126 @@
+Vertex = str
+Graph = dict[Vertex, set[Vertex]]
+
+
+def neighbors(g: Graph, v: Vertex) -> set[Vertex]:
+    """Return the set of neighbors of a vertex v in the graph g.
+
+    >>> neighbors({'a': 'b', 'b': 'a'}, 'c')
+    set()
+
+    >>> neighbors({'c': {'a', 'b'}, 'a': {'c', 'b'}, 'b': {'c', 'a'}}, 'a') == {'b', 'c'}
+    True
+    """
+    # TODO
+    pass
+
+
+def degree(g: Graph, v: Vertex) -> int:
+    """Determine the degree of a vertex v in the graph g.
+
+    >>> degree({'a': 'b', 'b': 'a'}, 'c')
+    0
+
+    >>> degree({'c': {'a', 'b'}, 'a': {'c', 'b'}, 'b': {'c', 'a'}}, 'a')
+    2
+    """
+    # TODO
+    pass
+
+
+def complete_graph(vertices: set[Vertex]) -> Graph:
+    """Construct the complete graph with the given vertices.
+
+    >>> complete_graph({'a'})
+    {'a': set()}
+
+    >>> complete_graph(set('ab')) == {'a': {'b'}, 'b': {'a'}}
+    True
+    """
+    # TODO
+    pass
+
+
+def cycle_graph(vertices: list[Vertex]) -> Graph:
+    """Construct a cyclic graph based on the given vertex sequence.
+
+    >>> cycle_graph(list('ab')) == {'a': set(), 'b': set()}
+    True
+
+    >>> cycle_graph(list('cars')) == {'a': {'c', 'r'}, 'c': {'s', 'a'}, 'r': {'s', 'a'}, 's': {'c', 'r'}}
+    True
+
+    >>> cycle_graph(list('cars')) == {'a': {'c', 's'}, 'c': {'r', 'a'}, 'r': {'s', 'c'}, 's': {'a', 'r'}}
+    False
+    """
+    # TODO
+    pass
+
+
+def is_subgraph(g1: Graph, g2: Graph) -> bool:
+    """Determine whether g1 is a subgraph of g2.
+
+    >>> is_subgraph({'a': set()}, {'a': {'b'}, 'b': {'a'}})
+    True
+    >>> is_subgraph({'a': set()}, {'b': set(), 'c': set()})
+    False
+    """
+    # TODO
+    pass
+
+
+def generate_subgraph(g: Graph, vertices: set[Vertex]) -> Graph:
+    """Generate the induced subgraph of g with the given vertices.
+
+    >>> generate_subgraph({'a': {'b'}, 'b': {'a'}}, set('xyz')) == dict()
+    True
+
+    >>> generate_subgraph(complete_graph(set('abcd')), set('abc')) == complete_graph(set('abc'))
+    True
+    """
+    # TODO
+    pass
+
+
+def adjacency_matrix(g: Graph) -> list[list[bool]]:
+    """Compute the adjacency matrix for the given graph.
+
+    >>> adjacency_matrix(dict())
+    []
+
+    >>> adjacency_matrix({'a': set()})
+    [[False]]
+
+    >>> adjacency_matrix({'a': set(), 'A': {'B'}, 'B': {'A'}})
+    [[False, True, False], [True, False, False], [False, False, False]]
+
+    >>> adjacency_matrix({'a': {'b'}, 'b': {'a', 'c'}, 'c': {'b'}})
+    [[False, True, False], [True, False, True], [False, True, False]]
+    """
+    # TODO
+    pass
+
+
+def laplacian_matrix(g: Graph) -> list[list[int]]:
+    """Compute the Laplacian matrix for the given graph.
+
+    >>> laplacian_matrix(dict())
+    []
+
+    >>> laplacian_matrix({'a': set()})
+    [[0]]
+
+    >>> adjacency_matrix({'a': set(), 'A': {'B'}, 'B': {'A'}})
+    [[1, -1, 0], [-1, 1, 0], [0, 0, 0]]
+
+    >>> laplacian_matrix({'a': {'b'}, 'b': {'a', 'c'}, 'c': {'b'}})
+    [[1, -1, 0], [-1, 2, -1], [0, -1, 1]]
+    """
+    # TODO
+    pass
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

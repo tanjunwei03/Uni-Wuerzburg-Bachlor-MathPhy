@@ -1,0 +1,145 @@
+import numpy as np
+
+
+def standard_basis_vector(size: int, index: int) -> np.ndarray:
+    """Return the index-th standard basis vector with dimension size.
+
+    >>> standard_basis_vector(2, 0).astype(int)
+    array([1, 0])
+
+    >>> standard_basis_vector(3, 0).shape
+    (3,)
+
+    >>> standard_basis_vector(4, 1).astype(int)
+    array([0, 1, 0, 0])
+    """
+    # TODO
+    pass
+
+
+def generate_transition_matrix(
+    birth_rate: float, prob_survival: np.ndarray
+) -> np.ndarray:
+    """Return the transition matrix for given birth rate and probabilities of survival.
+
+    >>> A = generate_transition_matrix(0.5, np.array([]))
+    >>> np.isclose(A, np.array([[0.5]])).all()
+    True
+
+    >>> A = generate_transition_matrix(0.5, np.array([0.9]))
+    >>> np.isclose(A, np.array([[0.5, 0.5], [0.9, 0.]])).all()
+    True
+
+    >>> generate_transition_matrix(1, np.array([1, 2, 3, 4]))
+    array([[1, 1, 1, 1, 1],
+           [1, 0, 0, 0, 0],
+           [0, 2, 0, 0, 0],
+           [0, 0, 3, 0, 0],
+           [0, 0, 0, 4, 0]])
+    """
+    # TODO
+    pass
+
+
+def transition_matrix_from_data(
+    pop_year1: np.ndarray, pop_year2: np.ndarray
+) -> np.ndarray:
+    """Return the transition matrix for population data of to consecutive time steps.
+
+    >>> A = transition_matrix_from_data(np.array([10, 0]), np.array([5, 9]))
+    >>> np.isclose(A, np.array([[0.5, 0.5], [0.9, 0.]])).all()
+    True
+
+    >>> A = transition_matrix_from_data(np.array([10, 0, 0, 0, 0]), np.array([1, 9, 0, 0, 0]))
+    >>> np.isclose(A, np.array([[0.1, 0.1, 0.1, 0.1, 0.1], [0.9, 0. , 0. , 0. , 0. ], [0. , 1. , 0. , 0. , 0. ], [0. , 0. , 1. , 0. , 0. ], [0. , 0. , 0. , 1. , 0. ]])).all()
+    True
+
+    """
+    # TODO
+    pass
+
+
+def advance_years(
+    population: np.ndarray,
+    years: int,
+    birth_rate: float,
+    prob_survival: np.ndarray,
+) -> np.ndarray:
+    """Compute the population after several years.
+
+    >>> pop = advance_years(np.array([100, 0]), 0, 0.5, np.array([0.5]))
+    >>> np.isclose(pop, np.array([100.,   0.])).all()
+    True
+
+    >>> pop = advance_years(np.array([100, 0]), 5, 0.5, np.array([0.5]))
+    >>> np.isclose(pop, np.array([25.   , 15.625])).all()
+    True
+
+    >>> pop = advance_years(np.array([10, 0, 0, 0, 0]), 1, 0.1, np.array([0.9, 0.8, 0.7, 0.6]))
+    >>> np.isclose(pop, np.array([1., 9., 0., 0., 0.])).all()
+    True
+
+    >>> pop = advance_years(np.array([10, 0, 0, 0, 0]), 2, 0.1, np.array([0.9, 0.8, 0.7, 0.6]))
+    >>> np.isclose(pop, np.array([1. , 0.9, 7.2, 0. , 0. ])).all()
+    True
+
+    """
+    # TODO
+    pass
+
+
+def years_until_extinct(
+    population: np.ndarray,
+    birth_rate: float,
+    prob_survival: np.ndarray,
+    max_years: int = 1000,
+) -> int:
+    """Compute number of years until the population is extinct.
+
+    >>> pop = np.array([100, 0])
+    >>> years_until_extinct(pop, 0.5, np.array([0.5]))
+    21
+    >>> (pop == np.array([100, 0])).all()
+    True
+
+    >>> years_until_extinct(np.array([10, 0, 0, 0, 0]), 0.1, np.array([0.9, 0.8, 0.7, 0.6]))
+    5
+
+    >>> years_until_extinct(np.array([0.1, 0.2, 0.4, 0.2]), 0.8, 0.9 * np.ones((3,)))
+    0
+
+    >>> years_until_extinct(np.array([1000, 0]), 0.6, np.array([0.7]), 10)
+    Traceback (most recent call last):
+    ...
+    ValueError: Population lives more than 10 years.
+    """
+    # TODO
+    pass
+
+
+def reach_age_with_prob(p: float, prob_survival: np.ndarray) -> int:
+    """Return the largest age which is reached with probability p.
+
+    >>> reach_age_with_prob(0.8, np.array([]))
+    0
+
+    >>> reach_age_with_prob(0.8, np.array([0.5, 0.8, 0.7]))
+    0
+
+    >>> reach_age_with_prob(0.4, np.array([0.5, 0.8, 0.7]))
+    1
+
+    >>> reach_age_with_prob(0.3, np.array([0.5, 0.8, 0.7]))
+    2
+
+    >>> reach_age_with_prob(0.1, np.array([0.5, 0.8, 0.7]))
+    3
+    """
+    # TODO
+    pass
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
