@@ -1,0 +1,42 @@
+\begin{Problem}
+	\begin{parts}
+		\item Geben Sie die Definitionen von Gradient, Rotation und Divergenz an.
+		\item Wir schreiben die Komponenten des dreidimensionalen Vektorprodukts als
+			\[
+				(\vec{a}\times \vec{b})_i=\sum_{j,k=1}^3 \epsilon_{ijk}a_jb_k,\] 
+				wobei $\epsilon_{ijk}$ der total antisymmetrische Tensor f\"{u}r $\R^3$ ist, mit $\epsilon_{ijk}=1$. Zeigen Sie, dass gilt:
+				\begin{align*}
+					\sum_{i=1}^3 \epsilon_{ijk}\epsilon_{ilm}=&\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}\\
+					\frac{1}{2}\sum_{i,j=1}^3 \epsilon_{ijk}\epsilon_{jl}\delta_{kl},
+				\end{align*}
+				mit $\delta$ dem Kronecker-$\delta$.
+			\item Zeigen Sie mit den Formeln aus (b) die folgenden Identitäten für beliebige Vektorfelder $\vec{a},~\vec{b},~\vec{c},~\vec{d}$:
+				\begin{align*}
+					\vec{a}\cdot(\vec{b}\times\vec{c})&=\vec{b}\cdot (\vec{c}\times \vec{a})=\vec{c}\cdot (\vec{a}\times \vec{b})\\
+					\vec{a}\times(\vec{b}\times\vec{c})=&(\vec{a}\cdot\vec{c})\vec{b}-(\vec{a}\cdot\vec{b})\vec{c},\\
+					(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})=*(\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d})-(\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c})
+				\end{align*}
+			\item Zeigen Sie damit, dass f\"{u}r beliebige skalare Funktionen $F(\vec{x})$ und Vektorfelder $\vec{A}(\vec{x})$ gilt:
+				\begin{align*}
+					\curl{\grad{F}}=&0\\
+					\div{(\curl{A})}=&0\\
+					\curl{\curl{A}}=&\grad{(\div{A})}-\laplacian{A}\\
+					\div{(F\vec{A})}=(\grad{F})\cdot\vec{A}+F\div{\vec{A}},
+				\end{align*}
+				mit $\Delta$ dem Laplace-Operator.
+	\end{parts}
+\end{Problem} 
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			\text{grad }F=\sum_{i=1}^3 \pdv{F}{x_i}\hat{x}_i\\
+			\text{div }\vec{F}=\sum_{i=1}^3 \pdv{F_i}{x_i}\\
+			\text{curl }\vec{F}=&\ldots
+		\end{align*}
+	\item Offensichtlich muss $j\neq k$ und $l\neq m$ sein, ansonsten wäre 1
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	
+\end{Problem}
