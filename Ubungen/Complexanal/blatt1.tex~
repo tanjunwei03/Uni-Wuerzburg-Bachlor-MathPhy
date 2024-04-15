@@ -1,0 +1,100 @@
+\begin{Problem}
+	Es seien $\mathbb{D}=K_1(0)=\{z\in \C:|z|<1\} $ die offene Einheitskreisscheibe in $\C$ und $a\in \mathbb{D}$.
+	\begin{parts}
+	\item Zeigen Sie
+		\[
+		|a-z|<|1-\overline{a}z| \iff |z| < 1
+		\]
+		und
+		\[
+		|a-z|=|1-\overline{a}z|\iff |z| = 1
+		.\] 
+		{\footnotesize\emph{Hinweis: }$|\cdot|^2$}
+	\item Es sei die folgende bijektive (holomorphe) Funktion definiert:
+		\[
+		T_a:\mathbb{D}\to \mathbb{D},~T_a(z):=\frac{a-z}{1-\overline{a}z}
+		.\] 
+		Bestimmen Sie die Umkehrabbildung von $T_a$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			|a-z|^2=&(a-z)\overline{(a-z)}\\
+			=&(a-z)(\overline{a}-\overline{z})\\
+			=&|a|^2-a\overline{z}-\overline{a}z+|z|^2\\
+			|1-\overline{a}z|^2=&(1-\overline{a}z)(1-\overline{a}z)^*\\
+			=&(1-\overline{a}z)(1-a\overline{z})\\
+			=&1-\overline{a}z-a\overline{z}+|a|^2|z|^2.
+		\end{align*}
+		Damit ist
+		\begin{align*}
+			&|a-z|<|1-\overline{a}z|\\
+			\iff&|a-z|^2<|1-\overline{a}z|^2\\
+			\iff&|a|^2-\overline{a}z-a\overline{z}+|z|^2\\
+			&<1-\overline{a}z-a\overline{z}+|a|^2|z|^2,
+		\end{align*}
+		was genau dann erf\"{u}llt ist, wenn
+		\begin{align*}
+			|a|^2+|z|^2<&1+|a|^2|z|^2\\
+			1>&|a|^2+|z|^2-|a|^2|z|^2\\
+			=&|a|^2+|z|^2(1-|a|^2)
+		\end{align*}
+		Offensichtlich ist die rechte Seite der Gleichung eine monoton steigende Funktion von $|z|^2$. Da $a\in \mathbb{D}$, ist $0\le |a|^2<1$. Wenn wir $a$ als fest betrachten, und nach der passenden $|z|$ suchen, brauchen wir also nur einen Wert von $|z|$. Denn
+		\[
+		|a|^2+(1)(1-|a|^2)=1
+		,\]
+		ist 1 der ``kritische Wert'', also 
+		\begin{align*}
+			&1>|a|^2+|z|^2(1-|a|^2)\\
+			\iff&1>|z|^2\\
+			\iff& 1>|z|
+		\end{align*}
+		Der zweite Teil folgt aus den gleichen Ausdrucke.
+	\item 
+		\begin{align*}
+			\frac{a-z}{1-\overline{a}z}=&\frac{(a-z) \overline{(1-\overline{a}z)}}{(1-\overline{a}z) \overline{(1-\overline{a}z)}}\\
+			=& \frac{(a-z)(1-a\overline{z})}{(1-\overline{a}z)(1-a\overline{z})}\\
+			=&\frac{a-a^2\overline{z}-z+a|z|^2}{1-\overline{a}z-a\overline{z}+|a|^2|z|^2}
+		\end{align*}
+
+		\begin{align*}
+			T_a(x)=&\frac{a-z}{1-\overline{a}z}\\
+			=& a \frac{1-z / a}{1-\overline{a}z}\\
+			=&a \frac{1-\frac{z}{a}+\overline{a}z-\overline{a}z}{1-\overline{a}z}\\
+			=&a\left[ 1+ \frac{\overline{a}z-\frac{z}{a}}{1-\overline{a}z} \right]\\
+			=&a\left[ 1+\frac{\overline{a}-\frac{1}{a}}{\frac{1}{z}-\overline{a}} \right] 
+		\end{align*}
+		Also
+		\begin{align*}
+			\frac{\overline{a}-\frac{1}{a}}{\frac{1}{z}-\overline{a}}=& \frac{T_a(z)}{a}-1\\
+			\frac{1}{z}-\overline{a}=&\frac{\overline{a}-\frac{1}{a}}{\frac{T_a(z)}{a}-1}\\
+			\frac{1}{z}=&\frac{1}{\frac{T_a(z)}{a}-1}\left[ \overline{a}-\frac{1}{a}+\frac{\overline{a}}{a}T_a(z)-\overline{a} \right] \\
+			=&\frac{1}{a}\frac{1}{\frac{T_a(z)}{a}-1}\left[ \overline{a}T_a(z)-1 \right] 
+		\end{align*}
+		Damit ist
+		\[
+		T_a^{-1}(z)=\frac{z-a}{\overline{a}z-1}
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Sei $z=x+iy$ mit $x,y\in \R$ und $y\neq 0$. Zeigen Sie, dass
+		\[
+		|\sin(z)|\ge \frac{1}{2}(e^{|y|}-e^{-|y|})
+		\]
+		ist.
+
+		{\footnotesize \emph{Hinweis: Verwenden Sie die Darstellung }$\sin(z)=(e^{iz}-e^{-iz}) / (2i)$ \emph{vgl. Beispiel 1.8}}
+	\item Gegeben sei die Funktionfolge $\{f_n\}_{n=1}^\infty$ mit
+		\[
+		f_n(z):=\frac{\sin(nz)}{n},\qquad z\in \C.\] 
+		Geben Sie die Menge $M$ aller Punkte $z\in \C$ an, f\"{u}r die $\{f_n(z)\}_{n=1}^\infty$ konvergiert, und bestimmen Sie die Grenzfunktion
+		\[
+		f(z):=\lim_{n \to \infty} f_n(z),\qquad z\in M
+		.\] 
+	\item Konvergiert die Funktionfolge $\{f_n\} $ gleichm\"{a}ßig auf $M$?
+	\end{parts}
+\end{Problem}

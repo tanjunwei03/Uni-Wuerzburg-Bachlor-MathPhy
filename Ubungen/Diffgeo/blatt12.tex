@@ -1,0 +1,182 @@
+\begin{Problem}
+	Seien $M,N\subseteq \R^n$ $k$-dimensionale Untermannigfaltigkeiten der Klasse $C^\alpha$ sowie $P\subseteq \R^m$ eine $l$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$. Zeigen Sie:
+	\begin{parts}
+		\item $M\times P\subseteq \R^{n+m}$ ist eine $(k+l)$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+		\item Gilt $M\cap \overline{N}=\varnothing = \overline{M}\cap N$, so ist $M\cup N$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+		\item Die Mengen
+			\begin{align*}
+				A:=& \{(x,y)\in \R^2|x\in (-1,1),y=x^2\} ,\\
+				B:=& \{(x,y)\in \R^2|x\in (-1,0)\cup (0,1),y=-|x|\} ,
+			\end{align*}
+			sind jeweils 1-dimensionale Untermannigfaltigkeiten der Klasse $C^1$.
+		\item Die Aussage aus (b) ist unter der schwächeren Voraussetzung $M \cap N = \varnothing$ im Allgemeinen nicht richtig.
+		\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $(m,p)\in M\times P$. Per Definition gibt es offene Mengen $U\subseteq \R^n,~V\subseteq \R^m$, $f$ und $g$ $\alpha$-mal differenzierbare Funktionen $f:U\to \R^{n-k},~g:V\to \R^{m-l}$, so dass
+		\begin{align*}
+			&m\in U,~p\in V\\
+			&M\cap U=\{x\in U:f(x)=0\}\\
+			&\text{Rang}(f'(m))=n-k\\
+			&P\cap V=\{x\in V:g(x)=0\} \\
+			&\text{Rang}(g'(p))=m-l
+		\end{align*}
+		Dann ist $U\times V\subseteq \R^{k+l}$ offen Sei außerdem $h:U\times V\to \R^{n+m-(n+k)}$ definiert durch $h(x,y)=(f(x),g(y))$, wobei $x\in \R^{n}$ und $y\in \R^m$. 
+
+Dann ist $h(x,y)=0$ genau dann, wenn $f(x)=0$ und $g(y)=0$. Außerdem ist
+\[
+	h'=\begin{pmatrix} f' & 0 \\ 0 & g' \end{pmatrix} 
+.\] 
+Da $h'$ eine Blockmatrix ist, ist $\text{Rang}(h'(m,p))=\text{Rang}(f'(m))+\text{Rang}(g'(p))$. (Man kann das beweisen, indem man das Gauss-Algorithismus durchführt, bis $f'$ und $g'$ in Zeilenstufenform sind.)
+
+Weil $f$ und $g$ $\alpha$-mal stetig differenzierbar sind, ist $h$ auch $\alpha$-mal stetig differenzierbar
+
+Es gilt dann
+\begin{align*}
+	&(U\times V)\cap (M\times P)=\{x\in U\times V:h(x)=0\} \\
+	&\text{Rang}(h'(m,p))=n+m-(k+l)
+\end{align*}
+\item Sei $x\in M\cup N$, also $x\in M$ oder $x\in N$. OBdA betrachten wir den Fall, $x\in M$. Per Definition gibt es $U\in \R^n$ offen und $f:U\to \R^{n-k}$ $\alpha$-mal stetig differenzierbar, so dass
+	\begin{align*}
+		M\cap U=&\{y\in U:f(y)=0\} \\
+		\text{Rang}(f'(x))=&n-k
+	\end{align*}
+	Da $M\cap \overline{N}=\varnothing$, ist $M\subseteq \overline{N}^c$. Per Definition ist $\overline{N}^c$ offen. Seien $V:=U\cap \overline{N}^c$ und $g:=f|_V$. Weil $f$ $\alpha$-mal stetig differenzierbar ist, ist $g$ auch $\alpha$-mal stetig differenzierbar. Es gilt
+	\begin{align*}
+		(M\cup N)\cap V=&M\cap V=\{y\in V:g(y)=0\} \\
+		\text{Rang}(g'(x))=&n-k
+	\end{align*}
+	Ähnlich gilt f\"{u}r $x\in N$. Dann ist $M\cup N$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+\item Sei $f:\R^2\to \R, f(x,y)=x^2-y$. Sei $p\in A$ und $U$ offen, so dass $p\in U$. Per Definition ist
+	\[
+	A\cap U=\{x\in U: f(x)=0\} 
+	.\] 
+	Außerdem ist $f$ mindestens einmal stetig differenzierbar, mit Ableitung $f'=(2x,-1)$. Da $f'$ eine $1\times 2$-Matrix ist, ist $f$ vom höchstens Rang $1$. Weil die zweite Komponente konstant $-1\neq 0$ ist, ist $f$ nie von Rang $0$. Dann ist $f$ immer vom Rang $1$, also $A$ ist eine $1$-dimensionale Untermannigfaltigkeit der Klasse $C^1$.
+
+	Sei jetzt $p\in B$. Wir betrachten den Fall, $\pi_1(p)>0$, wobei $\pi_1((x,y))=x$. Sei $f:\R^2\to \R, f((x,y))=x+y$ und $U$ offen mit $p\in U$. OBdA ist $\pi_1(U)\subseteq (0,\infty)$, sonst ist $(0,\infty)\times \R \cap U$ offen mit gleiche Eigenschaften.
+
+	Dann ist
+	\begin{align*}
+		U\cap B=&\{x\in U:f(x)=0\} \\
+		f'(p)=&(1,1)\\
+		\text{Rang}(f'(p))=&1
+	\end{align*}
+	und analog f\"{u}r $p$ mit $\pi_1(p)<0$. Weil $x\neq 0$, ist $\pi_1(p)$ nie $0$. Also wir sind fertig, und $B$ ist eine Untermannigfaltigkeit der Klasse $C^1$.
+\item Wir betrachten $A\cap B$. Es gilt $A\cap B=\varnothing$, weil $x^2=|x|$ nur wenn $|x|=0$ oder $|x|=1$, aber die beide Fälle sind ausgeschlossen.
+
+	Es gilt $(0,0)\in A\cup B$, weil $(0,0)\in A$. Wir fahren per Widerspruch fort. Wir nehmen an, dass $M\cup N$ eine $1$-dimensionale Untermannigfaltigkeit der Klasse $C^1$ ist. 
+
+	Dann gibt es eine offene Menge $U$ mit $(0,0)\in U$ sowie eine stetig differenzierbare Funkton $f:U\to \R$, so dass
+	 \[
+		 (A\cup B)\cap U=\{x\in U: f(x)=0\} 
+	\] 
+	und $\text{Rang}(f'((0,0)))=1$. Wir zeigen, dass der Rang eigentlich $0$ ist. Wir wissen, entlang die Kurve $y=x^2$ ist $f=0$. Sei $\gamma(t)= (t,t^2)^T$. Weil $f\circ \gamma=0$ in eine offene Umgebung um $0$, gilt
+	\begin{align*}
+		0=&D(f\circ \gamma)\\
+		=&(Df)(\gamma')\\
+		D(f\circ \gamma)(0)=&(Df)(\gamma'(0))\\
+		=&Df((1,0)^T)\\
+		=&0
+	\end{align*}
+	Ähnlich gilt, weil $f$ entlang $y=-|x|$ ist, definieren wir die Kurve $\gamma:[0,a]\to \R^2,~\gamma(t)=(t,-t)$ f\"{u}r ein $a>0$. Daraus folgt, weil $\gamma'(t)=(1,-1)$.
+	\begin{align*}
+		D(f\circ\gamma)(0)=&(Df)(\gamma'(0))\\
+		=&(Df)((1,-1)^T)
+	\end{align*}
+	also sowohl $(1,0)^T$ als auch $(1,-1)$ liegen in $\text{ker }Df(0)$. Da diese linear unabhängig sind, ist $\text{ker }D=2$ und wegen des Rangsätzes ist $\text{Rang}(f'((0,0)))=0$, ein Widerspruch.\contradiction\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $a<b,\alpha\in \N$ und $r:(a,b)\to \R$ sei $\alpha$-mal stetig differenzierbar mit $r(z)>0$ f\"{u}r alle $z\in (a,b)$. Definiere
+	\[
+	R:=\left\{ (x,y,z)\in \R^3|z\in (a,b), \sqrt{x^2+y^2} =r(z) \right\} 
+	.\] 
+	Dann ist $R$ durch die Abbildung
+	\[
+	\varphi:(a,b)\times (0,2\pi)\to \R^3,~\varphi(z,\alpha):=\begin{pmatrix} r(z)\cos\alpha \\ r(z)\sin\alpha \\ z \end{pmatrix} 
+\]
+parametrisiert.
+\begin{parts}
+\item Zeigen Sie, dass $R$ eine 2-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$ ist.
+\item Zeigen Sie, dass $R$ eine $\lambda_3$-Nullmenge ist.
+\item Bestimmen Sie das Integral
+	\[
+		I:=\int_{(a,b)\times (0,2\pi)} \sqrt{\text{det}(\varphi'^T\varphi')} \dd{\lambda_2(z,\alpha)}
+	\]
+	in Abhängigkeit der Funktion $r$.
+\item Bestimmen Sie das Integral $I$ in (c) f\"{u}r den Fall $r(z):=\cosh(z)$ und $(a,b):=(0,1)$.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Sei $p\in R$. 
+\begin{tcolorbox}[title=Lemma]
+	\begin{Lemma}
+		Ist $p\in \{(0,0,z)|z\in \R\} $, so ist $p\not\in R$.
+	\end{Lemma}
+	\begin{proof}
+		Es gälte dann $\sqrt{x^2+y^2} =0$, also $0>r(z)$, was unmöglich ist, weil $r(z)>0$ per Definition.
+	\end{proof}
+\end{tcolorbox}
+Sei jetzt $f:\R^{3}\to \R,f((x,y,z))=\sqrt{x^2+y^2} -r(z)$. Sei jetzt $p\in R$ und $U\subseteq \R^3$ offen mit $p\in U$. Per Definition ist
+\begin{equation}\label{eq:advanalblatt12-1}
+R\cap U=\{q\in U:f(q)=0\} 
+.\end{equation}
+Außerdem ist $f$ stetig differenzierbar mit
+ \[
+f'=\left( \frac{x}{\sqrt{x^2+y^2} }, \frac{y}{\sqrt{x^2+y^2} },r'(z) \right) 
+,\]
+solange $(x,y,z) \not\in \{(0,0,z)|z\in \R\} $. Dies ist aber kein Problem wegen des Lemmas. Als Verkettung von elementäre Funktionen sind die ersten zwei Komponenten unendlich mal stetig differenzierbar. $r(z)$ ist bekanntermaßen $\alpha$-mal stetig differenzierbar.
+
+Wenn $f'$ Null ist, muss $x=y=0$ gelten, da $(x^2+y^2)^{-1 / 2}>0$. Dies ist noch einmal wegen des Lemmas ausgeschlossen, also $f'$ ist immer vom Rang $1$.
+
+Zusammen mit Eq.~\eqref{eq:advanalblatt12-1} ist $R$ eine $2$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$.
+\item $R$ ist messbar, weil $R$ abgeschlossen (und daher eine Borelmenge) ist.
+
+	Da $(\R^3,\lambda_3,\mathcal{L}(3))$ $\sigma$-endlich ist (oder weil es in der Vorlesung bewiesen wurde), schreiben wir das Maß als Integral.
+\[
+	\lambda_3(R)=\int_a^b \lambda_2(R_z)\dd{z}
+.\] 
+Jetzt betrachten wir $R_z$ und schreiben das Maß aus dem gleichen Grund noch einmal als Integral.
+\[
+	R_z=\{(x,y)|\sqrt{x^2+y^2} =r(z)\} \subseteq \R^2\\
+.\]
+Weil $\sqrt{\cdot} $ monoton wachsend ist, muss $|x|<r(z)$ gelten, sonst kann die Bedingung nicht erfüllt werden. Sei jetzt $x$ fest. Es gilt $y^2=r(z)^2-x^2$, oder
+\[
+y=\pm \sqrt{r(z)^2-x^2} 
+.\] 
+also $(R_z)_x=\{(x,\sqrt{r(z)^2-x^2} ,z), (x,-\sqrt{r(z)^2-x^2} ,z)\} $. Als endliche Menge ist $\lambda_1((R_z)_x)=0$. Daraus folgt:
+\begin{align*}
+	\lambda_3(R)=&\int_a^b \lambda_2(R_z)\dd{z}\\
+	=&\int_a^b \int_{-r(z)}^{r(z)} \lambda_1((R_z)_x)\dd{x}\dd{z}\\
+	=&\int_a^b \int_{-r(z)}^{r(z)} 0\dd{x}\dd{z}\\
+	=&0
+\end{align*}
+\item Als offene Menge ist $(a,b)\times (0,2\pi)\subseteq\R^2$ eine messbare Menge. Es gilt
+	\begin{align*}
+		\varphi'=&\begin{pmatrix} r'(z)\cos\alpha & -r(z)\sin\alpha \\ r'(z)\sin\alpha & r(z)\cos\alpha \\ 1 & 0 \end{pmatrix} \\
+		\varphi'^T=&\begin{pmatrix} r'(z)\cos\alpha & r'(z)\sin\alpha & 1 \\ -r(z)\sin\alpha & r(z)\cos\alpha & 0 \end{pmatrix}\\
+		\varphi'^T\varphi=&\begin{pmatrix} r'(z)^2\cos^2\alpha +r'(z)^2\sin^2\alpha+1 & 0 \\ 0 & r(z)^2\sin^2\alpha + r(z)^2\cos^2\alpha \end{pmatrix} \\
+		=&\begin{pmatrix} r'(z)^2 + 1 & 0 \\ 0 & r(z)^2 \end{pmatrix} 
+	\end{align*}
+	Offensichtlich ist $\text{det}(\varphi'^T\varphi)=(r'(z)^2+1)(r(z)^2)$. Weil $\R^2$ $\sigma$-endlich ist, dürfen wir den Satz von Fubini verwenden. Wir erhalten 
+	\begin{align*}
+		&\int_{(a,b)\times (0,2\pi)}\sqrt{\text{det}(\varphi'^T\varphi)} \dd{\lambda_2(z,\alpha)}\\
+		=&\int_a^b\int_0^{2\pi}\sqrt{\text{det}(\varphi'^T\varphi)} \dd{\alpha}\dd{z}\\
+		=&\int_a^b\int_0^{2\pi}r(z)\sqrt{1+r'(z)^2}\dd{\alpha}\dd{z}\\
+		=&2\pi\int_a^b r(z)\sqrt{1+r'(z)^2} \dd{z}
+	\end{align*}
+\item In diesem Fall ist $r(z):=\cosh z$ und $(a,b)=(0,1)$. Das Integral ist
+	\begin{align*}
+		&2\pi\int_a^b r(z)\sqrt{1+r'(z)^2} \dd{z}\\
+		=&2\pi\int_0^1 \cosh z\sqrt{1+\sinh^2 z} \dd{z}\\
+		=&2\pi\int_0^1 \cosh^2 z\dd{z}\\ 
+		=&2\pi\int_0^1 \left( \frac{e^z+e^{-z}}{2} \right)^2 \dd{z}\\
+		=&\frac{\pi}{2}\int_0^1 (e^{2z}+2+e^{-2z})\dd{z}\\
+		=&\frac{\pi}{2}\left[ \frac{1}{2}e^{2z}-\frac{1}{2}e^{-2z}+2z \right]_0^1\\
+		=&\frac{\pi}{2}\left[ \frac{1}{2}e^2-\frac{1}{2}e^{-2}+2 \right] \\
+		=&\frac{\pi}{4}\left[ e^2-e^{-2}+4 \right].\qedhere 
+	\end{align*}
+	\end{parts}
+\end{proof}
