@@ -92,3 +92,52 @@
 	\item Konvergiert die Funktionfolge $\{f_n\} $ gleichm\"{a}ßig auf $M$?
 	\end{parts}
 \end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			|\sin(z)|=& \left| \frac{e^{iz}-e^{-iz}}{2i} \right| \\
+			=&\frac{1}{2}\left| e^{iz}-e^{-iz} \right| \\
+			\ge&\frac{1}{2}\left[ |e^{iz}|-|e^{-iz}| \right] \addtocounter{equation}{1}\tag{\theequation}\label{eq:companal1-1} 
+		\end{align*}
+		Ähnlich ist
+		\begin{equation}
+			\sin(z)\ge \frac{1}{2}\left[ |e^{-iz}|-|e^{iz}| \right] \label{eq:companal1-2}
+		.\end{equation}
+		Nebenrechnung:
+		\begin{align*}
+			|e^{\pm iz}|=&|e^{\pm i(x+iy)}|\\
+			=&|e^{\pm ix}e^{\mp y}|\\
+			=&|e^{\pm ix}| |e^{\mp y}|\\
+			=&|e^{\mp y}|\\
+			=&e^{\mp y}
+		\end{align*}
+		Einsetzen in entweder Gl.~\eqref{eq:companal1-1} oder GL.~\eqref{eq:companal1-2} liefert
+		\begin{equation}
+			|\sin(z)| \ge \frac{1}{2}\left( e^{|y|}-e^{-|y|} \right)\label{eq:companal1-3} 
+		.\end{equation}
+	\item Wir betrachten deren Betrag
+		\begin{align*}
+			|f_n(z)|=&\left| \frac{\sin(nz)}{n} \right| \\
+			\ge& \frac{1}{2n}[e^{|n y|}-e^{-|ny|}]\\
+			\ge& \frac{1}{2n}e^{n|y|}
+		\end{align*}
+Wenn $|y|\neq 0$, konvergiert die Folge nicht, da
+\[
+\lim_{x \to \infty} \frac{e^x}{x}=\lim_{x \to \infty} \frac{e^x}{1}=\infty
+\]
+nach L'Hopital. 
+
+Damit konvergiert $\{f_n\} $ nicht, wenn $z \not\in \R$ gilt .
+
+Wenn $z\in \R$ ist, konvergiert $\{f_n\} $, da
+\[
+|f_n(z)|= \left| \frac{\sin (nz)}{n} \right| \le \left| \frac{1}{n} \right| 
+,\]
+was gegen $0$ geht.
+
+Insgesamt ist $M=\R$ und $f(z)=0$. 
+\item Ja. Da $|f_n(z)|\le |1 / n|$, ist auch $\sup_{z\in \R}|f_n(z)|\le |1 / n|$. Damit konvergiert $\{f_n\} $ im Supremumsnorm. $\{f_n\} $ konvergiert also gleichmäßig.\qedhere 
+	\end{parts}
+\end{proof}
