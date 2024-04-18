@@ -1,0 +1,102 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+\title{Intro to Diffgeo}
+\author{Jun Wei Tan}
+\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+\date{\today}
+\maketitle
+\begin{Definition}
+	An isometric function between two metric spaces $(X,d_1),~(Y,d_2)$ is a function that preserves norms.
+\end{Definition}
+\begin{Corollary}
+	Isometric functions are injective.
+\end{Corollary}
+\begin{Definition}
+	If it is surjective (and hence bijective), it is called an isometry.
+\end{Definition}
+\begin{Theorem}
+	Isometries on euclidean space ($\R^n$) are linear. Additionally, they are the composition of a translation and a rotation.
+	\[
+	F=t_v\circ L_A
+	.\] 
+	Where $L_A:\R^n\to\R^n$, with $L_A(x)=Ax$ and $A\in O(n)$. 
+\end{Theorem}
+\begin{Definition}
+	An isometry is called orientation preserving if $\text{det}(A)=1$ and orientation reversenig if $\text{det}(A)=-1$.
+\end{Definition}
+\begin{Definition}
+	The cross product is defined by $\times:\R^3\times \R^3\to \R^3$,
+	\[
+	\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} \times \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} =\begin{pmatrix} x_2y_3-x_3y_2\\x_3y_1-x_1y_3 \\ x_1y_2 - x_2y_1 \end{pmatrix} 
+	.\] 
+\end{Definition}
+\begin{Theorem}
+	The cross product $\times:\R^3\times\R^3\to \R^3$ is the unique product sending $x,y\in \R^3$ to the vector $z$ such that
+	\[
+		\text{det}(x,y,v)=\langle v,z\rangle\qquad \forall v\in \R^3
+	.\] 
+\end{Theorem}
+\begin{Theorem}
+	\textbf{(Properties of the Cross Product)}
+	\begin{enumerate}
+		\item $\times$ is $\R$-bilinear
+		\item $y\times x = -x\times y$ 
+		\item Suppose $A\in \text{SO}(3,\R)$. Then
+			\[
+			Ax\times Ay=A(x\times y)
+			.\] 
+	\end{enumerate}
+\end{Theorem}
+\begin{proof}
+	\begin{align*}
+		&\langle Ax\times Ay, Av\rangle\\
+		=& \text{det}(Ax,Ay,Av)\\
+		=& \text{det}(A)\cdot \text{det}(x,y,v)\\
+		=&\text{det}(A)\cdot\langle x\times y, v\rangle\\
+		=& \text{det}(A)\cdot \langle A(x\times y),v\rangle
+	\end{align*}
+	So if $\text{det}(A)=1$, 
+	\[
+	\langle Ax\times Ay,w\rangle=\langle A(x\times y), w\rangle~\forall w\in \R^3
+	.\] 
+	If $\text{det}(A)=-1$, then
+	\[
+	\langle Ax\times Ay,w\rangle = -\langle A(x\times y), w\rangle~\forall w\in \R^3
+	.\] 
+	Hence,
+\[
+Ax\times Ay=-A(x\times y)\forall x,y\in \R^3
+.\qedhere\] 
+\end{proof}
+\end{document}

@@ -7,21 +7,21 @@
 				wobei $\epsilon_{ijk}$ der total antisymmetrische Tensor f\"{u}r $\R^3$ ist, mit $\epsilon_{ijk}=1$. Zeigen Sie, dass gilt:
 				\begin{align*}
 					\sum_{i=1}^3 \epsilon_{ijk}\epsilon_{ilm}=&\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}\\
-					\frac{1}{2}\sum_{i,j=1}^3 \epsilon_{ijk}\epsilon_{jl}\delta_{kl},
+					\frac{1}{2}\sum_{i,j=1}^3 \epsilon_{ijk}\epsilon_{ijl}=&\delta_{kl},
 				\end{align*}
 				mit $\delta$ dem Kronecker-$\delta$.
 			\item Zeigen Sie mit den Formeln aus (b) die folgenden Identitäten für beliebige Vektorfelder $\vec{a},~\vec{b},~\vec{c},~\vec{d}$:
 				\begin{align*}
-					\vec{a}\cdot(\vec{b}\times\vec{c})&=\vec{b}\cdot (\vec{c}\times \vec{a})=\vec{c}\cdot (\vec{a}\times \vec{b})\\
+					\vec{a}\cdot(\vec{b}\times\vec{c})=&\vec{b}\cdot (\vec{c}\times \vec{a})=\vec{c}\cdot (\vec{a}\times \vec{b})\\
 					\vec{a}\times(\vec{b}\times\vec{c})=&(\vec{a}\cdot\vec{c})\vec{b}-(\vec{a}\cdot\vec{b})\vec{c},\\
-					(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})=*(\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d})-(\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c})
+					(\vec{a}\times\vec{b})\cdot(\vec{c}\times\vec{d})=&(\vec{a}\cdot\vec{c})(\vec{b}\cdot\vec{d})-(\vec{a}\cdot\vec{d})(\vec{b}\cdot\vec{c})
 				\end{align*}
 			\item Zeigen Sie damit, dass f\"{u}r beliebige skalare Funktionen $F(\vec{x})$ und Vektorfelder $\vec{A}(\vec{x})$ gilt:
 				\begin{align*}
 					\curl{\grad{F}}=&0\\
 					\div{(\curl{A})}=&0\\
 					\curl{\curl{A}}=&\grad{(\div{A})}-\laplacian{A}\\
-					\div{(F\vec{A})}=(\grad{F})\cdot\vec{A}+F\div{\vec{A}},
+					\div{(F\vec{A})}=&(\grad{F})\cdot\vec{A}+F\div{\vec{A}},
 				\end{align*}
 				mit $\Delta$ dem Laplace-Operator.
 	\end{parts}
@@ -32,9 +32,105 @@
 		\begin{align*}
 			\text{grad }F=\sum_{i=1}^3 \pdv{F}{x_i}\hat{x}_i\\
 			\text{div }\vec{F}=\sum_{i=1}^3 \pdv{F_i}{x_i}\\
-			\text{curl }\vec{F}=&\ldots
+			\text{curl }\vec{F}=&\curl{F}
 		\end{align*}
-	\item Offensichtlich muss $j\neq k$ und $l\neq m$ sein, ansonsten wäre 1
+	\item Bemerkung: $j,k,l$ und $ m$ sind freie Indizes. $i$ wird summiert.
+
+	Spezialfall $j=k$ oder $l=m$: Die Summe ist 0
+
+	Voraussetzung, um eine nicht Null Summe zu erhalten: $i$ muss nicht gleich $j,k,l$ oder $m$ sein. Da es nur insgesamt 3 Möglichkeiten für die Indizes gibt, muss für die Mengen gelten:
+	 \[
+	\{j,k\} =\{l,m\} 
+	.\] 
+	Wenn die vorherige Gleichung gilt, ist die Summe $\neq 0$ genau dann, wenn
+	\[
+	i\in \{1,2,3\} \setminus \{j,k\} 
+	.\] 
+	In diesem Fall ist die Summe eindeutig bestimmt. 
+
+	Der eindeutige Ausdruck mit den gleichen Eigenschaften ist
+	\[
+		\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl}
+	.\] 
+	Für den zweiten Teil betrachten wir wieder die Fälle:
+	
+	Wenn $k\neq l$, gälte einer der Fälle
+	\begin{enumerate}[label=(\roman*)]
+		\item $i=k$, oder
+		\item $i=k$, oder $j=k$, oder
+		\item $i=l$, oder $j=l$
+	\end{enumerate}
+	Damit sind alle Terme in der Summe und auch die ganze Summe $0$.
+
+	Im Fall $k=l$: Sei $\{1,2,3\} = \{a,b,k\} =\{a,b,l\} $. Dann gibt es nur nicht Null Terme: $\epsilon_{abk}\epsilon_{abl}=(\epsilon_{abl})^2$ und $(\epsilon_{bal})^2$.
+
+	Unabhängig vom Signum der Permutation ist dessen Quadrat 1. Die Summe ist damit $2$ und der Ausdruck $1$.
+\item Doppel auftretende Indizes werden immer implizit summiert.
+	\begin{enumerate}[label=(\roman*)]
+		\item 
+			\begin{align*}
+				\va a\cdot (\va b\times \va c)=& a_i(\epsilon_{ijk}b_jc_k)\\
+				=&c_j\epsilon_{kij}a_ib_j\\
+				=&\va c\cdot (\va c\times \va b)\\
+				=&b_j\epsilon_{jki}c_ka_i\\
+				=&\va b\cdot(\va c\times \va a)
+			\end{align*}
+		\item 
+			\begin{align*}
+				[\va a\times(\va b\times \va c)]_i =&\epsilon_{ijk}a_j(\va b\times \va c)_k\\
+				=&\epsilon_{ijk}a_j(\epsilon_{klm}b_lc_m)\\
+				=&\epsilon_{kij}\epsilon_{klm}a_jb_lc_m\\
+				=&(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})a_jb_lc_m\\
+				=&b_ia_mc_m-c_ia_lb_l\\
+				=&b_i(\va a\cdot\va c)-c_i(\va a\cdot\va b)\\
+				\va a\times(\va b\times\va c)=&\va b(\va a\cdot\va c)-\va c(\va a \cdot\va b)
+			\end{align*}
+		\item 
+			\begin{align*}
+				(\va a\times \va b)\cdot (\va c\times \va d)=&(\va a\times \va b)_i(\va c\times \va d)_i\\
+				=&(\epsilon_{ijk}a_jb_k)(\epsilon_{ilm}c_ld_m)\\
+				=&(\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})a_jb_kc_ld_m\\
+				=&a_lc_lb_md_m-a_md_mb_lc_l\\
+				=&(\va a\cdot\va c)(\va b\cdot \va d)-(\va a\cdot\va d)(\va b\cdot\va c)
+			\end{align*}
+	\end{enumerate}
+\item Doppel auftretende Indizes werden immer implizit summiert.
+	\begin{enumerate}[label=(\roman*)]
+		\item 
+			\begin{align*}
+				[\curl{\grad{F}}]_i=&\epsilon_{ijk}\partial_j \partial_k F\\
+				=&-\epsilon_{ikj}\delta_j\delta_k F & \text{Indizes in }\epsilon\text{ vertauscht}\\
+				=&-\epsilon_{ikj}\partial_k\partial_j F &\text{Satz von Schwarz}\\
+				=&-\epsilon_{ijk}\partial_j\partial_k F & \text{Umnummerierung }j\leftrightarrow k\\
+				=&-[\curl{\grad{F}}]_i\\
+				[\curl{\grad{F}}]_i=&0&\forall i\\
+				\curl{\grad{F}}=&\va 0
+			\end{align*}
+		\item 
+			\begin{align*}
+				\div{\curl{A}}=&\partial_i(\curl{A})_i\\
+				=&\partial_i(\epsilon_{ijk}\partial_jA_k)\\
+				=&\epsilon_{ijk}\partial_i\partial_j A_k\\
+				=&0
+			\end{align*}
+			mit dem gleichen Argument, aber $k$ ist kein freier Index.
+		\item 
+			\begin{align*}
+				[\curl{\curl{\va A}}]_i=& \epsilon_{ijk}\partial_j (\curl{\va A})_k\\
+				=&\epsilon_{ijk}\partial_j\epsilon_{klm}\partial_l A_m\\
+				=&\epsilon_{kij}\epsilon_{klm}\partial_j\partial_l A_m\\
+				=&(\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})\partial_j\partial_l A_m\\
+				=&\partial_m\partial_i A_m - \partial_l\partial_l A_i\\
+				=& \partial_i\partial_m A_m - \partial_l \partial_l A_i\\
+				\curl{\curl{A}}=&\grad{(\div{\va A})}-\laplacian{\va A}
+			\end{align*}
+		\item 
+			\begin{align*}
+				\div{F\va A}=&\partial_i(F A_i)\\
+				=&A_i\partial_i F+F\partial_i A_i\\
+				=&\va A\cdot\grad{F}+F\div{A}
+			\end{align*}
+	\end{enumerate}
 	\end{parts}
 \end{proof}
 \begin{Problem}
