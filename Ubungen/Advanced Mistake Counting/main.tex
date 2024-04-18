@@ -1,0 +1,55 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{polynom}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+%tcolorbox
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Lineare Algebra 2 Hausaufgabenblatt Nr. 12}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\section{Datentabelle}
+\begin{table}[h]
+	\begin{array}{ccccccccc}
+		0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+		11 & 89 & 65 & 71 & 48 & 28 & 16 & 6 & 2 \\
+		\frac{11}{336} & \frac{89}{336} & \frac{65}{336} & \frac{71}{336} & \frac{1}{7} & \frac{1}{12} & \frac{1}{21} & \frac{1}{56} & \frac{1}{168} \\
+		0.0650797 & 0.177807 & 0.242897 & 0.22121 & 0.151094 & 0.0825622 & 0.0375953 & 0.0146737 & 0.00501132 \\
+	\end{array}
+\end{table}
+\end{document}
