@@ -43,13 +43,33 @@
 	\date{\today}
 	\maketitle
 
+\section{Grund der Annahme}
+\begin{tcolorbox}
+	Weshalb könnte man mit den gegebenen Informationen davon ausgehen, dass die registrierten $\gamma$-Quanten einer Poissonverteilung folgen?
+\end{tcolorbox}
+Die Population ist unendlich. Die Anzahl von Versuche (hier: 336) ist groß. Die Größe $n\cdot p$ beträgt
+\[\frac 12 \cdot 1\text{ s}\cdot \frac{1}{10\text{ years}}<9,\]
+also die beste Verteilung ist eine Poissonverteilung.
 \section{Datentabelle}
+\begin{align*}
+	\text{Mittelwert}:&~\mu=2,73214\\
+	\text{Standardabweichung}:&~\sigma=1,67784
+\end{align*}
 \begin{table}[h]
-	\begin{array}{ccccccccc}
-		0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
-		11 & 89 & 65 & 71 & 48 & 28 & 16 & 6 & 2 \\
-		\frac{11}{336} & \frac{89}{336} & \frac{65}{336} & \frac{71}{336} & \frac{1}{7} & \frac{1}{12} & \frac{1}{21} & \frac{1}{56} & \frac{1}{168} \\
-		0.0650797 & 0.177807 & 0.242897 & 0.22121 & 0.151094 & 0.0825622 & 0.0375953 & 0.0146737 & 0.00501132 \\
-	\end{array}
+	{\scriptsize
+\begin{tabular}{cccccccccc}
+	\toprule
+	\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\\midrule
+	H\"{a}ufigkeit & 11 & 89 & 65 & 71 & 48 & 28 & 16 & 6 & 2 \\\midrule
+	Relative H\"{a}ufigkeit & 0,032738 & 0,26488 & 0,19345 & 0,21131 & 0,14286 & 0,083333 & 0,047619 & 0,017857 & 0,0059524 \\\midrule
+	Poisson-Wahrscheinlichkeit & 0,0650797 & 0,177807 & 0,242897 & 0,22121 & 0,151094 & 0,0825622 & 0,0375953 & 0,0146737 & 0,00501132 \\\bottomrule
+\end{tabular}
+}
 \end{table}
+
+\section{Histogramm}
+\begin{figure}[h]
+	\includegraphics[width=0.6\textwidth]{fig1.pdf}
+	\caption{}
+\end{figure}
 \end{document}

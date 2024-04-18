@@ -1,0 +1,24 @@
+\begin{Problem}
+Seien $U,~V,~W$ endlich-dimensionale Vektorräume über $\R$ und sei $B : U \times V \to W$ eine $\R$-bilineare Abbildung. Ferner sei $I \subseteq R$ ein nicht-triviales Interval und seien $f : I \to U$ und $g : I \to V$ stetig differenzierbare Abbildungen. Betrachten Sie die Abbildung $B(f, g): I \to W$, die folgendermaßen definiert ist:	
+\[
+B(f,g)(t):=B(f(t),g(t)),~t\in I
+.\] 
+Zeigen Sie: Die Abbildung $B(f, g) : I \to W$ ist ebenfalls stetig differenzierbar, und es gilt die \emph{Produktregel}
+\[
+B(f,g)'(t)=B(f'(t),g(t))+B(f(t),g'(t)),~\forall t\in I
+.\] 
+\end{Problem}
+\begin{proof}
+Per Definition gilt
+\begin{align*}
+	&\lim_{\delta t \to 0} \frac{B(f,g)(t+\delta t)-B(f,g)(t)}{\delta t}\\
+	=&\lim_{\delta t \to 0} \frac{B(f(t+\delta t), g(t+\delta t))-B(f(t),g(t))}{\delta t}\\
+	=&\lim_{\delta t \to 0}\frac{1}{\delta t}[B(f(t+\delta t),g(t+\delta t))+B(f(t+\delta t), g(t))\\
+	&-B(f(t+\delta t), g(t)) - B(f(t),g(t))] \\
+	=&\lim_{\delta t \to 0} \frac{1}{\delta t}[B(f(t+\delta t), g(t+\delta t)-g(t))\\
+	&+B(f(t+\delta t)-f(t), g(t))]\\
+	=&\lim_{\delta t \to 0} \left[ B\left( f(t+\delta t), \frac{g(t+\delta t)-g(t)}{\delta t} \right)\right.\\
+	&+\left. B\left( \frac{f(t+\delta t)-f(t)}{\delta t}, g(t) \right) \right]\\
+	=& B(f'(t),g(t))+B(f(t),g'(t)).\qedhere
+\end{align*}
+\end{proof}
