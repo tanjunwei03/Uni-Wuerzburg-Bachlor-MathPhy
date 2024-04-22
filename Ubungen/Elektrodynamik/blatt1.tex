@@ -134,5 +134,49 @@
 	\end{parts}
 \end{proof}
 \begin{Problem}
-	
+\begin{parts}
+\item Berechnen Sie das elektrische Feld $\vec E(\vec x)$ einer Punktladung $q$, die sich am Ort $\vec{x} = 0$ befindet.		
+\item Berechnen Sie das elektrische Feld $\vec E(\vec x)$ einer homogen geladenen Kugel mit Radius $R$ und Gesamtladung $Q$, für Orte sowohl innerhalb als auch außerhalb der Kugel. 
+\end{parts}
 \end{Problem}
+
+\begin{proof}
+\begin{parts}
+\item Wir betrachten $B_r(0)$. Aus Symmetrie ist $\vec E=E\vu{r}$. Nach dem Satz von Gauss gilt
+\begin{align*}
+	\frac{q}{\epsilon_0}=&\frac{1}{\epsilon_0}\iiint_{B_r(0)}\rho\dd{V}\\
+	=& \iint_{\partial B_r(0)} \va{E}\cdot \dd{\va S}\\
+	=& \iint_{\partial B_r(0)} E\dd{S}\\
+	=& 4\pi r^2 E
+\end{align*}
+also
+\[
+\va{E}(r,\theta,\varphi)=\frac{q}{4\pi \epsilon_0 r^2}\vu{r}
+.\] 
+\item Es gilt
+	\[
+	\rho=\frac{Q}{\frac{4}{3}\pi R^3}
+	.\]
+	Ähnlich betrachten wir $B_r(0)$. Es gilt
+	\begin{align*}
+		\frac{1}{\epsilon_0}\iiint \rho\dd{V}=&\begin{cases}
+			\frac{4}{3}\pi r^3 \rho & r < R\\
+			Q & \text{sonst}.
+		\end{cases}\\
+		=&\begin{cases}
+			\frac{r^3}{R^3}Q & r < R\\
+			Q & \text{sonst.}
+		\end{cases}\\
+		=& \iint_{\partial B_r(0)} \va E\cdot \dd{\va S}\\
+		=& \iint_{\partial B_r(0)}E\dd{S}\\ 
+		=&4\pi r^2 E
+	\end{align*}
+	also
+	\[
+	\va E(r,\theta,\phi)=\frac{1}{4\pi r^2\epsilon_0}\begin{cases}
+		\frac{r^3}{R^3}Q & r < R\\
+		Q & \text{sonst.}
+	\end{cases}
+	.\qedhere\] 
+\end{parts}
+\end{proof}
