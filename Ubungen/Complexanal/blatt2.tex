@@ -1,0 +1,105 @@
+\begin{Problem}
+	Beweisen oder widerlegen Sie
+	\begin{parts}
+		\item Die Funktion
+			\[
+			f: \{z\in \C:|\Im(z)|<1\} \to \C,\qquad f(z)=\frac{1}{1+z^2}
+		\]
+		ist beschr\"{a}nkt.
+	\item Es sei $U\subseteq \C$ eine offene Menge und $f\in H(U)$ nicht konstant. Dann ist die Funktion $z\to f(\overline{z})$ holomorph auf $U^*:=\{z\in C|\overline{z}\in U\} $.
+	\item Seien $f,g:K_1(0)\to \C$ stetige Funktionen. Sei außerdem die Funktion
+		 \[
+		h:K_1(0)\to \C,\qquad h(z)=f(z)\cdot g(z)
+	\]
+	holomorph. Dann ist auch $f$ oder $g$ holomorph auf $K_1(0)$.
+\item Es sei $G$ ein Gebiet in $\C$ und $f\in H(G)$ mit $\Re(f(z))=1$ f\"{u}r alle $z\in G$. Dann ist $f$ konstant.
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Man betrachte einfach $x\to -1$ (sogar eingeschränkt auf der reellen Achse). Da
+		\[
+		\lim_{z \to -1} \frac{1}{1+z^2}=\infty
+	,\]
+	ist $f$ nicht beschränkt.
+\item Falsch. Beweis wie: $z\mapsto \overline{z}$ ist nicht differenzierbar.
+\[
+	\lim_{y \to y_0} \frac{f(x_0-iy)-f(x_0-i y_0)}{iy_0}=i \pdv{f}{y}=-f'(z_0)
+\]
+also $f(\overline{z})$ ist nicht differenzierbar.
+\item Falsch. Sei $f=0$ und $g$ irgendeine nicht holomorphe Funktion, z.B. die Konjugationsabbildung. Dann ist $f(z)\cdot g(z)=0$ und somit konstant und auch holomorph. 
+\item Wahr. Schreibe $f=u+iv$ mit $u=\Re(f)$ und $v=\Im(f)$. Es gilt $u=1$. Es gilt auch die Cauchy-Riemann-Gleichungen
+	\[
+		0=\pdv{u}{x}=\pdv{v}{y}\qquad 0=\pdv{u}{y}=-\pdv{v}{x}
+	.\] 
+	Da $f$ holomorph ist, verwenden wir die Wirtinger-Ableitung
+	\[
+		f'=\pdv{f}{z}=\frac{1}{2}\left( \pdv{f}{x}-y\pdv{f}{y} \right) =0
+	.\] 
+	Dann ist $f$ konstant.\qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+	\item Es seien $U,V$ offene Menge in $\C$ sowie $f:U\to V$ eine stetige und $g:V\to \C$ eine holomorphe Funktion. Ferner sei $g'(w)\neq 0$ f\"{u}r alle $w\in V$ und es gelte $g(f(z))=z$ f\"{u}r alle $z\in U$. Zeigen Sie, dass $f$ holomorph auf $U$ ist und $f'(z)=1 / (g'(f(z))$ f\"{u}r alle $z\in U$.
+	\item Es sei $U\subseteq \C$ offen und $f:U\to \C$ stetig und nullstellenfrei. Zeigen Sie, dass aus $f^2\in H(U)$ bereits $f\in H(U)$ folgt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $g(f(z))$ ist differenzierbar. Insbesondere
+		\begin{align*}
+			1=&\lim_{z \to z_0} \frac{g(f(z))-g(f(z_0))}{z-z_0}\\
+			=&\lim_{z \to z_0} \frac{g(f(z))-g(f(z_0))}{f(z)-f(z_0)}\frac{f(z)-f(z_0)}{z-z_0}
+		\end{align*}
+		Der Grenzwert
+		\[
+		\lim_{z \to z_0} \frac{g(f(z))-g(f(z_0))}{z-z_0}
+	\]
+	existiert, da $f$ stetig ist, und sogar
+	\[
+		\lim_{z \to z_0} \frac{g(f(z))-g(f(z_0))}{f(z)-f(z_0)}=\lim_{z \to f(z_0)} \frac{g(z)-g(f(z_0))}{z-f(z_0)}=g'(f(z_0))
+	.\] 
+	D.h. der andere Grenzwert 
+\[
+\lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+.\] 
+	existiert auch ($f$ ist holomorph), und
+	\[
+	1=g'(f(z_0)) \lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0}=g'(f(z_0)) f'(z_0)
+	.\]
+	Die Behauptung folgt.
+\item 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei $z=x+iy$ mit $x,y\in \R$ und
+	\[
+	f:\C\to \C,\qquad z\mapsto \begin{cases}
+		\frac{x^3y(y-ix)}{x^6+y^2} & z\neq 0\\
+		0 & z = 0
+	\end{cases}
+	.\] 
+	Ferner sei $z_0=0$. Beweisen Sie die folgenden Aussagen:
+	\begin{parts}
+	\item Die Funktion $f$ ist in $z_0$ partiell differenzierbar.
+	\item Die Funktion erf\"{u}llt in $z_0$ die Cauchy-Riemannsche Differentialgleichung.
+	\item Es sei $t\in \R$ fixiert. Dann besitzt $f$ einen radialen Grenzwert in $z_0$, also es existiert folgender Grenzwert
+		\[
+			\lim_{r \to 0,r>0} \frac{f(e^{it}r)-f(0)}{e^{it}r}
+		.\] 
+	\item Die Funktion $f$ ist in $z_0$ \emph{nicht} complex differenzierbar. Begr\"{u}nden Sie außerdem, warum dies nicht im Widerspruch zu Korollar 2.10 steht.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Als Produkt bzw. Quotient differenzierbare Funktonen (von $x$ bzw. $y$) ist $f$ partiell differenzierbar.
+	\item 
+		\[
+		f=\frac{x^3 y^2}{x^6 + y^2}-i \frac{x^4 y}{x^6 + y^2}
+		.\] 
+		Die Ableitungen sind
+	\end{parts}
+\end{proof}

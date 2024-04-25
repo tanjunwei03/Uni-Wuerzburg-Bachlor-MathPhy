@@ -1,16 +1,39 @@
 \begin{Problem}
-In dieser Aufgabe befassen wir uns mit der Matrixdarstellung von Bilinearformen. (Im Anhang zum Vorlesungsskript findet man einen kurzen Überblick über einige Grundlagen zu Matrizen.)	
-
-Seien $V,W$ endlich-dimensionale Vektorr\"{a}ume \"{u}ber einem K\"{o}rper $K$ mit $\text{dim}_K V=m>0$ und $\text{dim}_K W=n>0$. Ferner sei $E:V\times W\to K$ eine Bilinearform.
+Auf einem Kreis mit Radius 4 rollt innen ein Kreis mit Radius 1 ab. Die Kurve, die dabei ein fest gewählter Punkt auf dem kleineren Kreis beschreibt, heißt Astroide (dt. ``sternähnliche Kurve''). 	
 \begin{parts}
-\item Sei $\mathcal{B}$ bzw. $\mathcal{C}$ eine (geordnete) Basis f\"{u}r $V$ bzw. $W$. Zeigen Sie, dass es eine eindeutige $(m\times n)-$Matrix $A$ mit Eintr\"{a}gen aus $K$ gibt, sodass
-	\[
-	E(v,w)=([v]_\mathcal{B}^t)A[w]_{\mathcal{C}}
-	,\qquad\text{f\"{u}r alle }v\in V\text{ und }w\in W.\] 
-	Geben Sie explizit die Eintr\"{a}ge von $A$ in Abh\"{a}ngigkeit von $E$ sowie $\mathcal{B}$ und $\mathcal{C}$. Wir bezeichnen $[E]_{\mathcal{B},\mathcal{C}}:=A$.
-\item Seien $\mathcal{B}_1,~\mathcal{B}_2$ Basen f\"{u}r $V$ und seien $\mathcal{C}_1,~\mathcal{C}_2$ Basen f\"{u}r $W$. Zeigen Sie, dass
-	\[
-	[E]_{\mathcal{B}_1,\mathcal{C}_1}=(
-	.\] 
+	\item Bestimmen Sie eine Parametrisierung der Astroide und fertigen Sie eine Skizze der Kurve an (oder visualisieren Sie sie auf Geogebra). An welchen Stellen ist Ihre Parametrisierung singulär?
+	\item Seien $a,b$ mit $a<b$ beliebige aus dem Definitionsbereich Ihrer Parametrisierung. Leiten Sie eine Formel für die Bogenlänge Ihrer parametrisierten Kurve auf dem Intervall $[a, b]$ her.  
 \end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Der Schwerpunkt der Masse bewegt sich mit Winkelgeschwindigkeit $\omega$. Der Kreis dreht deswegen mit Winkelgeschwindigkeit $3\omega$. 
+
+		Ein Punkt hat die Parametrisierung
+		 \[
+		\va r(t)=\left( 3\cos \omega t + \cos\left(3\omega t+\delta\right),3\sin\omega t + \sin\left( 3\omega t +\delta\right)   \right) 
+		.\] 
+		OBdA ist $\omega=1$ und in diesem Fall ist $t\in [0,2\pi)$. 
+		\[
+		\va r(t)=\left( 3\cos t + \cos(3t+\delta), 3\sin t-\sin(3t+\delta)  \right) 
+		.\] 
+		\begin{center}
+			\begin{tikzpicture}
+				\begin{axis}[trig format plots=rad]
+					\addplot[domain=0:2*pi,samples=200] ({3*cos(x)+cos(3*x)}, {3*sin(x)-sin(3*x)});
+				\end{axis}
+			\end{tikzpicture}
+		\end{center}
+	\item \ldots
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Betrachten Sie die \emph{Traktrix} (dt. ``Ziehkurve'') $\alpha:(0,\pi)\to \R^2$,
+	\[
+	\gamma(t):=\left( \cos t+\log\left( \tan\left( \frac{t}{2} \right)  \right), \sin t \right),\qquad t\in (0,2\pi)
+	.\] 
+	\begin{parts}
+	\item Skizzieren Sie die gegebene parametrisierte Kurve (oder visualisieren Sie sie auf Geogebra). 
+	\item Zeigen Sie, dass jede Tangente der Traktrix die $x$-Achse schneidet, und dass die Länge der Strecke der Tangente zwischen dem Berührungspunkt mit der Traktrix und dem Schnittpunkt mit der $x$-Achse für alle Tangenten der Traktrix gleich ist. 
+	\end{parts}
 \end{Problem}
