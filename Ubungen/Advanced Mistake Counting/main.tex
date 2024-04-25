@@ -36,69 +36,38 @@
 \newcommand{\C}{\mathbb{C}}
 \allowdisplaybreaks
 \begin{document}
-\title{Fortgeschrittene Fehlerrechnung Übungsblatt 1}
+\title{Fortgeschrittene Fehlerrechnung Übungsblatt 2}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
 
-\section{Grund der Annahme}
-\begin{tcolorbox}
-	Weshalb könnte man mit den gegebenen Informationen davon ausgehen, dass die registrierten $\gamma$-Quanten einer Poissonverteilung folgen?
-\end{tcolorbox}
-Die Population ist unendlich. Die Anzahl von Versuche (hier: 336) ist groß. Die Größe $n\cdot p$ beträgt
-\[\frac 12 \cdot 1\text{ s}\cdot \frac{1}{10\text{ years}}<9,\]
-also die beste Verteilung ist eine Poissonverteilung.
-\section{Datentabelle}
-\begin{align*}
-	\text{Mittelwert}:&~\mu=2,73214\\
-	\text{Standardabweichung}:&~\sigma=1,67784
-\end{align*}
+
+\section{Nullhypothese}
+Nullhypothese: 
 \begin{table}[h]
 	{\scriptsize
 \begin{tabular}{cccccccccc}
 	\toprule
 	\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\\midrule
-	H\"{a}ufigkeit & 11 & 89 & 65 & 71 & 48 & 28 & 16 & 6 & 2 \\\midrule
-	Relative H\"{a}ufigkeit & 0,032738 & 0,26488 & 0,19345 & 0,21131 & 0,14286 & 0,083333 & 0,047619 & 0,017857 & 0,0059524 \\\midrule
-	Poisson-Wahrscheinlichkeit & 0,0650797 & 0,177807 & 0,242897 & 0,22121 & 0,151094 & 0,0825622 & 0,0375953 & 0,0146737 & 0,00501132 \\\bottomrule
+H\"{a}ufigkeit & 40 & 85 & 92 & 62 & 25 & 19 & 7 & 4 & 2 \\\midrule
+Relative H\"{a}ufigkeit & 0,119048 & 0,252976 & 0,27381 & 0,184524 & 0,0744048 & 0,0565476 & 0,0208333 & 0,0119048 & 0,00595238 \\\midrule
+Poisson-Wahrscheinlichkeit & 0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0159224 & 0,0048859 & 0,00131187 \\\bottomrule
 \end{tabular}
 }
 \end{table}
 
-\section{Histogramm}
-\begin{figure}[h]
-	\includegraphics[width=0.6\textwidth]{fig1.pdf}
-	\caption{}
-\end{figure}
-
-\section{Zentrale $\chi^2$ Verteilung}
-Dichtefunktion:
-\[f_{\chi^2_n}=\frac{1}{2^{\frac n2}\left(\frac n2-1\right)!}x^{\frac n2 - 1}\exp\left(-\frac x2\right)\]
-Erwartungswert
-
+$\chi^2$ Statistik:
 \begin{align*}
-	E[x]=& \int_{\text{Supp }f}f_{\chi_n^2}(x) x\dd{x}\\
-	=&\int_0^\infty \frac{1}{2^{\frac n2}\left( \frac{n}{2}-1 \right)! }x^{\frac{n}{2}-1}\exp\left( -\frac{x}{2} \right) x\dd{x}\\
-	=&\frac{1}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)! }\int_0^\infty x^{\frac{n}{2}}\exp\left( -\frac{x}{2} \right) \dd{x}\\
-	=&\frac{2}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)! }\int_0^\infty (2x)^{\frac{n}{2}}\exp\left( -x \right) \dd{x}\\
-	=&\frac{2}{\left( \frac{n}{2}-1 \right)! }\int_0^\infty x^{\frac{n}{2}}\exp\left( -x \right) \dd{x}\\
-	=&\frac{2}{\left(\frac{n}{2}-1\right)!}\Gamma\left( \frac{n}{2}+1 \right) \\
-	=&\frac{2}{\left( \frac{n}{2}-1 \right)!}\left( \frac{n}{2} \right)!\\
-	=& 2(n / 2) = n
+	\chi^2 =& \frac{(0,119048 - 0,116717)^2}{0,116717}+\frac{(0,252976 - 0,250709)^2}{0,250709}\\&+\frac{(0,27381 - 0,269261)^2}{0,269261}+\frac{(0,184524 - 0,192791)^2}{0,192791}\\&+\frac{(0,0744048 - 0,103529)^2}{0,103529}+\frac{(0,0565476 - 0,044476)^2}{0,044476}\\&+\frac{(0,0208333 - 0,0159224)^2}{0,0159224}+\frac{(0,0119048 - 0,0048859)^2}{0,0048859}\\&+\frac{(0,00595238 - 0,00131187)^2}{0,00131187}\approx 0,0399806
 \end{align*}
-Varianz
+Bestimmung der Anzahl der Freiheitzgrade
 \begin{align*}
-	\sigma^2=& E[(x-\mu)^2]\\
-	=&E[(x-n)^2]\\
-	=&\frac{1}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)! }\int_0^\infty x^{\frac{n}{2}-1}\exp\left( -\frac{x}{2} \right) (x-n)^2\dd{x}\\
-	=&\frac{1}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)!}\int_0^\infty x^{\frac{n}{2}+1}\exp\left( -\frac{x}{2}\right) \\
-	&-2nx^{\frac{n}{2}}\exp\left( -\frac{x}{2} \right) +n^2 x^{\frac{n}{2}-1}\exp\left( -\frac{x}{2} \right) \dd{x}\\
-	=& \frac{1}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)! }\left[2^{\frac{n}{2}+2}\Gamma\left( 2+\frac{n}{2} \right) -2^{\frac{n}{2}+1}n^2 \Gamma\left( \frac{n}{2} \right) +2^{\frac{n}{2}}n^2\Gamma\left( \frac{n}{2} \right) \right]\\
-	=& \frac{1}{2^{\frac{n}{2}}\left( \frac{n}{2}-1 \right)! }\left[2^{\frac{n}{2}+2}\Gamma\left( 2+\frac{n}{2} \right) -2^{\frac{n}{2}}n^2 \Gamma\left( \frac{n}{2} \right)\right]\\
-	=&\frac{4}{\left( \frac{n}{2}-1 \right)!} \left[ \left( \frac{n}{2}+1 \right)! - \left( \frac{n}{2} \right)^2 \left( \frac{n}{2}-1 \right)! \right]\\
-	=&4\left[ \left( \frac{n}{2}+1 \right) \frac{n}{2}-\left( \frac{n}{2} \right)^2 \right]\\
-	=&2n
+\text{Anzahl der Klassen}:&~9\\
+\text{Zwangsbedingungen}:&~2\\
+\text{Freiheitsgrade}:&~9-2=7
 \end{align*}
+$p$-Wert
+\[p=\int_{0,0399806}^\infty f_{\chi^2(7)}(x) \dd{x}\approx 1\]
 \end{document}
