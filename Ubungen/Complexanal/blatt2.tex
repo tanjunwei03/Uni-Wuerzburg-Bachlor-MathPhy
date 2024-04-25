@@ -95,11 +95,17 @@ also $f(\overline{z})$ ist nicht differenzierbar.
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Als Produkt bzw. Quotient differenzierbare Funktonen (von $x$ bzw. $y$) ist $f$ partiell differenzierbar.
+	\item Als Produkt bzw. Quotient differenzierbare Funktonen (von $x$ bzw. $y$) ist $f$ partiell differenzierbar. (Sogar überall, nicht nur in $z_0$)
 	\item 
 		\[
 		f=\frac{x^3 y^2}{x^6 + y^2}-i \frac{x^4 y}{x^6 + y^2}
 		.\] 
-		Die Ableitungen sind
+		Wir schreiben wie üblich $f=u+iv$. Die Ableitungen sind
+		\begin{align*}
+			\pdv{f}{x}=&\underbrace{-\frac{3 x^8 y^2}{\left(x^6+y^2\right)^2}+\frac{3 x^2 y^4}{\left(x^6+y^2\right)^2}}_{\partial u / \partial x}+i \underbrace{\left(\frac{2 x^9 y}{\left(x^6+y^2\right)^2}-\frac{4 x^3 y^3}{\left(x^6+y^2\right)^2}\right)}_{\partial v/\partial x}\\
+			\pdv{f}{y} =& \underbrace{\frac{2 x^9 y}{\left(x^6+y^2\right)^2}}_{\partial u / \partial y}+i\underbrace{\left(\frac{x^4 y^2}{\left(x^6+y^2\right)^2}-\frac{x^{10}}{\left(x^6+y^2\right)^2}\right)}_{\partial v/\partial y}
+		\end{align*}
+		Offensichtlich ist $\pdv{f}{x}(0)=0$ und $\pdv{f}{y}(0)=0$. Damit ist $\pdv{f}{x}(0)=-i\pdv{f}{y}(0)$ und die Cauchy-Riemann-Gleichungen sind erfüllt.
+		\item 
 	\end{parts}
 \end{proof}
