@@ -106,6 +106,15 @@ also $f(\overline{z})$ ist nicht differenzierbar.
 			\pdv{f}{y} =& \underbrace{\frac{2 x^9 y}{\left(x^6+y^2\right)^2}}_{\partial u / \partial y}+i\underbrace{\left(\frac{x^4 y^2}{\left(x^6+y^2\right)^2}-\frac{x^{10}}{\left(x^6+y^2\right)^2}\right)}_{\partial v/\partial y}
 		\end{align*}
 		Offensichtlich ist $\pdv{f}{x}(0)=0$ und $\pdv{f}{y}(0)=0$. Damit ist $\pdv{f}{x}(0)=-i\pdv{f}{y}(0)$ und die Cauchy-Riemann-Gleichungen sind erfüllt.
-		\item 
+	\item 
+		\[
+			f(e^{it} r)=\frac{(r\cos t)^3(r\sin t)(r\sin t - i r\cos t)}{r^6 \cos^6 t + r^2\sin^2 t}
+		.\] 
+		Da $f(0)=0$, ist
+		\begin{align*}
+			\lim_{r \to 0} \left|\frac{f(e^{it}r)-f(0)}{e^{it}r}\right|=&\lim_{r \to 0} \left|\frac{f(e^{it}r)}{e^{it}r}\right|\\
+			=&\lim_{r \to 0} \right|e^{-it} \frac{r^2 \cos^3 t \sin t(\sin t - i \cos t)}{r^4 \cos^6 t + \sin^2 t}\right|\\
+			\le &e^{-it} \frac{r^2 \cos^3 t \sin t(\sin t - i \cos t)}{\sin^2 t}\\
+		\end{align*}
 	\end{parts}
 \end{proof}
