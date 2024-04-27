@@ -32,21 +32,7 @@ jedoch
 \dv{z}(f(\overline{z}))=\lim_{x \to x_0} \frac{f(x-i y_0) - f(x_0 - i y_0)}{x_0}= f'(\overline{z_0})
 .\] 
 Weil $f$ nicht konstant ist, gibt es mindestens ein Punkt $z_0$, sodass $f'(\overline{z_0})\neq 0$. Daher kann $f'(\overline{z_0})$ nicht immer gleich $-f'(\overline{z_0})$ sein, also $f(\overline{z})$ ist nicht differenzierbar.
-\item Falsch. Sei
-\[
-f(z)=\begin{cases}
-	1 & z\in \Q^2\\
-	0 & \text{sonst.}
-\end{cases}
-\]
-und
-\[
-g=\begin{cases}
-	0 & z\notin \Q^2\\
-	1 & \text{sonst.}
-\end{cases}
-\]
-im Sinne, dass wir $\C$ mit $\R^2$ sowie $\Q^2$ mit einer Teilmenge von $\R^2$ idenfizieren. $f$ und $g$ sind dann in keinem Punkt differenzierbar, weil die in keinem Punkt stetig sind. Deren Produkt ist aber $f\cdot g = 0$, eine konstante Funktion, also differenzierbar.
+\item Falsch. Sei $f=0$ und $g$ irgendeine nicht holomorphe Funktion, z.B. die Konjugationsabbildung. Dann ist $f(z)\cdot g(z)=0$ und somit konstant und auch holomorph. 
 \item Wahr. Schreibe $f=u+iv$ mit $u=\Re(f)$ und $v=\Im(f)$. Es gilt $u=1$. Es gilt auch die Cauchy-Riemann-Gleichungen
 	\[
 		0=\pdv{u}{x}=\pdv{v}{y}\qquad 0=\pdv{u}{y}=-\pdv{v}{x}
@@ -159,6 +145,6 @@ im Sinne, dass wir $\C$ mit $\R^2$ sowie $\Q^2$ mit einer Teilmenge von $\R^2$ i
 			=&\lim_{t \to 0} \frac{t^2-i}{2(1+i t^2)}\\
 			=& -\frac{i}{2}
 		\end{align*}
-		Aber wenn die Funktion holomorph wäre, wäre der Grenzwert gleich $\pdv{f}{x}=0$ sein. Das dies offensichtlich nicht der Fall ist, ist die Funktion nicht holomorph.\qedhere
+		Aber wenn die Funktion holomorph wäre, wäre der Grenzwert gleich $\pdv{f}{x}=0$ sein. Das dies offensichtlich nicht der Fall ist, ist die Funktion nicht holomorph.
 	\end{parts}
 \end{proof}

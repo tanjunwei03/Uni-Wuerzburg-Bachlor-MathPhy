@@ -1,0 +1,99 @@
+\begin{Problem}
+Die allgemeine Form des Stokes’schen Satzes lautet
+\[
+\int_{\partial A}\omega = \int_A \dd{\omega}
+,\]
+wobei $\mathcal{M}$ eine kompakte differenzierbare Mannigfaltigkeit ist und $A\in M$ ein $d$-dimensionales Gebiet darin mit Rand $\partial A$. Weiterhin ist $\omega$ eine $(d-1)$-Form und $\dd{\omega}$ eine äußere Ableitung von $\omega$. Das Dachprodukt wird mit $\wedge$ bezeichnet.
+\begin{parts}
+\item Zeigen Sie, dass Sie aus (1) im Spezialfall $\mathcal{M}=V\in \R^3$ und
+	\[
+	\omega=E_1\dd{x}^2\wedge\dd{x}^3+E_2\dd{x}^3\wedge\dd{x}^1+E_3\dd{x}^1\wedge\dd{x}^2
+	\]
+	den aus der Elektrodynamik bekannten Gauß'schen Integralsatz erhalten,
+	\[
+	\int_{\partial V}\dd{\va A}\cdot\va E = \int_V \dd[3]{x} \div{\va E}
+	.\] 
+\item Zeigen Sie, dass Sie im Spezialfall $\omega=B_\mu\dd{x^\mu}$ und $A$ eine zweidimensionale Fläche, die im $\R^3$ eingebettet ist, aus (1) der aus Magnetostatik bekannte Stokes'sche Satz folgt,
+	\[
+	\oint_{\partial A}\dd{\va s}\cdot\va B=\int_A \dd{\va A}\curl{\va B}
+	.\] 
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt per Definition
+		\[
+		\int_{\partial V}\dd{\va A}\cdot\va E=\int_{\partial V}\omega
+		.\] 
+		Außerdem ist die äußere Ableitung
+		\begin{align*}
+			\dd{\omega}=& \dd{E_1}\dd{x^2}\wedge\dd{x^3}+\dots \\
+			=& (\partial_1E_1+\partial_2E_2+\partial_3E_3)\dd{x^1}\wedge\dd{x^2}\wedge\dd{x^3}
+		\end{align*}
+		Da die Dimension $3$ ist, ist $\dd{x^1}\wedge\dd{x^2}\wedge\dd{x^3}$ das Volumenform und
+		\[
+		\int_V \dd{\omega}=\int_V \div{\va E}\dd{V}
+		.\] 
+	\item Ähnlich ist
+		\[
+		\int_{\partial A}\omega=\oint\dd{\va s}\cdot \va B
+		\]
+		und
+		\begin{align*}
+			\dd{\omega}=&\dd{B_\mu}\dd{x^\mu}\\
+			=& (\partial_i B_\mu)\dd{x^i}\wedge\dd{x^\mu}\\
+			=&\partial_1 B_2 \dd{x^1}\wedge\dd{x^2}+\partial_2 B_1 \dd{x^2}\wedge\dd{x^1}\\
+			&+\partial_1 B_3\dd{x^1}\wedge\dd{x^3} +\partial_3 B_1\dd{x^3}\wedge\dd{x^1}\\
+			&+\partial_2B_3 \dd{x^2}\wedge\dd{x^3}+\partial_3 B_2\dd{x^3}\wedge\dd{x^2}\\
+			=&(\partial_1 B_2-\partial_2 B_1)\dd{x^1}\wedge \dd{x^2}\\
+			&+(\partial_3B_1-\partial_1 B_3)\dd{x^3}\wedge\dd{x^1}\\
+			&+(\partial_2B_3-\partial_3B_2)\dd{x^2}\wedge\dd{x^3}\\
+			=&\int \curl{\va B}\cdot \dd{\va A}
+		\end{align*}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+	\item Nennen Sie die Definition der Delta-Distribution und geben Sie ihre wesentlichen Eigenschaften an.
+	\item Drücken Sie mit Hilfe geeigneter Koordinaten die folgenden Ladungsverteilungen als Delta-Distribution aus:
+		\begin{enumerate}[label=(\arabic*)]
+			\item  Eine über eine Kugelschale vom Radius $R$ gleichmä ssig verteilte Ladung $Q$; 
+			\item Eine über die Oberfläche eines Zylinders vom Radius $R$ verteilte Ladung $Q$ (pro Längeneinheit in z-Richtung). 
+		\end{enumerate}
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item \[
+		\int_I f(x)\delta(x)\dd{x}=\begin{cases}
+			f(0) & 0\in I\\
+			0 & \text{sonst.}
+		\end{cases}
+	.\] 
+\item 
+	\begin{enumerate}[label=(\arabic*)]
+		\item \[
+		\frac{Q}{4\pi R^2}\delta(r-R)
+		.\] 
+	\item \[
+	\frac{Q}{2\pi R}\delta(\rho - R)
+	.\] 
+	\end{enumerate}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+Ein einfacher Kondensator besteht aus zwei zueinander parallelen Leitern, die durch einen Isolator voneinander getrennt sind. Bringt man auf die Leiter entgegengesetzt gleiche Ladungen, so stellt sich zwischen den Leitern eine bestimmte Potentialdifferenz ein. Der Quotient aus dem Betrag der Ladung eines der beiden Leiter und dem Betrag der Potentialdifferenz wird Kapazität genannt. Berechnen Sie mit dem Gauß’schen Gesetz die Kapazität	
+\begin{parts}
+\item von zwei großen leitenden Flächen der Fläche $A$, die durch einen kleinen Abstand $d$ voneinander getrennt sind;
+\item von zwei konzentrischen leitenden Kugeln mit den Radien $a$ und $b$ ($\ge a$). 
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Mit Symmetrie ist $\va E \dd{\va A}=2EA=Q / \epsilon_0$. Das gesamte Feld ist danach  $E = \frac{Q}{\epsilon_0 A}$ und die Potentialdifferenz $V=Qd / \epsilon_0 A$. Damit ist $C=Q\epsilon_0 / d$.
+	\item Das Feld ist $\frac{Q}{4\pi\epsilon_0 r^2}$ und die Potentialdifferenz damit
+	\end{parts}
+\end{proof}
