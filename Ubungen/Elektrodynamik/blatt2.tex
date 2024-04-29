@@ -93,7 +93,14 @@ Ein einfacher Kondensator besteht aus zwei zueinander parallelen Leitern, die du
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item Mit Symmetrie ist $\va E \dd{\va A}=2EA=Q / \epsilon_0$. Das gesamte Feld ist danach  $E = \frac{Q}{\epsilon_0 A}$ und die Potentialdifferenz $V=Qd / \epsilon_0 A$. Damit ist $C=Q\epsilon_0 / d$.
+	\item Mit Symmetrie ist $\va E \dd{\va A}=2EA=Q / \epsilon_0$. Das gesamte Feld ist danach  $E = \frac{Q}{\epsilon_0 A}$ und die Potentialdifferenz $V=Qd / \epsilon_0 A$. Damit ist $C=A\epsilon_0 / d$.
 	\item Das Feld ist $\frac{Q}{4\pi\epsilon_0 r^2}$ und die Potentialdifferenz damit
+		\[
+			\int_a^b \frac{Q}{4\pi\epsilon_{0}r^2}\dd{r}=\frac{Q}{4\pi\epsilon_0}\left( \frac{1}{a}-\frac{1}{b} \right) 
+		.\] 
+		Die Kapazität ist also
+		\[
+			C=4\pi\epsilon_0\left( \frac{1}{a}-\frac{1}{b} \right)^{-1}
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
