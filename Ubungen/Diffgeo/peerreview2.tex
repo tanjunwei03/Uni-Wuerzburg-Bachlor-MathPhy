@@ -1,0 +1,34 @@
+\begin{Problem}
+	\begin{parts}
+	\item Sei $-\infty\le a < b\le \infty$ und seien $r:(\alpha,\beta)\to [0,\infty)$ und $\varphi: (\alpha,\beta)\to \R$ glatte Funktionen. Leiten Sie eine Formel für die Bogenlänge der in Polarkoordinaten parametrisierten Kurve $\gamma:(\alpha,\beta)\to \R^2$,
+	\[
+	\gamma(t):=(r(t)\cos\varphi(t), r(t)\sin\varphi(t)),\qquad t\in (\alpha,\beta)
+	\]
+	auf dem Intervall $[a,b]$ her, wobei $\alpha<a<b<\beta$.
+\item Berechnen Sie die Bogenlänge der archimedischen Spirale $\gamma:(0,\infty)\to \R^2$ mit
+	\[
+	\gamma(t):=(t\cos t, t\sin t),\qquad t\in (0,\infty)
+	\]
+	auf dem Intervall $[\pi,2\pi]$. Skizzieren Sie die Kurve $\gamma$ (oder zeichnen Sie mit Geogebra).
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{align*}
+			\gamma'(t)=& \begin{pmatrix} r'(t)\cos\varphi(t)-r(t)\varphi'(t)\sin\varphi(t) \\ r'(t)\sin\varphi(t) + r(t)\varphi'(t)\cos\varphi(t) \end{pmatrix}\\
+				\|\gamma'(t)\|=&\sqrt{r'(t)^2+r(t)^2\varphi'(t)^2}\\
+				l=&\int_a^b \sqrt{r'(t)^2+r(t)^2\varphi'(t)^2} \dd{t}
+		\end{align*}
+	\item Wir idenfizieren $r(t)=t~\varphi(t)=t$. Damit ist
+		\begin{align*}
+			l=&\int_\pi^{2\pi} \sqrt{1^2+t^2} \dd{t}\\
+			t=&\sinh u~\dd{t}=\cosh u\dd{u}\\
+			l=&\int_{\sinh^{-1}\pi}^{\sinh^{-1}2\pi}\cosh^2 u \dd{u}\\
+			=&\int_{\sinh^{-1}\pi}^{\sinh^{-1}2\pi}\frac{1}{4}\left( e^u + e^{-u} \right)^2 \dd{u}\\
+			=&\frac{1}{4}\left[ \frac{1}{2}e^{2u}-\frac{1}{2}e^{-2u}+2u \right]_{\sinh^{-1}\pi}^{\sinh^{-1}2\pi}\\
+			=&\frac{1}{4}\left[\sinh(2u)+2u \right]_{\sinh^{-1}\pi}^{\sinh^{-1}2\pi}\\
+			=&\frac{1}{2}\left[ t(1+t^2)+\ln\left( t+\sqrt{1+t^2}  \right)  \right]_{t=\pi}^{t=2\pi}.\qedhere
+		\end{align*}
+	\end{parts}
+\end{proof}
