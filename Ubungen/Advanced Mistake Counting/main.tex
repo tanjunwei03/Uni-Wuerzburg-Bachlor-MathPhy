@@ -45,29 +45,47 @@
 
 
 \section{Nullhypothese}
-Nullhypothese: 
+Nullhypothese: Die Ereignisse sind nach einer Poisson-Verteilung mit Mittelwert $\mu=2,148$ verteilt.
 \begin{table}[h]
 	{\scriptsize
 \begin{tabular}{cccccccccc}
 	\toprule
-	\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\\midrule
+\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $\ge$8 \\\midrule
 H\"{a}ufigkeit & 40 & 85 & 92 & 62 & 25 & 19 & 7 & 4 & 2 \\\midrule
-Relative H\"{a}ufigkeit & 0,119048 & 0,252976 & 0,27381 & 0,184524 & 0,0744048 & 0,0565476 & 0,0208333 & 0,0119048 & 0,00595238 \\\midrule
-Poisson-Wahrscheinlichkeit & 0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0159224 & 0,0048859 & 0,00131187 \\\bottomrule
+Poisson-Wahrscheinlichkeit & 0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0159224 & 0,0048859 & 0,00170816 \\\midrule
+Poisson-Häufigkeit  & 39,217 & 84,2382 & 90,4718 & 64,7778 & 34,7857 & 14,9439 & 5,34993 & 1,64166 & 0,573941 \\\bottomrule
 \end{tabular}
 }
 \end{table}
 
+Beobachtung: Die letzte $2$ Klassen haben theoretische Häufigkeit, die kleine als 5 ist. Wir fassen deswegen die 3 letzte Klassen zusammen.
+\begin{table}[h]
+	{\footnotesize
+		\setlength{\tabcolsep}{4.5pt}
+		\begin{tabular}{cccccccc}
+			\toprule
+\textbf{Ereignisse} &	0 & 1 & 2 & 3 & 4 & 5 & $\ge$6 \\\midrule
+H\"{a}ufigkeit &	40 & 85 & 92 & 62 & 25 & 19 & 13 \\\midrule
+Poisson-Wahrscheinlichkeit &	0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0225165 \\\midrule
+Poisson-Häufigkeit  & 	39,217 & 84,2382 & 90,4718 & 64,7778 & 34,7857 & 14,9439 & 7,56553 \\\bottomrule
+		\end{tabular}
+	}
+\end{table}
+
 $\chi^2$ Statistik:
 \begin{align*}
-	\chi^2 =& \frac{(0,119048 - 0,116717)^2}{0,116717}+\frac{(0,252976 - 0,250709)^2}{0,250709}\\&+\frac{(0,27381 - 0,269261)^2}{0,269261}+\frac{(0,184524 - 0,192791)^2}{0,192791}\\&+\frac{(0,0744048 - 0,103529)^2}{0,103529}+\frac{(0,0565476 - 0,044476)^2}{0,044476}\\&+\frac{(0,0208333 - 0,0159224)^2}{0,0159224}+\frac{(0,0119048 - 0,0048859)^2}{0,0048859}\\&+\frac{(0,00595238 - 0,00131187)^2}{0,00131187}\approx 0,0399806
+	\chi^2 =& \frac{(40 - 39.217)^2}{39.217}+\frac{(85 - 84.2382)^2}{84.2382}\\
+	&+\frac{(92 - 90.4718)^2}{90.4718}+\frac{(62 - 64.7778)^2}{64.7778}\\
+	&+\frac{(25 - 34.7857)^2}{34.7857}+\frac{(19 - 14.9439)^2}{14.9439}\\
+	&+\frac{(13 - 7.56553)^2}{7.56553}\approx 7,92488
 \end{align*}
 Bestimmung der Anzahl der Freiheitzgrade
 \begin{align*}
-\text{Anzahl der Klassen}:&~9\\
+\text{Anzahl der Klassen}:&~7\\
 \text{Zwangsbedingungen}:&~2\\
-\text{Freiheitsgrade}:&~9-2=7
+\text{Freiheitsgrade}:&~7-2=5
 \end{align*}
 $p$-Wert
-\[p=\int_{0,0399806}^\infty f_{\chi^2(7)}(x) \dd{x}\approx 1\]
+\[p=\int_{7,92488}^\infty f_{\chi^2(5)}(x) \dd{x}\approx 0,160425\]
+Da der $p$-Wert großer als das Irrtumsniveau (=0,05) ist, ist die Poisson-Verteilung mit einer Irrtumswahrscheinlichkeit von 5\% Poisson verteilt mit Mittelwert $2,148$
 \end{document}
