@@ -10,6 +10,7 @@ mit den Dirichlet-Randbedingungen $G(0,a)=G(d,a)=0$.
 Um die Lösung der folgenden Teilaufgaben zu vereinfachen, bietet es sich an, das Koordinatensystem so zu verschieben, dass die geladene Platte sich bei $x = 0$ und die geerdeten Leiterplatten sich bei $x = -a$ bzw. $x = d - a$ befinden.
 \item Teilen Sie den Raum in zwei ladungsfreie Regionen $-a < x < 0$ und $0 < x < d - a$ auf, und lösen Sie dort die zwei separaten, homogenen Laplace-Gleichungen für das Potential. Integrieren Sie dann die Poisson-Gleichung von $x = -\epsilon$ bis $x = +\epsilon$, und betrachten Sie den Grenzwert $\epsilon\to 0$, um die Bedingungen zu finden, welche die zwei Lösungen für das Potential in $x = 0$ verbinden. Bestimme schließlich das Potential für den gesamten Bereich $-a < x < d - a$.
 \item Bestätigen Sie das obige Resultat, indem Sie die Differenzialgleichung für das Potential unter Berücksichtigung der Randbedingungen bei $x = -a$ und $x = d - a$ direkt integrieren. 
+\item Führen Sie eine Fouriertransformation der Differenzialgleichung für das Potential durch, lösen Sie die transformierte Gleichung im Fourier-Raum und transformieren Sie die Lösung zurück in den Ortsraum. Überzeugen Sie sich von der Existenz einer partikulären Lösung, welche mit den vorherigen übereinstimmt. 
 \end{parts}
 \end{Problem}
 
@@ -20,7 +21,7 @@ Um die Lösung der folgenden Teilaufgaben zu vereinfachen, bietet es sich an, da
 		Die Greensche Funktion verschwindet genau dann wenn die Potential verschwindet, also bei $x=0$ und $x=d$.
 	\item Die Lösungen in einer ladungsfreien Region ist
 		\[
-		\dv[2]{V}{x}=0\implies V = a x + b
+		\dv[2]{V}{x}=0\implies V = m x + c
 		.\] 
 		Der Gradient ist das elektrische Feld, also $\frac{\sigma}{2\epsilon_0}$. Die Lösungen sind also
 		\begin{align}
@@ -86,6 +87,46 @@ Mit Randbedingungen $V(-a)=V(d-a)=0$.
 			=& V'(-a)(x+a) - x\theta(x)\\
 			:=& k_1(x+a)-x\theta(x).
 \end{align*}
-Wir w
+Wir schreiben jetzt die zweite Randbedingungen
+\[
+V(d-a)= k_1d - (d - a) = 0
+\]
+und damit
+\[
+k_1= \frac{d-a}{d}
+.\] 
+Das Potential ist also
+\[
+	\frac{d-a}{d}(x+a)- x\theta(x)
+.\] 
+\item Da der Definitionsbereich endlich ist, nutzen wir eine Fourierreihe
+\[
+	V(x)=\sum_{n=1}^\infty a_n\sin\left(n \pi \frac{x+a}{d}  \right) 
+,\]
+wobei die $a_n$ definiert durch
+\[
+	a_n = \int_{-a}^{d-a} V(x) \sin\left( n\pi \frac{x+a}{d} \right)\dd{x} 
+\]
+sind. Die Ableitung von $V$ ist
+\[
+	V''(x)=-\sum_{n=1}^\infty a_n \left( \frac{n\pi}{d} \right)^2 \sin\left( n\pi \frac{x+a}{d} \right) 
+.\] 
+Die Fourierreihe von $\delta(x)$ ist
+\[
+	\delta(x)=\sum_{n=1}^\infty \sin\left( \frac{n\pi a}{d} \right)\sin\left( n\pi \frac{x+a}{d} \right)  
+.\] 
+Vergleich der Koeffizienten liefert
+\[
+a_n = \left( \frac{d}{n\pi} \right)^2 \sin\left( \frac{n\pi a}{d} \right) 
+.\] 
+Die Lösung ist
+\[
+	V(x) =   \sum_{n=1}^\infty \left( \frac{d}{n\pi} \right)^2 \sin\left( \frac{n\pi a}{d} \right) \sin\left( n\pi \frac{x+a}{d} \right)  
+.\] 
+Keine Ahnung wie man die Summe berechnet, aber plotten zeigt, dass die Lösung korrekt ist.\qedhere
+
+\begin{center}
+\includegraphics[width=0.3\textwidth]{gg.png}
+\end{center}
 	\end{parts}
 \end{proof}
