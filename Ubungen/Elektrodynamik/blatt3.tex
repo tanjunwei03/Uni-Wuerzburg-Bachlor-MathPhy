@@ -23,16 +23,69 @@ Um die Lösung der folgenden Teilaufgaben zu vereinfachen, bietet es sich an, da
 		\dv[2]{V}{x}=0\implies V = a x + b
 		.\] 
 		Der Gradient ist das elektrische Feld, also $\frac{\sigma}{2\epsilon_0}$. Die Lösungen sind also
-		\begin{align*}
-			-a<x<0:&~V = \frac{\sigma}{2\epsilon_0}(x+a)\\
-			0<x<d-a:&V= \frac{\sigma}{2\epsilon_0}(d-a-x)
-		\end{align*}
+		\begin{align}
+			-a<x<0:&~V = k_1(x+a)\label{eq:electrodynamics3-1}\\
+			0<x<d-a:&V= k_2(d-a-x)\label{eq:electrodynamics3-2}
+		\end{align}
 		Integriert zwischen $x=-\epsilon$ und $x=+\epsilon$ ergibt
 \begin{align*}
 	\dv[2]{V}{x}=& \delta(x)\\
-	\int_{-\epsilon}^\epsilon \dv[2]{V}{x}\dd{x}=& \int_{-\epsilon}^{\epsilon} \delta(x)\dd{x}\\
-	V'(\epsilon)-V'(-\epsilon) =& 1
+	\int_{-\epsilon}^x \dv[2]{V}{x}\dd{x}=& -\int_{-\epsilon}^{x} \delta(x)\dd{x}\\
+	=& \begin{cases}
+		0 & x < 0\\ 
+		-1 & x \ge 0
+	\end{cases}\\
+		V'(x)=&V'(-\epsilon) - \begin{cases}
+		0 & x < 0\\
+		1 & x \ge 0
+	\end{cases}\\
+			V(\epsilon) =& V(-\epsilon) + \int_{-\epsilon}^\epsilon V'(x)\dd{x}\\
+			=& V(-\epsilon) + 2\epsilon V'(-\epsilon) - \epsilon
 \end{align*}
+Eingesetzt in die vorherige Lösungen \eqref{eq:electrodynamics3-1} und \eqref{eq:electrodynamics3-2} liefert
+\begin{align*}
+	V'(-\epsilon) =& k_1\\
+	V(-\epsilon) =& k_1 (a-\epsilon)\\
+	V(\epsilon) =& k_1(a-\epsilon)+2\epsilon k_1 - \epsilon\\
+	=&k_2(d-a-\epsilon) 
+\end{align*}
+Wir lösen die Gleichung für $k_2$ und erhalten
+\[
+k_2= \frac{k_1(a-\epsilon) + 2\epsilon k_1-\epsilon}{d-a-\epsilon}
+.\] 
+Die Lösungen sind also (außerhalb $(-\epsilon,\epsilon)$)
+\[
+V(x)=\begin{cases}
+	k_1(x + a) & -a < x < -\epsilon,\\
+	\frac{k_1(a-\epsilon)+2\epsilon k_1 - \epsilon}{d-a-\epsilon}(d-a-x) & \epsilon < x < d-a.
+\end{cases}
+\]
+Wenn wir $\epsilon\to 0$ nehmen, ist
+\[
+V(x) = \begin{cases}
+	k_1(x+a) & -a < x < 0, \\
+	\frac{k_1}{d-a}(d-a-x) & 0 < x < d-a.
+\end{cases}
+\] 
+\item Die Differentialgleichung ist
+	\[
+		\dv[2]{V}{x}=-\delta(x)
+	.\] 
+Mit Randbedingungen $V(-a)=V(d-a)=0$.
+\begin{align*}
+	\int_{-a}^x \dv[2]{V}{x}\dd{x}=&-\int_{-a}^x \delta(x)\dd{x}\\
+	V'(x)-V'(-a)=&\begin{cases}
+		-1 & x > 0\\
+		0 & x\le 0
+	\end{cases}\\
+		V'(x)=&V'(-a)-\begin{cases}
+			1 & x > 0\\
+			0 & x \le 0
+		\end{cases}\\
+			V(x) - \cancelto{0}{V(-a)} =& \int_{-a}^x V'(x) \dd{x}\\
+			=& V'(-a)(x+a) - x\theta(x)\\
+			:=& k_1(x+a)-x\theta(x).
+\end{align*}
+Wir w
 	\end{parts}
-	Das Potential muss stetig sein, also das Potential ist
 \end{proof}
