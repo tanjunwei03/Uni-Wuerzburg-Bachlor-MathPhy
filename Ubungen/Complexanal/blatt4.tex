@@ -1,0 +1,59 @@
+\begin{Problem}
+	Seien $\mathcal{C}$, $\mathcal{C}'$ und $\mathcal{C}_0$ Halbkreise mit Durchmessern $AC,~AB$ bzw. $BC$, sodass $A,~B$ und $C$ auf einer Gerade liegen. Wir betrachten erner Kreise $\mathcal{C_n}$ f\"{u}r $n\in \N$ tangential zu den Halbkreisen $\mathcal{C}$ und $\mathcal{C}'$, sodass ferner $\mathcal{C}_n$ tangential zu $\mathcal{C}_{n-1}$ in einem Punkt $P_n$ ist. Zeigen Sie, dass es eine Kreislinie gibt, die alle Berührpunkte $P_0,P_1,\dots$ enthält.
+
+	{
+	\tikzset{circle through 3 points/.style n args={3}{%
+insert path={let \p1=($(#1)-(#2)$),\p2=($(#1)!0.5!(#2)$),
+    \p3=($(#1)-(#3)$),\p4=($(#1)!0.5!(#3)$),\p5=(#1),\n1={(-(\x2*\x3) + \x3*\x4 + \y3*(-\y2 +
+    \y4))/(\x3*\y1 - \x1*\y3)},\n2={veclen(\x5-\x2-\n1*\y1,\y5-\y2+\n1*\x1)} in
+    ({\x2+\n1*\y1},{\y2-\n1*\x1}) circle (\n2)}
+}}	
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[thick] (0,0) arc(180:0:2);
+			\draw[thick] (0,0) arc(180:0:2.5);
+			\draw[thick] (4,0) arc(180:0:0.5);
+			\foreach \x in {1,2,..., 8}{
+				\coordinate (A) at ({0.225}, {-(\x*2-1)*0.025});
+				\coordinate (B) at ({0.2}, {-\x*0.05});
+				\coordinate (C) at ({0.25},{-\x*0.05});
+				\draw[circle through 3 points={A}{B}{C}];
+			}
+		\end{tikzpicture}
+	\end{center}
+}
+\end{Problem}
+\begin{proof}
+	Wir führen ein Möbiustransformation durch. OBdA nehmen wir an, dass $A$ das Ursprung ist. 
+
+	Danach betrachten wir die Inversion $z\mapsto 1 / z$. Die reelle Achse wird offensichtlich auf der reellen Achse abgebildet. Insbesondere bleiben $B$ und $C$ auf der reellen Achse.
+\end{proof}
+\begin{Problem}
+	Es sei $z_0\in \C,~(a_k)\subseteq \C$ und $K_R(z_0)$, $0<R<\infty$, die Konvergenzkreisscheibe der Potenzreihe
+	\[
+		f(z)=\sum_{k=0}^\infty a_k(z-z_0)^k,~z\in K_R(z_0)
+	.\] 
+	Zeigen Sie:
+	\begin{parts}
+		\item F\"{u}r jedes $r\in [0,R)$ gilt $\sum_{k=0}^\infty |a_k|^2 r^{2k}=\frac{1}{2\pi}\int_0^{2\pi} |f(z_0+re^{it})|^2\dd{t}$.
+		\item Falls $|f(z)|\le M$ f\"{u}r alle $z\in K_R(z_0)$, so gilt $|a_k|\le M \frac{1}{R^k}$ f\"{u}r alle $k\in \N_0$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Seien $z_0\in \C,~r>0$ und $k\in \Z\setminus \{1\} $. Zeigen Sie, dass f\"{u}r alle $z\in K_r(z_0)$ folgende Identität gilt:
+	\[
+		\int_{\partial K_r(z_0)}\frac{1}{(w-z)^k}\dd{w}=0
+	.\] 
+	Warum schließen wir $k=1$ aus?
+
+	\emph{Hinweis: Betrachten Sie zunächst den Spezialfall} $z=z0$ \emph{und versuchen Sie anschließend den allgemeinen Fall auf diesen zurückzuführen.}
+\end{Problem}
+
+\begin{Problem}
+	Sei $f:\mathbb{D}\to \C$ holomorph und $g(z)=zf(z)$.
+	\begin{parts}
+	\item Sei $K\subset \mathbb{D}$ kompakt. Beweisen Sie, dass die Funktionreihe $\sum_{n=1}^\infty g(z^n)$ gleichmäßig auf $K$ konvergiert.
+	\item Zeigen Sie, dass die Funktionenreihe $\sum_{n=1}^\infty g(z^n)$ nicht notwendigerweise gleichmäßig auf der ganzen Einheitskreisscheibe $\mathbb{D}$ konvergiert.
+	\end{parts}
+\end{Problem}
