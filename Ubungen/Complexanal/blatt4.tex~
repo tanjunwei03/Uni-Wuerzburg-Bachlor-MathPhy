@@ -52,19 +52,81 @@ insert path={let \p1=($(#1)-(#2)$),\p2=($(#1)!0.5!(#2)$),
 	\begin{parts}
 	\item Es gilt
 		\begin{align*}
-			\int_0^{2\pi} |f(z_0+re^{it})|^2\dd{t}=& \int_0^{2\pi} \left| \sum_{k=0}^\infty a_k r^ke^{kit} \right|^2\dd{t}
+			f(z_0+re^{it})=& \sum_{k=0}^\infty a_kr^k e^{kit}\\
+			\overline{f}(z_0+re^{it})=&\sum_{k=0}^\infty \overline{a}_k r^k e^{-kit}\\
+			|f(z_0+re^{it})|^2=&\left( \sum_{k=0}^\infty a_k r^k e^{kit}\right)\left( \sum_{k=0}^\infty \overline{a}_k r^k e^{-kit} \right)\\
+			=&\sum_{k=0}^\infty\sum_{l=0}^k\left(a_l r^l e^{lit} \overline{a}_{k-l} r^{k-l}e^{-(k-l)it} \right)\\
+			=&\sum_{k=0}^\infty \left[ r^k\sum_{l=0}^k a_l \overline{a}_{k-l}e^{(2l-k)it} \right] 
 		\end{align*}
+		Die Reihe konvergiert gleichmäßig, also wir dürfen die Summe und das Integral vertauschen
+		\begin{align*}
+			&\int_0^{2\pi} |f(z_0+re^{it})|^2\dd{t}\\
+			=&\int_{0}^{2\pi} \sum_{k=0}^\infty \left[ r^k \sum_{l=0}^k a_l \overline{a}_{k-l} e^{(2l-k)it} \right] \dd{t}\\
+			=&\sum_{k=0}^\infty r^k \sum_{l=0}^k a_l \overline{a}_{k-l} \int_0^{2\pi} e^{(2l-k)it}\dd{t}
+		\end{align*}
+		Wir wissen aber, dass das Integral nur ungleich Null ist genau dann, wenn $2l-k=0$. Weil $2l$ gerade ist, muss $k$ auch gerade sein. Daher substituieren wir $k:=2p,~p\in \N_0$. Der Ausdruck ist
+		\begin{align*}
+			&\int_0^{2\pi} |f(z_0+re^{it})|^2\dd{t}\\
+			=& \sum_{p=0}^\infty r^{2p} \sum_{l=0}^{2p} a_l \overline{a}_{2p-l} \int_0^{2\pi} e^{(2l-2p)it}\dd{t}\\
+			=&\sum_{p=0}^\infty r^{2p}|a_p|^2 (2\pi) &\text{Nur }l=p\text{ Fall bleibt}\\
+\sum_{k=0}^\infty r^{2k} |a_k|^2=& 			\frac{1}{2\pi}\int_0^{2\pi} |f(z_0+re^{it})|\dd{t}
+		\end{align*}
+	\item Es gilt
+		\begin{align*}
+			\sum_{k=0}^\infty |a_k|^2 r^{2k}=& \frac{1}{2\pi}\int_0^{2\pi} |f(z_0+re^{it})|^2\dd{t}\\
+			\le& \frac{1}{2\pi}\int_0^{2\pi} M^2\dd{t}\\
+			=& M^2
+		\end{align*}
+		andererseits gilt, weil alle Terme in der Summe positiv sind,
+		\[
+		\sum_{k=0}^\infty |a_k|^2r^{2k} \ge |a_p|^2 r^{2p}
+		\] 
+		f\"{u}r alle $p\in \N_0$. Daraus folgt
+		\[
+		|a_k| \le \frac{M}{r^k}
+		\]
+		f\"{u}r alle $r\in [0,R)$. Dann muss $|a_k| \le M / R^k$ sein.
 	\end{parts}
 \end{proof}
-\begin{Problem}
+\begin{Problem}\label{pr:complexanal4-3}
 	Seien $z_0\in \C,~r>0$ und $k\in \Z\setminus \{1\} $. Zeigen Sie, dass f\"{u}r alle $z\in K_r(z_0)$ folgende Identität gilt:
 	\[
 		\int_{\partial K_r(z_0)}\frac{1}{(w-z)^k}\dd{w}=0
 	.\] 
 	Warum schließen wir $k=1$ aus?
 
-	\emph{Hinweis: Betrachten Sie zunächst den Spezialfall} $z=z0$ \emph{und versuchen Sie anschließend den allgemeinen Fall auf diesen zurückzuführen.}
+	\emph{Hinweis: Betrachten Sie zunächst den Spezialfall} $z=z_0$ \emph{und versuchen Sie anschließend den allgemeinen Fall auf diesen zurückzuführen.}
 \end{Problem}
+\begin{proof}
+	Spezialfall $z=z_0$: Wir parametrisieren den Weg durch $\gamma(t)= z_0+ re^{it},~t\in [0,2\pi]$ und $\gamma'(t) = i re^{it}$. 
+\begin{align*}
+	\int_{\partial K_r(z_0)} \frac{1}{(w-z_0)^k}\dd{w}=& \int_0^{2\pi} \frac{\gamma'(t)}{(\gamma(t)-z_0)^k}\\
+	=&\int_0^{2\pi} \frac{i re^{it}}{(z_0+re^{it}-z_0)^k}\dd{t}\\
+	=&\int_0^{2\pi} i r^{1-k} e^{(1-k)it}\dd{t}\\
+	=&i r^{1-k} \left[ \frac{1}{i(1-k)}e^{(1-k)it} \right]_0^{2\pi} & k\neq 0\\
+	=& \frac{r^{1-k}}{1-k}\left[ e^{2\pi(1-k)i} - e^{0} \right] \\
+	=& \frac{r^{1-k}}{1-k}\left[ 1- 1\right] =0
+\end{align*}
+Jetzt im Allgemein:
+\begin{align*}
+	\int_{\partial K_r(z_0)}\frac{1}{(w-z)^k}\dd{w}=&\int_{\partial K_r(z_0)}\frac{1}{(w-z_0+z_0-z)^k}\dd{w}\\
+	=&\int_{\partial K_r(z_0)}\frac{1}{(w-z_0)^k}\frac{1}{\left( 1+\left( \frac{z_0-z}{w-z_0} \right) \right)^k}\dd{w}
+\end{align*}
+Da $|w-z_0|=r$ und $|z_0-z|<r$, ist
+\[
+ \left|\frac{z_0-z}{w-z_0} \right| <1
+.\]
+Daher dürfen wir den Ausdruck in einer Potenzreihe entwickeln.
+\begin{align*}
+&	\int_{\partial K_r(z_0)} \frac{1}{(w-z)^k}\dd{w}
+\\=&\int_{\partial K_r(z_0)}\frac{1}{(w-z_0)^k}\sum_{n=0}^\infty \binom{-k}{n}\left( \frac{z_0-z}{w-z_0} \right)^n\dd{w}\\
+=&\int_{\partial K_r(z_0)}\sum_{n=0}^\infty \binom{-k}{n} \frac{(z_0-z)^n}{(w-z_0)^{k+n}}\dd{w}\\
+=&\sum_{n=0}^\infty \int_{\partial K_r(z_0)} \frac{(z_0-z)^n}{(w-z_0)^{k+n}}\dd{w}\\
+=& \sum_{n=0}^\infty 0\\
+=&0
+\end{align*}
+wobei wir die Summe und das Integral tauschen dürfen, weil die Reihe gleichmäßig konvergiert.
+\end{proof}
 
 \begin{Problem}
 	Sei $f:\mathbb{D}\to \C$ holomorph und $g(z)=zf(z)$.
