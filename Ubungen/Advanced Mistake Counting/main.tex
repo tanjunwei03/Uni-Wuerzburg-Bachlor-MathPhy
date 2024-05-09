@@ -6,9 +6,11 @@
 \usepackage{cancel}
 \usepackage{booktabs}
 \usepackage{polynom}
+\usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{ulem}
 \usepackage{transparent}
 \usepackage{float}
 \usepackage{multirow}
@@ -46,29 +48,30 @@
 
 \section{Nullhypothese}
 Nullhypothese: Die Ereignisse sind nach einer Poisson-Verteilung mit Mittelwert $\mu=2,148$ verteilt.
+
+Alternativhypothese: Die Ereignisse sind nicht nach einer Poisson-Verteilung mit Mittelwert $\mu=2,148$ verteilt.
 \begin{table}[h]
-	{\scriptsize
-\begin{tabular}{cccccccccc}
+	{\tiny
+\begin{tabular*}{\columnwidth}{@{\extracolsep{\stretch{1}}}*{11}{c}@{}}
 	\toprule
-\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & $\ge$8 \\\midrule
-H\"{a}ufigkeit & 40 & 85 & 92 & 62 & 25 & 19 & 7 & 4 & 2 \\\midrule
-Poisson-Wahrscheinlichkeit & 0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0159224 & 0,0048859 & 0,00170816 \\\midrule
-Poisson-Häufigkeit  & 39,217 & 84,2382 & 90,4718 & 64,7778 & 34,7857 & 14,9439 & 5,34993 & 1,64166 & 0,573941 \\\bottomrule
-\end{tabular}
+\textbf{Ereignisse} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & $\ge$9 \\\midrule
+H\"{a}ufigkeit & 40 & 85 & 92 & 62 & 25 & 19 & 7 & 4 & 2 & 0 \\\midrule
+Poisson-Wahrscheinlichkeit & 0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0159224 & 0,0048859 & 0,00131187 & 0,000396293 \\\midrule
+Poisson-Häufigkeit  & 39,217 & 84,2382 & 90,4718 & 64,7778 & 34,7857 & 14,9439 & 5,34993 & 1,64166 & 0,440787 & 0,133155 \\\bottomrule
+\end{tabular*}
 }
 \end{table}
 
-Beobachtung: Die letzte $2$ Klassen haben theoretische Häufigkeit, die kleine als 5 ist. Wir fassen deswegen die 3 letzte Klassen zusammen.
+Beobachtung: Die letzte 3 Klassen haben theoretische Häufigkeit, die kleine als 5 ist, Wir fassen deswegen die 4 letzte Klassen zusammen.
 \begin{table}[h]
 	{\footnotesize
-		\setlength{\tabcolsep}{4.5pt}
-		\begin{tabular}{cccccccc}
+		\begin{tabular*}{\columnwidth}{@{\extracolsep{\stretch{1}}}*{8}{c}@{}}
 			\toprule
 \textbf{Ereignisse} &	0 & 1 & 2 & 3 & 4 & 5 & $\ge$6 \\\midrule
 H\"{a}ufigkeit &	40 & 85 & 92 & 62 & 25 & 19 & 13 \\\midrule
 Poisson-Wahrscheinlichkeit &	0,116717 & 0,250709 & 0,269261 & 0,192791 & 0,103529 & 0,044476 & 0,0225165 \\\midrule
 Poisson-Häufigkeit  & 	39,217 & 84,2382 & 90,4718 & 64,7778 & 34,7857 & 14,9439 & 7,56553 \\\bottomrule
-		\end{tabular}
+		\end{tabular*}
 	}
 \end{table}
 
@@ -82,10 +85,14 @@ $\chi^2$ Statistik:
 Bestimmung der Anzahl der Freiheitzgrade
 \begin{align*}
 \text{Anzahl der Klassen:}&~7\\
-\text{Zwangsbedingungen:}&~2\\
-\text{Freiheitsgrade:}&~7-2=5
+\text{Zwangsbedingungen:}&~1\\
+\text{Freiheitsgrade:}&~7-1=6
 \end{align*}
 $p$-Wert
-\[p=\int_{7,92488}^\infty f_{\chi^2(5)}(x) \dd{x}\approx 0,160425\]
-Da der $p$-Wert großer als das Irrtumsniveau (=0,05) ist, ist die Poisson-Verteilung mit einer Irrtumswahrscheinlichkeit von 5\% Poisson verteilt mit Mittelwert $2,148$
+\[p=\int_{7,92488}^\infty f_{\chi^2(6)}(x) \dd{x}\approx 0,243659\]
+Da der $p$-Wert größer als das Irrtumsniveau (=0,05) ist, ist die Poisson-Verteilung mit einer Irrtumswahrscheinlichkeit von 5\% Poisson verteilt mit Mittelwert $2,148$. Das heißt: Im Fall, dass die Daten wirklich nach einer Poisson-Verteilung mit Mittelwert 2,148 verteilt sind, gibt es eine $\approx 24\%$ Wahrscheinlichkeit, dass eine Stichprobe höchstens so weit von den erwarteten Werte gestreut sind. Die Wahrscheinlichkeit eines Fehlers 1. Art ist also 5\%. 
+
+Weil das Parameter $\mu$ kontinuierlich ist, ist die Wahrscheinlichkeit eines Fehlers vom Typ 2 1, also die Daten sind fast sicherlich nicht nach einer Poisson-Verteilung mit $\mu$ gleich genau $2,148$. Dies entspricht physikalisch, dass die Nachkommastellen nach 8 fast sicherlich nicht alle Null sind. 
+
+Eine Unterscheidung zwischen z.B. $2,148$ und $2,148+ 10^{-9}$ ist aber auch physikalisch nicht sinnvoll. Insgesamt können wir nicht schließen, dass der Mittelwert genau $2,148$ ist, jedoch können wir sagen, dass eine Poisson-Verteilung mit Mittelwert $2,148$ eine gute Approximation ist und \uline{mittels der Messung können wir die Verteilung der Ereignisse nicht von einer solchen Poisson-Verteilung unterscheiden.}
 \end{document}
