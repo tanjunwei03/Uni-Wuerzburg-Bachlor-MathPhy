@@ -35,6 +35,47 @@ insert path={let \p1=($(#1)-(#2)$),\p2=($(#1)!0.5!(#2)$),
 	Wir schreiben die Koordinaten von $B$ bzw. $C$ als $x,~x\in \R$. Das höchste Punkt hat Koordinaten $x/2 + ix/2$. Das wird auf
 	\[\frac{1}{\frac x2 + i \frac x2}=\frac{1-i}{x}=\frac{1}{x}-\frac{i}{x}.\]
 	Das heißt, dass die Halbkreisen auf vertikalen Geraden bei x-Koordinaten $1/(2R_1)$ und $1/(2R_2)$ abgebildet werden.
+	
+	Jetzt ist die Frage ``auf welche Seite'' das Innere abgebildet wird. Wir nehmen $x\in \R$ hinreichend groß, sodass $1/x$ hinreichend klein ist und $1/x$ liegt außerhalb die zwei Geraden. Das heißt: Das Innere wird auf das Innere abgebildet.
+	
+	{
+	\tikzset{circle through 3 points/.style n args={3}{%
+			insert path={let \p1=($(#1)-(#2)$),\p2=($(#1)!0.5!(#2)$),
+				\p3=($(#1)-(#3)$),\p4=($(#1)!0.5!(#3)$),\p5=(#1),\n1={(-(\x2*\x3) + \x3*\x4 + \y3*(-\y2 +
+					\y4))/(\x3*\y1 - \x1*\y3)},\n2={veclen(\x5-\x2-\n1*\y1,\y5-\y2+\n1*\x1)} in
+				({\x2+\n1*\y1},{\y2-\n1*\x1}) circle (\n2)}
+	}}	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.5]
+			\filldraw[thick,pattern=north east lines] (0,0) arc(180:0:2.5) -- (4,0) arc(0:180:2);
+			\foreach \x in {1,2,..., 20}{
+				\coordinate (A) at ({0.225/((0.225)^2 + ((\x*2-1)*0.025)^2)}, {(\x*2-1)*0.025/((0.225)^2 + ((\x*2-1)*0.025)^2)});
+				\coordinate (B) at ({0.2/((0.2)^2 + (\x*0.05)^2)}, {\x*0.05/((0.2)^2 + (\x*0.05)^2)});
+				\coordinate (C) at ({0.25/((0.25)^2 + (\x*0.05)^2)},{\x*0.05/((0.25)^2 + (\x*0.05)^2)});
+				\filldraw[draw=black,thick,fill=white,circle through 3 points={A}{B}{C}];
+			}
+			\draw[thick] (0,0) node[anchor=north] {$A$} -- (4,0);
+			\fill[white] (4,0) arc(180:0:0.5) -- cycle;
+						\draw[thick] (4,0) arc(180:0:0.5);
+			\draw (5,0) node[anchor=north] {$C$};
+			\draw (4,0) node[anchor=north] {$B$};
+			\draw[red,thick] (4.5,0) arc(0:180:2.25);
+			\fill[pattern=north east lines] (8,0) rectangle (8.5,2);
+			\fill[white] (8,2) arc(180:360:0.25) -- cycle;
+			\draw[thick,->] (7,2) -- (9,2);
+			\draw[thick,->] (7.2,0) -- (7.2,2.5);
+			%draw things
+			\draw[thick] (8,2.5) -- (8,0);
+			\draw[thick] (8.5,2.55) -- (8.5,0);
+			\draw[thick] (8,2) arc(180:360:0.25);
+			\foreach \x in {1,...,3}
+			\filldraw[draw=black,fill=white,thick] (8.25,{2-\x*0.5}) circle (0.25);
+			\draw[thick,red] (8.25,0) -- (8.25,2);
+		\end{tikzpicture}
+	\end{center}
+}
+
+Die Berührpunkten sind offensichtlich auf einer Gerade (rot). Da die inverse Abbildung auch eine Möbiustransformation ist, wird die Gerade auf eine Kreislinie oder Gerade abgebildet. Da die Gerade zwischen die Halbkreisen liegen muss, wird die Gerade auf eine Kreislinie abgebildet. Das heißt, dass die Berührpunkte im originalen Ebene auf einer Kreislinie liegen.
 \end{proof}
 \begin{Problem}
 	Es sei $z_0\in \C,~(a_k)\subseteq \C$ und $K_R(z_0)$, $0<R<\infty$, die Konvergenzkreisscheibe der Potenzreihe
@@ -85,7 +126,7 @@ insert path={let \p1=($(#1)-(#2)$),\p2=($(#1)!0.5!(#2)$),
 		\[
 		|a_k| \le \frac{M}{r^k}
 		\]
-		f\"{u}r alle $r\in [0,R)$. Dann muss $|a_k| \le M / R^k$ sein.
+		f\"{u}r alle $r\in [0,R)$. Dann muss $|a_k|\le M / R^k$ sein.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}\label{pr:complexanal4-3}
@@ -135,3 +176,26 @@ wobei wir die Summe und das Integral tauschen dürfen, weil die Reihe gleichmä�
 	\item Zeigen Sie, dass die Funktionenreihe $\sum_{n=1}^\infty g(z^n)$ nicht notwendigerweise gleichmäßig auf der ganzen Einheitskreisscheibe $\mathbb{D}$ konvergiert.
 	\end{parts}
 \end{Problem}
+
+\begin{proof}
+	\begin{parts}
+	\item $f$ ist holomorph und insbesondere stetig. Wir betrachten $\overline{B_r(0)}$ mit $r<1$. Weil $\overline{B_r(0)}$ kompakt ist, ist $f$ auf $\overline{B_r(0)}$ beschränkt. Wir wählen $A>0$, sodass
+	\[
+	|f(x)|\le A\qquad \forall x\in \overline{B_r(0)}
+	.\] 
+	Jetzt betrachten wir $K\subset D$ kompakt. Die Idee ist: Wir wählen $n$ hinreichend groß, sodass $z^n\in \overline{B_r(0)}$. Dann ist die Reihe dominiert durch eine Potenzreihe. Die Kompaktheit von $K$ ermöglicht die ``$n$ hinreichend groß'' Wahl.
+
+	\textbf{INSERT JUSTIFICATION HERE}
+
+	Jetzt wählen wir $n$ hinreichend groß, sodass $z^n \in \overline{B_r(0)}$ f\"{u}r alle $z\in K$. Es gilt dann
+	\begin{align*}
+		&\lim_{n\to\infty}\sup_{z\in K}\left[\sum_{k=1}^\infty g(z^k)- \sum_{k=1}^n g(z^k)\right]\\
+		=&\lim_{n\to\infty}\sup_{z\in K}\sum_{k=n+1}^\infty g(z^k)\\
+		\le&\lim_{n\to\infty}\sum_{k=n+1}^\infty z^k A\\
+		=&A \lim_{n\to\infty} \frac{z^{1+n}}{1-z}\\
+		=&0
+	\end{align*}
+	Die Funktionreihe konvergiert also im Supremumsnorm und daher gleichmäßig.
+\item Sei $f(z) = 1 / z$,
+\end{parts}
+\end{proof}

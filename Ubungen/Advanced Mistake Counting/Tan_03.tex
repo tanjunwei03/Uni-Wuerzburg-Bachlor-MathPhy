@@ -1,0 +1,81 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{polynom}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+%tcolorbox
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+\title{Fortgeschrittene Fehlerrechnung Übungsblatt 3}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\section{Messung}
+\begin{center}
+\begin{tabular}{cc}
+	\toprule
+	\textbf{Temperatur ($^{\circ}$C)} & \textbf{Luftfeuchte (g/m$^3$)} \\\midrule 
+-15 & 0,47 \\\midrule
+-11 & 0,54 \\\midrule
+-7 & 0,79 \\\midrule
+-3 & 1,32 \\\midrule
+1 & 1,13 \\\midrule
+5 & 1,26 \\\midrule
+9 & 3,02 \\\midrule
+13 & 2,99 \\\midrule
+17 & 3,15 \\\midrule
+21 & 3,90 \\\midrule
+25 & 5,04 \\\midrule
+29 & 7,72 \\\midrule
+33 & 11,02 \\\midrule
+37 & 13,42 \\\midrule
+41 & 20,85 \\\bottomrule
+\end{tabular}
+\end{center}
+Im Zukunft werden wir die Temperatur mit entweder $T$ oder $x$ bezeichnen und Luftfeuchte mit $\rho$ bezeichnen.
+\section{Kovarianz und Korrelationskoeffizient}
+\begin{align*}
+	N=&~15\\
+	\bar{T}=&~13~{}^{\circ}\text{C}\\
+	\bar{\rho}=&~5,108~\text{gm}^{-3}\\
+	\sigma_T=&~17,282~\text{K}\\
+	\sigma_\rho=&~5,6499~\text{gm}^{-3}\\
+	\text{Kovarianz }\sigma_{T\rho}=&~83,688~\text{Kgm}^{-3}\\
+	\text{Korrelationskoeffizient }r=&0,857095
+\end{align*}
+\end{document}
