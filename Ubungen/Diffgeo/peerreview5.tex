@@ -1,0 +1,52 @@
+\begin{Problem}
+	\begin{parts}
+	\item Sei $r > 0$ und $I \subseteq \R$ ein nicht-leeres offenes Intervall. Bezeichne $rI := \{rs : s \in I\}$. Seien $\alpha : I \to \R^2$, $\beta : rI \to \R^2$ glatte und reguläre, nach der Bogenlänge parametrisierte Kurven. Wir nehmen an, es gelte $\kappa_\beta(rs) = \frac{1}{r}\kappa_\alpha(s)$, für alle $s \in I$. Zeigen Sie, dass $\alpha$ und $\beta$ im folgenden Sinne ähnlich sind: Es gibt eine orientierungserhaltende Isometrie $F : \R^2 \to \R^2$ mit $r\alpha(s) = F(\beta(rs))$, für alle $s \in I$. (In dem Fall heißt $r$ manchmal Streckfaktor.)
+	\item Für $a > 0$ bezeichne $\gamma_a : \R \to \R^2$ die nach Bogenlänge parametrisierte \emph{Klothoide} mit Krümmungsfunktion $\kappa_a(s) := \frac{s}{a^2},~s \in \R$. Seien $a, b > 0$ beliebig. Zeigen Sie, dass $\gamma_a$ und $\gamma_b$ im Sinne von (a) ähnlich sind, und bestimmen Sie den zugehörigen Streckfaktor $r$. 
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir bezeichnen $I=[a,b]$. Zunächst wählen wir $v\in \R^2$, sodass $t_v(\beta(ra))=r\alpha(a)$. Per Voraussetzung gilt
+	\begin{align*}
+		\kappa_\beta(rs)=&\beta''(rs)\cdot J\beta'(rs)\\
+		\kappa_\alpha(s)=&\alpha''(s)\cdot J\alpha'(s)\\
+		\|\beta''(rs)\|=&\frac{1}{r}\|\alpha''(s)\|
+	\end{align*}
+	Das heißt: Es gibt eine Matrix $U\in O(3,\R)$ sodass
+	\[
+	U\beta''(rs)=\frac{1}{r}\alpha''(s)
+	.\] 
+	Jetzt integrieren wir die Gleichung bzgl $s$:
+	\begin{align*}
+		\int_a^x U\beta''(rs)\dd{s}=& \int_{ra}^{xa} \frac{1}{r}\beta''(rs)\dd{(rs)}\\
+		=&\frac{1}{r}(U\beta'(rx) - U\beta'(ra))\\
+		=&\frac{1}{r}\int_a^x \alpha''(s)\dd{s}\\
+		=& \frac{1}{r}(\alpha'(x)-\alpha'(a))
+	\end{align*}
+	Diese Gleichung integrieren wir noch einmal
+	\begin{align*}
+		\int_a^x U(\beta'(rs)-\beta'(ra))\dd{s}=&\frac{1}{r}\int_{ra}^{rx} (\beta'(rs)-\beta'(ra))\dd{(rs)}\\
+		=&\frac{1}{r}U[\beta(rx)-\beta(ra)-\beta'(ra)(rx-ra)]\\
+		=&\frac{1}{r}\int_a^x (\alpha'(s)-\alpha'(a))\dd{s}\\
+		=&\alpha(x)-\alpha(a)-\alpha'(a)(x-a)
+	\end{align*}
+	also
+	\[
+	U\beta(rs)-U\beta(ra)-rU\beta'(ra)(s-a)=r\alpha(s)-r\alpha(a)-r\alpha'(a)(s-a)
+	\] 
+	oder
+	\[
+	r\alpha(s)=U\beta(rs) + \left[ r\alpha(a)-U\beta(ra) \right]+r(\alpha'(a)-\beta'(ra))(s-a)
+	.\] 
+\item Es gilt
+	\begin{align*}
+		\kappa_a(s)=&\frac{s}{a^2}\\
+		\kappa_b(s)=&\frac{s}{b^2}
+	\end{align*}
+	daraus folgt
+	\[
+	\kappa_b(s)=\frac{a^2}{b^2}\kappa_a(s)
+	,\]
+	also $r=a^2 / b^2$.\qedhere
+\end{parts}
+\end{proof}

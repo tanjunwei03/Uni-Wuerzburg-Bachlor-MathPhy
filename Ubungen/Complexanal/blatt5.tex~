@@ -1,0 +1,82 @@
+\begin{Problem}
+	Es sei $n\in \N$. Zeigen Sie
+	\[
+	\int_{\partial D}\frac{1}{z}\left( z+\frac{1}{z} \right)^{2n}\dd{z}=4^n i \int_0^{2\pi} \cos^{2n}(t) \dd{t}
+	.\] 
+	Folgern Sie mithilfe des binomischen Lehrsatzes
+	\[
+	\int_0^{2\pi} \cos^{2n}(t)\dd{t}=\frac{\pi(2n)!}{2^{2n-1}(n!)^2}
+	.\] 
+\end{Problem}
+\begin{proof}
+	Wir betrachten den Weg $\gamma(t)=e^{it},~t\in [0,2\pi]$. Das Integral ist also
+	\begin{align*}
+		\int_{\partial D}\frac{1}{z}\left( z+\frac{1}{z} \right)^{2n}\dd{z}=&\int_{0}^{2\pi}e^{-it}\left( e^{it}+e^{-it} \right)^{2n}ie^{it}\dd{t}\\
+		=&i\int_{0}^{2\pi}e^{-it}2^{2n}\left( \frac{e^{it}+e^{-it}}{2} \right)^{2n}e^{it}\dd{t}\\
+		=&4^n i \int_0^{2\pi} \left( \frac{e^{it}+e^{-it}}{2} \right)^{2n}\dd{t}\\
+		=&4^n i \int_0^{2\pi} \cos^{2n}(t)\dd{t}
+	\end{align*}
+	Jetzt berechnen wir
+	\begin{align*}
+		\int_{\partial D}\frac{1}{z}\left( z+\frac{1}{z} \right)^{2n}\dd{z}=&\int_{\partial D} \frac{1}{z}(z^{2n})\left( 1+\frac{1}{z^2} \right)^{2n}\dd{z}\\
+		=&\int_{\partial D} z^{2n-1}\left[ \sum_{k=0}^\infty \binom{2n}{k}\frac{1}{z^{2k}} \right] \dd{z}\\
+		=& \sum_{k=0}^\infty\binom{2n}{k}\int_{\partial D} z^{2n-2k-1}\dd{z}
+	\end{align*}
+	wobei wir die Summe und das Integral vertauschen dürfen, weil die Summe gleichäßig konvergiert. Außerdem wissen wir, dass das Integral verschwindet wenn $2n-2k-1\neq -1$. Also nur $k=n$ bleibt und
+	\begin{align*}
+		4^n i \int_0^{2\pi} \cos^{2n}(t)\dd{t}=&\int_{\partial D}\frac{1}{z}\left( z+\frac{1}{z} \right)^{2n}\dd{z}\\
+		=&\binom{2n}{n}\int_{\partial D}\frac{1}{z}\dd{z}\\
+		=&\frac{(2n)!}{(n!)^2}(2\pi i),
+	\end{align*}
+	also
+	\[
+	\int_0^{2\pi} \cos^{2n}(t)\dd{t}=\frac{\pi(2n)!}{2^{2n-1}(n!)^2}
+	.\qedhere\] 
+\end{proof}
+\begin{Problem}
+	Es seien $G$ ein Gebiet in $\C$, $f,g\in \mathcal{H}(G)$ mit $f',g':G\to \C$ stetig sowie $\gamma$ ein geschlossener Weg in $G$. Zeigen Sie, dass
+	\[
+	\int_\gamma f'(w)g(w)\dd{w}=-\int_\gamma f(w)g'(w)\dd{w}
+	.\] 
+\end{Problem}
+\begin{proof}
+	Wir bezeichnen den Definitionsbereich von $\gamma$ mit $I:=[a,b]$, also $\gamma:I\to G$. Es gilt
+	\begin{align*}
+		\int_\gamma f'(w)g(w)\dd{w}=&\int_I f'(\gamma(t))g(\gamma(t))\gamma'(t)\dd{t}\\
+		=&\left[ f(\gamma(t))g(\gamma(t)) \right]_a^b-\int_I f(\gamma(t))\left[\dv{t}\left( g(\gamma(t)) \right)\right]\dd{t}\\
+		=&-\int_I f(\gamma(t))g'(\gamma(t))\gamma'(t)\dd{t}\\
+		=&-\int_\gamma g(w)g'(w)\dd{w}
+	\end{align*}
+	wobei $\left. f(\gamma(t))g(\gamma(t))\right|_a^b=0$, weil $\gamma(b)=\gamma(a)$.
+\end{proof}
+\begin{Problem}
+Für eine nicht-leere Menge $A\subseteq \C$ und einen Punkt $z\in \C$ bezeichne
+\[
+\text{dist}(z,A):=\inf \{|z-a|:a\in A\} 
+\]
+den Abstand von $z$ zu $A$. Im Beweis von Korollar 4.8 der Vorlesung wurde folgende Hilfsaussage aus der Analysis verwendet: Es sei $U$ eine offene Menge in $\C$ und $K$ eine nicht-leere kompakte Teilmenge von $U$. Dann gibt es ein $\delta_0>0$ derart, dass die Menge $S_{\delta_0}:=\{z\in \C:\text{dist}(z,K)\le \delta_0\} $ in $U$ enthalten ist. Beweisen Sie diese Aussage. 
+\end{Problem}
+\begin{proof}
+	Wir nehmen an, dass dies falsch ist. D.h. für jedes $\delta_0>0$ ist $S_{\delta_0}\not\subeteq U$. Wir betrachten die $\delta_0=\{1 / n,n\in \N\} $. Für jedes solches $\delta_0$ wählen wir eine offene Überdeckung von $K$ $U=\{B_{\delta_0}(x)|x\in M\} $. Die Überdeckung $U$ hat eine endliche Teilüberdeckung.
+\end{proof}
+\begin{Problem}
+	Es sei $U$ eine offene Menge in $\C$.
+	\begin{parts}
+	\item Zeigen Sie, dass $U$ höchstens abzählbar viele Komponenten besitzt.
+	\item  Konstruieren Sie ein Beispiel einer unbeschränkten offenen Menge $U$ mit unendlich vielen Komponenten.
+	\item Konstruieren Sie ein Beispiel einer beschränkten offenen Menge $U$ mit unendlich vielen Komponenten. 
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item $\C$ erfüllt das zweite Abzählbaraxiom. Insbesondere wählen wir als abzählbare Basis die offene Kugeln mit rationalen Koordinaten und rationalem Radius. Die Basiselemente sind zusammenhängend. 
+
+	Wir nehmen an, dass $U$ überabzählbar viele Komponenten besitzt. Wir wählen für jede Komponente einen Vertreter $x_i,~i\in I$. Für jedes $x_i$ wählen wir ein Basiselement $x_i\in B_i\subseteq U$, was möglich ist, weil $U$ offen ist.
+\item Die Menge
+	\[
+	M=\bigcup_{k=1}^\infty B_1(2k)
+	\]
+	ist offen (als Vereinigung offene Mengen), unbeschränkt (für jedes $k\in \N$ enthält $M$ das Element $2k\in \C$) und hat unendlich viele Komponenten (die Kugeln in der Vereinigung sind die Komponenten).
+\item  
+\end{parts}
+\end{proof}
