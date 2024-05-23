@@ -49,6 +49,7 @@
 	\end{align*}
 	wobei $\left. f(\gamma(t))g(\gamma(t))\right|_a^b=0$, weil $\gamma(b)=\gamma(a)$.
 \end{proof}
+\iffalse
 \begin{Problem}
 Für eine nicht-leere Menge $A\subseteq \C$ und einen Punkt $z\in \C$ bezeichne
 \[
@@ -59,6 +60,7 @@ den Abstand von $z$ zu $A$. Im Beweis von Korollar 4.8 der Vorlesung wurde folge
 \begin{proof}
 	Wir nehmen an, dass dies falsch ist. D.h. für jedes $\delta_0>0$ ist $S_{\delta_0}\not\subseteq U$. Wir betrachten die $\delta_0=\{1 / n,n\in \N\} $. Für jedes solches $\delta_0$ wählen wir eine offene Überdeckung von $K$ $U=\{B_{\delta_0}(x)|x\in M\} $. Die Überdeckung $U$ hat eine endliche Teilüberdeckung.
 \end{proof}
+\fi
 \begin{Problem}
 	Es sei $U$ eine offene Menge in $\C$.
 	\begin{parts}
@@ -72,11 +74,12 @@ den Abstand von $z$ zu $A$. Im Beweis von Korollar 4.8 der Vorlesung wurde folge
 	\item $\C$ erfüllt das zweite Abzählbaraxiom. Insbesondere wählen wir als abzählbare Basis die offene Kugeln mit rationalen Koordinaten und rationalem Radius. Die Basiselemente sind zusammenhängend. 
 
 	Wir nehmen an, dass $U$ überabzählbar viele Komponenten besitzt. Wir wählen für jede Komponente einen Vertreter $x_i,~i\in I$. Für jedes $x_i$ wählen wir ein Basiselement $x_i\in B_i\subseteq U$, was möglich ist, weil $U$ offen ist.
+	
+	Das Basiselement liegt in höchstens 1 Komponente, weil das Basiselement zusammenhängend ist. Wir brauchen dann überabzählbar viele Basiselemente, ein Widerspruch.
 \item Die Menge
 	\[
 	M=\bigcup_{k=1}^\infty B_1(2k)
 	\]
-	ist offen (als Vereinigung offene Mengen), unbeschränkt (für jedes $k\in \N$ enthält $M$ das Element $2k\in \C$) und hat unendlich viele Komponenten (die Kugeln in der Vereinigung sind die Komponenten).
-\item  
+	ist offen (als Vereinigung offene Mengen), unbeschränkt (für jedes $k\in \N$ enthält $M$ das Element $2k\in \C$) und hat unendlich viele Komponenten (die Kugeln in der Vereinigung sind die Komponenten).\qedhere
 \end{parts}
 \end{proof}
