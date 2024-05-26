@@ -1,0 +1,42 @@
+\begin{Problem}
+	\textbf{Vektorpotential für ein homogenes Magnetfeld} Wir betrachten ein konstantes, homogenes Magnetfeld $\vec{B}$, das entlang der $z$-Richtung orientiert ist, d.h. $\vec{B} = (0, 0, B)$.
+	\begin{parts}
+	\item  Zeigen Sie, dass $\vec{A} = (0, Bx, 0)$ ein Vektorpotential für $\vec{B}$ ist.
+	\item Finden Sie für $\vec{B}$ ein Vektorpotential $\vec{A}'$, das in $x$-Richtung orientiert ist. Geben Sie eine Eichtransformation an, die $\vec{A}'$ in $\vec{A}$ überführt.
+	\item  Zeigen Sie, dass auch $\vec{A}^{\prime\prime} =\frac{1}{2}\vec{B}\times \vec{x}$ ein Vektorpotential für $\vec{B}$ ist. Geben Sie auch hier eine Eichtransformation an, die $\vec{A}^{\prime\prime}$ in $\vec{A}$ überführt.	
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+\begin{parts}
+\item 
+	\begin{align*}
+		\curl{\vec{A}}=&\begin{vmatrix}
+			\vu{e}_x & \vu{e}_y & \vu{e}_z\\
+			\pdv{x} & \pdv{y} & \pdv{z}\\
+			0 & Bx & 0
+		\end{vmatrix}\\
+		=&B\vu{e}_z
+	\end{align*}
+\item Durch eine direkte Rechnung
+	\[
+	\vec{A}'= -By\vu{e}_y
+	.\] 
+	Die gewünschte Eichtransformation ist definiert durch eine Funktion $f=-Bxy$, und die Eichtransformation
+	\[
+	\vec{A}'\mapsto \vec{A}' + \grad{f}
+	.\] 
+\item Die Rechnung ergibt das Potential
+	\[
+	\vec{A}^{\prime\prime}=\frac{1}{2}\begin{pmatrix} -By \\ Bx\\0 \end{pmatrix} 
+	.\] 
+	Aus $\vec{A}^{\prime\prime}=\frac{1}{2}(\vec{A}+\vec{A}')$ sieht man einfach, dass das ein Vektorpotential ist.
+	\begin{align*}
+		\curl{\vec{A}^{\prime\prime}}=&\frac{1}{2}\curl{\left( \vec{A}+\vec{A}' \right)}\\
+		=&\frac{1}{2}\curl{\vec{A}}+\frac{1}{2}\curl{\vec{A}'}\\
+		=&\frac{1}{2}\vec{B}+\frac{1}{2}\vec{B}\\
+		=&\vec{B}
+	\end{align*}
+	Die Eichtransformation ist definiert durch $f=-Bxy / 2$.\qedhere 
+\end{parts}	
+\end{proof}

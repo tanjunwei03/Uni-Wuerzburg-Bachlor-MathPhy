@@ -1,0 +1,103 @@
+\begin{Problem}
+	Beweisen oder widerlegen Sie:
+	\begin{parts}
+	\item Es sei $U\subseteq \C$ offen, $f\in \mathcal{H}(U)$ und $\Delta$ ein Dreieck mit $\partial \Delta\subseteq U$. Dann gilt
+		\[
+		\int_{\partial \Delta} f(z)\dd{z}=0
+		.\] 
+	\item Die Funktion
+		\[
+		f:\C\setminus \{0\} \to \C,\qquad f(z)=\frac{e^z-1}{z}
+		\] 
+		besitzt eine holomorphe Stammfunktion auf $\C$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Falsch. Sei $U=\C\setminus \{0\} $, $f:z\mapsto \frac{1}{z}$, was holomorph auf $U$ ist. Wir betrachten ein Dreieck, der die Ursprung entschließt. Alle Voraussetzungen sind dann erfüllt, jedoch ist das Integral ungleich Null.
+	\item Falsch. Wir integrieren über das Rand von $K_1(0)$, also der Weg $z=e^{it},~t\in [0,2\pi]$. Weil $e^z-1$ holomorph ist, ist $\int_{K_1(0)} f(z)\dd{z}\neq 0$, also die Funktion besitzt keine Stammfunktion auf $\C$.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es seien $a_2,a_3,\dots, \in \C$ und es gelte
+	\[
+	\sum_{n=2}^\infty n |a_n|<1
+	.\] 
+	Wir betrachten die Funktion
+	\[
+	f:\mathbb{D}\to \C,\qquad f(z)=z+\sum_{n=2}^\infty a_n z^n
+	.\] 
+	Beweisen Sie, dass $f$ injektiv auf $\mathbb{D}$ ist.
+	
+	\emph{Hinweis: Versuchen Sie ein geeignetes Wegintegral zu betrachten}
+\end{Problem}
+
+\begin{proof}
+	Die Potenzreihe konvergiert offensichtlich. Damit ist $f$ glatt. Deren Ableitung kann durch eine Potenzreihe dargestellt werden
+	\[
+	f'(z)=1+\sum_{n=2}^\infty n a_n z^{n-1}
+	.\] 
+	$f'$ besitzt eine holomorphe Stammfunktion $f$. Wir nehmen an, dass $f$ nicht injektiv ist. Das heißt: Es gibt $a,b\in \mathbb{D}$, sodass $f(a)=f(b)$. Wir verbinden $a$ und $b$ mit einer Gerade $\gamma:[t_1,t_2]\to \mathbb{D}$ und betrachten das Integral
+	\[
+	\int_\gamma f'(z)\dd{z}=f(b)-f(a)=0
+	.\] 
+	Das Integral ist auch
+	\[
+		\int_\gamma f'(z)\dd{z} =\int_\gamma \left( 1+\sum_{n=2}^\infty n a_n z^{n-1} \right)\dd{z}
+		\]
+	Wir schätzen jetzt die Summe. Da $\gamma$ eine Gerade zwischen $a$ und $b$ ist, ist $|z|\le \min(|a|,|b|)=:r<1$. Das heißt
+	\begin{align*}
+		\left| \sum_{n=2}^\infty n a_n z^{n-1} \right| \le& \sum_{n=2}^\infty \left|n a_n z^{n-1}\right|\\
+		\le& \sum_{n=2}^\infty n |a_n| r^{n-1}\\
+		\le& \sum_{n=2}^\infty n |a_n| r & r < 1 \\
+		<&r
+	\end{align*}
+	Es gilt also
+	\[
+	\Re f' > 1 - r
+	\]
+	und
+	\[
+	|\Im f'|<r
+	.\] 
+	Weil $\gamma$ eine Gerade ist, ist $\gamma'(x) = \frac{b-a}{t_2-t_1}$, also konstant. Wir rechnen dann
+	\begin{align*}
+		\int_\gamma f'(z)\dd{z}=& \int_{t_1}^{t_2} (\Re f + i\Im f)(\Re \gamma' +i\Im \gamma')\dd{t}\\
+		=&\int_{t_1}^{t_2}(\Re f)(\Re \gamma')-(\Im f)(\Im \gamma')\\
+		&+i\left[(\Re f)(\Im \gamma')+(\Im f)(\Re \gamma') \right] \dd{t}
+	\end{align*}
+	Falls
+	\[
+	\int_{t_1}^{t_2} (\Re f)(\Re \gamma') - (\Im f)(\Im \gamma')\dd{t}\neq 0
+	,\]
+	gibt es sofort ein Widerspruch, da $\int_\gamma f'(z)\dd{z} \neq 0$. Wir nehmen an, dass dies nicht der Fall ist. Insbesondere ist $\Im\gamma'\neq 0$, da sonst $\Re\gamma'\neq 0$, und
+	\[
+	\left|\Re\gamma'\right| \left|\int_{t_1}^{t_2}\Re f\dd{t}\right|> |\Re\gamma'|(1-r)(t_2-t_1)>0
+	,\]
+	ein Widerspruch. Es gilt also $|\Re\gamma'|\neq |\Im\gamma'|$, da dann gälte
+	\[
+	|\Re\gamma'|\left|\int_{t_1}^{t_2}\Re f\dd{t}\right|> |\Re\gamma'|(1-r)(t_2-t_1)
+	\]
+	und
+	\begin{align*}
+		|\Im\gamma'|\left| \int_{t_1}^{t_2}\Im f\dd{t} \right| =&|\Re\gamma'|\left| \int_{t_1}^{t_2}\Im f\dd{t} \right| \\
+		\le& |\Re \gamma'|r(t_2-t_1)
+	\end{align*}
+und
+\[
+(\Re\gamma')\int_{t_1}^{t_2}\Re f\dd{t}> (\Im\gamma')\int_{t_1}^{t_2}\Im f\dd{t}
+\]
+ein Widerspruch.
+	Das heißt:
+	\[
+	(\Re \gamma')\int_{t_1}^{t_2}(\Re f)\dd{t} =\Im\gamma' \int_{t_1}^{t_2} \Im f\dd{t}
+	.\] 
+	Dann betrachten wir das andere Integral
+	\begin{align*}
+		&\int_{t_1}^{t_2} (\Re f)(\Im \gamma')+(\Im f)(\Re \gamma')\dd{t}\\
+		=&(\Im\gamma')\int_{t_1}^{t_2} (\Re f)\dd{t} +(\Re\gamma')\int_{t_1}^{t_2}(\Im f)\dd{t}\\
+		=&(\Im \gamma')\int_{t_1}^{t_2}\Re f\dd{t}+\frac{(\Re \gamma')^2}{\Im\gamma'}\int_{t_1}^{t_2}\Re f\dd{t}\\
+		=&\frac{(\Im\gamma')^2-(\Re\gamma')^2}{\Im\gamma'}\int_{t_1}^{t_2}\Re f\dd{t}
+	\end{align*}
+	Wir wissen aber, dass $|\Im\gamma'|\neq |\Re\gamma'|$. Das Integral ist $>(1-r)(t_2-t_1)$, also ungleich Null, also wir haben wieder einen Widerspruch.
+\end{proof}
