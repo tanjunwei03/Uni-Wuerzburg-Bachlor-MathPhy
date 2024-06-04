@@ -1,0 +1,57 @@
+\documentclass[12pt]{revtex4-2}
+\usepackage{polynom}
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{subcaption} 
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Satz}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Korollar}
+\newtheorem{Example}[Theorem]{Beispiel}
+\newtheorem{Remark}[Theorem]{Bemerkung}
+\theoremstyle{definition}
+\newtheorem{Problem}{Aufgabe}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\begin{document}
+	\includegraphics[width=\textwidth]{manifolds.pdf}
+	\textbf{Aufgabe 1: (Parametrisierung)} Sei $M\subseteq \R^n$ eine $k$-dimensionale Untermannigfaltigkeit der Klasse $C^\alpha$ und $f\in \mathcal{L}^1(\lambda_M)$. Außerdem existieren offene Mengen $U,V\subseteq \R^k$ und lokale Parameterdarstellungen $\varphi:U\to \R^n$ und $\psi:V\to\R^n$ von $M$ mit $\varphi(U)\cup \psi(V)=M$ und $\varphi(U)=M\backslash A$, wobei $A=\psi(N)$ mit einer $\lambda_k$-Nullmenge $N\subseteq V$ gilt. Zeigen Sie, dass $A$ messbar ist und
+          \[
+		\int_M f\dd{\lambda_M}=\int_{M\backslash A} f\dd{\lambda_M}=\int_U f\circ \varphi \cdot \sqrt{\text{det}\varphi'^T\varphi'} \dd{\lambda_k}
+	.\] 
+\begin{proof}
+	$\varphi(U)$ ist messbar, weil f\"{u}r jedes Punkt in $\varphi(U)$ eine offene Umgebung $\varphi(U)$ gibt, deren Urbild $\mathcal{L}(n)$ als offene Menge noch messbar ist. Weil $\mathcal{L}_M$ eine $\sigma$-Algebra ist, ist $A=M\backslash \varphi(U)$ messbar.
+
+	Wir betrachten den endlichen Atlas $\varphi:U\to \varphi(U)$, $\psi:V\to \psi(V)$ mit passender Zerlegung der Eins $\chi_{\varphi(U)}, \chi_{A}$. Diese ist eine Zerlegung der Eins, da die Mengen messbar sind.
+
+	Es gilt
+	\begin{align*}
+		\int_M f\dd{\lambda_M}=&\int_{U}(f\cdot \chi_{\varphi(U)})\circ\varphi \cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}\\
+				       &+\int_V (f\cdot \chi_{A})\circ \psi \sqrt{\text{det}(\psi^{\prime T}\psi')}\dd{\lambda_k}\\
+		=&\int_U f\circ\varphi\cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}\\
+		 &+\int_N  f\circ\psi\cdot \sqrt{\text{det}(\psi^{\prime T}\psi')} \dd{\lambda_k}\\
+		\le&\int_U f\circ\varphi\cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}\\
+		 &+\int_N  \infty\dd{\lambda_k}\\
+		=&\int_U f\circ\varphi\cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}+\infty\lambda_k(N)\\
+		=&\int_U f\circ\varphi\cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}+\infty\cdot 0\\
+		=&\int_U f\circ\varphi\cdot \sqrt{\text{det}(\varphi^{\prime T}\varphi')} \dd{\lambda_k}\\
+		=&\int_{M\backslash A}f\dd{\lambda_M}.\qedhere
+	\end{align*}
+\end{proof}
+
+\end{document}
