@@ -1,0 +1,46 @@
+\begin{Problem}
+	Es sei $n\in \N_0$. Bestimmen Sie alle ganzen Funktionen, die für alle $r>0$ folgende Eigenschaft erfüllen:
+	\[
+		\frac{1}{2\pi}\int_0^{2\pi}|f(re^{it})|\dd{t}\le r^n
+	.\] 
+\end{Problem}
+
+\begin{Problem}
+	Es sei $r>0$ und $f\in \mathcal{H}(K_r(0)) $. Ferner sei für $z\in \C$ die (formale) Potenzreihe
+	\[
+		F(z):=\sum_{k=0}^{\infty} \frac{f^{(k)}(0)}{(k!)^2}z^k
+	\]
+	gegeben. Zeigen Sie, dass $F:\C\to \C$ eine ganze Funktion definiert und dass für alle $z\in \C$ und alle $0\le R < r$ folgende Ungleichung gilt
+	\[
+		F(z)\le \|f\|_{\partial K_r(0)}\exp\left( \frac{|z|}{R} \right) 
+	.\] 
+\end{Problem}
+
+\begin{Problem}
+	Es sei $f:\C\to \C$ eine ganze, nullstellenfreie Funktion mit der Eigenschaft
+	\[
+	|f(2z)|\le 2|f(z)|,\qquad z\in \C
+	.\] 
+	Zeigen Sie, dass $f$ konstant ist.
+\end{Problem}
+\begin{proof}
+	Sei
+	\[
+		M=\sup_{z\in \overline{K_r(0)}}f(z)
+	.\] 
+	\begin{Theorem}
+		Sei $|z|<2^n$. Dann gilt $|f(z)|\le M 2^n$. 
+	\end{Theorem}
+	Das beweisen wir durch Induktion
+\end{proof}
+\begin{Problem}
+	Seien $U\subseteq \C$ offen, $z_0\in U$ und $f\in \mathcal{H}(U\setminus \{z_0\} )$. Zeigen Sie, dass jede der Voraussetzungen hinreichend für die Existenz einre holomorphen Fortsetzung $\tilde{f}:U\to \C$ von $f$ auf $U$ ist.
+	\begin{parts}
+		\item $f(U\setminus \{z_0\} )\subseteq \mathbb{H}^+=\{z\in \C|\Re(z)>0\} $.
+		\item Es existieren $C>0$ und $\alpha>-1$ derart, dass
+			\[
+			|f(z)|\le C|z-z_0|^\alpha
+		\]
+		für alle $z\in U\setminus \{z_0\} $ ist.
+	\end{parts}
+\end{Problem}
