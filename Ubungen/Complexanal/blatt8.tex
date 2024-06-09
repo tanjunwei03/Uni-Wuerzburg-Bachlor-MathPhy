@@ -15,7 +15,9 @@
 		F(z)\le \|f\|_{\partial K_r(0)}\exp\left( \frac{|z|}{R} \right) 
 	.\] 
 \end{Problem}
-
+\begin{proof}
+	Wir zeigen, dass die Potenzreihe konvergiert. Sei $z\in \C$ beliebig. Es gibt $z_0\in K_r(0)$ mit $z=Rz_0$ und $\R\ni R > 0$. Mit dem Würzelkriterium 
+\end{proof}
 \begin{Problem}
 	Es sei $f:\C\to \C$ eine ganze, nullstellenfreie Funktion mit der Eigenschaft
 	\[
@@ -26,15 +28,31 @@
 \begin{proof}
 	Sei
 	\[
-		M=\sup_{z\in \overline{K_r(0)}}f(z)
+		M=\sup_{z\in \overline{K_r(0)}}|f(z)|
 	.\] 
+	Das ist endlich, weil $|f|$ auf $\overline{K_r(0)}$ stetig ist.
 	\begin{Theorem}
 		Sei $|z|<2^n$. Dann gilt $|f(z)|\le M 2^n$. 
 	\end{Theorem}
-	Das beweisen wir durch Induktion
+	\begin{proof}
+	Das beweisen wir durch Induktion. Für $n=0$ ist das die Definition von $f$. Jetzt nehmen wir an, dass die Aussage für beliebiges $n\in \N$ gilt. Wir betrachten $K_{2^{n+1}}(0)$. Für $z\in K_{2^{n+1}}(0)$ gilt $z / 2\in K_{2^n}(0)$ und daher per Induktionsvoraussetzung $|f(z / 2)|\le M 2^n$.
+
+	Aus der in der Aufgabe gegebenen Voraussetzung gilt dann
+	\[
+		|f(z)| \le M 2^{n+1}
+	.\qedhere\] 
+\end{proof}
+Sei $z\in \C$ beliebig und $n\in \N_0$, sodass $2^{n+1}>|z|\ge 2^n$. Daraus folgt
+\begin{align*}
+	|f(z)|<& M 2^{n+1}\\
+	<& 2M|z|
+\end{align*}
+also wir dürfen Satz 7.12 anwenden. $f(z)$ ist daher ein Polynom vom Grad $\le 1$, $f(z)=az+b,~a,b\in \C$. Wir wissen aber, dass ein Polynom vom Grad 1 eine Nullstelle besitzt (entweder mit dem Fundamentalsatz der Algebra oder wir können die Gleichung direkt lösen und erhalten $z_0= - b / a$.)
+
+Nach Aufgabenstellung ist $f$ jedoch nullstellenfrei, also $a=0$ und $f$ ist konstant.
 \end{proof}
 \begin{Problem}
-	Seien $U\subseteq \C$ offen, $z_0\in U$ und $f\in \mathcal{H}(U\setminus \{z_0\} )$. Zeigen Sie, dass jede der Voraussetzungen hinreichend für die Existenz einre holomorphen Fortsetzung $\tilde{f}:U\to \C$ von $f$ auf $U$ ist.
+	Seien $U\subseteq \C$ offen, $z_0\in U$ und $f\in \mathcal{H}(U\setminus \{z_0\} )$. Zeigen Sie, dass jede der Voraussetzungen hinreichend für die Existenz einer holomorphen Fortsetzung $\tilde{f}:U\to \C$ von $f$ auf $U$ ist.
 	\begin{parts}
 		\item $f(U\setminus \{z_0\} )\subseteq \mathbb{H}^+=\{z\in \C|\Re(z)>0\} $.
 		\item Es existieren $C>0$ und $\alpha>-1$ derart, dass
