@@ -1,0 +1,219 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{polynom}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{ulem}
+\usepackage{transparent}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+%tcolorbox
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\setlength{\parindent}{0cm}
+\captionsetup[table]{name=Tabelle}
+
+\begin{document}
+\title{Fortgeschrittene Fehlerrechnung Übungsblatt 4}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\section{Messung}
+Zur Berechnung der Fehler nehmen wir an, dass die Streuung durch eine Poissonverteilung gut beschrieben ist. Der Fehler ist also der quadratische Wurzel des Messwerts. Wir bezeichnen die Anzahl der Zerfälle mit $r$.
+\begin{table}[h]
+\begin{center}
+	\begin{tabular}{p{3cm}p{3cm}p{3cm}}
+		\toprule
+		\textbf{Zeit (s)} & \textbf{Anzahl Zerfälle} & \textbf{Poissonfehler} \\\midrule
+	20 & 33 & 5,7 \\\midrule
+40 & 30 & 5,5 \\\midrule
+60 & 27 & 5,2 \\\midrule
+80 & 26 & 5,1 \\\midrule
+100 & 23 & 4,8 \\\midrule
+120 & 20 & 4,5 \\\midrule
+140 & 19 & 4,4 \\\midrule
+160 & 17 & 4,1 \\\midrule
+180 & 18 & 4,2 \\\midrule
+200 & 12 & 3,5 \\\bottomrule
+	\end{tabular}
+\end{center}
+\caption{Anzahl der Zerfälle mit Poissonfehler in Abhängigkeit von der Zeit}
+\label{tab:1}
+\end{table}
+
+Radioaktive Zerfall ist durch das Zerfallgesetz beschrieben
+\begin{equation}\label{eq:1}
+	N(t)=N_0e^{-\lambda t}.
+\end{equation}
+Deren Ableitung ist
+\[N'(t)=-\lambda N_0e^{-\lambda t}\]
+und die Anzahl der Zerfälle ist damit proportional zu $\lambda e^{-\lambda t}$. Wir schreiben die Anzahl der Zerfälle als $r(t)=k\lambda e^{-\lambda t}$. Es gilt also
+\begin{equation}\label{eq:2}
+\ln r = \ln (k\lambda) -\lambda t
+\end{equation}
+Wir plotten $\ln r$ in Abhängigkeit von der Zeit, und die Steigung ist $-\lambda$. Man kann daraus die Halbwertzeit bestimmen, indem man $N(t) = N_0/2$ in Gl.~\eqref{eq:1} einsetzt.
+\[
+	\frac{N_0}{2} = N_0e^{-\lambda t_{1/2}}
+\]
+mit Lösung
+\begin{equation}
+	t_{1/2}=\frac{\ln 2}{\lambda}
+\end{equation}
+Sei die Steigung $b$. Es gilt
+\begin{equation}\label{eq:halflife}
+	t_{1/2}=-\frac{\ln 2}{b}
+\end{equation}
+Mit der Gauss'sche Fehlerfortpflanzung gilt
+\begin{equation}\label{eq:error}
+	\Delta t_{1/2} = \frac{\ln 2}{b^2}\Delta b
+\end{equation}
+Wir bestimmen also das natürliche Logarithmus der Zerfallanzahl. Dessen Fehler ist durch
+\[\Delta(\log r)= \frac{\Delta r}{r}\]
+bestimmt. Weiterhin bezeichnen wir die Zeit mit $x$ und $\ln r$ mit $y$.
+\begin{table}[h]
+\begin{center}
+	\begin{tabular}{p{2cm}p{2cm}p{2cm}}
+		\toprule
+\textbf{Zeit (s)} & $\ln r$ & $\Delta(\ln r)$\\\midrule
+ 20 & 3,50 & 0,17 \\\midrule
+40 & 3,40 & 0,18 \\\midrule
+60 & 3,30 & 0,19 \\\midrule
+80 & 3,26 & 0,20 \\\midrule
+100 & 3,14 & 0,21 \\\midrule
+120 & 3,00 & 0,22 \\\midrule
+140 & 2,94 & 0,23 \\\midrule
+160 & 2,83 & 0,24 \\\midrule
+180 & 2,89 & 0,24 \\\midrule
+200 & 2,48 & 0,29 \\\bottomrule
+	\end{tabular}
+\end{center}
+\caption{Verwendete Daten für ungewichtete lineare Regression}
+\label{tab:2}
+\end{table}
+\section{Ungewichtete Lineare Regression}\label{sec:unweightedreg}
+Wir finden eine Gerade
+\[y=a+bx\]
+sodass der Fehler so klein wie möglich ist. Die benötigen Größen sind
+\begin{align*}
+	N=&10\\
+	\sum x_i=&1100\text{ s}\\
+	\sum y_i=&30,73579556754441\\
+	\sum x_i^2=&154000\text{ s}^2\\
+	\sum x_i y_i=&3220,197114428394\text{ s}
+\end{align*}
+Dann berechnen wir
+\begin{align*}
+	\Delta =& N\sum x_i^2- (\sum x_i)^2\\
+	=&330000\\
+	a=&\frac 1\Delta(\sum x_i^2 \sum y_i-\sum x_i \sum x_i y_i)\\
+	=& 3,609380883426078\\
+	b=&\frac 1\Delta (N \sum x_i y_i - \sum x_i \sum y_i)\\
+	=&-0,004870921151560359\text{ s}^{-1}
+\end{align*}
+Danach schätzen wir den Fehler durch die Streuung
+\[s^2=\frac{1}{N-2}\sum_{i=1}^N (y_i - a - bx_i)^2=0,006392534773757218\]
+und die Fehler in den Parameter bestimmen wir durch
+\begin{align*}
+	\Delta a=&\left[\frac{s^2}{\Delta}\sum x_i^2\right]^{1/2}\\
+	=&0,05461852153271851\\
+	\Delta b =&\left[N\frac{s^2}{\Delta}\right]^{1/2}\\
+	=&0,0004401285891217928
+\end{align*}
+Insgesamt ist
+\begin{align*}
+	a=&3,609\pm 0,055\\
+	b=&(-0,00487\pm 0,00044)\text{ s}^{-1}
+\end{align*}
+Die Halbwertzeit ist dann nach Gl. \eqref{eq:halflife} und \eqref{eq:error}
+\[t_{1/2,1}=(142\pm 13)\text{ s}\]
+\section{Nach Gaußfehlern Gewichteter Lineare Regression}\label{sec:weightedreg}
+Die Bestwerte sind nach der Vorlesungsfolien gegeben durch
+\begin{align*}
+	a=&\frac 1\Delta \left(\sum\frac{y_i}{\sigma_i^2}\sum\frac{x_i^2}{\sigma_i^2}-\sum\frac{x_i}{\sigma_i^2}\sum\frac{x_i y_i}{\sigma_i^2}\right)\\
+	b=&\frac 1\Delta \left(\sum\frac{1}{\sigma_i^2}\sum\frac{x_i y_i}{\sigma_i^2}-\sum\frac{x_i}{\sigma_i^2}\sum\frac{y_i}{\sigma_i}\right)\\
+	\Delta=&\sum\frac{1}{\sigma_i^2}\sum\frac{x_i^2}{\sigma_i^2}-\left(\sum\frac{x_i}{\sigma_i^2}\right)^2
+\end{align*}
+Daraus ergibt sich
+\begin{align*}
+	\Delta=&1,577216\times 10^8\text{ s}^2\\
+	a=&3,595703335355059\\
+	b=&-0,004695908025178519\text{ s}^{-1}
+\end{align*}
+Die Fehler sind durch
+\begin{align}
+	\Delta a=&\left[\frac 1\Delta \sum\frac{x_i^2}{\sigma_i^2}\right]^{1/2}\label{eq:gausspropa}\\
+	=&0,131167828328609\nonumber\\
+	\Delta b=&\left[\frac 1\Delta \sum\frac{1}{\sigma_i^2}\right]^{1/2}\label{eq:gausspropb}\\
+	=& 0,001194388661734524\text{ s}^{-1}\nonumber
+\end{align}
+Insgesamt ist
+\begin{align*}
+	a=&3,60\pm 0,13\\
+	b=&(-0,0047\pm 0,0012)\text{ s}^{-1}
+\end{align*}
+Nach Gl. \eqref{eq:halflife} und \eqref{eq:error} ist die Halbwertzeit
+\[t_{1/2,2}=(148\pm 38)\text{ s}\]
+\section{Poisson-Regression}\label{sec:poissonreg}
+In diesem Abschnitt verwenden wir Regression unter der Annahme poissonverteilte Messwerte. Die Bestwerte $a$ und $b$ sind Lösungen des Gleichungssystems (vgl. Vorlesungsfolien)
+\begin{align}
+	\sum\frac{y_i}{a+bx_i}-N=&0\label{eq:poissonreg1}\\
+	\sum\frac{y_i x_i}{a+b x_i}-\sum x_i=&0\label{eq:poissonreg2}
+\end{align}
+Wir lösen das Gleichungssystem mit Mathematica (Newton'sche Verfahren) mit den in Abschnitt \ref{sec:unweightedreg} gefundenen Parameter als Startpunkt und erhalten als Bestwerte
+\begin{align*}
+	a=& 3,61311616971402\\
+	b=& -0,004904878299632539\text{ s}^{-1}
+\end{align*}
+Wir setzen diese Werte in der linken Seiten von Gl. \eqref{eq:poissonreg1} und \eqref{eq:poissonreg2} ein und erhalten
+\begin{align*}
+	\sum\frac{y_i}{a+bx_i}-N=&1,776356839400251\times 10^{-15}\\
+	\sum\frac{y_i x_i}{a+b x_i}-\sum x_i=&2,273736754432321\times 10^{-13}
+\end{align*}
+also die Werte sind eigentlich Lösungen.
+
+Alle der $y_i$ sind großer als 9, also die Poissonverteilung stimmt relativ gut mit einer Gaußverteilung überein (vgl. Vorlesungsfolien Vorlesung 1).  Daher dürfen wir die Formeln \eqref{eq:gausspropa} und \eqref{eq:gausspropb} zur Berechnung der Fehler verwenden. Das Ergebnis ist auch gleich, nämlich
+\begin{align*}
+	\Delta a=&0,131167828328609\\
+	\Delta b=& 0,001194388661734524\text{ s}^{-1}
+\end{align*}
+Die Halbwertzeit ist wieder nach Gl. \eqref{eq:halflife} und \eqref{eq:error} bestimmt
+\[t_{1/2,3}=(141\pm 34)\text{ s} \]
+\section{Diskussion}
+Alle durch Regression bestimmte Halbwertzeiten stimmen bis auf dem Fehler überein. Die Abweichungen können erklärt werden, wenn man die unterschiedliche Herangehensweise betrachtet --- während der Regression suchen wir die Parameter, sodass die Likelihood-Funktion maximal ist. Da die angenommene Verteilungen unterschiedlich sind, haben wir unterschiedliche Likelihood-Funktionen und daher unterschiedliche Ergebnisse.
+
+Die Fehlerbetrachtung im Abschnitt \ref{sec:weightedreg} ist genauer als die Fehlerbetrachtung in \ref{sec:unweightedreg}, da der Fehler da durch das Poissonfehler geschätzt wird, und daher ist die Unsicherheit besser dargestellt. Im Vergleich mit der Fehlerbetrachtung im Abschnitt \ref{sec:poissonreg} ist die in \ref{sec:poissonreg} vorzuziehen, weil die Daten poissonverteilt sind, also die Poissonregression ist ein genaueres Modell der Streuung. 
+
+Deswegen ist es zu erwarten, dass die Poissionregression ein besseres Ergebnis liefern soll, sogar wenn wir mehr Messungen später machen. Obwohl wir hier eine numerische Lösung zu einem Gleichungssystem finden soll, ist die Konvergenz ausreichend gut. Daher nehmen wir die dritte Halbwertzeit als Ergebnis
+\[t_{1/2}=(141\pm 34)\text{ s}\]
+\end{document}
