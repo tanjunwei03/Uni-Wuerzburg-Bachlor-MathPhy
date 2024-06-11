@@ -1,22 +1,85 @@
 \begin{Problem}
 	Es sei $n\in \N_0$. Bestimmen Sie alle ganzen Funktionen, die für alle $r>0$ folgende Eigenschaft erfüllen:
 	\[
-		\frac{1}{2\pi}\int_0^{2\pi}|f(re^{it})|\dd{t}\le r^n
-	.\] 
-\end{Problem}
-
-\begin{Problem}
-	Es sei $r>0$ und $f\in \mathcal{H}(K_r(0)) $. Ferner sei für $z\in \C$ die (formale) Potenzreihe
-	\[
-		F(z):=\sum_{k=0}^{\infty} \frac{f^{(k)}(0)}{(k!)^2}z^k
-	\]
-	gegeben. Zeigen Sie, dass $F:\C\to \C$ eine ganze Funktion definiert und dass für alle $z\in \C$ und alle $0\le R < r$ folgende Ungleichung gilt
-	\[
-		F(z)\le \|f\|_{\partial K_r(0)}\exp\left( \frac{|z|}{R} \right) 
+	\frac{1}{2\pi}\int_0^{2\pi}|f(re^{it})|\dd{t}\le r^n
 	.\] 
 \end{Problem}
 \begin{proof}
-	Wir zeigen, dass die Potenzreihe konvergiert. Sei $z\in \C$ beliebig. Es gibt $z_0\in K_r(0)$ mit $z=Rz_0$ und $\R\ni R > 0$. Mit dem Würzelkriterium 
+	$f$ ist eine ganze Funktion und daher in einer Potenzreihe entwickelbar
+	\[
+	f=\sum_{n=0}^{\infty} a_n z^n
+	.\] 
+	Die Cauchy-Schätzung liefert
+	\[
+	a_k=\frac{1}{2\pi i}\int_{\partial K_r(0)} \frac{f(z)}{z^{k+1}}\dd{z}
+	.\] 
+	Daraus folgt
+	\begin{align*}
+		|a_k|=&\left| \frac{1}{2\pi i}\int_{\partial K_r(0)} \frac{f(z)}{z^{k+1}}\dd{z} \right| \\
+		=&\frac{1}{2\pi}\left| \int_0^{2\pi} \frac{f(re^{it})}{r^{k+1}e^{(k+1)it}}ire^{it}\dd{t} \right|\\
+		\le& \frac{1}{2\pi}\int_0^{2\pi} \frac{|f(re^{it)}|}{r^k}\dd{t}\\
+		\le&r^{n-k}
+	\end{align*}
+	was für alle $r>0$ gilt. Falls $n-k<0$, nehmen wir $r\to \infty$ und erhalten $a_k\le \epsilon~\forall \epsilon>0$, also $a_k=0$. Falls $n-k>0$, nehmen wir $r\to 0$ und $a_k=0$ ähnlich. Nur $a_n$ ist dann ungleich null, und
+	\[
+	f(z)=az^n,~a\in \C
+	.\qedhere\] 
+\end{proof}
+\begin{Problem}
+	Es sei $r>0$ und $f\in \mathcal{H}(K_r(0)) $. Ferner sei für $z\in \C$ die (formale) Potenzreihe
+	\[
+	F(z):=\sum_{k=0}^{\infty} \frac{f^{(k)}(0)}{(k!)^2}z^k
+	\]
+	gegeben. Zeigen Sie, dass $F:\C\to \C$ eine ganze Funktion definiert und dass für alle $z\in \C$ und alle $0\le R < r$ folgende Ungleichung gilt
+	\[
+	|F(z)|\le \|f\|_{\partial K_R(0)}\exp\left( \frac{|z|}{R} \right) 
+	.\] 
+\end{Problem}
+
+\begin{proof}
+	Wir zeigen zuerst Konvergenz. Dafür verwenden wir das Wurzelkriterium. Sei $z\in \C$ beliebig. Es gibt $z_0\in K_r(0)$ und $R\in \R$, sodass $z=z_0 R$. Es folgt
+	\begin{align*}
+		&\lim_{k \to \infty} \sqrt[k]{\left|\frac{f^{(k)}(0)}{k!\cdot k!}z_0^k R^k\right|} \\
+		=&\lim_{k \to \infty} \left[\sqrt[k]{\left|\frac{f^{(k)}(0)}{k!}\right|} |z_0| \right] \left[ \frac{R}{\sqrt[k]{k!} }  \right] 
+	\end{align*}
+	Es ist zu beachten, dass
+	\[
+	\lim_{k \to \infty} \sqrt[k]{\left|\frac{f^{(k)}(0)}{k!}\right|} |z_0| < 1 
+	,\]
+	da $z_0$ innerhalb des Konvergenzkreisscheibe liegt. Es gilt auch aus der Analysis 2
+	\[
+	\lim_{k \to \infty} \frac{1}{\sqrt[k]{k!} }<1
+	\]
+	(sogar gleich Null), also die Reihe konvergiert für alle $z\in \C$. Wir wissen, das Potenzreihen ganze Funktionen darstellen. D.h. $F$ ist eine ganze Funktion.
+	
+	Jetzt entwickeln wir $F$ in einer Potenzreihe
+	\[
+	F=\sum_{n=0}^{\infty} a_n z^n
+	\]
+	mit
+	\[
+	a_n=\frac{f^{(k)}(0)}{(k!)^2}
+	.\] 
+	Aber die Koeffizienten in der Potenzreihedarstellung von $f$ $b_n$ sind durch $b_n = a_n n!$ bestimmt. Es gilt also
+	\[
+	a_n = \frac{1}{2\pi i n!}\int_{\partial K_R(0)}\frac{f(z)}{z^{n+1}}\dd{z}
+	.\] 
+	Mit der Standardabschätzung gilt
+	\[
+	\left|\int_{\partial K_R(0)} \frac{f(z)}{z^{n+1}}\dd{z}\right|\le \|f(z)\|_{\partial K_R(0)} \frac{2\pi}{R^n}
+	\] 
+	und damit
+	\[
+	|a_n|\le \frac{\|f\|_{\partial K_R(0)}}{n! R^n}
+	\] 
+	also
+	\begin{align*}
+		|F(z)|\le& \left| \sum_{n=0}^{\infty} a_n z^n \right| \\
+		\le& \sum_{n=0}^{\infty} |a_n z^n|\\
+		\le& \sum_{n=0}^{\infty} \frac{\|f\|_{\partial K_R(0)}}{n!} \frac{|z|^n}{R^n}\\
+		=&\|f\|_{\partial K_R(0)} \sum_{n=0}^{\infty} \frac{1}{n!}\frac{|z|^n}{R^n}\\
+		=&\|f\|_{\partial K_R(0)} \exp\left( \frac{|z|}{R} \right).\qedhere
+	\end{align*}
 \end{proof}
 \begin{Problem}
 	Es sei $f:\C\to \C$ eine ganze, nullstellenfreie Funktion mit der Eigenschaft
@@ -28,36 +91,36 @@
 \begin{proof}
 	Sei
 	\[
-		M=\sup_{z\in \overline{K_r(0)}}|f(z)|
+	M=\sup_{z\in \overline{K_r(0)}}|f(z)|
 	.\] 
 	Das ist endlich, weil $|f|$ auf $\overline{K_r(0)}$ stetig ist.
 	\begin{Theorem}
 		Sei $|z|<2^n$. Dann gilt $|f(z)|\le M 2^n$. 
 	\end{Theorem}
 	\begin{proof}
-	Das beweisen wir durch Induktion. Für $n=0$ ist das die Definition von $f$. Jetzt nehmen wir an, dass die Aussage für beliebiges $n\in \N$ gilt. Wir betrachten $K_{2^{n+1}}(0)$. Für $z\in K_{2^{n+1}}(0)$ gilt $z / 2\in K_{2^n}(0)$ und daher per Induktionsvoraussetzung $|f(z / 2)|\le M 2^n$.
-
-	Aus der in der Aufgabe gegebenen Voraussetzung gilt dann
-	\[
+		Das beweisen wir durch Induktion. Für $n=0$ ist das die Definition von $f$. Jetzt nehmen wir an, dass die Aussage für beliebiges $n\in \N$ gilt. Wir betrachten $K_{2^{n+1}}(0)$. Für $z\in K_{2^{n+1}}(0)$ gilt $z / 2\in K_{2^n}(0)$ und daher per Induktionsvoraussetzung $|f(z / 2)|\le M 2^n$.
+		
+		Aus der in der Aufgabe gegebenen Voraussetzung gilt dann
+		\[
 		|f(z)| \le M 2^{n+1}
-	.\qedhere\] 
-\end{proof}
-Sei $z\in \C$ beliebig und $n\in \N_0$, sodass $2^{n+1}>|z|\ge 2^n$. Daraus folgt
-\begin{align*}
-	|f(z)|<& M 2^{n+1}\\
-	<& 2M|z|
-\end{align*}
-also wir dürfen Satz 7.12 anwenden. $f(z)$ ist daher ein Polynom vom Grad $\le 1$, $f(z)=az+b,~a,b\in \C$. Wir wissen aber, dass ein Polynom vom Grad 1 eine Nullstelle besitzt (entweder mit dem Fundamentalsatz der Algebra oder wir können die Gleichung direkt lösen und erhalten $z_0= - b / a$.)
-
-Nach Aufgabenstellung ist $f$ jedoch nullstellenfrei, also $a=0$ und $f$ ist konstant.
+		.\qedhere\] 
+	\end{proof}
+	Sei $z\in \C$ beliebig und $n\in \N_0$, sodass $2^{n+1}>|z|\ge 2^n$. Daraus folgt
+	\begin{align*}
+		|f(z)|<& M 2^{n+1}\\
+		<& 2M|z|
+	\end{align*}
+	also wir dürfen Satz 7.12 anwenden. $f(z)$ ist daher ein Polynom vom Grad $\le 1$, $f(z)=az+b,~a,b\in \C$. Wir wissen aber, dass ein Polynom vom Grad 1 eine Nullstelle besitzt (entweder mit dem Fundamentalsatz der Algebra oder wir können die Gleichung direkt lösen und erhalten $z_0= - b / a$.)
+	
+	Nach Aufgabenstellung ist $f$ jedoch nullstellenfrei, also $a=0$ und $f$ ist konstant.
 \end{proof}
 \begin{Problem}
 	Seien $U\subseteq \C$ offen, $z_0\in U$ und $f\in \mathcal{H}(U\setminus \{z_0\} )$. Zeigen Sie, dass jede der Voraussetzungen hinreichend für die Existenz einer holomorphen Fortsetzung $\tilde{f}:U\to \C$ von $f$ auf $U$ ist.
 	\begin{parts}
 		\item $f(U\setminus \{z_0\} )\subseteq \mathbb{H}^+=\{z\in \C|\Re(z)>0\} $.
 		\item Es existieren $C>0$ und $\alpha>-1$ derart, dass
-			\[
-			|f(z)|\le C|z-z_0|^\alpha
+		\[
+		|f(z)|\le C|z-z_0|^\alpha
 		\]
 		für alle $z\in U\setminus \{z_0\} $ ist.
 	\end{parts}
