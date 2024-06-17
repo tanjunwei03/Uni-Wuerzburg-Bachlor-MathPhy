@@ -1,0 +1,175 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{polynom}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+%tcolorbox
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\setlength{\parindent}{0cm}
+\captionsetup[table]{name=Tabelle}
+
+\begin{document}
+\title{Fortgeschrittene Fehlerrechnung Übungsblatt 6}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+Wir führen eine Messung durch und erhalten die folgenden Messwerte für die Zählereignisse eines befüllten Behälters und die Zählereignisse eines \emph{leeren} Behälters.
+
+\setlength{\tabcolsep}{12pt}
+
+\begin{center}
+	\begin{tabular}{p{3cm}p{5cm}p{5cm}}
+		\toprule
+		\textbf{Winkel ($^\circ$)} & \textbf{Zählereignisse befülltes Behälters ($y_f$)} & \textbf{Zählereignisse leeres Behälters ($y_l$)}\\\midrule
+		 155 & 184 & 5 \\\midrule
+		135 & 134 & 4 \\\midrule
+		120 & 99 & 4 \\\midrule
+		100 & 49 & 1 \\\midrule
+		90 & 53 & 3 \\\midrule
+		75 & 55 & 1 \\\midrule
+		65 & 70 & 4 \\\midrule
+		55 & 81 & 9 \\\midrule
+		40 & 130 & 8 \\\midrule
+		20 & 216 & 7 \\\bottomrule
+	\end{tabular}
+\end{center}
+
+Zur Bereinigung der Untergrund müssen wir die Zählereignisse bei einem leeren Behälter vom Zählereignisse bei einem befüllten Behälter abziehen. Es ist allerdings dabei zu beachten, dass die Anzahl der Teilchen in dieser Messung eine Hälfe die Anzahl beim Versuch mit einem befüllten Target, also wir müssen \emph{zweimal} $y_l$ vom $y_f$ abziehen. Wir bezeichnen die Anzahl der Ereignisse ohne Untergrund als $y$.
+\begin{equation}
+	y=y_f-2y_l
+\end{equation}
+Der Fehler kann nach Gauss fortgepflanzt werden:
+\[\Delta y = \sqrt{(\Delta y_f)^2 + 4(\Delta y_l)^2}\]
+	Wir nehmen an, dass die Anzahl der Ereignisse poissonverteilt ist. Daher ist der Fehler in $y_f$ $\Delta y_f=\sqrt{y_f}$ und analog f\"{u}r $\Delta y_l=\sqrt{y_l}$. Daraus ergibt sich
+	\begin{equation}
+		\Delta y = \sqrt{y_f+4 y_l}
+	\end{equation}
+
+\begin{center}
+	\begin{tabular}{ccc}
+	\toprule
+	\textbf{Winkel ($^\circ$)} & $\cos\theta$ & \textbf{Zahlereignisse ohne Untergrund ($y$)}\\\midrule
+	155 & -0.9063077870366499 & $179\pm  14$ \\\midrule
+	135 & -0.7071067811865475 & $130 \pm 12$ \\\midrule
+	120 & -0.5 & $95 \pm 11$ \\\midrule
+	100 & -0.1736481776669303 & $48,0 \pm 7,3$ \\\midrule
+	90 & 0 & $50,0 \pm 8,1$ \\\midrule
+	75 & 0.2588190451025207& $54,0 \pm 7,7$ \\\midrule
+	65 & 0.4226182617406994 & $66,0 \pm 9,3$ \\\midrule
+	55 &0.573576436351046 &  $72 \pm 11$ \\\midrule
+	40 & 0.766044443118978& $122 \pm 13$ \\\midrule
+	20 & 0.9396926207859084 & $209 \pm 16$ \\\bottomrule
+\end{tabular}
+\end{center}
+
+Wir suchen die Parameter $a_1,~a_2,~a_3\in \R$, sodass die folgende Funktion
+\begin{equation}
+	y(x)=a_1 P_0(x)+a_2 P_1(x)+a_3 P_2(x)
+\end{equation}
+die beste Anpassung an die Daten ist. Dabei sind $P_i,~i\in \{0,1,2\}$ die \emph{Legendre-Polynomen}
+\begin{align*}
+	P_0(x)&=1\\
+	P_1(x)&=x\\
+	P_2(x)&=\frac 12 (3x^2-1)
+\end{align*}
+Die Regressionskoeffizienten ergeben sich durch
+\begin{align*}
+	a_1&=\frac 1\Delta\begin{vmatrix}
+		\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+	\end{vmatrix}\\
+	a_2&=\frac 1\Delta\begin{vmatrix}
+	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}\\
+	a_3&=\frac 1\Delta\begin{vmatrix}
+	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} &  \sum y_i \frac{f_1(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} &  \sum y_i \frac{f_2(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum y_i \frac{f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}\\
+	\Delta&=\begin{vmatrix}
+		\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+	\end{vmatrix}
+\end{align*}
+Für den Fehler brauchen wir die Ableitung. Da $\pdv{y_k} \sum y_i \frac{f_j(x_i)}{\sigma_i^2}=\frac{f_j (x_k)}{\sigma_k^2}$ gilt, ist
+\begin{align*}
+	\Delta \pdv{a_1}{y_k}=& \begin{vmatrix}
+		\frac{f_1(x_k)}{\sigma_k^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+	\end{vmatrix}\\
+&+\begin{vmatrix}
+	\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\frac{f_2(x_k)}{\sigma_k^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}\\
+&+\begin{vmatrix}
+	\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\frac{f_3(x_k)}{\sigma_k^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}\\
+=&\begin{vmatrix}
+	y_k \frac{f_1(x_k)}{\sigma_k^2}+\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+	y_k \frac{f_2(x_k)}{\sigma_k^2}+\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+	y_k \frac{f_3(x_k)}{\sigma_k^2}+\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}
+\end{align*}
+und analog für $a_2$ und $a_3$. Daraus ergibt sich:
+\begin{align*}
+	\pdv{a_1}{y_k}&=\frac 1\Delta\begin{vmatrix}
+		\frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+		\frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+	\end{vmatrix}\\
+\pdv{a_2}{y_k}&=\frac 1\Delta\begin{vmatrix}
+	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}\\
+\pdv{a_3}{y_k}&=\frac 1\Delta\begin{vmatrix}
+	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} &   \frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} &  	\frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} \\
+	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2}
+\end{vmatrix}
+\end{align*}
+\end{document}
