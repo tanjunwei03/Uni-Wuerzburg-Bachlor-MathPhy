@@ -49,6 +49,7 @@
 	\date{\today}
 	\maketitle
 
+\section{Bereingung der Untergrund}
 Wir führen eine Messung durch und erhalten die folgenden Messwerte für die Zählereignisse eines befüllten Behälters und die Zählereignisse eines \emph{leeren} Behälters.
 
 \setlength{\tabcolsep}{12pt}
@@ -85,19 +86,20 @@ Der Fehler kann nach Gauss fortgepflanzt werden:
 	\begin{tabular}{ccc}
 	\toprule
 	\textbf{Winkel ($^\circ$)} & $\cos\theta$ & \textbf{Zahlereignisse ohne Untergrund ($y$)}\\\midrule
-	155 & -0.9063077870366499 & $179\pm  14$ \\\midrule
-	135 & -0.7071067811865475 & $130 \pm 12$ \\\midrule
-	120 & -0.5 & $95 \pm 11$ \\\midrule
-	100 & -0.1736481776669303 & $48,0 \pm 7,3$ \\\midrule
-	90 & 0 & $50,0 \pm 8,1$ \\\midrule
-	75 & 0.2588190451025207& $54,0 \pm 7,7$ \\\midrule
-	65 & 0.4226182617406994 & $66,0 \pm 9,3$ \\\midrule
-	55 &0.573576436351046 &  $72 \pm 11$ \\\midrule
-	40 & 0.766044443118978& $122 \pm 13$ \\\midrule
-	20 & 0.9396926207859084 & $209 \pm 16$ \\\bottomrule
+		155 & -0.906308 & $174 \pm 14$ \\\midrule
+135 & -0.707107 & $126 \pm 12$ \\\midrule
+120 & -0.5 & $91 \pm 11$ \\\midrule
+100 & -0.173648 & $47,0 \pm 7,3$ \\\midrule
+90 & 0. & $47,0 \pm 8,1$ \\\midrule
+75 & 0.258819 & $53,0 \pm 7,7$ \\\midrule
+65 & 0.422618 & $62,0 \pm 9,3$ \\\midrule
+55 & 0.573576 & $63 \pm 11$ \\\midrule
+40 & 0.766044 & $114 \pm 13$ \\\midrule
+20 & 0.939693 & $202 \pm 16$ \\\bottomrule
 \end{tabular}
 \end{center}
 
+\section{Regression}
 Wir suchen die Parameter $a_1,~a_2,~a_3\in \R$, sodass die folgende Funktion
 \begin{equation}
 	y(x)=a_1 P_0(x)+a_2 P_1(x)+a_3 P_2(x)
@@ -131,45 +133,32 @@ Die Regressionskoeffizienten ergeben sich durch
 		\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
 	\end{vmatrix}
 \end{align*}
-Für den Fehler brauchen wir die Ableitung. Da $\pdv{y_k} \sum y_i \frac{f_j(x_i)}{\sigma_i^2}=\frac{f_j (x_k)}{\sigma_k^2}$ gilt, ist
+Wir berechnen den Fehler analog wie Blatt 5. Daraus ergeben sich die Bestwerte
 \begin{align*}
-	\Delta \pdv{a_1}{y_k}=& \begin{vmatrix}
-		\frac{f_1(x_k)}{\sigma_k^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-	\end{vmatrix}\\
-&+\begin{vmatrix}
-	\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\frac{f_2(x_k)}{\sigma_k^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-	\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-\end{vmatrix}\\
-&+\begin{vmatrix}
-	\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-	\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\frac{f_3(x_k)}{\sigma_k^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-\end{vmatrix}\\
-=&\begin{vmatrix}
-	y_k \frac{f_1(x_k)}{\sigma_k^2}+\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-	y_k \frac{f_2(x_k)}{\sigma_k^2}+\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-	y_k \frac{f_3(x_k)}{\sigma_k^2}+\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-\end{vmatrix}
+	a_1=&93,4\pm 3,4\\
+	a_2=&-11,9\pm 6,6\\
+	a_3=&104,3\pm 8,0
 \end{align*}
-und analog für $a_2$ und $a_3$. Daraus ergibt sich:
+\section{Güte der Anpassung}
+Für eine qualitative Schätzung der Güte der Messung verwenden wir ein Residuenplot
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{plt2.pdf}
+\end{center}
+
+Insgesamt ist die Streuung ordentlich, also es gibt ungefähr die gleiche Anzahl von Punkte, die oberhalb und unterhalb der Nulllinie sind. Für eine quantitative Schätzung der Güte nutzen wir das $\chi^2$-Test. Das $\chi^2$-Statistik ist gegeben durch
 \begin{align*}
-	\pdv{a_1}{y_k}&=\frac 1\Delta\begin{vmatrix}
-		\frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-		\frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-	\end{vmatrix}\\
-\pdv{a_2}{y_k}&=\frac 1\Delta\begin{vmatrix}
-	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_3(x_i)}{\sigma_i^2} \\
-	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_3(x_i)}{\sigma_i^2} \\
-	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_3(x_i)}{\sigma_i^2}
-\end{vmatrix}\\
-\pdv{a_3}{y_k}&=\frac 1\Delta\begin{vmatrix}
-	\sum \frac{f_1(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_1(x_i)f_2(x_i)}{\sigma_i^2} &   \frac{f_1(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_1(x_i)}{\sigma_i^2} \\
-	\sum \frac{f_2(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_2(x_i)f_2(x_i)}{\sigma_i^2} &  	\frac{f_2(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_2(x_i)}{\sigma_i^2} \\
-	\sum \frac{f_3(x_i)f_1(x_i)}{\sigma_i^2} & \sum \frac{f_3(x_i)f_2(x_i)}{\sigma_i^2} & \frac{f_3(x_k)}{\sigma_k^2}+2\sum y_i \frac{f_3(x_i)}{\sigma_i^2}
-\end{vmatrix}
+	\chi^2=&\sum \frac{(y_i - a_1 f_1(x_i) - a_2 f_2(x_i) - a_3 f_3(x_i))^2}{a_1 f_1(x_i) + a_2 f_2(x_i) + a_3 f_3(x_i)}\\
+	=&15,49604105544404
 \end{align*}
+Die Anzahl der Zwangsbedingungen ist 3 ($a_i,~i\in \{1,2,3\}$). Daher gibt es $7$ Freiheitsgrade. Der $p$-Wert ist daher
+\begin{align*}
+	p=&\int_{15,49604105544404}^\infty f_{\chi^2(7)}(x)\dd{x}\\
+	\approx&0,03014127140085254
+\end{align*}
+Da der $p$-Wert großer als ein Irrtumsniveau von $0,05$ ist, ist die Streuung mit einer Irrtumswahrscheinlichkeit von 5\% \uline{nicht} durch unsere Anpassung beschrieben. Die Übereinstimmung ist also schlecht. Das kann daran liegen, dass das erste Messpunkt (Abstrahlwinkel = 20$^\circ$) sehr weit weg vom zu erwartenden Wert liegt. Eine Möglichkeit ist, dass es einen systematischen Fehler gibt, der stärker bei höhere Streuungswinkel ist, z.B. die Justierung des Messinstruments.
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{plt1.pdf}
+\end{center}
 \end{document}
