@@ -142,23 +142,13 @@ Wir berechnen den Fehler analog wie Blatt 5. Daraus ergeben sich die Bestwerte
 \section{Güte der Anpassung}
 Für eine qualitative Schätzung der Güte der Messung verwenden wir ein Residuenplot
 
+
+Das Residuenplot zeigt, wie weit weg die Punkte von unserer Regressionskurve ist. Insgesamt ist die Streuung ordentlich und symmetrisch, also es gibt ungefähr die gleiche Anzahl von Punkte, die oberhalb und unterhalb der Nulllinie sind. Das heißt, dass die Streuung scheinbar zufällig verteilt ist. Die Werte mit Streuwinkel weniger als $60^\circ$ haben größer Fehler als die andere Werte. Das könnte an einem winkelabhängigen systematischen Fehler liegen, z.B. die Justierung des Messapparats. Außerdem ist es nur zu erwarten, dass 68,3\% der Messwerte innerhalb eines $\sigma$-Bandes liegen sollen, also einige Punkte mit größere Streuung ist auch zu erwarten. Insgesamt können wir die Anpassung als sinnvoll erachten. Für eine quantitative Schätzung der Güte könnten wir das $\chi^2$-Test verwenden. 
+
 \begin{center}
 	\includegraphics[width=0.8\textwidth]{plt2.pdf}
 \end{center}
-
-Insgesamt ist die Streuung ordentlich, also es gibt ungefähr die gleiche Anzahl von Punkte, die oberhalb und unterhalb der Nulllinie sind. Für eine quantitative Schätzung der Güte nutzen wir das $\chi^2$-Test. Das $\chi^2$-Statistik ist gegeben durch
-\begin{align*}
-	\chi^2=&\sum \frac{(y_i - a_1 f_1(x_i) - a_2 f_2(x_i) - a_3 f_3(x_i))^2}{a_1 f_1(x_i) + a_2 f_2(x_i) + a_3 f_3(x_i)}\\
-	=&15,49604105544404
-\end{align*}
-Die Anzahl der Zwangsbedingungen ist 3 ($a_i,~i\in \{1,2,3\}$). Daher gibt es $7$ Freiheitsgrade. Der $p$-Wert ist daher
-\begin{align*}
-	p=&\int_{15,49604105544404}^\infty f_{\chi^2(7)}(x)\dd{x}\\
-	\approx&0,03014127140085254
-\end{align*}
-Da der $p$-Wert großer als ein Irrtumsniveau von $0,05$ ist, ist die Streuung mit einer Irrtumswahrscheinlichkeit von 5\% \uline{nicht} durch unsere Anpassung beschrieben. Die Übereinstimmung ist also schlecht. Das kann daran liegen, dass das erste Messpunkt (Abstrahlwinkel = 20$^\circ$) sehr weit weg vom zu erwartenden Wert liegt. Eine Möglichkeit ist, dass es einen systematischen Fehler gibt, der stärker bei höhere Streuungswinkel ist, z.B. die Justierung des Messinstruments.
-
 \begin{center}
-	\includegraphics[width=0.8\textwidth]{plt1.pdf}
+	\includegraphics[width=0.8\textwidth]{fig.pdf}
 \end{center}
 \end{document}
