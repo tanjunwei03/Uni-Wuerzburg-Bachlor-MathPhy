@@ -129,4 +129,50 @@ Das Plot von $R_L$ in Abhängigkeit von $f$ ist
 \begin{center}
 	\includegraphics[width=	\textwidth]{plt2.pdf}
 \end{center}
+Zur Bestimmung vom Induktivität verwenden wir
+\begin{align*}
+	L&=\frac{R_L}{2\pi f}\\
+	\Delta L&=L\sqrt{\left(\frac{\Delta R}{R}\right)^2 + \left(\frac{\Delta f}{f}\right)^2}
+\end{align*}
+Jetzt die Induktivität mit Eisenkern. Die Messwerte mit Fehler sind
+\begin{align*}
+	U_{PP, CHI} =& (0,380\pm 0,020)~\text{V}\\
+	U_{PP, CHII} =& (10,40\pm 0,40)~\text{V}
+\end{align*}
+und analog ist
+\begin{align*}
+	f&=(1000\pm 11)~\text{Hz}\\
+	R_z&=(405\pm 30)~\Omega\\
+	R_L&= (405\pm 30)~\Omega\\
+	L&= (0,0644\pm 0,0049)~\text{H}
+\end{align*}
+Wenn das Eisenkern geschlossen ist, sind die Messwerte
+\begin{align*}
+		U_{PP, CHI} =& (0,220\pm 0,020)~\text{V}\\
+	U_{PP, CHII} =& (12,80\pm 0,40)~\text{V}
+\end{align*}
+und die berechnete Werte
+\begin{align*}
+	f&=(1000\pm 11)~\text{Hz}\\
+R_z&=(861\pm 88)~\Omega\\
+R_L&= (861\pm 88)~\Omega\\
+L&= (0,137\pm 0,014)~\text{H}
+\end{align*}
+\section{Induktion}
+
+\subsection{Sinusförmiger Strom}
+
+\begin{center}
+	\begin{tabularx}{\textwidth}{XXXXXX}
+	\toprule
+	$f$ (Hz) & $100,0\pm 1,1$ & $300,0\pm 2,5$ & $1000\pm 11$ & $3000\pm 25$ & $10000\pm 110$\\\midrule
+	$U_{pp,R}$ (V) & $0,440\pm 0,020$ & $0,440\pm 0,020$ & $0,440\pm 0,020$ & $0,440\pm 0,020$ & $0,310\pm 0,010$\\\midrule
+	$U_{pp,ind}$ (V) & $0,0420\pm 0,0020$ & $0,1120\pm 0,0040$ & $0,400\pm 0,020$ & $1,200\pm 0,040$ & $3,00\pm 0,10$\\\midrule
+	$\frac{U_{pp,ind}}{U_{pp,R}}$ & $0,0955\pm 0,0063$ & $0,255\pm 0,015$ & $0,909\pm 0,061$ & $2,73\pm 0,15$ & $9,68\pm 0,45$\\\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=	\textwidth]{plt3.pdf}
+\end{center}
 \end{document}

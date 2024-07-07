@@ -82,7 +82,8 @@
 \end{enumerate}
 \section{Group actions}
 \begin{enumerate}[resume]
-	\item Define a smooth group action of $G$ on $M$ as assigning a smooth map $M \to M$ to each $G$.
+	\item \textbf{Define} a smooth group action of $G$ on $M$ as assigning a smooth map $G\times M \to M$.
+	\item \textbf{Prove} that smooth actions are diffeos (ext. smooth inv) 
 	\item \textbf{Define} what it means for a smooth function to intertwine actions. If $G$ is a lie group acting on manifolds $M$ and $N$ with actions $\theta$ and $\varphi$ respectively, then $F:M\to N$ intertwines actions if the following diagram commutes for all $g$:
 	\begin{center}
 		\begin{tikzcd}
@@ -92,7 +93,7 @@
 	\item \textbf{Prove:} If group action on $M$, $N$ is transitive on $M$ and $F$ intertwines actions, $F$ has constant rank.
 		\begin{center}
 		\begin{tikzcd}
-			T_pM\arrow[r, "\dd{F}_p"]\arrow[d, "\theta_g"] & T_{F(p)}N\arrow[d,"\dd{(\varphi_g)}_{F(p)}"] \\ T_qM\arrow[r, "\dd{F}_q"] & T_{F(q)}N
+			T_pM\arrow[r, "\dd{F}_p"]\arrow[d, "\dd{(\theta_g)_p}"] & T_{F(p)}N\arrow[d,"\dd{(\varphi_g)}_{F(p)}"] \\ T_qM\arrow[r, "\dd{F}_q"] & T_{F(q)}N
 		\end{tikzcd}
 	\end{center}
 	\item \textbf{Prove} orbit map $G\to M$ (fixed $p$) is constant rank.
@@ -103,9 +104,35 @@
 \section{Lie Algebras}
 \begin{enumerate}[resume]
 	\item \textbf{State} commutator properties
+	\begin{enumerate}[label=(\alph*)]
+		\item Bilinearity
+		\item Anticommutativity
+		\item Jacobi Identity
+		\[[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0\]
+	\end{enumerate}
 		\item \textbf{Define} a lie algebra
 	\item \textbf{Define} left invariant vector fields
+	
+	Invariant under all left translations, so
+	\[\dd{(L_g)_{g'}}(X_{g'})=X_{gg'}\]
+	forall $g,g'\in G$
 	\item \textbf{Prove} that left invariant vector fields are closed under the commutator
+	\begin{enumerate}[label=(\alph*)]
+	\item $Y$ is $F$-related to $X$ iff for every $f:N\to \R$
+	\[X(f\circ F)=(Yf)\circ F\]
+	Proof:
+	\begin{gather*}
+		X(f\circ F)(p)=X_p(f\circ F)=\dd{F}_p(X_p)(f)\\
+		(Yf)\circ F(p)=(Yf)(F(p))=Y_{F(p)}f
+	\end{gather*}
+	\item Show that $\dd{F}[X,Y] = [\dd{F}X,\dd{F}Y]$.
+	
+	Do this by showing
+	\[XY(f\circ F) = (\dd{F}(X)\dd{F}(Y)f)\circ F\]
+	and then showing that
+	\item Apply this result to a left translation and use the invariance under left translator.
+\end{enumerate}
+\item \textbf{Define} Lie algebra as the vector space of left invariant vector fields under the commutator
 	\item \textbf{Prove} that dim(Lie($G$)) = dim($G$) by showing that the evaluation map is an isomorphism.
 	\item \textbf{Deduce} as a corollary that all left invariant vector fields on a lie group are smooth.
 \end{enumerate}
@@ -114,6 +141,5 @@
 	\item \textbf{State} that GL($n, \R$) is an open subset of $\mathfrak{gl}(n, \R)$.
 	\item \textbf{Prove} that $\text{GL}(n, \R)\cong T_{I_n}\text{GL}(n, \R)\cong \mathfrak{gl}(n, \R)$
 \end{enumerate}
-\subsection{Lie Algebra Homomorphisms}
 
 \end{document}
