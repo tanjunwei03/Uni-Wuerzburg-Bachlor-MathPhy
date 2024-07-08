@@ -133,7 +133,14 @@
 	\item Apply this result to a left translation and use the invariance under left translator.
 \end{enumerate}
 \item \textbf{Define} Lie algebra as the vector space of left invariant vector fields under the commutator
-	\item \textbf{Prove} that dim(Lie($G$)) = dim($G$) by showing that the evaluation map is an isomorphism.
+	\item \textbf{Prove} that dim(Lie($G$)) = dim($G$) by showing that the evaluation map at the identity is an isomorphism.
+	\begin{enumerate}[label=(\alph*)]
+		\item Injectivity: Assume that the vector field at the origin is 0. Translate it to show that the entire vector field is 0.
+		\item Surjectivity: We let $v\in T_eG$ be arbitrary, and define
+		\[X_g = \dd{(L_g)_e}(v)\]
+		Then we show that this is smooth by considering a smooth curve $\gamma$ through the origin defining the vector $v$.
+		\[\left.\dv{t}\right|_{t=0}(f\circ L_g\circ \gamma)(t)\]
+	\end{enumerate}
 	\item \textbf{Deduce} as a corollary that all left invariant vector fields on a lie group are smooth.
 \end{enumerate}
 \subsection{Matrix Lie Group \& Algebra}
