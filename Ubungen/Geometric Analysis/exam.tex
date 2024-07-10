@@ -129,25 +129,17 @@
 	
 	Do this by showing
 	\[XY(f\circ F) = (\dd{F}(X)\dd{F}(Y)f)\circ F\]
-
-Idea: We ``bring $Y$ in'', then bring $X$ in.
-
-Then we apply this to the explicit expression for the commutator.
+	and then showing that
 	\item Apply this result to a left translation and use the invariance under left translator.
 \end{enumerate}
 \item \textbf{Define} Lie algebra as the vector space of left invariant vector fields under the commutator
 	\item \textbf{Prove} that dim(Lie($G$)) = dim($G$) by showing that the evaluation map at the identity is an isomorphism.
 	\begin{enumerate}[label=(\alph*)]
-		\item We show injectivity by assuming the vector field is 0 at $e$ and translating this away.
-		\item We show surjectivity by defining a rough vector field using $X_p =\dd{(L_p)_e}(v)$. It remains to show it is smooth. To do this, we show that $Xf$ is smooth for all smooth functions $f$.
-		
-		We choose a path $\gamma:(-\delta, \delta)\to M$, $\gamma(0)=e$,  $\gamma'(0)=v$. Then
-		\[(Xf)(g) = \left.\dv{t}\right|_{t=0}(f\circ L_g\circ \gamma)(t)\]
-		(Draw picture of path through $e$ being translated to path through $g$)
-		
-		Define $\varphi:(-\delta, \delta)\to M$ as $\varphi(t,g)=f\circ L_g \circ \gamma(t)$. Then this is a smooth map, and hence the vector field is smooth.
-		\item We show left invariance by using the composition property of translations
-		\[\dd{(L_h)_g}(X_g)=X_{hg}\]
+		\item Injectivity: Assume that the vector field at the origin is 0. Translate it to show that the entire vector field is 0.
+		\item Surjectivity: We let $v\in T_eG$ be arbitrary, and define
+		\[X_g = \dd{(L_g)_e}(v)\]
+		Then we show that this is smooth by considering a smooth curve $\gamma$ through the origin defining the vector $v$.
+		\[\left.\dv{t}\right|_{t=0}(f\circ L_g\circ \gamma)(t)\]
 	\end{enumerate}
 	\item \textbf{Deduce} as a corollary that all left invariant vector fields on a lie group are smooth.
 \end{enumerate}
