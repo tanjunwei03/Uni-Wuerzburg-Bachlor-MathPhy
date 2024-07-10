@@ -1,0 +1,69 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{polynom}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{multirow}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+%tcolorbox
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\setlength{\parindent}{0cm}
+\captionsetup[table]{name=Tabelle}
+
+\begin{document}
+\title{Why am I doing this}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\section{Spannungsempfindlichkeit}
+\subsection{Gleichspannung}
+\begin{enumerate}
+	\item Multimeter besser geeignet.
+\end{enumerate}
+\subsection{Wechselspannung}
+\begin{enumerate}
+	\item Im Vergleich zu einem Multimeter mit einem größeren Messbereich ist das Oszilloskop besser geeignet.
+\end{enumerate}
+\section{AC/DC-Kopplung}
+\begin{enumerate}
+	\item Geeignet, wenn es ein Superposition von einer kleinen Schwingung und einer konstanten Spannung (Gleichspannung) gibt.\cite{Keysight}
+	\item z.B. Messung der Rippelstrom aus einem DC-Netzgerät wegen Gleichrichtung einer netzfrequenten Wechselspannung~	\cite{zhu1996switched,scoles1980handbook}
+\end{enumerate}
+\bibliographystyle{ieeetr}
+
+\bibliography{ref}	
+\end{document}
