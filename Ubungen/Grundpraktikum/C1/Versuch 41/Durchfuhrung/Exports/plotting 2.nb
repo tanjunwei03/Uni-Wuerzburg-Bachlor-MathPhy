@@ -1,0 +1,146 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5800,        136]
+NotebookOptionsPosition[      4971,        112]
+NotebookOutlinePosition[      5378,        128]
+CellTagsIndexPosition[      5335,        125]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Versuch 41", "Title",
+ CellChangeTimes->{{3.935743460072193*^9, 
+  3.935743462274597*^9}},ExpressionUUID->"6701c107-001a-f34e-93e4-\
+7e6d33da9462"],
+
+Cell[BoxData[
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.9357434627585907`*^9, 
+  3.9357434656627865`*^9}},ExpressionUUID->"be520fb3-f55f-8846-9bc3-\
+af1925065b5b"],
+
+Cell[CellGroupData[{
+
+Cell["Import Data", "Section",
+ CellChangeTimes->{{3.935743466617552*^9, 
+  3.9357434674945374`*^9}},ExpressionUUID->"d22ac4d2-ad8e-5048-98fa-\
+9b5364d87d0d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dirs", "=", 
+  RowBox[{"Select", "[", 
+   RowBox[{
+    RowBox[{"FileNames", "[", 
+     RowBox[{"\"\<*\>\"", ",", 
+      RowBox[{"NotebookDirectory", "[", "]"}]}], "]"}], ",", "DirectoryQ"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.9357434686111813`*^9, 3.9357434984929466`*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"b7f0128a-a133-b04c-9873-e9ca2ad4adc1"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0000\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0001\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0002\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0003\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0004\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0005\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0006\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0007\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0008\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0009\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0010\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0011\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0012\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0013\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0014\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0015\"\>", 
+   ",", "\<\"C:\\\\Users\\\\junwe\\\\Documents\\\\GitHub\\\\Uni-Wuerzburg-\
+Bachlor-MathPhy\\\\Ubungen\\\\Grundpraktikum\\\\C1\\\\Versuch \
+41\\\\Durchfuhrung\\\\Exports\\\\ALL0016\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.9357434762085342`*^9, 3.935743498858446*^9}},
+ CellLabel->"Out[55]=",ExpressionUUID->"3ff0f228-0514-8646-9523-8a6b83147102"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{582, 388},
+WindowMargins->{{183.5, Automatic}, {Automatic, 39.5}},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"44c81173-b5ef-c043-8c32-e2c7257a1f31"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 153, 3, 98, "Title",ExpressionUUID->"6701c107-001a-f34e-93e4-7e6d33da9462"],
+Cell[736, 27, 206, 4, 28, "Input",ExpressionUUID->"be520fb3-f55f-8846-9bc3-af1925065b5b"],
+Cell[CellGroupData[{
+Cell[967, 35, 158, 3, 67, "Section",ExpressionUUID->"d22ac4d2-ad8e-5048-98fa-9b5364d87d0d"],
+Cell[CellGroupData[{
+Cell[1150, 42, 386, 9, 28, "Input",ExpressionUUID->"b7f0128a-a133-b04c-9873-e9ca2ad4adc1"],
+Cell[1539, 53, 3392, 54, 1006, "Output",ExpressionUUID->"3ff0f228-0514-8646-9523-8a6b83147102"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
