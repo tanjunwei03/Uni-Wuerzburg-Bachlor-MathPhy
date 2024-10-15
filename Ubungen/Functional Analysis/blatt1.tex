@@ -1,0 +1,43 @@
+\begin{Problem}
+	Let $(M, d)$ be a metric space. Consider a sequence $(a_n)_{n\in \N}\subset \text{Map}(N, M)$ of Cauchy sequences in $M$ i.e. $a_n=(a_{mn})_{m\in \N}\subset M$ for every $n\in \N$.
+	\begin{enumerate}
+		\item Show that the sequence $(d_k^{(mn)})_{k\in N}\subset \R$ defined by.
+			\[
+				d_k^{(mn)}:=d(a_{nk}, a_{m k })
+			\]
+			is convergent.
+			In the following, we assume that for every $\epsilon>0$ there is a natural number $N\in \N$ such that $\lim_{k \to \infty} d_k^{(nm)}<\epsilon$ for every  $n,m\ge N$.
+		\item For a strictly monotously increasing sequence $(m_k)_{k\in \N} \subset \N$, we define the diagonal sequence $ (D_k)_{k\in \N}$ as follows
+			\[
+				D_k:=a_{k m_k}
+			.\] 
+			Show that there exists a diagonal Cauchy sequence $(D_k)_k$ such that $\lim_{k \to \infty} d(a_{nk}, D_k)$ converges to zero in the limit $n\to \infty$. Moreover, show that every other diagonal Cauchy sequence $(D_k')_k$ with the same property satisfies $\lim_{k \to \infty} d(D_k, D_k')=0$.
+		\item Assume now that $M$ is complete. Show that $(D_k)_k$ converges and compute its limit.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item We show that the sequence is Cauchy. Choose $N\in \N$ such that for all $k_1,k_2\ge N$, we have $d(a_{nk_1}, a_{nk_2})<\epsilon$ and $d(a_{m k_1}, a_{m k_2})<\epsilon$. Then
+			\begin{align*}
+				d(a_{nk_1}, a_{nk_2})-d(a_{m k_1}, a_{m k_2})
+			\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{Problem}
+	Let $(M, d)$ be a metric space. We write $\tilde{M}$ for the set of Cauchy sequences in $M$. 
+	\begin{enumerate}
+		\item We say that two Cauchy sequences $(a_n)_n, (b_n)_n\in \tilde{M}$ are equivalent if
+			\[
+			\lim_{n \to \infty} d(a_n, b_n)=0
+			\] 
+			and write $(a_n)_n\sim (b_n)_n$. Show that this defines an equivalence relation on $\tilde{M}$
+		\item Show that there exists a metric $\hat{d}$ on the quotient space $\hat{M}:=\tilde{M} / \sim$ such that $(\hat{M}, \hat{d})$ is a completion of $(M, d)$.
+		\item Let $(M', D')$ be another completion of $(M, d)$. Show that $M'$ is isometrically isomorphic to $\hat{M}$, i.e. there exists a bijective isometry $\phi: \hat{M}\to M'$.
+		\item Now, assume $(M', d')$ to be another complete metric space and let $\Phi:M\to M'$ be a uniformly continuous map. Show that there is a unique continuous map $\phi:\hat{M}\to M'$ such that
+			\[
+			\Phi=\phi\circ \iota
+			.\] 
+			Conclude that $\phi$ is even uniformly continuous.
+	\end{enumerate}
+\end{Problem}
