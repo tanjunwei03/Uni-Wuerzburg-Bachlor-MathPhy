@@ -1,4 +1,4 @@
-\begin{Problem}
+\begin{Problem}\label{pr:funcanalblatt1-1}
 	Let $(M, d)$ be a metric space. Consider a sequence $(a_n)_{n\in \N}\subset \text{Map}(N, M)$ of Cauchy sequences in $M$ i.e. $a_n=(a_{mn})_{m\in \N}\subset M$ for every $n\in \N$.
 	\begin{parts}
 		\item Show that the sequence $(d_k^{(mn)})_{k\in N}\subset \R$ defined by.
@@ -47,7 +47,22 @@
 \begin{proof}
 	\begin{parts}
 	\item Clear.
-	\item 
+	\item We define the metric between two Cauchy sequences $(a_n)_n$ and $(b_n)_n$ by $\hat{d}(a, b)=\lim_{n \to \infty} d(a_n, b_n)$ (cf Pr.~\ref{pr:funcanalblatt1-1}).
+
+		Note that this is actually not a metric on $\tilde{M}$, since it is not positive. Two applications of the triangle inequality show that this is well defined on the quotient space. 
+
+		We map each element of $M$ to the (equivalence class containing the) constant sequence at that element. Note that these sequences are convergent, and this map is an isometry. 
+
+		It remains to show that (the image of) $M$ is dense, and that $\hat{M}$ is complete. 
+
+		Let us consider a Cauchy sequence $(a_n)_n$ and an $\epsilon>0$. Since the sequence is Cauchy, we have $N\in \N$ such that for all $n,m\ge N$, $d(a_n, a_m)<\epsilon$. In particular, $d(a_N, a_m)<\epsilon$. Thus $\hat{d}(a, a_N)<\epsilon$ (Note: $a_N$ is the constant Cauchy sequence at $a_N$). Thus, the open ball with radius $\epsilon$ intersects $M$. $M$ is therefore dense.
+
+		Now we show completeness. Consider a Cauchy sequence of elements of $\hat{M}$. Since this is Cauchy, it satisfies the conditions of Pr.~\ref{pr:funcanalblatt1-1}(b), and converges to the diagonal sequence mentioned there.
+
+		Comment: Pr~\ref{pr:funcanalblatt1-1}(c) shows that this construction would yield $M$ if $M$ were complete, because the diagonal sequence would converge to a limit.
+	\item Consider a map from $\hat{M}$ to $M'$ that sends all elements of $M$ to elements of $M$. Clearly, when we restrict the map to these elements, it is an isometry. 
+
+		The question is: Can we now define 
 	\end{parts}
 \end{proof}
 
