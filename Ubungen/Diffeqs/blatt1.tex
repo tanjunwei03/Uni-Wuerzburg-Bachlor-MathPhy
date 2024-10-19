@@ -1,0 +1,144 @@
+\begin{Problem}
+	Sei $f(t, x(t),\dot{x}(t)):=3t-4+4\dot{x}(t)-3x(t)$. Zeigen Sie, dass $x(t)=C_1 e^t + C_2 e^{3t}+t$ f\"{u}r $C_1, C_2\in \R$ eine Lösung der Differentialgleichung $\ddot{x}(t)=f(t, x(t), \dot{x}(t))$ ist. Bestimmen Sie anschließend $C_1$ und $C_2$ so, dass $x(0)=x(1)=1$ gilt.
+\end{Problem}
+\begin{proof}
+Mit
+\[
+x(t)=C_1 e^t + C_2 e^{3t}+t
+\]
+ist
+\begin{align*}
+	\dot{x}(t)&= C_1 e^t + 3 C_2 e^{3t}+1\\
+	\ddot{x}(t)&=C_1 e^t + 9 C_2 e^{3t}
+\end{align*}
+Eingesetzt ist
+\begin{align*}
+	&3t-4+4\dot{x}(t)-3x(t)\\
+	=&3t-4+4(C_1 e^t + 3 C_2 e^{3t}+1)-3(C_1 e^t + C_2 e^{3t}+t)\\
+	=&C_1e^t+9C_2e^{3t}=\ddot{x}(t)
+\end{align*}
+Dann setzen wir $t=0$ und $t=1$ ein:
+\begin{align*}
+	x(0)&=C_1+C_2=1\\
+	x(1)&= C_1e + C_2 e^2+1=1
+\end{align*}
+Dies ist ein lineares Gleichungsystem mit Unbekannten $C_1$ und $C_2$. Die Lösung ist einfach
+\begin{align*}
+	C_1&=\frac{e}{e-1},\\
+	C_2&=\frac{1}{1-e}.\qedhere
+\end{align*}
+\end{proof}
+\begin{Problem}\label{pr:diffeqblatt1-2}
+	Bestimmen Sie die Lösung der folgenden Anfangswertaufgaben:
+	\begin{parts}
+	\item $\dot{x}(t)=tx^2(t),\qquad x(1)=1$.
+	\item $\dot{x}(t)=t(1+x^2(t)),\qquad x(0)=1$.
+	\item $\dot{x}=\frac{\sin(t)}{x+1},\qquad x(0)=1$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	Wir benutzen die Schreibweise aus Abschnitt 2.1 des Skripts: Die DGL
+	\[\dot{x}=g(x)h(t),\qquad x(t_0)=x_0\]
+	hat Losung
+	\begin{equation}\label{eq:diffeqblatt1-1}
+	\int_{x_0}^{x(t)}\frac{\dd{r}}{h(r)}=\int_{t_0}^t g(s)\dd{s}
+	.\end{equation}
+	\begin{parts}
+	\item $g:\R\to \R,~x\mapsto x^2,~h=\text{Id}_\R$. Gl.~\eqref{eq:diffeqblatt1-1} ergibt
+		\[
+		-\frac{1}{x(t)}+\frac{1}{1}=\frac{t^2}{2}-\frac{1}{2}
+		\] 
+		und
+		\[
+		x(t)=\frac{2}{3-t^2}
+		.\] 
+		Der Definitionsbereich ist $t\in (-\sqrt{3} , \sqrt{3} )$.
+	\item $g:\R \to \R,~x\mapsto 1+x^2,~h=\text{Id}_\R$. Gl.~\eqref{eq:diffeqblatt1-1} liefert
+		\[
+	\tan^{-1}(x)-\tan^{-1}(1)=\frac{t^2}{2}
+		\]
+		und
+		\[
+		x(t)=\tan\left( \frac{t^2}{2}+\frac{\pi}{4} \right)
+		.\] 
+		Da $g(x)\neq 0$, muss $-1< x < 1 $ und der Definitionsbereich ist dadurch beschränkt.
+	\item $g:(-1,\infty)\to \R, x\mapsto \frac{1}{1+x}, h=\sin$. Gl.~\eqref{eq:diffeqblatt1-1} liefert
+		\[
+		\left. \frac{r^2}{2}+r\right|_{r=x_0}^{r=x(t)}=\left. -\cos(s)\right|_0^t
+		.\] 
+		Damit ist
+		\[
+		\frac{x(t)^2}{2}+x(t)-\frac{3}{2}=-\cos t + 1
+		.\] 
+		Dies ist eine quadratische Gleichung mit Lösung
+		\begin{align*}
+		x(t)&=-1\pm \sqrt{1-2\left( \cos t - \frac{5}{2} \right)}\\
+		&=-1\pm \sqrt{6-2\cos t} 
+	\end{align*}
+	Da $x(0)=1$, ist die Lösung die $+$ Lösung der quadratischen Gleichung, und
+	\[
+	x(t)=-1+\sqrt{6-2\cos t} 
+	.\qedhere\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Untersuchen Sie, für welchen Anfangswert $x(1)=C$ die Differentialgleichung $\dot{x}(t)=e^t(x(t))^2$ eine Lösung hat und berechnen Sie diese.
+\end{Problem}
+\begin{proof}
+	Wie in Aufgabe~\ref{pr:diffeqblatt1-2} verwenden wir Gl.~\eqref{eq:diffeqblatt1-1} mit $h:\R \to \R,~x\mapsto x^2,~g:\R \to \R, t\mapsto t^2$. Die (formelle) Lösung ist
+	\[
+	-\frac{1}{x(t)}+\frac{1}{C}=e^t-e
+	\] 
+	und
+	\[
+	x(t)=\frac{1}{\frac{1}{C}+e-e^t}
+	.\] 
+	Offensichtlich brauchen wir $C\neq 0$ für diese Lösung. Falls $C=0$, ist $x(t)=0$ die Lösung.
+\end{proof}
+\begin{Problem}
+	Die Abnahme der Lichtintensität $I$ mit zunehmender Meerestiefe erfolgt nach dem Gesetz
+	\[
+	I'(x)=-\mu I(x)
+	,\]
+	wobei $x$ die Meerestiefe in Meter angibt. Berechnen Sie, in welcher Tiefe die Oberflächenintensität auf
+	\begin{parts}
+	\item $50\%$ 
+	\item $20\%$
+	\end{parts}
+	gefallen ist, wenn der Absorptionskoeffizient $\mu=2,5~\text{m}^{-1}$ beträgt.
+\end{Problem}
+\begin{proof}
+	Die Lösung ergibt sich analog wie Aufgabe~\ref{pr:diffeqblatt1-2} und lautet
+	\[
+	I(x)=I_0 e^{-\mu x}
+	,\]
+	wobei $I_0$ die Oberflächenintensität ist. Wir suchen $x$, sodass $I(x)=\eta I_0$. Das heißt:
+	\begin{align*}
+		\eta\cancel{I_0}&=\cancel{I_0}e^{-\mu x}\\
+		\ln \eta &= -\mu x\\
+x&=-\frac{1}{\mu}\ln \eta
+	\end{align*}
+	Dann setzen wir $\eta=0.5$ und $\eta=0.2$ ein und erhalten
+	\begin{parts}
+	\item $x\approx 0.277~\text{m}$
+	\item  $x\approx 0.161~\text{m}$.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+Betrachten Sie das folgende System von Differentialgleichungen dritter Ordnung:	
+\begin{align*}
+	\dddot{x}-4\ddot{x}-\dot{x}-3x-9\ddot{y}-5\dot{y}-y&=0\\
+	\dddot{y}-8\ddot{y}-\ddot{x}-8\dot{x}+6\dot{y}+7\ddot{x}+8\ddot{y}+9y-9x&=0
+\end{align*}
+\end{Problem}
+\begin{proof}
+	Wir formen die Gleichungen um
+	\begin{align*}
+		\dddot{x}&=4\ddot{x}+9\ddot{y}+\dot{x}+5\dot{y}+3x+y\\
+		\dddot{y}&=-6\ddot{x}-8\ddot{y}+8\dot{x}-6\dot{y}+9x-9y
+	\end{align*}
+	und definieren $z=(\ddot{x}, \ddot{y}, \dot{x}, \dot{y}, x, y)^T$. Damit ist $\dot{z}=(\dddot{x}, \dddot{y}, \ddot{x}, \ddot{y}, \dot{x}, \dot{y})^T$ und
+	\[
+	\dot{z}=\begin{pmatrix} \dddot{x} \\ \dddot{y} \\ \ddot{x} \\ \ddot{y} \\ \dot{x} \\ \dot{y} \end{pmatrix}=\begin{pmatrix} 4 & 9 & 1 & 5 & 3 & 1 \\ -6 & -8 & 8 & -6 & 9 & -9 \\ 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} \ddot{x} \\ \ddot{y} \\ \dot{x} \\ \dot{y} \\ x \\ y \end{pmatrix} 
+	.\qedhere\] 
+\end{proof}

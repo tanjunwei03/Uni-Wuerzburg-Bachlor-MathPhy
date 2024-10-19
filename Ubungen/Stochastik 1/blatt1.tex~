@@ -1,11 +1,11 @@
 \begin{Problem}
-Was ist beim 7-fachen Wurf eines fairen Wurfels die Wahrscheinlichkeit daf ¨ ur, dass	
+	Was ist beim 7-fachen Wurf eines fairen Wurfels die Wahrscheinlichkeit daf\"{u}r, dass	
 \begin{parts}
 \item mindestens zwei Sechsen geworfen werden?
 \item jede Augenzahl 1, . . . , 6 unter den Wurfergebnissen erscheint?
 \item mindestens eines der beiden obigen Ereignisse eintritt?
-Geben Sie zu den L¨osungen auch einen passenden Wahrscheinlichkeitsraum an, in welchem Sie die Ereignisse modellieren.
 \end{parts}
+Geben Sie zu den L\"{o}sungen auch einen passenden Wahrscheinlichkeitsraum an, in welchem Sie die Ereignisse modellieren.
 \end{Problem}
 \begin{proof}
 	Der Wahrscheinlichkeitsraum ist $\{0,\cdots, 6\}^7$ mit dem diskreten Maß.
@@ -14,6 +14,45 @@ Geben Sie zu den L¨osungen auch einen passenden Wahrscheinlichkeitsraum an, in 
 
 		Wenn kein $6$ geworfen werden soll, gibt es für jedes Wurf 5 Möglichkeiten, also die Wahrscheinlichkeit dieses Fälles ist $(5 / 6)^7$.
 
-		Wenn genau ein $6$ geworfen werden soll, ist ein Wurf festgelegt. Es gibt $5^6$ Möglichkeiten für die andere Würfe. Aber mit Berücksichtigung der Reihenfolge müssen wir dieses Ergebnis mit $7$ multiplizieren, da das $6$ bei jedem Wurf erscheinen kann. Damit ist die gesamte Wahrscheinlichkeit $6\cdot (5 / 6)^6 \cdot (1 / 6)$.
+		Wenn genau ein $6$ geworfen werden soll, ist ein Wurf festgelegt. Es gibt $5^6$ Möglichkeiten für die andere Würfe. Aber mit Berücksichtigung der Reihenfolge müssen wir dieses Ergebnis mit $7$ multiplizieren, da das $6$ bei jedem Wurf erscheinen kann. Damit ist die gesamte Wahrscheinlichkeit $7\cdot (5 / 6)^6 \cdot (1 / 6)$.
+
+		Maßtheoretisch haben wir dieses Ereignis in $7$ Ereignisse geteilt, also dass das $6$ in dem $n$-ten Wurf erscheint. Da diese Ereignisse disjunkt sind, können wir die Summe der Wahrscheinlichkeiten als die gesamte Wahrscheinlichkeit betrachten. Aus der Symmetrie sind deren Wahrscheinlichkeiten gleich, also wir multiplizieren einfach mit $7$. 
+	
+Damit ist die Wahrscheinlichkeit, dass wir weniger als 2 $6$ bekommen
+\[\frac{15625}{23328}\]
+und die Wahrscheinlichkeit, dass wir mindestens 2 $6$ bekommen ist
+\[
+\frac{7703}{23328}
+.\] 
+\item Es gibt $6$ mögliche Ereignisse ohne Berücksichtigung der Reihenfolge: Die $6$ Augenzahlen erscheinen, und das 7te Wurf ist beliebig. Mit Berücksichtigung der Reihenfolge gibt es $\frac{7!}{2!}$ Ereignisse, da genau eine Augenzahl zweimal auftaucht.
+
+	Daher gibt es insgesamt $6\cdot 7! / 2!$ mögliche Ereignisse. Da jedes Ereignis gleich wahrscheinlich ist, ist die Wahrscheinlichkeit
+	 \[
+	\frac{6\cdot 7! / 2!}{6^7}=\frac{35}{648}
+	.\] 
+\item Wir betrachten deren Komplement, also die Wahrscheinlichkeit, dass weder (a) noch (b) auftritt. Dann betrachten wir die unterschiedlichen Fälle:
+	\begin{enumerate}[label=(\arabic*)]
+	\item Es gibt kein $6$. Dann gibt es $(5 / 6)^7$ Möglichkeiten. (b) ist automatisch nicht erfüllt.
+	\item Es gibt genau ein $6$. Dann gibt es 
+	\end{enumerate}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+Unter 33 Schülern werden 3 Fußballmannschaften mit jeweils 11 Spielern ausgelost. Hierzu zieht jeder Schüler (ohne Zurücklegen) einen Zettel aus einer Urne, welche jeweils 11 Zettel mit den Buchstaben A, B und C enthält.	
+\begin{parts}
+\item Geben Sie einen geeigneten Wahrscheinlichkeitsraum zur Modellierung an.
+\item Wie viele unterschiedliche Möglichkeiten der Auslosung gibt es?
+\item Mit welcher Wahrscheinlichkeit werden zwei bestimmte Schüler derselben Mannschaft zugelost?
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir betrachten den Laplace-Raum
+		\[
+		\Omega=\left\{ \omega=(\omega_1, \dots, \omega_{33})\in \{0,1,2\}:\sum_{j=1}^{33}1_{\omega_j=0}=\sum_{j=1}^{33}1_{\omega_j=1}=11 \right\}  
+		.\] 
+	\item Wir können die Reihenfolge betrachten, in der die Zettel rausgenommen werden. Da es 33 Zettel gibt, können alle Zettel in $33!$ unterschiedlichen Reihenfolgen rausgenommen werden. Die Zettel mit dem gleichen Buchstaben können aber beliebig getauscht werden, was zu einem ununterscheidbaren Ergebnis führen würde. Daher gibt es nur $33! / (11!^3)$ Möglichkeiten der Auflösung.
+	\item 
 	\end{parts}
 \end{proof}
