@@ -1,0 +1,19 @@
+\begin{Problem}
+Was ist beim 7-fachen Wurf eines fairen Wurfels die Wahrscheinlichkeit daf ¨ ur, dass	
+\begin{parts}
+\item mindestens zwei Sechsen geworfen werden?
+\item jede Augenzahl 1, . . . , 6 unter den Wurfergebnissen erscheint?
+\item mindestens eines der beiden obigen Ereignisse eintritt?
+Geben Sie zu den L¨osungen auch einen passenden Wahrscheinlichkeitsraum an, in welchem Sie die Ereignisse modellieren.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	Der Wahrscheinlichkeitsraum ist $\{0,\cdots, 6\}^7$ mit dem diskreten Maß.
+	\begin{parts}
+	\item Wir betrachten die Möglichkeit, dass weniger als 2 Sechsen geworfen werden. Daraus ergeben sich 2 Fälle: Genau ein $6$ wurde geworfen und kein $6$ wurden geworfen. 
+
+		Wenn kein $6$ geworfen werden soll, gibt es für jedes Wurf 5 Möglichkeiten, also die Wahrscheinlichkeit dieses Fälles ist $(5 / 6)^7$.
+
+		Wenn genau ein $6$ geworfen werden soll, ist ein Wurf festgelegt. Es gibt $5^6$ Möglichkeiten für die andere Würfe. Aber mit Berücksichtigung der Reihenfolge müssen wir dieses Ergebnis mit $7$ multiplizieren, da das $6$ bei jedem Wurf erscheinen kann. Damit ist die gesamte Wahrscheinlichkeit $6\cdot (5 / 6)^6 \cdot (1 / 6)$.
+	\end{parts}
+\end{proof}
