@@ -30,11 +30,14 @@ und die Wahrscheinlichkeit, dass wir mindestens 2 $6$ bekommen ist
 	 \[
 	\frac{6\cdot 7! / 2!}{6^7}=\frac{35}{648}
 	.\] 
-\item Wir betrachten deren Komplement, also die Wahrscheinlichkeit, dass weder (a) noch (b) auftritt. Dann betrachten wir die unterschiedlichen Fälle:
-	\begin{enumerate}[label=(\arabic*)]
-	\item Es gibt kein $6$. Dann gibt es $(5 / 6)^7$ Möglichkeiten. (b) ist automatisch nicht erfüllt.
-	\item Es gibt genau ein $6$. Dann gibt es 
-	\end{enumerate}
+\item Wir betrachten
+	\[
+	\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B)
+	.\] 
+	Jetzt betrachten wir $A\cap B$. Dabei müssen die Würfe $1,\dots, 6, 6$ sein. Daher ist die gesamte Anzahl von Möglichkeiten $7! / 2$ und die Wahrscheinlichkeit $\mathbb{P}(A\cap B)=\frac{35}{3888}$. Damit ist
+	\[
+	\mathbb{P}(A\cup B)=\frac{8753}{23328}
+	.\qedhere\] 
 	\end{parts}
 \end{proof}
 
@@ -55,6 +58,6 @@ Unter 33 Schülern werden 3 Fußballmannschaften mit jeweils 11 Spielern ausgelo
 	\item Wir können die Reihenfolge betrachten, in der die Zettel rausgenommen werden. Da es 33 Zettel gibt, können alle Zettel in $33!$ unterschiedlichen Reihenfolgen rausgenommen werden. Die Zettel mit dem gleichen Buchstaben können aber beliebig getauscht werden, was zu einem ununterscheidbaren Ergebnis führen würde. Daher gibt es nur $33! / (11!^3)$ Möglichkeiten der Auflösung.
 	\item Wir betrachten die Wahrscheinlichkeit, dass die beiden Schlüler der Mannschaft A zugelost. Dann können die andere 31 Schüler frei wählen, was zu $31! / (11!^2 9!)$ Möglichkeiten führen würde.
 
-		Damit 
+		Damit ist die gesamte Anzahl von Möglichkeiten $3\cdot 31! / (11!^2\cdot 9!)$ und die Wahrscheinlichkeit $5 / 16$.\qedhere
 	\end{parts}
 \end{proof}
