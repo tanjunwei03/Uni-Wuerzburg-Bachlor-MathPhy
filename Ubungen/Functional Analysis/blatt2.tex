@@ -7,7 +7,7 @@
 		$\varphi: \mathbb{K}^n \to V$ as the $K$-linear extension of the map $e_i\mapsto v_i$. Recall that $\varphi$ is an isomorphism of vector spaces. Show that $\varphi$ is continuous if $\mathbb{K}^n$ is endowed with the standard topology.
 		\item Let $V$ be Hausdorff. Show that $0 \in \varphi(B_r(0))^{\circ}$ for every $r > 0$.
 		
-		\emph{Hint: Consider the subset $V\setminus \varphi(\mathbb{S}^{n-1})$.}
+			\emph{Hint: Consider the subset} $V\setminus \varphi(\mathbb{S}^{n-1})$.
 		
 		\item Conclude that $\varphi^{-1}$ is also continuous
 	\end{parts}
@@ -34,3 +34,20 @@
 		\end{cases}\]
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Choose $\epsilon>0$. Now we unravel the definitions. We know that $p$ is in $C(1 / n')$ with $1 / n'<\epsilon$. This means that it is in the interior of $C_n(1 / n')$ for some $n$. Then there is an open set containing $p$, such that $|f_n(x)-f(x)|\le \epsilon$ for all $x$ in this open set.
+
+		Using the continuity of $f_n$ at $p$, we choose an smaller open set such that $f_n$ does not vary by more than $\epsilon$. Using this, we can show that $f$ does not vary by more than $3\epsilon$ within this open set, completing the proof of continuity.
+	\item The set $A_n(\epsilon)$ is closed, since it is the intersection of the preimages of the closed set $[0,\epsilon]$ under the continuous map $|f_n(\cdot)-f_k(\cdot)|$. 
+
+		Then we show that the boundary of a closed set $A$ of $M$ is nowhere dense. Since the boundary is closed, we only need to show it has empty interior. Suppose not. Then there is an open set $U$ that lies both in $A$ and $(M\setminus A)^\text{cl}$. Thus there is an open set $V\\subseteq U$ lying in $M \setminus A$. However, since $A$ is closed, this is a contradiction, as this subset cannot also lie in $A$. 
+	\item This is the same as showing that the complement of $C$ is meager. The complement of $C$ is given by
+		\begin{align*}
+			M \setminus C &= \bigcup_{n=1}^\infty \left[ M \setminus C\left( \frac{1}{n} \right)  \right]\\ 
+				      &= \bigcup_{n=1}^\infty \left[ M \setminus \bigcup_{k=1}^\infty C_k\left( \frac{1}{n} \right) ^{\circ} \right]\\ 
+				      &=\bigcup_{n=1}^\infty \bigcap_{k=1}^\infty \left[M \setminus C_k\left( \frac{1}{n} \right) ^{\circ}\right]\\
+				      &=\bigcup_{n=1}^\infty \bigcap_{k=1}^\infty \left[M \setminus C_k\left( \frac{1}{n} \right) \right]^\text{cl}\\
+		\end{align*}
+	\end{parts}
+\end{proof}
