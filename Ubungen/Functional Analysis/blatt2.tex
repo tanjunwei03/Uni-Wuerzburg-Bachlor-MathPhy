@@ -1,0 +1,36 @@
+\begin{Problem}
+	The goal of this exercise is to show that every finite dimensional vector space carries a unique Hausdorff
+	topology. Let $V$ be a finite dimensional topological vector space of dimension $n\in \N$.
+	\begin{parts}
+		\item Use the continuity of the scalar multiplication to show that every open neighborhood $U$ of zero contains an open balanced neighborhood $U_0$ of zero, that is $zU_0 \subseteq U_0$ for all $z \in \mathbb{K}$	with $|z| \le 1$.
+		\item Given a basis $(e_1, \dots , e_n)$ of $\mathbb{K}^n$ and a basis $(v_1, \dots , vn)$ of $V$ , we define the map
+		$\varphi: \mathbb{K}^n \to V$ as the $K$-linear extension of the map $e_i\mapsto v_i$. Recall that $\varphi$ is an isomorphism of vector spaces. Show that $\varphi$ is continuous if $\mathbb{K}^n$ is endowed with the standard topology.
+		\item Let $V$ be Hausdorff. Show that $0 \in \varphi(B_r(0))^{\circ}$ for every $r > 0$.
+		
+		\emph{Hint: Consider the subset $V\setminus \varphi(\mathbb{S}^{n-1})$.}
+		
+		\item Conclude that $\varphi^{-1}$ is also continuous
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Let $(M,\mathcal{M})$ be a topological space and $(f_n)_n\in \N\subset C(M, \mathbb K)$ be a sequence of continuous functions that converges pointwise to a (not necessarily continuous!) function $f$. For $\epsilon > 0$ and $n \in \N$ we
+	define
+	\[C_n(\epsilon):=\{p\in M: |f_n(p)-f(p)|\le \epsilon\}\]
+	and set
+	\[C(\epsilon):=\bigcup_{n=1}^\infty C_n(\epsilon)^{\circ}\]
+	and
+	\[C:=\bigcap_{n=1}^\infty C\left(\frac 1n\right)\]
+	\begin{parts}
+		\item Show that $f$ is continuous at $p\in M$ iff $p\in C$
+		\item Consider the set
+		\[A_n(\epsilon):=\{p\in M:|f_n(p)-f_k(p)|\le \epsilon\text{ for all }k\ge n\}.\]
+		Show that the boundary of $A_n(\epsilon)$ is nowhere dense.
+		\item Show that the discontinuities of $f$ form a meager set of $M$.
+		\item Prove the following statement: There is no differentiable function $f:\R \to \R$ whose derivative equals the function
+		\[g:R\ni x\mapsto g(x):=\begin{cases}
+			1 & x\in (\R \setminus (0,1))\cup (\Q \cap (0,1))\\
+			0 & x\in (\R \setminus \Q)\cap (0,1).
+		\end{cases}\]
+	\end{parts}
+\end{Problem}
