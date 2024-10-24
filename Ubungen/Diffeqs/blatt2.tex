@@ -2,25 +2,160 @@
 Bestimmen Sie die Lösungen der Anfangswertprobleme
 \begin{parts}
 	\item $\dot{x}=(5t+5x)^2,\qquad x(0)=0$ und
-	\item $\dot{x}=\frac{t^2-x^2}{-5tx}$
+	\item $\dot{x}=\frac{t^2-x^2}{-5tx},\qquad x(1)=1$.
 \end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Die Abbildung $T:\R^2\to \R^2,~(t,x)\mapsto (t, x+t)=:(t, u)$ ist ein Diffeomorphismus. Damit ist die Ableitung
+	\[
+		\dot{x}=\dot{u}-1
+	\]
+	und die Gleichung ist
+	\[
+		\dot{u}-1=25u^2
+	.\]
+	Diese Gleichung ist separabel und besitzt L\"{o}sung
+	\[
+	\int_0^u \frac{1}{1+25s^2}\dd{s}=\int_0^t \dd{r}
+	,\]
+	also
+	\[
+		\frac{1}{5}\tan^{-1}(5u)=t
+	.\] 
+	Setzt man $x=u-t$ wieder ein, so erhält man
+	\[
+	x=\frac{1}{5}\tan (5t)-t
+	.\] 
+\item Man verifiziere einfach, dass die Gleichung homogen ist. Daher verwenden wir wie im Skript die Substitution $u=x / t$ bzw. der Diffeomorphismus
+	\[
+	T:(t,x)\mapsto (t, x / t)
+	.\] 
+Wie im Skript ist die transformierte DGL
+\[
+	\dot{u}=\frac{\frac{1-u^2}{-5u}-u}{t}
+\] 
+was nach Vereinfachung
+\[
+	\dot{u}=\frac{1}{t}\frac{1-u^2+5u^2}{-5u}=-\frac{1}{t}\frac{1+4u^2}{5u}
+\] 
+ist. Die Gleichung ist jetzt separabel mit L\"{o}sung gegeben durch
+\[
+	\int_1^u \frac{5s}{1+4s^2}\dd{s}=\int_1^t -\frac{1}{r}\dd{r}
+,\] 
+oder
+\[
+\frac{5}{8}\ln \left[ \frac{1}{5}\left( 1+4u^2 \right)  \right]=-\ln t 
+.\] 
+Daraus ergibt sich
+\[
+	\frac{1}{5}(1+4u^2)=t^{-8 / 5}
+\] 
+und
+\[
+	x=t\sqrt{\frac{1}{4}\left( 5t^{-8 / 5}-1 \right) }=\frac{t}{2}\sqrt{5t^{-8 / 5}-1}  
+.\qedhere\] 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Zeigen Sie, dass die Differentialgleichung
 	\begin{parts}
 	\item $\cos(t)+\sin(x)+(t\cos(x)+x)\dot{x}=0\qquad x(0)=0$ exakt ist und bestimmen Sie die Stammfunktion $F_0(t,x)$.
-	\item $\frac{1}{2}t^4 x+3x+t^2\dot{x}+t^3x=-3x\dot{x}-5\dot{x}-2tx,\qquad x(0)=1$ exakt ist, bestimmen Sie Stammfunktion $F_0(t, x)$ und bestimmen Sie eine Lösung.
+	\item $\frac{1}{4}t^4 \dot{x}+3x+t^2\dot{x}+t^3x=-3t\dot{x}-5\dot{x}-2tx,\qquad x(0)=1$ exakt ist, bestimmen Sie Stammfunktion $F_0(t, x)$ und bestimmen Sie eine Lösung.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Die Koeffizientenfunktionen sind auf ganz $\R^2$ definiert, was ein Rechteck ist. Daher betrachten wir wie im Skript
+		\[
+			\pdv{(\cos t+\sin x)}{x}=\cos t=\pdv{(t\cos x + x)}{t}
+		.\] 
+		Die DGL ist also exakt. Eine mgliche Stammfunktion ist
+		\[
+		F_0(t, x)=t\sin x+\frac{x^2}{2}+\sin t
+		.\] 
+	\item Die Gleichung umgeformt ist
+		\[
+			\underbrace{\left(3x+t^3x+2tx \right)}_{M(t, x)}+\underbrace{\left( t^2+3t+5+\frac{t^4}{4} \right)}_{N(t,x)}\dot{x}=0
+		.\] 
+Die Koeffizientenfunktionen sind wieder auf $\R^2$ definiert. Daher betrachten wir
+\[
+	\pdv{M}{x}=3+t^3+2t=\pdv{N}{t}
+.\] 
+Die DGL ist also exakt. Eine Stammfunktion ist
+\[
+F_0(t, x)=3xt+\frac{1}{4}t^4 x+t^2 x+5x
+.\] 
+Dann setzen wir $F_0(t_0, x_0)$ ein und erhalten
+\[
+F_0(0,1)=5
+.\] 
+Die Lösung ist gegeben durch
+\[
+F_0(t,x)=x\left( 3t+\frac{t^4}{4}+t^2+5 \right) =F_0(0,1)=5
+,\] 
+und die $x(t)$ ist
+\[
+x(t)=\frac{5}{3t+\frac{t^4}{4}+t^2+5}
+.\qedhere\] 
+	\end{parts}
+\end{proof}
+
 
 \begin{Problem}
-	Gegeben sei eine Differentialgleichung für $(t,x)\in U\subseteq \R \times \R$ mit der FOrm
+	Gegeben sei eine Differentialgleichung für $(t,x)\in U\subseteq \R \times \R$ mit der Form
 	\[
 		M(t, x)+N(t, x)\dot{x}=0
 	.\] 
 	die der Exaktheitsbedingung $\pdv{M}{x}=\pdv{N}{t}$ \emph{nicht} genügt.
 	\begin{parts}
-	\item Seien
+	\item Seien $N,M$ stetig differenzierbare Funktionen auf $\tilde{D}\to \R$, wobei $M(t, x)\neq 0$ f\"{u}r alle $(t,x)\in \tilde{D}$ f\"{u}r ein offenes Rechteck $\tilde{D}\subseteq U$. Zeigen Sie: H\"{a}ngt $\beta(t, x):=\frac{1}{M}\left( \pdv{M}{x}-\pdv{N}{t} \right) $ allein von $x$ ab, so ist $\mu(x):=\exp\left( -\int_{x_0}^x \beta(x)\dd{s} \right) $ f\"{u}r $(t_0, x_0)\in \tilde{D}$ ein integrierende Faktor von der Gleichung.
+	\item \"{U}berpr\"{u}fen Sie die Differentialgleichung
+		\[
+			-2tx+(3t^2-x^2)\dot{x}=0,\qquad x(1)=1
+		\]
+		auf Exaktheit und bestimmen Sie dann eine Stammfunktion $F_0(t,x)$ im Falle der Exaktheit. Falls sie nicht exakt ist, finden Sie einen integrierenden Faktor und bestimmen Sie dann eine Stammfunktion $F_0(t,x)$.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Da $\tilde{D}$ ein Rechteck ist, ist die DGL exakt genau dann, wenn
+	\[
+		\pdv{M(t, x)\mu(x)}{x}=\pdv{N(t, x)\mu(x)}{t} 
+	.\] 
+	Dann berechnen wir die Ableitungen
+	\begin{align*}
+		\pdv{M(t, x)\mu(x)}{x}&= M(t, x)\pdv{\mu(x)}{x}+\mu(x)\pdv{M(t,x)}{x}\\
+				      &=M(t, x)\mu(x)(-\beta(x))+\mu(x)\pdv{M(t,x)}{x}\\
+		\pdv{(N(t,x)\mu(x))}{t}&=\mu(x)\pdv{N(t,x)}{t}
+	\end{align*}
+	Die beide sind genau dann gleich, wenn
+	\[
+		\pdv{M(t, x)}{x}-\pdv{N(t,x)}{t}=\beta(x)M(t,x)
+	,\] 
+	was per Definition von $\beta(x)$ erf\"{u}llt ist.
+\item Da die Koeffizientenfunktionen auf $\R^2$ definiert sind, ist die DGL genau dann exakt, falls
+\end{parts}
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+	\item Bestimmen Sie die L\"{o}sung des Anfangswertproblems
+		\[
+			\dot{x}-\frac{3t^2+4}{t^3+4t}x=t\qquad x(2)=0
+		.\] 
+	\item F\"{u}r welche Anfangswerte $x(1)=x_0,~x_0\in \R$, hat die Differentialgleichung
+		\[
+			t\dot{x}=x+2t^2
+		\]
+		eine L\"{o}sung? Bestimmen Sie alle m\"{o}glichen L\"{o}sungen des Anfangswertproblems.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir verwenden Variation der Konstante. Zunächst lösen wir die homogene DGL
+		\[
+			\dot{x}=\frac{3t^2+4}{t^3+4t}x=0
+		.\] 
+Die Koeffizientfunktion besitzt Stammfunktion
+	\end{parts}
+\end{proof}
