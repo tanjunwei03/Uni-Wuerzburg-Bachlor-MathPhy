@@ -145,7 +145,7 @@ x(t)=\frac{5}{3t+\frac{t^4}{4}+t^2+5}
 		.\] 
 	\item F\"{u}r welche Anfangswerte $x(1)=x_0,~x_0\in \R$, hat die Differentialgleichung
 		\[
-			t\dot{x}=x+2t^2
+			t\dot{x}=x+2t^3
 		\]
 		eine L\"{o}sung? Bestimmen Sie alle m\"{o}glichen L\"{o}sungen des Anfangswertproblems.
 	\end{parts}
@@ -154,8 +154,64 @@ x(t)=\frac{5}{3t+\frac{t^4}{4}+t^2+5}
 	\begin{parts}
 	\item Wir verwenden Variation der Konstante. Zunächst lösen wir die homogene DGL
 		\[
-			\dot{x}=\frac{3t^2+4}{t^3+4t}x=0
+			\dot{x}-\frac{3t^2+4}{t^3+4t}x=0
 		.\] 
-Die Koeffizientfunktion besitzt Stammfunktion
+		Die Koeffizientfunktion hat Stammfunktion
+		\[
+			\dv{t} \ln |t^3 + 4t|=\frac{3t^2+4}{t^3+4t}
+		\]
+		und die Lösung ist damit
+		\[
+			x(t) = C|t^3 + 4t|
+		.\] 
+		Da $[t^3+4t]_{t=2}>0$, können wir eine offene Umgebung finden, sodas $t^3+4t$ in dieser Umgebung positiv ist. Daher schreiben wir einfach
+		\[
+		x(t)=C(t^3+4t)
+		.\] 
+		Für die Methode ersetzen wir die Konstante $C$ durch eine Funktion $C(t)$. Mit diesem Ansatz ergibt sich eine Gleichung für $C(t)$: 
+		\[
+		C'(t)(t^3+4t)=t
+		.\] 
+		Die allgemeine Lösung ergibt sich einfach durch Integration:
+		\[
+			C(t)=\frac{1}{2}\tan^{-1}\frac{t}{2}+A
+		\] 
+		und die Lösung für $x(t)$ ist
+		\[
+			x(t)=\left( \frac{1}{2}\tan^{-1}\frac{t}{2}+A \right)(t^3+4t)
+		.\] 
+		Nun wird $t=2$ eingesetzt, um $A$ zu bestimmen. Die Lösung ist
+		\[
+		A=-\frac{\pi}{8}
+	\]
+	und
+	\[
+		x(t)=\frac{1}{2}\left( \tan^{-1}\frac{t}{2}-\frac{\pi}{4} \right)(t^3+4t)
+	.\] 
+\item Wieder durch Variationen der Konstanten: Zunächst lösen wir die homogene DGL
+	\[
+		t\dot{x}=x
+	\]
+	und erhalten als allgemeine Lösung
+	\[
+	x=Ct,~C\in \R
+	.\] 
+	Dann setzen wir als Ansatz $x=c(t)t$ ein und erhalten eine Gleichung für $c(t)$:
+	\[
+t^2 c'(t)=2t^3
+	\] 
+	mit Lösung
+	\[
+	c(t) = t^2+A
+	.\] 
+	Die allgemeine Lösung für $x(t)$ ist also
+	\[
+	x(t) = \left(t^2+A \right)t
+	.\] 
+	Die Gleichung $x(1)=x_0$ ist
+	\[
+	x_0=1+A
+,\]
+was immer eine Lösung für $A$ besitzt. Daher gibt es eine Lösung für alle $x_0\in \R$.\qedhere
 	\end{parts}
 \end{proof}
