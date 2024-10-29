@@ -1,0 +1,76 @@
+\begin{Problem}
+	Let $V$ be a $\mathbb{K}$-valued vector space. A seminorm on $V$ is a homogeneous map $p:V\to [0,\infty)$ satisfying the triangle inequality, i.e.
+	\[
+	p(v+w)\le p(v)+p(w)
+\]
+and
+\[
+p(\lambda v)=|\lambda|p(v)
+\]
+for any two vectors $v,w\in V$ and every scalar $\lambda\in\mathbb{K}$.
+\begin{parts}
+	\item Show that the kernel of a seminorm $p$ is a subspace of $V$.
+
+		Given a seminorm $p$, we say that two vectors $v,w\in V$ are equivalent if there is a vector $u\in \text{ker }p$ such that $w=v+u$. Make yourself clear that this yields an equivalence relation on $V$.
+	\item Show that the quotient space $V / \text{ker }p:=V / \sim$ carries a canonical linear structure.
+	\item Show that the map
+		\[
+			\overline{p}:V / \text{ker }p\ni [v]\mapsto p(v)
+		\]
+		yields a well-defined norm on the quotient space.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Clear by definition
+	\item Also clear
+	\end{parts}
+\end{proof}
+\begin{Problem}\label{pr:funcanalblatt3-2}
+	Let $M$ be a topological space. Show that the space $(\mathcal{C}_b(M), \|\cdot\|_\infty)$ of continuous and bounded $\mathbb{K}$-valued functions endowed with the supremum norm is complete.
+\end{Problem}
+
+\begin{Problem}
+	In this exercise we weaken the conditions of Homework~\ref{pr:funcanalblatt3-2} by considering functions that are only essentially bounded. The goal is to find a suitable seminorm on this function space such that the corresponding quotient becomes a Banach space. But first, we shall settle the term ``essentially bounded''. To this end, we need the following definitions:
+
+	Let $X$ be a set and $\mathfrak{a}\in 2^X$. We call $\mathfrak{a}$ a $\sigma$-algebra if
+	\begin{itemize}
+		\item $\varnothing\in\mathfrak{n}$,
+		\item $X \setminus A\in \mathfrak{a}$ for every $A\in \mathfrak{a}$ and
+		\item $\bigcup_{n\in \N} A_n\in \mathfrak{a}$ for every sequence $(A_n)_{n\in \N}\subset \mathfrak{a}$
+	\end{itemize}
+	The pair $(X, \mathfrak{a})$ is called a measurable space. One can check that for every $A\in \mathfrak{a}$ one obtains a new $\sigma$-algebra $a|_{X\setminus A}\subseteq 2^{X \setminus A}$, where $B\in \mathfrak{a}_{X \setminus A}$iff there is some $C\in \mathfrak{a}$ such that $B=C \setminus A$.
+
+	A function $f: (X, \mathfrak{a})\to \mathbb{K}$ if $f^{-1}(B_r(z))\subseteq \mathfrak{a}$ for every $z\in \mathbb{K}$ and $r>0$. We denote the set of measurable $\mathbb{K}$-valued functions by $\mathcal{M}(X, a)$. Clearly, the restriction of a measurable function $f\in \mathcal{M}(X, a)$ to $X \setminus A$ yields a measurable function $f|_{X \setminus A}\in \mathcal{M}(X \setminus A, \mathfrak{a}|_{X \setminus A})$.
+
+	Finally, a subset $\mathfrak{n}\subseteq \mathfrak{a}$ is called a $\sigma$-ideal if
+	\begin{itemize}
+		\item $\varnothing \in \mathfrak{n}$,
+		\item $\bigcup_{n\in \N} A_n\in \mathfrak{a}$ for every sequence $(A_n)_{n\in \N}\subset \mathfrak{n}$ and
+		\item for all $A\in \mathfrak{n}$ and $B\in\mathfrak{a}$ one has the implication $B\subseteq A\implies B \in \mathfrak{n}$.
+	\end{itemize}
+	\begin{parts}
+	\item For $f\in \mathcal{M}(X, \mathfrak{a})$ we define the essential range
+		\[
+			\text{ess range}(f):=\{z\in \mathbb{K}:f^{-1}(B_r(z))\not\in \mathfrak{n}\text{ for all }r>0\} 
+		\]
+		and the essential supremum
+		\[
+			\text{ess sup}(f):=\sup \{|z|:z\in \text{ess range}(f)\} 
+		.\] 
+		Show that $\text{ess range}(f)\subseteq \mathbb{K}$ is closed and $f^{-1}(\mathbb{K}\setminus\text{ess range}(f))\in \mathfrak{n}$.
+	\item Show that two functions $f,g\in \mathcal{M}(X, \mathfrak{a})$ have the same essential range if the essential range of $f-g$ contains only $0$.
+	\item The set of essentially bounded functions on $X$ is defined as
+		\[
+			\mathcal{L}^\infty (X, \mathfrak{a}, \mathfrak{n}):=\{f\in \mathcal{M}(X, a):\|f\|_\text{ess sup}:=\text{ess sup}(f)<\infty\} 
+		.\] 
+		Show that $\|\cdot\|_\text{ess sup}$ defines a seminorm on $\mathcal{L}^\infty(X, \mathfrak{a}, \mathfrak{n})$ and compute its kernel. Moreover, show that the essential supremum of $f\in \mathcal{L}^\infty(X, \mathfrak{a}, \mathfrak{n})$ is given by
+		\[
+			\text{ess sup}(f)=C_f:=\inf \{C>0:|f|^{-1}([C,\infty))\in \mathfrak{n}\}  
+		.\] 
+		Hint: You can use that $\mathcal{M}(X, \mathfrak{a})$ and $\mathcal{L}^\infty(X, \mathfrak{a}, \mathfrak{n})$ are $\mathbb{K}$-vector spaces without proof.
+	\item Show that $L^\infty(X, \mathfrak{a}, \mathfrak{n}):= \mathcal{L}^\infty (X, \mathfrak{a}, \mathfrak{n}) / \text{ker}\|\cdot\|_{ess sup}$ is a Banach space, i.e. a complete normed space.
+
+		Hint: Consider the sequence $(f_n)_n$ on a suitable subset of $X$ and copy your proof of Homework~\ref{pr:funcanalblatt3-2}. You can use that a pointwise limit of a sequence of measurable functions is again measurable without proof.
+	\end{parts}
+\end{Problem}
