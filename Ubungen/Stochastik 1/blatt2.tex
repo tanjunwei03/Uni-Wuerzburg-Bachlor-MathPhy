@@ -6,7 +6,20 @@
 		\item Berechnen Sie die Wahrscheinlichkeit dafur, dass eine Person gedopt ist, deren Test negativ ausgefallen ist.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Da eine Person entweder gedopt or nicht gedopt ist, können wir die Wahrscheinlichkeit zerlegen
+		\begin{align*}
+			P(\text{positiv})&=P(\text{positiv}|\text{gedopt})P(\text{gedopt}) + P(\text{positiv}|\text{nicht gedopt})P(\text{nicht gedopt})\\
+					 &=0.99\cdot 0.2+0.05\cdot 0.8\\
+					 &=0.238
+		\end{align*}
+	\item Die Wahrscheinlichkeit ist
+		\[
+			P(\text{negativ}\cap \text{gedopt})=P(\text{negativ})\cap P(\text{gedopt})
+		.\] 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Betrachten Sie die Menge $\Omega = \{1, 2, 3\}$ und die Abbildung $p : \Omega \to [0, 1]$ mit $p(\omega) = \omega/6$, f\"{u}r $\omega\in\Omega$
 	\begin{parts}
