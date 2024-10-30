@@ -1,0 +1,50 @@
+\begin{Problem}
+	Bei einer Sportveranstaltung wird ein Dopingtest durchgeführt. Falls eine Person gedopt ist, so fällt der Test zu 99\% auch positiv aus. Hat eine Person nicht gedopt, zeigt der Test trotzdem mit 5\% Wahrscheinlichkeit ein positives Ergebnis an. Aus Erfahrung sei bekannt, dass 20\% der Teilnehmenden gedopt sind.
+	\begin{parts}
+		\item Bestimmen Sie die Wahrscheinlichkeit dafur, dass eine Dopingprobe positiv ausf\"{a}llt.
+		\item Bestimmen Sie die Wahrscheinlichkeit dafur, dass der Test negativ ausf\"{a}llt, obwohl die getestete Person gedopt ist.
+		\item Berechnen Sie die Wahrscheinlichkeit dafur, dass eine Person gedopt ist, deren Test negativ ausgefallen ist.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Betrachten Sie die Menge $\Omega = \{1, 2, 3\}$ und die Abbildung $p : \Omega \to [0, 1]$ mit $p(\omega) = \omega/6$, f\"{u}r $\omega\in\Omega$
+	\begin{parts}
+		\item Geben Sie vier verschiedene $\sigma$-Algebren auf $\Omega$ an.
+		\item Geben Sie ein Beispiel an f\"{u}r $\sigma$-Algebren uber der Menge $\Omega$, so dass
+		\[\mathcal{A}\sqcup \mathcal{B}:=\{A\cup B:A\in\mathcal{A}\text{ und }B\in\mathcal{B}\},\]
+		\emph{keine} $\sigma$-Algebra ist.
+		\item Zeigen Sie, dass ein Wahrscheinlichkeitsmaß $\mathbb{P}$ auf $(\Omega,\mathcal{P}(\Omega))$ existiert, so dass $\mathbb{P}(\{\omega\}) =p(\omega)=\omega/6$.
+		\item Bestimmen Sie die $\sigma$-Algebra, welche von $\mathcal{E} = \{A\in \mathcal{P}(\Omega)|\mathbb{P}(A) = 1/2\}$ erzeugt wird
+	\end{parts}
+	\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item \begin{gather*}
+			\{\varnothing, \Omega\}\\
+			\{\varnothing, \{1\}, \{2,3\}, \Omega\}\\
+			\{\varnothing, \{1,2\}, \{3\},\Omega\}\\
+			\mathcal{P}(\Omega)
+		\end{gather*}
+	\item Wir betrachten die zweite und dritte $\sigma$-Algebren:
+	\begin{align*}
+		\mathcal{A}&=\{\varnothing, \{1\}, \{2,3\}, \Omega\}\\
+		\mathcal{B}&=\{\varnothing, \{1,2\}, \{3\},\Omega\}\\
+		\mathcal{A}\sqcup \mathcal{B}&=\{\varnothing, \{1\}, \{2,3\}, \{1,2\}, \{3\}, \{1,3\}, \Omega \}
+	\end{align*}
+was keine $\sigma$-Algebra ist, da $\Omega \setminus \{1,3\}=\{2\}\not\in \mathcal{A}\sqcup \mathcal{B}$.
+\item Wir können die Funktion durch deren Wirkung auf jeder Teilmenge definieren:
+\begin{align*}
+	\mathbb{P}(\varnothing)&=0\\
+	\mathbb{P}(\{\omega\})&=\omega/6\\
+	\mathbb{P}(\{1,2\})&=1/2\\
+	\mathbb{P}(\{2,3\})&=5/6\\
+	\mathbb{P}(\{1,3\})&=2/3\\
+	\mathbb{P}(\Omega)&=1
+\end{align*}
+Durch Betrachtung alle Permutationen kann man zeigen, dass $\mathbb{P}$ $\sigma$-additiv ist. Daher ist $\mathbb{P}$ ein Wahrscheinlichkeitsmaß.
+\item $\mathcal{E}=\{\{1,2\},\{3\}\}$. Daher ist die von $\mathcal{E}$ erzeugte $\sigma$-Algebra
+\[\mathcal{A}_\sigma(\mathcal{E})=\{\varnothing, \{1,2\}, \{3\}, \Omega\}\]
+Dies ist die kleinste $\sigma$-Algebra, die $\mathcal{E}$ enthält, da eine $\sigma$-Algebra die Nullmenge und die gesamte Menge enthalten muss. Man darf die anderen 2 Mengen auch nicht weglassen, da die Mengen aus $\mathcal{E}$ sind. Man verfiziere auch, dass Komplementen und Vereinigungen noch in $\mathcal{A}_\sigma(\mathcal{E})$ sind.\qedhere
+	\end{parts}
+\end{proof}
