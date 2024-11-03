@@ -29,7 +29,13 @@ for any two vectors $v,w\in V$ and every scalar $\lambda\in\mathbb{K}$.
 \begin{Problem}\label{pr:funcanalblatt3-2}
 	Let $M$ be a topological space. Show that the space $(\mathcal{C}_b(M), \|\cdot\|_\infty)$ of continuous and bounded $\mathbb{K}$-valued functions endowed with the supremum norm is complete.
 \end{Problem}
+\begin{proof}
+	Suppose we have a Cauchy sequence in the supremum norm. Clearly, this implies pointwise convergence (since the real numbers are complete).
 
+	It remains to show that the new function is continuous and bounded. Clearly, if $\|f-f_n\|\le \epsilon$, then $\|f\|\le \|f_n\|+\epsilon$, which means it is bounded.
+
+	Continuity follows from uniform convergence.\qedhere
+\end{proof}
 \begin{Problem}
 	In this exercise we weaken the conditions of Homework~\ref{pr:funcanalblatt3-2} by considering functions that are only essentially bounded. The goal is to find a suitable seminorm on this function space such that the corresponding quotient becomes a Banach space. But first, we shall settle the term ``essentially bounded''. To this end, we need the following definitions:
 
@@ -74,3 +80,14 @@ for any two vectors $v,w\in V$ and every scalar $\lambda\in\mathbb{K}$.
 		Hint: Consider the sequence $(f_n)_n$ on a suitable subset of $X$ and copy your proof of Homework~\ref{pr:funcanalblatt3-2}. You can use that a pointwise limit of a sequence of measurable functions is again measurable without proof.
 	\end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We consider the complement of the essential range. Suppose $z$ is not in the essential range. Then $f^{-1}(B_r(z))\not\in \mathfrak{n}$ for some $r$. Clearly, this is the open set that we seek that does not intersect the essential range. Thus, the essential range is closed.
+
+		We prove the second part by contradiction. Suppose that the inverse image were not in $\mathfrak{n}$. Then
+		\[
+			f^{-1}(\mathbb{K} \setminus \text{ess range}(f))=\mathcal{M}\setminus f^{-1}(\text{ess range}(f))
+		.\] 
+		We seek to show that this is not in $\mathfrak{n}$. Suppose it were. Then 
+	\end{parts}
+\end{proof}
