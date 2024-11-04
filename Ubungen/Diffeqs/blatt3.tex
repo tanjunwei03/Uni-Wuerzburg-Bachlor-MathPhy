@@ -1,0 +1,75 @@
+\begin{Problem}
+	\begin{parts}
+		\item Eine Riccati-Differentialgleichung hat die Form
+			\begin{equation}\label{eq:diffeqblatt3-1}
+	\dot{x}=a(t)+b(t)x+c(t)x^2
+,\end{equation}
+wobei $a,b,c:D\to \R,~D\subset \R$ offen, stetige Funktionen sind. Zeigen Sie:
+
+Kennt man eine L\"{o}sung $\varphi(t)$ von \eqref{eq:diffeqblatt3-1}, so kann man \eqref{eq:diffeqblatt3-1} mit der Transformation $y=x-\varphi(t)$ in eine Bernoullische Differentialgleichung umwandeln.
+\item Kreuzen Sie bei der folgenden Tabelle an, welche Differentialgleichungen linear, nicht linear, homogen, inhomogen, bernoullisch oder riccatisch sind.
+
+	\begin{tabular}{c|c|c|c|c|c|c}
+		DGL & linear & nichtlinear & homogen & inhomogen & bernoullisch & riccatisch \\\hline
+		$\sin(4t)x+3\dot{x}+\sqrt{t} =0$ & & & & & & \\\hline
+		$t\dot{x}-2x+2tx^2=0$ & & & & & & \\\hline
+		$\dot{x}-2e^{2t}x+3x^2=1+e^{2t}$ & & & & & & \\\hline
+		$\dot{x}+3x=0$ & & & & & & \\\hline
+		$\dot{x}+2x-tx^4=0$ & & & & & & 
+	\end{tabular}
+\end{parts}
+\end{Problem}
+\begin{proof}
+\begin{parts}
+\item Es gilt
+	\begin{align*}
+		x&=y+\varphi(t)\\
+		\dot{x}&=\dot{y}+\dot{\varphi}(t).
+	\end{align*}
+	Daher ist nach Einsetzen
+	\begin{align*}
+		\dot{y}+\varphi'(t)&=a(t)+b(t)(y+\varphi(t))+c(t)(y^2+2y\varphi(t)+\varphi(t)^2) \\
+		\dot{y}+\textcolor{blue}{\varphi'(t)}&=\textcolor{blue}{a(t)}+b(t)y+\textcolor{blue}{b(t)\varphi(t)}+c(t)y^2+2y\varphi(t)+\textcolor{blue}{c(t)\varphi(t)^2}\\
+		\dot{y}&= [b(t)+2\varphi(t)]y + c(t)y^2
+	\end{align*}
+	wobei wir die blauen Terme k\"{u}rzen d\"{u}rfen, da $\varphi$ bekanntermaßen eine L\"{o}sung der DGL ist. Die Gleichung am Ende ist offensichtlich eine bernoullische DGL.
+\item 
+\end{parts}	
+\end{proof}
+\begin{Problem}
+	In der Literatur findet man den \emph{Potenzreihenansatz} zur L\"{o}sung von Differentialgleichungen und Anfangswertproblemen. Um die Vorgehensweise dieses Ansatzes zu verstehen, betrachten wir die Differentialgleichung des Federpendels
+	\begin{equation}\label{eq:diffeqblatt3-2}
+		m\ddot{x}+Dx=0,
+	\end{equation}
+	wobei $m>0$ (Masse) und $D>0$ (Federkonstante) gilt.
+	\begin{parts}
+	\item Ermitteln Sie mit dem Ansatz
+		\[
+			\varphi(t)=\sum_{n=0}^{\infty} a_n t^n,~a_n\in \R~\text{f\"{u}r alle }n\in \N_0
+		\] 
+		durch gliedweises Differenzieren, Einsetzen in \eqref{eq:diffeqblatt3-2} und Koeffizientenvergleich eine Rekursionsgleichung f\"{u}r die Koeffizienten $a_n$.
+	\item Leiten Sie mit Hilfe der Rekursionsgleichung aus Teil (a)
+		\[
+			\varphi(t)=a_0 \sum_{k=0}^{\infty} \frac{(-1)^k}{(2k)!}\left(\frac{D}{m}\right)^k t^{2k}+a_1 \sum_{k=0}^{\infty} \frac{(-1)^k}{(2k+1)!}\left( \frac{D}{m} \right)^k t^{2k+1}
+		\]
+		her.
+	\item Zeigen Sie, dass
+\[
+\varphi(t)=a_0 \cos\omega t + \frac{a_1}{\omega}\sin \omega t,~\omega:=\sqrt{\frac{D}{M}} 
+\]
+gilt.
+\item L\"{o}sen Sie mit Hilfe des Potenzreihenansatzes das Anfangswertproblem
+	\[
+		\dot{x}+x=0,\qquad x(0)=x_0
+	.\] 
+	\emph{(Hinweis: Falls Sie Probleme haben die entstehende Potenzreihe zu erkennen, dann lösen Sie für sich die Differentialgleichung mit dem Ansatz der Variation der Konstanten und vergleichen Sie Ihre Lösung mit der Potenzreihe.)} 
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Sei $a\in \R,~a>0$. Zeigen Sie, dass das Anfangswertproblem
+	\[
+		\dot{x}=|x|^a,\qquad x(0)=0
+	\]
+	genau im Fall $a\ge 1$ eine eindeutige L\"{o}sung f\"{u}r $t\ge 0$ besitzt.
+\end{Problem}
