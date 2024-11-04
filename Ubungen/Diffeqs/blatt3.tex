@@ -32,8 +32,17 @@ Kennt man eine L\"{o}sung $\varphi(t)$ von \eqref{eq:diffeqblatt3-1}, so kann ma
 		\dot{y}+\textcolor{blue}{\varphi'(t)}&=\textcolor{blue}{a(t)}+b(t)y+\textcolor{blue}{b(t)\varphi(t)}+c(t)y^2+2y\varphi(t)+\textcolor{blue}{c(t)\varphi(t)^2}\\
 		\dot{y}&= [b(t)+2\varphi(t)]y + c(t)y^2
 	\end{align*}
-	wobei wir die blauen Terme k\"{u}rzen d\"{u}rfen, da $\varphi$ bekanntermaßen eine L\"{o}sung der DGL ist. Die Gleichung am Ende ist offensichtlich eine bernoullische DGL.
+	wobei wir die blauen Terme kürzen dürfen, da $\varphi$ bekanntermaßen eine Lösung der DGL ist. Die Gleichung am Ende ist offensichtlich eine bernoullische DGL.
 \item 
+
+	\begin{tabular}{c|c|c|c|c|c|c}
+	DGL & linear & nichtlinear & homogen & inhomogen & bernoullisch & riccatisch \\\hline
+	$\sin(4t)x+3\dot{x}+\sqrt{t} =0$ & $\times$ & & & $\times $ & & $\times$ \\\hline
+	$t\dot{x}-2x+2tx^2=0$ & & $\times$ & & $\times$ & $\times$ & $\times$ \\\hline
+	$\dot{x}-2e^{2t}x+3x^2=1+e^{2t}$ & & $\times$ & & $\times$ & & $\times$ \\\hline
+	$\dot{x}+3x=0$ & $\times$ & & & $\times$ & $\times$ & $\times$ \\\hline
+	$\dot{x}+2x-tx^4=0$ & & $\times$ & & $\times$ & $\times$ & 
+\end{tabular}
 \end{parts}	
 \end{proof}
 \begin{Problem}
@@ -65,7 +74,19 @@ gilt.
 	\emph{(Hinweis: Falls Sie Probleme haben die entstehende Potenzreihe zu erkennen, dann lösen Sie für sich die Differentialgleichung mit dem Ansatz der Variation der Konstanten und vergleichen Sie Ihre Lösung mit der Potenzreihe.)} 
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+		\item Da Potenzreihen gleichmäßig konvergieren, ist
+		\begin{align*}
+		\varphi''(t)&=\sum_{n=0}^\infty n(n-1)a_n t^{n-2}\\
+		&=\sum_{n=-2}^\infty (n+2)(n+1)a_{n+2}t^n\\
+		&=\sum_{n=0}^\infty (n+2)(n+1)a_{n+2}t^n
+	\end{align*}
+	Setzt man diesen Ansatz in \eqref{eq:diffeqblatt3-2} ein, so erhält man
+	\[\sum_{n=0}^\infty\left[m(n+2)(n+1)a_{n+2}+Da_n\right]=0.\]
+	Daher bekommt man zwei Folgen $(a_n)_{n\text{ gerade}}$ und $(a_n)_{n\text{ ungerade}}$. Die L\"{o}sungen sind:
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Sei $a\in \R,~a>0$. Zeigen Sie, dass das Anfangswertproblem
 	\[
