@@ -1,0 +1,81 @@
+\begin{Problem}
+	Es seien $A,B\in \mathcal{A}$ Ereignisse in einem Wahrscheinlichkeitsraum $(\Omega, \mathcal{A}, \mathbb{P})$. Wir nehmen an, dass $\mathbb{P}(A\cap B)=1 / 2$, $\mathbb{P}(A \setminus B)=c - 1 / 2$ und $\mathbb{P}(B \setminus A)=k - 1 / 2$ mit Konstanten $c$ und $k$ gelten.
+	\begin{parts}
+	\item Berechnen Sie $\mathbb{P}(A)$ und $\mathbb{P}(B)$.
+	\item Berechnen Sie $\mathbb{P}(A^c\cap B^c)$.
+	\item Welche Bedingungen m\"{u}ssen $c$ und $k$ erf\"{u}llen?
+	\item F\"{u}r welche Werte von $c$ und $k$ sind die Ereignisse $A$ und $B$ (stochastisch) unabhängig?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt
+		\begin{align*}
+			\mathbb{P}(A \setminus B) &= \mathbb{P}(A \setminus (A \cap B))\\
+			&= \mathbb{P}(A) - \mathbb{P}(A\cap B)\\
+			&= c - 1 / 2
+		\end{align*}
+		Daraus bekommt man $\mathbb{P}(A)=c$ und analog $\mathbb{P}(B)=k$.
+	\item 
+		\begin{align*}
+			\mathbb{P}(A^c \cap B^c) &= 1-\mathbb{P}(A\cup B)\\
+			&=1 - (\mathbb{P}(A)+\mathbb{P}(B) - \mathbb{P}(A\cap B))\\
+			&= \frac{3}{2}-c-k
+		\end{align*}
+	\item $1 \ge c,k\ge 1 / 2$.
+	\item Es muss gelten
+		\[
+		ck = \frac{1}{2}
+		.\] 
+		Alle Paare $(c,k)$, die diese Gleichung und $1 \ge c,k\ge 1 / 2$ erf\"{u}llen, machen $A$ und $B$ auch stochastisch unabh\"{a}ngig.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	In der Situation von Beispiel 2.24 habe sich eine Person $r$-mal einem ELISA-Test unterzogen, $r \in \N$. Wir nehmen an, dass die einzelnen Testergebnisse – unabh\"{a}ngig davon, ob eine Infektion vorliegt oder nicht – als unabh\"{a}ngige Ereignisse angesehen werden k\"{o}nnen.
+
+Zeigen Sie: Die bedingte Wahrscheinlichkeit, dass die Person infiziert ist, wenn alle $r$ Tests positiv ausfallen, ist in Verallgemeinerung von Beispiel 2.24, mit $q = \mathbb{P}(K)$ als Pr\"{a}valenz, gegeben durch
+\[
+\frac{qp_\text{se}^r}{qp_\text{se}^r+(1-q)(1-p_\text{sp})^r}
+.\] 
+Berechnen Sie diese bedingten Wahrscheinlichkeiten f\"{u}r die Werte aus Beispiel 2.24 und f\"{u}r $r=2,3,5$.
+\end{Problem}
+\begin{proof}
+	Wir nehmen als Wahrscheinlichkeitsraum $\{0,1\}^{r+1}=\{(\omega_0, \omega_1, \dots, \omega_r)|\omega_i\in \{0,1\} \} $, wobei
+	\[
+	\omega_0=\begin{cases}
+		0 & \text{falls Patient gesund}\\
+		1 & \text{sonst,}
+	\end{cases}\qquad \omega_i = \begin{cases}
+		0 & \text{falls Test }i\text{ negativ,}\\
+		1 & \text{falls Test }i\text{ positiv.}
+	\end{cases}
+	\] 
+	Danach definieren wir 2 Ereignisse
+	\[
+	K=\{1\} \times \{0,1\}^r,\qquad P = \{0,1\} \times \{1\}^r
+	.\] 
+	Das Ereignis $P$ kann man umschreiben mithilfe von Ereignisse $P_i=\{0,1\} \times \{0,1\}^{i-1}\times \{1\} \times \{0,1\}^{r-i}$, also die Wahrscheinlichkeit, dass das Test $i$ positiv ist. Es gilt
+	\[
+	P= \bigcap_{i=1}^n P_i
+	.\] 
+	Weil die Tests als unabh\"{a}ngig angenommen werden, ist $\mathbb{P}(P|K)=\prod_{i=1}^r \mathbb{P}(P_i|K)=p_\text{se}^r$. \"{A}hnlich ist $\mathbb{P}(P|K^c)=\prod_{i=1}^r \mathbb{P}(P_i|K^c)=p_\text{sp}^r$ und $\mathbb{P}(K)=q$.
+
+	Daraus folgt analog wie Skript
+	\[
+	\mathbb{P}(P)=p_\text{se}^r\cdot q + (1-p_\text{sp})^r(1-q)
+	\] 
+	und nach Bayes
+	\[
+	\mathbb{P}(K|P)=\frac{\mathbb{P}(P|K)\cdot \mathbb{P}(K)}{\mathbb{P}(P)}=\frac{qp_\text{se}^r}{qp_\text{se}^r+(1-q)(1-p_\text{se})^r}
+	.\] 
+	Nun setzen wir $p_\text{se}=p_\text{sp}=0.998$ und $q=0.001$ ein und erhalten f\"{u}r die Wahrscheinlichkeiten
+
+	\begin{center}
+	\begin{tabular}{ccccc}
+		\toprule
+		$r$ & 2 & 3 & 4 & 5 \\\midrule
+		$\mathbb{P}(K|P)$ & 0.996004 & 0.99999195992 & 0.999999983887 & 0.999999999968\\\bottomrule
+	\end{tabular}
+\end{center}
+\qedhere
+\end{proof}

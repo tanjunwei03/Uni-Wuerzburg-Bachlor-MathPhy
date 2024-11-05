@@ -165,5 +165,23 @@ Damit ist die L\"{o}sung der DGL
 	genau im Fall $a\ge 1$ eine eindeutige L\"{o}sung f\"{u}r $t\ge 0$ besitzt.
 \end{Problem}
 \begin{proof}
-	Offensichtlich ist $x(t)=0$ eine L\"{o}sung f\"{u}r alle $a>0$. Jetzt betrachten wir Lipschitz-Stetigkeit: Es gilt, f\"{u}r alle  
+	Offensichtlich ist $x(t)=0$ eine L\"{o}sung f\"{u}r alle $a>0$. Jetzt betrachten wir Lipschitz-Stetigkeit: Da $|x|^a = x^a$ f\"{u}r alle $x\ge 0$, was stetig differenzierbar in $[0,\infty)$ f\"{u}r alle $a\ge 1$ ist, ist $|x|^a$ lokal lipschitz stetig und die L\"{o}sung ist somit eindeutig. 
+
+	Jetzt betrachten wir den Fall $a<1$. Sei $t_0>0,~\varphi:[0,\infty)\to \R$ und
+	\[
+	\varphi(t) = \begin{cases}
+		0 & t \le t_0,\\
+		[(1-a)(t-t_0)]^{\frac{1}{1-a}} & \text{sonst.}
+	\end{cases}
+	.\] 
+	Es ist klar, dass die DGL in sowohl $[0,t_0)$ als auch in $(t_0,\infty)$ erf\"{u}llt ist. Dann bleibt es nur die Ableitung in $t_0$ zu betrachten. Es gilt
+	\begin{align*}
+		\lim_{t \searrow t_0} \frac{\varphi(t)-\varphi(t_0)}{t-t_0}&=\lim_{t \searrow t_0} \frac{1}{t-t_0}(1-a)^{\frac{1}{1-a}}(t-t_0)^{\frac{1}{1-a}}\\
+		&=\lim_{t \searrow t_0} (1-a)^{\frac{1}{1-a}}(t-t_0)^{\frac{a}{1-a}}\\	&= 0
+	\end{align*}
+	da
+	\[
+	\frac{a}{1-a}=\frac{1}{\frac{1}{a}-1}>0
+	.\] 
+	Es ist klar, dass $\lim_{t \nearrow t_0} \frac{\varphi(t)-\varphi(t_0)}{t-t_0}=0$. $\varphi(t)$ ist damit in $t_0$ differenzierbar mit Ableitung $0$. Die DGL ist also erf\"{u}llt. Da $\varphi(t)$ eine L\"{o}sung f\"{u}r alle $x_0>0$ ist, ist die L\"{o}sung nicht eindeutig.
 \end{proof}

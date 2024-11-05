@@ -1,0 +1,63 @@
+\begin{Problem}
+	For $p\in [1,\infty]$ we define the set
+	\[
+	\ell^p:=\begin{cases}
+		\{x:=(x_n)_{n\in N}\subset \mathbb{K}|\|x\|_p:=(\sum_{n=1}^\infty |x_n|^p)^{\frac{1}{p}}<\infty\} & p<\infty\\
+		\{x:=(x_n)_{n\in \N}\subset \mathbb{K}|\|x\|_\infty := \sup_{n\in \N}|x_n|<\infty\} & p=\infty.
+	\end{cases}
+	\] 
+Show that the usual operations on sequences induce a vector space structure on $\ell^p$. Moreover, show that $\ell^p$ is a subspace of $\ell^r$ for $p\le r$.
+\end{Problem}
+
+\begin{Problem}
+	In this exercise, we consider the spaces $\ell^p$ for $p\in (1,\infty)$. Note that for every such $p$ there exists a conjugate number $q\in (1,\infty)$ which satisfies $\frac{1}{p}+\frac{1}{q}=1$.
+	\begin{parts}
+	\item Show that the product of two non-negative real numbers $a,b\in [0,\infty)$ satisfies Young's inequality, that is
+		\[
+		ab\le \frac{a^p}{p}+\frac{b^q}{q}
+		.\] 
+		\emph{Hint: Use the AM-GM inequality.}
+	\item Prove that H\"{o}lder's inequality
+		\[
+		\|xy\|_1:=\sum_{n=1}^{\infty} |x_ny_n|\le \|x\|_p \|y\|_q
+		\]
+		holds true for any two sequences $x\in \ell^p$ and $y\in \ell^q$.
+	\item Show Minkowsky's inequality, that is
+		\[
+		\|x+y\|_p\le \|x\|_p + \|y\|_p
+		\]
+		for $x,y\in \ell^p$.
+	\item Let $\lambda:=(\lambda_n)_{n\in \N}\subset [0,1]$ be a sequence in $\ell^1$ with $\|\lambda\|_1=1$. Show that Jensen's inequality
+		\[
+		f\left( \sum_{n=1}^\infty \lambda_n x_n \right)\le \sum_{n=1}^{\infty} \lambda_n f(x_n)
+		\]
+		holds true for every convex function $f\in \mathcal{C}(I)$ on an open interval $I\subseteq \R$ and every sequence $(x_n)_{n\in \N}\subset I$ such that $\sum_{n=1}^{\infty} \lambda_n x_n$ and $\sum_{n=1}^{\infty} \lambda_n f(x_n)$ converge and $\sum_{n=1}^{\infty} \lambda_n x_n\in I$. Conclude that $\|x\|_r\le \|x\|_p$ for every $x\in \ell^p$ and $p\le r$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Let $p\in [1,\infty)$. Consider the sequences $(e_n:=(\delta_{nm})_{m\in \N})_{n\in \N}\subset \ell^p$. Show that for every sequence $x=(x_n)_{n\in \N}\in \ell^p$ the series $\sum_{n\in \N} x_n e_n$ converges unconditionally towards $x$ with respect to $\|x\|_p$. Does it converge absolutely? Moreover, sh ow that a sequence $x=(x_n)_{n\in \N}$ lies in $\ell^p$ if the series $\sum_{n\in \N}x_n e_n$ converges unconditionally with respect to $\|\cdot\|_p$.
+
+	\emph{Hint: Having Minkowski's inequality, you can use that } $(\ell^p, \|\cdot\|_p)$ \emph{is a normed space without proof}
+\end{Problem}
+
+\begin{Problem}
+	In the upcoming exercise sheets, we will prove the Stone-Weierstraß theorem in several steps. Here, we do some necessary preparation we will need for the actual proof.
+
+	By recursion, define the polynomials
+	\[
+	p_0(x)=0,\qquad\text{and}\qquad p_{n+1}(x)=p_n(x)+\frac{1}{2}(x-p_n^2(x))
+	.\] 
+	\begin{parts}
+	\item Show $p_n(0)=0$ and the estimates
+		\[
+		p_n(x)\ge 0,\qquad \text{and}\qquad 0\le \sqrt{x} -p_n(x)\le \frac{2\sqrt{x} }{2+n\sqrt{x} }
+		\]
+		for $x\in [0,1]$.
+
+		\emph{Hint: First show the coarser estimates} $0\le p_n(x)\le 1$ \emph{ for }$x\in [0,1]$ \emph{by induction. Use this in a second induction to improve the estimates.}
+	\item Conclude that $(p_n)_{n\in \N}$ converges uniformly to the square root function on the interval $[0,1]$.
+	\item Let $\alpha>0$. Construct a sequence of polynomials that converges uniformly to the square root function on $[0,\alpha]$.
+	\item Let $\alpha>0$. Construct a sequence of polynomials that converges uniformly to the absolute value function on $[-\alpha, \alpha]$.
+	\end{parts}
+\end{Problem}
