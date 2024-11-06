@@ -44,12 +44,26 @@ Show that the usual operations on sequences induce a vector space structure on $
 		\[
 		\frac{q a^p + p b^q}{pq}\ge \sqrt[pq]{a^{pq} b^{pq}} =ab
 		.\]
-		\item We apply Young's inequality
+		\item Suppose either norm is 0. Then that sequence must be 0 everywhere, and thus the inequality is fulfilled. 
+		
+		Now suppose either $p$ or $q$ is infinite --- without loss of generality, we assume $p$ is. Then the inequality reduces to
+		\[\sum_{n=1}^\infty |x_n y_n| \le \left(\sup_{n\in \N} x_n\right) \|y\|_1\]
+		which is obviously true, as we can see by replacing $x_n$ with its supremum. 
+		
+		Hence, we assume that both $p$ and $q$ are finite, and that neither norm is $0$. We can thus divide each sequence by their norm, and assume WLOG that $\|x\|_p=1=\|y\|_q$.  Now, we apply Young's inequality
 		\begin{align*}
 			\|xy\|_1 &= \sum_{n=1}^\infty |x_n y_n|\\
 			&\le\sum_{n=1}^{\infty} \left[ \frac{|x_n|^p}{p}+\frac{|y_n|^q}{q} \right] \\
-			&=\frac{1}{p}\|x\|_p^p+\frac{1}{q}\|x\|_q^q
+			&=\frac{1}{p}\|x\|_p^p+\frac{1}{q}\|y \|_q^q\\
+			&=\frac{1}{p}+\frac{1}{q}=1
 		\end{align*}
+	as desired. 
+	\item 
+	\begin{align*}
+		\|x+y\|_p &= \left[\sum_{n=1}^\infty |x_n+y_n|^p\right]^{1/p}\\
+		&=\left[\sum_{n=1}^\infty |x_n+y_n||x_n+y_n|^{p-1}\right]^{1/p}\\
+		&\le\left[\sum_{n=1}^\infty \left(|x_n+y_n|+|x_n+y_n|^{p-1}\right)\right]^{1/p}
+	\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}
