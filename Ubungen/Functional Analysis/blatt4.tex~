@@ -8,7 +8,11 @@
 	\] 
 Show that the usual operations on sequences induce a vector space structure on $\ell^p$. Moreover, show that $\ell^p$ is a subspace of $\ell^r$ for $p\le r$.
 \end{Problem}
+\begin{proof}
+	Clearly, multiplying a vector by a constant multiplies its norm by a constant in both cases. 
 
+	We show the inclusion as follows: Since the series converges, the terms (all positive) must converge to $0$. Thus we can choose $N$ such that for $|x_n|<1$ for all $n\ge N$. For $|x|<1$, we have $|x|^p\ge |x|^r$. This shows that the vector is also in $\ell^r$.
+\end{proof}
 \begin{Problem}
 	In this exercise, we consider the spaces $\ell^p$ for $p\in (1,\infty)$. Note that for every such $p$ there exists a conjugate number $q\in (1,\infty)$ which satisfies $\frac{1}{p}+\frac{1}{q}=1$.
 	\begin{parts}
@@ -29,18 +33,44 @@ Show that the usual operations on sequences induce a vector space structure on $
 		for $x,y\in \ell^p$.
 	\item Let $\lambda:=(\lambda_n)_{n\in \N}\subset [0,1]$ be a sequence in $\ell^1$ with $\|\lambda\|_1=1$. Show that Jensen's inequality
 		\[
-		f\left( \sum_{n=1}^\infty \lambda_n x_n \right)\le \sum_{n=1}^{\infty} \lamda_n f(x_n)
+		f\left( \sum_{n=1}^\infty \lambda_n x_n \right)\le \sum_{n=1}^{\infty} \lambda_n f(x_n)
 		\]
 		holds true for every convex function $f\in \mathcal{C}(I)$ on an open interval $I\subseteq \R$ and every sequence $(x_n)_{n\in \N}\subset I$ such that $\sum_{n=1}^{\infty} \lambda_n x_n$ and $\sum_{n=1}^{\infty} \lambda_n f(x_n)$ converge and $\sum_{n=1}^{\infty} \lambda_n x_n\in I$. Conclude that $\|x\|_r\le \|x\|_p$ for every $x\in \ell^p$ and $p\le r$.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+		\item The weighted AM-GM inequality yields
+		\[
+		\frac{q a^p + p b^q}{pq}\ge \sqrt[pq]{a^{pq} b^{pq}} =ab
+		.\]
+		\item Suppose either norm is 0. Then that sequence must be 0 everywhere, and thus the inequality is fulfilled. 
+		
+		Now suppose either $p$ or $q$ is infinite --- without loss of generality, we assume $p$ is. Then the inequality reduces to
+		\[\sum_{n=1}^\infty |x_n y_n| \le \left(\sup_{n\in \N} x_n\right) \|y\|_1\]
+		which is obviously true, as we can see by replacing $x_n$ with its supremum. 
+		
+		Hence, we assume that both $p$ and $q$ are finite, and that neither norm is $0$. We can thus divide each sequence by their norm, and assume WLOG that $\|x\|_p=1=\|y\|_q$.  Now, we apply Young's inequality
+		\begin{align*}
+			\|xy\|_1 &= \sum_{n=1}^\infty |x_n y_n|\\
+			&\le\sum_{n=1}^{\infty} \left[ \frac{|x_n|^p}{p}+\frac{|y_n|^q}{q} \right] \\
+			&=\frac{1}{p}\|x\|_p^p+\frac{1}{q}\|y \|_q^q\\
+			&=\frac{1}{p}+\frac{1}{q}=1
+		\end{align*}
+	as desired. 
+	\item 
+	\begin{align*}
+		\|x+y\|_p &= \left[\sum_{n=1}^\infty |x_n+y_n|^p\right]^{1/p}\\
+		&=\left[\sum_{n=1}^\infty |x_n+y_n||x_n+y_n|^{p-1}\right]^{1/p}\\
+		&\le\left[\sum_{n=1}^\infty \left(|x_n||x_n+y_n|^{p-1}+|y_n| |x_n+y_n|^{p-1}\right)\right]^{1/p}
+	\end{align*}
+	\end{parts}
+\end{proof}
 \begin{Problem}
-	Let $p\in [1,\infty)$. Consider the sequences $(e_n:=(\delta_{nm})_{m\in \N})_{n\in \N}\subset \ell^p$. Show that for every sequence $x=(x_n)_{n\in \N}\in \ell^p$ the series $\sum_{n\in \N} x_n e_n$ converges unconditionally towards $x$ with respect to $\|x\|_p$. Does it converge absolutely? Moreover, sh ow that a sequence $x=(x_n)_{n\in \N}$ lies in $\ell^p$ if the series $\sum_{n\in \N}x_n e_n$ converges unconditionally with respect to $\|\cdot\|_p$.
+	Let $p\in [1,\infty)$. Consider the sequences $(e_n:=(\delta_{nm})_{m\in \N})_{n\in \N}\subset \ell^p$. Show that for every sequence $x=(x_n)_{n\in \N}\in \ell^p$ the series $\sum_{n\in \N} x_n e_n$ converges unconditionally towards $x$ with respect to $\|x\|_p$. Does it converge absolutely? Moreover, show that a sequence $x=(x_n)_{n\in \N}$ lies in $\ell^p$ if the series $\sum_{n\in \N}x_n e_n$ converges unconditionally with respect to $\|\cdot\|_p$.
 
 	\emph{Hint: Having Minkowski's inequality, you can use that } $(\ell^p, \|\cdot\|_p)$ \emph{is a normed space without proof}
 \end{Problem}
-
 \begin{Problem}
 	In the upcoming exercise sheets, we will prove the Stone-Weierstraß theorem in several steps. Here, we do some necessary preparation we will need for the actual proof.
 
