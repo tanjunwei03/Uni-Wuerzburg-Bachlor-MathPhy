@@ -1,0 +1,75 @@
+\begin{Problem}
+	Gegeben sei das Anfangswertproblem
+	\[
+		\dot{x}(t)=x(t)+t,\qquad x(0)=1
+	.\] 
+	\begin{parts}
+		\item Bestimmen Sie eine L\"{o}sung f\"{u}r das Anfangswertproblem.
+		\item Berechnen Sie die Schritte bis einschließlich $\varphi_3$ der Picard-Iteration
+		\item Leiten Sie eine Formel f\"{i}r die Berechnung von $\varphi_k$ her und beweisen Sie diese.
+		\item Zeigen Sie, dass $(\varphi_k)_{k\in \N}$ punktweise gegen die L\"{o}sung aus Teil a konvergiert.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item L\"{o}sung analog wie Blatt 3: Man verifiziere einfach, dass
+		\[
+		\varphi(t)=-1-t+2e^t
+	\]
+	eine L\"{o}sung ist.
+\item Wir immer setzen wir $\varphi_0(t)=1$ und definieren $f(t,x)=t+x$. Danach f\"{u}hren wir das Iterationsverfahren durch
+	\begin{align*}
+		\varphi_1(t)&=1+\int_0^t (s+1)\dd{s}\\
+			    &=1+t+\frac{t^2}{2}\\
+		\varphi_2(t)&=1+\int_0^t \left( s+1+s+\frac{s^2}{2} \right)\dd{s}\\
+			    &=1+t+t^2 + \frac{t^3}{3!}\\
+		\varphi_3(t)&=1+\int_0^t\left( s+1+s+s^2+\frac{s^3}{3!} \right) \dd{s}\\
+			    &= 1+t+t^2+2\cdot \frac{t^3}{3!}+\frac{t^4}{4!}
+	\end{align*}
+\item Wir erraten:
+	\[
+		\varphi_n(t) = 1+t+t^2 +2\cdot \sum_{k=3}^{n} \frac{t^k}{k!}+\frac{t^{n+1}}{(n+1)!}
+\]
+f\"{u}r $n\ge 3$ und sonst wie in (b). Klar gilt das Formel f\"{u}r $n=3$. Jetzt beweisen wir es durch Induktion. Angenommen das Formel gilt f\"{u}r beliebiges $n\in \N$. Dann gilt
+\begin{align*}
+	\varphi_{n+1}(x)&=1+\int_0^t f(s, \varphi(s))\dd{s}\\
+			&=1+\int_0^t \left(s + 1 + s + s^2 + \sum_{k=3}^{n} \frac{s^k}{k!}+\frac{s^{n+1}}{(n+1)!} \right)\dd{s}\\ 
+			&=1+t+t^2 + 2\cdot \frac{t^3}{3!}+2\cdot \sum_{k=3}^{n} \frac{t^{k+1}}{(k+1)!}+\frac{s^{n+2}}{(n+2)!}\\
+			&=1+t+t^2 + 2\cdot \sum_{k=3}^{n+1}\frac{t^k}{k!}+\frac{t^{n+2}}{(n+2)!}
+\end{align*}
+\item Wir können die Potenzreihe umschreiben
+	\begin{align*}
+			&1+t+t^2 + 2\cdot \sum_{k=3}^{n}\frac{t^k}{k!}+\frac{t^{n+1}}{(n+1)!}\\
+		=&(-1-t)+2+2t+2\cdot \frac{t^2}{2}+2\cdot \sum_{k=3}^{n+1}\frac{t^k}{k!}+\frac{t^{n+1}}{(n+1)!}\\
+		=&-1-t+2\cdot \sum_{k=0}^n \frac{t^k}{k!}+\frac{t^{n+1}}{(n+1)!}
+	\end{align*}
+	Es ist bekannt, dass die Summe $2\cdot \sum_{k=0}^{n} t^k / k!$ gegen $2e^t$ (sogar gleichmäßig und absolut) konvergiert. Da $t^{n+1} / (n+1)!$ gegen Null f\"{u}r alle $t\in \R$ konvergiert, konvergiert $\varphi_n(t)$ gegen die L\"{o}sung aus (a).\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Gegeben sei das Anfangswertproblem
+	\[
+		\dot{x}+x+\sqrt[3]{x^2} =0,\qquad x(0)=1
+	.\] 
+	\begin{parts}
+	\item Bestimmen Sie eine L\"{o}sung des Anfangwertproblems. Geben Sie auch den maximalen Definitionsbereich der L\"{o}sung an.
+	\item Zeigen Sie, dass die L\"{o}sung auf dem Intervall $I=(-\infty, 3\ln (2))$ eindeutig ist.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Wir l\"{o}sen die DGL durch TDV:
+		\[
+			\int_1^x \frac{1}{r+\sqrt[3]{r^2} }\dd{r}=-\int_0^t \dd{s}
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Gegeben ist das Anfangswertproblem
+	\[
+		\dot{x}=\sin(t)\sqrt{1+4x} ,\qquad x(0)=x_0,\qquad x_0\in \left[ -\frac{1}{4}, \infty\right)
+	.\] 
+	Geben Sie alle $x_0\in \left[-\frac{1}{4},\infty\right)$ an, f\"{u}r die das Anfangswertproblem lokal eindeutig l\"{o}sbar ist. Begr\"{u}nden Sie auch, warum es bei diesen Anfangswerten eine lokal eindeutige L\"{o}sung gibt.
+
+	Geben Sie f\"{u}r alle Anfangswerte, bei denen es keine eindeutige L\"{o}sung gibt, zwei verschiedene L\"{o}sungen an.
+\end{Problem}
