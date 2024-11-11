@@ -1,0 +1,155 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmbox}
+\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Funktionalanalysis Hausaufgaben Blatt 2}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	
+	\section{Solution Methods}
+	\begin{enumerate}
+		\item Separation of variables
+		\item Integrating factor
+		\item Variation of constants
+	\end{enumerate}
+	\section{Existence \& Uniqueness Results}
+	\begin{Lemma}\label{lemma:vanishinglipschitz}
+		Suppose $\mathcal{C}^1\ni f:[a,b]\to \R$, $f(a)=0$ and there exists a constant $M>0$ such that $|f'(x)|\le M |f(x)|$ for all $x\in [a,b]$. Then $f=0$.
+	\end{Lemma}
+	\begin{proof}
+		Consider $c\in [a,b]$. The Mean Value Theorem yields the approximation
+		\[|f(c)|\le (c-a)\sup_{x\in [a,c]}|f'(x)|\le M(c-a)\sup_{x\in [a,c]}|f(x)|\]
+		which means that $f$ is $0$ on $[a,c]$ if $M(c-a)\le 1$. It then follows that $f$ is identically $0$.
+		
+		An almost identical theorem can be formulated for $f$ a vector function.
+	\end{proof}
+	\begin{Theorem}[Uniqueness]\label{thm:uniqueness}
+		Consider the initial value problem $\dot{x}=f(t, x),~x(a)=x_0$ such that $f$ is defined on a rectangle $[a,b]\times \overline{U}$ and $f$ is Lipschitz continuous on this rectangle. Then the differential equation has at most one solution on $[a,b]$.
+	\end{Theorem}
+	\begin{proof}
+		Suppose that we have two solutions $\varphi: [a,b] \to \overline{U}$ and $\psi: [a,b]\to \overline{U}$. Then we consider the difference:
+		 \[\dv{t}\left(\varphi(t)-\psi(t)\right) = f(t, \varphi(t))-f(t,\psi(t)).\]
+		 The difference also has initial value $0$. Since $f$ is Lipschitz continuous, we say that
+		 \[\dv{t}\left( \varphi(t) - \psi(t)\right)) \le M(\varphi(t)-\psi(t)).\]
+		 An application of Lemma \ref{lemma:vanishinglipschitz} shows that the difference must then vanish; i.e. the two solutions are identical.
+	\end{proof}
+	\begin{Remark}
+		The earlier argument shows existence on a rectangle, given that the function is Lipschitz continuous within this interval. We are, of course, sometimes interested in solutions to a differential equation that live on the \emph{entire real line}. This leads us to the following definition:
+	\end{Remark}
+	\begin{Definition}
+		A function is locally Lipschitz continuous if for every $x$ there exists a neighbourhood of $x$ such that the function is Lipschitz continuous when restricted to that subset.
+	\end{Definition}
+	The above definition is not what we will normally work with. For example, the rectangle mentioned above is not a neighbourhood; it is a compact set. As it turns out, this definition is equivalent to a definition using compact sets when we consider subsets of euclidean space:
+	\begin{Theorem}
+		Let $X$ be locally compact. A function $f$ on $X$ is locally Lipschitz continuous if and only if it is Lipschitz continuous on all compact subsets of $X$.
+	\end{Theorem}
+	\begin{proof}
+		Suppose that $f$ is Lipschitz continuous. We consider a compact subset $K\subseteq X$. Then we can cover this compact subset with open balls on which $f$ is Lipschitz continuous, of which there exists a finite subcover due to compactness. Choosing the maximum of all the Lipschitz constants yields Lipschitz continuity on $K$.
+		
+		Suppose conversely that $f$ is Lipschitz continuous on every compact subset. Then we consider $U$ such that $\overline{U}$ is compact (exists due to local compactness). Since $f$ is Lipschitz continuous on $\overline{U}$, we can choose the same Lipschitz constant on $U$ to get a neighbourhood on which $f$ is Lipschitz continuous.
+	\end{proof}
+	Theorem \ref{thm:uniqueness} can be easily extended to local Lipschitz continuous functions. Hence, \uline{local Lipschitz continuity suffices for uniqueness of solutions.}
+	
+	Now we move on to prove existence of solutions. To prove existence, we will consider two methods to successively approximate solutions of a differential equation. We will then need to prove two things: First, we will need to prove convergence. Then, we will need to prove that they satisfy the differential equation. The latter question turns out to be much easier if we consider an integral equation instead:
+	\begin{Theorem}
+		A function $\varphi:[a,b]\to \R^n$ is a solution of the initial value problem
+		\[\dot{x}=f(t, x),\qquad x(t_0)=x_0\]
+		if and only if it satisfies the integral equation
+		\[\varphi(t)=x_0 + \int_{t_0}^t f(s, \varphi(s))\dd{s}.\]
+	\end{Theorem}
+	\begin{proof}
+		This follows very easily from the fundamental theorem of calculus.
+	\end{proof}
+	The first question is slightly harder to answer. We will require a different theorem for each approximation method.
+	\begin{Remark}\label{remark:diffeqdefinition}
+		From here on, unless otherwise stated, we will consider the initial value problem $\dot{x}=f(t, x),~x(t_0)=x_0$ where $f$ is defined on $[t_0, t_1]\times \overline{B_\delta(x_0)}$ for some $\delta>0$.
+	\end{Remark}
+	\subsection{Euler Approximation}
+	The idea behind this subsection is to approximate the solution of the differential equation through \emph{Euler polygons}. We define the \emph{Euler polygon with step size} $h$, which we denote as $\varphi_h(t)$, as follows: We set $\varphi_h(t_0) = x_0$. Then, we define $\varphi_h(t_0+h)=x_0 + hf(t_0, \varphi_h(t_0))$. Then, we let $\varphi_h(t_0 + 2h)= \varphi_h(t_0+h)+hf(t_0, \varphi_h(t_0+h))$. We continue this recursively. For $t$ not equal to $t_0+kh$ we define its value using linear interpolation between the two nearest points. This is the well known Euler's method, which yields approximate solutions to a differential equation in an incredibly fast manner.
+	
+	Let us now consider the question of convergence. We consider a family of functions $(f_n)_{n\in \N}$, $f_n\in \mathcal{C}([a,b])$. We say that this family is \emph{uniformly equicontinuous} if for every $\epsilon>0$ there exists $\delta>0$ such that $|x-y|<\delta\implies |f_n(x)-f_n(y)|\le \epsilon$ for all $n\in \N$. We say that it is \emph{uniformly bounded} if there exists $\infty>M\ge 0$ such that $f_n(x)\le M$ for all $x\in [a,b]$ and $n\in \N$
+	\begin{Theorem}[Arzelà-Ascoli]
+		Every uniformly equicontinuous and uniformly bounded sequence of functions on a closed and bounded interval in the real line contains a uniformly convergent subsequence.
+	\end{Theorem}
+	\begin{proof}
+		This statement should be reminiscent of the Bolzano-Weierstraß theorem, which states that every bounded real sequence has a convergent subsequence. In fact, this similarity is no coincidence, as we will make use of Bolzano-Weierstraß in the proof of the Arzelà-Ascoli theorem.
+		
+		Consider all the rationals in $[a,b]$. We will order them in some manner $x_1, x_2, \dots$. Consider now the sequence $f_1(x_1), f_2(x_1), \dots$. Since this sequence is bounded, it contains a convergent subsequence $f_{n^{(1)}_1}(x_1), f_{n^{(1)}_2}(x_1), \dots$.
+		
+		Let us now think about $f_{n^{(1)}_1}(x_2), f_{n^{(1)}_2}(x_2), \dots$. Since this is again a bounded sequence, it contains a convergent subsequence $f_{n^{(2)}_1}(x_2), f_{n^{(2)}_2}(x_2), \dots$. Note that this still converges at $x_1$. We repeat this process and obtain for each $k\in \N$ a sequence that converges at $x_1, \dots, x_k$. 
+		
+		The diagonal sequence $(f_{n^{(k)}_k})_{k\in \N}$ converges for all $x\in \Q\cap [a,b]$.
+		
+		It now remains to show uniform convergence on $[a,b]$. Choose $\epsilon>0$. \textcolor{red}{\textbf{TO BE COMPLETED}}
+	\end{proof}
+	\begin{Theorem}[Peano]
+If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initial value problem has at least one solution.
+	\end{Theorem}
+	\subsection{Picard Iteration}
+	In this subsection we consider the procedure of Picard Iteration. Picard Iteration is significantly easier to state: Again, considering a differential equation of the form given in Remark \ref{remark:diffeqdefinition}, we set $\varphi_0(t)=x_0$ and let
+	\[\varphi_{k+1}(t) = x_0+\int_{t_0}^{t} f(s, \varphi_k(s))\dd{s}.\]
+	The candidate solution for the differential equation is clearly the limit of this sequence as $k$ goes to infinity, assuming, of course, that said limit even exists. Let us consider this question first.
+	\begin{Theorem}[Banach Fixed-Point Theorem]
+		Let $(X, d)$ be a complete metric space and $f:X\to X$ be a contraction: That is, there exists $0\le\alpha<1$ such that $d(f(x), f(y))\le \alpha d(x,y)$ for all $x,y\in X$. Then $f$ has a unique fixed point. This fixed point can also be determined by convergence of the sequence $f^{(n)}(x)$ for any $x\in X$
+	\end{Theorem}
+	\begin{proof}
+		Uniqueness is clear. The proof of existence comes by showing that the sequence as defined in the last sentence is Cauchy, and then using completeness.
+	\end{proof}
+	\begin{Theorem}[Picard-Lindelöf]
+		It is known that $\mathcal{C}([a,b])$ is a Banach space. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,t_1]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$. Thus, we may apply Banach's Fixed Point Theorem.
+	\end{Theorem}
+\end{document}
+
