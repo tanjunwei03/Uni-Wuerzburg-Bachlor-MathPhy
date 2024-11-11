@@ -74,7 +74,7 @@
 		\[|f(c)|\le (c-a)\sup_{x\in [a,c]}|f'(x)|\le M(c-a)\sup_{x\in [a,c]}|f(x)|\]
 		which means that $f$ is $0$ on $[a,c]$ if $M(c-a)\le 1$. It then follows that $f$ is identically $0$.
 		
-		An almost identical theorem can be formulated for $f$ a vector function.
+		An almost identical theorem can be formulated when $f$ is a vector function.
 	\end{proof}
 	\begin{Theorem}[Uniqueness]\label{thm:uniqueness}
 		Consider the initial value problem $\dot{x}=f(t, x),~x(a)=x_0$ such that $f$ is defined on a rectangle $[a,b]\times \overline{U}$ and $f$ is Lipschitz continuous on this rectangle. Then the differential equation has at most one solution on $[a,b]$.
@@ -135,7 +135,7 @@
 		
 		It now remains to show uniform convergence on $[a,b]$. Choose $\epsilon>0$. \textcolor{red}{\textbf{TO BE COMPLETED}}
 	\end{proof}
-	\begin{Theorem}[Peano]
+	\begin{Theorem}[Peano]\label{thm:peano}
 If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initial value problem has at least one solution.
 	\end{Theorem}
 	\subsection{Picard Iteration}
@@ -149,7 +149,12 @@ If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initi
 		Uniqueness is clear. The proof of existence comes by showing that the sequence as defined in the last sentence is Cauchy, and then using completeness.
 	\end{proof}
 	\begin{Theorem}[Picard-Lindelöf]
-		It is known that $\mathcal{C}([a,b])$ is a Banach space. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,t_1]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$. Thus, we may apply Banach's Fixed Point Theorem.
+		If $f$ (from Remark \ref{remark:diffeqdefinition}) is Lipschitz continuous, then the initial value problem has at exactly one solution.
 	\end{Theorem}
+\begin{proof}
+	This theorem can be seen as a consequence of \hyperref[thm:peano]{Peano's Theorem} and Theorem \ref{thm:uniqueness}. However, we present the ``classical'' proof using the Banach Fixed Point Theorem and Picard Iteration.
+	
+	It is known that $\mathcal{C}([a,b])$ is a Banach space. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,t_1]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$. Thus, we may apply Banach's Fixed Point Theorem.
+\end{proof}
 \end{document}
 
