@@ -1,0 +1,44 @@
+\begin{Problem}
+	Beim $n$-fachen Wurf einer fairen M\"{u}nze, $n \ge 3$, interessieren wir uns f\"{u}r die Wartezeit (die Anzahl an ben\"{o}tigten W\"{u}rfen), bis zum ersten Mal Kopf oder dreimal Zahl gefallen ist.
+	\begin{parts}
+		\item Geben Sie einen geeigneten Wahrscheinlichkeitsraum f\"{u}r dieses Experiment an.
+		\item Beschreiben Sie diese Wartezeit durch eine Zufallsvariable $W$ auf dem Wahrscheinlichkeitsraum und geben Sie die Verteilung der Zufallsvariable $W$ an.
+		\item Berechnen Sie die bedingte Wahrscheinlichkeit $\mathbb{P}(W=3|W\ge 2)$
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	...
+\end{proof}
+\begin{Problem}
+	\begin{parts}
+		\item Sei $(\Omega, \mathcal{A})$ ein Messraum. F\"{u}r eine Menge $A\subseteq \Omega$ betrachten wir die Indikatorfunktion $\mathbbm{1}_A$. Zeigen Sie, dass $\mathbbm{1}_A$ (Borel-)messbar ist genau dann wenn $A\in \mathcal{A}$
+		\item Zeigen Sie, dass abzählbare Teilmengen von $\R$ Borel-Mengen sind, d.h. Elementen der Borel-$\sigma$-Algebra $\mathcal{B}$.
+		\item Beweisen Sie, dass eine Funktion $f:\R \to \R$ Borel-Borel-messbar ist, wenn die Menge der Unstetigkeitsstellen von $f$ abzählbar ist.
+		\item Beweisen oder widerlegen Sie: Wann immer f\"{u}r $|f|$ eine Funktion $f:\R\to \R$ messbar ist, so ist $f$ selbst messbar.
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+		\item Sei $U\subseteq \R$ eine Borelmenge. Wir betrachten deren Urbild f\"{u}r 4 F\"{a}lle:
+		
+		\begin{tabular}{|c|c|c|}
+			\hline
+			& $1\in U$ & $1\not\in U$\\\hline
+			$0\in U$ & $\mathbbm{1}_A^{-1}(U)=\Omega$ & $\mathbbm{1}_A^{-1}(U)=\Omega \setminus A$\\\hline
+			$0\not\in U$ & $\mathbbm{1}_A^{-1}(U)=A$ & $\mathbbm{1}_A^{-1}(U)=\varnothing$\\\hline
+		\end{tabular}
+		
+		Es ist klar, dass alle $4$ Mengen messbar sind genau dann, wenn $A$ messbar ist.
+		\item Jede Menge mit nur einem Punkt ist abgeschlossen ($T_1$) und damit Borel-messbar. 
+		
+		Da jede abzählbare Teilmenge des $\R$s eine abzählbare Vereinigung von Punktmengen ist, ist jede abzählbare Menge messbar.
+		\item ...
+		\item Falsch. Sei $A$ eine nicht-messbare Menge. Wir betrachten
+		\[f(x)=\begin{cases}
+			1 & x\in A\\
+			-1 & x\not\in A
+		\end{cases}=\mathbbm{1}_A- \mathbbm{1}_{\R\setminus A}\]
+		Nach (a) wissen wir, dass $f$ genau dann messbar ist, wenn $A$ messbar ist. $|f|$ ist aber die konstante FUnktion $1$, was messbar ist.
+	\end{parts}
+\end{proof}

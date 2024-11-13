@@ -149,12 +149,39 @@ If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initi
 		Uniqueness is clear. The proof of existence comes by showing that the sequence as defined in the last sentence is Cauchy, and then using completeness.
 	\end{proof}
 	\begin{Theorem}[Picard-Lindelöf]
-		If $f$ (from Remark \ref{remark:diffeqdefinition}) is Lipschitz continuous, then the initial value problem has at exactly one solution.
+		If $f$ (from Remark \ref{remark:diffeqdefinition}) is locally Lipschitz continuous, then the initial value problem has at exactly one solution.
 	\end{Theorem}
 \begin{proof}
 	This theorem can be seen as a consequence of \hyperref[thm:peano]{Peano's Theorem} and Theorem \ref{thm:uniqueness}. However, we present the ``classical'' proof using the Banach Fixed Point Theorem and Picard Iteration.
 	
-	It is known that $\mathcal{C}([a,b])$ is a Banach space. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,t_1]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$. Thus, we may apply Banach's Fixed Point Theorem.
+	It is known that $\mathcal{C}([a,b])$ is a Banach space in the supremum norm. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,T]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$, which we require to apply Banach's fixed point theorem.
+	
+	Next we need to prove that the operator defined by
+	\[K(\varphi)(t) = x_0+\int_{t_0}^t f(s, \varphi(s))\dd{s}\]
+	is a contraction. First we show that it is well defined, i.e. if $\varphi$ has graph in the cylinder $[t_0, T]\times \overline{B_{\delta}(x_0)}$, then
+	\[\|K(\varphi)-x_0\|=\left\| \int_{t_0}^t f(s, \varphi(s))\dd{s}\right\|\le (t-t_0)M\] 
+	where $M$ is the maximum of $f$. By choosing $T$ such that $(T-t_0)M\le \delta$, we can ensure that $K$ is a well defined operator.
+	
+	We now consider $\varphi$ and $\psi$ functions from $[t_0,t_1]\to \overline{B_{\delta}(0)}$, and apply $K$ to them both:
+	
+	\begin{align*}
+		\|K(\varphi) - K(\psi)\| &= \left\| \int_{t_0}^t (f(s, \varphi(s)) - f(s, \psi(s)))\dd{s}\right\|\\
+		&\le \left\|\int_{t_0}^t L(\varphi(s) -\psi(s))\dd{s}\right\|\\
+		&\le L(t-t_0)\|\varphi-\psi\|
+	\end{align*}
+	By further picking $T$ such that $L(t-t_0)< 1$, we have a contraction, as required. The fixed point fulfils the integral equation and is thus a solution to the differential equation.
 \end{proof}
+\begin{Remark}
+	It is notable here that we chose a ``cylinder'' set $[t_0,T]\times \overline{B_\delta(x_0)}$. The use of this set can be described as follows: First, we chose such a set and found $|f|$ over it. Then, we restricted this to an even smaller cylinder such that all solutions have to escape through the sides. 
+	
+	The compactness of this cylinder allowed us to use Lipschitz continuity, as we only had local Lipschitz continuity of $f$. Then, we made the cylinder \emph{even} smaller, so that the functional $K$ was a contraction.
+\end{Remark}
+\begin{Remark}[Local vs Global Solutions]
+	In the proof earlier, we determined that the initial value problem \ref{remark:diffeqdefinition} had a unique local solution. To do so, we required local Lipschitz continuity.
+	
+	If we assume more, we can do more - if we have global Lipschitz continuity, we can find a solution on the entire interval $[t_0, t_1]$. We simply repeat the same proof on a small enough interval, knowing that we are always able to extend our solution interval by a constant length $\delta$ each time due to having the same Lipschitz constant everywhere.
+	
+	If we did not have global Lipschitz continuity, we could possibly have intervals $\delta$ that kept getting smaller, and we would not be able to extend our solution to the entire interval.
+\end{Remark}
 \end{document}
 
