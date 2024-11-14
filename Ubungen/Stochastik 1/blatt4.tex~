@@ -28,7 +28,7 @@
 		 \mathbb{P}(W\ge 2 | W = 3)&=\frac{\mathbb{P}(W \ge 2 \cap W = 3)}{\mathbb{P}(W \ge 2)}\\
 		 &=\frac{\mathbb{P}(W=3)}{\mathbb{P}(W\ge 2)}\\
 		 &= \frac{1 / 4}{1 / 2}\\
-		 &=\frac{1}{2}.\qedhere
+		 &=\frac{1}{2}
 	\end{align*}
 \end{parts}
 \end{proof}
@@ -62,6 +62,6 @@
 			1 & x\in A\\
 			-1 & x\not\in A
 		\end{cases}=\mathbbm{1}_A- \mathbbm{1}_{\R\setminus A}\]
-		Nach (a) wissen wir, dass $f$ genau dann messbar ist, wenn $A$ messbar ist. $|f|$ ist aber die konstante FUnktion $1$, was messbar ist.\qedhere
+		Nach (a) wissen wir, dass $f$ genau dann messbar ist, wenn $A$ messbar ist. $|f|$ ist aber die konstante FUnktion $1$, was messbar ist.
 	\end{parts}
 \end{proof}
