@@ -133,7 +133,11 @@
 		
 		The diagonal sequence $(f_{n^{(k)}_k})_{k\in \N}$ converges for all $x\in \Q\cap [a,b]$.
 		
-		It now remains to show uniform convergence on $[a,b]$. Choose $\epsilon>0$. \textcolor{red}{\textbf{TO BE COMPLETED}}
+		Now that we have a function defined on a dense subset of $[a,b]$, we can continuously extend this to a function on all of $[a,b]$. It remains to show uniform continuity.
+
+		Let us begin with the idea of piecewise convergence, which we prove as follows: Consider $f(x)$.  First, by continuity, we choose an open interval containing $x$ such that $f$ varies by less than $\epsilon$ on this interval. Then, we make this interval smaller by equicontinuity such that the $f_n$s also vary by less than $\epsilon$. Finally, we choose $K\in \N$ such that this interval contains $x_k$ with $k\le K$. Then we have $f_n(x)-f(x)<3\epsilon$ for $n>K$.
+
+		We then use compactness as follows: We pick open intervals such that each open interval contains $k\le K$. Then since there is a finite subcover, we can pick a $K$ that works for the entire interval. This proves uniform convergence.
 	\end{proof}
 	\begin{Theorem}[Peano]\label{thm:peano}
 If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initial value problem has at least one solution.

@@ -61,10 +61,25 @@ f\"{u}r $n\ge 3$ und sonst wie in (b). Klar gilt das Formel f\"{u}r $n=3$. Jetzt
 	\item Wir l\"{o}sen die DGL durch TDV:
 		\begin{align*}
 			\int_1^x \frac{1}{r+\sqrt[3]{r^2} }\dd{r}&=-\int_0^t \dd{s}\\
-			[3\ln (1+r^{1/3})]_1^x &= -t\\
+			[3\ln|1+r^{1/3}|]_1^x &= -t\tag{*}\label{eq:diffeqblatt4-1}\\
 			\ln (1+x^{1/3})-\ln 2 &=-\frac t3\\
-			1+x^{1/3}&=\frac 12 e^{-t/3}
+			1+x^{1/3}&=2 e^{-t/3}\\
+			x&=\left[ 2e^{-t / 3}-1 \right]^3\tag{!}\label{eq:diffeqblatt4-2}
 		\end{align*}
+		wobei wir den Betrag in \eqref{eq:diffeqblatt4-1} weglassen dürfen, da $x(0)=1>0$ und die Lösung ist somit lokal positiv. Nachdem wir die Lösung \eqref{eq:diffeqblatt4-2} bestimmt haben, sehen wir, dass es eine reine positive Lösung gibt innerhalb eines Bereiches.
+		
+		Für diese Lösung brauchen wir offensichtlich $1+x^{1/3}>0$. Dies ist aber für alle $t\in \R$ der Fall, da $\exp(t)>0~\forall t\in \R$.
+		\item Die DGL hat den Form $\dot{x}=f(t,x)$ mit $f(t,x)=-x-\sqrt[3]{x}$. Es gilt
+		\[\pdv{f}{x}=1+\frac{2}{3x^{1/3}}\]
+		was für alle $x^{1/3}>0$ stetig ist. Dies entspricht zeitlich
+		\[
+		2e^{-t / 3}-1>0
+		,\]
+		oder
+		\[
+		t<3\ln 2
+		.\]
+		$f(t, x)$ ist damit lokal lipschitz stetig und die Lösung ist eindeutig.
 	\end{parts}
 \end{proof}
 \begin{Problem}
