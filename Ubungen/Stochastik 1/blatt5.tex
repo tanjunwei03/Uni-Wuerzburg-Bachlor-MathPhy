@@ -1,0 +1,29 @@
+\begin{Problem}
+	Seien $X_1$, $X_2$ und $X_3$ Bernoulli-verteilte Zufallsvariablen mit Parametern $p_1$, $p_2$ und $p_3$, $p_j \in [0, 1], 1 \le j \le 3$. Es gilt also $\mathbb{P}(X_j = 1) = 1 - \mathbb{P}(X_j = 0) = p_j , 1 \le j \le 3$. Ereignisse der Form $\{X_i = k\}, \{X_j = l\}, l, k \in \{0, 1\}$, seien für alle $i \neq j$ unabhängig.
+	\begin{parts}
+		\item Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $\{X_1 + X_2 + X_3 = 1\}$.
+		\item Leiten Sie die Verteilung der Zufallsvariable $S = X_1 +X_2 +X_3$ her. Geben Sie insbesondere an, um welche Art von Zufallsvariable es sich hier handelt.
+		\item Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $\{X_1 < X_3\}$.
+		\item Wir definieren die Zufallsvariable $Y = \mathbbm{1}\{X_1 < X_2\}$. Wie ist $Y$ verteilt?
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	\begin{parts}
+	\item Zeigen Sie, dass es sich bei
+	\[F(x)=\begin{cases}
+		0 & x < 0\\
+		\frac{7}{20}+\frac{1}{5}x+\frac{1}{20}x^2 & 0 \le x < 1\\
+		1 & x \ge 1
+	\end{cases}\]
+um eine Verteilungsfunktion handelt.
+\item Es handelt sich hier um eine Mischung aus diskreter und stetiger Verteilung, also ist $F$ von der Form
+\[F(x)=a F^d(x)+b F^s(x)\]
+mit positiven Zahlen $a$ und $b$, $a+b=1$, und $F^d$ Verteilungsfunktion einer diskreten und $F^s$ einer stetigen Verteilung.
+
+Bestimmen Sie $a,b$, sowie $F^d$ und $F^s$. Skizzieren Sie $F^d, F^s$ und $F$. Geben Sie die Wahrscheinlichkeitsfunktion der diskreten Verteilung an.
+\item Ein Median $m$ einer Verteilung wird häufig eingeführt als eine Zahl, für welche
+\[\mathbb{P}(X\le m)\ge 1/2,\text{ und }\mathbb{P}(X\ge m)\ge 1/2,\]
+gilt. Bestimmen Sie einen so definierten Median zu der durch $F$ charakterisierten Verteilung.
+\end{parts}
+\end{Problem}

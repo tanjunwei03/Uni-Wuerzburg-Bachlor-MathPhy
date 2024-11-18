@@ -60,6 +60,88 @@
 	\date{\today}
 	\maketitle
 	\section{Baire Spaces}
+	\begin{Theorem}[List of Useful Identities]
+		\noindent
+		\begin{parts}
+			\item
+			\[(A\cup B)^\text{cl}=A^\text{cl}\cup B^\text{cl}.\]
+			\item 
+			\[
+			(A\cup B)^{\circ}\supseteq A^\circ \cup B^\circ
+			.\] 
+			\item \[
+			(A\cap B)^\text{cl}\subseteq A^\text{cl}\cap B^\text{cl}
+			.\]
+			\item 	\[
+			(A\cap B)^\circ = A^\circ \cap B^\circ
+			.\] 
+			\item \[
+			(M\setminus A)^\text{cl}=M\setminus A^{\circ}
+			.\]
+			\item \[
+			(M\setminus A)^\circ = M \setminus A^\text{cl}
+			.\] 
+		\end{parts}
+	\end{Theorem}
+\begin{proof}
+	\begin{parts}
+		\item If all neighbourhoods of $x$ intersects $A$, then they must certainly intersect $A\cup B$. The same thing happens if all neighbourhoods intersect $B$. Conversely, we suppose that $x$ is not in $A^\text{cl}$ or $B^\text{cl}$. Then we have an open neighbourhood not intersecting $A$, and an open neighbourhood not intersecting $B$. Considering the intersection of these two neighbourhoods shows that $x$ is not in the closure of $A\cup B$ either.
+		\item $A^\circ\cup B^\circ$ is an open set contained in $A\cup B$.
+		\item Suppose every neighbourhood of $x$ intersects $A\cap B$. Then every neighbourhood intersects $A$, and also intersects $B$.
+		\item Clearly, $A^\circ \cap B^\circ$ is an open set contained in $A\cap B$. Conversely, it is also true that $(A\cap B)^\circ$ is an open set contained in $A$, and thus its interior, and it is also contained in $B$.
+		\item Clearly, $M \setminus A^\circ$ is a closed set containing $M\setminus A$. This shows one inclusion.
+		
+		Now suppose $x\in M \setminus A^\circ$. Since it is not in the interior, no open neighbourhood of $x$ is completely contained in $A$; in particular, every neighbourhood must intersect $M\setminus A$. This shows the reverse inclusion.
+		\item Clearly, $M\setminus A^\text{cl}$ is an open subset of $M \setminus A$.
+		
+		Conversely, suppose $x$ is an element of $(M \setminus A)^\circ$. Then there is an open neighbourhood of $x$ contained in $M \setminus A$, in particular not intersecting A. This shows that $x$ is in $M \setminus A^\text{cl}$.\qedhere
+	\end{parts}
+\end{proof}
+	\begin{Definition}[Nowhere Dense]
+		A subset $A$ of a topological space is called nowhere dense if the interior of its closure is open, $(A^\text{cl})^\circ=\varnothing$. 
+	\end{Definition}
+\begin{Theorem}
+	A subset $A$ of a topological space $(M, \mathcal{M})$ is nowhere dense iff its complement contains a dense open set.
+\end{Theorem}
+\begin{proof}
+		We perform the following computation:
+		\begin{align*}
+			A\text{ nowhere dense}&\iff (A^\text{cl})^\circ = \varnothing\\
+			&\iff M \setminus (A^\text{cl})^\circ = M\\
+			&\iff (M \setminus A^\text{cl})^\text{cl}=M\\
+			&\iff ((M \setminus A)^\circ)^\text{cl}=M\\
+			&\iff (M \setminus A)^\circ\text{ is dense}.\qedhere
+		\end{align*}
+\end{proof}
+\begin{Definition}[Meager]
+	A subset is called meager if it is a countable union of nowhere dense sets.
+\end{Definition}
+\begin{Theorem}
+	Let $(M, \mathcal{M})$ be a topological space. Then the following are equivalent:
+	\begin{parts}
+		\item Any countable union of closed subsets of $M$ without inner points has no inner points.
+		\item Any countable intersection of open dense subsets of $M$ is dense.
+		\item Every non-empty open subset of $M$ is not meager
+		\item The complement of every meager subset of $M$ is dense.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	The proof follows (a) $\implies$ (b) $\implies$ (c) $\implies$ (d) $\implies$ (a).
+	\begin{enumerate}
+		\item Let $(U_i)_{i\in \N}$ be a collection of dense open subsets of $M$. We consider their complements, which all have empty interior. Since
+		\[M \setminus \left(\bigcap_{i=1}^\infty U_i\right)=\bigcup_{i=1}^\infty \left(M \setminus U_i\right)\]
+		and the sets in the union on the right are all closed subsets without interior points, their union has no interior points, hence the countable intersection is dense.
+		\item Suppose we had a meager nonempty open subset $U$ of $M$, that is, we have $U=\bigcup_{i=1}^\infty A_i$ with $A_i$ nowhere dense sets. Then $M \setminus A_i$ is a dense subset for all $i$, by (b), their intersection is still dense. Then
+		\begin{align*}
+			\varnothing &= M \setminus \left(\bigcap_{i=1}^\infty (M \setminus A_i^\text{cl})\right)^\text{cl}\\
+			&= M \setminus \left(M \setminus \bigcup_{i=1}^\infty A_i^\text{cl}\right)^\text{cl}\\
+			&= M \setminus \left(M \setminus\left(\bigcup_{i=1}^\infty A_i^\text{cl}\right)^\circ\right)\\
+			&=\left(\bigcup_{i=1}^\infty A_i^\text{cl}\right)^\circ,
+		\end{align*}
+	which is a contradiction, since we had $U$ as a nonempty open subset of the final union. 
+	\item Suppose we have a meager subset
+	\end{enumerate}
+\end{proof}
 	\begin{Definition}[Baire Spaces]
 		...
 	\end{Definition}
@@ -77,7 +159,7 @@
 		Translation $T_v:x\mapsto x + v$ and multiplication $\lambda: x \mapsto \lambda x$ with $\lambda\neq0$ are continuous.
 	\end{Theorem}
 	\begin{proof}
-		They are invertible with inverse $T_{-v}$ and $\frac 1\lambda$ respectively
+		They are invertible with continuous inverse $T_{-v}$ and $\frac 1\lambda$ respectively
 	\end{proof}
 	\begin{Definition}[Uniform Continuity]
 	\end{Definition}
