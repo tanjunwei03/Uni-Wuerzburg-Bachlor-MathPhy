@@ -1,0 +1,65 @@
+\begin{Problem}
+	Wir betrachten das Anfangswertproblem
+	\[\dot{x}=\begin{cases}
+		+1 & \text{f\"{u}r }x<0,\\
+		0 & \text{f\"{u}r }x=0,\\
+		-1 & \text{f\"{u}r }x>0,
+		\end{cases}\qquad x(0)=x_0.\]
+		Für welche Startwerte $x_0\in \R$ ist dieses Anfangswertproblem auf einem offenen Intervall um $t = 0$ eindeutig lösbar? Geben Sie für diese Fälle die eindeutige Lösung und das maximale Existenzintervall $I$ an. Begründen Sie dabei, dass $I$ wirklich das maximale Existenzintervall ist. (Das heißt, es ist zu zeigen, dass es kein größeres maximales Existenzintervall $\tilde{I}$ gibt.)
+\end{Problem}
+\begin{proof}
+	Das Anfangswertproblem ist immer eindeutig lösbar. F\"{u}r $x_0>0$ ist die L\"{o}sung
+	\[\varphi_{x_0}: (-\infty, x_0)\to \R, t\mapsto -t+x_0,\]
+	f\"{u}r $x_0=0$ ist die L\"{o}sung
+	\[\varphi_0: \R \to \R, t\mapsto 0,\]
+	und f\"{u}r $x_0<0$ ist die L\"{o}sung
+	\[\varphi_{x_0}: (-\infty, -x_0)\to \R, t\mapsto t+x_0.\]
+	Die L\"{o}sung f\"{u}r $x_0>0$ sowie $x_0<0$ sind auf diesem Interval eindeutig: Die Funktion
+	\[f(x)=\begin{cases}
+		+1 & \text{f\"{u}r }x<0,\\
+		0 & \text{f\"{u}r }x=0,\\
+		-1 & \text{f\"{u}r }x>0,
+	\end{cases}\]
+	ist bez\"{u}glich $x$ in $(-\infty, 0)$ sowie in $(0, \infty)$ lokal Lipschitz stetig. Es gibt kein größeres Existenzintervall: Klar kann die Intervälle nicht beim unteren Grenze erweitert werden, da die untere Grenze schon $-\infty$ ist. Daher befassen uns mit der oberen Grenze. Wir betrachten den Fall $x_0>0$, wobei die obere Grenze auch $x_0$ ist, der andere Fall folgt analog..
+	
+	Angenommen es gäbe eine Lösung $\psi(t)$ auf $(-\infty, x_0+\epsilon)$. Wir betrachten die Ableitung im $x_0$. Wegen Stetigkeit muss die L\"{o}sung $\psi(x_0)=\lim_{x\nearrow x_0} \psi(x)=0$ sein, und damit muss auch $\dot{\varphi}(x_0)=f(0)=0$ gelten. 
+	
+	Andererseits können wir die Ableitung durch der Definition berechnen
+	\[\dot{\varphi}(x_0)=\lim_{t\nearrow x_0}\frac{\varphi(t) -\varphi(x_0)}{t - x_0}=\lim_{t\nearrow x_0}\frac{- t+x_0}{t-x_0}=-1,\]
+	ein Widerspruch.
+	
+	Im Fall $x_0=0$ muss keine Maximalität gezeigt werden. Stattdessen ist Eindeutigkeit zu zeigen. Angenommen es gibt eine L"{o}sung $\varphi: \R \to \R$ mit $\varphi(t_0)\neq 0$ f\"{u}r eine $t_0>0$. Dann ergibt sich ein ähnliches Widerspruch, wobei die L\"{o}sung in mindestens einem Punkt nicht differenzierbar sein kann. 
+	\end{proof}
+
+\begin{Problem}
+	Gegeben seien die Anfangswertprobleme
+	\begin{parts}
+		\item $\dot{x}=\frac{1}{1+x},\qquad x(0)=0$ und
+		\item $\dot{x}=x^2\cos t,\qquad x(0)=-2$.
+	\end{parts}
+	Bestimmen Sie jeweils die Lösung des Anfangswertproblems und geben Sie jeweils das maximale Existenzintervall der Lösung an. Begründen Sie bei beiden Teilaufgaben auch, warum es das maximale Existenzintervall ist.
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item L\"{o}sung durch TDV
+		\begin{align*}
+		\int_0^x (1+s)\dd{s}&=\int_0^t \dd{r}\\
+		x+\frac{x^2}{2}&=t\\
+		x^2+2x - 2t &= 0\\
+		x&=-1 \pm \sqrt{1 + t}
+		\end{align*}
+		Da $x(0)=0$, wählen wir die $+$ L\"{o}sung:
+		\[x(t)=-1+\sqrt{1+t}\]
+	\end{parts}
+	\end{proof}
+\begin{Problem}
+	Gegeben sei das Anfangswertproblem
+	\begin{equation}\label{eq:diffeqblatt5-1}
+		\dot{x}=\frac{x^2}{1+t^2},\qquad x(0)=c,\qquad c\in \R^+=(0,\infty)
+	\end{equation}
+	\begin{parts}
+		\item Zeigen Sie: Ist $I$ ein offenes Intervall mit $0 \in I$ und $\phi : I\to  \R$ eine Lösung von \eqref{eq:diffeqblatt5-1}, so hat $\phi$ keine Nullstelle.
+		\item Bestimmen Sie eine Lösung $\phi_c : I\to \R$ von \eqref{eq:diffeqblatt5-1} und begründen Sie, dass es ein derartiges Intervall $I$ mit $0 \in I$ gibt.
+		\item Ermitteln Sie das maximale Existenzintervall $I_{\text{max},c} = (t^-_c , t^c_+)$ von $\varphi_c$. Wie verhält sich $\varphi_c$ für $t \to t_c^-$ und $t\to t_c^+$?
+		\end{parts}
+\end{Problem}

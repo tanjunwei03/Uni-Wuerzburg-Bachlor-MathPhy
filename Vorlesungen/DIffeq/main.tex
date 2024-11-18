@@ -6,6 +6,7 @@
 \usepackage{cancel}
 \usepackage{booktabs}
 \usepackage{tikz}
+\usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage[normalem]{ulem}
@@ -187,5 +188,96 @@ If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initi
 	
 	If we did not have global Lipschitz continuity, we could possibly have intervals $\delta$ that kept getting smaller, and we would not be able to extend our solution to the entire interval.
 \end{Remark}
+\subsection{Grönwall's Inequality and Variants Thereof}
+\begin{Lemma}[Grönwall's Inequality]\label{lemma:Gronwallclassic}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t)\le \beta(t)u(t),\]
+	on an interval $[a,b]$. Then $\psi(t)$ is bounded by the solution of the ODE
+	\[v'(t)=\beta(t)v(t)\]
+	for all time:
+	\[\psi'(t)\le \psi(a)\exp\left(\int_a^t \beta(s)\dd{s}\right)\]
+\end{Lemma}
+\begin{proof}
+	We define $v(t)=\exp\left(\int_a^t \beta(s)\dd{s}\right)$. Note that $v$ satisfies the differential equation $v'(t)=\beta(t)v(t)$ and is always strictly greater than $0$. 
+	
+	Then we consider the derivative of $u(t)/v(t)$:
+	\[\dv{t}\frac{u(t)}{v(t)}=\frac{u'(t)v(t)-v'(t)u(t)}{v(t)^2}=\frac{u'(t)-\beta(t)u(t)}{v(t)}\le 0\]
+	Thus the function $u(t)/v(t)$ starts at $1$ and is strictly decreasing, which proves the above inequality.
+\end{proof}
+\begin{Lemma}[Generalized Grönwall's Inequality]
+	Statement from \url{https://math.stackexchange.com/questions/4773818/generalized-gronwall-inequality-covering-many-different-applications}:
+
+Suppose $\psi$ is a function on $[a,b]$ that satisfies the differential inequality
+\[\psi'(t)\le F(\psi(t))\]
+with $F\in C^1(\R)$, while $v$ satisfies the differential equation
+\[v'(t)=F(v(t)),\qquad v(a)=\psi(a).\]
+Then $\psi(t) \le v(t)$.
+\end{Lemma}
+\begin{proof}
+	Define $G:\R^2 \to \R$ by
+	\[G=\begin{cases}
+		\frac{F(x)-F(y)}{x-y} & x\neq y,\\
+		F'(x) & x=y.
+	\end{cases}\]
+	Since $F$ is $C^1$, $G$ is continuous. Then we define $\beta(t)=G(\psi(t), v(t))$ and $w(t)=u(t)-v(t)$. Then
+	\[w'(t)=u'(t)-v'(t)\le F(u(t))-F(v(t))=[u(t)-v(t)]G(u(t),v(t))=\beta(t)w(t).\]
+	By the classical version of Grönwall's Inequality \ref{lemma:Gronwallclassic}, we have
+	\[w(t)\le w(0)\exp\left(\int_a^t \beta(s)\dd{s}\right)=0,\]
+	as desired.
+\end{proof}
+\begin{Corollary}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t) \le \alpha'(t)+\beta(t)\psi(t).\]
+	Then
+	\[\psi(t)\le \alpha(t)+\int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\]
+\end{Corollary}
+\begin{proof}
+	We just need to show that the second function is a solution to the differential equation obtained by replacing the inequality with an inequality:
+	\begin{align*}
+		&\dv{t}\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right]\\
+		=&\alpha'(t)+\alpha(t)\beta(t)+\int_a^t \alpha(s)\beta(s)\beta(t)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\\
+		=&\alpha'(t)+\beta(t)\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right].\qedhere
+	\end{align*}
+\end{proof}
+\begin{Corollary}
+	Suppose
+	\[\psi'(t)\le k \psi(t)+m,\qquad k\ge 0,m\ge 0.\]
+	Then we have
+	\begin{parts}
+		\item For $k=0$:
+		\[\psi(t)\le \psi(0)+m|t-t_0|\]
+		\item For $k>0$ we have
+		\[\psi(t)\le \psi(0)\exp(k|t-t_0|)+\frac{m}{k}(e^{k(t-t_0)}-1).\]
+	\end{parts}
+\end{Corollary}
+\section{Maximum Existence Interval}
+The solution of a differential equation can be defined over many intervals. For example,
+\[f: (-1,1)\to \R, x\mapsto x\]
+is a solution to the differential equation
+\[\dot{x}=1.\]
+However, $(-1,1)$ is also very clearly not the maximum interval over which this solution can be defined. In fact, it can be defined over all of $\R$. Thus, we define the \emph{maximum existence interval} of an initial value problem as follows:
+\begin{Definition}[Maximum Existence Interval]
+	Let $\dot{x}=f(t,x),\qquad x(t_0)=x_0$ be an initial problem, and $f$ be locally Lipschitz continuous with respect to $x$. Let $\varphi_n:I_n\to \R$ be a solution, where $n\in M$ is an element of an arbitrary index set, and $I_n$ is an interval for each $n$. Then we define the maximal existence interval as
+	\[I_\text{max}=\bigcup_{n\in M}I_n\]
+\end{Definition}
+\begin{Remark}
+	We have actually neglected to show that this definition is meaningful. However, the proof is relatively easy:
+	
+	Since we have a union of open sets, the union is open. Since they all have the point $t_0$ in common, the union is connected. Thus we have an interval. This interval is maximal by construction.
+\end{Remark}
+\begin{Theorem}
+	Suppose we have a solution $\varphi(t)$ to the differential equation $\dot{x}=f(t, x)$ defined on $(t_{-}, t_+)$. This is extensible at $t_+$ if and only if there is a sequence $t_n$ such that $(t_n, \varphi(t_n))\to (t_+, y)$.
+	
+	There is an analogous theorem for $t_-$.
+\end{Theorem}
+\begin{proof}
+	Clearly, the reverse direction is true. The forward direction comes from considering a local solution to $\dot{x}=f(t, x),~x(t_+)=y$, and gluing the two solutions together at $t_+$.
+\end{proof}
+\begin{Corollary}
+	Let $\varphi(t)$ be a solution defined on the interval $[t_-, t_+]$. Suppose there is a compact set $K$ such that $[t_0, t_+]\times C \subseteq U$ such that $\varphi(t_m)\in K$ for all sequences $(t_m)_{m\in \N}\subseteq [t_0, t_+)$ converging to $t_+$. Then there exists an extension of the solution of the ODE to $(t_-, t_+ +\epsilon)$
+\end{Corollary}
+\begin{Corollary}[Escape Lemma]
+	Suppose we have a solution $\varphi(t)$ defined on the maximum existence interval $(t_-, t_+)$ with $t_+<\infty$. Then for all compact sets $[t_0, t_+]\times K$, the solution must leave the compact set eventually as $t\to t_+$.
+\end{Corollary}
 \end{document}
 
