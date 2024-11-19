@@ -7,7 +7,39 @@
 		\item Wir definieren die Zufallsvariable $Y = \mathbbm{1}\{X_1 < X_2\}$. Wie ist $Y$ verteilt?
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+		\item Wir berechnen die Wahrscheinlichkeit des Ereignisses $\{X_1=1,X_2=0,X_3=0\}$. Die Wahrscheinlichkeit ist
+		\[\mathbb{P}(X_1=1,X_2=0,X_3=0)=p_1(1-p_2)(1-p_3).\]
+		Analog finden wir
+		\[\mathbb{P}(X_1=0,X_2=1,X_3=0)=(1-p_1)p_2(1-p_3)\]
+		und
+		\[\mathbb{P}(X_1=0,X_2=0,X_3=1)=(1-p_1)(1-p_2)p_3.\]
+		Da diese Ereignisse disjunkt sind, und deren Vereinigung das Ereignis $\{X_1+X_2+X_3=1\}$ ist, ist die Wahrscheinlichkeit einfach
+		\[\mathbb{P}(X_1+X_2+X_3=1)=p_1(1-p_2)(1-p_3)+(1-p_1)p_2(1-p_3)+(1-p_1)(1-p_2)p_3\]
+		\item Es gilt $X_1+X_2+X_3\in \{0,1,2,3\}$. Also wir suchen die Zähldichte
+		\[\mathbb{P}(X_1+X_2+X_3=2).\]
+		Ähnlich betrachten wir die drei Ereignisse
+		\begin{align*}
+			\mathbb{P}(X_1=1,X_2=1,X_3=0)&=p_1p_2(1-p_3)\\
+			\mathbb{P}(X_1=0,X_2=1,X_3=1)&=(1-p_1)p_2p_3\\
+			\mathbb{P}(X_1=1,X_2=0,X_3=1)&=p_1(1-p_2)p_3
+		\end{align*}
+		und
+		\[\mathbb{P}(X_1+X_2+X_3=2)=p_1p_2(1-p_3)+(1-p_1)p_2p_3+p_1(1-p_2)p_3\]
+		Letztlich ist
+		\[\mathbb{P}(X_1+X_2+X_3=3)=\mathbb{P}(X_1=1,X_2=1,X_3=1)=p_1p_2p_3\]
+		und
+		\[\mathbb{P}(X_1+X_2+X_3=0)=\mathbb{P}(X_1=0,X_2=0,X_3=0)=(1-p_1)(1-p_2)(1-p_3).\]
+		Das Wahrscheinlichkeitsmaß ist definiert durch die Summe
+		\[\mathbb{P}(A)=\sum_{x\in A}\mathbb{P}(\{x\}).\]
+		\item Es gilt
+		\[\{X_1<X_3\}=\{X_1=0,X_3=1\}\]
+		und damit
+		\[\mathbb{P}(X_1<X_3)=(1-p_1)p_3.\]
+		\item $Y$ is Bernoulli-verteilt mit Parameter $(1-p_1)p_3$.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	\begin{parts}
 	\item Zeigen Sie, dass es sich bei
@@ -27,3 +59,37 @@ Bestimmen Sie $a,b$, sowie $F^d$ und $F^s$. Skizzieren Sie $F^d, F^s$ und $F$. G
 gilt. Bestimmen Sie einen so definierten Median zu der durch $F$ charakterisierten Verteilung.
 \end{parts}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item \begin{enumerate}[label=(\arabic*)]
+			\item Monoton wachsend: Wir betrachten die Ableitung
+			\[F'(x)=\begin{cases}
+				0 & x < 0\\
+				\frac 15 + \frac{1}{10} x & 0 < x < 1\\
+				0 & x > 1.
+			\end{cases}\]
+			Da die Funktion fast überall stetig differenzierbar ist mit positiv semidefiniter Ableitung, ist sie monoton wachsend.
+			\item Die Funktion ist per Definition rechtseitig stetig.
+			\item $F(x)$ geht gegen 1 bzw. Null when $x$ geht gegen $+\infty$ bzw. $-\infty$.
+		\end{enumerate}
+		\item Wir sehen, dass es Atome bei $x=0$ und $x=1$ gibt:
+		\begin{align*}
+			F(0+)-F(0-)&=\frac{7}{20}\\
+			F(1+)-F(1-)&=1-\frac{3}{5}=\frac{2}{5}.
+		\end{align*}
+		Diese Atome stellen die diskrete Verteilung dar. Wir müssen die Verteilung normieren
+		\[\frac{7}{20}+\frac{2}{5}=\frac{3}{4}\]
+		und
+		\[F^d(x)=\begin{cases}
+			0 & x < 0\\
+			\frac{7}{15} & 0 \le x < 1\\
+			1 & x \ge 1
+		\end{cases}.\]
+		Die stetige Verteilung ergibt sich durch den streng wachsenden Term zwischen $0$ und $1$. Die Normierung ist
+		\[\left[\frac{7}{20}+\frac{1}{5}x+\frac{1}{20}x^2\right]_{0}^1=\frac 14\]
+		und damit
+		\[F^s(x)=\frac{4}{5}x+\frac{1}{5}x^2.\]
+		Die Gewichtung ist $a=\frac 34$, $b=\frac 14$.
+		\item Wir bestimmen $m$ durch die Gleichung $F(x)=\frac 12$. Die L\"{o}sung ist $m=-2+\sqrt{7}$.\qedhere
+	\end{parts}
+\end{proof}
