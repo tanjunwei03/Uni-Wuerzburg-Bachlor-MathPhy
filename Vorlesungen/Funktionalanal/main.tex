@@ -19,7 +19,8 @@
 \usepackage{thm-restate}
 \usepackage[framemethod=TikZ]{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
-\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
 \declaretheorem[style=thmbox, name=Theorem]{Theorem}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
@@ -59,7 +60,9 @@
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\section{Baire Spaces}
+	\tableofcontents
+	\section{Topology}
+	\subsection{Basic Concepts}
 	\begin{Theorem}[List of Useful Identities]
 		\noindent
 		\begin{parts}
@@ -97,6 +100,44 @@
 		Conversely, suppose $x$ is an element of $(M \setminus A)^\circ$. Then there is an open neighbourhood of $x$ contained in $M \setminus A$, in particular not intersecting A. This shows that $x$ is in $M \setminus A^\text{cl}$.\qedhere
 	\end{parts}
 \end{proof}
+\begin{Definition}[Preorder]
+	A relation $\preceq$ on a set $A$ is a preorder if the following conditions hold:
+	\begin{parts}
+		\item $\alpha \preceq \alpha$ for all $\alpha\in A$
+		\item If $\alpha\preceq \beta$ and $\beta\preceq\gamma$, then $\alpha\preceq\gamma$.
+	\end{parts}
+\end{Definition}
+\begin{Definition}
+	A \emph{directed set} $A$ is a set with a preorder and the following additional condition: For all $\alpha, \beta\in A$, there is some $\gamma$ with $\alpha \preceq \gamma$ and $\beta\preceq \gamma$. 
+\end{Definition}
+\begin{Remark}
+The additional condition $\alpha\preceq \beta$ and $\beta\preceq \alpha\implies \beta=\alpha$ is known as a \emph{partial order}. This is sometimes too restrictive, and is usually not important. The important property is the defining property of a directed set.
+\end{Remark}
+\begin{Definition}
+	A map from a directed set $I$ into a set $X$ is called a \emph{net} (indexed by $I$). The elements of this net are denoted by $(x_i)_{i\in I}$.
+\end{Definition}
+\begin{Definition}[Convergence]
+	Let $X$ now be a topological space. We say that a net $(x_i)_{i\in I}$ converges to $x$ if for every neighbourhood $U$ of $x$ there is $\alpha\in I$ such that $\beta\succeq \alpha\implies x_\beta\in U$.
+\end{Definition}
+\begin{Theorem}
+	The limit of a net is unique if the space $X$ is Hausdorff.
+\end{Theorem}
+\begin{proof}
+The proof is analogous to that of a sequence.
+\end{proof}
+
+It is obvious that all sequences are nets. The difference is as follows: A sequence only has countably many elements. Thus, it is possible that there will be too many open sets. This leads us to our next theorem:
+
+\begin{Theorem}
+	Let $X$ be a topological space and $(x_i)_{i\in I}$ be a net converging to $x$. If $X$ is first countable, then there is a sequence converging to $x$.
+\end{Theorem}
+
+In general, we have the following theorem
+
+\begin{Theorem}
+	Let $A$ be a subset of the topological space $X$. $x\in A^\text{cl}$ if and only if there is a net in $A$ converging to $x$.
+\end{Theorem}
+\subsection{Baire Spaces}
 	\begin{Definition}[Nowhere Dense]
 		A subset $A$ of a topological space is called nowhere dense if the interior of its closure is open, $(A^\text{cl})^\circ=\varnothing$. 
 	\end{Definition}
@@ -116,7 +157,7 @@
 \begin{Definition}[Meager]
 	A subset is called meager if it is a countable union of nowhere dense sets.
 \end{Definition}
-\begin{Theorem}
+\begin{Theorem}\label{thm:bairecond}
 	Let $(M, \mathcal{M})$ be a topological space. Then the following are equivalent:
 	\begin{parts}
 		\item Any countable union of closed subsets of $M$ without inner points has no inner points.
@@ -139,17 +180,26 @@
 			&=\left(\bigcup_{i=1}^\infty A_i^\text{cl}\right)^\circ,
 		\end{align*}
 	which is a contradiction, since we had $U$ as a nonempty open subset of the final union. 
-	\item Suppose we have a meager subset
+	\item Suppose we have a meager subset $A$ such that $M\setminus A$ is not dense. Then $(M \setminus A)^\text{cl} = M \setminus A^\circ \neq M$. Then $A$ has nonempty interior, contradicting (c).
+	\item Finally, let us consider a sequence of closed sets $(A_n)_{n\in \N}$ without interior points, and we suppose that their union has a nonempty interior. Then
+	\[\left(M \setminus \bigcup_{n=1}^\infty A_n\right)^\text{cl}=M \setminus \left(\bigcup_{n=1}^\infty A_n\right)^\circ\neq M,\]
+	contradicting (d), since $\bigcup_{n=1}^\infty A_n$ is meager and hence has a dense complement.\qedhere
 	\end{enumerate}
 \end{proof}
 	\begin{Definition}[Baire Spaces]
-		...
+		A topological space $X$ is a Baire space if one (and hence all) of the conditions of Theorem~\ref{thm:bairecond} hold.
 	\end{Definition}
+Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a space is a Baire space before even beginning to apply this theorem. Thus, we seek easier conditions with which we can verify that a space is a Baire space. These theorems are known as Baire's Theorems.
 	\begin{Theorem}[Baire I]
-		...
+		A complete metric space $(M,d)$ is a Baire space.
 	\end{Theorem}
+\begin{proof}
+	We seek to show the condition in Theorem~\ref{thm:bairecond}(b). Let us consider a collection of dense open sets $O_n$ and a point $x\in M$, as well as an open neighbourhood $U$ of $x$. Since $U$ intersects $O_1$, we can find an open ball $B_{\epsilon_1}(p_1)$ whose closure is contained in $U \cap O_1$. Inductively, we construct open balls $B_{\epsilon_n}(p_n)$ such that $B_{\epsilon_n}(p_n)^\text{cl}\subseteq B_{\epsilon_{n-1}}(p_{n-1})$. Then, 
+	\[\bigcap_{i=1}^\infty B_{\epsilon_n}(p_n)^\text{cl}\subseteq U \cap \bigcap_{i=1}^\infty O_n\]
+	But since the metric space is complete, the intersection on the left side is nonempty. Thus, the intersection on the right is nonempty. Since $U$ was an arbitrary open set, the intersection is dense. 
+\end{proof}
 	\begin{Theorem}[Baire II]
-		...
+		A locally compact Hausdorff space $(M, \mathcal{M})$ is a Baire space.
 	\end{Theorem}
 	\section{Topological Vector Spaces}
 	\begin{Definition}
@@ -161,42 +211,187 @@
 	\begin{proof}
 		They are invertible with continuous inverse $T_{-v}$ and $\frac 1\lambda$ respectively
 	\end{proof}
+	It is defined in some books that a topological vector space must be $T_1$ (or $T_0$). The usefulness of this definition comes from the fact that $T_0$ topological vector spaces are automatically $T_2$ and $T_3$. This is, in fact, not a statement about topological vector spaces, but about topological groups. Before we prove the result, we will need the following lemmas
+	\begin{Lemma}
+		Let $G$ be a group that is also a $T_1$ topological space. $G$ is a topological group iff the map $G \times G \to G, (x,y)\mapsto xy^{-1}$ is continuous.
+	\end{Lemma}
+\begin{proof}
+	Clearly, if $G$ is a topological group, then the map is continuous. 
+	
+	Conversely, we consider $y \mapsto (e,y) \mapsto y^{-1}$, which is continuous as a composition of continuous functions. Then $(x,y) \mapsto (x, y^{-1}) \mapsto xy$ is continuous, again as a composition of continuous functions.
+\end{proof}
+\begin{Lemma}
+	A topological space $X$ is Hausdorff iff the diagonal $X\times X$ is closed.
+\end{Lemma}
+	\begin{Theorem}
+		Let $G$ be a $T_0$ topological group. Then it is $T_1, T_2$ and $T_3$.
+	\end{Theorem} 
+\begin{proof}
+	We will prove $T_0\implies T_1\implies T_2$. 
+	
+	The goal is: We show that $\{e\}$ is closed. Pick $g\neq e$. Because $G$ is $T_0$, either $G \setminus \{e\}$ is a neighbourhood of $g$, or $G \setminus \{g\}$ is a neighbourhood of $e$. Suppose the latter. Then applying the translation $T_{g^{-1}}$ shows that $G \setminus \{e\}$ is a neighbourhood of $g^{-1}$, and applying the inversion map shows that $G \setminus \{e\}$ is a neighbourhood of $g$. Thus $\{e\}$ is closed.
+	
+	Then the translations show that every singleton set is closed.\textcolor{red}{TODO}
+	
+	Note: If the group is abelian, then the proof is significantly easier: We suppose $U$ is a neighbourhood of $x$ not containing $y$. Then $x+y-U$ is a neighbourhood of $y$ not containing $x$. 
+	
+	Now let $G$ be $T_1$
+\end{proof}
+	\subsection{Continuity}
 	\begin{Definition}[Uniform Continuity]
+		Let $V,W$ be topological vector spaces and $\phi:V\to W$ be a map. Then $\phi$ is called uniformly continuous if for all neighbourhoods $U\subseteq W$ of $0$ there exists a neighbourhood $Z\subseteq V$ such that $v-v'\in Z\implies \phi(v)-\phi(v')\in U$.
 	\end{Definition}
-	\begin{Theorem}[Equivalence of Completeness Conditions]
-	\end{Theorem}
 	\begin{Theorem}[Equivalence of Continuity Conditions]
+		Let $V$ and $W$ be topological vector spaces and let $\phi:V\to W$ be a linear map. Then the following are equivalent
+		\begin{parts}
+			\item The map $\phi$ is continuous at $0$.
+			\item The map $\phi$ is continuous at some $v\in V$.
+			\item The map $\phi$ is continuous.
+			\item The map $\phi$ is uniformly continuous.
+		\end{parts}
 	\end{Theorem}
+	\begin{proof}
+		\begin{enumerate}
+			\item Assume $\phi$ is continuous at 0. 
+			
+			Recall: This means that for all neighbourhoods $U$ of $0_W$, there is a neighbourhood $Z$ of $0_V$ such that $\phi(Z)\subseteq V$. Now choose $v\in V$ and a neighbourhood $U\ni \phi(v)$. Then $T_{-v}(U)$ is a neighbourhood of $0_W$, and we choose a neighbourhood $Z$ of $0$ such that $\phi(Z)\subseteq T_{-v}(U)$ by continuity at $0$. Then $T_v(Z)\subseteq U$ and contains $v$, as desired.
+			\item Repeating the same proof, we can get continuity at every point in $V$, which is equivalent to continuity.
+			\item We actually only need continuity at 0. Given an open neighbourhood $Z$ of $0_W$, we choose an open neighbourhood $U$ of $0_V$ that maps into $Z$. Then we have, for $v-u\in Z$, that $\phi(v)-\phi(u)=\phi(v-u)\in W$.
+			\item Uniform continuity directly implies continuity at 0 if we take $v'$ to be $0$ in the definition. \qedhere
+		\end{enumerate}
+	\end{proof}
 	\begin{Definition}[Algebraic and Topological Dual]
+		The algebraic dual of a vector space $V$ is the well known space of linear maps from $V$ to the field over which it is defined. We denote this by $V'=\text{Hom}(V,\mathbb{K})$. The topological dual $V^*=L(V, \mathbb{K})$ is the space of all \emph{continuous} linear maps. Clearly, $L(V, \mathbb{K})\subseteq \text{Hom}(V,\mathbb{K})$.
 	\end{Definition}
+	\subsection{Subspaces}
+	\begin{Theorem}
+		Let $V$ be a topological vector space. If $W\subseteq V$ is a subspace, then its closure $W^\text{cl}$ is also a subspace of $V$.
+	\end{Theorem}
+	\begin{proof}
+Suppose $v,w\in W^\text{cl}$. Then there are nets $(v_i)_{i\in I}$ converging to $v$ and $(w_i)_{i\in I}$ converging to $w$. Then $(v_i+w_i)_{i\in I}$ is a net converging to $v+w$, hence $v+w$ is still in $W^\text{cl}$. 
+	\end{proof}
 	\section{Banach Spaces}
-	\subsection{Basic Properties}
-	\begin{Definition}[Banach Space]
-	\end{Definition}
+	\subsection{Norms \& Seminorms}
 	\begin{Definition}[Norm]
+		A norm $\|\cdot\|$ on a vector space $V$ is a function $V\to \R$ that satisfies
+		\begin{parts}
+			\item (Homogenity) $\|sv\|=|s|\cdot \|v\|$ for all vectors $v$ and scalars $s$
+			\item (Triangle Inequality) $\|u+v\|\le \|u\| + \|v\|$
+			\item (Positivity) $\|v\|>0$ for all $v\neq 0$.  
+		\end{parts}
 	\end{Definition}
+	\begin{Remark}
+		A norm induces a topology through the metric defined by $d(v, w)=\|v-w\|$. If a vector space has this topology, it is known as a \emph{normed space}.
+	\end{Remark}
+	\begin{Definition}[Banach Space]
+		A Banach space is a complete normed space.
+\end{Definition}
 	\begin{Definition}[Seminorm]
+		A seminorm $p$ is a norm without the positivity condition. Instead, we have positive semidefiniteness, i.e.
+		\[p(v)\ge 0~\forall v\in V.\]
 	\end{Definition}
+	Note that a seminorm does not form a metric space. We define the \emph{kernel} of the seminorm as the set $\{v\in V|p(v)=0\}$. Note that this is a subspace. To get an actual norm, we must ``divide'' by the kernel.
+	
+	We can define a norm on the quotient vector space $V / \text{ker } p$ by letting the seminorm $p$ act on any representative of this space. 
 	\begin{Theorem}[Quotient of Norms]
+		The norm $\|\cdot \|: V / \text{ker } p\to \R$,  $[v] \mapsto p(v)$ is a norm.
 	\end{Theorem}
+\begin{proof}
+	First, we show that it is well defined. Consider $v\in V$ and let $u\in \text{ker }p$ be arbitrary. Then we have
+	\[p(v+u)\le p(v)+p(u)=p(v)\]
+	by the triangle inequality, and conversely
+	\[p(v)=p(v-u+u)\le p(v+u)+p(u)=p(v+u)\]
+	which shows that the norm is independent of the choice of representative.
+	
+	The triangle inequality and homogenity follow from the same properties of the seminorm. It is also true by definition that the norm is positive.
+\end{proof}
+Thus, given a seminorm on a vector space, we can construct a new vector space that has a norm, and thus an induced topology. 
+\begin{Theorem}[Operator Norm]
+	Let $V,W$ be normed spaces and let $A:V\to W$ be a linear map. Then the following statements are equivalent:
+	\begin{parts}
+		\item $A$ is continuous.
+		\item There exists a constant $c\ge 0$ such that
+		\[\|A(v)\| \le c\|v\|\]
+		for all $v\in V$.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	We use the fact that continuity is equivalent to continuity at 0. Then, we simply unravel the definitions. $A$ is continuous at 0 if for every neighbourhood $Z\subseteq W$ of $0_W$ we have a neighbourhood $U\subseteq V$ of $0_V$ such that $A(U)\subseteq V$.
+	
+	Equivalently, we can consider open balls in place of $Z$ and $U$. This is then equivalent to the second condition.
+\end{proof}
 	\begin{Definition}[Operator Norm]
+		The operator norm $\|A\|$ is defined as
+		\[\|A\|=\inf \{c| \|Av\| \le c\|v\|~\forall v\in V\}\]
 	\end{Definition}
-	\begin{Corollary}[Equivalent Statements]
+	\begin{Corollary}[Equivalent Statements]\noindent
+		\begin{parts}
+			\item \[\|A\|=\sup_{V\ni v \neq 0}\frac{\|Av\|}{\|v\|}\]
+			\item \[\|A\| = \sup_{\|v\|=1}\|A v\|\]
+		\end{parts}
 	\end{Corollary}
-	\begin{Theorem}[Continuity \& The Operator Norm]
-	\end{Theorem}
 	\begin{Theorem}[Operator Composition]
+		Let $V,W, Z$ be normed spaces, $A\in L(V,W)$, $B\in L(W,Z)$. Then
+		\[\|B\circ A\| \le \|A\| \|B\|.\]
 	\end{Theorem}
-	\begin{Definition}[Schauder Basis]
+\begin{proof}
+	For $v\in V$, we have
+	\[\|BAv\|\le \|B\| \|Av\| \le \|B\| \|A\| \|v\|.\qedhere\]
+\end{proof}
+Note that the above definition shows once again the continuity of composition.
+	\subsection{Bases}
+	\begin{Definition}[Hamel Basis]
+		A Hamel basis is a set $B\subseteq V$ such that for all $v\in V$, we have
+		\[v=\sum_{k=1}^n a_k e_k\]
+		with $a_i\in \mathbb{K}$ and $e_i\in B$ for all $i$, and
+		\[\sum_{k=1}^n a_k e_k=0\implies a_i=0\forall i.\]
 	\end{Definition}
+	The existence of Hamel bases is equivalent to the axiom of choice, and can be proven by Zorn's Lemma. The proof is as follows: We construct minimal spanning sets and maximally linearly independent sets by Zorn's Lemma (partial order by inclusion), and show that they are the same. These sets are Hamel bases.
+	
+	A Hamel basis has all the beloved properties of a basis from finite dimensional linear algebra. For example, a linear map is uniquely defined through its action on the Hamel basis:
+	\[Av = \sum_{k=1}^n a_k Ae_k.\]
+	However, a Hamel bases are usually difficult to come by, as we see with the following theorem:
+	\begin{Theorem}
+		A Banach space with a countable Hamel basis is finite. 
+	\end{Theorem}
+\begin{proof}
+	Suppose we have a countable Hamel basis $(e_n)_{n\in \N}$ of a Banach space $V$. Denote $M_n=\text{span}(\{e_1, \dots, e_n\})$. This is a closed proper subspace of $V$. Thus it has empty interior. However, because by definition the $e_n$s form a Hamel basis, we have $V=\bigcup_{k=1}^\infty M_k$, contradicting Baire's category theorem.
+\end{proof}
+	\begin{Definition}[Schauder Basis]
+		A Schauder basis is a countable set $\{e_n\}\subseteq V$ such that all vectors $v\in V$ can be uniquely expressed as a sum
+		\[v=\sum_{k=1}^\infty a_k e_k,\]
+		where the convergence is understood to be in the topology of the vector space. 
+	\end{Definition}
+The importance of a Schauder basis is that it is countable, and we are still able to define \emph{some} linear maps by their action on the basis. In particular, for any continuous linear map $A$, we have
+\[Av = \sum_{k=1}^\infty a_k Ae_k.\]
+Also important to note is that this basis must be \emph{ordered}, since the sum does not necessarily converge unconditionally. 
 	\subsection{Quotients of Banach Spaces}
+	\begin{Theorem}[Quotient (Semi-)Norm]
+		Let $V$ be a vector space and $U\subseteq V$ a subspace. 
+		\begin{parts}
+			\item For every seminorm $p$ on $V$,
+			\[[p]([v])=\inf\{p(v+u)|u\in U\}\]
+			defines a seminorm on $V/U$.
+			\item If $p$ is a norm then $[p]$ is a norm on $V/U$ iff $U$ is closed.
+		\end{parts}
+	\end{Theorem}
 	\begin{Definition}[Quotient (Semi-)Norm]
 	\end{Definition}
-	\begin{Theorem}
-		This is actually a seminorm
-	\end{Theorem}
 	\begin{Theorem}[Quotient Norm]
 	\end{Theorem}
 	\subsection{Various Examples}
+	\section{The Main Theorems}
+	\begin{Definition}
+		Let $V$ be a vector space over $\mathbb{K}$. A functional $p$ is called \emph{sublinear}, if
+		\begin{parts}
+			\item (Homogenity) $p(rx)=r(px)$ for all real $r\ge 0$ and $v\in V$.
+			\item (Subadditivity) $p(u+v)\le p(u)+p(v)$ for all $u,v\in V$
+		\end{parts}
+	\end{Definition}
+We can define a partial order on the sublinear functions by defining $p$ to be less than $q$ if $p$ is less than $q$ pointwise. Zorn's Lemma then yields minimal elements. 
+\begin{Theorem}
+	A sublinear function is minimal if and only if it is a real linear functional.
+\end{Theorem}
+
 \end{document}
 
