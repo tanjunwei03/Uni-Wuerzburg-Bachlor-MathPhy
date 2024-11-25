@@ -384,14 +384,165 @@ Also important to note is that this basis must be \emph{ordered}, since the sum 
 	\begin{Definition}
 		Let $V$ be a vector space over $\mathbb{K}$. A functional $p$ is called \emph{sublinear}, if
 		\begin{parts}
-			\item (Homogenity) $p(rx)=r(px)$ for all real $r\ge 0$ and $v\in V$.
+			\item (Homogenity) $p(rx)=rp(x)$ for all real $r\ge 0$ and $v\in V$.
 			\item (Subadditivity) $p(u+v)\le p(u)+p(v)$ for all $u,v\in V$
 		\end{parts}
 	\end{Definition}
-We can define a partial order on the sublinear functions by defining $p$ to be less than $q$ if $p$ is less than $q$ pointwise. Zorn's Lemma then yields minimal elements. 
+The main property that relates sublinear functionals to linear functionals is as follows:
 \begin{Theorem}
-	A sublinear function is minimal if and only if it is a real linear functional.
+	If $p$ is a sublinear functional on a real vector space $V$, then the following are equivalent:
+	\begin{parts}
+	\item $p$ is linear
+	\item $p(v)+p(-v)=0$ for all $v\in V$.
+	\item $p(v)+p(-v)\le 0$ for all $v\in V$
+	\end{parts}
 \end{Theorem}
+\begin{proof}
+	If $p$ is linear, then $p(v)+p(-v)=p(v-v)=p(0)=0$. Clearly, (b) implies (c).
 
+	Now assume (c). First, we prove (b):
+	\[
+	0=p(v-v)\le p(v)+p(-v) \le 0
+	\]
+	or $p(v)+p(-v)=0$, proving (b). Using (b) we have, for $r<0$,
+	\[
+	p(rv)=-p(-rv)=rp(v)
+	,\]
+	proving the first aspect of linearity. Then we have
+	\[
+	p(v+w-w)\le p(v+w)+p(w)=p(v+w)+p(-w)
+	,\]
+	implying
+	\[
+	p(v)+p(w)\le p(v+w)
+	.\] 
+	The subadditivity yields the other inequality, completing the proof of linearity.
+\end{proof}
+
+We can define a partial order on the sublinear functions by defining $p$ to be less than $q$ if $p$ is less than $q$ pointwise. Zorn's Lemma then yields minimal elements. We will prove eventually that these minimal elements are linear functionals. Before that, however, we need two lemmas:
+
+\begin{Theorem}[Auxiliary Functionals]\label{thm:auxfunc}
+	If $p$ is a sublinear functional on a real vector space $V$, then the auxiliary functional $q(v)=\inf \{p(v+tw)-tp(w)|t\ge 0,w\in V\} $ is a sublinear functional such that $q \le p$.
+\end{Theorem}
+\begin{proof}
+	By considering $t=0$ in the infimum, we see that $q\le p$. We only need to show sublinearity. Consider first $r=0$. Then
+	\[
+	q(rv)=\inf \{p(rv+tw)-tp(w)|t\ge 0,w\in V\} =\inf \{p(tw)-tp(w)|t\ge 0, w\in V\} =0
+	.\] 
+	For $r>0$, we have
+	\begin{align*}
+		q(rv)&=\inf \{p(rv+tw)-tp(w)|t \ge 0, w\in V\} \\
+		     &=\inf \left\{ rp\left( v+\frac{t}{a}w \right)-tp(w)|t\ge 0, w\in V \right\} \\
+		     &=r\inf \{p(v+tw / a) -tp(w) / a|t\ge 0, w\in V\} \\
+		     &=rq(v)
+	\end{align*}
+	For subadditivity, we take the special points $w=\frac{1}{s+t}(sx+ty)$, or $(s+t)w=sx+ty$. Then
+	\begin{align*}
+		q(x+y)&\le p(x+y+(s+t)w)-(s+t)p(w)\\
+		      &\le p(x+sw)-sp(w)+p(y+tw)-tp(w)
+	\end{align*}
+	which shows that $q(x+y)\le q(x)+q(y)$.
+\end{proof}
+Now, we move on to the proof of the main result.
+\begin{Theorem}
+	A sublinear functional $p$ on a real vector space $V$ is linear iff it is minimal.
+\end{Theorem}
+\begin{proof}
+	Suppose we have $q\le p$, with $q$ sublinear and $p$ linear. Since $q$ is sublinear, we have $0=q(v-v)\le q(v)+q(-v)$, which implies $-q(-v)\le q(v)$. Since $q(-v) \le p(-v)=-p(v)$, we have $p(v)\le -q(-v)\le q(v)$, suggesting that $p\le q$. Thus $p=q$.
+
+	Conversely, suppose that $p$ is a minimal sublinear functional. Then we must have $q=p$ where $q$ is the auxiliary sublinear functional defined in Theorem~\ref{thm:auxfunc}. If we let $t=1$ and $w=-v$ in the above definition, we get
+	\[
+	p(v)\le p(v-v)-p(-v)
+,\]
+or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we require to apply Zorn's Lemma
+\end{proof}
+\begin{Theorem}
+	For every sublinear functional $p$, we have a linear functional $f\le p$. 
+\end{Theorem}
+\begin{proof}
+	We begin, as always, by considering a chain of sublinear functionals, which is also a totally ordered set of sublinear functionals $P$. Suppose that $q(x)$ is unbounded from below for all $q\in P$ and some $x\in V$. Then we have, for all $n$, a $p_n$ such that $p_n(x)\le -n$.
+
+	Then we construct a decreasing sequence of sublinear functionals $q_n$ using $q_n=\min (p_1, \dots, p_n)$. Since $q_n(x)\le -n$, we have
+	\[
+	0=q_n(x-x)\le q_n(x)+q_n(-x)\le -n +q_n(-x)
+	\]
+	or $q_n(-x)\ge n$. Then we have, for all $n$, $n\le q_n(x)\le q_1(x)$, a contradiction. Thus we can take the infimum for all $x\in V$. This yields a functional $q^*$. It remains to show that $q^*$ is sublinear. \textcolor{red}{TODO} 
+\end{proof}
+\subsection{Separation Properties}
+\begin{Definition}
+	Let $V$ be a normed space. A subset $A$ of $V$ is called
+	\begin{parts}
+	\item \emph{Absorbing}, if for every $v\in V$ there is $\lambda>0$ with $v\in \lambda A$.
+	\item \emph{Balanced}, if for all $|z|\le 1$ we have $zA\subseteq A$.
+	\item \emph{Convex}, if for all $v,w\in A$ and $\lambda\in [0,1]$ we have $\lambda v+(1-\lambda)w\in A$.
+	\item \emph{Absolutely convex}, if it is balanced and convex.
+	\end{parts}
+\end{Definition}
+\begin{Theorem}
+	Let $V$ be a vector space over $\mathbb{K}$.
+	\begin{parts}
+	\item If $p:V \to \R_0^+$ is a seminorm then
+		\[
+			B_{p,1}(0)=\{v\in V|p(v)<1\} 
+		\]
+		and
+		\[
+			B_{p,1}(0)^\text{cl}=\{v\in V|p(v)\le 1\} 
+		\]
+		are absorbing and absolutely convex.
+	\item If $C\subseteq V$ is convex, balanced and absorbing then
+		\[
+		p_c(V)=\inf \{\lambda| \lambda<0,v\in \lambda C\} 
+	\]
+	is a seminorm.
+\item For $C$ absolutely convex and absorbing
+	\[
+		B_{p_c, 1}(0)\subseteq C \subseteq B_{p_c, 1}(0)^\text{cl}
+	.\] 
+\item For every seminorm $p$ one has
+	\[
+		P_{B_{p, 1}(0)}=P=P_{B_{p,1}(0)^\text{cl}}
+	.\] 
+	\end{parts}
+\end{Theorem}
+\begin{Definition}[Minkowski Functional]
+	Let $C\subseteq V$ be an absorbing subset in a vector space $V$ over a $\mathbb{K}$. Then $p_c:V\to \R_0^+$ defined by
+	\[
+	p_c(v)=\inf \{\lambda>0|v\in \lambda C\} 
+\]
+is called the Minkowski functional of $C$.
+\end{Definition}
+\begin{Theorem}[Separation I]
+	Let $V$ be a normed space with two nonempty disjoint convex subsets $A,B\subseteq V$.
+	\begin{parts}
+	\item Suppose $A$ is open. Then there exists $\Phi\in V'$ and $\alpha\in \R$ such that
+		\[
+		\Re(\Phi(v))<\alpha\le \Re(\Phi(u))
+	\]
+	for $v\in A< u\in B$
+\item Suppose both $A$ and $B$ are open. Then there exists $\Phi\in V'$ and $\alpha\in \R$ with
+	\[
+	\Re(\Phi(v))<\alpha<\Re(\Phi(v))
+\]
+for $v\in A, u\in B$.
+	\end{parts}
+\end{Theorem}
+The picture for this theorem is as follows: A linear functional $\Phi$ defines a hyperplane for each fixed value of $\alpha$, then splitting the space into two parts, one where the functional is less than, and one where the functional is greater than $\alpha$. In $\R^2$, the picture looks as follows:
+\begin{center}
+	\begin{tikzpicture}[scale=1.3]
+		\draw[thick] (0,0) circle (1);
+		\draw[thick] (3,0) circle (1);
+		\draw[thick, orange] (1.3,-1.5) -- (1.9,1.5) node[anchor=south] {$\Phi(v)=\alpha$};
+		\draw[thick, orange] (0,1) node[anchor=south] {$\Phi(v)<\alpha$};
+		\draw[thick, orange] (3,1) node[anchor=south] {$\Phi(v)>\alpha$};
+	\end{tikzpicture}
+\end{center}
+\begin{proof}
+	First, we prove the extension from $\R$ to $\C$. If we assume that the real case is done, then $\Phi(v)=\Psi(v)-i\Psi(iv)$ is $\C$-linear and $\Re(\Phi)=\Psi$ still fulfils the equation.
+
+	Hence, we focus on the real case. Suppose $A$ is open. Then, for $v_0\in A, w_0\in B$, we have $u_0=w_0-v_0\neq 0$. Then $C=A-B+u_0$ is open, and $0\in C$. This implies that $C$ is absorbing.
+
+	Since $A-B$ is still convex, we can define the Minkowski functional on $C$. This is, however, not a seminorm, as $C$ might not be balanced. However, $p$ is a sublinear functional. 
+\end{proof}
 \end{document}
 
