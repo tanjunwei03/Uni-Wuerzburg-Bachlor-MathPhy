@@ -39,7 +39,24 @@
 		\dot{x}_2 &= x_1 + t x_2
 	\end{align*}
 	Die erste DGL kann man direkt l\"{o}sen mit TDV:
-	\[x_1 = Ae^{\frac 12 t^2},~A\in \R\]
+	\[x_1 = Ae^{\frac{t^2}{2}},~A\in \R\]
+	Eingesetzt ist die zweite DGL eine DGL nur in $x_2$. Wir k\"{o}nnen die L\"{o}sung durch Variation der Konstanten bestimmen:
+	\[x_2(t)=At e^{\frac{t^2}{2}}+B e^{\frac{t^2}{2}}.\]
+	Zwei linear unabhängige Lösungen sind also
+	\[x=\begin{pmatrix}
+		e^{\frac{t^2}{2}} \\ t e^{\frac{t^2}{2}}
+	\end{pmatrix},\qquad x=\begin{pmatrix}
+	0 \\ e^{\frac{t^2}{2}}
+\end{pmatrix}\]
+und eine Fundamentalmatrix ist
+\[\Phi(t) = \begin{pmatrix}
+	e^{\frac{t^2}{2}} & 0\\ t e^{\frac{t^2}{2}} &  e^{\frac{t^2}{2}}
+\end{pmatrix}.\]
+Die Übergangsmatrix ist
+\[\Psi(t,t_0) = \Phi(t)\Phi(t_0)^{-1}=e^{\frac 12 (t^2-t_0^2)}\begin{pmatrix}
+	1 & 0 \\
+	t-t_0 & 1
+\end{pmatrix}.\qedhere\]
 \end{proof}
 \begin{Problem}
 	Sei $I$ ein offenes Intervall und $A: I\to \R^{n\times n}$ stetig. Sei $\Phi: I\to \R^{n\times n}$ eine Fundamentalmatrix von 
@@ -49,13 +66,48 @@
 	\begin{parts}
 		\item Bestimmen Sie eine stetige Abbildung $B : I \to \R^{n\times n}$ , so dass $\Psi : I \to \R^{n\times n}$ mit $\Psi(t) := (\Phi^T)^{-1}(t)$ eine Fundamentalmatrix von $\dot{x} = B(t)x$ definiert.
 			
-			(Hinweis: Als Fundamentalmatrix muss $\Psi(t)$ die Differentialgleichung $\Psi(t) = B(t)\Psi(t)$ erfüllen.)
+			(Hinweis: Als Fundamentalmatrix muss $\Psi(t)$ die Differentialgleichung $\dot{\Psi}(t) = B(t)\Psi(t)$ erfüllen.)
 			\item Sei $C \in \R^{n\times n}$ mit $\det(C) \neq 0$ und sei $\Psi : I \to \R^{n\times n}$ definiert durch $\Psi(t) := C\Phi(t)$. Zeigen Sie, dass $\Psi(t)$ genau dann eine Fundamentalmatrix von \eqref{eq:diffeqblatt6-2} ist, wenn
 			\[CA(t)=A(t)C\]
 			f\"{u}r alle $t\in I$ gilt.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+		\item Die Fundamentalmatrizen $\Phi$ und $\Psi$ erf\"{u}llen die folgenden Differentialgleichungen:
+		\begin{align*}
+			\dot{\Phi}(t)&=A(t)\Phi(t)\\
+			\dot{\Psi}(t)&=B(t)\Psi(t)
+		\end{align*}
+	Wir wissen, dass $\Psi(t)= (\Phi^T)^{-1}(t)$ ist. Dafür müssen wir zunächst ein Lemma beweisen:
+	\begin{Lemma}
+		Sei $A(t)$ eine von Zeit abhängige Matrix. Es gilt
+		\[\dv{A^{-1}}{t}=-A^{-1}\dv{A}{t}A\]
+	\end{Lemma}
+\begin{proof}
+	Es gilt $AA^{-1}=0$ und damit
+	\begin{align*}
+		0&=\dv{A}{t}A^{-1} + A\dv{A^{-1}}{t}\\
+		\dv{A^{-1}}{t}&=-A^{-1}\dv{A}{t}A^{-1}.\qedhere
+	\end{align*}
+\end{proof}
+also
+\begin{align*}
+\dot{\Psi}&= -(\Phi^T)^{-1}{\dv{\Phi^T}{t}}(\Phi^T)^{-1}=B(t)(\Phi^T)^{-1}\\
+-(\Phi^T)^{-1}\dv{\Phi^T}{t}&= B(t)\\
+B(t)&= -(\Phi^T)^{-1}\left(A(t) \Phi(t)\right)^T\\
+&= -(\Phi^T)^{-1} \Phi^T A(t)^T\\
+&= A(t)^T
+\end{align*}
+\item $\Psi$ ist eine Fundamentalmatrix, wenn $\dot{\Psi}(t)=A(t)\Psi(t)$, oder
+\begin{align*}
+	C\dot{\Phi}&= AC\Phi\\
+	CA\Phi&=AC\Phi\\
+	0&= (CA-AC)\Phi
+\end{align*}
+da $\Phi$ invertierbar ist, ist dies genau dann erfüllt, wenn $CA-AC=0$ f\"{u}r alle $t\in I$.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Beurteilen Sie, ob die folgenden 4 Behauptungen wahr oder falsch sind.
 	
@@ -86,6 +138,6 @@
 	Weiter sei $\varphi_\text{max}$ eine maximale Lösung mit maximalem Existenzintervall	$I_\text{max} = (-\infty, t^+ ), t^+ < \infty$. Dann ist $\varphi_\text{max}$ beschränkt. & & $\times$ \\\hline
 	Sei $\ddot{x} = \frac{\dot{x}-1}{x}$ eine skalare Differentialgleichung, $x \in \R \setminus \{0\}$. Dann ist $\varphi(t) = t \ln(t), t > 1$, eine Lösung dieser Differentialgleichung. & $\times$ & \\\hline
 	Sei $D \subseteq \R \times \R^n , f : D \to \R^n$ stetig und $\varphi : I \to \R^n$ eine Lösung von $\dot{x} = f (t, x)$. Ist $I = (t_0, t_1)$ und hat $\varphi$ in $t_1$ einen linksseitigen Grenzwert $x_1 = \lim_{t\to t_1} \varphi(t)$ mit $(t_1 , x_1 ) \in D$, so ist $\varphi$ nach rechts fortsetzbar. & $\times$ & \\\hline
-	Jede Fundamentalmatrix $\Phi(t)$ ist auch eine Wronski-Matrix $W(t)$. & & \\\hline
+	Jede Fundamentalmatrix $\Phi(t)$ ist auch eine Wronski-Matrix $W(t)$. & $\times$ & \\\hline
 \end{tabularx}
 \end{proof}

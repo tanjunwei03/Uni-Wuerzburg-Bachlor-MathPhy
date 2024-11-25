@@ -1,0 +1,70 @@
+\begin{Problem}
+	Es sei $U$ eine auf dem Intervall $(0, 1)$ uniform verteilte Zufallsvariable, $U \sim \mathcal{U}((0, 1))$, sowie
+	\[X=-\ln U,~Y=-\ln (1-U),\]
+	mit dem natürlichen Logarithmus ln.
+	\begin{parts}
+		\item Bestimmen Sie die Verteilungen von $X$ und von $Y$.
+		\item Was können Sie über die Wahrscheinlichkeit $\mathbb{P}(X = Y )$ aussagen, was über
+		$\mathbb{P}(X > Y )$?
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item $0 < X < \infty$. Es gilt 
+		\begin{align*}
+			\mathbb{P}(X < a)&=\mathbb{P}(U>e^{-a})\\
+			&=1-e^{-a}
+		\end{align*}
+	Ähnlich ist $0<Y<\infty$ und
+	\[\mathbb{P}(Y<a)=\mathbb{P}(U<1 - e^{-a})=1 - e^{-a}\]
+	Deren Verteilungsfunktionen sind also
+	\begin{align*}
+		F_X(t)&= 1-e^{-t}\\
+		F_Y(t)&= 1-e^{-t}
+	\end{align*}
+mit $t\in (0,\infty)$. 
+\item Das Ereignis $X=Y$ entspricht $U=1/2$. Die Wahrscheinlichkeit $\mathbb{P}(U=1/2)$ ist aber Null.
+
+Das Ereignis $X>Y$ entspricht $U<1/2$ und hat damit Wahrscheinlichkeit $1/2$.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $X$ eine reellwertige Zufallsvariable, deren Verteilungsfunktion durch
+	\[F_X(t)=\begin{cases}
+		0 & t < 0\\
+		c\cdot t^2 & t \in [0,1)\\
+		1 & t \ge 1
+	\end{cases}\]
+mit einer reellen Konstante $c$, gegeben ist.
+\begin{parts}
+	\item Welche Werte kommen für $c$ in Frage?
+	\item Für welche Werte von $c$ ist die Verteilung absolutstetig, für welche diskret? Was ist im absolutstetigen Fall die zugehörige Dichte?
+	\item Skizzieren Sie $F_X(t)$ für $c = 1/2$.
+	\item Bestimmen Sie $\mathbb{P}(1/4 < X \le 1/2)$, also die Wahrscheinlichkeit für $\{X \le 1/2\}\cap \{X > 1/4\}$, abhängig von c.
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item Aufgrund der Monotonie muss $0 \le c \le 1$ sein. 
+		\item Die Verteilung ist f\"{u}r $c=1$ absolutstetig und f\"{u}r $c=0$ diskret.
+		
+		Im Fall $c=1$ ist die Dichte die Ableitung
+		\[f_X(t)=\begin{cases}
+			2t & 0 < t < 1\\
+			0 & \text{sonst.}
+		\end{cases}\]
+	\item \noindent
+	
+		\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[samples=300,legend pos=outer north east, xlabel=$t$, ylabel=$F_X(t)$]
+				\addplot[domain=0:1,color=red] {0.5*x^2};
+				\addplot[domain=-0.5:0, color=red] {0};
+				\addplot[domain=1:1.5, color=red] {1};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+Da die Verteilung $F_X(t)$ auf $(0,1)$ stetig ist, ist die Wahrscheinlichkeit gegeben durch
+\[\mathbb{P}\left(\frac 14< x \le \frac 14 \right)=F_X\left(\frac 12 \right) - F_X\left(\frac 12\right) = c\left(\frac 12\right)^2 - c\left(\frac 14\right)^2=\frac{3c}{16}.\qedhere\]
+	\end{parts}
+\end{proof}

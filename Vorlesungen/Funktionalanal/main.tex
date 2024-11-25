@@ -223,6 +223,16 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 \begin{Lemma}
 	A topological space $X$ is Hausdorff iff the diagonal $X\times X$ is closed.
 \end{Lemma}
+\begin{proof}
+	Suppose the diagonal is closed. Then, given $(x,y)$, there is an open set $Z$ and a basis element $U\times V$ such that $(x,y)\in U\times V \subseteq Z$. Since this does not intersect the diagonal, it follows that $U$ and $V$ must be disjoint.
+	
+	Conversely, given $x$ and $y$, we can find disjoint open sets $U$ and $V$ containing $x$ and $y$, and $U\times V$ does not intersect the diagonal, since they are disjoint. 
+\end{proof}
+Now, we move on to our first result about regularity. This is independent of the other separation axiosm:
+\begin{Theorem}
+	Let $G$ be a topological group. It is regular. In particular,
+\end{Theorem}
+Now, we move on to the more important result:
 	\begin{Theorem}
 		Let $G$ be a $T_0$ topological group. Then it is $T_1, T_2$ and $T_3$.
 	\end{Theorem} 
@@ -231,11 +241,13 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 	
 	The goal is: We show that $\{e\}$ is closed. Pick $g\neq e$. Because $G$ is $T_0$, either $G \setminus \{e\}$ is a neighbourhood of $g$, or $G \setminus \{g\}$ is a neighbourhood of $e$. Suppose the latter. Then applying the translation $T_{g^{-1}}$ shows that $G \setminus \{e\}$ is a neighbourhood of $g^{-1}$, and applying the inversion map shows that $G \setminus \{e\}$ is a neighbourhood of $g$. Thus $\{e\}$ is closed.
 	
-	Then the translations show that every singleton set is closed.\textcolor{red}{TODO}
+	Then the translations show that every singleton set is closed.
 	
 	Note: If the group is abelian, then the proof is significantly easier: We suppose $U$ is a neighbourhood of $x$ not containing $y$. Then $x+y-U$ is a neighbourhood of $y$ not containing $x$. 
 	
-	Now let $G$ be $T_1$
+	Now let the identity be closed. The diagonal of $G\times G$ is the preimage of $\{e\}$ under the map $(x,y)\mapsto xy^{-1}$, hence the diagonal is closed too. This shows that $G$ is Hausdorff.
+	
+	Since all topological groups are regular, this shows $T_3$.
 \end{proof}
 	\subsection{Continuity}
 	\begin{Definition}[Uniform Continuity]
@@ -433,7 +445,7 @@ We can define a partial order on the sublinear functions by defining $p$ to be l
 	\begin{align*}
 		q(rv)&=\inf \{p(rv+tw)-tp(w)|t \ge 0, w\in V\} \\
 		     &=\inf \left\{ rp\left( v+\frac{t}{a}w \right)-tp(w)|t\ge 0, w\in V \right\} \\
-		     &=r\inf \{p(v+tw / a) -tp(w) / a|t\ge 0, w\in V\} \\
+		     &=r\inf \left\{p\left(v+\frac ta w\right) -\frac ta p(w)|t\ge 0, w\in V\right\} \\
 		     &=rq(v)
 	\end{align*}
 	For subadditivity, we take the special points $w=\frac{1}{s+t}(sx+ty)$, or $(s+t)w=sx+ty$. Then
