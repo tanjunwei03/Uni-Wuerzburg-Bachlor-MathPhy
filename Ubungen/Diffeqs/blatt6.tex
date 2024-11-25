@@ -1,0 +1,91 @@
+\begin{Problem}
+	Gegeben sei das Anfangswertproblem
+	\begin{equation}\label{eq:diffeqblatt6-1}
+	\dot{x}=x(x-2)e^{\cos x},\qquad x(t_0)=x_0.
+\end{equation}
+	\begin{parts}
+		\item Bestimmen Sie alle $x_0$, f\"{u}r die \eqref{eq:diffeqblatt6-1} konstante L\"{o}sungen hat.
+		
+		Nun sei die Anfangwertbedingung gegeben durch $x(0)=1$.
+		\item Zeigen Sie, dass das Anfangswertproblem eine eindeutige L\"{o}sung $\varphi(t)$ besitzt.
+		\item Zeigen Sie, dass die L\"{o}sung aus Teilaufgabe (b) beschr\"{a}nkt, streng monoton fallend ist und auf ganz $\R$ existiert.
+		\item Zeigen Sie, dass die Grenzwerte $\lim_{t\to \pm \infty} \varphi(t)$ existieren und bestimmen Sie diese Grenzwerte.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item Bei einer konstanten L\"{o}sung muss $\dot{x}=0$ f\"{u}r alle Zeitpunkte gelten, insbesondere in $t_0$. Da $\exp(x)\neq 0\forall x\in \R$ ist, muss $x(x-2)=0$, also $x_0=0$ oder $x_0=2$.
+		\item Die Funktion $f(t, x)=x(x-2)e^{\cos x}$ ist stetig in $t$ (da sie nicht von $t$ abhängt) und lokal Lipschitz stetig in $x$, da sie nach $x$ stetig differenzierbar ist.
+		\item Die L\"{o}sung darf nur zwischen $0$ und $2$ sein. 
+		
+		Angenommen es g\"{a}be $\tilde{t}$ mit $\varphi(t)=2$. Dann ist $\varphi$ eine L\"{o}sung des Anfangswertproblems \eqref{eq:diffeqblatt6-1}, $x(\tilde{t})=2$. Die konstante L\"{o}sung ist aber auch eine L\"{o}sung, was ein Widerspruch zur lokalen Eindeutigkeit ist. Analog ist $\varphi(t)\neq 0$. Aufgrund Stetigkeit muss dann $0<\varphi<2$.
+		
+		Die L\"{o}sung ist streng monoton fallend, wachsend oder konstant nach Präzensaufgabe 5.2. Da $\dot{x}(0)<0$, ist sie streng monoton fallend.
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Sei $A:\R\to \R^{2\times 2}$ gegeben durch
+	\[A(t)=\begin{pmatrix}
+		t & 0 \\
+		1 & t
+	\end{pmatrix}.\]
+	Finden Sie die \"{U}bergangsmatrix und eine Fundamentalmatrix des Differentialgleichungssystems
+	\[\dot{x}=Ax\]
+\end{Problem}
+\begin{proof}
+	Sei $x=(x_1,x_2)^T$. Damit ist die DGL
+	\begin{align*}
+		\dot{x}_1 &= t x_1\\
+		\dot{x}_2 &= x_1 + t x_2
+	\end{align*}
+	Die erste DGL kann man direkt l\"{o}sen mit TDV:
+	\[x_1 = Ae^{\frac 12 t^2},~A\in \R\]
+\end{proof}
+\begin{Problem}
+	Sei $I$ ein offenes Intervall und $A: I\to \R^{n\times n}$ stetig. Sei $\Phi: I\to \R^{n\times n}$ eine Fundamentalmatrix von 
+	\begin{equation}\label{eq:diffeqblatt6-2}
+		\dot{x}=A(t)x
+	\end{equation}
+	\begin{parts}
+		\item Bestimmen Sie eine stetige Abbildung $B : I \to \R^{n\times n}$ , so dass $\Psi : I \to \R^{n\times n}$ mit $\Psi(t) := (\Phi^T)^{-1}(t)$ eine Fundamentalmatrix von $\dot{x} = B(t)x$ definiert.
+			
+			(Hinweis: Als Fundamentalmatrix muss $\Psi(t)$ die Differentialgleichung $\Psi(t) = B(t)\Psi(t)$ erfüllen.)
+			\item Sei $C \in \R^{n\times n}$ mit $\det(C) \neq 0$ und sei $\Psi : I \to \R^{n\times n}$ definiert durch $\Psi(t) := C\Phi(t)$. Zeigen Sie, dass $\Psi(t)$ genau dann eine Fundamentalmatrix von \eqref{eq:diffeqblatt6-2} ist, wenn
+			\[CA(t)=A(t)C\]
+			f\"{u}r alle $t\in I$ gilt.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Beurteilen Sie, ob die folgenden 4 Behauptungen wahr oder falsch sind.
+	
+	Sie müssen bei dieser Aufgabe keine Begründungen angeben.
+	
+	Für jede richtig beantwortete Frage gibt es einen Punkt.
+	
+	Für jede falsch beantwortete Frage wird ein Punkt abgezogen.
+	
+	Für jede nicht beantwortete Frage gibt es keine Punkte.
+	
+	Die gesamte Aufgabe wird mit mindestens 0 Punkten bewertet (sie können also nicht z. B. -1 Punkte bekommen). Insgesamt können bis zu 4 Punkte erreicht werden.
+	
+		\begin{tabularx}{\textwidth}{X|p{2cm}|p{2cm}|}
+	& Wahr & Falsch \\\hline
+	Sei $f : \R \times \R^n\to  \R^n$ lipschitz-stetig und $\dot{x} = f (t, x)$ eine Differentialgleichung.
+	Weiter sei $\varphi_\text{max}$ eine maximale Lösung mit maximalem Existenzintervall	$I_\text{max} = (-\infty, t^+ ), t^+ < \infty$. Dann ist $\varphi_\text{max}$ beschränkt. & & \\\hline
+	Sei $\ddot{x} = \frac{\dot{x}-1}{x}$ eine skalare Differentialgleichung, $x \in \R \setminus \{0\}$. Dann ist $\varphi(t) = t \ln(t), t > 1$, eine Lösung dieser Differentialgleichung. & & \\\hline
+	Sei $D \subseteq \R \times \R^n , f : D \to \R^n$ stetig und $\varphi : I \to \R^n$ eine Lösung von $\dot{x} = f (t, x)$. Ist $I = (t_0, t_1)$ und hat $\varphi$ in $t_1$ einen linksseitigen Grenzwert $x_1 = \lim_{t\to t_1} \varphi(t)$ mit $(t_1 , x_1 ) \in D$, so ist $\varphi$ nach rechts fortsetzbar. & & \\\hline
+	Jede Fundamentalmatrix $\Phi(t)$ ist auch eine Wronski-Matrix $W(t)$. & & \\\hline
+	\end{tabularx}
+\end{Problem}
+\begin{proof}\noindent
+	
+		\begin{tabularx}{\textwidth}{X|p{2cm}|p{2cm}|}
+	& Wahr & Falsch \\\hline
+	Sei $f : \R \times \R^n\to  \R^n$ lipschitz-stetig und $\dot{x} = f (t, x)$ eine Differentialgleichung.
+	Weiter sei $\varphi_\text{max}$ eine maximale Lösung mit maximalem Existenzintervall	$I_\text{max} = (-\infty, t^+ ), t^+ < \infty$. Dann ist $\varphi_\text{max}$ beschränkt. & & $\times$ \\\hline
+	Sei $\ddot{x} = \frac{\dot{x}-1}{x}$ eine skalare Differentialgleichung, $x \in \R \setminus \{0\}$. Dann ist $\varphi(t) = t \ln(t), t > 1$, eine Lösung dieser Differentialgleichung. & $\times$ & \\\hline
+	Sei $D \subseteq \R \times \R^n , f : D \to \R^n$ stetig und $\varphi : I \to \R^n$ eine Lösung von $\dot{x} = f (t, x)$. Ist $I = (t_0, t_1)$ und hat $\varphi$ in $t_1$ einen linksseitigen Grenzwert $x_1 = \lim_{t\to t_1} \varphi(t)$ mit $(t_1 , x_1 ) \in D$, so ist $\varphi$ nach rechts fortsetzbar. & $\times$ & \\\hline
+	Jede Fundamentalmatrix $\Phi(t)$ ist auch eine Wronski-Matrix $W(t)$. & & \\\hline
+\end{tabularx}
+\end{proof}
