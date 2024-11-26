@@ -1,0 +1,87 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Stochastic Differential Equations}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\tableofcontents
+\begin{Definition}
+	A stochastic differential equation is a (formal) equation of the form
+	\begin{equation}\label{eq:SDEdiff}
+	\dv{X_t}{t}=b(t, X_t)+\sigma(t, X_t)W_t,
+\end{equation}
+	where $W_t$ is white noise. 
+\end{Definition}
+The above definition needs some explanation. Intuitively, the motivation is quite clear - we often need to perturb a (deterministic) differential equation with some random noise term. For example, a particle moving in a random environment will be subject to a force that, at each time, is random. As a candidate for white noise, we choose the (also formal) derivative of Brownian motion $W_t = \dv{B_t}{t}$. Physically, this can be justified by thinking of Brownian motion as the ``fundamental'' stochastic process - Brownian motion is the motion generated when the velocity is equal to simple white noise. 
+
+This definition allows is to write down the mathematically rigorous definition of a \emph{solution} to an SDE:
+\begin{Definition}
+	We say that the stochastic process $X_t$ is a \emph{solution} of the SDE \eqref{eq:SDEdiff} if
+	\[X_t = X_0+\int_0^t b(t, X_s)\dd{s}+ \int_0^t \sigma(t, X_s)\dd{B_s}\]
+\end{Definition}
+At this point, it must be said that there is some ambiguity in this - in particular, we must specify whether the second integral is to be interpreted in the Stratonovich or Itô sense. Here, we will consider the Itô integral only.
+
+There are, as usual, two questions when it comes to such differential equations: Firstly, how do we solve them? Secondly, under what conditions do we have existence and uniqueness?
+
+The answer to the first question follows very much like the case of an ordinary differential equation. An ordinary differential equation is integrated most often by the fundamental theorem of calculus. Thus, we turn to the stochastic variation, the Itô formula, for answers.
+\begin{Theorem}[The 1-Dimensional Itô Formula]
+	Suppose $X_t$ is an Itô process defined by the 
+\end{Theorem}
+\end{document}
+
