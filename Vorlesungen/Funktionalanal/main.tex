@@ -511,6 +511,18 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 		\item For $a\in \R_0^+$, we have
 	\end{enumerate}
 	\end{proof}
+	\begin{Theorem}[Hahn-Banach (Normed)]\label{thm:normedhahnbanach}
+		Let $V$ be a normed space, $W\subseteq V$ a subspace, and $f$ a continuous linear functional on $W$. Then there is a continuous extension of $f$ to $V$.
+\end{Theorem}
+\begin{proof}
+	We consider $g: V \to \R,~v\mapsto \|f\| \|v\|$. This map is clearly sublinear and $f \le g$. Then, by the Dominated Extension Theorem, we get an extension to all of $V$. Because this map is bounded, it is continuous.
+\end{proof}
+\begin{Corollary}
+	Let $ V$ be a normed space and $v\in V$. Then there exists a linear functional $\varphi \in V'$ such that $\varphi(v)=\|v\|$.
+\end{Corollary}
+\begin{proof}
+	We let $W=\text{span}\{v\} $ and $\varphi(x)=k$ if $x=kv$ in Theorem \ref{thm:normedhahnbanach}
+\end{proof}
 \subsection{Separation Properties}
 \begin{Definition}
 	Let $V$ be a normed space. A subset $A$ of $V$ is called
@@ -640,5 +652,71 @@ In this subsection, we will want to work with components of vectors. However, du
 		\item A net $(v_i)_{i\in I}$ in $V$ is a weak Cauchy net iff for every $\varphi \in V'$ the net $(\varphi(v_i))_{i\in I}$ is a Cauchy net in $\mathbb{K}$.
 	\end{parts}
 \end{Theorem}
+\begin{Theorem}
+	Let $V$ be a normed space and let $C\subseteq V$ be convex. Then the weak closure of $C$ coincides with the norm closure.
+\end{Theorem}
+\begin{Corollary}
+	Let $U\subseteq V$ be a subspace of a normed space. Then $U^\text{cl}=U^\text{wcl}$.
+\end{Corollary}
+\begin{Theorem}
+	Let $V$ be a normed space. THen the canonical map $i:v\to V^{\prime\prime}$ is norm preserving and hence injective.
+\end{Theorem}
+\begin{proof}
+	We define this injection by
+	\[
+	i(v)\varphi = \varphi(v)
+	.\] 
+	We have $i\in V^{\prime\prime}$ and $\|i(v)\|\le \|v\|$ for a given $v\in V$. THis implies that there is $\varphi\in V'$ with $\|\varphi\|=1$ and $\varphi(v)=\|v\|$. Thus,
+\[
+|i(v)\varphi|=|\varphi(v)=\|v\|=\|v\|\|\varphi\|
+.\] 
+Thus, $\|i(v)\|\ge \|v\|$. Together, we have $\|i(v)\|\ge \|v\|$.
+\end{proof}
+\begin{Theorem}[Completion of normed space]
+	Every normed space $V$ can be completed to a Banach space. More precisely $i(v)^\text{cl}\subseteq V^{\prime\prime}$ is a completion.
+\end{Theorem}
+\begin{proof}
+	Note that the dual space of \emph{any} TVS is always complete. As a closed subspace of a complete space, we have a complete space.
+\end{proof}
+\begin{Theorem}
+	Let $V,W$ be normed spaces with $A:V \to W$ continuous and linear. Then
+	\[
+		\|A\|= \sup_{\varphi\neq 0, w \neq 0}\frac{|\varphi(A v)|}{\|\varphi\|_{W'}\|v\|_V}=\sup_{\|\varphi\|=\|v\|=1} |\varphi(A v)|=\|A'\|
+	.\] 
+\end{Theorem}
+\section{Polars \& Banach-Aloglu Theorems}
+\begin{Definition}
+	Let $V$ be a topological vector space with topological dual $V'$.
+	\begin{parts}
+	\item The polar $A^*$ of a subset $A\subseteq V$ is defined by
+		\[
+			A^*=\{\varphi\in V'| |\varphi(v)|\le 1\text{ for all }v\in A\} 
+		.\] 
+	\item The polar $B_*$ of a subset $B\subseteq V'$ 
+		\[
+			B_* = \{v\in V| |\varphi(v)|\le 1\text{ for all }\varphi\in B\} 
+	.\] 
+	\end{parts}
+\end{Definition}
+\begin{Theorem}
+	Let $V$ be a topological vector space and $B\subseteq V'$. Then $B_*\subseteq V$ is absolutely convex and weakly closed.
+\end{Theorem}
+\begin{proof}
+	For $z\in \mathbb{K}$ with $|z|\le 1$ and $v\in B_X$, then for $\varphi\in B$ we have $|\varphi(z v)| = |z| |\varphi(v)| \le 1$, which shows that $B_*$ is balanced.
+
+	Then we choose $\lambda\in [0,1]$ and $v,w\in B_*$. Then for $\varphi\in B$ we have
+	\[
+	\varphi(\lambda v + (1-\lambda) w)\le \lambda |\varphi(v) + (1-\lambda)| \varphi(w)| \le 1
+	.\] 
+	This implies that $B_*$ is convex.
+
+	To show that it is closed, we have
+	\begin{align*}
+		B_*&= \left\{ v\in V| |\varphi(v)| \le 1\text{ for all } \varphi\in B \right\} \\
+		   &= \left\{ v\in V | p_{\varphi}(v) \le 1\text{ for all }\varphi\in B \right\}  \\
+		   &= \bigcap_{\varphi\in B} B_{p_{\varphi,1}}(0)^\text{cl} \\
+		   &= \bigcap_{\varphi\in  B} p_{\varphi}^{-1}([0,1]) \\
+	\end{align*}
+\end{proof}
 \end{document}
 
