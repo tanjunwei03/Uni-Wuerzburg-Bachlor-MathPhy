@@ -1,0 +1,116 @@
+\begin{Problem}
+	Sei $A:\R\to \R^{2\times 2}$. Gegeben ist die Differentialgleichung $\dot{x} = A(t)x$ durch
+	\begin{align*}
+		\dot{x}_1&= (3t-1)x_1-(1-t)x_2,\\
+		\dot{x}_2&= -(t+2)x_1 + (t-2)x_2.
+	\end{align*}
+	\begin{parts}
+		\item  Zeigen Sie, dass die Wronski-Determinante $w$ durch $w = c\cdot e^{2t^2-3t}, c \in \R$ gegeben ist.
+		\item Eine Lösung der Differentialgleichung ist durch $\varphi_1 : \R \to \R^2 , \varphi_1 (t) =
+		\begin{pmatrix} 1 \\ -1 \end{pmatrix}e^{t^2}$ gegeben. Bestimmen Sie mit Hilfe der Wronski-Determinante $w$ eine weitere von $\varphi_1$ linear unabhängige Lösung der Differentialgleichung.
+		
+		(Hinweis: Setzen Sie dazu mit Begründung bei der Wronski-Determinante aus Teil a) für c einen festen Wert ein und benutzen Sie als Ansatz für die zweite Lösung $\varphi_2 (t) = (u(t) v(t))^T$.)
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item Das Gleichungsssystem können wir umschreiben als
+		\[\dv{t}\begin{pmatrix} x_1 \\ x_2\end{pmatrix}= \underbrace{\begin{pmatrix}
+		3t-1 & t-1 \\
+		-(t+2) & t-2 
+		\end{pmatrix}}_{A(t)}
+		\begin{pmatrix}
+			x_1\\
+			x_2
+		\end{pmatrix}\]
+		mit Spur $\Tr(A)(t)=4t-3$. Die Wronski-Determinante ist damit bestimmt durch die Gleichung
+		\[\dot{w}=(4t-3)w\]
+		Die DGL hat L\"{o}sung
+		\[w = e^{\int 4t-3 \dd{t}}=c\cdot e^{2t^2 - 3t}.\]
+		\item 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Gegeben sei die Differentialgleichung $\dot{x} = Ax$ mit 
+	\[
+	A = \begin{pmatrix}
+		1 & -1 \\
+		1 & 1
+	\end{pmatrix}.
+	\]
+	
+	\begin{parts}
+		\item Bestimmen Sie die reellen Eigenschwingungen und mit diesen die allgemeine Lösung der Differentialgleichung und eine Fundamentalmatrix.
+		\item Bestimmen Sie mit den reellen Eigenschwingungen die Lösung der Differentialgleichung zum Anfangswert 
+		\[
+		x(1) = \begin{pmatrix}
+			2 \\
+			1
+		\end{pmatrix}.
+		\]
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	\begin{parts}
+		\item Berechnen Sie die Fundamentalmatrizen und Lösungen von
+		\begin{enumerate}
+			\item[i)] $\dot{x} = Ax, \, x(0) = \begin{pmatrix} 0 \\ 2 \end{pmatrix}$ mit 
+			$
+			A = \begin{pmatrix}
+				3 & -1 \\
+				-1 & 3
+			\end{pmatrix}
+			$
+			und
+			\item[ii)] $\dot{x} = Bx, \, x(0) = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$ mit 
+			$
+			B = \begin{pmatrix}
+				0 & -1 & 1 \\
+				-3 & -2 & 3 \\
+				-2 & -2 & 3
+			\end{pmatrix}.
+			$
+			\item[iii)] $\dot{x} = Cx, \, x(0) = \begin{pmatrix} 1 \\ 3 \\ -2 \end{pmatrix}$ mit 
+			$
+			C = \begin{pmatrix}
+				0 & 0 & -1 \\
+				0 & -1 & 0 \\
+				1 & 0 & 2
+			\end{pmatrix}.
+			$
+		\end{enumerate}
+		
+		\item Wir erweitern a.iii) zu $\dot{x} = Cx + c(t)$ mit 
+		$
+		c(t) = \begin{pmatrix}
+			-t \, e^{-t} \\
+			e^{-t} \\
+			1 + t
+		\end{pmatrix}.
+		$
+		Lösen Sie dieses Anfangswertproblem.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Beurteilen Sie, ob die folgenden 4 Behauptungen wahr oder falsch sind.
+	
+	Sie müssen bei dieser Aufgabe keine Begründungen angeben.
+	
+	Für jede richtig beantwortete Frage gibt es einen Punkt.
+	
+	Für jede falsch beantwortete Frage wird ein Punkt abgezogen.
+	
+	Für jede nicht beantwortete Frage gibt es keine Punkte.
+	
+	Die gesamte Aufgabe wird mit mindestens 0 Punkten bewertet (sie können also nicht z. B. -1 Punkte bekommen). Insgesamt können bis zu 3 Punkte erreicht werden.
+	
+	\begin{tabularx}{\textwidth}{X|p{2cm}|p{2cm}|}
+		& Wahr & Falsch \\\hline
+		Die Differentialgleichung $\dot{x}(t) = \frac{\arctan(t)x^3}{1 + x^2} + e^{-t^2} \sin(x) + 1, \, x(t_0) = x_0$ hat für alle $(t_0, x(t_0)) \in \mathbb{R}^2$ eine eindeutige Lösung. & & \\\hline
+	Die Funktionen $\varphi_1, \ldots, \varphi_n, \varphi_i(t) = e^{\mu_i t}, \, i = 1, \ldots, n$, genau dann $\mathbb{R}$-linear unabhängig sind, wenn $\mu_1, \ldots, \mu_n \in \mathbb{R}$ paarweise verschieden sind. & & \\\hline
+		Es sei $\dot{x} = f(t, x), \, x(t_0) = x_0, \, f : Z_{a,b} \to \mathbb{R}$. Ist $f$ in $x$ lipschitz-stetig, so ist $f$ auch in $x$ stetig, womit es nach dem Satz von Picard-Lindelöf eine eindeutige Lösung gibt. & & \\\hline
+	\end{tabularx}
+\end{Problem}
