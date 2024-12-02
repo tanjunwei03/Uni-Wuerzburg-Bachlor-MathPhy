@@ -9,7 +9,7 @@
 		\item Eine Lösung der Differentialgleichung ist durch $\varphi_1 : \R \to \R^2 , \varphi_1 (t) =
 		\begin{pmatrix} 1 \\ -1 \end{pmatrix}e^{t^2}$ gegeben. Bestimmen Sie mit Hilfe der Wronski-Determinante $w$ eine weitere von $\varphi_1$ linear unabhängige Lösung der Differentialgleichung.
 		
-		(Hinweis: Setzen Sie dazu mit Begründung bei der Wronski-Determinante aus Teil a) für c einen festen Wert ein und benutzen Sie als Ansatz für die zweite Lösung $\varphi_2 (t) = (u(t) v(t))^T$.)
+		(Hinweis: Setzen Sie dazu mit Begründung bei der Wronski-Determinante aus Teil a) für c einen festen Wert ein und benutzen Sie als Ansatz für die zweite Lösung $\varphi_2 (t) = (u(t), v(t))^T$.)
 	\end{parts}
 \end{Problem}
 \begin{proof}
@@ -27,31 +27,44 @@
 		\[\dot{w}=(4t-3)w\]
 		Die DGL hat L\"{o}sung
 		\[w = e^{\int 4t-3 \dd{t}}=c\cdot e^{2t^2 - 3t}.\]
-		\item 
+		\item Die Wronski-Matrix ist gegeben durch
+		\[W = \begin{pmatrix}
+			e^{t^2} & u(t)\\
+			-e^{t^2} & v(t)
+		\end{pmatrix}\]
+	mit Determinante
+	\[\det(W)= [u(t)+v(t)]e^{t^2}=c \cdot e^{2t^2 - 3t}.\]
+	Wir wählen $c=1$ und damit
+	\[u(t)+v(t) = e^{t^2 - 3t}.\]
+	Eine L\"{o}sung ist
+	\[u(t)=v(t) = \frac 12 e^{t^2-3t}.\qedhere\]
 	\end{parts}
 \end{proof}
 
 \begin{Problem}
 	Gegeben sei die Differentialgleichung $\dot{x} = Ax$ mit 
-	\[
+	$
 	A = \begin{pmatrix}
 		1 & -1 \\
 		1 & 1
 	\end{pmatrix}.
-	\]
-	
+	$	
 	\begin{parts}
 		\item Bestimmen Sie die reellen Eigenschwingungen und mit diesen die allgemeine Lösung der Differentialgleichung und eine Fundamentalmatrix.
 		\item Bestimmen Sie mit den reellen Eigenschwingungen die Lösung der Differentialgleichung zum Anfangswert 
-		\[
+		$
 		x(1) = \begin{pmatrix}
 			2 \\
 			1
 		\end{pmatrix}.
-		\]
+		$
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+		\item $A$ hat charakteristisches Polynom $\lambda^2-2\lambda+2$ und damit Eigenwerte $1\pm i$. Da die Eigenwerte unterschiedlich sind, ist $A$ diagonalisierbar. Die Eigenvektoren sind $(i, 1)^T$ und $(-i, 1)^T$ und 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	\begin{parts}
 		\item Berechnen Sie die Fundamentalmatrizen und Lösungen von
@@ -93,7 +106,14 @@
 		Lösen Sie dieses Anfangswertproblem.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item 
+		\begin{enumerate}[label=\roman*)]
+			\item $A$ ist orthogonal diagonalisierbar 
+		\end{enumerate}
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Beurteilen Sie, ob die folgenden 4 Behauptungen wahr oder falsch sind.
 	
@@ -114,3 +134,11 @@
 		Es sei $\dot{x} = f(t, x), \, x(t_0) = x_0, \, f : Z_{a,b} \to \mathbb{R}$. Ist $f$ in $x$ lipschitz-stetig, so ist $f$ auch in $x$ stetig, womit es nach dem Satz von Picard-Lindelöf eine eindeutige Lösung gibt. & & \\\hline
 	\end{tabularx}
 \end{Problem}
+\begin{proof}
+		\begin{tabularx}{\textwidth}{X|p{2cm}|p{2cm}|}
+		& Wahr & Falsch \\\hline
+		Die Differentialgleichung $\dot{x}(t) = \frac{\arctan(t)x^3}{1 + x^2} + e^{-t^2} \sin(x) + 1, \, x(t_0) = x_0$ hat für alle $(t_0, x(t_0)) \in \mathbb{R}^2$ eine eindeutige Lösung. & & \\\hline
+		Die Funktionen $\varphi_1, \ldots, \varphi_n, \varphi_i(t) = e^{\mu_i t}, \, i = 1, \ldots, n$, genau dann $\mathbb{R}$-linear unabhängig sind, wenn $\mu_1, \ldots, \mu_n \in \mathbb{R}$ paarweise verschieden sind. & & $\times$\\\hline
+		Es sei $\dot{x} = f(t, x), \, x(t_0) = x_0, \, f : Z_{a,b} \to \mathbb{R}$. Ist $f$ in $x$ lipschitz-stetig, so ist $f$ auch in $x$ stetig, womit es nach dem Satz von Picard-Lindelöf eine eindeutige Lösung gibt. & & $\times$ \\\hline
+	\end{tabularx}
+\end{proof}

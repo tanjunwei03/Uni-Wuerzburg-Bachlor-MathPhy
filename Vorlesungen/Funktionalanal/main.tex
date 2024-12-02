@@ -53,6 +53,9 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \allowdisplaybreaks
+
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
 \begin{document}
 	\title{Funktionalanalysis Notizen}
 	\author{Jun Wei Tan}
@@ -688,31 +691,31 @@ Thus, $\|i(v)\|\ge \|v\|$. Together, we have $\|i(v)\|\ge \|v\|$.
 \begin{Definition}
 	Let $V$ be a topological vector space with topological dual $V'$.
 	\begin{parts}
-	\item The polar $A^*$ of a subset $A\subseteq V$ is defined by
+	\item The polar $A^\polar$ of a subset $A\subseteq V$ is defined by
 		\[
-			A^*=\{\varphi\in V'| |\varphi(v)|\le 1\text{ for all }v\in A\} 
+			A^\polar=\{\varphi\in V'| |\varphi(v)|\le 1\text{ for all }v\in A\} 
 		.\] 
-	\item The polar $B_*$ of a subset $B\subseteq V'$ 
+	\item The polar $B_\polar$ of a subset $B\subseteq V'$ 
 		\[
-			B_* = \{v\in V| |\varphi(v)|\le 1\text{ for all }\varphi\in B\} 
+			B_\polar = \{v\in V| |\varphi(v)|\le 1\text{ for all }\varphi\in B\} 
 	.\] 
 	\end{parts}
 \end{Definition}
 \begin{Theorem}
-	Let $V$ be a topological vector space and $B\subseteq V'$. Then $B_*\subseteq V$ is absolutely convex and weakly closed.
+	Let $V$ be a topological vector space and $B\subseteq V'$. Then $B_\polar\subseteq V$ is absolutely convex and weakly closed.
 \end{Theorem}
 \begin{proof}
-	For $z\in \mathbb{K}$ with $|z|\le 1$ and $v\in B_X$, then for $\varphi\in B$ we have $|\varphi(z v)| = |z| |\varphi(v)| \le 1$, which shows that $B_*$ is balanced.
+	For $z\in \mathbb{K}$ with $|z|\le 1$ and $v\in B_X$, then for $\varphi\in B$ we have $|\varphi(z v)| = |z| |\varphi(v)| \le 1$, which shows that $B_\polar$ is balanced.
 
-	Then we choose $\lambda\in [0,1]$ and $v,w\in B_*$. Then for $\varphi\in B$ we have
+	Then we choose $\lambda\in [0,1]$ and $v,w\in B_\polar$. Then for $\varphi\in B$ we have
 	\[
 	\varphi(\lambda v + (1-\lambda) w)\le \lambda |\varphi(v) + (1-\lambda)| \varphi(w)| \le 1
 	.\] 
-	This implies that $B_*$ is convex.
+	This implies that $B_\polar$ is convex.
 
 	To show that it is closed, we have
 	\begin{align*}
-		B_*&= \left\{ v\in V| |\varphi(v)| \le 1\text{ for all } \varphi\in B \right\} \\
+		B_\polar&= \left\{ v\in V| |\varphi(v)| \le 1\text{ for all } \varphi\in B \right\} \\
 		   &= \left\{ v\in V | p_{\varphi}(v) \le 1\text{ for all }\varphi\in B \right\}  \\
 		   &= \bigcap_{\varphi\in B} B_{p_{\varphi,1}}(0)^\text{cl} \\
 		   &= \bigcap_{\varphi\in  B} p_{\varphi}^{-1}([0,1]) \\
