@@ -1,0 +1,85 @@
+\begin{Problem}
+	Es sei $X$ eine Zufallsvariable, die diskret uniform verteilt ist auf den ganzen Zahlen $\{-n, \ldots, n\}$ zwischen $-n$ und $n$, für ein $n \in \mathbb{N}$.
+	
+	\begin{parts}
+		\item Zeigen Sie, dass $X \overset{d}{=} -X$, also dass $X$ und $-X$ dieselbe Verteilung haben.  
+		Was ist $\mathbb{P}(X = -X)$?
+		
+		\item Bestimmen Sie den Erwartungswert $\mathbb{E}[X]$.
+		
+		\item Leiten Sie die Verteilung von $X^2$ her.
+		
+		\item Bestimmen Sie $\mathbb{E}[X^2]$.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item \[\mathbb{P}(-X=a) = \underbrace{\mathbb{P}(X = -a)=\mathbb{P}(X=a)}_\text{uniform verteilt}\]
+		Das Ereignis $\{X=-X\}$ ist auch das Ereignis $\{X=0\}$ mit Wahrscheinlichkeit $\frac 1{2n+1}$.
+		\item Wir bezeichnen die Wahrscheinlichkeit $\mathbb{P}(X=a)=\frac{1}{2n+1}=p$ (unabhängig von $a$, da $X$ uniform verteilt ist).
+		
+		Der Erwartungswert ist
+		\[\mathbb{E}(X)=\sum_{k=-n}^n pk = p(0)=0.\]
+		\item Es gilt, f\"{u}r $0 \le a \le n$
+		\[\mathbb{P}(X^2<a^2)=\mathbb{P}(|X| < a)=\frac{2\lfloor a \rfloor + 1}{2n+1}\]
+		und damit ist
+		\[\mathbb{P}(X^2 < a)=\frac{2\lfloor a^2\rfloor + 1}{2n+1}\]
+		und die Verteilung von $X$
+		\[\mathbb{P}(X^2 < a)=\begin{cases}
+			0 & a < 0\\
+			1 & a \ge n^2\\
+			\frac{2\lfloor a^2\rfloor +1}{2n+1} & \text{sonst.}
+		\end{cases}\]
+		\item
+		\begin{align*}
+			\mathbb{E}[X^2]&=\sum_{k=1}^n \frac{2}{2n+1}k^2\\
+			&=\frac 13 n(1+n).\qedhere
+		\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Es sei $F^{-1} : (0, 1) \to \mathbb{R}$ eine Quantilsfunktion. Der Abstand $F^{-1}(3/4) - F^{-1}(1/4)$ heißt Interquartilsabstand der zugehörigen Verteilung.
+	
+	\begin{parts}
+		\item Was ist der minimal mögliche Interquartilsabstand einer Verteilung? Geben Sie ein entsprechendes Beispiel an.
+		\item Leiten Sie den Interquartilsabstand einer uniformen Verteilung $\mathcal{U}(a, b)$ auf $(a, b)$ her.
+		\item Leiten Sie den Interquartilsabstand einer Exponentialverteilung $\text{Exp}(\lambda)$ mit Parameter $\lambda > 0$ her.
+		\item Leiten Sie den Interquartilsabstand einer Normalverteilung $\mathcal{N}(\mu, \sigma^2)$ mit Parametern $\mu \in \mathbb{R}, \sigma^2 > 0$ her. Sie können benutzen, dass $\Phi(0{,}675) \approx 3/4$ ist für die Verteilungsfunktion $\Phi$ von $\mathcal{N}(0, 1)$.
+		\item Welche Werte kann $\mathbb{P}(F^{-1}(1/4) \leq X \leq F^{-1}(3/4))$ minimal und maximal annehmen, falls $X$ mit Verteilungsfunktion $F$ verteilt ist? Geben Sie entsprechende Beispiele an.
+		\item Bei welchen der drei Verteilungen aus (b), (c) und (d) liegt der Median in der Mitte des Intervalls $[F^{-1}(1/4), F^{-1}(3/4)]$?
+	\end{parts}
+	\end{Problem}
+	\begin{proof}
+		\begin{parts}
+			\item $0$, sei $X$ eine konstante Zufallsvariabel $X=1$. Die Verteilungsfunktion ist
+			\[F(x)= \begin{cases}
+				0 & x < 1\\
+				1 & \text{sonst.}
+			\end{cases}\]
+			Die Quantilsfunktion ist
+			\[F^{-1}(x) = 1\]
+			f\"{u}r $x\in (0,1)$ und damit $F^{-1}(3/4) - F^{-1}(1/4)=0$.
+			\item Die Verteilungsfunktion ist
+			\[F(x) = \frac{x-a}{b-a}\]
+			f\"{u}r $x\in (a,b)$. Da die Verteilungsfunktion stetig ist, ist die Quantilsfunktion einfach deren Inverse:
+			\[F^{-1}(x)= (b-a)x +a.\]
+			\item Die Verteilungsfunktion ist
+			\[F(x)=1-e^{-\lambda x}\]
+			was wieder stetig und monoton steigend ist. Damit ist
+			\[F^{-1}(x) =-\frac{1}{\lambda}\ln (1-x).\]
+			\item Die Verteilungsfunktion $\Phi$ der Normalverteilung ist stetig. Damit ist $\Phi^{-1}(3/4)=0,675$. 
+			
+			Wir wissen auch, dass die Verteilung um $0$ symmetrisch ist: Falls
+			\[\Phi(x) = \frac 12 + a,\]
+			ist
+			\[\Phi(-x) = \frac 12 - a.\]
+			Damit ist
+			\[\Phi(-0,695)=\frac 14,\]
+			$\Phi^{-1}(1/4)=-0,695$ und
+			\[F^{-1}\left(\frac 34\right)-F^{-1}\left(\frac 14\right)\]
+			\item Die Wahrscheinlichkeit kann maximal 1 sein (siehe Beispiel aus (a)).
+			
+			Die Wahrscheinlichkeit kann minimal 1/2 sein. Irgendeine stetige Verteilungsfunktion passt, beispielsweise $\mathcal{U}((0,1))$.
+			\item  
+		\end{parts}
+	\end{proof}
