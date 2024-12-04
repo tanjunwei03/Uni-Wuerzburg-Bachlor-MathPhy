@@ -511,7 +511,15 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 	which shows that $q$ is real valued. Now we show sublinearity.
 	\begin{enumerate}
 		\item Since $f(-m) \le p(-m)$, we have $p(-m)+f(m)\ge 0$. This shows that $q(0)\ge 0$. Conversely, we have $p(0)+f(0)=0$, which shows that $q(0)\le 0$. 
-		\item For $a\in \R_0^+$, we have
+		\item For $a\in \R_0^+$, we have $q(ax)=\inf \{p(ax-m)+f(ax)\} =\inf a\{p(x - m / a)+a f(m / a)\} = aq(x)$.
+		\item For sublinearity, we choose $x,y\in X$ and $r>0$. There exists $m,n\in M$ such that
+			\[
+			q(x)>p(x-m)+f(m)+\frac{r}{2},\qquad q(y)>p(y-n)+f(n)+\frac{r}{2}
+			.\] 
+			Then
+			\[
+			q(x)+q(y)\ge p(x+y-(m+n)) - f(m+n) - r\ge q(x+y)-r
+			.\qedhere\] 
 	\end{enumerate}
 	\end{proof}
 	\begin{Theorem}[Hahn-Banach (Normed)]\label{thm:normedhahnbanach}
@@ -520,7 +528,7 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 \begin{proof}
 	We consider $g: V \to \R,~v\mapsto \|f\| \|v\|$. This map is clearly sublinear and $f \le g$. Then, by the Dominated Extension Theorem, we get an extension to all of $V$. Because this map is bounded, it is continuous.
 \end{proof}
-\begin{Corollary}
+\begin{Corollary}\label{cor:hahnbanachsubspace}
 	Let $ V$ be a normed space and $v\in V$. Then there exists a linear functional $\varphi \in V'$ such that $\varphi(v)=\|v\|$.
 \end{Corollary}
 \begin{proof}
@@ -570,7 +578,11 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 \]
 is called the Minkowski functional of $C$.
 \end{Definition}
-\begin{Theorem}[Separation I]
+The important property that we will need is the following lemma:
+\begin{Lemma}
+	Let $C$ be an absorbing convex set. Then the Minkowski functional $p_C$ is a sublinear functional.
+\end{Lemma}
+\begin{Theorem}[Separation I]\label{thm:sep1}
 	Let $V$ be a normed space with two nonempty disjoint convex subsets $A,B\subseteq V$.
 	\begin{parts}
 	\item Suppose $A$ is open. Then there exists $\Phi\in V'$ and $\alpha\in \R$ such that
@@ -585,6 +597,16 @@ is called the Minkowski functional of $C$.
 for $v\in A, u\in B$.
 	\end{parts}
 \end{Theorem}
+\begin{proof}
+	Fix $a_0\in A,~b_0\in B$. We define $x_0=b_0-a_0$, and let $C=A-B+x_0$. Then $C$ is a convex neighbourhood of $0$. Let $p$ be its Minkowski functional. Since $C$ is a neighbourhood of $0$, it is absorbing. Thus, its Minkowski functional is a sublinear functional on $X$, with $p(x_0)\ge 1$.
+
+	Then, by Corollary \ref{cor:hahnbanachsubspace}, we define a linear functional on the subspace spanned by $x_0$ such that $f(x_0)=1$. Since this is bounded by $p$, $ f$ extends to a linear functional $\Lambda$ on $X$. Since $\Lambda(C)\le 1$, we have $\Lambda(-C)\ge -1$ and $\Lambda$ is bounded on a neighbourhood $C\cap -C$ of $0$ and is hence continuous. 
+Then, we let $a\in A,b\in B$, and note that $a-b+x_0\in C$, thus
+\[
+\Lambda(a)-\Lambda(b)+1 = \Lambda(a-b+x_0)<1
+,\]
+or $\Lambda(a) < \Lambda(b)$. Thus the images of $A$ and $B$ under $\Lambda$ are convex subsets of the real line, and the image of $A$ is an open subset, since linear functionals are always open maps. However, the only convex open subsets of the real line are the intervals, and choosing the right endpoint of $\Lambda(A)$ yields (a). (b) follows almost identically.
+\end{proof}
 The picture for this theorem is as follows: A linear functional $\Phi$ defines a hyperplane for each fixed value of $\alpha$, then splitting the space into two parts, one where the functional is less than, and one where the functional is greater than $\alpha$. In $\R^2$, the picture looks as follows:
 \begin{center}
 	\begin{tikzpicture}[scale=1.3]
@@ -595,16 +617,12 @@ The picture for this theorem is as follows: A linear functional $\Phi$ defines a
 		\draw[thick, orange] (3,1) node[anchor=south] {$\Phi(v)>\alpha$};
 	\end{tikzpicture}
 \end{center}
-\begin{proof}
-	First, we prove the extension from $\R$ to $\C$. If we assume that the real case is done, then $\Phi(v)=\Psi(v)-i\Psi(iv)$ is $\C$-linear and $\Re(\Phi)=\Psi$ still fulfils the equation.
-
-	Hence, we focus on the real case. Suppose $A$ is open. Then, for $v_0\in A, w_0\in B$, we have $u_0=w_0-v_0\neq 0$. Then $C=A-B+u_0$ is open, and $0\in C$. This implies that $C$ is absorbing.
-
-	Since $A-B$ is still convex, we can define the Minkowski functional on $C$. This is, however, not a seminorm, as $C$ might not be balanced. However, $p$ is a sublinear functional. 
-\end{proof}
 \begin{Theorem}[Separation II]
 	Let $V$ be a normed vector space, $K\subseteq V$ compact, convex, nonempty, $C\subseteq V$ closed, convex, nonempty, with $K\cap C = \varnothing$. Then there exists $\Phi\in V'$ and $\alpha,\beta\in \R$ with $\Re \Phi(v)<\alpha<\beta<\Re \Phi(u)$ for all $v\in K$ and $u\in C$.
 \end{Theorem}
+\begin{proof}
+	There is a compact neighbourhood $V$ of $0$ in $ V$ such that $K+V\cap C=\varnothing$. Then, we apply Theorem \ref{thm:sep1} to $K+V$ and $C$ to get a linear functional that satisfies all the required properties, since $K$ is a compact subset of $K+V$. 
+\end{proof}
 \begin{Theorem}[Separation III] \label{thm:sep3}
 	Let $V$ be a normed space, $K\subseteq V$ compact convex, $C\subseteq V$ closed convex, balanced, such that $K\cap C=\varnothing$. Then there exists $\Phi\in V'$ such that $\sup_{u\in C}|\Phi(u)| < \inf_{v\in K}|\Phi(v)|$.
 \end{Theorem}
@@ -662,7 +680,7 @@ In this subsection, we will want to work with components of vectors. However, du
 	Let $U\subseteq V$ be a subspace of a normed space. Then $U^\text{cl}=U^\text{wcl}$.
 \end{Corollary}
 \begin{Theorem}
-	Let $V$ be a normed space. THen the canonical map $i:v\to V^{\prime\prime}$ is norm preserving and hence injective.
+	Let $V$ be a normed space. Then the canonical map $i:v\to V^{\prime\prime}$ is norm preserving and hence injective.
 \end{Theorem}
 \begin{proof}
 	We define this injection by
