@@ -62,7 +62,42 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-		\item $A$ hat charakteristisches Polynom $\lambda^2-2\lambda+2$ und damit Eigenwerte $1\pm i$. Da die Eigenwerte unterschiedlich sind, ist $A$ diagonalisierbar. Die Eigenvektoren sind $(i, 1)^T$ und $(-i, 1)^T$ und 
+		\item $A$ hat charakteristisches Polynom $\lambda^2-2\lambda+2$ und damit Eigenwerte $1\pm i$. Da die Eigenwerte unterschiedlich sind, ist $A$ diagonalisierbar. Die Eigenvektoren sind $(i, 1)^T$ und $(-i, 1)^T$ und damit die Eigenschwingungen
+		\[x_1(t) = e^{(1+i)t}\begin{pmatrix}i \\ 1\end{pmatrix},\qquad x_2(t)=e^{(1-i)t}\begin{pmatrix}-i \\ 1 \end{pmatrix}\]
+		Eine Fundamentalmatrix ist
+		\[B(t) = e^t\begin{pmatrix}
+			ie^{it} & -ie^{-it}\\
+			e^{it} & e^{-it}
+		\end{pmatrix}.\]
+	\item Wir stellen den Anfangsvektor als linear Kombination der Eigenvektoren dar:
+	\[\begin{pmatrix}
+		2 \\ 1
+	\end{pmatrix}=\left(\frac 12 - i\right)\begin{pmatrix}
+	i \\ 1
+\end{pmatrix}+ \left(\frac 12 + i\right)\begin{pmatrix}
+-i \\ 1
+\end{pmatrix}.\]
+Zur Lösung der DGL wenden wir die Übergangsmatrix auf den Anfangsvektor an. Es ist aber bekannt, wie die Übergangsmatrix auf der Eigenschwingungen wirkt, wenn sich der Anfangszustand zur Zeit $t=0$ befände, und die Lösung ist
+\begin{align*}
+	x(t)&=\left(\frac 12 - i\right)e^{(1+i)t}\begin{pmatrix}
+		i \\ 1
+	\end{pmatrix}+ \left(\frac 12 + i\right)e^{(1-i)t}\begin{pmatrix}
+		-i \\ 1
+	\end{pmatrix}\\
+&=e^t\begin{pmatrix}
+	e^{it}\left(1 +\frac i2\right)+\left(1 - \frac i2\right)e^{-i t}\\
+	\left(\frac 12 - i\right)e^{it} + \left(\frac 12 + i\right)e^{-it}
+\end{pmatrix}\\
+&= 2e^t\begin{pmatrix}
+	\cos t -\frac 12 \sin t\\
+	\frac 12 \cos t + \sin t
+\end{pmatrix}
+\end{align*}
+Da die Anfangszeit aber bei $t=1$ ist, kriegen wir die L\"{o}sung durch $t\to t-1$, also
+\[x(t) = e^{t-1}\begin{pmatrix}
+	2\cos(t-1) -\sin (t-1)\\
+	\cos (t-1)+\sin (t-1)
+\end{pmatrix}.\qedhere\]
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -110,12 +145,110 @@
 	\begin{parts}
 	\item 
 		\begin{enumerate}[label=\roman*)]
-			\item $A$ ist orthogonal diagonalisierbar 
+			\item $A$ ist orthogonal diagonalisierbar mit Eigenwerte $4,2$ und zugehörige Eigenvektoren $(-1,1)^T$ und $(1,1)^T$. Die allgemeine L\"{o}sung ist
+			\[x(t) = Ae^{4t}\begin{pmatrix}
+				-1\\ 1
+			\end{pmatrix}+Be^{2t}\begin{pmatrix}
+			1 \\ 1
+		\end{pmatrix}.\]
+	Da
+	\[\begin{pmatrix}
+		0 \\2
+	\end{pmatrix}=\begin{pmatrix}
+	-1 \\ 1
+\end{pmatrix}+\begin{pmatrix}
+1 \\ 1
+\end{pmatrix},\]
+ist
+\[x(t) = e^{4t}\begin{pmatrix}
+	-1 \\ 1
+\end{pmatrix}+e^{2t}\begin{pmatrix}
+1 \\ 1
+\end{pmatrix}.\]
+\item Die Eigenwerte von $B$ sind $-1,1,1$. Da $B-\mathbbm{1}$ Rang 1 hat, ist $B$ diagonaliserbar. Die Eigenvektoren sind
+\[\begin{pmatrix}
+	1 \\ 3 \\ 2
+\end{pmatrix},\qquad \begin{pmatrix}
+1 \\ 0 \\ 1
+\end{pmatrix},\qquad \begin{pmatrix}
+-1 \\ 1 \\ 0
+\end{pmatrix}.\]
+Da
+\[\begin{pmatrix}
+	1 \\ 1 \\ 1
+\end{pmatrix}=\frac 12 \begin{pmatrix}
+1 \\ 3 \\ 2
+\end{pmatrix}-\frac 12 \begin{pmatrix}
+-1 \\ 1 \\ 0
+\end{pmatrix},\]
+ist die L\"{o}sung
+\[x(t) = \frac 12e^{-t}\begin{pmatrix}
+	1 \\ 3 \\ 2
+\end{pmatrix}-\frac 12 e^t \begin{pmatrix}
+-1 \\ 1 \\ 0
+\end{pmatrix}\]
+\item $C$ hat Eigenwerte $-1,1,1$. Da $C-\mathbbm{1}$ aber Rang 2 hat, ist $C$ nicht diagonalisierbar. Der Eigenraum zum Eigenwert $-1$ ist $\text{span}((0,1,0)^T)$ und der Eigenraum zum Eigenwert $1$ ist $\text{span}((-1,0,1)^T)$. Dann betrachten wir
+\[(C-\mathbbm{1})^2 = \begin{pmatrix}
+	0 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 0
+\end{pmatrix}.\]
+Deren Kern können wir einfach ablesen:
+\[\ker(C-\mathbbm{1})^2 = \text{span}\left(\begin{pmatrix}
+	1 \\ 0 \\ 0
+\end{pmatrix}, \begin{pmatrix}
+0 \\ 0 \\ 1
+\end{pmatrix}\right)\]
+Wir wählen als zweiter verallgemeinerter Eigenvektor $(1,0,0)^T$, da $(C-\mathbbm{1})(1,0,0)^T = (-1,0,1)^T$. Nun schreiben wir den Anfangsvektor als lineare Kombination
+\[\begin{pmatrix}
+	1 \\ 3 \\ -2
+\end{pmatrix}=3\begin{pmatrix}
+0 \\ 1 \\ 0
+\end{pmatrix}-2\begin{pmatrix}
+-1 \\ 0 \\ 1
+\end{pmatrix}-\begin{pmatrix}
+1 \\ 0 \\ 0
+\end{pmatrix}\]
+und $C$ in Jordan-Normalform $C=D+N$, wobei $D$ diagonaliserbar und $N$ nilpotent mit Index 2 ist. Die Matrixexponential ist
+\[\exp(C t)= \exp(Dt)\exp(N t)=\exp(D t)(1+Nt).\]
+Die L\"{o}sung der DGL ist
+\[x(t)=3e^{-t}\begin{pmatrix}
+	0 \\ 1 \\ 0
+\end{pmatrix}-(2+t)e^{t}\begin{pmatrix}
+-1 \\ 0 \\ 1
+\end{pmatrix}-e^t \begin{pmatrix}
+1 \\ 0 \\ 0
+\end{pmatrix}.\]
 		\end{enumerate}
+	\item Die L\"{o}sung ist
+	\[x(t) = x_h(t)+\int_0^t e^{Cs}c(s)\dd{s},\]
+	wobei $x_h$ die L\"{o}sung der homogenen Gleichung ist. Eingesetzt ist
+	\begin{align*}
+		\int_0^t e^{Cs}c(s)\dd{s}&=\int_0^t \left(
+		\begin{array}{ccc}
+			e^s (1-s) & 0 & -e^s s \\
+			0 & e^{-s} & 0 \\
+			e^s s & 0 & e^s (s+1) \\
+		\end{array}
+		\right)\begin{pmatrix}
+			-se^{-s} \\ e^{-s} \\ 1 + s
+		\end{pmatrix}\\
+	&=\int_0^t \begin{pmatrix}-t \left(-s+e^s (s+1)+1\right) \\e^{-2 s}\\e^s (s+1)^2-s^2\end{pmatrix}\dd{t}\\
+	&=\begin{pmatrix}e^t \left(-t^2+t-1\right)+\frac{1}{6} \left(2 t^3-3 t^2+6\right)\\\frac{1}{2}-\frac{e^{-2 t}}{2}\\-\frac{t^3}{3}+e^t \left(t^2+1\right)-1\end{pmatrix}
+	\end{align*}
+Die Allgemeine L\"{o}sung ist also
+\begin{align*}
+	x(t)=&3e^{-t}\begin{pmatrix}
+		0 \\ 1 \\ 0
+	\end{pmatrix}-(2+t)e^{t}\begin{pmatrix}
+		-1 \\ 0 \\ 1
+	\end{pmatrix}-e^t \begin{pmatrix}
+		1 \\ 0 \\ 0
+	\end{pmatrix}\\
+&+\begin{pmatrix}e^t \left(-t^2+t-1\right)+\frac{1}{6} \left(2 t^3-3 t^2+6\right)\\\frac{1}{2}-\frac{e^{-2 t}}{2}\\-\frac{t^3}{3}+e^t \left(t^2+1\right)-1\end{pmatrix}.\qedhere
+\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}
-	Beurteilen Sie, ob die folgenden 4 Behauptungen wahr oder falsch sind.
+	Beurteilen Sie, ob die folgenden 3 Behauptungen wahr oder falsch sind.
 	
 	Sie müssen bei dieser Aufgabe keine Begründungen angeben.
 	
@@ -137,7 +270,7 @@
 \begin{proof}
 		\begin{tabularx}{\textwidth}{X|p{2cm}|p{2cm}|}
 		& Wahr & Falsch \\\hline
-		Die Differentialgleichung $\dot{x}(t) = \frac{\arctan(t)x^3}{1 + x^2} + e^{-t^2} \sin(x) + 1, \, x(t_0) = x_0$ hat für alle $(t_0, x(t_0)) \in \mathbb{R}^2$ eine eindeutige Lösung. & & \\\hline
+		Die Differentialgleichung $\dot{x}(t) = \frac{\arctan(t)x^3}{1 + x^2} + e^{-t^2} \sin(x) + 1, \, x(t_0) = x_0$ hat für alle $(t_0, x(t_0)) \in \mathbb{R}^2$ eine eindeutige Lösung. & $\times$ & \\\hline
 		Die Funktionen $\varphi_1, \ldots, \varphi_n, \varphi_i(t) = e^{\mu_i t}, \, i = 1, \ldots, n$, genau dann $\mathbb{R}$-linear unabhängig sind, wenn $\mu_1, \ldots, \mu_n \in \mathbb{R}$ paarweise verschieden sind. & & $\times$\\\hline
 		Es sei $\dot{x} = f(t, x), \, x(t_0) = x_0, \, f : Z_{a,b} \to \mathbb{R}$. Ist $f$ in $x$ lipschitz-stetig, so ist $f$ auch in $x$ stetig, womit es nach dem Satz von Picard-Lindelöf eine eindeutige Lösung gibt. & & $\times$ \\\hline
 	\end{tabularx}
