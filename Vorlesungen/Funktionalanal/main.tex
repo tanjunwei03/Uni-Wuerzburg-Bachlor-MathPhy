@@ -21,7 +21,7 @@
 \mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
 \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
 %put nobreak in mdframed
-\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[numberwithin=section,style=thmbox, name=Theorem]{Theorem}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
@@ -231,10 +231,30 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 	
 	Conversely, given $x$ and $y$, we can find disjoint open sets $U$ and $V$ containing $x$ and $y$, and $U\times V$ does not intersect the diagonal, since they are disjoint. 
 \end{proof}
-Now, we move on to our first result about regularity. This is independent of the other separation axiosm:
+Now, we move on to our first result about regularity. This is independent of the other separation axioms:
 \begin{Theorem}
-	Let $G$ be a topological group. It is regular. In particular,
+	Let $G$ be a topological group. It is regular. In particular, for all points $x\in G$ and closed sets $A$ not containing $x$, we have a neighbourhood $V$ of $e$ such that $V\cdot x$ and $V\cdot A$ are disjoint.
 \end{Theorem}
+\begin{proof}
+Firstly, we show that for all neighbourhoods $U$ of $e$, there is a symmetric neighbourhood $V$ such that $V\cdot V\subseteq U$ of $e$.	
+
+This follows because the map $(x,y)\mapsto x\cdot y$ is continuous, hence there is a neighbourhood $V$ such that $V\cdot V\subseteq U$. Then because $(x,y)\cdot x\cdot y^{-1}$ is continuous, there exists $W$ with $W\cdot W^{-1}\subseteq V$. Then $W \cdot W^{-1}$ is the desired symmetric neighbourhood.
+
+Now, since $A$ is closed, we have $A\cdot x^{-1}$ closed (and not containing $e$), thus we choose an open symmetric neighbourhood $V$ of $e$ such that $V\cdot V\cap (A \cdot x^{-1})=\varnothing$.
+
+Now we show that $V\cdot x$ and $V \cdot A$ are disjoint. Suppose not. Then we have $v\cdot x=v'\cdot a$ for $v,v'\in V,a\in A$. However, this also means that $v^{\prime-1}\cdot v = a \cdot x^{-1}$, a contradiction.
+\end{proof}
+As a corollary we have, by a simple change of notation:
+\begin{Corollary}
+	Let $V$ be a topological vector space, $A\subseteq V$ closed and $v\in V$. Then there exists a symmetric neighbourhood $U$ of $0$ such that $(A+U)\cap (v+U)=\varnothing$.
+\end{Corollary}
+We can also extend this to compact sets:
+\begin{Corollary}\label{cor:compacttranslates}
+	Let $V$ be a topological vector space, $A\subseteq V$ closed, $K\subseteq V$ compact. Then there exists a symmetric neighbourhood $U$ of $0$ such that $(A+U)\cap (K+U)$.
+\end{Corollary}
+\begin{proof}
+	As usual, we apply the previous corollary to each point $x\in K$. Then we choose a finite subcover of these, and take their intersections.
+\end{proof}
 Now, we move on to the more important result:
 	\begin{Theorem}
 		Let $G$ be a $T_0$ topological group. Then it is $T_1, T_2$ and $T_3$.
@@ -395,7 +415,8 @@ Also important to note is that this basis must be \emph{ordered}, since the sum 
 	\begin{Theorem}[Quotient Norm]
 	\end{Theorem}
 	\subsection{Various Examples}
-	\section{The Main Theorems}
+	\section{The Hahn-Banach Theorems}
+	\subsection{Sublinear Functionals}
 	\begin{Definition}
 		Let $V$ be a vector space over $\mathbb{K}$. A functional $p$ is called \emph{sublinear}, if
 		\begin{parts}
@@ -621,13 +642,13 @@ The picture for this theorem is as follows: A linear functional $\Phi$ defines a
 	Let $V$ be a normed vector space, $K\subseteq V$ compact, convex, nonempty, $C\subseteq V$ closed, convex, nonempty, with $K\cap C = \varnothing$. Then there exists $\Phi\in V'$ and $\alpha,\beta\in \R$ with $\Re \Phi(v)<\alpha<\beta<\Re \Phi(u)$ for all $v\in K$ and $u\in C$.
 \end{Theorem}
 \begin{proof}
-	There is a compact neighbourhood $V$ of $0$ in $ V$ such that $K+V\cap C=\varnothing$. Then, we apply Theorem \ref{thm:sep1} to $K+V$ and $C$ to get a linear functional that satisfies all the required properties, since $K$ is a compact subset of $K+V$. 
+	There is a compact neighbourhood $V$ of $0$ in $ V$ such that $K+V\cap C=\varnothing$ (Corollary \ref{cor:compacttranslates}). Then, we apply Theorem \ref{thm:sep1} to $K+V$ and $C$ to get a linear functional that satisfies all the required properties, since $K$ is a compact subset of $K+V$. 
 \end{proof}
 \begin{Theorem}[Separation III] \label{thm:sep3}
 	Let $V$ be a normed space, $K\subseteq V$ compact convex, $C\subseteq V$ closed convex, balanced, such that $K\cap C=\varnothing$. Then there exists $\Phi\in V'$ such that $\sup_{u\in C}|\Phi(u)| < \inf_{v\in K}|\Phi(v)|$.
 \end{Theorem}
 \begin{Corollary}
-	Let $C\subseteq V$ be a closed balanced convex subset and $v\in V \setminus C$. Then there exists $\Phi\in V'$ with $\Phi(v)>$, $\Phi(u)\le 1$ for all $u\in C$.
+	Let $C\subseteq V$ be a closed balanced convex subset and $v\in V \setminus C$. Then there exists $\Phi\in V'$ with $\Phi(v)>1$, $\Phi(u)\le 1$ for all $u\in C$.
 \end{Corollary}
 \begin{proof}
 	Apply Theorem \ref{thm:sep3} with $K=\{v\} $ and rescale as necessary.
