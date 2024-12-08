@@ -27,6 +27,12 @@
 \declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
 %\newtheorem{Theorem}{Theorem}
 %\numberwithin{Theorem}{chapter}
 %\newtheorem{Proposition}{Proposition}
@@ -373,7 +379,7 @@ Thus, given a seminorm on a vector space, we can construct a new vector space th
 	For $v\in V$, we have
 	\[\|BAv\|\le \|B\| \|Av\| \le \|B\| \|A\| \|v\|.\qedhere\]
 \end{proof}
-Note that the above definition shows once again the continuity of composition.
+Note that the above definition shows once again the continuity of composition. Also note that this norm turns $L(V,W)$ into a normed space.
 	\subsection{Bases}
 	\begin{Definition}[Hamel Basis]
 		A Hamel basis is a set $B\subseteq V$ such that for all $v\in V$, we have
@@ -400,21 +406,6 @@ Note that the above definition shows once again the continuity of composition.
 The importance of a Schauder basis is that it is countable, and we are still able to define \emph{some} linear maps by their action on the basis. In particular, for any continuous linear map $A$, we have
 \[Av = \sum_{k=1}^\infty a_k Ae_k.\]
 Also important to note is that this basis must be \emph{ordered}, since the sum does not necessarily converge unconditionally. 
-	\subsection{Quotients of Banach Spaces}
-	\begin{Theorem}[Quotient (Semi-)Norm]
-		Let $V$ be a vector space and $U\subseteq V$ a subspace. 
-		\begin{parts}
-			\item For every seminorm $p$ on $V$,
-			\[[p]([v])=\inf\{p(v+u)|u\in U\}\]
-			defines a seminorm on $V/U$.
-			\item If $p$ is a norm then $[p]$ is a norm on $V/U$ iff $U$ is closed.
-		\end{parts}
-	\end{Theorem}
-	\begin{Definition}[Quotient (Semi-)Norm]
-	\end{Definition}
-	\begin{Theorem}[Quotient Norm]
-	\end{Theorem}
-	\subsection{Various Examples}
 	\section{The Hahn-Banach Theorems}
 	\subsection{Sublinear Functionals}
 	\begin{Definition}
@@ -555,7 +546,7 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 \begin{proof}
 	We let $W=\text{span}\{v\} $ and $\varphi(x)=k$ if $x=kv$ in Theorem \ref{thm:normedhahnbanach}
 \end{proof}
-\subsection{Separation Properties}
+\subsection{Geometric Hahn-Banach}
 \begin{Definition}
 	Let $V$ be a normed space. A subset $A$ of $V$ is called
 	\begin{parts}
@@ -565,7 +556,7 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 	\item \emph{Absolutely convex}, if it is balanced and convex.
 	\end{parts}
 \end{Definition}
-\begin{Theorem}
+\begin{Theorem}\label{thm:weakseminorms}
 	Let $V$ be a vector space over $\mathbb{K}$.
 	\begin{parts}
 	\item If $p:V \to \R_0^+$ is a seminorm then
@@ -579,19 +570,32 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 		are absorbing and absolutely convex.
 	\item If $C\subseteq V$ is convex, balanced and absorbing then
 		\[
-		p_c(V)=\inf \{\lambda| \lambda<0,v\in \lambda C\} 
+		p_c(V)=\inf \{\lambda| \lambda> 0,v\in \lambda C\} 
 	\]
 	is a seminorm.
 \item For $C$ absolutely convex and absorbing
 	\[
 		B_{p_c, 1}(0)\subseteq C \subseteq B_{p_c, 1}(0)^\text{cl}
 	.\] 
-\item For every seminorm $p$ one has
-	\[
-		P_{B_{p, 1}(0)}=P=P_{B_{p,1}(0)^\text{cl}}
-	.\] 
 	\end{parts}
 \end{Theorem}
+\begin{proof}
+	\begin{parts}
+		\item It is clear from the definition of a seminorm that both of these are absolutely convex.
+		
+		If $v\in V$ and $p(v)=\alpha$, then $p(v/2\alpha)=1/2$, which tells us that $v/2\alpha$ is an element of the ball, and thus the ball is absorbing.
+		\item First, we show absolute homogenity. We note that $v\in \lambda C$ if and only if $|\alpha| v \in |\alpha|\lambda C$. Since $C$ is balanced, so is $|\alpha|\lambda C$, and thus this happens iff $\alpha v\in |\alpha|\lambda C$. Since the infimum is absolutely homogeneous, this shows that the $p_c$ is too.
+		
+		Suppose $v\in \lambda_v C$ and $u\in \lambda_u C$. If we prove that $u+v\in (\lambda_u+\lambda_v)C$, we will be done. In fact, we know more - we know that $aC+bC=(a+b)C$. Let us prove this.
+		
+		Suppose $v\in aC+bC$. Then $v=au+bw$ for $u,w\in C$. Since $C$ is convex, we have
+		\[\frac{v}{a+b}=\frac{a}{a+b}u +\frac{b}{a+b}w\in C\]
+		suggesting that $v\in (a+b)C$.
+		\item Clearly, for all $v\in C$, we have $p(v)\le 1$. 
+		
+		If $p(v)<1$, then $v\in \lambda C$ for some $\lambda<1$. Since $C$ is balanced, this shows that $v\in C$.\qedhere
+	\end{parts}
+\end{proof}
 \begin{Definition}[Minkowski Functional]
 	Let $C\subseteq V$ be an absorbing subset in a vector space $V$ over a $\mathbb{K}$. Then $p_c:V\to \R_0^+$ defined by
 	\[
@@ -599,10 +603,7 @@ or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we requ
 \]
 is called the Minkowski functional of $C$.
 \end{Definition}
-The important property that we will need is the following lemma:
-\begin{Lemma}
-	Let $C$ be an absorbing convex set. Then the Minkowski functional $p_C$ is a sublinear functional.
-\end{Lemma}
+(b) of the previous theorem shows that this is a seminorm if $C$ is absolutely convex too.
 \begin{Theorem}[Separation I]\label{thm:sep1}
 	Let $V$ be a normed space with two nonempty disjoint convex subsets $A,B\subseteq V$.
 	\begin{parts}
@@ -638,21 +639,27 @@ The picture for this theorem is as follows: A linear functional $\Phi$ defines a
 		\draw[thick, orange] (3,1) node[anchor=south] {$\Phi(v)>\alpha$};
 	\end{tikzpicture}
 \end{center}
-\begin{Theorem}[Separation II]
+\begin{Theorem}[Separation II]\label{thm:sep2}
 	Let $V$ be a normed vector space, $K\subseteq V$ compact, convex, nonempty, $C\subseteq V$ closed, convex, nonempty, with $K\cap C = \varnothing$. Then there exists $\Phi\in V'$ and $\alpha,\beta\in \R$ with $\Re \Phi(v)<\alpha<\beta<\Re \Phi(u)$ for all $v\in K$ and $u\in C$.
 \end{Theorem}
 \begin{proof}
-	There is a compact neighbourhood $V$ of $0$ in $ V$ such that $K+V\cap C=\varnothing$ (Corollary \ref{cor:compacttranslates}). Then, we apply Theorem \ref{thm:sep1} to $K+V$ and $C$ to get a linear functional that satisfies all the required properties, since $K$ is a compact subset of $K+V$. 
+	There is a convex neighbourhood $V$ of $0$ in $ V$ such that $K+V\cap C=\varnothing$ (Corollary \ref{cor:compacttranslates}). Then, we apply Theorem \ref{thm:sep1} to $K+V$ and $C$ to get a linear functional that satisfies all the required properties, since $K$ is a compact subset of $K+V$. 
+	
+	Note that we used that $V$ is normed in the first line, as Corollary \ref{cor:compacttranslates} only yields a not necessarily convex neighbourhood. Local convexity would also have sufficed.
 \end{proof}
 \begin{Theorem}[Separation III] \label{thm:sep3}
-	Let $V$ be a normed space, $K\subseteq V$ compact convex, $C\subseteq V$ closed convex, balanced, such that $K\cap C=\varnothing$. Then there exists $\Phi\in V'$ such that $\sup_{u\in C}|\Phi(u)| < \inf_{v\in K}|\Phi(v)|$.
+	Let $V$ be a normed space, $K\subseteq V$ compact convex, $C\subseteq V$ closed convex nonempty, balanced, such that $K\cap C=\varnothing$. Then there exists $\Phi\in V'$ such that $\sup_{u\in C}|\Phi(u)| < \inf_{v\in K}|\Phi(v)|$.
 \end{Theorem}
+\begin{proof}
+	Follows directly from Theorem \ref{thm:sep3}.
+\end{proof}
 \begin{Corollary}
 	Let $C\subseteq V$ be a closed balanced convex subset and $v\in V \setminus C$. Then there exists $\Phi\in V'$ with $\Phi(v)>1$, $\Phi(u)\le 1$ for all $u\in C$.
 \end{Corollary}
 \begin{proof}
 	Apply Theorem \ref{thm:sep3} with $K=\{v\} $ and rescale as necessary.
 \end{proof}
+\section{Duality}
 \subsection{The Weak Topology}
 In this subsection, we will want to work with components of vectors. However, due to the difficulty of picking a basis, we cannot define the components the same way we do in finite dimensional linear algebra. Thus, we define the components to be the outputs of linear functionals applied to vectors. This notion leads us to the weak topology.
 \begin{Definition}
@@ -662,6 +669,8 @@ In this subsection, we will want to work with components of vectors. However, du
 		\item We define the weak topology to be the topology on $V$ generated by all open balls $B_{p_{\varphi}, r}(v)$.
 	\end{parts}
 \end{Definition}
+Equivalently, we could also have defined the weak topology as the weakest topology such that all the seminorms $p_{\varphi}$ are continuous. Note that the weak topology is locally convex as the subbasis elements are convex due to Theorem \ref{thm:weakseminorms}.
+
 \begin{Theorem}
 	Let $V$ be a normed space.
 	\begin{parts}
@@ -680,26 +689,46 @@ In this subsection, we will want to work with components of vectors. However, du
 		\]
 		which implies that $u+u'\subseteq B_{p_{\varphi}, r}(v+v')$. Thus
 		\[
-		B_{p_{\varphi, \frac{r}{2}}}(v)\times B_{p_{\varphi, \frac{r}{2}}}(v')\subseteq +^{-1})B_{p_{\varphi, r}}(v+v')
+		B_{p_{\varphi, \frac{r}{2}}}(v)\times B_{p_{\varphi, \frac{r}{2}}}(v')\subseteq +^{-1}B_{p_{\varphi, r}}(v+v')
 		.\] 
-		Thus, $+$ is continuous at $(v, v')$.\textcolor{red}{TODO}
-		\item If $p_\varphi(v-v')<\epsilon$, we also have $p_\varphi(v-v')=|\varphi(v-v')| \le \| \varphi\| \|v-v'\|$, thus showing that we can choose $\delta$ such that $B_\delta(0)\subseteq B_{p_{\varphi, r}}(v)$.
-		\item If  $\varphi$ is weakly continuous it is norm continuous because of (b). Conversely, we see that $\phi^{-1}(B_r(0))=B_{p_{\varphi,r}}(0)$, which is an element of the subbasis. Thus, $\varphi$ is weakly continuous.
-		\item Suppose $v\neq 0$. Then, we define a continuous linear functional $\varphi$ such that $r=\varphi(v)>0$. Then $B_{p_{\varphi, r / 2}}(0)\cap B){p_{\varphi, r / 2}}(0)=\varnothing$.
+		Thus, $+$ is continuous at $(v, v')$. Continuity of multiplication follows by the homogenity of seminorms.
+		\item If $p_\varphi(v-v')<\epsilon$, we also have $p_\varphi(v-v')=|\varphi(v-v')| \le \| \varphi\| \|v-v'\|$, thus showing that we can choose $\delta$ such that $B_\delta(v)\subseteq B_{p_{\varphi, \epsilon}}(v)$.
+		\item If  $\varphi$ is weakly continuous it is norm continuous because of (b). Conversely, we see that $\varphi^{-1}(B_r(0))=B_{p_{\varphi,r}}(0)$, which is an element of the subbasis. Thus, $\varphi$ is weakly continuous.
+		\item Suppose $v\neq 0$. Then, we define a continuous linear functional $\varphi$ such that $r=\varphi(v)>0$ by Hahn-Banach. Then $B_{p_{\varphi, r / 2}}(0)\cap B){p_{\varphi, r / 2}}(v )=\varnothing$.
+		\item Follows by definition.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Theorem}
+	Let $V$ be a topological vector space.
 	\begin{parts}
-		\item A net $(v_i)_{i\in I}$ in $V$ is weakly convegent to $v\in V$ iff for every $\varphi\in V'$ one has $\lim_{i \in I} \varphi(v_i)=\varphi(v)$.
-		\item A net $(v_i)_{i\in I}$ in $V$ is a weak Cauchy net iff for every $\varphi \in V'$ the net $(\varphi(v_i))_{i\in I}$ is a Cauchy net in $\mathbb{K}$.
+		\item A net $(v_i)_{i\in I}$ in $V$ is weakly convergent to $v\in V$ if and only if for every $\varphi\in V'$ one has $\lim_{i \in I} \varphi(v_i)=\varphi(v)$.
+		\item A net $(v_i)_{i\in I}$ in $V$ is a weak Cauchy net if and only if for every $\varphi \in V'$ the net $(\varphi(v_i))_{i\in I}$ is a Cauchy net in $\mathbb{K}$.
 	\end{parts}
 \end{Theorem}
+\begin{proof}
+	\begin{parts}
+		\item Since $\varphi$ is (weakly) continuous, we have the desired equality. 
+		
+		Conversely, assume that the equality is satisfied. What we need to show is that the net $v_i$ is eventually in every neighbourhood of $v$. Since $V$ is locally convex, it suffices to consider absolutely convex neighbourhoods $K$. Consider the Minkowski functional of $K$, $p_K$. Since $p_K$ also generates the weak topology, we can find $\alpha\in I$ such that $\beta\succeq \alpha \implies p_K(v_i-v)<1$, or $v_i\in K$.
+		\item Follows analogously to (a).\qedhere
+	\end{parts}
+\end{proof}
 \begin{Theorem}
 	Let $V$ be a normed space and let $C\subseteq V$ be convex. Then the weak closure of $C$ coincides with the norm closure.
 \end{Theorem}
+\begin{proof}
+	Since the weak topology is weaker, $C^\text{cl}\subseteq C^\text{wcl}$.
+	
+	Conversely, we choose $v_0\in V$, $v_0\not\in C^\text{cl}$. Then Theorem \ref{thm:sep2} yields $\gamma\in \R$ and $\Lambda\in V'$ such that
+	\[\Re \Lambda x_0<\gamma < \Re \Lambda x.\]
+	Thus, the set $\{x|\Re \Lambda x< \gamma\}$ is a weak neighbourhood of $x_0$ that does not intersect $C$, showing that $x\not\in C^\text{wcl}$. 
+\end{proof}
 \begin{Corollary}
 	Let $U\subseteq V$ be a subspace of a normed space. Then $U^\text{cl}=U^\text{wcl}$.
 \end{Corollary}
+\begin{proof}
+	Subspaces are automatically convex.
+\end{proof}
 \begin{Theorem}
 	Let $V$ be a normed space. Then the canonical map $i:v\to V^{\prime\prime}$ is norm preserving and hence injective.
 \end{Theorem}
@@ -720,13 +749,14 @@ Thus, $\|i(v)\|\ge \|v\|$. Together, we have $\|i(v)\|\ge \|v\|$.
 \begin{proof}
 	Note that the dual space of \emph{any} TVS is always complete. As a closed subspace of a complete space, we have a complete space.
 \end{proof}
+The canonical map $i$ allows us to define a weak topology on $V'$ generated by the functionals $i(V)\in V^{\prime\prime}$. We call this the weak *-topology. Convergence in the weak *-topology is defined by the same conditions as in the weak topology. In particular, a net $(v_i)_{i\in I}\subseteq V'$ converges to $v\in V'$ if and only if $v_i(x)\to v(x)$ for all $x\in V$ - that is, the linear functionals converge pointwise.
 \begin{Theorem}
 	Let $V,W$ be normed spaces with $A:V \to W$ continuous and linear. Then
 	\[
 		\|A\|= \sup_{\varphi\neq 0, w \neq 0}\frac{|\varphi(A v)|}{\|\varphi\|_{W'}\|v\|_V}=\sup_{\|\varphi\|=\|v\|=1} |\varphi(A v)|=\|A'\|
 	.\] 
 \end{Theorem}
-\section{Polars \& Banach-Aloglu Theorems}
+\subsection{Polars \& Banach-Aloglu Theorems}
 \begin{Definition}
 	Let $V$ be a topological vector space with topological dual $V'$.
 	\begin{parts}
@@ -740,7 +770,9 @@ Thus, $\|i(v)\|\ge \|v\|$. Together, we have $\|i(v)\|\ge \|v\|$.
 	.\] 
 	\end{parts}
 \end{Definition}
-\begin{Theorem}
+The polar $A^\polar$ of a set $A\subseteq V$ is the set of linear functionals which are small on $A$. Note that the 1 in the definition comes without loss of generality, as
+\[\varphi(v) < r \iff \frac{\varphi}{r}(v)<1.\]
+\begin{Theorem}\label{thm:absconvexclosed}
 	Let $V$ be a topological vector space and $B\subseteq V'$. Then $B_\polar\subseteq V$ is absolutely convex and weakly closed.
 \end{Theorem}
 \begin{proof}
@@ -757,8 +789,129 @@ Thus, $\|i(v)\|\ge \|v\|$. Together, we have $\|i(v)\|\ge \|v\|$.
 		B_\polar&= \left\{ v\in V| |\varphi(v)| \le 1\text{ for all } \varphi\in B \right\} \\
 		   &= \left\{ v\in V | p_{\varphi}(v) \le 1\text{ for all }\varphi\in B \right\}  \\
 		   &= \bigcap_{\varphi\in B} B_{p_{\varphi,1}}(0)^\text{cl} \\
-		   &= \bigcap_{\varphi\in  B} p_{\varphi}^{-1}([0,1]) \\
+		   &= \bigcap_{\varphi\in  B} p_{\varphi}^{-1}([0,1])
 	\end{align*}
+which is an intersection of closed sets and hence closed.
+\end{proof}
+We also have the following facts
+\begin{Theorem}
+	Let $V$ be a topological vector space.
+	\begin{parts}
+		\item If $A\subseteq B \subseteq V$, then $A^\polar\supseteq B^\polar$.
+		\item For $a\neq 0$, we have $(aA)^\polar = a^{-1}A^\polar =|a|^{-1}A^\polar$.
+		\item $A\subseteq A^{\polar\polar}$ and $A^\polar=A^{\polar\polar\polar}$.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+\begin{parts}
+\item If $|\varphi(v)| < 1$ for all $v\in B$, then it holds true for all $v\in A$.
+\item We have $\varphi(av) = a\varphi(v)$, as well as $|\varphi(a v)| = |a| |\varphi(v)|$.
+\item We have $A\subseteq A^{\polar\polar}$ by definition. Thus, $A^\polar\subseteq (A^{\polar})^{\polar\polar}$. However, by (a), $A\subseteq A^{\polar\polar}$ implies that $A^{\polar}\supseteq A^{\polar\polar\polar}$.\qedhere
+\end{parts}
+\end{proof}
+Next, we will consider what happens to polar sets of hulls. However, before we continue, we first need to define what hulls are.
+\begin{Definition}
+	The convex hull $C_c$ of a subset $C\subseteq V$ is the intersection of all convex sets containing $C$. 
+\end{Definition}
+The most useful characterisation of convex hulls is as follows:
+\begin{Lemma}
+	The convex hull $C_c$ of a set $C$ is the set consisting of all convex combinations of vectors of $C$.
+\end{Lemma}
+\begin{proof}
+	Let $K$ be the set of all convex combinations of elements of $C$. Since $K$ is convex, we have $C_c\subseteq K$. Conversely, all linear combinations of elements of $C$ must be in $C_c$, and thus $K\subseteq C_c$.
+\end{proof}
+We also have balanced hulls:
+\begin{Definition}
+	The balanced hull $C_b$ of a subset $C\subseteq V$ is the intersection of all balanced sets containing $C$. 
+\end{Definition}
+Again, this is characterised by the following Lemma:
+\begin{Lemma}
+	The balanced hull $C_b$ of a subset $C\subseteq V$ is the union of all sets $zC$, with $|z|\le 1$. 
+\end{Lemma}
+\begin{proof}
+	We define
+	\[K:=\bigcup_{|z|\le 1} z C.\]
+	Clearly, $K$ is balanced, and thus $C_b\subseteq K$. Conversely, we must have $K\subseteq C_b$. 
+\end{proof}
+We also have the absolutely convex hull of a set
+\begin{Definition}
+	The absolutely convex hull $A_{bc}$ of a subset $A\subseteq V$ is defined by $(A_b)_c$. 
+\end{Definition}
+We note that this is convex by definition, and we can easily verify that it is also balanced. It is also important to note that this is not the same as $(A_c)_b$, as $(A_c)_b$ may not be convex.
+\begin{Example}
+	Let $A$ be the set in $\R^2$ consisting of $(0,0),~(1,0)$ and $(1,1)$. Its convex hull is the triangle consisting of these 3 points, and its balanced hull is its convex hull plus its mirror image, which is not convex.
+		\begin{figure}[H]
+			\begin{center}
+		\begin{subfigure}{0.3\textwidth}
+			\caption{$(A_c)_b$}
+			\begin{tikzpicture}[scale=1.5]
+				\filldraw[thick, pattern = north west lines] (0,0) -- (1,1) -- (1,0) -- cycle;
+				\filldraw[thick, pattern = north west lines] (0,0) -- (-1,-1) -- (-1,0) -- cycle;
+				\draw[ultra thick, -stealth] (-1.2,0) -- (1.2,0) node[anchor=west] {$x$};
+				\draw[ultra thick, -stealth] (0,-1.2) -- (0,1.2) node[anchor=south] {$y$};
+			\end{tikzpicture}
+		\end{subfigure}
+			\begin{subfigure}{0.3\textwidth}
+		\caption{$(A_b)_c$}
+		\begin{tikzpicture}[scale=1.5]
+			\filldraw[thick, pattern = north west lines] (-1,0) -- (1,1) -- (1,0) -- (-1,-1) -- cycle;
+			\draw[ultra thick, -stealth] (-1.2,0) -- (1.2,0) node[anchor=west] {$x$};
+			\draw[ultra thick, -stealth] (0,-1.2) -- (0,1.2) node[anchor=south] {$y$};
+		\end{tikzpicture}
+	\end{subfigure}
+	\end{center}
+	\end{figure} 
+\end{Example}
+Now we are ready to discuss their polar sets:
+\begin{Theorem}[Polars of Hulls]\label{thm:hullpolars}
+	Let $V$ be a topological vector space, $A\subseteq V$.
+	\begin{parts}
+		\item $A^\polar =(A_b)^\polar$.
+		\item $A^\polar =(A_c)^\polar$.
+		\item $A^\polar = (A^\text{wcl})^\polar$.
+		\item $A^\polar = ((A_{bc})^\text{wcl})^\polar$.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	For all of these, the reverse inclusion follows due to $A$ being a subset of the other set. 
+	\begin{parts}
+		\item Now suppose $|\varphi(v)|\le 1$ for all $v\in A$. Then consider $u\in A_b$. We have $u= zv$ for some $v\in A$, and thus $\varphi(u)=\varphi(zv)=z\varphi(v)$.
+		\item Consider $u\in A_c$, meaning that $u=\sum_{k=1}^n \alpha_k v_k$ for $\sum_{k=1}^n \alpha_k = 1$, $v_k\in A$ for all $k$. We have
+		\[\varphi(u) = \sum_{k=1}^n \alpha_k \varphi(v_k) \le \sum_{k=1}^n \alpha_k = 1.\]
+		\item Suppose $|\varphi(v)| \le 1$ for all $v\in A$. Then, if $w\in A^\text{wcl}$, it means that there is a net $(v_i)_{i\in I}\subseteq A$ such that $v_i\to w$. In the weak topology, this means that $\varphi(v_i)\to \varphi(w)\le 1$.  
+		\item We note that $A\subseteq (A_{bc})^\text{wcl}$. Since $A^{\polar\polar}$ is absolutely convex and weakly closed by Theorem \ref{thm:absconvexclosed}, we have $(A_{bc})^\text{wcl}\subseteq A^{\polar\polar}$. This implies that
+		\[A^\polar \supseteq (A_{bc})^\text{wcl} \supseteq A^{\polar\polar\polar}=A^\polar.\qedhere\]
+	\end{parts}
+\end{proof}
+\begin{Theorem}[Bipolar Theorem]
+	Let $A$ be a subset of a topological vector space $V$. Then $A^{\polar\polar} = (A_{bc})^\text{wcl}$.
+\end{Theorem}
+\begin{proof}
+	As in \ref{thm:hullpolars} we have $A\subseteq (A_{bc})^\text{wcl}\subseteq A^{\polar\polar}$. Choose $w\not\in (A_{bc})^\text{wcl}$. Then, by Theorem \ref{thm:sep3}, there is a weakly continuous linear functional $\Phi$ such that $\sup_{v\in (A_{bc})^\text{wcl}}|\Phi(v)|<\Phi(w)$. Since $(A_{bc})^\text{wcl}$ is balanced, we have $0=\Phi(0)< a$. Hence, we may rescale the functional to get a linear functional $\Psi$ with $\sup_{v\in (A_{bc})^\text{wcl}} |\Psi(v)| = 1$. This implies that $\Psi\in A^\polar$. Since $\Psi(w)>1$, we have $w\not\in A^{\polar\polar}$, completing the proof.
+\end{proof}
+\begin{Theorem}[Banach-Alaoglu]
+	If $U$ is a balanced neighbourhood of $0$ in the topological vector space $V$ then $U^\polar$ is weak *-compact. 
+\end{Theorem}
+\begin{proof}
+	Since neighbourhoods of $0$ are absorbing, we choose $\gamma(v)$ for each $v\in V$ such that $v\in \gamma(v)U$. Then we define a set $P$ by $P=\prod_{v\in V}K_{\gamma(v)}(0)^\text{cl}$. Since the disks are compact, $P$ is compact by Tychonoff's Theorem. $P$ consists of all functions $f:V\to \mathbb{K}$ such that $|f(x)|\le\gamma(x)$. Thus, we have $U^\polar\subseteq V'\cap P$.
+	
+	We now have two topologies on $U^\polar$, induced by $V'$ and $P$ respectively. We show that these topologies coincide, and $U^\polar$ is closed in the topology induced by $P$. Since $P$ is compact, this will imply that $U^\polar$ is compact. 
+	
+	Fix $\Lambda_0\in A^\polar$, and choose $v_i\in V$ for $i=1,\dots, n$ as well as $\delta>0$
+	\begin{align*}
+		W_1&= \{\Lambda\in V'| |\Lambda v_i-\Lambda_0 v_i|<\delta, i=1,\dots, n\}\\
+		W_2&= \{f\in P| |f v_i - \Lambda_0 v_i|<\delta, i = 1, \dots, n\}
+	\end{align*}
+The $W$s form a local basis for the topology. Since $A^\polar\cap W_1=A^\polar\cap W_2$, the topologies coincide. 
+
+Now suppose that we have $f_0$ in the $P$-closure of $A^\polar$. Then we choose scalars $\alpha,\beta$, and $u,v\in V$. The set of all $f$ such that $|f-f_0|<\epsilon$ at $x,y$ and $\alpha x + \beta y$ is a $P$-neighbourhood of $f_0$. Thus, $A^\polar$ contains such an $f$. Since $f$ is linear, we have
+\begin{align*}
+	&f_0(\alpha x + \beta y)-\alpha f_0(x) - \beta f_0(y)\\
+	=&(f_0-f)(\alpha x + \beta y)+ \alpha(f - f_0)(x) + \beta(f - f_0)(y).
+\end{align*}
+Approximating each of these by $\epsilon$, we have'
+\[|f_0(\alpha x + \beta y)-\alpha f_0(x) - \beta f_0(y)|= \epsilon (1+|\alpha|+|\beta|)\]
+showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for all $v\in A$. Thus, we have $f_0\in A^\polar$, completing the proof.
 \end{proof}
 \end{document}
 
