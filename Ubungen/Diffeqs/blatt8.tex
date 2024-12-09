@@ -1,0 +1,66 @@
+\begin{Problem}
+	Bestimmen Sie die allgemeine Lösung der Differentialgleichungen
+	\begin{parts}
+		\item $\ddot{x} - 4\dot{x} - 5x = 8e^t$.
+		\item $\ddot{x}(t) + x(t) = 4t \sin(t) - 2 \sin(t)$.
+	\end{parts}
+\end{Problem}
+
+\begin{Problem}
+	Bestimmen Sie mit Begründung eine lineare Differentialgleichung zweiter Ordnung mit konstanten Koeffizienten, die folgende Lösungen besitzt:
+	\begin{align*}
+	\varphi_1 &: \mathbb{R} \to \mathbb{R}, \quad t \mapsto 2e^{3t} + \sin(3t),\\
+	\varphi_2 &: \mathbb{R} \to \mathbb{R}, \quad t \mapsto 3e^{-2t} + \sin(3t),\\
+	\varphi_3 &: \mathbb{R} \to \mathbb{R}, \quad t \mapsto e^{-2t} + 5e^{3t} + \sin(3t).
+	\end{align*}	
+\end{Problem}
+
+\begin{Problem}
+	Sei $D = \mathbb{R} \times \mathbb{R}^n$. Wir betrachten das Anfangswertproblem
+	\begin{equation}\label{eq:diffeqblatt8-1}
+		\dot{x} = f(t, x), \quad x(t_0) = x_0, \tag{1}
+	\end{equation}
+	wobei $f : D \to \mathbb{R}^n$ stetig auf $D$ und lokal Lipschitz-stetig in $x$ ist. Weiterhin sei $C \geq 0$, sodass
+	\[
+	\langle f(t, x), x \rangle \leq C|x|_2^2
+	\]
+	für alle $(t, x) \in D$. $\langle \cdot, \cdot \rangle$ bezeichne hier das Standardskalarprodukt und $|\cdot|_2$ die euklidische Norm im $\mathbb{R}^n$.
+	
+	Zeigen Sie: Für das maximale Existenzintervall $I = (t^-, t^+)$ der Lösung $\varphi : I \to \mathbb{R}$ von \eqref{eq:diffeqblatt8-1}, gilt $t^+ = +\infty$.
+	
+	\textbf{Bemerkung:} Eine Möglichkeit diese Aufgabe zu lösen, verwendet folgende Hinweise:
+	\begin{enumerate}
+		\item Verwenden Sie als Ansatz $y(t) = |x(t)|_2^2$.
+		\item In dieser Aufgabe können Sie die Separation der Variablen ohne Beweis auch auf Differentialungleichungen der Form $y' \leq f(y)$ anwenden.
+	\end{enumerate}
+	\end{Problem}
+	
+	\newpage
+	\section*{Präzensblatt}
+	\begin{Problem}
+		Bestimmen Sie die allgemeine reelle Lösung der Differentialgleichung
+		\[
+		\ddot{x} + 2x = 2\cos(t).
+		\]
+		\end{Problem}
+		
+		\begin{Problem}
+			Seien $\varphi_1, \varphi_2, \varphi_3 : \mathbb{R} \to \mathbb{R}$ gegeben durch
+			\[
+			\varphi_1(t) = 1, \quad \varphi_2(t) = t, \quad \varphi_3(t) = t^2
+			\]
+			für alle $t \in \mathbb{R}$. Es ist bekannt, dass $\varphi_1, \varphi_2, \varphi_3$ Lösungen einer linearen inhomogenen Differentialgleichung zweiter Ordnung sind.
+			
+			Geben Sie die Menge aller Lösungen dieser Differentialgleichung an. Die Differentialgleichung selbst ist dabei nicht zu bestimmen.  
+			\textit{(Hinweis: Beachten Sie, dass die Lösungen einer linearen inhomogenen Differentialgleichung einen affinen Unterraum aufspannen, siehe Satz 7.3.)}
+		\end{Problem}
+		
+		\begin{Problem}
+			Bei zeitunabhängigen linearen Differentialgleichungen $\dot{x} = Ax$ können wir mit Hilfe der Matrix-Exponentialfunktion $\exp(At)$ eine Fundamentalmatrix angeben. Man könnte daher versuchen zu beweisen, dass bei zeitabhängigen linearen Differentialgleichungen $\dot{x} = A(t)x$ die Matrix-Exponentialfunktion
+			\[
+			\Phi(t) := \exp\left( \int_{t_0}^t A(s) \, ds \right)
+			\]
+			eine Fundamentalmatrix ist.
+			
+			Erklären Sie, an welcher Stelle der Beweis schief gehen würde und belegen Sie dies mit einem Gegenbeispiel.
+		\end{Problem}
