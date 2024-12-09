@@ -5,7 +5,45 @@
 		\item $\ddot{x}(t) + x(t) = 4t \sin(t) - 2 \sin(t)$.
 	\end{parts}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Die charakteristische Gleichung ist
+\[
+\lambda^2 - 4\lambda - 5 = 0
+\]
+mit L\"{o}sungen
+\[
+\lambda = -1, 5
+.\] 
+Zwei lineare unabhängige Lösungen der homogenen DGL sind $e^{-t}$ und $e^{5t}$. F\"{u}r eine partikulare L\"{o}sung verwenden wir als Ansatz $x = Ae^{t}$. Eingesetzt ist
+\[
+A e^t -4 Ae^t - 5 Ae^t =-8 A e^t = 8e^t	 
+.\]
+und damit $A=-1$. Die allgemeine L\"{o}sung ist
+\[
+	\varphi(t) = c_1 e^{-t} + c_2 e^{5t} - 8 e^t, c_1,c_2\in \R
+.\] 
+\item Die charaktische Gleichung der homogenen DGL ist $x^2 + 1 = 0$ und hat L\"{o}sungen $x=\pm 1$. Die L\"{o}sung der homogenen DGL ist damit
+	\[
+	x(t) = c_1 \cos t + c_2 \sin t, c_1,c_2\in \R
+	.\] 
+	Zur Bestimmung einer L\"{o}sung der inhomogenen DGL verwenden wir den Ansatz
+	\[
+	x(t) = A t^2 \cos t+Bt \cos t
+	\]
+	mit
+	\begin{align*}
+		\dot{x}=&2A t \cos t - A t^2 \sin t + B \cos t - Bt\sin t\\
+		\ddot{x}=&2A \cos t - 2 At\sin t - 2At\sin t - At^2\cos t\\
+			 &-B\sin t - B\sin t -Bt\cos t\\
+		=&2A\cos t-4At\sin t - At^2\cos t - 2B\sin t - Bt\cos t
+	\end{align*}
+	und
+	\[
+		\ddot{x}+x =2A\cos t - 4At\sin t - 2 B\sin t 
+	.\] 
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	Bestimmen Sie mit Begründung eine lineare Differentialgleichung zweiter Ordnung mit konstanten Koeffizienten, die folgende Lösungen besitzt:
 	\begin{align*}
@@ -14,7 +52,26 @@
 	\varphi_3 &: \mathbb{R} \to \mathbb{R}, \quad t \mapsto e^{-2t} + 5e^{3t} + \sin(3t).
 	\end{align*}	
 \end{Problem}
+\begin{proof}
+	Wenn die DGL homogen wäre, bräuchten wir die folgenden Nullstellen der charakteristischen Polynom: $-2, 5, \pm 3i$. Da 4 L\"{o}sungen zu viel sind, muss die DGL inhomogen sein.
 
+	Die drei L\"{o}sungen haben $\sin 3t$ gemeinsam. Dies muss daher der inhomogenen Teil sein. Wir suchen also eine DGL, deren homogenen Teil $e^{-2t}$ und $e^{3t}$ als linear unabhängige Lösungen hat und $\sin 3t$ als partikuläre Lösung hat. Ein charakteristisches Polynom ist
+	\[
+		(x+2)(x-3) = x^2 - x - 6
+	\]
+	und damit ist ein möglicher homogener Teil
+	\[
+		\ddot{x}-\dot{x}-6x=0
+	.\] 
+	Zur Bestimmung der inhomogenen Teil setzen wir einfach $\sin 3t$ ein:
+	\[
+	-3 \sin 3t - 3 \cos 3t - 6\sin 3t = -9\sin 3t - 3 \cos 3t
+	.\] 
+	Die DGL ist damit
+	\[
+		\ddot{x}-\dot{x}-6x = -9\sin 3t - 3 \cos 3t
+	.\qedhere\] 
+\end{proof}
 \begin{Problem}
 	Sei $D = \mathbb{R} \times \mathbb{R}^n$. Wir betrachten das Anfangswertproblem
 	\begin{equation}\label{eq:diffeqblatt8-1}
@@ -43,7 +100,11 @@
 		\ddot{x} + 2x = 2\cos(t).
 		\]
 		\end{Problem}
-		
+	\begin{proof}
+		\[
+		x = A \cos(\sqrt{2} t) + B\sin (\sqrt{2} t)+2 \cos t
+		.\qedhere\] 
+	\end{proof}	
 		\begin{Problem}
 			Seien $\varphi_1, \varphi_2, \varphi_3 : \mathbb{R} \to \mathbb{R}$ gegeben durch
 			\[
@@ -54,7 +115,9 @@
 			Geben Sie die Menge aller Lösungen dieser Differentialgleichung an. Die Differentialgleichung selbst ist dabei nicht zu bestimmen.  
 			\textit{(Hinweis: Beachten Sie, dass die Lösungen einer linearen inhomogenen Differentialgleichung einen affinen Unterraum aufspannen, siehe Satz 7.3.)}
 		\end{Problem}
-		
+	\begin{proof}
+		\[A+ B t + t^2\]
+	\end{proof}	
 		\begin{Problem}
 			Bei zeitunabhängigen linearen Differentialgleichungen $\dot{x} = Ax$ können wir mit Hilfe der Matrix-Exponentialfunktion $\exp(At)$ eine Fundamentalmatrix angeben. Man könnte daher versuchen zu beweisen, dass bei zeitabhängigen linearen Differentialgleichungen $\dot{x} = A(t)x$ die Matrix-Exponentialfunktion
 			\[
@@ -64,3 +127,11 @@
 			
 			Erklären Sie, an welcher Stelle der Beweis schief gehen würde und belegen Sie dies mit einem Gegenbeispiel.
 		\end{Problem}
+		\begin{proof}
+			\begin{align*}
+				\Phi(t) &= \sum_{k=0}^\infty \frac 1{k!}\left( \int_{t_0}^t A(s)\dd{s} \right)^k\\
+				\Phi'(t)&=\sum_{k=1}^\infty \frac{k}{k!}\left( \int_{t_0}^t A(s)\dd{s} \right)^{k-1}A(t)\\
+					&= \left[ \sum_{k=1}^\infty \frac{1}{(k-1)!}\left( \int_{t_0}^t A(s)\dd{s} \right)^{k-1} \right]A(t)\\
+					&= \exp\left( \int_{t_0}^t A(s)\dd{s} \right) A(t)
+			\end{align*}
+		\end{proof}
