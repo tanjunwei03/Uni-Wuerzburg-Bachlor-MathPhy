@@ -913,5 +913,84 @@ Approximating each of these by $\epsilon$, we have'
 \[|f_0(\alpha x + \beta y)-\alpha f_0(x) - \beta f_0(y)|= \epsilon (1+|\alpha|+|\beta|)\]
 showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for all $v\in A$. Thus, we have $f_0\in A^\polar$, completing the proof.
 \end{proof}
+\section{Banach-Steinhaus}
+\begin{Definition}[Equicontinuity]
+	Let $V$ and $W$ be topological vector spaces, and $\Gamma$ a collection of linear maps $V\to W$. $\Gamma$ is called equicontinuous if for all neighbourhoods $Z$ of $0_W$, we have a neighbourhood $V$ of $0_V$ such that $\Lambda(V)\subseteq Z$ for all $\Lambda\in \Gamma$.
+\end{Definition}
+\begin{proof}
+	Let $F$ be the union of the sets $\Lambda(E)$ for all $\Lambda\in \Gamma$. We show that this is bounded. By equicontinuity, we choose $Z\ni 0_W$ open, $U\ni 0_V$ open such that $\Lambda(U)\subseteq Z$ for all $\Lambda\in \Gamma$. Since $E$ is bounded, we must have $E\subseteq tU$ for some $t\in \R$. Then $\Lambda(E)\subseteq t \Lambda(U)\subseteq tW$ and thus $F$ is bounded.
+\end{proof}
+\begin{Theorem}
+	Let $V$ and $W$ be topological vector spaces, $\Gamma$ an equicontinuous collection of linear maps, and $E$ a bounded subset of $V$. Then there exists a bounded $F$ in $W$ such that $\Lambda(E)\subseteq V$ for all $\Lambda\in \Gamma$.
+\end{Theorem}
+\begin{Theorem}[Banach-Steinhaus]
+Suppose $V$ and $W$ are topologicl vector spaces, and $\Gamma$ is a collection of linear maps $V\to W$. Let $B$ be the set of all $v\in V$ such that the orbits
+\[
+\Gamma(x) = \{\Lambda x|\Lambda\in \Gamma\}  
+\]
+are bounded in $W$. 
+
+If $B$ is nonmeager, then $B=V$ and $\Gamma$ is equicontinuous.
+\end{Theorem}
+\begin{proof}
+	We pick balanced neighbourhoods $Z$ and $U$ of $0_W$ such that $\overline{U}+\overline{U}\subseteq Z$. Then we set
+	\[
+		E=\bigcap_{\Lambda\in \Gamma} \Lambda^{-1}(\overline{U})
+	.\] 
+	If $x\in B$, then $\Gamma(x)\in nU$ for some $n$, thus $x\in n E$. Hence, we have
+	\[
+	B\subseteq \bigcup_{n=1}^\infty n E
+	.\] 
+	Since $B$ is nonmeager, we have at least one $nE$ nonmeager.
+\end{proof}
+\section{idk}
+\begin{Theorem}
+	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is first countable in the weak * topology and hence sequentially compact. 
+\end{Theorem}
+\begin{proof}
+	Let $X =\{v_1,\dots\} \subseteq V$ be dense and $\varphi\in B_1(0)^\text{cl}\subseteq V$.
+
+\end{proof}
+\begin{Theorem}
+	Let $V$ be a Banach space with separable dual $V'$ in the norm topology. Then $V$ is separable. 
+\end{Theorem}
+\begin{Example}
+	$V=c_0$ is separable but $V'=\ell^\infty$ is not.
+\end{Example}
+\begin{Theorem}
+	Pulling back the weak * topology from $V^{\prime\prime}$ to $V$ reproduces the weak topology, but the weak topology is finer than the weak * topology on $V'$.
+\end{Theorem}
+\begin{Theorem}
+	Let $V$ be a normed space.
+	\begin{parts}
+	\item If $V$ is reflexive then $V$ is a Banach space
+	\item If $V$ is reflexive then the weak and weak * topology on $V'$ coincide.
+	\item If $U$ is a closed subspace of a reflexive space $V$ then $U$ is reflexive too.
+	\item Suppose $V$ is complete. Then $V$ is reflexive iff $V'$ is reflexive.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	\begin{parts}
+	\item Clear since $V^{\prime\prime}$ is complete.
+	\item We consider $\Psi\in V^{\prime\prime}$. We have $p_v(\varphi)=|\varphi(v)| = |i(v)\varphi|=\|\Psi(\varphi)|$. But since $E\mapsto n E$ is a homeomorphism, $E$ is nonmeager. However, as an intersection of closed sets, $E$ is closed. Together, this implies that $E$ has an interior point $x$. Then $x-E$ is a neighbourhood of 0, meaning that there exists 
+	\end{parts}
+\end{proof}
+\begin{Theorem}
+	Let $V$ be reflexive. Then $B_1(0)^\text{cl}$ is sequentially compact in the weak topology.
+\end{Theorem}
+\begin{Corollary}
+	Let $V$ be reflexive.
+	\begin{parts}
+	\item A norm-bounded sequence in $V$ has a weakly convergent subsequence.
+	\item Every weak Cauchy sequence converges weakly.
+	\end{parts}
+\end{Corollary}
+\section{Open Mapping \& Closed Graph Theorems}
+\begin{Example}[Continuous bijections are not homeomorphisms]
+	The map $[0,2\pi))\to S^1, t\mapsto e^{it}$ is continuous and bijective, but not a homeomorphism.
+\end{Example}
+\begin{Theorem}
+	Let $\Phi:V\to W$ be a linear map between topological vector spaces. Then $\Phi$ is an open map iff for every zero neighbourhood $Z\subseteq V$ then $\Phi(Z)\subseteq W$ is a zero neighbourhood. It suffices to test this for a basis of zero neighbourhoods in $V$.
+\end{Theorem}
 \end{document}
 
