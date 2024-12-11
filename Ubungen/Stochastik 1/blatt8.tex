@@ -1,0 +1,63 @@
+\begin{Problem}
+	Definieren Sie zwei diskrete Zufallsvariablen, welche	
+	\begin{parts}
+		\item den gleichen Erwartungswert, aber verschiedene Varianzen haben,
+		\item verschiedene Erwartungswerte, aber die gleiche Varianz haben,
+		\item den gleichen Erwartungswert und Varianz, aber unterschiedliche Verteilungen haben.
+	\end{parts}
+\end{Problem}
+
+\begin{proof}
+	\begin{parts}
+		\item Sei $\Omega = \{0,1\}$, $\mathcal{A} = \{\varnothing, \{0\}, \{1\}, \Omega\}$, $\mathbb{P}: \mathcal{A} \to \R$, $\mathbb{P}(\varnothing)=0, \mathbb{P}(\{0\})=\mathbb{P}(\{1\})=0.5$, $\mathbb{P}(\Omega)=1$.
+		
+		$(\Omega, \mathcal{A}, \mathbb{P})$ ist damit ein Wahrscheinlichkeitsraum. Definiere
+		\begin{align*}
+			X&:\Omega \to \R, X(0)=-1, X(1) = 1\\
+			Y&:\Omega\to \R, Y(0) = -2, Y(1) = 2
+		\end{align*}
+	Damit ist $\mathbb{E}[X]=\mathbb{E}[Y]=0$, aber die Varianzen unterschiedlich.
+	\item Sei $\Omega$ wie vorher, und
+			\begin{align*}
+		X&:\Omega \to \R, X(0)=-1, X(1) = 1\\
+		Y&:\Omega\to \R, Y(0) = -2, Y(1) = 0
+	\end{align*}
+damit ist $\mathbb{E}[X]=0\neq -1 =\mathbb{E}[Y]$, aber die Varianzen gleich.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+		\item Es sei $X$ Poisson-verteilt mit Parameter $\lambda > 0$, $X \sim \text{Poi}(\lambda)$, also
+		\[
+		\mathbb{P}(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+		\]
+		Zeigen Sie, dass $\mathbb{E}[X^n] = \lambda \cdot \mathbb{E}[(X + 1)^{n-1}]$ für $n \in \mathbb{N}$. Benutzen Sie dies zur Berechnung der Varianz von $X$.
+		
+		\item Es sei $Z = \sum_{r=1}^\infty X_r$, und $X_r \sim \text{Poiss}(r^{-2})$, also Poisson-verteilt mit Parameter $1/r^2$.  
+		Zeigen Sie, dass $Z$ endlichen Erwartungswert hat und leiten Sie $\mathbb{E}[Z]$ her.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item Es gilt
+		\begin{align*}
+			\mathbb{E}[X^n] &= \sum_{k=0}^\infty k^n \frac{\lambda^k e^{-\lambda}}{k!}\\
+			&=\sum_{k=1}^\infty k^n \frac{\lambda^k e^{-\lambda}}{k!}\\
+			&=\lambda \sum_{k=0}^\infty (k+1)^n \frac{\lambda^k e^{-\lambda}}{(k+1)!}\\
+			&=\lambda \sum_{k=0}^\infty (k+1)^{n-1} \frac{\lambda^k e^{-\lambda}}{k!}\\
+			&= \lambda\mathbb{E}[(X+1)^{n-1}].
+		\end{align*}
+	Die Varianz ist
+	\begin{align*}
+	\text{var}(X) &= \mathbb{E}[(X - \mathbb{E}[X])^2] \\
+	&=\mathbb{E}[X^2]-\mathbb{E}[X]^2 \\ 
+	&=\lambda \mathbb{E}[X+1] - \mathbb{E}[X]^2\\
+	&= \lambda \mathbb{E}[X] + \lambda - \mathbb{E}[X]^2\\
+	&= \lambda + \mathbb{E}[X](\lambda - \mathbb{E}[X])\\
+	&=\lambda.
+\end{align*}
+\item Der Erwartungswert ist linear. Nach dem Satz von monotonen Konvergenz (die Verteilugsfunktionen sind alle positiv) können wir $\mathbb{E}$ und die Summe vertauschen:
+\[\mathbb{E}[Z] = \sum_{r=1}^\infty \mathbb{E}[X_r] = \sum_{r=1}^\infty \frac 1{r^2} = \frac{\pi^2}{6}.\qedhere\]
+	\end{parts}
+\end{proof}
