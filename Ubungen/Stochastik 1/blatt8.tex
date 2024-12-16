@@ -23,6 +23,7 @@
 		Y&:\Omega\to \R, Y(0) = -2, Y(1) = 0
 	\end{align*}
 damit ist $\mathbb{E}[X]=0\neq -1 =\mathbb{E}[Y]$, aber die Varianzen gleich.
+\item Sei $X$ gleichverteilt auf $\{-3, -2, \dots, 3\}$. Der Erwartungswert ist 0 und die Varianz $\sigma^2 = 4$. Sei $Y$ gleichverteilt auf $\{-2, 2\}$. Deren Erwartungswert ist wieder 0. Da $\mathbb{E}[Y^2]=4$, ist die Varianz von $Y$ auch 4. Die Verteilungen sind aber unterschiedlich.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -60,4 +61,61 @@ damit ist $\mathbb{E}[X]=0\neq -1 =\mathbb{E}[Y]$, aber die Varianzen gleich.
 \item Der Erwartungswert ist linear. Nach dem Satz von monotonen Konvergenz (die Verteilugsfunktionen sind alle positiv) können wir $\mathbb{E}$ und die Summe vertauschen:
 \[\mathbb{E}[Z] = \sum_{r=1}^\infty \mathbb{E}[X_r] = \sum_{r=1}^\infty \frac 1{r^2} = \frac{\pi^2}{6}.\qedhere\]
 	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	\begin{parts}
+		\item Es sei $(\Omega, \mathcal{A}, \mu)$ ein Maßraum und $(f_n) \subseteq \mathcal{M}^+$. Zeigen Sie, dass
+		\[
+		\int_\Omega \sum_{n=1}^\infty f_n \, d\mu = \sum_{n=1}^\infty \int_\Omega f_n \, d\mu.
+		\]
+		
+		\item[(b)] Für $\Omega = \mathbb{N}, \mathcal{A} = \mathcal{P}(\mathbb{N})$, betrachten wir $X(\omega) = \omega$ und für $\mathbb{P}$ das Wahrscheinlichkeitsmaß bestimmt durch
+		\[
+		\mathbb{P}(X = j) = \mathbb{P}(\{j\}) = \frac{1}{\zeta(\alpha + 1)} \frac{1}{j^{\alpha+1}}, \quad j \in \mathbb{N},
+		\]
+		mit $\alpha > 1$ und der Riemannschen Zeta-Funktion
+		\[
+		\zeta(s) = \sum_{k=1}^\infty k^{-s}, \quad s > 1.
+		\]
+		Zeigen Sie, dass $\mathbb{E}[X] = (\zeta(\alpha + 1))^{-1} \zeta(\alpha)$ gilt.
+	\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item $g_n = \sum_{k=1}^n f_n$ ist messbar und monoton steigend. Damit gilt nach dem Satz der monotonen Konvergenz
+		\[\int_\Omega \sum_{n=1}^\infty f_n\dd{\mu} = \int_\Omega \lim_{n\to\infty} g_n \dd{\mu} = \lim_{n\to\infty} \int_\Omega g_n \dd{\mu} = \sum_{n=1}^\infty \int_\Omega f_n \dd{\mu}\]
+		\item Es gilt
+		\begin{align*}
+			\mathbb{E}[X]&= \sum_{k=1}^\infty k \mathbb{P}(X = k)\\
+			&=\sum_{k=1}^\infty \frac{k}{\zeta(\alpha + 1)}\frac1{k^{\alpha + 1}}\\
+			&=\frac 1{\zeta(\alpha+1)}\sum_{k=1}^\infty \frac{1}{k^\alpha}\\
+			&= \frac{\zeta(\alpha)}{\zeta(\alpha+1)}.\qedhere
+		\end{align*}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Sei \( X \) eine \( \mathbb{N} \)-wertige Zufallsvariable. Beweisen Sie, dass
+	\[
+	\sum_{k=1}^\infty \mathbb{P}(X \geq k) = \mathbb{E}[X],
+	\]
+	wobei die Reihe auf der linken Seite genau dann konvergiert, wenn der Erwartungswert der Zufallsvariablen auf der rechten Seite existiert. 
+	
+	Berechnen Sie mit Hilfe der Formel (erneut) den Erwartungswert einer geometrischen Verteilung.
+\end{Problem}
+\begin{proof}
+	\begin{align*}
+		\mathbb{E}[X] &= \sum_{k=1}^\infty k \mathbb{P}(X = k)\\
+		&=\sum_{k=1}^\infty k [\mathbb{P}(X \ge k ) - \mathbb{P}(X \ge k+1)]\\
+		&=\lim_{n\to \infty}\sum_{k=1}^n k [\mathbb{P}(X \ge k) - \mathbb{P}(X \ge k+1)]\\
+		&=\lim_{n\to \infty}[1\mathbb{P}(X\ge 1) - 1\mathbb{P}(X \ge 2)\\
+		&+2\mathbb{P}(X \ge 2) - 2\mathbb{P}(X \ge 3)\\
+		&+3\mathbb{P}(X \ge 3) - 3\mathbb{P}(X \ge 4)\\
+		&+\dots\\
+		&+n\mathbb{P}(X \ge n) - n \mathbb{P}(X \ge n +1)]\\
+		&=\lim_{n\to \infty} \left[\sum_{k=1}^n \mathbb{P}(X \ge n)+ n \mathbb{P}(X \ge n + 1)\right]
+	\end{align*}
+Wenn die erste Reihe konvergiert, muss $n\mathbb{P}(X \ge n+1)\to 0$. Dies beweisen wir durch Widerspruch. Angenommen $n \mathbb{P}(X \ge n + 1)\not\to 0$, also es gibt ein $\epsilon>0$ und Teilfolge $n_k$, sodass $n_k\mathbb{P}(X \ge n_k + 1)>\epsilon\forall k\in \N$. Damit konvergiert die Reihe
+\[\sum_{n_k\in \N }(n_k + 1)\mathbb{P}(X \ge n_k+1)\]
 \end{proof}

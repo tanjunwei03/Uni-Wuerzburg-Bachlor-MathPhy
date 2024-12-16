@@ -146,7 +146,7 @@ In general, we have the following theorem
 \begin{Theorem}
 	Let $A$ be a subset of the topological space $X$. $x\in A^\text{cl}$ if and only if there is a net in $A$ converging to $x$.
 \end{Theorem}
-\subsection{Baire Spaces}
+\subsection{Baire Spaces}\label{subsec:baire}
 	\begin{Definition}[Nowhere Dense]
 		A subset $A$ of a topological space is called nowhere dense if the interior of its closure is open, $(A^\text{cl})^\circ=\varnothing$. 
 	\end{Definition}
@@ -166,6 +166,7 @@ In general, we have the following theorem
 \begin{Definition}[Meager]
 	A subset is called meager if it is a countable union of nowhere dense sets.
 \end{Definition}
+Note that the entire topological space can be meager - for example, consider $\Q$ with its usual topology. Then $\Q$ is a countable union of singletons, which are themselves nowhere dense. Thus, $\Q$ is meager in $\Q$.
 \begin{Theorem}\label{thm:bairecond}
 	Let $(M, \mathcal{M})$ be a topological space. Then the following are equivalent:
 	\begin{parts}
@@ -198,8 +199,12 @@ In general, we have the following theorem
 	\begin{Definition}[Baire Spaces]
 		A topological space $X$ is a Baire space if one (and hence all) of the conditions of Theorem~\ref{thm:bairecond} hold.
 	\end{Definition}
+Note that if $X$ is a nonempty Baire space, then it cannot be meager. For if $X$ were a Baire space, we would have
+\[X = \bigcup_{n=1}^\infty U_n\]
+with all $U_n$s meager. Then $X=\bigcup_{n=1}^\infty \overline{U_n}$, which is a contradiction, since this is a union of closed subsets without interior points, which must have empty interior, but the interior of $X$ is $X$, which is nonempty.
+
 Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a space is a Baire space before even beginning to apply this theorem. Thus, we seek easier conditions with which we can verify that a space is a Baire space. These theorems are known as Baire's Theorems.
-	\begin{Theorem}[Baire I]
+	\begin{Theorem}[Baire I]\label{thm:baire1}
 		A complete metric space $(M,d)$ is a Baire space.
 	\end{Theorem}
 \begin{proof}
@@ -207,7 +212,7 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 	\[\bigcap_{i=1}^\infty B_{\epsilon_n}(p_n)^\text{cl}\subseteq U \cap \bigcap_{i=1}^\infty O_n\]
 	But since the metric space is complete, the intersection on the left side is nonempty. Thus, the intersection on the right is nonempty. Since $U$ was an arbitrary open set, the intersection is dense. 
 \end{proof}
-	\begin{Theorem}[Baire II]
+	\begin{Theorem}[Baire II]\label{thm:baire2}
 		A locally compact Hausdorff space $(M, \mathcal{M})$ is a Baire space.
 	\end{Theorem}
 	\section{Topological Vector Spaces}
@@ -311,6 +316,12 @@ Now, we move on to the more important result:
 	\begin{proof}
 Suppose $v,w\in W^\text{cl}$. Then there are nets $(v_i)_{i\in I}$ converging to $v$ and $(w_i)_{i\in I}$ converging to $w$. Then $(v_i+w_i)_{i\in I}$ is a net converging to $v+w$, hence $v+w$ is still in $W^\text{cl}$. 
 	\end{proof}
+\begin{Theorem}
+	All proper subspaces $S$ of a topological vector space $V$ have empty interior.
+\end{Theorem}
+\begin{proof}
+	Suppose not. Then for some $v\in S$ we have an open set $v\in U\subseteq S$. Then $U-v$ is a neighbourhood of 0. By the continuity of multiplication, since $0\cdot v = 0$ for all $v\in V$, we have $t\cdot v\in U - v$ for $t\in K_r(0)$. Then $t^{-1}(tv)\in S$. 
+\end{proof}
 	\section{Banach Spaces}
 	\subsection{Norms \& Seminorms}
 	\begin{Definition}[Norm]
@@ -361,6 +372,15 @@ Thus, given a seminorm on a vector space, we can construct a new vector space th
 	
 	Equivalently, we can consider open balls in place of $Z$ and $U$. This is then equivalent to the second condition.
 \end{proof}
+Note that we could have proven a weaker theorem in the case of topological vector spaces. To do that, we would define boundedness as follows:
+\begin{Definition}
+	A function $\Lambda:V\to W$ between topological vector spaces is bounded if it maps bounded sets into bounded sets
+\end{Definition}
+where a bounded set is defined as
+\begin{Definition}
+	A subset $U$ of a topological vector space $V$ is bounded if for each neighbourhood $V$ of $0$ there exists $t\in \mathbb{K}$ such that $U\subseteq tV$. 
+\end{Definition}
+We can see that boundedness in the normed setting implies boundedness in the general topological vector space setting. In general, however, continuity implies boundedness, and the converse is not true. Thus, we will only discuss this in Banach spaces in the future. 
 	\begin{Definition}[Operator Norm]
 		The operator norm $\|A\|$ is defined as
 		\[\|A\|=\inf \{c| \|Av\| \le c\|v\|~\forall v\in V\}\]
@@ -917,14 +937,14 @@ showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for al
 \begin{Definition}[Equicontinuity]
 	Let $V$ and $W$ be topological vector spaces, and $\Gamma$ a collection of linear maps $V\to W$. $\Gamma$ is called equicontinuous if for all neighbourhoods $Z$ of $0_W$, we have a neighbourhood $V$ of $0_V$ such that $\Lambda(V)\subseteq Z$ for all $\Lambda\in \Gamma$.
 \end{Definition}
+\begin{Theorem}\label{thm:uniboundedness}
+	Let $V$ and $W$ be topological vector spaces, $\Gamma$ an equicontinuous collection of linear maps, and $E$ a bounded subset of $V$. Then there exists a bounded $F$ in $W$ such that $\Lambda(E)\subseteq V$ for all $\Lambda\in \Gamma$.
+\end{Theorem}
 \begin{proof}
 	Let $F$ be the union of the sets $\Lambda(E)$ for all $\Lambda\in \Gamma$. We show that this is bounded. By equicontinuity, we choose $Z\ni 0_W$ open, $U\ni 0_V$ open such that $\Lambda(U)\subseteq Z$ for all $\Lambda\in \Gamma$. Since $E$ is bounded, we must have $E\subseteq tU$ for some $t\in \R$. Then $\Lambda(E)\subseteq t \Lambda(U)\subseteq tW$ and thus $F$ is bounded.
 \end{proof}
-\begin{Theorem}
-	Let $V$ and $W$ be topological vector spaces, $\Gamma$ an equicontinuous collection of linear maps, and $E$ a bounded subset of $V$. Then there exists a bounded $F$ in $W$ such that $\Lambda(E)\subseteq V$ for all $\Lambda\in \Gamma$.
-\end{Theorem}
 \begin{Theorem}[Banach-Steinhaus]
-Suppose $V$ and $W$ are topologicl vector spaces, and $\Gamma$ is a collection of linear maps $V\to W$. Let $B$ be the set of all $v\in V$ such that the orbits
+Suppose $V$ and $W$ are topological vector spaces, and $\Gamma$ is a collection of linear maps $V\to W$. Let $B$ be the set of all $v\in V$ such that the orbits
 \[
 \Gamma(x) = \{\Lambda x|\Lambda\in \Gamma\}  
 \]
@@ -941,7 +961,28 @@ If $B$ is nonmeager, then $B=V$ and $\Gamma$ is equicontinuous.
 	\[
 	B\subseteq \bigcup_{n=1}^\infty n E
 	.\] 
-	Since $B$ is nonmeager, we have at least one $nE$ nonmeager.
+	Since $B$ is nonmeager, we have at least one $nE$ nonmeager. However, since $E\mapsto n E$ is a homeomorphism, $E$ must itself be nonmeager. Since $E$ is closed, this means it has an interior point $x$. Then $x-E$ contains an open neighbourhood $V$ of $0$, and
+	\[\Lambda(V)\subseteq \Lambda(x)- \Lambda (E)\subseteq \overline{U}-\overline{U}\subseteq W\]
+	for all $\Lambda\in \Gamma$. This shows equicontinuity and hence uniform boundedness by Theorem \ref{thm:uniboundedness}.
+\end{proof}
+Often, the fact that $B$ is nonmeager comes from properties of the space. Again, note as we did in \ref{subsec:baire} that even being pointwise bounded everywhere does not necessarily imply that $B$ is nonmeager, as a topological space $X$ needs not be nonmeager unless it is a Baire space. By Theorem \ref{thm:baire1}, we have the following corollary:
+\begin{Corollary}
+	Let $V$ be a Banach space, $W$ a topological vector space and $\Gamma$ be a collection of functions $V\to W$. If the sets
+	\[\{\Lambda v| \Lambda\in \Gamma\}\]
+	are bounded for all $v\in V$, then $\Gamma$ is equicontinuous. 
+\end{Corollary}
+As another corollary, let us relate this to the operator norm:
+\begin{Corollary}
+	Let $V$ and $W$ be Banach spaces, $\Gamma$ a collection of linear functions $V\to W$. If
+	\[\sup_{\Lambda\in \Gamma}\| \Lambda v\| < \infty\]
+	for all $v\in V$, then there exists $M$ such that $\| \Lambda v\| \le M \|v\|$ for all $v\in V, \Lambda\in \Gamma$
+\end{Corollary}
+\begin{proof}
+	The theorem directly yields, for $\|v \| \le 1$ and $\Lambda\in \Gamma$, a constant $M$ such that
+	\[\|\Lambda v\| < M.\]
+	Linearity yields the relation
+	\[\| \Lambda v\| < M \|v\|\]
+	for all $v\in V$.
 \end{proof}
 \section{idk}
 \begin{Theorem}
@@ -987,10 +1028,28 @@ If $B$ is nonmeager, then $B=V$ and $\Gamma$ is equicontinuous.
 \end{Corollary}
 \section{Open Mapping \& Closed Graph Theorems}
 \begin{Example}[Continuous bijections are not homeomorphisms]
-	The map $[0,2\pi))\to S^1, t\mapsto e^{it}$ is continuous and bijective, but not a homeomorphism.
+	The map $[0,2\pi)\to S^1, t\mapsto e^{it}$ is continuous and bijective, but not a homeomorphism.
 \end{Example}
 \begin{Theorem}
 	Let $\Phi:V\to W$ be a linear map between topological vector spaces. Then $\Phi$ is an open map iff for every zero neighbourhood $Z\subseteq V$ then $\Phi(Z)\subseteq W$ is a zero neighbourhood. It suffices to test this for a basis of zero neighbourhoods in $V$.
 \end{Theorem}
+The condition above is also known as the property of being \uline{open at 0}. Because of the translational invariance, if $\Phi$ is open at 0, it is also open at all points in $v$, and hence it is open. Open maps in Banach spaces are completely characterised through the following theorem
+\begin{Theorem}
+	Let $L:X\to Y$ be a continuous linear transformation between Banach spaces $V$ and $W$. Then the following are equivalent:
+	\begin{parts}
+		\item $L$ is surjective.
+		\item $L$ is open.
+		\item For every $w\in W$ there exists a solution $v\in V$ to the equation $Lv = w$.
+		\item There is a constant $C>0$ such that for every $w\in W$ there is a solution $v\in V$ to the equation $Lv = w$ that satisfies $\|v \| \le C \|w\|$. 
+		\item There is a constant $C>0$ and a dense class of vectors $P\subseteq W$ such that the previous condition applies to this dense subclass.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	Clearly, (c) is equivalent to (a). (d) also clearly implies (c) and (e). 
+	
+	Now we show equivalence of (b) and (d). Suppose (d). Then we have openness at 0, which then implies openness. Conversely, suppose (b). Then we know that $L(B_1(0_V))$ contains an open ball $B_r(0_W)$. This then implies (d) by linearity. 
+	
+	Now suppose (e). We show (d) by observing that we can approximate $w\in W$ arbitrarily well by vectors from $P$. Suppose therefore that $L(v_n) = p_n$ for $n\in \N$, $p_n\in P$, and $p_n\to w$. Then $v_n$ is Cauchy, because $\| L(v_n - v_m)\|< \epsilon$
+\end{proof}
 \end{document}
 
