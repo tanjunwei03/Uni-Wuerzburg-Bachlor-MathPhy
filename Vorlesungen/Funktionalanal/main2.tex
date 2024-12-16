@@ -1,0 +1,275 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=section,style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+\begin{document}
+	\title{Funktionalanalysis Notizen}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\tableofcontents
+\begin{Theorem}
+	Let $\mathcal{H}$ be a pre-Hilbert space.
+	\begin{parts}
+		\item If $\mathbb{K}=\R$, we have
+			\[
+			\langle \phi, \psi\rangle = \frac{1}{4}\left( \|\phi+\psi\|^2 - \|\phi - \psi\|^2 \right) 
+			.\] 
+		\item If $\mathbb{K}=\C$, we have
+			\[
+				\langle \phi, \psi\rangle = \frac{1}{4}\sum_{r=0}^3 i^r \| i^r \phi + \psi\|
+			.\] 
+	\end{parts}
+\end{Theorem}
+\begin{Theorem}
+	Let $\mathcal{H}$ be a normed space. Then there exists a positive definite $\langle \cdot, \cdot \rangle$ on $\mathcal{H}$ inducing the norm iff the norm satisfies the parallelogram identity
+	\[
+	\|\phi+\psi\|^2 + \|\phi - \psi\|^2 = 2 \|\phi\|^2 + 2 \|\psi\|^2
+	.\] 
+\end{Theorem}
+\begin{Definition}
+	Let $U:\mathcal{H}\to \mathcal{K}$ be a linear map between pre-Hilbert spaces. Then $V$ is called an isometry if
+	\[
+		\langle U \phi, U \psi\rangle_{\mathcal{K}}= \langle \phi, \psi\rangle_\mathcal{H}
+	.\] 
+	A surjective isometry is called unitary.
+\end{Definition}
+Note that isometries are always injective, as preserving the inner product means that the norm is preserved, and thus it must be injective.
+\begin{Definition}[Angle]
+	If $\mathbb{K}=\R$ then the Cauchy-Schwarz inequality gives us
+	\[
+	-1 \le \frac{\langle \phi, \psi\rangle}{\|\phi\|\|\psi\|}\le 1
+	.\] 
+	Thus, it is possible to define an angle as the arc cosine of the quantity in the previous equation.  We define two vectors to be orthogonal if the inner product vanishes.
+\end{Definition}
+\begin{Definition}[Orthogonal Complement]
+	Let $\mathcal{H}$ be a pre-hilbert space.
+	\begin{parts}
+	\item We call two vectors $\phi,\psi$ orthogonal if $\langle \phi, \psi\rangle = 0$.
+	\item For a subset $U\subseteq \mathcal{H}$ we define the orthogonal complement
+		\[
+		U^\perp = \{\phi\in \mathcal{H}| \langle \psi, \phi\rangle = 0~\forall \psi\in U\} \subseteq \mathcal{H}
+		.\] 
+	\end{parts}
+\end{Definition}
+\begin{Theorem}
+	Let $\mathcal{H}$ be a pre-Hilbert space and $U,V\subseteq \mathcal{H}$. 
+	\begin{parts}
+	\item $U \cap U^\perp= \{0\} $ if $0\in U$ and $\varnothing$ otherwise.
+	\item $U^\perp$ is a closed subspace.
+	\item $V\subseteq U \implies U^\perp \subseteq V^\perp$.
+	\item $U\subseteq (U^\perp)^\perp\subseteq U^{\perp\perp}$
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	\begin{parts}
+	\item Clear
+	\item It is closed since it is the intersection of the kernels of the linear functionals $\langle \cdot, \phi\rangle$. The subspace property follows just as it does in normal linear algebra. 
+	\item Clear
+	\item Follows by direct verification.
+	\end{parts}
+\end{proof}
+\begin{Corollary}
+	\begin{parts}
+	\item $U^{\perp\perp\perp} = U^\perp$.
+	\item $U^\perp + U^{\perp\perp} = U^\prep \oplus U^{\perp\perp}$
+	\end{parts}
+\end{Corollary}
+It is important that it is not necessarily true that $U^\perp\oplus U^{\perp\perp}=\mathcal{H}$. In finite dimensions, we have
+\[
+	\dim U^\perp = \text{codim }U
+.\] 
+Since $U\subseteq U^{\perp\perp}$, we have
+\[
+	\text{dim }U^{\perp\perp} + \text{dim }U^\perp \ge \text{dim }U + \text{codim }U = \text{dim }\mathcal{H}
+.\] 
+If we had $\text{dim }U^{\perp\perp}= \text{dim }U$, we would have $\mathcal{H}=U^{\perp\perp}\oplus U^\perp$.
+\begin{Remark}[Quantum Mechanics]
+	One-dimensional subspaces of $\mathcal{H}$ correspond to states of a quantum mechanical system.
+
+	For a subspace $U\subseteq \mathcal{H}$, we define the property $U$ to be certainly satisifed by all states in $U$, we can understand the orthogonal complement $U^\perp$ as the states such that $U$ is certainly false.
+
+	Thus, it is desirable that $U^\perp \oplus U^{\perp\perp}=\mathcal{H}$.
+\end{Remark}
+\subsection{Examples}
+\begin{Example}[Standard inner product on $\mathbb{K}^n$]
+	We define the inner product on $\mathbb{K}^n$ by
+	\[
+		\langle v, w\rangle = \sum_{i=1}^n \overline{v_i}w_i
+	.\] 
+	If  $e_1, \dots, e_n$ is the standard basis, we have
+	\[
+		\langle e_i, e_j\rangle = \delta_{ij}
+	.\]
+	We know that any finite dimensional pre hilbert space is isometrically homeomorphic to this space.
+\end{Example}
+\begin{Example}
+	Let $X\subseteq \R^n$ be open with compact closure $X^\text{cl}=K$. Then, for $\mathcal{C}(K, \mathbb{K})$, 
+	\[
+		\langle \phi, \psi\rangle = \int_K \overline{\phi(x)}\psi(x)\dd[n]{x}
+	.\] 
+	We require openness of $X$ so that there are sufficiently many functions that are nonzero on an open set, thus contributing significantly to the integral on the right side. 
+\end{Example}
+\begin{Example}
+	If $X\subseteq \R^n$ is open, we can consider $\mathcal{C}_0^k(X, \mathbb{K}),k \in \N_0\cup \{\infty\} $. Then we define an inner product through
+	\[
+		\langle \phi, \psi\rangle = \int_X \overline{\phi(x)}\psi(x)\dd[n]{x}
+	.\] 
+\end{Example}
+In general, we have, for $k\ge \ell$,
+\[
+	\mathcal{C}_0^\infty (X) \subseteq \mathcal{C}_0^k(X)\subseteq \mathcal{C}_0^{\ell}\subseteq \mathcal{C}_0(X)
+.\] 
+\begin{Example}[Schwartz Space]
+	For $\phi\in \mathcal{C}^\infty(\R^n)$, we define
+	\[
+		r_{m, \ell}(\phi) = \sup_{x\in \R^n,|\alpha|\le \ell}(1+x^2)^{m / 2} \left| \pdv[\alpha]{\phi}{x}(x) \right| \in [0,\infty]
+	.\] 
+	Here, $x^2 = \langle x,x \rangle$, $m, \ell \in \N_0$, $\alpha\in \N_0^n$ is a multi-index.
+
+	The Schwartz space is defined by
+	\[
+		\varphi(\R^n) = \{\phi\in \mathcal{C}^\infty(\R^n)|r_{m,\ell}(\phi)<\infty~\forall m, l\} 
+	.\] 
+	This is to be understood as the functions that decay faster than all polynomials. For example, the continuous functions with compact support are in the Schwartz space. Additionally, theGaussian function is in the Schwartz space. We can define an inner product by
+	\[
+		\langle \phi, \psi\rangle_{m, \alpha} = \int (1+x^2)^{\frac{m}{2}}\overline{\pdv[\alpha]{\phi}{x}(x)}\pdv[\alpha]{\psi}{x}\dd[n]{x}
+	.\] 
+\end{Example}
+\begin{Example}
+	Consider $\mathcal{C}(\mathbb{S}^1, \mathbb{K})$. SInce we have an angle coordinate, we can define an inner product by
+	\[
+		\langle \phi, \psi\rangle = \frac{1}{2\pi}\int_0^{2\pi} \overline{\phi(\varphi)}\psi(\varphi)\dd{\varphi}
+	.\] 
+	Then we define the Fourier modes
+	\[
+		e_n(\varphi) = e^{in\phi},~n\in \Z
+	.\] 
+	Any two Fourier modes are normalized to length 1 and pairwise orthogonal. 
+\end{Example}
+\begin{Example}
+	Given $[a,b]\subseteq \R$ and $c\in (a,b)$, we define
+	\[
+		U=\{\phi\in \mathcal{C}([a,b], \mathbb{K})|\text{supp }\phi \subseteq [a,c]\} 
+	.\] 
+	It follows that its orthogonal complement is
+	\[
+		U^\perp = \{\phi\in \mathcal{C}([a,b], \mathbb{K})|\text{supp }\phi\subseteq [c,b]\}
+	.\] 
+	Now, for both $\phi\in U^\perp$ and $\phi \in U=U^{\perp\perp}$ we have $\phi(c)=0$. Thus, the constant 1-function is not in $U^\perp \oplus U^{\perp\perp}$.
+\end{Example}
+\begin{Example}
+	$\mathcal{H}=\mathcal{C}_0^\infty(\R)$ is not complete.
+
+	We take a sequence of smooth bump functions that converge to the characteristic function of a closed interval. Thus, the space of smooth functions is not complete.
+
+	Its completion is the Lebesgue $L^2(\R)$ space.
+\end{Example}
+\begin{Definition}[Hilbert Space]
+	A complete pre-Hilbert space is called a Hilbert space.
+\end{Definition}
+\begin{Corollary}
+	A Banach space s a Hilbert space iff it satisfies the parallelogram identity.
+\end{Corollary}
+\begin{Theorem}
+	Let $\mathcal{H}$ be a pre-Hilbert space. 
+	\begin{parts}
+	\item The completion $\hat{\mathcal{H}}$ of $\mathcal{H}$ is a Hilbert space such that the inclusion is isometric for $\langle \cdot, \cdot, \rangle$.
+	\item $\hat{\mathcal{H}}$ is a Banach space with norm satisfying parallelogram identity.
+	\item $\hat{\mathcal{H}}$ is the unique Hilbert space containing $\mathcal{H}$ as a dense subset up to isometric isomorphism.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	The parallelogram identity holds for all $\phi,\psi\in \mathcal{H}\subseteq \hat{\mathcal{H}}$. Thus, it is satisfied on a dense subset of $\hat{\mathcal{H}}$. By continuity, it holds on $\hat{\mathcal{H}}$.
+The conclusions then follow from the analogous conclusions for Banach spaces.
+\end{proof}
+\begin{Theorem}
+	Let $\mathcal{H}$ be a pre-Hilbert space. Then $\langle\cdot, d\cot\rangle$ is uniformly continuous on $B_R(0)\times B_r(0)$ for all $R>0$.
+\end{Theorem}
+\begin{proof}
+	By setting $\delta=\frac{\epsilon}{2R}$, and considering $\|\phi-\phi'\|<\delta, \|\psi- \psi'\|<\delta$, we have
+	\[
+	|\langle \phi, \psi\rangle - \langle \phi', \psi'\rangle| < 2R\delta = \epsilon
+	.\] 
+\end{proof}
+\begin{Example}
+	Generalize $\ell_2=\ell_2(\N)$. Define $I$ an index set, and consider
+	\[
+		\mathbb{K}^{(I)}=\{\phi\in\text{Map}(I, \mathbb{K})|\phi_i=\phi(i)=0\text{ for all but finitely many}i\in I\} 
+	.\] 
+	Thus, $\mathbb{K}^{(I)}$ is the direct sum of $I$ copies of $\mathbb{K}$.
+
+	We can define basis $e_i$ by $e_i(j)=\delta_{ij}$. These form a basis. Then, we define the inner product by
+	\[
+		\langle \phi, \psi\rangle = \sum_{i\in I}\overline{\phi_i}\psi_i
+	.\] 
+\end{Example}
+\begin{Example}[$\ell^2(I)$ ]
+	Let $I$ be a nonempty index set. Then define
+	\[
+		\ell^2(I, \mathbb{K}) = \{\phi\in \text{Map}(I, \mathbb{K})|\phi_i(0)\text{ for all but coutably many }i\in I\text{ and }\sum_{i\in I}|\phi_i|^2<\infty\} 
+	.\] 
+\end{Example}
+	\end{document}
