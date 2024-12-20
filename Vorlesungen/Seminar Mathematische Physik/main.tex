@@ -60,7 +60,7 @@
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	\tableofcontents
+
 \begin{Definition}
 	A stochastic differential equation is a (formal) equation of the form
 	\begin{equation}\label{eq:SDEdiff}
@@ -75,13 +75,117 @@ This definition allows is to write down the mathematically rigorous definition o
 	We say that the stochastic process $X_t$ is a \emph{solution} of the SDE \eqref{eq:SDEdiff} if
 	\[X_t = X_0+\int_0^t b(t, X_s)\dd{s}+ \int_0^t \sigma(t, X_s)\dd{B_s}\]
 \end{Definition}
-At this point, it must be said that there is some ambiguity in this - in particular, we must specify whether the second integral is to be interpreted in the Stratonovich or Itô sense. Here, we will consider the Itô integral only.
+At this point, it must be said that there is some ambiguity in this - in particular, we must specify whether the second integral is to be interpreted in the Stratonovich or Itô sense. There are some other interpretations of SDEs proposed in current research \cite{Shi_2012}, but we will also not consider them here. Here, we will consider the Itô integral only.
 
 There are, as usual, two questions when it comes to such differential equations: Firstly, how do we solve them? Secondly, under what conditions do we have existence and uniqueness?
 
 The answer to the first question follows very much like the case of an ordinary differential equation. An ordinary differential equation is integrated most often by the fundamental theorem of calculus. Thus, we turn to the stochastic variation, the Itô formula, for answers.
 \begin{Theorem}[The 1-Dimensional Itô Formula]
-	Suppose $X_t$ is an Itô process defined by the 
+	Suppose $X_t$ is an Itô process defined by the formula
+	\[\dd{X_t}=u\dd{t}+v\dd{B_t}.\]
+	Let $g(t,x)\in C^2([0,\infty)\times \R)$. Then
+	\[Y_t=g(t, X_t)\]
+	is also an Itô process, and
+	\[\dd{Y_t}=\pdv{g}{t}(t, X_t)\dd{t}+\pdv{g}{x}(t, X_t)\dd{X_t}+\frac 12 \pdv[2]{g}{x}(t, X_t)\cdot (\dd{X_t})^2\]
+	where $(\dd{X_t})^2$ is computed according to the rules $\dd{t}\cdot \dd{t} = \dd{t}\cdot \dd{B_t}=0$ and $\dd{B_t}\cdot \dd{B_t}=\dd{t}$.
 \end{Theorem}
+This leads us to our first, and most fundamental solution method, both of stochastic and of deterministic equations - guessing the solution. We begin with a simple population model as an example.
+\begin{Example}
+	A model of a population is given by the stochastic differential equation
+	\[\dv{N_t}{t} = r N_t + \alpha W_t N_t.\]
+	Here, $r,\alpha$ are constants and $W_t$ is white noise.
+\end{Example}
+This is the well known model for a population, except that we have allowed $r$ to vary by a white noise term. The solution in the nonstochastic limit is given by a simple exponential. To solve this, we first rewrite the SDE in standard form:
+\[\dd{N_t}=r N_t\dd{t}+\alpha N_t \dd{B_t},\]
+or
+\[\frac{\dd{N_t}}{N_t} = r \dd{t} + \alpha \dd{B_t}.\]
+Inspired by the solution in the deterministic case, we guess $g(t, x)=\ln x$ in Ito's formula, and let $Y_t=g(t, N_t)$. Then, we have
+\[\dd{Y_t}=\frac{\dd{N_t}}{N_t}+\frac 12 \alpha^2 \dd{t}.\]
+Substituting, we have
+\[\dd{Y_t} = \left(r- \frac 12\alpha^2 \right)\dd{t} +\alpha B_t\]
+which integrates easily to yield
+\[N_t = N_0 \exp\left(\left(r - \frac 12 \alpha^2\right)t+\alpha B_t\right).\]
+Clearly, for $\alpha=0$, this reduces to the well known exponential solution. This process is known as \uline{geometric Brownian motion}, which, for example, is a solution to the Black-Scholes equation~\cite{inbook}.
+
+Now, we turn to the questions of existence and uniqueness. Recall the basic theorem for existence and uniqueness of a deterministic differential equation
+\begin{Theorem}[Picard-Lindelöf]
+	Let $\dot{x} = f(t,x)$ be a differential equation with $f$ defined on a rectangle $[a,b]\times \R^n$. If $f$ is locally Lipschitz continuous in $x$, with Lipschitz constant independent of time, and continuous in time, then the differential equation has a unique global solution on $[a,b]$.
+\end{Theorem}
+We prove the uniqueness similar to in \cite{rudin1976principles}. First, we require an inequality for deterministic differential equations known as Grönwall's inequality:
+\begin{Lemma}[Grönwall's Inequality]\label{lemma:Gronwallclassic}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t)\le \beta(t)u(t),\]
+	on an interval $[a,b]$. Then $\psi(t)$ is bounded by the solution of the ODE
+	\[v'(t)=\beta(t)v(t)\]
+	for all time:
+	\[\psi'(t)\le \psi(a)\exp\left(\int_a^t \beta(s)\dd{s}\right)\]
+\end{Lemma}
+\begin{proof}
+	We define $v(t)=\exp\left(\int_a^t \beta(s)\dd{s}\right)$. Note that $v$ satisfies the differential equation $v'(t)=\beta(t)v(t)$ and is always strictly greater than $0$. 
+	
+	Then we consider the derivative of $u(t)/v(t)$:
+	\[\dv{t}\frac{u(t)}{v(t)}=\frac{u'(t)v(t)-v'(t)u(t)}{v(t)^2}=\frac{u'(t)-\beta(t)u(t)}{v(t)}\le 0\]
+	Thus the function $u(t)/v(t)$ starts at $1$ and is strictly decreasing, which proves the above inequality.
+\end{proof}
+\begin{Lemma}[Generalized Grönwall's Inequality]
+	Statement from \url{https://math.stackexchange.com/questions/4773818/generalized-gronwall-inequality-covering-many-different-applications}:
+	
+	Suppose $\psi$ is a function on $[a,b]$ that satisfies the differential inequality
+	\[\psi'(t)\le F(\psi(t))\]
+	with $F\in C^1(\R)$, while $v$ satisfies the differential equation
+	\[v'(t)=F(v(t)),\qquad v(a)=\psi(a).\]
+	Then $\psi(t) \le v(t)$.
+\end{Lemma}
+\begin{proof}
+	Define $G:\R^2 \to \R$ by
+	\[G=\begin{cases}
+		\frac{F(x)-F(y)}{x-y} & x\neq y,\\
+		F'(x) & x=y.
+	\end{cases}\]
+	Since $F$ is $C^1$, $G$ is continuous. Then we define $\beta(t)=G(\psi(t), v(t))$ and $w(t)=u(t)-v(t)$. Then
+	\[w'(t)=u'(t)-v'(t)\le F(u(t))-F(v(t))=[u(t)-v(t)]G(u(t),v(t))=\beta(t)w(t).\]
+	By the classical version of Grönwall's Inequality \ref{lemma:Gronwallclassic}, we have
+	\[w(t)\le w(0)\exp\left(\int_a^t \beta(s)\dd{s}\right)=0,\]
+	as desired.
+\end{proof}
+\begin{Corollary}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t) \le \alpha'(t)+\beta(t)\psi(t).\]
+	Then
+	\[\psi(t)\le \alpha(t)+\int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\]
+\end{Corollary}
+\begin{proof}
+	We just need to show that the second function is a solution to the differential equation obtained by replacing the inequality with an inequality:
+	\begin{align*}
+		&\dv{t}\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right]\\
+		=&\alpha'(t)+\alpha(t)\beta(t)+\int_a^t \alpha(s)\beta(s)\beta(t)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\\
+		=&\alpha'(t)+\beta(t)\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right].\qedhere
+	\end{align*}
+\end{proof}
+Then, we define a slightly more useful notion of Lipschitz continuity:
+\begin{Definition}[Linear Growth]
+	A function $g(t, x)$ on $[a,b]\times \R$ is said to satisfy the \uline{linear growth condition in $x$} if there exists $K>0$ such that
+	\[|g(t, x)|\le K(1+|x|)\]
+	for all $t\in [a,b]$ and $x\in \R$.
+\end{Definition}
+Because of the inequality
+\[1+x^2 \le (1+x)^2 \le 2(1+x^2),\]
+the earlier definition is equivalent to the following definition:
+\begin{Proposition}
+	A function $g(t,x)$ satisfies the linear growth condition if there exists $K>0$ such that
+	\[|g(t,x)|^2 \le K(1+x^2)\]
+\end{Proposition}
+The second definition is more commonly seen. Now, we continue to the proof of uniqueness:
+\begin{Theorem}
+	Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
+	\[\dv{X_t}{t}=f(t, X_t)+\sigma(t, X_t)W_t\]
+	has at most one solution on $[a,b]$.
+\end{Theorem}
+\begin{proof}
+	As one might expect, we assume that we have two solutions $X_t$ and $Y_t$ to the stochastic differential equation. Then $Z_t=X_t-Y_t$ is a stochastic process satisfying the stochastic differential equation, or equivalently integral equation
+	\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\]
+\end{proof}
+\bibliographystyle{ieeetr}
+\bibliography{ref.bib}
 \end{document}
 
