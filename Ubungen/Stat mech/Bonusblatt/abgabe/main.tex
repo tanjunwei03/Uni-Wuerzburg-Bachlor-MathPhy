@@ -1,0 +1,394 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{bbm}
+%\usepackage{subcaption}
+\usepackage{longtable}
+%code
+\usepackage{listings}
+\usepackage{xcolor} 
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{Darkgreen}{rgb}{0,0.4,0}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,    
+	%   rulecolor=,
+	language=[GNU]C++,
+	basicstyle=\scriptsize,
+	upquote=true,
+	aboveskip={1.5\baselineskip},
+	columns=fixed,
+	showstringspaces=false,
+	extendedchars=false,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	frame=single,
+	numbers=left,
+	showtabs=false,
+	showspaces=false,
+	showstringspaces=false,
+	identifierstyle=\ttfamily,
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color[rgb]{0.026,0.112,0.095},
+	stringstyle=\color[rgb]{0.627,0.126,0.941},
+	numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+	%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	language=C++,
+	captionpos=b,
+	tabsize=3,
+	frame=lines,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	breaklines=true,
+	showstringspaces=false,
+	basicstyle=\footnotesize,
+	%  identifierstyle=\color{magenta},
+	keywordstyle=\color[rgb]{0,0,1},
+	commentstyle=\color{Darkgreen},
+	stringstyle=\color{red}
+}
+
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+\title{Statistische Mechanik Bonusblatt}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+\tableofcontents
+
+\section{Aufgabe 1}
+Betrachten Sie eine Kette aus \( N \) Monomeren der Größe \( a \) in zwei Dimensionen. D.h., jedem Glied \( i \) kann der Vektor \( \vec{r}_i \) zugeordnet werden, der in eine beliebige Richtung zeigen kann und die Länge \( |\vec{r}_i| = a \) hat.
+
+\begin{enumerate}
+	\item[a)] Berechnen Sie für dieses System die mittlere quadratische Distanz zwischen Anfangs- und Endpunkt:
+	\[
+	\langle \vec{R}^2 \rangle = \left\langle \left( \sum_{i=1}^N \vec{r}_i \right)^2 \right\rangle
+	\]
+	\textit{Hinweis: Hier lässt sich mit Symmetrie argumentieren. Was ist \( \langle \vec{r}_i \cdot \vec{r}_j \rangle \) für \( i = j \) bzw. für \( i \neq j \)?}
+	
+	\item[b)] Das Polymer befindet sich jetzt in einem Wärmebad mit der Temperatur \( T \). Die beiden Enden des Polymers werden mit einer Kraft \( \vec{F} = (0, 0, F) \) auseinandergezogen, so dass \((1)\) gilt. Berechnen Sie die Korrelationsfunktionen
+	\[
+	\langle \vec{R} \rangle = \left\langle \sum_{i=1}^N \vec{r}_i \right\rangle,
+	\]
+	\[
+	\langle \vec{R}^2 \rangle = \left\langle \left( \sum_{i=1}^N \vec{r}_i \right)^2 \right\rangle
+	\]
+	als Funktion der Kraft und der Temperatur. Wie verhalten sich diese in den Grenzfällen \( aF \ll k_B T \) und \( aF \gg k_B T \)?
+\end{enumerate}
+\begin{proof}
+	\begin{enumerate}[label=\alph*)]
+		\item Für $i\neq j$ sind $\vec{r}_i$ und $\vec{r}_j$ unabhängig. Damit ist
+		\[\langle \vec{r}_i \cdot \vec{r}_j\rangle = \langle \vec{r}_i\rangle \cdot \langle \vec{r}_j\rangle = \vec{0}\cdot \vec{0}=0.\]
+		F\"{u}r $i=j$ ist $\vec{r}_i\cdot \vec{r}_j= |\vec{r}_i|^2=a^2$, was überhaupt nicht stochastisch ist und damit ist $\langle \vec{r}_i \cdot \vec{r}_i\rangle = a^2$. Damit ist
+		\begin{align*}
+			\langle \vec{R}^2 \rangle &= \left\langle \left( \sum_{i=1}^N \vec{r}_i \right)^2 \right\rangle \\
+			&= \left\langle \sum_{i=1}^N \sum_{j=1}^N \vec{r}_i \cdot \vec{r}_j \right\rangle\\
+			&=\sum_{i=1}^N \sum_{j=1}^N \langle \vec{r}_i \cdot \vec{r}_j \rangle\\
+			&=\sum_{i=1}^N \sum_{j=1}^N a^2 \delta_{ij}\\
+			&= Na^2.
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+\section{Aufgabe 2}
+\appendix
+\section{Code}
+\subsection{Code für den Random Walk}
+\lstinputlisting{../main.cpp}
+\subsection{Code für den Self Avoiding Random Walk}
+\lstinputlisting{../mainAvoiding.cpp}
+\section{Simulationsdaten}
+\subsection{Daten für den Random Walk}
+\begin{longtable}{cc}
+	\toprule
+	Zeit ($t$) & $\langle R(t)^2 \rangle $\\\midrule
+	0 & $0\pm 0$ \\\midrule
+	1 & $1\pm 0$ \\\midrule
+	2 & $1.9989\pm 0.0014$ \\\midrule
+	3 & $2.9985\pm 0.0025$ \\\midrule
+	4 & $3.9988\pm 0.0035$ \\\midrule
+	5 & $5.0010\pm 0.0045$ \\\midrule
+	6 & $6.0039\pm 0.0055$ \\\midrule
+	7 & $7.0004\pm 0.0065$ \\\midrule
+	8 & $8.0005\pm 0.0075$ \\\midrule
+	9 & $9.0027\pm 0.0085$ \\\midrule
+	10 & $9.9954\pm 0.0095$ \\\midrule
+	11 & $10.996\pm 0.010$ \\\midrule
+	12 & $11.991\pm 0.011$ \\\midrule
+	13 & $12.995\pm 0.012$ \\\midrule
+	14 & $13.996\pm 0.013$ \\\midrule
+	15 & $14.992\pm 0.014$ \\\midrule
+	16 & $16.003\pm 0.015$ \\\midrule
+	17 & $17.003\pm 0.016$ \\\midrule
+	18 & $18.013\pm 0.018$ \\\midrule
+	19 & $19.008\pm 0.019$ \\\midrule
+	20 & $20.015\pm 0.020$ \\\midrule
+	21 & $21.017\pm 0.021$ \\\midrule
+	22 & $22.022\pm 0.022$ \\\midrule
+	23 & $23.028\pm 0.023$ \\\midrule
+	24 & $24.030\pm 0.024$ \\\midrule
+	25 & $25.032\pm 0.025$ \\\midrule
+	26 & $26.029\pm 0.026$ \\\midrule
+	27 & $27.029\pm 0.027$ \\\midrule
+	28 & $28.030\pm 0.028$ \\\midrule
+	29 & $29.026\pm 0.029$ \\\midrule
+	30 & $30.031\pm 0.030$ \\\midrule
+	31 & $31.035\pm 0.031$ \\\midrule
+	32 & $32.033\pm 0.032$ \\\midrule
+	33 & $33.031\pm 0.033$ \\\midrule
+	34 & $34.036\pm 0.034$ \\\midrule
+	35 & $35.028\pm 0.035$ \\\midrule
+	36 & $36.040\pm 0.036$ \\\midrule
+	37 & $37.022\pm 0.037$ \\\midrule
+	38 & $38.014\pm 0.038$ \\\midrule
+	39 & $39.027\pm 0.039$ \\\midrule
+	40 & $40.032\pm 0.040$ \\\midrule
+	41 & $41.047\pm 0.041$ \\\midrule
+	42 & $42.035\pm 0.042$ \\\midrule
+	43 & $43.022\pm 0.042$ \\\midrule
+	44 & $44.019\pm 0.043$ \\\midrule
+	45 & $45.017\pm 0.044$ \\\midrule
+	46 & $46.013\pm 0.045$ \\\midrule
+	47 & $47.004\pm 0.046$ \\\midrule
+	48 & $48.004\pm 0.047$ \\\midrule
+	49 & $49.010\pm 0.048$ \\\midrule
+	50 & $50.014\pm 0.049$ \\\midrule
+	51 & $51.015\pm 0.050$ \\\midrule
+	52 & $52.027\pm 0.051$ \\\midrule
+	53 & $53.012\pm 0.052$ \\\midrule
+	54 & $54.004\pm 0.053$ \\\midrule
+	55 & $55.010\pm 0.054$ \\\midrule
+	56 & $56.000\pm 0.055$ \\\midrule
+	57 & $57.006\pm 0.056$ \\\midrule
+	58 & $57.997\pm 0.057$ \\\midrule
+	59 & $58.990\pm 0.058$ \\\midrule
+	60 & $60.016\pm 0.059$ \\\midrule
+	61 & $61.009\pm 0.060$ \\\midrule
+	62 & $62.004\pm 0.061$ \\\midrule
+	63 & $63.015\pm 0.062$ \\\midrule
+	64 & $64.016\pm 0.063$ \\\midrule
+	65 & $65.010\pm 0.064$ \\\midrule
+	66 & $66.013\pm 0.065$ \\\midrule
+	67 & $67.037\pm 0.066$ \\\midrule
+	68 & $68.036\pm 0.068$ \\\midrule
+	69 & $69.043\pm 0.069$ \\\midrule
+	70 & $70.039\pm 0.070$ \\\midrule
+	71 & $71.059\pm 0.071$ \\\midrule
+	72 & $72.070\pm 0.072$ \\\midrule
+	73 & $73.074\pm 0.073$ \\\midrule
+	74 & $74.068\pm 0.074$ \\\midrule
+	75 & $75.079\pm 0.075$ \\\midrule
+	76 & $76.103\pm 0.076$ \\\midrule
+	77 & $77.095\pm 0.077$ \\\midrule
+	78 & $78.113\pm 0.078$ \\\midrule
+	79 & $79.104\pm 0.079$ \\\midrule
+	80 & $80.109\pm 0.080$ \\\midrule
+	81 & $81.099\pm 0.081$ \\\midrule
+	82 & $82.111\pm 0.082$ \\\midrule
+	83 & $83.120\pm 0.083$ \\\midrule
+	84 & $84.103\pm 0.084$ \\\midrule
+	85 & $85.121\pm 0.085$ \\\midrule
+	86 & $86.109\pm 0.086$ \\\midrule
+	87 & $87.108\pm 0.087$ \\\midrule
+	88 & $88.118\pm 0.088$ \\\midrule
+	89 & $89.110\pm 0.089$ \\\midrule
+	90 & $90.104\pm 0.090$ \\\midrule
+	91 & $91.095\pm 0.091$ \\\midrule
+	92 & $92.099\pm 0.092$ \\\midrule
+	93 & $93.095\pm 0.093$ \\\midrule
+	94 & $94.104\pm 0.094$ \\\midrule
+	95 & $95.111\pm 0.095$ \\\midrule
+	96 & $96.109\pm 0.096$ \\\midrule
+	97 & $97.110\pm 0.097$ \\\midrule
+	98 & $98.100\pm 0.098$ \\\midrule
+	99 & $99.091\pm 0.099$ \\\midrule
+	100 & $100.091\pm 0.10$ \\\midrule
+	101 & $101.10\pm 0.10$ \\\midrule
+	102 & $102.07\pm 0.10$ \\\midrule
+	103 & $103.06\pm 0.10$ \\\midrule
+	104 & $104.06\pm 0.10$ \\\midrule
+	105 & $105.05\pm 0.10$ \\\midrule
+	106 & $106.04\pm 0.11$ \\\midrule
+	107 & $107.05\pm 0.11$ \\\midrule
+	108 & $108.04\pm 0.11$ \\\midrule
+	109 & $109.05\pm 0.11$ \\\midrule
+	110 & $110.07\pm 0.11$ \\\midrule
+	111 & $111.07\pm 0.11$ \\\midrule
+	112 & $112.07\pm 0.11$ \\\midrule
+	113 & $113.07\pm 0.11$ \\\midrule
+	114 & $114.04\pm 0.11$ \\\midrule
+	115 & $115.04\pm 0.11$ \\\midrule
+	116 & $116.07\pm 0.12$ \\\midrule
+	117 & $117.06\pm 0.12$ \\\midrule
+	118 & $118.03\pm 0.12$ \\\midrule
+	119 & $119.05\pm 0.12$ \\\midrule
+	120 & $120.06\pm 0.12$ \\\midrule
+	121 & $121.06\pm 0.12$ \\\midrule
+	122 & $122.09\pm 0.12$ \\\midrule
+	123 & $123.11\pm 0.12$ \\\midrule
+	124 & $124.11\pm 0.12$ \\\midrule
+	125 & $125.11\pm 0.12$ \\\midrule
+	126 & $126.10\pm 0.13$ \\\midrule
+	127 & $127.10\pm 0.13$ \\\midrule
+	128 & $128.08\pm 0.13$ \\\midrule
+	129 & $129.10\pm 0.13$ \\\midrule
+	130 & $130.11\pm 0.13$ \\\midrule
+	131 & $131.14\pm 0.13$ \\\midrule
+	132 & $132.12\pm 0.13$ \\\midrule
+	133 & $133.11\pm 0.13$ \\\midrule
+	134 & $134.10\pm 0.13$ \\\midrule
+	135 & $135.08\pm 0.13$ \\\midrule
+	136 & $136.08\pm 0.14$ \\\midrule
+	137 & $137.07\pm 0.14$ \\\midrule
+	138 & $138.08\pm 0.14$ \\\midrule
+	139 & $139.08\pm 0.14$ \\\midrule
+	140 & $140.08\pm 0.14$ \\\midrule
+	141 & $141.10\pm 0.14$ \\\midrule
+	142 & $142.10\pm 0.14$ \\\midrule
+	143 & $143.13\pm 0.14$ \\\midrule
+	144 & $144.17\pm 0.14$ \\\midrule
+	145 & $145.19\pm 0.14$ \\\midrule
+	146 & $146.20\pm 0.15$ \\\midrule
+	147 & $147.19\pm 0.15$ \\\midrule
+	148 & $148.18\pm 0.15$ \\\midrule
+	149 & $149.20\pm 0.15$ \\\midrule
+	150 & $150.19\pm 0.15$ \\\midrule
+	151 & $151.19\pm 0.15$ \\\midrule
+	152 & $152.17\pm 0.15$ \\\midrule
+	153 & $153.15\pm 0.15$ \\\midrule
+	154 & $154.14\pm 0.15$ \\\midrule
+	155 & $155.14\pm 0.15$ \\\midrule
+	156 & $156.14\pm 0.16$ \\\midrule
+	157 & $157.12\pm 0.16$ \\\midrule
+	158 & $158.10\pm 0.16$ \\\midrule
+	159 & $159.10\pm 0.16$ \\\midrule
+	160 & $160.07\pm 0.16$ \\\midrule
+	161 & $161.06\pm 0.16$ \\\midrule
+	162 & $162.10\pm 0.16$ \\\midrule
+	163 & $163.10\pm 0.16$ \\\midrule
+	164 & $164.09\pm 0.16$ \\\midrule
+	165 & $165.09\pm 0.16$ \\\midrule
+	166 & $166.09\pm 0.17$ \\\midrule
+	167 & $167.09\pm 0.17$ \\\midrule
+	168 & $168.10\pm 0.17$ \\\midrule
+	169 & $169.09\pm 0.17$ \\\midrule
+	170 & $170.09\pm 0.17$ \\\midrule
+	171 & $171.07\pm 0.17$ \\\midrule
+	172 & $172.06\pm 0.17$ \\\midrule
+	173 & $173.05\pm 0.17$ \\\midrule
+	174 & $174.07\pm 0.17$ \\\midrule
+	175 & $175.08\pm 0.17$ \\\midrule
+	176 & $176.10\pm 0.18$ \\\midrule
+	177 & $177.10\pm 0.18$ \\\midrule
+	178 & $178.13\pm 0.18$ \\\midrule
+	179 & $179.16\pm 0.18$ \\\midrule
+	180 & $180.15\pm 0.18$ \\\midrule
+	181 & $181.15\pm 0.18$ \\\midrule
+	182 & $182.14\pm 0.18$ \\\midrule
+	183 & $183.12\pm 0.18$ \\\midrule
+	184 & $184.13\pm 0.18$ \\\midrule
+	185 & $185.17\pm 0.18$ \\\midrule
+	186 & $186.17\pm 0.19$ \\\midrule
+	187 & $187.15\pm 0.19$ \\\midrule
+	188 & $188.16\pm 0.19$ \\\midrule
+	189 & $189.17\pm 0.19$ \\\midrule
+	190 & $190.20\pm 0.19$ \\\midrule
+	191 & $191.21\pm 0.19$ \\\midrule
+	192 & $192.21\pm 0.19$ \\\midrule
+	193 & $193.22\pm 0.19$ \\\midrule
+	194 & $194.21\pm 0.19$ \\\midrule
+	195 & $195.23\pm 0.19$ \\\midrule
+	196 & $196.25\pm 0.20$ \\\midrule
+	197 & $197.23\pm 0.20$ \\\midrule
+	198 & $198.22\pm 0.20$ \\\midrule
+	199 & $199.19\pm 0.20$ \\\midrule
+	200 & $200.18\pm 0.20$ \\\midrule
+\end{longtable}
+\subsection{Daten für den Self Avoiding Random Walk}
+\begin{longtable}{cc}
+	\toprule
+	Zeit ($t$) & $\langle R(t)^2 \rangle $\\\midrule
+	 0 & $0\pm 0 $ \\\midrule
+	1 & $1\pm 0 $ \\\midrule
+	2 & $2.72338\pm 0.00096 $ \\\midrule
+	3 & $4.1670\pm 0.0025 $ \\\midrule
+	4 & $5.6479\pm 0.0036 $ \\\midrule
+	5 & $7.0419\pm 0.0049 $ \\\midrule
+	6 & $8.4476\pm 0.0060 $ \\\midrule
+	7 & $9.8035\pm 0.0072 $ \\\midrule
+	8 & $11.1628\pm 0.0083 $ \\\midrule
+	9 & $12.4847\pm 0.0095 $ \\\midrule
+	10 & $13.812\pm 0.011 $ \\\midrule
+	11 & $15.107\pm 0.012 $ \\\midrule
+	12 & $16.403\pm 0.013 $ \\\midrule
+	13 & $17.658\pm 0.014 $ \\\midrule
+	14 & $18.925\pm 0.015 $ \\\midrule
+	15 & $20.172\pm 0.016 $ \\\midrule
+	16 & $21.419\pm 0.017 $ \\\midrule
+	17 & $22.641\pm 0.018 $ \\\midrule
+	18 & $23.858\pm 0.019 $ \\\midrule
+	19 & $25.064\pm 0.021 $ \\\midrule
+	20 & $26.262\pm 0.022 $ \\\midrule
+	21 & $27.448\pm 0.023 $ \\\midrule
+	22 & $28.636\pm 0.024 $ \\\midrule
+	23 & $29.791\pm 0.025 $ \\\midrule
+	24 & $30.952\pm 0.026 $ \\\midrule
+	25 & $32.100\pm 0.027 $ \\\midrule
+	26 & $33.236\pm 0.028 $ \\\midrule
+	27 & $34.365\pm 0.029 $ \\\midrule
+	28 & $35.492\pm 0.030 $ \\\midrule
+	29 & $36.594\pm 0.031 $ \\\midrule
+	30 & $37.713\pm 0.032 $ \\\midrule
+	31 & $38.810\pm 0.033 $ \\\midrule
+	32 & $39.898\pm 0.034 $ \\\midrule
+	33 & $40.980\pm 0.036 $ \\\midrule
+	34 & $42.057\pm 0.037 $ \\\midrule
+	35 & $43.113\pm 0.038 $ \\\midrule
+	36 & $44.160\pm 0.039 $ \\\midrule
+	37 & $45.212\pm 0.040 $ \\\midrule
+	38 & $46.239\pm 0.041 $ \\\midrule
+	39 & $47.259\pm 0.042 $ \\\midrule
+	40 & $48.285\pm 0.043 $ \\\bottomrule
+\end{longtable}
+\end{document}
