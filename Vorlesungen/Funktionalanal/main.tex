@@ -1,4 +1,13 @@
-\documentclass[prb,12pt]{revtex4-2}
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
 
 \usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
 \usepackage{enumitem}
@@ -21,7 +30,7 @@
 \mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
 \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
 %put nobreak in mdframed
-\declaretheorem[numberwithin=section,style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[numberwithin=chapter,style=thmbox, name=Theorem]{Theorem}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
 \declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
@@ -59,19 +68,33 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 \allowdisplaybreaks
-
 %polar set
 \newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+
+
 \begin{document}
-	\title{Funktionalanalysis Notizen}
-	\author{Jun Wei Tan}
-	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
-	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
-	\date{\today}
-	\maketitle
+\newgeometry{margin=1in}
+\begin{titlepage}
+	{\begingroup% AW, Design of Books
+		%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+		%\drop = 0.14\textheight
+		\centering
+		%\vspace*{\drop}
+		{\Large Notes for the course in}\\[\baselineskip]
+		{\Huge\bfseries FUNCTIONAL ANALYSIS}\\[\baselineskip]
+		{\Large Held in WS24/25\\ At the JMU Würzburg\\ By Prof. Dr. Stefan Waldmann}\\[\baselineskip]
+		{\LARGE By}\\[\baselineskip]
+		{\LARGE Jun Wei Tan}\par
+		\vfill
+		{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+		\vfill
+		{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+		\endgroup}
+\end{titlepage}
+\restoregeometry
 	\tableofcontents
-	\section{Topology}
-	\subsection{Basic Concepts}
+	\chapter{Topology}
+	\section{Basic Concepts}
 	\begin{Theorem}[List of Useful Identities]
 		\noindent
 		\begin{parts}
@@ -146,7 +169,7 @@ In general, we have the following theorem
 \begin{Theorem}
 	Let $A$ be a subset of the topological space $X$. $x\in A^\text{cl}$ if and only if there is a net in $A$ converging to $x$.
 \end{Theorem}
-\subsection{Baire Spaces}\label{subsec:baire}
+\section{Baire Spaces}\label{subsec:baire}
 	\begin{Definition}[Nowhere Dense]
 		A subset $A$ of a topological space is called nowhere dense if the interior of its closure is open, $(A^\text{cl})^\circ=\varnothing$. 
 	\end{Definition}
@@ -215,7 +238,7 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 	\begin{Theorem}[Baire II]\label{thm:baire2}
 		A locally compact Hausdorff space $(M, \mathcal{M})$ is a Baire space.
 	\end{Theorem}
-	\section{Topological Vector Spaces}
+	\chapter{Topological Vector Spaces}
 	\begin{Definition}
 		A topological vector space is a vector space with a topology such that addition and scalar multiplication are continuous.
 	\end{Definition}
@@ -283,7 +306,7 @@ Now, we move on to the more important result:
 	
 	Since all topological groups are regular, this shows $T_3$.
 \end{proof}
-	\subsection{Continuity}
+	\section{Continuity}
 	\begin{Definition}[Uniform Continuity]
 		Let $V,W$ be topological vector spaces and $\phi:V\to W$ be a map. Then $\phi$ is called uniformly continuous if for all neighbourhoods $U\subseteq W$ of $0$ there exists a neighbourhood $Z\subseteq V$ such that $v-v'\in Z\implies \phi(v)-\phi(v')\in U$.
 	\end{Definition}
@@ -309,7 +332,7 @@ Now, we move on to the more important result:
 	\begin{Definition}[Algebraic and Topological Dual]
 		The algebraic dual of a vector space $V$ is the well known space of linear maps from $V$ to the field over which it is defined. We denote this by $V'=\text{Hom}(V,\mathbb{K})$. The topological dual $V^*=L(V, \mathbb{K})$ is the space of all \emph{continuous} linear maps. Clearly, $L(V, \mathbb{K})\subseteq \text{Hom}(V,\mathbb{K})$.
 	\end{Definition}
-	\subsection{Subspaces}
+	\section{Subspaces}
 	\begin{Theorem}
 		Let $V$ be a topological vector space. If $W\subseteq V$ is a subspace, then its closure $W^\text{cl}$ is also a subspace of $V$.
 	\end{Theorem}
@@ -320,9 +343,10 @@ Suppose $v,w\in W^\text{cl}$. Then there are nets $(v_i)_{i\in I}$ converging to
 	All proper subspaces $S$ of a topological vector space $V$ have empty interior.
 \end{Theorem}
 \begin{proof}
-	Suppose not. Then for some $v\in S$ we have an open set $v\in U\subseteq S$. Then $U-v$ is a neighbourhood of 0. By the continuity of multiplication, since $0\cdot v = 0$ for all $v\in V$, we have $t\cdot v\in U - v$ for $t\in K_r(0)$. Then $t^{-1}(tv)\in S$. 
+The proof follows in two steps: First, we translate an open set contained in $S$ to the origin. Then, since all neighbourhoods of the origin are absorbing, $S=V$ by scaling.
 \end{proof}
-	\section{Banach Spaces}
+	\chapter{Banach Spaces}
+	\section{Introductory Definitions}
 	\subsection{Norms \& Seminorms}
 	\begin{Definition}[Norm]
 		A norm $\|\cdot\|$ on a vector space $V$ is a function $V\to \R$ that satisfies
@@ -413,7 +437,7 @@ Note that the above definition shows once again the continuity of composition. A
 	\[Av = \sum_{k=1}^n a_k Ae_k.\]
 	However, a Hamel bases are usually difficult to come by, as we see with the following theorem:
 	\begin{Theorem}
-		A Banach space with a countable Hamel basis is finite. 
+		A Banach space with a countable Hamel basis is finite dimensional. 
 	\end{Theorem}
 \begin{proof}
 	Suppose we have a countable Hamel basis $(e_n)_{n\in \N}$ of a Banach space $V$. Denote $M_n=\text{span}(\{e_1, \dots, e_n\})$. This is a closed proper subspace of $V$. Thus it has empty interior. However, because by definition the $e_n$s form a Hamel basis, we have $V=\bigcup_{k=1}^\infty M_k$, contradicting Baire's category theorem.
@@ -426,6 +450,26 @@ Note that the above definition shows once again the continuity of composition. A
 The importance of a Schauder basis is that it is countable, and we are still able to define \emph{some} linear maps by their action on the basis. In particular, for any continuous linear map $A$, we have
 \[Av = \sum_{k=1}^\infty a_k Ae_k.\]
 Also important to note is that this basis must be \emph{ordered}, since the sum does not necessarily converge unconditionally. 
+\subsection{Examples}
+\begin{Example}
+	The space $c$ is the space of convergent sequences.
+\end{Example}
+\begin{Example}
+	The space $c_0$ is the space of sequences converging to 0. It is a subspace of $c$ with codimension 1.
+\end{Example}
+\begin{Example}
+	The space $c_{00}$ is the space of sequences that are 0 outside of finitely many elements. This is a subspace of $c_0$. It is the prototype for a non complete space. 
+\end{Example}
+\begin{Example}
+	There are discontinuous linear functionals.
+	
+	The simplest example in a non-complete space is the functional $f(e_i)=i$ defined on $c_{00}$. 
+	
+	In a complete space, this is significantly harder and requires the axiom of choice. This cannot be done with Hahn-Banach (to come), as Hahn-Banach extends bounded functionals. 
+\end{Example}
+\begin{Example}[Non-Closed Subspaces]
+	Every subspace of a Banach space with countable dimension cannot be closed, as it would then be complete, a contradiction, as Banach spaces cannot have countable dimension. 
+\end{Example}
 	\section{The Hahn-Banach Theorems}
 	\subsection{Sublinear Functionals}
 	\begin{Definition}
@@ -681,7 +725,7 @@ The picture for this theorem is as follows: A linear functional $\Phi$ defines a
 \end{proof}
 \section{Duality}
 \subsection{The Weak Topology}
-In this subsection, we will want to work with components of vectors. However, due to the difficulty of picking a basis, we cannot define the components the same way we do in finite dimensional linear algebra. Thus, we define the components to be the outputs of linear functionals applied to vectors. This notion leads us to the weak topology.
+It is often the case that we want to work with components of vectors. However, due to the difficulty of picking a basis, we cannot define the components the same way we do in finite dimensional linear algebra. Thus, we define the components to be the outputs of linear functionals applied to vectors. This notion leads us to the weak topology.
 \begin{Definition}
 	Let $V$ be normed.
 	\begin{parts}
@@ -757,7 +801,7 @@ Equivalently, we could also have defined the weak topology as the weakest topolo
 	\[
 	i(v)\varphi = \varphi(v)
 	.\] 
-	We have $i\in V^{\prime\prime}$ and $\|i(v)\|\le \|v\|$ for a given $v\in V$. THis implies that there is $\varphi\in V'$ with $\|\varphi\|=1$ and $\varphi(v)=\|v\|$. Thus,
+	We have $i\in V^{\prime\prime}$ and $\|i(v)\|\le \|v\|$ for a given $v\in V$. This implies that there is $\varphi\in V'$ with $\|\varphi\|=1$ and $\varphi(v)=\|v\|$. Thus,
 \[
 |i(v)\varphi|=|\varphi(v)=\|v\|=\|v\|\|\varphi\|
 .\] 
@@ -776,7 +820,7 @@ The canonical map $i$ allows us to define a weak topology on $V'$ generated by t
 		\|A\|= \sup_{\varphi\neq 0, w \neq 0}\frac{|\varphi(A v)|}{\|\varphi\|_{W'}\|v\|_V}=\sup_{\|\varphi\|=\|v\|=1} |\varphi(A v)|=\|A'\|
 	.\] 
 \end{Theorem}
-\subsection{Polars \& Banach-Aloglu Theorems}
+\subsection{Polars \& Banach-Alaoglu Theorems}
 \begin{Definition}
 	Let $V$ be a topological vector space with topological dual $V'$.
 	\begin{parts}
@@ -933,6 +977,108 @@ Approximating each of these by $\epsilon$, we have'
 \[|f_0(\alpha x + \beta y)-\alpha f_0(x) - \beta f_0(y)|= \epsilon (1+|\alpha|+|\beta|)\]
 showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for all $v\in A$. Thus, we have $f_0\in A^\polar$, completing the proof.
 \end{proof}
+The importance of Banach-Alaoglu comes from sequential compactness, which we investigate in the following theorems:
+\begin{Definition}
+	A space $X$ is called \emph{sequentially compact} if every sequence has a convergent subsequence.
+\end{Definition}
+In a metric space, for example, a normed space, sequential compactness is equivalent to compactness, which we state without proof:
+\begin{Theorem}
+	Let $X$ be a metric space. $X$ is sequentially compact if and only if $X$ is compact. 
+\end{Theorem}
+This implies that every bounded sequence has a convergent subsequence in the weak *-topology. 
+\subsection{Separability \& Reflexivity}
+\begin{Theorem}
+	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is first countable in the weak * topology and hence sequentially compact. 
+\end{Theorem}
+\begin{proof}
+	Let $X =\{v_1,\dots\} \subseteq V$ be dense and $\varphi\in B_1(0)^\text{cl}\subseteq V$.
+	
+\end{proof}
+\begin{Definition}
+	The closed linear span of a subset of $V$ is the smallest closed linear subspace containing that subset.
+\end{Definition}
+\begin{Lemma}
+	The closed linear span of a set $\{v_n\} $ is the closure of the linear span of $v_n$, i.e. the set of finite linear combinations of $v_n$.
+\end{Lemma}
+\begin{proof}
+	We know that the closure of a linear space is also a linear space; this shows that the closed linear span is a subset of the closure of the linear span.
+	
+	Conversely, the closure of the linear span must also be contained in the closed linear span.
+\end{proof}
+\begin{Theorem}[Spanning Criterion]\label{thm:spanningcriterion}
+	A point $v$ belongs to the closed linear span $Y$ of a subset $\{y_n\} $ if and only if every continuous linear functional that vanishes on $\{y_n\} $ vanishes at $v$ --- that is,
+	\[
+	\ell(y_j)=0~\forall y_j\implies \ell(v)=0
+	.\] 
+\end{Theorem}
+\begin{proof}
+	One implication is obvious: Since $\ell$ is linear, it vanishes at finite linear combinations of the $y_n$s. Since it is continuous, it vanishes on their closure.  
+	
+	Conversely, suppose that $v$ does not belong to the closed linear span of $\{y_n\}$. Then 
+	\[\inf_{y\in Y}\|v - y\| = d > 0.\]
+	Then, define the subspace $V$ to consists of all points of the form $y+av,~y\in Y$, and define the linear functional $\ell_0$ on $Z$ by $\ell_0(y + av) = a$. Since we have
+	\[\|y + av\| \ge d |a|,\]
+	we can conclude that $\ell_0$ is bounded by $d^{-1}$. Thus, we can extend this using the Hahn-Banach theorem to the entire Banach space. By definition, the extension vanishes on all of $Y$ but has the value $1$ at $z$.
+\end{proof}
+\begin{Theorem}
+	Let $V$ be a normed space with separable dual $V'$ in the norm topology. Then $V$ is separable. 
+\end{Theorem}
+\begin{proof}
+	We choose a countable dense subset $\ell_n$ of $V'$. By definition of the norm, we choose $v_n$ such that
+	\[
+	\|v_n\|=1,~ \ell_n(v_n)>\frac{1}{2}\|\ell_n\|
+	.\] 
+	We claim that the closed linear span of $v_n$ is $V$. By \ref{thm:spanningcriterion}, this means that we must show that every continuous linear functional that vanishes on $v_n$ vanishes everywhere. Suppose otherwise. Suppose that there exists $\ell$ with $\ell(v_n)=0$ for all $v_n$ and $\| \ell\| = 1$. 
+	
+	Since the $\ell_n$ are dense, we can find $\ell_n$ with $\| \ell - \ell_n\| > \frac 13$. Since $\|\ell\|=1$, this means that $\ell_n > \frac 23$. However, since $\ell(v_n)=0$, we have
+	\[\frac 13 > |(\ell - \ell_n)(v_n)| = |\ell_n(v_n)|> \frac 12 \| \ell_n\|\]
+	a contradiction. Since finite linear combinations of the $v_n$s are dense, we can also consider finite linear combinations with rational coefficients; these are also dense, and countable. Thus, $V$ is separable. 
+\end{proof}
+Now, we move on to considering the question of the double dual. In finite dimensions, there is only one real or complex vector space of dimension $n$ up to isometry, namely $\R^n$ or $\C^n$. Its dual is also isomorphic to itself, and thus its double dual is simply itself. In infinite dimensions, this is no longer the case. We call such spaces \emph{reflexive}.
+\begin{Definition}
+	A Banach space $V$ is called reflexive if $V^{\prime\prime}=V$.  
+\end{Definition}
+A natural question is why we talk about Banach spaces here. It seems that this definition can be extended to \emph{any} normed space, where the dual inherits the operator norm topology. However, as we shall see, if a normed space is not Banach, it cannot be reflexive:
+
+\begin{Theorem}
+	The dual $V'$ of a normed space $V$ is a Banach space under the operator norm topology.
+\end{Theorem}
+\begin{proof}
+	It was proven earlier that it is a normed space. For completeness, we let $\ell_n$ be a Cauchy sequence in $V'$. Then, since the reals are complete, we must have pointwise convergence of $\ell_n$. We call this limit function $\ell$.
+	
+	By pointwise convergence, $\ell$ must also be linear and bounded, and thus continuous. It is also clear that $\ell_n\to \ell$. 
+\end{proof}
+\begin{Example}
+	$V=c_0$ is separable but $V'=\ell^\infty$ is not.
+\end{Example}
+\begin{Theorem}
+	Pulling back the weak * topology from $V^{\prime\prime}$ to $V$ reproduces the weak topology, but the weak topology is finer than the weak * topology on $V'$.
+\end{Theorem}
+\begin{Theorem}
+	Let $V$ be a normed space.
+	\begin{parts}
+		\item If $V$ is reflexive then $V$ is a Banach space
+		\item If $V$ is reflexive then the weak and weak * topology on $V'$ coincide.
+		\item If $U$ is a closed subspace of a reflexive space $V$ then $U$ is reflexive too.
+		\item Suppose $V$ is complete. Then $V$ is reflexive iff $V'$ is reflexive.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	\begin{parts}
+		\item Clear since $V^{\prime\prime}$ is complete.
+		\item We consider $\Psi\in V^{\prime\prime}$. We have $p_v(\varphi)=|\varphi(v)| = |i(v)\varphi|=\|\Psi(\varphi)|$. But since $E\mapsto n E$ is a homeomorphism, $E$ is nonmeager. However, as an intersection of closed sets, $E$ is closed. Together, this implies that $E$ has an interior point $x$. Then $x-E$ is a neighbourhood of 0, meaning that there exists 
+	\end{parts}
+\end{proof}
+\begin{Theorem}
+	Let $V$ be reflexive. Then $B_1(0)^\text{cl}$ is sequentially compact in the weak topology.
+\end{Theorem}
+\begin{Corollary}
+	Let $V$ be reflexive.
+	\begin{parts}
+		\item A norm-bounded sequence in $V$ has a weakly convergent subsequence.
+		\item Every weak Cauchy sequence converges weakly.
+	\end{parts}
+\end{Corollary}
 \section{Banach-Steinhaus}
 \begin{Definition}[Equicontinuity]
 	Let $V$ and $W$ be topological vector spaces, and $\Gamma$ a collection of linear maps $V\to W$. $\Gamma$ is called equicontinuous if for all neighbourhoods $Z$ of $0_W$, we have a neighbourhood $V$ of $0_V$ such that $\Lambda(V)\subseteq Z$ for all $\Lambda\in \Gamma$.
@@ -946,7 +1092,7 @@ showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for al
 \begin{Theorem}[Banach-Steinhaus]
 Suppose $V$ and $W$ are topological vector spaces, and $\Gamma$ is a collection of linear maps $V\to W$. Let $B$ be the set of all $v\in V$ such that the orbits
 \[
-\Gamma(x) = \{\Lambda x|\Lambda\in \Gamma\}  
+\Gamma(v) = \{\Lambda v|\Lambda\in \Gamma\}  
 \]
 are bounded in $W$. 
 
@@ -957,12 +1103,12 @@ If $B$ is nonmeager, then $B=V$ and $\Gamma$ is equicontinuous.
 	\[
 		E=\bigcap_{\Lambda\in \Gamma} \Lambda^{-1}(\overline{U})
 	.\] 
-	If $x\in B$, then $\Gamma(x)\in nU$ for some $n$, thus $x\in n E$. Hence, we have
+	If $v\in B$, then $\Gamma(v)\in nU$ for some $n$, thus $v\in n E$. Hence, we have
 	\[
 	B\subseteq \bigcup_{n=1}^\infty n E
 	.\] 
-	Since $B$ is nonmeager, we have at least one $nE$ nonmeager. However, since $E\mapsto n E$ is a homeomorphism, $E$ must itself be nonmeager. Since $E$ is closed, this means it has an interior point $x$. Then $x-E$ contains an open neighbourhood $V$ of $0$, and
-	\[\Lambda(V)\subseteq \Lambda(x)- \Lambda (E)\subseteq \overline{U}-\overline{U}\subseteq W\]
+	Since $B$ is nonmeager, we have at least one $nE$ nonmeager. However, since $E\mapsto n E$ is a homeomorphism, $E$ must itself be nonmeager. Since $E$ is closed, this means it has an interior point $v$. Then $v-E$ contains an open neighbourhood $V$ of $0$, and
+	\[\Lambda(V)\subseteq \Lambda(v)- \Lambda (E)\subseteq \overline{U}-\overline{U}\subseteq W\]
 	for all $\Lambda\in \Gamma$. This shows equicontinuity and hence uniform boundedness by Theorem \ref{thm:uniboundedness}.
 \end{proof}
 Often, the fact that $B$ is nonmeager comes from properties of the space. Again, note as we did in \ref{subsec:baire} that even being pointwise bounded everywhere does not necessarily imply that $B$ is nonmeager, as a topological space $X$ needs not be nonmeager unless it is a Baire space. By Theorem \ref{thm:baire1}, we have the following corollary:
@@ -984,72 +1130,350 @@ As another corollary, let us relate this to the operator norm:
 	\[\| \Lambda v\| < M \|v\|\]
 	for all $v\in V$.
 \end{proof}
-\section{idk}
-\begin{Theorem}
-	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is first countable in the weak * topology and hence sequentially compact. 
-\end{Theorem}
-\begin{proof}
-	Let $X =\{v_1,\dots\} \subseteq V$ be dense and $\varphi\in B_1(0)^\text{cl}\subseteq V$.
 
-\end{proof}
-\begin{Theorem}
-	Let $V$ be a Banach space with separable dual $V'$ in the norm topology. Then $V$ is separable. 
-\end{Theorem}
-\begin{Example}
-	$V=c_0$ is separable but $V'=\ell^\infty$ is not.
-\end{Example}
-\begin{Theorem}
-	Pulling back the weak * topology from $V^{\prime\prime}$ to $V$ reproduces the weak topology, but the weak topology is finer than the weak * topology on $V'$.
-\end{Theorem}
-\begin{Theorem}
-	Let $V$ be a normed space.
-	\begin{parts}
-	\item If $V$ is reflexive then $V$ is a Banach space
-	\item If $V$ is reflexive then the weak and weak * topology on $V'$ coincide.
-	\item If $U$ is a closed subspace of a reflexive space $V$ then $U$ is reflexive too.
-	\item Suppose $V$ is complete. Then $V$ is reflexive iff $V'$ is reflexive.
-	\end{parts}
-\end{Theorem}
-\begin{proof}
-	\begin{parts}
-	\item Clear since $V^{\prime\prime}$ is complete.
-	\item We consider $\Psi\in V^{\prime\prime}$. We have $p_v(\varphi)=|\varphi(v)| = |i(v)\varphi|=\|\Psi(\varphi)|$. But since $E\mapsto n E$ is a homeomorphism, $E$ is nonmeager. However, as an intersection of closed sets, $E$ is closed. Together, this implies that $E$ has an interior point $x$. Then $x-E$ is a neighbourhood of 0, meaning that there exists 
-	\end{parts}
-\end{proof}
-\begin{Theorem}
-	Let $V$ be reflexive. Then $B_1(0)^\text{cl}$ is sequentially compact in the weak topology.
-\end{Theorem}
-\begin{Corollary}
-	Let $V$ be reflexive.
-	\begin{parts}
-	\item A norm-bounded sequence in $V$ has a weakly convergent subsequence.
-	\item Every weak Cauchy sequence converges weakly.
-	\end{parts}
-\end{Corollary}
 \section{Open Mapping \& Closed Graph Theorems}
+All continuous bijections $\R \to \R$ are homeomorphisms, as they must either be increasing or decreasing. In general, it is not true that continuous bijections are homeomorphisms, as we shall see:
 \begin{Example}[Continuous bijections are not homeomorphisms]
 	The map $[0,2\pi)\to S^1, t\mapsto e^{it}$ is continuous and bijective, but not a homeomorphism.
 \end{Example}
+However, the situation for \emph{linear} maps is much better.
 \begin{Theorem}
 	Let $\Phi:V\to W$ be a linear map between topological vector spaces. Then $\Phi$ is an open map iff for every zero neighbourhood $Z\subseteq V$ then $\Phi(Z)\subseteq W$ is a zero neighbourhood. It suffices to test this for a basis of zero neighbourhoods in $V$.
 \end{Theorem}
+
 The condition above is also known as the property of being \uline{open at 0}. Because of the translational invariance, if $\Phi$ is open at 0, it is also open at all points in $v$, and hence it is open. Open maps in Banach spaces are completely characterised through the following theorem
-\begin{Theorem}
-	Let $L:X\to Y$ be a continuous linear transformation between Banach spaces $V$ and $W$. Then the following are equivalent:
+\begin{Theorem}[Open Mapping Theorem]
+	Let $L:V\to W$ be a continuous linear transformation between Banach spaces $V$ and $W$. Then the following are equivalent:
 	\begin{parts}
 		\item $L$ is surjective.
 		\item $L$ is open.
 		\item For every $w\in W$ there exists a solution $v\in V$ to the equation $Lv = w$.
 		\item There is a constant $C>0$ such that for every $w\in W$ there is a solution $v\in V$ to the equation $Lv = w$ that satisfies $\|v \| \le C \|w\|$. 
-		\item There is a constant $C>0$ and a dense class of vectors $P\subseteq W$ such that the previous condition applies to this dense subclass.
+		\item There is a constant $C>0$ and a dense subspace of vectors $P\subseteq W$ such that the previous condition applies to this dense subspace.
 	\end{parts}
 \end{Theorem}
 \begin{proof}
 	Clearly, (c) is equivalent to (a). (d) also clearly implies (c) and (e). 
 	
-	Now we show equivalence of (b) and (d). Suppose (d). Then we have openness at 0, which then implies openness. Conversely, suppose (b). Then we know that $L(B_1(0_V))$ contains an open ball $B_r(0_W)$. This then implies (d) by linearity. 
+	Now we show equivalence of (b) and (d). Suppose (b). Then we know that $L(B_1(0_V))$ contains an open ball $B_r(0_W)$. This then implies (d) by linearity. Conversely, we know that the image of the open ball with radius $C$ includes the open ball of radius $1$ around the origin, which shows openness at 0.  
 	
-	Now suppose (e). We show (d) by observing that we can approximate $w\in W$ arbitrarily well by vectors from $P$. Suppose therefore that $L(v_n) = p_n$ for $n\in \N$, $p_n\in P$, and $p_n\to w$. Then $v_n$ is Cauchy, because $\| L(v_n - v_m)\|< \epsilon$
-\end{proof}
-\end{document}
+	Now suppose (e). We show (d) by observing that we can approximate $w\in W$ arbitrarily well by vectors from $P$. Thus, we approximate $w$ using a sequence $w_n$ such that $\sum w_n = w$. For each $w_n$, we can solve the equation to get $v_n$, with $\| v_n\| \le C \| w_n\|$. By the triangle inequality and completeness of $V$, we have $\|v\| \le C \|w\|$ and $Lv = w$. 
+	
+	Thus it only remains to show that (c) implies (d). For each $n\in \N$, we let $E_n\subseteq W$ be the subset of $W$ such that there exists a solution to $Lv=w$ with $\|v\|\le n \|w\|$. By (c), we know that the union of the $E_n$s is the entire space. Thus, the closure of some $E_n$ contains a ball $B_r(w_0)$. 
+	
+	Then, the proof follows a sequence of approximations
+	\begin{enumerate}
+		\item Since $E_n$ is dense in $B_r(w_0)$, we have \emph{approximate solvability} --- that is, for each $\epsilon>0$ and $w\in B_r(w_0)$, we have $v$ with $\|Lv - w\|_W \le \epsilon$ and $\|v\|_V\le n \|Lv\|_W$. Thus, $\|v\|_V \le n \|w_0\| + nr + n\epsilon$. 
+		\item By subtracting two such approximate solutions, we get:
+		
+		For any $w\in B_{2r}(0)$ and $\epsilon>0$, we have $v\in V$ with $\|Lv - w\|_W\le 2 \epsilon$ and $\|v\|_V \le 2 n r + 2 n \epsilon$.
+		\item By rescaling $L$, we can conclude that for any $\epsilon>0$, there exists $v\in V$ with $\|Lv - w\|_W\le 2\epsilon$ and $\|v\|_V \le 2 n \|w\|_W + 2 n \epsilon$.
+		\item In particular, setting $\epsilon=\frac 14 \|w\|_W$, we conclude:
+		
+		For any $w\in W$, we have $w=Lv + w'$, where $\|w'\|_W\le \frac 12 \|w\|_W$ and $\|v\|_V\le \frac 52 n \|w\|_W$.
+		\item By iterating this and using the completeness of $V$, we can find a solution that satisfies the bounds.\qedhere
+	\end{enumerate}
+\end{proof}	
+The key point of the theorem (and what is commonly known as the open mapping theorem) is that surjectivity is equivalent to openness. Note that the reverse direction is actually trivial, as the only open subspace of $W$ is $W$ itself. 
 
+\begin{Corollary}[Inverse Mapping Theorem]
+	A continuous bijective linear operator between Banach spaces has continuous inverse.
+\end{Corollary}
+
+The next theorem follows almost trivially from the open mapping theorem:
+\begin{Theorem}[Closed Graph Theorem]
+	Let $L:V\to W$ be a linear map between Banach spaces. Then $L$ is continuous iff its graph
+	\[\Gamma_L=\{(v, Lv)|v\in V\}\subseteq V\times W\]
+	is closed in the product topology. 
+\end{Theorem}
+\begin{proof}
+	Let $f$ be a map $f:V\to W$. It factors as
+	\[V \xrightarrow{i} \Gamma_f \xrightarrow{\text{pr}_W} W\]
+	where $i$ is the inverse of the projection map. The projection map is continuous. If we can apply the open mapping theorem to $\text{pr}_V$, then it is open and hence a homeomorphism. Thus, the inverse $i$ is continuous, and $f$ is continuous as a composition of continuous maps. 
+	
+	In particular, $\text{pr}_V$ is always surjective. Since $L$ is linear by hypothesis, $\text{pr}_V$ is also linear, since $\text{pr}_V((v, Lv) + (w, Lw)) = v + w$. The last step we need is that $\Gamma_L$ is a Banach space. This follows because it is a closed subspace of a Banach space.
+	
+	The other direction of the proof is a well known property of topological spaces. If $L$ is continuous (not even necessarily linear), $v_n \to v$ and $Tv_n \to w$, we have $T (\lim v_n)= \lim Tv_n \to w$, thus the graph is closed. 
+\end{proof}
+As somewhat of a converse of the inverse mapping theorem, we have the following:
+\begin{Theorem}
+	Let $V$ be a normed space and $W$ a Banach space. If there exists a bijective bounded linear operator $\phi:V \to W$, then $V$ is Banach.
+\end{Theorem}
+\begin{proof}
+	We construct a second norm on $V$ $\|\cdot \|_V'$ using $\phi$: We define $\|v\|_V'=\|\phi v\|_W$. Clearly, this is a norm. It is homogeneous, positive (since $\phi$ is bijective), and since $\phi$ is linear, we have
+	\[\|v + w\|_V' = \|\phi v + \phi w\|_W \le \|\phi v\|_W + \|\phi w\|_W = \|v\|_V' + \|w\|_V'.\]
+	Now let us think about completeness relative to $\|\cdot \|_V'$. Consider a Cauchy sequence $v_n$ with respect to $\|\cdot\|_V'$. Then $\phi v_n$ is Cauchy in $W$, meaning it converges to some limit $w$. Thus, we have
+	\[\|v_n - \phi^{-1}w\|_V' = \|\phi v_n - w\|_W \to 0\]
+	showing that $v_n$ converges to $\phi^{-1}w$. This means that $V$ is complete with respect to $\|\cdot\|_V'$. Now we relate the two norms on $V$. Since $\phi$ is continuous with respect to $\|\cdot\|$, we have $\|v\|_V' = \|\phi v\|_W \le  C\|v\|_V$. \textcolor{red}{TODO}
+\end{proof}
+\chapter{Hilbert Spaces}
+\section{Introduction}
+\begin{Definition}[Scalar Product]
+	A scalar product in a vector space $V$ over $\C$ is a sesquilinear map $V\times V\to \C$, denoted by $\langle \cdot, \cdot \rangle$ such that
+	\begin{parts}
+		\item $\langle u, v+w\rangle =\langle u, v\rangle + \langle u, w\rangle$, $\langle u, aw\rangle = a\langle u, w\rangle$
+		\item $\langle u, v\rangle = \overline{\langle v, u\rangle}$
+		\item $\langle u, u\rangle>0$ for $u\neq 0$.
+	\end{parts}
+\end{Definition}
+Clearly, all inner products induce a norm through $\|v\| = \langle v, v\rangle$. When we speak of the \emph{topology} of a scalar product space, we will speak of the topology induced by this norm. The most important inequality is the Cauchy-Schwarz inequality:
+\begin{Theorem}[Cauchy-Schwarz]
+	A scalar product satisfies
+	\[|\langle u, v \rangle|^2 \le \|u\|^2 \|v\|^2.\]
+\end{Theorem}
+\begin{proof}
+	First, we use sesquilinearity to expand
+	\begin{equation}
+		\|u + tv\| = \|u\|^2 + 2t \Re\langle u, v\rangle +t^2 \|v\|^2.\label{eq:scalarproduct}
+\end{equation}
+	Then, we set $t=-\Re\langle u, v\rangle /\|v\|^2$ and multiply by $\|v\|^2$ to get
+	\[(\Re\langle u,v\rangle)^2 \le \|u\|^2\|v\|^2.\]
+	Rescaling $u$ by a unit complex number to make $\langle u, v\rangle$ real, we get the desired inequality.
+\end{proof}
+The next question is what kind of norms come from a scalar product. This question is answered using the \emph{parallelogram law}
+\begin{Proposition}
+	Let $\|\cdot\|$ be a norm arising from a scalar product. Then
+	\[
+	\|u+v\|^2 + \|u-v\|^2 = 2\|u\|^2 + 2\|v\|^2
+	.\] 
+\end{Proposition}
+\begin{proof}
+	We set $t=\pm 1$ in Eq.~\eqref{eq:scalarproduct} and sum up the two resulting equations.
+\end{proof}
+The geometric intuition behind this identity comes from the scalar product in $\R^2$:
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+		\draw[thick] (0,0) -- (1,2) -- (2,2) -- (1,0) -- cycle;
+		\draw[ultra thick, -stealth] (0,0) -- (1,0) node[anchor=north] {$u$};
+		\draw[ultra thick, -stealth] (0,0) -- (1,2) node[anchor=south] {$v$};
+		\draw[ultra thick, -stealth] (1,2) -- (1,0) node[anchor=south west] {$u-v$};
+		\draw[ultra thick, -stealth] (0,0) -- (2,2) node[anchor=south west] {$u+v$};
+	\end{tikzpicture}
+\end{center}
+
+The construction of a scalar product from the norm then comes from the \emph{polarization identity}, which we only discuss in the real case:
+
+\begin{Theorem}[Polarization Identity]
+	Suppose $\|\cdot\|$ is a norm satisfying the parallelogram law. Then
+	\begin{align*}
+		\langle u, v\rangle &= \frac{1}{4}\left( \|u+v\|^2-\|u-v\|^2 \right)\\
+		&=\frac 12 \left(\|u+v\|^2-\|u\|^2 - \|v\|^2\right)\\
+		&=\frac 12\left(\|u\|^2 + \|v\|^2 - \|u-v\|^2\right)
+	\end{align*}
+	defines a scalar product.
+\end{Theorem}
+\begin{proof}
+	First, we note that all 3 forms are equivalent by the parallelogram law. Symmetry is clear. Positivity is clear by substituting $u=v$ into the first form. Finally, we show linearity. \textcolor{red}{TODO}
+\end{proof}
+Now that we understand how scalar products work, we move on to the theory of Hilbert spaces:
+\begin{Definition}[Hilbert Space]
+	A Hilbert space is a complete scalar product space.
+\end{Definition}
+\begin{Theorem}[Convex Minimizer]\label{thm:convexminimizer}
+	Given a nonempty closed, convex subset $K$ of a Hilbert space $\mathcal{H}$ and $x\in H$, there is a point $y$ in $K$ that has minimum distance to $x$.
+\end{Theorem}
+\begin{proof}
+	First, we define the infimum distance
+	\[d = \inf_{y\in K} \| y - x\|.\]
+	We let $y_n$ be a sequence that minimizes distance --- that is, 
+	\[\lim_{n\to\infty} d_n= d,\qquad d_n = \|x - y_n\|\]
+	We will show that this sequence is Cauchy. Because $K$ is closed, it will then converge in $K$. By continuity, it will converge to a minimum of distance.
+	
+	We do this by applying the Parallelogram Identity:
+	\[\left\| x - \frac{y_n+y_m}{2}\right\|^2+\frac 14 \|y_n - y_m\|^2 = \frac 12 (d_n^2+d_m^2).\]
+	Since $K$ is convex, $(y_n + y_m)/2$ is in $K$, and thus
+	\[d \le \left\| x - \frac{y_n+y_m}{2}\right\| < d + \epsilon.\]
+	Using this, we can bound $\|y_n - y_m\|$ and show that it is Cauchy.
+\end{proof}
+\begin{Definition}
+	If $W$ is a linear subspace, its orthogonal complement is the set of vectors orthogonal to $W$ - that is,
+	\[W^\perp = \{v\in V | \langle v, w\rangle = 0~\forall w\in W\}.\]
+\end{Definition}
+We now ask the question of when we have the standard result in linear algebra - that is, when we can decompose a vector space as the direct sum of a subspace and its complement. It turns out that this is not true for all subspaces, as we now see
+\begin{Theorem}
+	Let $\mathcal{H}$ be a Hilbert space, $Y$ a closed subspace of $\mathcal{H}$, $Y^\perp$ the orthogonal complement of $Y$. We claim that
+	\begin{parts}
+	\item $Y^\perp$ is a closed subspace of $Y$,
+	\item $Y\oplus Y^\perp = \mathcal{H}$, 
+	\item $(Y^\perp)^\perp = Y$.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	By the sesquilinearity of the scalar product, $Y^\perp$ is a vector subspace. Now we show that it is closed. Since $\mathcal{H}$ is Hilbert, being closed is equivalent to being complete.
+
+	Let $(v_n)_n\subseteq Y^\perp$ be convergent, $v_n\to v$. We have
+	\[
+	\langle v, u\rangle = \langle v - v_n, u\rangle + \langle v_n, u\rangle = \langle v - v_n, u\rangle
+	.\] 
+	Then, by applying the Schwarz inequality, we have
+	\[
+	\langle v, u \rangle \le \|v - v_n\|\|u\|
+	\]
+	for $u\in Y$. Since the first norm tends to $0$, $v$ is perpendicular to $u$ for all $u\in Y$, or $v\in Y^\perp$. 
+
+	The second part is done analogously to the finite dimensional case, but with much more machinery required. Consider $v\in \mathcal{H}$. By Theorem \ref{thm:convexminimizer}, we have a point $u$ in $Y$ closest to $v$. We show that $v-u\in Y^\perp$.  
+
+	By the minimal property of $u$, we have, for any $y\in Y$,
+	\[
+	\|v - u\|^2 \le \|v - u + ty\|^2
+	.\] 
+	Defining $z=v-u$, we can rewrite the right hand side as
+	\[
+	\|z + ty\|^2= \|z\|^2 + 2t \Re \langle z, y\rangle + t^2 \|y\|^2
+	.\] 
+	Since this is minimised, we must have $\langle z, y\rangle = 0$.
+
+	The decomposition is unique, as if we had $v = y + z = y' + z'$, then $y-y'=z-z'$ would be orthogonal to each other, as they belong to $Y$ and $Y^\perp$ respectively, but that implies that they are 0.
+
+	The direct sum decomposition shows (c) directly.
+\end{proof}
+We finally move on to what is the core theorem of scalar product spaces. In finite dimensional scalar product spaces, given a basis for a vector space, we can define a dual basis. This then yields an isomorphism between a vector space and its dual. In a scalar product space, this can be done without even the choice of a basis. We now seek to do the same. Before this proof, we first need a lemma:
+\begin{Lemma}
+	Let $V$ be a Banach space.
+	\begin{parts}
+	\item The nullspace of a linear functional that is not identically 0 is a linear subspace of codimension 1.
+	\item If two linear functionals have the same nullspace, they are a constant multiple of each other.
+	\item The nullspace of a bounded linear functional is a closed subspace.
+	\end{parts}
+\end{Lemma}
+\begin{proof}
+	\begin{parts}
+	\item Follows from the fundamental theorem of homomorphisms for groups:
+		\[
+		V / \ker~f \cong \R
+		\]
+		which has dimension 1.
+	\item Let $v\in V$. We decompose $v$ into the sum $v = u + w$, where $u$ is in the (shared) kernel and $w$ is not (this requires that the kernel is closed, see (c)). 
+
+		Then, the two linear functionals are uniquely determined through their action on $w$. But since $w$ is in a 1-dimensional subspace, it follows that the two functionals are a constant multiple of each other.
+	\item A bounded linear functional is continuous; the preimage of $0$ is hence closed. The subspace property follows from linearity as it does in finite dimensions.\qedhere
+	\end{parts}
+\end{proof}
+Now the important theorem follows immediately:
+\begin{Theorem}[Riesz Representation Theorem]
+	Let $f$ be a bounded (and hence continuous) linear functional on a Hilbert space $\mathcal{H}$. Then $f$ has the form
+	\[
+	f = \langle v, \cdot\rangle
+	.\] 
+	The point $v$ is uniquely determined.
+\end{Theorem}
+\begin{proof}
+The nullspace $Y$ of $f$ is a closed subspace of $\mathcal{H}$. Its orthogonal complement $Y^\perp$ is one-dimensional. Let $p$ be nonzero in $Y^\perp$, and define the linear functional $m$ by $m = \langle p, \cdot \rangle$. This is a linear functional with the same nullspace as $f$, and by rescaling appropriately, we regain $f$. 	
+\end{proof}
+\begin{Corollary}
+	Every Hilbert space is reflexive.
+\end{Corollary}
+A generalization is the Lax-Milgram Theorem
+\begin{Theorem}[Lax-Milgram]
+	Let $\mathcal{H}$ be a Hilbert space and $B(u, v)$ be a function of two variables with the following properties:
+	\begin{parts}
+		\item $B(x,y)$ is linear in $y$ and skew-linear in $x$,
+		\item There exists $c$ such that
+		\[|B(u,v)|\le c \|u\| \|v\|,\]
+		\item There exists $b>0$ such that
+		\[|B(v,v)|\ge b\|v\|^2\]
+		for all $v\in \mathcal{H}$.
+	\end{parts}
+Then every bounded linear functional $\ell$ has the form
+\[\ell(v) = B(u, v),\]
+where $u$ is a uniquely determined vector in $\mathcal{H}$.
+\end{Theorem}
+\begin{proof}
+Since $B(u, \cdot)$ is linear, we can write it as $\langle u', \cdot \rangle$ for some $u'\in \mathcal{H}$. Since $u'$ is uniquely determined by $u$, it is a function of $u$. By the linearity of $B$, it must be a linear function of $u$. Thus, the set of possible $u'$ is a linear subspace of $\mathcal{H}$. We claim that it is a closed subspace.
+
+To do this, we consider the ``norm''
+\[B(u, u) = \langle u', u\rangle.\]
+Then, we approximate their absolute values through the Cauchy-Schwarz inequality and condition (c):
+\[b \| u\|^2 \le \|u'\|\|u\|\]
+or
+\[b \|u\| \le \|u'\|.\]
+Note here again that $u'$ is a linear function of $u$. Now we consider a sequence $u'_n$ with corresponding $u_n$. We have, by skew-linearity,
+\[B(u_n - u_m, v) = \langle u'_n - u'_m, v\rangle.\]
+By the previous argument, this means that
+\[b\|u_n-u_m\| \le \|u_n' - u_m'\|.\]
+This means that if the $u_n'$s form a Cauchy sequence, so do the $u_n$s. By completeness, this converges. Thus, if $u_n'\to u'$ and $u\to u'$, we have, by continuity both of $B$ and of the scalar product,
+\[B(u, v) = \langle u', v\rangle.\]
+Thus, $u'$ is still a candidate vector that may be produced by the Riesz Representation theorem, showing that the subspace is closed. Now, we show that this closed subspace is all of $\mathcal{H}$. Otherwise, there would be a vector $w$ orthogonal to all $u'$. Then $B(u, w)=0$ for all $u\in \mathcal{H}$. Letting $u=w$ yields $B(w,w)=0$, or $w=0$.
+
+Now, we put the pieces of the puzzle in place. By the Riesz theorem, we know that
+\[\ell = \langle u', \cdot\rangle\]
+for some $u'\in \mathcal{H}$. By the previous argument, we know that
+\[\langle u',\cdot \rangle = B(u, \cdot)\]
+for some $u\in \mathcal{H}$. This completes the proof.
+\end{proof}
+\section{Bases}
+As one might expect, the next step up from a (Schauder) basis in a Banach space would be an orthonormal basis:
+\begin{Definition}[Orthonormal Basis]
+	An orthormal (Schauder) basis $\{v_n\}$ is a set of vectors whose closed linear span is the entire space, such that $\langle v_i, v_j\rangle =0$ for $i\neq j$, and $\|v_n\| = 1$.
+\end{Definition}
+Such bases always exist, by the classic Zorn's Lemma argument
+\begin{Theorem}
+	Every Hilbert space has an orthonormal Schauder basis.
+\end{Theorem}
+\begin{proof}
+	Consider all orthonormal sets, partially ordered by inclusion. By Zorn's Lemma, there is a maximal orthonormal set. 
+\end{proof}
+As in finite dimensions, we have the Gram-Schmidt procedure for orthogonalizing a finite set of vectors:
+\begin{Theorem}[Gram-Schmidt]
+	Let $\{u_n\}$ be a basis for the Hilbert space $\mathcal{H}$. Then there exists an orthonormal basis $\{v_n\}$ such that the span of $v_1, \dots, v_n$ is the span of $u_1, \dots, u_n$.
+\end{Theorem}
+\section{Applications}
+As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
+
+\begin{Definition}[Absolute Continuity]
+	Let $\mu$ and $\nu$ be measures defined on the same measurable space $(X, \mathcal{A})$. We say that $\nu$ is absolutely continuous with respect to $\mu$, or $\nu \ll \mu$, if for all $A\in \mathcal{A}$, $\mu(A)=0\implies \nu(A)=0$.
+\end{Definition}
+
+Before we move on to the full Radon-Nikodym theorem, we prove a slightly weaker version:
+\begin{Theorem}[Finite Radon-Nikodym]
+	Let $\mu$ and $\nu$ be finite measures defined on the same measurable space $(X, \mathcal{A})$ such that $\nu \ll \mu$. Then there exists measurable $g:X \to \R$ such that
+	\[\nu(A) = \int_A g \dd{\mu}\]
+	for all $A\in \mathcal{A}$.
+\end{Theorem}
+\begin{proof}
+	We consider the Hilbert space $L^2(\mu+\nu)$. Since both measures are finite, the constant $1$-function is integrable, and hence by the Schwarz inequality we have
+	\[\left|\int v \dd{(\mu+\nu)}\right|^2 \le \left(\int v^2 \dd{(\mu+\nu)}\right) \left(\int 1\dd{(\mu+\nu)}\right).\]
+	This shows that all square integrable functions are integrable. Then, we consider the linear functional
+	\[\ell(v) = \int v \dd{\mu}\]
+	which is bounded with respect to the $L^2(\mu)$ norm, and thus is even more strongly bounded with respect to the $L^2(\mu+\nu)$ norm. Thus, by the Riesz representation theorem we have
+	\[\ell(v) = \int v\dd{\mu} = \int vu \dd{(\mu+\nu)}\]
+	for a unique $u\in L^2(\mu+\nu)$. This can be rewritten as
+	\begin{equation}\label{eq:rieszintegral}
+		\int v(1-u)\dd{\mu}=\int vu \dd{\nu}.
+		\end{equation}
+	Now we show that $0 < u \le 1$ $\mu$-almost everywhere.
+	
+	We begin by considering the set $F = \{x\in X|u \le 0\}$. As the inverse image of a measurable set under a measurable function, it is itself measurable. Then, by letting $v$ be its characteristic function (which is $L^2$), Equation~\eqref{eq:rieszintegral} becomes
+	\[\int_F (1-u)\dd{\mu} = \int u \dd{\nu}.\]
+	Since $u\le 0$ on $F$, the right hand side is $\le 0$, while the left hand side is $\ge \mu(F)$. Thus, we must have $\mu(F)=0$.
+	
+	Similarly, we consider $F=\{x \in X|u > 1\}$. Here, we have
+	\[\int (1-u)\dd{\mu} \le 0, \qquad \int u \dd{\nu} \ge \nu(F).\]
+	The only possibility for equality happens when $F$ is a $\mu$-null set. Thus, we can modify $u$ on a $\mu$-null set such that $0< u \le 1$ everywhere.
+	
+	Finally, we claim that
+	\[g = \frac{1-u}{u}.\]
+	To see this, we write $p = uv$ and rewrite Equation \eqref{eq:rieszintegral} as
+	\[\int pg \dd{\mu} = \int p \dd{\nu}.\]
+	We now choose $v$ such that $p$ becomes the characteristic function of a set $A$. Then, we have
+	\[\nu(A) = \int g \dd{\mu}\]
+	as desired.
+\end{proof}
+Now, we prove the full Radon-Nikodym theorem. This is a purely measure theoretic exercise, with no need to resort to functional analysis. As one might expect, it proceeds by cutting up the $\sigma$-finite space into finite spaces, applying the finite version of the Radon-Nikodym theorem, and pasting them together using characteristic functions.
+\begin{Theorem}[Radon-Nikodym]
+	Let $\mu$ and $\nu$ be $\sigma$-finite measures defined on the same measurable space $(X, \mathcal{A})$ such that $\nu\ll \mu$. Then there exists a measurable function $g:X\to \R$ such that
+	\[\nu(A) = \int_A g\dd{\mu}\]
+	for all $A\in \mathcal{A}$.
+\end{Theorem}
+\begin{proof}
+	Since $X$ is $\sigma$-finite, we have $X=\bigcup_{n=1}^\infty A_n$, with $\mu(A_n)<\infty$, and the $A_n$s pairwise disjoint. Then, we can apply the finite version of the Radon-Nikodym theorem to find $g_n: A_n\to \R$ such that 
+	\[\nu(E \cap A_n) = \int_{A_n} g_n\dd{\mu}\]
+	for measurable $E$. Then we let $g=\sum_{n=1}^\infty g_n \chi_{A_n}$. By the monotone convergence theorem, this is also positive and measurable. Then
+	\[\nu(E) = \sum_{n=1}^\infty \nu(E \cap A_n) = \sum_{n=1}^\infty \int_{A_n} g\dd{\mu} = \int g\dd{\mu}.\qedhere\]
+\end{proof}
+\renewcommand{\listtheoremname}{List of Definitions}
+\listoftheorems[ignoreall, onlynamed={Definition}]
+\renewcommand{\listtheoremname}{List of Theorems}
+\listoftheorems[ignoreall, onlynamed={Theorem}]
+\end{document}

@@ -1,0 +1,321 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmbox}
+\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Funktionalanalysis Hausaufgaben Blatt 2}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	
+	\section{Solution Methods}
+	\begin{enumerate}
+		\item Separation of variables
+		\item Integrating factor
+		\item Variation of constants
+	\end{enumerate}
+	\section{Existence \& Uniqueness Results}
+	\begin{Lemma}\label{lemma:vanishinglipschitz}
+		Suppose $\mathcal{C}^1\ni f:[a,b]\to \R$, $f(a)=0$ and there exists a constant $M>0$ such that $|f'(x)|\le M |f(x)|$ for all $x\in [a,b]$. Then $f=0$.
+	\end{Lemma}
+	\begin{proof}
+		Consider $c\in [a,b]$. The Mean Value Theorem yields the approximation
+		\[|f(c)|\le (c-a)\sup_{x\in [a,c]}|f'(x)|\le M(c-a)\sup_{x\in [a,c]}|f(x)|\]
+		which means that $f$ is $0$ on $[a,c]$ if $M(c-a)\le 1$. It then follows that $f$ is identically $0$.
+		
+		An almost identical theorem can be formulated when $f$ is a vector function.
+	\end{proof}
+	\begin{Theorem}[Uniqueness]\label{thm:uniqueness}
+		Consider the initial value problem $\dot{x}=f(t, x),~x(a)=x_0$ such that $f$ is defined on a rectangle $[a,b]\times \overline{U}$ and $f$ is Lipschitz continuous on this rectangle. Then the differential equation has at most one solution on $[a,b]$.
+	\end{Theorem}
+	\begin{proof}
+		Suppose that we have two solutions $\varphi: [a,b] \to \overline{U}$ and $\psi: [a,b]\to \overline{U}$. Then we consider the difference:
+		 \[\dv{t}\left(\varphi(t)-\psi(t)\right) = f(t, \varphi(t))-f(t,\psi(t)).\]
+		 The difference also has initial value $0$. Since $f$ is Lipschitz continuous, we say that
+		 \[\dv{t}\left( \varphi(t) - \psi(t)\right)) \le M(\varphi(t)-\psi(t)).\]
+		 An application of Lemma \ref{lemma:vanishinglipschitz} shows that the difference must then vanish; i.e. the two solutions are identical.
+	\end{proof}
+	\begin{Remark}
+		The earlier argument shows existence on a rectangle, given that the function is Lipschitz continuous within this interval. We are, of course, sometimes interested in solutions to a differential equation that live on the \emph{entire real line}. This leads us to the following definition:
+	\end{Remark}
+	\begin{Definition}
+		A function is locally Lipschitz continuous if for every $x$ there exists a neighbourhood of $x$ such that the function is Lipschitz continuous when restricted to that subset.
+	\end{Definition}
+	The above definition is not what we will normally work with. For example, the rectangle mentioned above is not a neighbourhood; it is a compact set. As it turns out, this definition is equivalent to a definition using compact sets when we consider subsets of euclidean space:
+	\begin{Theorem}
+		Let $X$ be locally compact. A function $f$ on $X$ is locally Lipschitz continuous if and only if it is Lipschitz continuous on all compact subsets of $X$.
+	\end{Theorem}
+	\begin{proof}
+		Suppose that $f$ is Lipschitz continuous. We consider a compact subset $K\subseteq X$. Then we can cover this compact subset with open balls on which $f$ is Lipschitz continuous, of which there exists a finite subcover due to compactness. Choosing the maximum of all the Lipschitz constants yields Lipschitz continuity on $K$.
+		
+		Suppose conversely that $f$ is Lipschitz continuous on every compact subset. Then we consider $U$ such that $\overline{U}$ is compact (exists due to local compactness). Since $f$ is Lipschitz continuous on $\overline{U}$, we can choose the same Lipschitz constant on $U$ to get a neighbourhood on which $f$ is Lipschitz continuous.
+	\end{proof}
+	Theorem \ref{thm:uniqueness} can be easily extended to local Lipschitz continuous functions. Hence, \uline{local Lipschitz continuity suffices for uniqueness of solutions.}
+	
+	Now we move on to prove existence of solutions. To prove existence, we will consider two methods to successively approximate solutions of a differential equation. We will then need to prove two things: First, we will need to prove convergence. Then, we will need to prove that they satisfy the differential equation. The latter question turns out to be much easier if we consider an integral equation instead:
+	\begin{Theorem}
+		A function $\varphi:[a,b]\to \R^n$ is a solution of the initial value problem
+		\[\dot{x}=f(t, x),\qquad x(t_0)=x_0\]
+		if and only if it satisfies the integral equation
+		\[\varphi(t)=x_0 + \int_{t_0}^t f(s, \varphi(s))\dd{s}.\]
+	\end{Theorem}
+	\begin{proof}
+		This follows very easily from the fundamental theorem of calculus.
+	\end{proof}
+	The first question is slightly harder to answer. We will require a different theorem for each approximation method.
+	\begin{Remark}\label{remark:diffeqdefinition}
+		From here on, unless otherwise stated, we will consider the initial value problem $\dot{x}=f(t, x),~x(t_0)=x_0$ where $f$ is defined on $[t_0, t_1]\times \overline{B_\delta(x_0)}$ for some $\delta>0$.
+	\end{Remark}
+	\subsection{Euler Approximation}
+	The idea behind this subsection is to approximate the solution of the differential equation through \emph{Euler polygons}. We define the \emph{Euler polygon with step size} $h$, which we denote as $\varphi_h(t)$, as follows: We set $\varphi_h(t_0) = x_0$. Then, we define $\varphi_h(t_0+h)=x_0 + hf(t_0, \varphi_h(t_0))$. Then, we let $\varphi_h(t_0 + 2h)= \varphi_h(t_0+h)+hf(t_0, \varphi_h(t_0+h))$. We continue this recursively. For $t$ not equal to $t_0+kh$ we define its value using linear interpolation between the two nearest points. This is the well known Euler's method, which yields approximate solutions to a differential equation in an incredibly fast manner.
+	
+	Let us now consider the question of convergence. We consider a family of functions $(f_n)_{n\in \N}$, $f_n\in \mathcal{C}([a,b])$. We say that this family is \emph{uniformly equicontinuous} if for every $\epsilon>0$ there exists $\delta>0$ such that $|x-y|<\delta\implies |f_n(x)-f_n(y)|\le \epsilon$ for all $n\in \N$. We say that it is \emph{uniformly bounded} if there exists $\infty>M\ge 0$ such that $f_n(x)\le M$ for all $x\in [a,b]$ and $n\in \N$
+	\begin{Theorem}[Arzelà-Ascoli]
+		Every uniformly equicontinuous and uniformly bounded sequence of functions on a closed and bounded interval in the real line contains a uniformly convergent subsequence.
+	\end{Theorem}
+	\begin{proof}
+		This statement should be reminiscent of the Bolzano-Weierstraß theorem, which states that every bounded real sequence has a convergent subsequence. In fact, this similarity is no coincidence, as we will make use of Bolzano-Weierstraß in the proof of the Arzelà-Ascoli theorem.
+		
+		Consider all the rationals in $[a,b]$. We will order them in some manner $x_1, x_2, \dots$. Consider now the sequence $f_1(x_1), f_2(x_1), \dots$. Since this sequence is bounded, it contains a convergent subsequence $f_{n^{(1)}_1}(x_1), f_{n^{(1)}_2}(x_1), \dots$.
+		
+		Let us now think about $f_{n^{(1)}_1}(x_2), f_{n^{(1)}_2}(x_2), \dots$. Since this is again a bounded sequence, it contains a convergent subsequence $f_{n^{(2)}_1}(x_2), f_{n^{(2)}_2}(x_2), \dots$. Note that this still converges at $x_1$. We repeat this process and obtain for each $k\in \N$ a sequence that converges at $x_1, \dots, x_k$. 
+		
+		The diagonal sequence $(f_{n^{(k)}_k})_{k\in \N}$ converges for all $x\in \Q\cap [a,b]$.
+		
+		Now that we have a function defined on a dense subset of $[a,b]$, we can continuously extend this to a function on all of $[a,b]$. It remains to show uniform continuity.
+
+		Let us begin with the idea of piecewise convergence, which we prove as follows: Consider $f(x)$.  First, by continuity, we choose an open interval containing $x$ such that $f$ varies by less than $\epsilon$ on this interval. Then, we make this interval smaller by equicontinuity such that the $f_n$s also vary by less than $\epsilon$. Finally, we choose $K\in \N$ such that this interval contains $x_k$ with $k\le K$. Then we have $f_n(x)-f(x)<3\epsilon$ for $n>K$.
+
+		We then use compactness as follows: We pick open intervals such that each open interval contains $k\le K$. Then since there is a finite subcover, we can pick a $K$ that works for the entire interval. This proves uniform convergence.
+	\end{proof}
+	\begin{Theorem}[Peano]\label{thm:peano}
+If $f$ (from Remark \ref{remark:diffeqdefinition}) is continuous, then the initial value problem has at least one solution.
+	\end{Theorem}
+	\subsection{Picard Iteration}
+	In this subsection we consider the procedure of Picard Iteration. Picard Iteration is significantly easier to state: Again, considering a differential equation of the form given in Remark \ref{remark:diffeqdefinition}, we set $\varphi_0(t)=x_0$ and let
+	\[\varphi_{k+1}(t) = x_0+\int_{t_0}^{t} f(s, \varphi_k(s))\dd{s}.\]
+	The candidate solution for the differential equation is clearly the limit of this sequence as $k$ goes to infinity, assuming, of course, that said limit even exists. Let us consider this question first.
+	\begin{Theorem}[Banach Fixed-Point Theorem]
+		Let $(X, d)$ be a complete metric space and $f:X\to X$ be a contraction: That is, there exists $0\le\alpha<1$ such that $d(f(x), f(y))\le \alpha d(x,y)$ for all $x,y\in X$. Then $f$ has a unique fixed point. This fixed point can also be determined by convergence of the sequence $f^{(n)}(x)$ for any $x\in X$
+	\end{Theorem}
+	\begin{proof}
+		Uniqueness is clear. The proof of existence comes by showing that the sequence as defined in the last sentence is Cauchy, and then using completeness.
+	\end{proof}
+	\begin{Theorem}[Picard-Lindelöf]
+		If $f$ (from Remark \ref{remark:diffeqdefinition}) is locally Lipschitz continuous, then the initial value problem has at exactly one solution.
+	\end{Theorem}
+\begin{proof}
+	This theorem can be seen as a consequence of \hyperref[thm:peano]{Peano's Theorem} and Theorem \ref{thm:uniqueness}. However, we present the ``classical'' proof using the Banach Fixed Point Theorem and Picard Iteration.
+	
+	It is known that $\mathcal{C}([a,b])$ is a Banach space in the supremum norm. As a closed subspace of $\mathcal{C}([a,b])$, the functions $[t_0,T]\to \overline{B_\delta(x_0)}$ are a complete subset of $\mathcal{C}([a,b])$, which we require to apply Banach's fixed point theorem.
+	
+	Next we need to prove that the operator defined by
+	\[K(\varphi)(t) = x_0+\int_{t_0}^t f(s, \varphi(s))\dd{s}\]
+	is a contraction. First we show that it is well defined, i.e. if $\varphi$ has graph in the cylinder $[t_0, T]\times \overline{B_{\delta}(x_0)}$, then
+	\[\|K(\varphi)-x_0\|=\left\| \int_{t_0}^t f(s, \varphi(s))\dd{s}\right\|\le (t-t_0)M\] 
+	where $M$ is the maximum of $f$. By choosing $T$ such that $(T-t_0)M\le \delta$, we can ensure that $K$ is a well defined operator.
+	
+	We now consider $\varphi$ and $\psi$ functions from $[t_0,t_1]\to \overline{B_{\delta}(0)}$, and apply $K$ to them both:
+	
+	\begin{align*}
+		\|K(\varphi) - K(\psi)\| &= \left\| \int_{t_0}^t (f(s, \varphi(s)) - f(s, \psi(s)))\dd{s}\right\|\\
+		&\le \left\|\int_{t_0}^t L(\varphi(s) -\psi(s))\dd{s}\right\|\\
+		&\le L(t-t_0)\|\varphi-\psi\|
+	\end{align*}
+	By further picking $T$ such that $L(t-t_0)< 1$, we have a contraction, as required. The fixed point fulfils the integral equation and is thus a solution to the differential equation.
+\end{proof}
+\begin{Remark}
+	It is notable here that we chose a ``cylinder'' set $[t_0,T]\times \overline{B_\delta(x_0)}$. The use of this set can be described as follows: First, we chose such a set and found $|f|$ over it. Then, we restricted this to an even smaller cylinder such that all solutions have to escape through the sides. 
+	
+	The compactness of this cylinder allowed us to use Lipschitz continuity, as we only had local Lipschitz continuity of $f$. Then, we made the cylinder \emph{even} smaller, so that the functional $K$ was a contraction.
+\end{Remark}
+\begin{Remark}[Local vs Global Solutions]
+	In the proof earlier, we determined that the initial value problem \ref{remark:diffeqdefinition} had a unique local solution. To do so, we required local Lipschitz continuity.
+	
+	If we assume more, we can do more - if we have global Lipschitz continuity, we can find a solution on the entire interval $[t_0, t_1]$. We simply repeat the same proof on a small enough interval, knowing that we are always able to extend our solution interval by a constant length $\delta$ each time due to having the same Lipschitz constant everywhere.
+	
+	If we did not have global Lipschitz continuity, we could possibly have intervals $\delta$ that kept getting smaller, and we would not be able to extend our solution to the entire interval.
+\end{Remark}
+\subsection{Grönwall's Inequality and Variants Thereof}
+\begin{Lemma}[Grönwall's Inequality]\label{lemma:Gronwallclassic}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t)\le \beta(t)u(t),\]
+	on an interval $[a,b]$. Then $\psi(t)$ is bounded by the solution of the ODE
+	\[v'(t)=\beta(t)v(t)\]
+	for all time:
+	\[\psi'(t)\le \psi(a)\exp\left(\int_a^t \beta(s)\dd{s}\right)\]
+\end{Lemma}
+\begin{proof}
+	We define $v(t)=\exp\left(\int_a^t \beta(s)\dd{s}\right)$. Note that $v$ satisfies the differential equation $v'(t)=\beta(t)v(t)$ and is always strictly greater than $0$. 
+	
+	Then we consider the derivative of $u(t)/v(t)$:
+	\[\dv{t}\frac{u(t)}{v(t)}=\frac{u'(t)v(t)-v'(t)u(t)}{v(t)^2}=\frac{u'(t)-\beta(t)u(t)}{v(t)}\le 0\]
+	Thus the function $u(t)/v(t)$ starts at $1$ and is strictly decreasing, which proves the above inequality.
+\end{proof}
+\begin{Lemma}[Generalized Grönwall's Inequality]
+	Statement from \url{https://math.stackexchange.com/questions/4773818/generalized-gronwall-inequality-covering-many-different-applications}:
+
+Suppose $\psi$ is a function on $[a,b]$ that satisfies the differential inequality
+\[\psi'(t)\le F(\psi(t))\]
+with $F\in C^1(\R)$, while $v$ satisfies the differential equation
+\[v'(t)=F(v(t)),\qquad v(a)=\psi(a).\]
+Then $\psi(t) \le v(t)$.
+\end{Lemma}
+\begin{proof}
+	Define $G:\R^2 \to \R$ by
+	\[G=\begin{cases}
+		\frac{F(x)-F(y)}{x-y} & x\neq y,\\
+		F'(x) & x=y.
+	\end{cases}\]
+	Since $F$ is $C^1$, $G$ is continuous. Then we define $\beta(t)=G(\psi(t), v(t))$ and $w(t)=u(t)-v(t)$. Then
+	\[w'(t)=u'(t)-v'(t)\le F(u(t))-F(v(t))=[u(t)-v(t)]G(u(t),v(t))=\beta(t)w(t).\]
+	By the classical version of Grönwall's Inequality \ref{lemma:Gronwallclassic}, we have
+	\[w(t)\le w(0)\exp\left(\int_a^t \beta(s)\dd{s}\right)=0,\]
+	as desired.
+\end{proof}
+\begin{Corollary}
+	Suppose $\psi(t)$ satisfies
+	\[\psi'(t) \le \alpha'(t)+\beta(t)\psi(t).\]
+	Then
+	\[\psi(t)\le \alpha(t)+\int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\]
+\end{Corollary}
+\begin{proof}
+	We just need to show that the second function is a solution to the differential equation obtained by replacing the inequality with an inequality:
+	\begin{align*}
+		&\dv{t}\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right]\\
+		=&\alpha'(t)+\alpha(t)\beta(t)+\int_a^t \alpha(s)\beta(s)\beta(t)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\\
+		=&\alpha'(t)+\beta(t)\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right].\qedhere
+	\end{align*}
+\end{proof}
+\begin{Corollary}
+	Suppose
+	\[\psi'(t)\le k \psi(t)+m,\qquad k\ge 0,m\ge 0.\]
+	Then we have
+	\begin{parts}
+		\item For $k=0$:
+		\[\psi(t)\le \psi(0)+m|t-t_0|\]
+		\item For $k>0$ we have
+		\[\psi(t)\le \psi(0)\exp(k|t-t_0|)+\frac{m}{k}(e^{k(t-t_0)}-1).\]
+	\end{parts}
+\end{Corollary}
+\section{Maximum Existence Interval}
+The solution of a differential equation can be defined over many intervals. For example,
+\[f: (-1,1)\to \R, x\mapsto x\]
+is a solution to the differential equation
+\[\dot{x}=1.\]
+However, $(-1,1)$ is also very clearly not the maximum interval over which this solution can be defined. In fact, it can be defined over all of $\R$. Thus, we define the \emph{maximum existence interval} of an initial value problem as follows:
+\begin{Definition}[Maximum Existence Interval]
+	Let $\dot{x}=f(t,x),\qquad x(t_0)=x_0$ be an initial problem, and $f$ be locally Lipschitz continuous with respect to $x$. Let $\varphi_n:I_n\to \R$ be a solution, where $n\in M$ is an element of an arbitrary index set, and $I_n$ is an interval for each $n$. Then we define the maximal existence interval as
+	\[I_\text{max}=\bigcup_{n\in M}I_n\]
+\end{Definition}
+\begin{Remark}
+	We have actually neglected to show that this definition is meaningful. However, the proof is relatively easy:
+	
+	Since we have a union of open sets, the union is open. Since they all have the point $t_0$ in common, the union is connected. Thus we have an interval. This interval is maximal by construction.
+\end{Remark}
+\begin{Theorem}
+	Suppose we have a solution $\varphi(t)$ to the differential equation $\dot{x}=f(t, x)$ defined on $(t_{-}, t_+)$. This is extensible at $t_+$ if and only if there is a sequence $t_n$ such that $(t_n, \varphi(t_n))\to (t_+, y)$.
+	
+	There is an analogous theorem for $t_-$.
+\end{Theorem}
+\begin{proof}
+	Clearly, the reverse direction is true. The forward direction comes from considering a local solution to $\dot{x}=f(t, x),~x(t_+)=y$, and gluing the two solutions together at $t_+$.
+\end{proof}
+\begin{Corollary}
+	Let $\varphi(t)$ be a solution defined on the interval $[t_-, t_+]$. Suppose there is a compact set $K$ such that $[t_0, t_+]\times C \subseteq U$ such that $\varphi(t_m)\in K$ for all sequences $(t_m)_{m\in \N}\subseteq [t_0, t_+)$ converging to $t_+$. Then there exists an extension of the solution of the ODE to $(t_-, t_+ +\epsilon)$
+\end{Corollary}
+\begin{Corollary}[Escape Lemma]
+	Suppose we have a solution $\varphi(t)$ defined on the maximum existence interval $(t_-, t_+)$ with $t_+<\infty$. Then for all compact sets $[t_0, t_+]\times K$, the solution must leave the compact set eventually as $t\to t_+$.
+\end{Corollary}
+\section{Linear Differential Equations}
+Linear differential equations are equations where sums and constant multiples of solutions remain solutions. One example is the $n$th order linear differential equation
+\[
+x^{(n)}(t) + a_{n-1}(t) x^{(n-1)}(t) + \dots + a_{0}(t)x(t)=0,\qquad x(t) \in \R
+.\] 
+Another example is the 1st order linear differential equation in $\R^n$:
+\[
+\dot{x}(t)= Ax,\qquad x\in \R^n,~A\in L(\R^n, \R^n)
+.\] 
+In actuality, the two of these are equivalent - we can turn the first ODE into the second by identifying $y=(x^{(n-1)}(t), x^{(n-2)}(t), \dots, x(t))$. Then, the first ODE turns into
+\[
+\begin{pmatrix} x^{(n)}(t) \\ x^{(n-1)}(t) \\ \vdots \\ \dot{x}(t) \end{pmatrix}= \dv{t}\begin{pmatrix} x^{(n-1)}(t) \\ x^{(n-2)}(t) \\ \vdots \\ x(t) \end{pmatrix}= \begin{pmatrix} -a_{n-1}(t) & -a_{n-2}(t) & \dots& -a_{1}(t) &  -a_{0}(t) \\ 1 & 0 & \dots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & 1 & 0\end{pmatrix}  \begin{pmatrix} x^{(n-1)}(t) \\ x^{(n-2)}(t) \\ \vdots \\ x(t) \end{pmatrix} 
+.\] 
+Thus, it suffices to consider the case of a first order linear differential equation in $\R^n$. However, while all $n$-order differential equations can be mapped to linear differential equations, the converse is not true, as the matrix has a special form. Let us first prove a fact that will be required:
+\begin{Proposition}
+	The eigenvalues of the matrix
+	\[
+	A = \begin{pmatrix} -a_{n-1}(t) & -a_{n-2}(t) & \dots& -a_{1}(t) &  -a_{0}(t) \\ 1 & 0 & \dots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & 1 & 0\end{pmatrix} 
+	\] 
+	have geometric multiplicity 1.
+\end{Proposition}
+\begin{proof}
+	It is clear that $A-\lambda I$ has $n-1$ linearly independent columns for all $\lambda$. Thus, the geometric multiplicity is always $\le 1$.
+\end{proof}
+Let us first begin by assuming we have $n$ solutions to the differential equation in $\R^n$. We say
+
+Since all matrices over the complex numbers can be put in Jordan Normal Form, we can assume that we have performed a basis translation and our matrix is now in said diagonal form.
+
+Let us first consider the case where $A$ is diagonal. Then the equation $\dot{x} = Ax$ consists simply of the equation $\dot{x}_n= \alpha_n x_n$, where $\alpha_n$ are the eigenvalues. This has the solution $x_n(t) = e^{\alpha t}x_n(0)$. 
+
+Now, we move to considering the case where $A$ is not diagonalizable. Since the Jordan Normal Form consists of Jordan blocks that represent invariant subspaces, it suffices simply to consider one block. For example, consider the equation
+\[
+\begin{pmatrix} \dot{x} \\ \dot{y} \end{pmatrix} = \begin{pmatrix} \alpha & 1 \\ 0 & \alpha \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} 
+.\] 
+We can solve this with the ansätze
+\[
+\begin{pmatrix} x \\ y \end{pmatrix} = e^{\alpha t} \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \qquad \begin{pmatrix} x \\ y \end{pmatrix} = e^{\alpha t} \begin{pmatrix} t \\ 1 \end{pmatrix} 
+.\] 
+\end{document}
+

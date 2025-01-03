@@ -59,7 +59,7 @@
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	
+	\tableofcontents
 	\section{Solution Methods}
 	\begin{enumerate}
 		\item Separation of variables
@@ -279,5 +279,45 @@ However, $(-1,1)$ is also very clearly not the maximum interval over which this 
 \begin{Corollary}[Escape Lemma]
 	Suppose we have a solution $\varphi(t)$ defined on the maximum existence interval $(t_-, t_+)$ with $t_+<\infty$. Then for all compact sets $[t_0, t_+]\times K$, the solution must leave the compact set eventually as $t\to t_+$.
 \end{Corollary}
+\section{Linear Differential Equations}
+Linear differential equations are equations where sums and constant multiples of solutions remain solutions. One example is the $n$th order linear differential equation
+\[
+x^{(n)}(t) + a_{n-1}(t) x^{(n-1)}(t) + \dots + a_{0}(t)x(t)=0,\qquad x(t) \in \R
+.\] 
+Another example is the 1st order linear differential equation in $\R^n$:
+\[
+\dot{x}(t)= Ax,\qquad x\in \R^n,~A\in L(\R^n, \R^n)
+.\] 
+In actuality, the two of these are equivalent - we can turn the first ODE into the second by identifying $y=(x^{(n-1)}(t), x^{(n-2)}(t), \dots, x(t))$. Then, the first ODE turns into
+\[
+\begin{pmatrix} x^{(n)}(t) \\ x^{(n-1)}(t) \\ \vdots \\ \dot{x}(t) \end{pmatrix}= \dv{t}\begin{pmatrix} x^{(n-1)}(t) \\ x^{(n-2)}(t) \\ \vdots \\ x(t) \end{pmatrix}= \begin{pmatrix} -a_{n-1}(t) & -a_{n-2}(t) & \dots& -a_{1}(t) &  -a_{0}(t) \\ 1 & 0 & \dots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & 1 & 0\end{pmatrix}  \begin{pmatrix} x^{(n-1)}(t) \\ x^{(n-2)}(t) \\ \vdots \\ x(t) \end{pmatrix} 
+.\] 
+Thus, it suffices to consider the case of a first order linear differential equation in $\R^n$. However, while all $n$-order differential equations can be mapped to linear differential equations, the converse is not true, as the matrix has a special form. Let us first prove a fact that will be required:
+\begin{Proposition}
+	The eigenvalues of the matrix
+	\[
+	A = \begin{pmatrix} -a_{n-1}(t) & -a_{n-2}(t) & \dots& -a_{1}(t) &  -a_{0}(t) \\ 1 & 0 & \dots & 0 & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & 1 & 0\end{pmatrix} 
+	\] 
+	have geometric multiplicity 1.
+\end{Proposition}
+\begin{proof}
+	It is clear that $A-\lambda I$ has $n-1$ linearly independent columns for all $\lambda$. Thus, the geometric multiplicity is always $\le 1$.
+\end{proof}
+Let us first begin by assuming we have $n$ solutions to the differential equation in $\R^n$. We say that they are \emph{linearly independent} if there are no constants $c_1, \dots, c_n$ such that $c_1\varphi_1 + \dots + c_n \varphi_n=0$ for all $t\in I$. 
+
+\textcolor{red}{TODO}
+
+Since all matrices over the complex numbers can be put in Jordan Normal Form, we can assume that we have performed a basis translation and our matrix is now in said diagonal form.
+
+Let us first consider the case where $A$ is diagonal. Then the equation $\dot{x} = Ax$ consists simply of the equation $\dot{x}_n= \alpha_n x_n$, where $\alpha_n$ are the eigenvalues. This has the solution $x_n(t) = e^{\alpha t}x_n(0)$. 
+
+Now, we move to considering the case where $A$ is not diagonalizable. Since the Jordan Normal Form consists of Jordan blocks that represent invariant subspaces, it suffices simply to consider one block. For example, consider the equation
+\[
+\begin{pmatrix} \dot{x} \\ \dot{y} \end{pmatrix} = \begin{pmatrix} \alpha & 1 \\ 0 & \alpha \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} 
+.\] 
+We can solve this with the ansätze
+\[
+\begin{pmatrix} x \\ y \end{pmatrix} = e^{\alpha t} \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \qquad \begin{pmatrix} x \\ y \end{pmatrix} = e^{\alpha t} \begin{pmatrix} t \\ 1 \end{pmatrix} 
+.\] 
 \end{document}
 

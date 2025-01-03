@@ -183,7 +183,19 @@ The second definition is more commonly seen. Now, we continue to the proof of un
 \end{Theorem}
 \begin{proof}
 	As one might expect, we assume that we have two solutions $X_t$ and $Y_t$ to the stochastic differential equation. Then $Z_t=X_t-Y_t$ is a stochastic process satisfying the stochastic differential equation, or equivalently integral equation
-	\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\]
+	\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}.\]
+	Then we consider the expectation value of the square $Z_t^2$. Because $(a+b)^2 < 2(a^2+b^2)$, we have
+	\[Z_t^2 \le 2\left[\left(\int_a^t (\sigma(s, X_s) - \sigma(s, Y_s))\dd{B_s}\right)^2 + \left(\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\right)^2\right].\]
+	Now, we aim to estimate the expectation value of the two quantities in parentheses. As with deterministic differential equations, this is done using the Lipschitz condition:
+	\begin{align*}
+		E\left(\int_a^t (\sigma(s, X_s) - \sigma(s, Y_s))\dd{B(s)}\right)^2&= \int_a^t E[(\sigma(s, X_s)-\sigma(s, Y_s))^2]\dd{s}\\
+		&\le K^2 \int_a^t E(Z_s^2)\dd{s}
+	\end{align*} 
+where the first line comes from the Ito isometry and the second comes from the Lipschitz condition. Similarly, for the second term, we have
+\begin{align*}
+	\left(\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\right)^2 &\le (t-a)\int_a^t (f(s, X_s) - f(s, Y_s))^2 \dd{s}\\
+	&\le (b-a)K^2 \int_a^t Z_s^2\dd{s}
+\end{align*}
 \end{proof}
 \bibliographystyle{ieeetr}
 \bibliography{ref.bib}
