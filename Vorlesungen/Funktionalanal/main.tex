@@ -1015,12 +1015,26 @@ In a metric space, for example, a normed space, sequential compactness is equiva
 \end{Theorem}
 However, the unit ball in the dual space is not, in general, metrizable. We require an additional condition, that the original vector space is separable:
 \begin{Theorem}[Sequential Compactness of Unit Ball]
-	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is first countable in the weak *-topology.
+	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is sequentially compact in the weak* topology. 
 \end{Theorem}
 \begin{proof}
-	First, we begin by letting $\{v_1, \dots,\} $ be a countable dense subset of $V$. 
+	Given a sequence $u_n\in V'$, such that $\|u_n\|\le 1$ and a countable dense set $\{v_k\} \subseteq V$, we can choose, by the diagonal argument, a subsequence $\ell_n$ such that $\lim_{n\to\infty} \ell_n(v_k)$ exists for all $k$.
+
+Since the $v_n$s are dense, we actually have convergence for all $v\in V$:
+\[
+|\ell_n(v) - \ell_m(v)| \le |\ell_n(v_k) - \ell_m(v_k)| + |\ell_n(v-v_k) - \ell_m(v - v_k)| \le |\ell_n(v_k) - \ell_m(v_k)| + 2M \|v-v_k\|
+.\] 
+We can also show that it is linear. Since it is a pointwise limit, we have
+\[
+\ell(au+bv) = \lim_{n \to \infty} \ell_n(au+bv) = \lim_{n \to \infty} [a\ell_n(u)+b\ell_n(v)] = a\ell(u)+b\ell(v)
+.\] 
+Now, finally, it is bounded, as
+\[
+|\ell(u-v)| = |\lim_{n \to \infty} \ell_n(u-v)| = \lim_{n \to \infty} |\ell_n(u-v)| \le \lim_{n \to \infty} c_n\|u-v\|\le \|u-v\|
+\]
+since $c_n\le 1$ by hypothesis. 
 \end{proof}
-This implies that it is sequentially compact by the next theorem:
+Another method would be to show that it is first countable. Then, the result would follow using the following theorem:
 \begin{Theorem}
 	A first countable compact space $X$ is sequentially compact.
 \end{Theorem}
@@ -1691,6 +1705,9 @@ As in finite dimensions, we have the Gram-Schmidt procedure for orthogonalizing 
 \begin{Theorem}[Gram-Schmidt]
 	Let $\{u_n\}$ be a basis for the Hilbert space $\mathcal{H}$. Then there exists an orthonormal basis $\{v_n\}$ such that the span of $v_1, \dots, v_n$ is the span of $u_1, \dots, u_n$.
 \end{Theorem}
+\begin{Example}
+	We can define a linear operator $T_n$ by $T_n(\sum a_k e_k)=\sum_{k=1}^n a_k e_k$. Then $T_nx\to x$, but $\|T_n - I\|\not\to 0$.
+\end{Example}
 \section{Applications}
 As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
 

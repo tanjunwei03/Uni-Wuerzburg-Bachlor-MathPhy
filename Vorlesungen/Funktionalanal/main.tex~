@@ -1015,10 +1015,20 @@ In a metric space, for example, a normed space, sequential compactness is equiva
 \end{Theorem}
 However, the unit ball in the dual space is not, in general, metrizable. We require an additional condition, that the original vector space is separable:
 \begin{Theorem}[Sequential Compactness of Unit Ball]
-	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is first countable in the weak *-topology.
+	Let $V$ be a separable Banach space. Then $B_1(0)^\text{cl}\subseteq V'$ is sequentially compact in the weak* topology. 
 \end{Theorem}
 \begin{proof}
-	First, we begin by letting $\{v_1, \dots,\} $ be a countable dense subset of $V$. 
+	Given a sequence $u_n\in V'$, such that $\|u_n\|\le 1$ and a countable dense set $\{v_k\} \subseteq V$, we can choose, by the diagonal argument, a subsequence $\ell_n$ such that $\lim_{n\to\infty} \ell_n(v_k)$ exists for all $k$.
+
+Since the $v_n$s are dense, we actually have convergence for all $v\in V$:
+\[
+|\ell_n(v) - \ell_m(v)| \le |\ell_n(v_k) - \ell_m(v_k)| + |\ell_n(v-v_k) - \ell_m(v - v_k)| \le |\ell_n(v_k) - \ell_m(v_k)| + 2M \|v-v_k\|
+.\] 
+We can also show that it is linear. Since it is a pointwise limit, we have
+\[
+\ell(au+bv) = \lim_{n \to \infty} \ell_n(au+bv) = \lim_{n \to \infty} [a\ell_n(u)+b\ell_n(v)] = a\ell(u)+b\ell(v)
+.\] 
+
 \end{proof}
 This implies that it is sequentially compact by the next theorem:
 \begin{Theorem}
@@ -1288,6 +1298,7 @@ Thus, $f_n\to 0$ in the $L^1$ norm, while lying in the exterior of the $\infty$-
 \end{proof}
 \chapter{Hilbert Spaces}
 \section{Introduction}
+\subsection{Scalar Product Spaces}
 \begin{Definition}[Scalar Product]
 	A scalar product in a vector space $V$ over $\C$ is a sesquilinear map $V\times V\to \C$, denoted by $\langle \cdot, \cdot \rangle$ such that
 	\begin{parts}
@@ -1351,6 +1362,7 @@ Now that we understand how scalar products work, we move on to the theory of Hil
 \begin{Definition}[Hilbert Space]
 	A Hilbert space is a complete scalar product space.
 \end{Definition}
+\subsection{Subspaces}
 \begin{Theorem}[Convex Minimizer]\label{thm:convexminimizer}
 	Given a nonempty closed, convex subset $K$ of a Hilbert space $\mathcal{H}$ and $x\in H$, there is a point $y$ in $K$ that has minimum distance to $x$.
 \end{Theorem}
@@ -1409,6 +1421,7 @@ We now ask the question of when we have the standard result in linear algebra - 
 
 	The direct sum decomposition shows (c) directly.
 \end{proof}
+\subsection{Duality}
 We finally move on to what is the core theorem of scalar product spaces. In finite dimensional scalar product spaces, given a basis for a vector space, we can define a dual basis. This then yields an isomorphism between a vector space and its dual. In a scalar product space, this can be done without even the choice of a basis. We now seek to do the same. Before this proof, we first need a lemma:
 \begin{Lemma}
 	Let $V$ be a Banach space.
@@ -1442,6 +1455,7 @@ Now the important theorem follows immediately:
 \begin{proof}
 The nullspace $Y$ of $f$ is a closed subspace of $\mathcal{H}$. Its orthogonal complement $Y^\perp$ is one-dimensional. Let $p$ be nonzero in $Y^\perp$, and define the linear functional $m$ by $m = \langle p, \cdot \rangle$. This is a linear functional with the same nullspace as $f$, and by rescaling appropriately, we regain $f$. 	
 \end{proof}
+As a corollary, we have
 \begin{Corollary}
 	Every Hilbert space is reflexive.
 \end{Corollary}
@@ -1483,6 +1497,27 @@ for some $u'\in \mathcal{H}$. By the previous argument, we know that
 \[\langle u',\cdot \rangle = B(u, \cdot)\]
 for some $u\in \mathcal{H}$. This completes the proof.
 \end{proof}
+The isomorphism between a Hilbert space and its dual yields many important facts about the Hilbert space, that we could previously only prove for its topological dual. First, we prove that the isomorphism is still an isomorphism of the weak and weak-* topologies:
+\begin{Theorem}
+	The canonical antilinear isomorphism $\iota: \mathcal{H}\to \mathcal{H}'$ is a homeomorphism with respect to the weak and weak-* topologies on $\mathcal{H}$ and $\mathcal{H}'$ respectively.
+\end{Theorem}
+\begin{proof}
+The weak* topology of $\mathcal{H}'$ is defined by the seminorms $p_\psi(\varphi) = |\varphi(\psi)|$. Thus, we have, for $\phi\in \mathcal{H}$,
+\[
+p_\psi(\iota(\phi)) = |\langle \phi, \psi\rangle| = p_\psi(\phi)
+\]
+where $p_\psi$ is a seminorm on $\mathcal{H}$ defined by $p_\psi(\phi) = |\langle \psi, \phi\rangle |$. 
+
+By the Riesz representation theorem, there is a correspondence between the seminorms on $\mathcal{H}$ and those on $\mathcal{H}'$ induced by the canonical antilinear isomorphism $\iota$. Thus, they are homeomorphic.
+\end{proof}
+As consequence, we have Banach-Alaoglu
+\begin{Corollary}
+	The closed unit ball in a Hilbert space is weakly compact.
+\end{Corollary}
+its first main consequence
+\begin{Corollary}
+	The closed unit ball in a Hilbert space is sequentially compact in the weak topology, i.e. every bounded sequence has a weakly convergent subsequence.
+\end{Corollary}
 \section{Lattices}
 The previous results about closed subspaces of Hilbert spaces can be generalized using the concept of a \emph{lattice}:
 \begin{Definition}[Lattice]
@@ -1525,24 +1560,150 @@ The last part can be understood by thinking of $\wedge$ as a logical AND and thi
 			a\vee c= (a \wedge b) \vee c =(a \wedge  b \wedge c) \vee c = [c\wedge (a \wedge b)] \vee c = c
 			.\] 
 	\end{enumerate}
+\item First, we show that these are actually lower and upper bounds respectively. We have
+	\[
+	(a\wedge b)\vee a = a,~(a\wedge b)\vee b = b
+	\] 
+	directly by definition. Similarly,
+	\[
+	a\vee (a\vee b)=(a\vee a)\vee b = a\vee b,~b \vee(a\vee b) = (b\vee b)\vee a = a \vee b
+	.\] 
+	Then, we show that these are minimal and maximal lower and upper bounds. Suppose $c$ is a lower bound of $a$ and $b$, that is, $c\wedge a = c\wedge b = c$. Then
+	\[
+	c\wedge (a \wedge b)=(c\wedge a)\wedge b = c
+	.\] 
+	Thus, $c\le a\wedge b$. Suppoes now that $c$ is an upper bound, i.e. $c\vee a = c$ and $c\vee b = c$. Then
+	\[
+	c\vee (a\vee b) = c
+\]
+analogously to the previous result, as desired.\qedhere
 \end{parts}	
 \end{proof}
+We can define maximal and minimal elements:
+\begin{Definition}[Maximal \& Minimal Elements]
+	Let $(V, \wedge, \vee)$ be a lattice.
+	\begin{parts}
+	\item $1\in V$ is called a maximal element if $v\le 1$ for all $v\in V$.
+	\item $0\in V$ is called a minimal element if $0\le v$ for all $v\in V$.
+	\end{parts}
+\end{Definition}
+If we have two minimal/maximal elements, they must be equal due to reflexivity. The most noticeable difference between quantum and classical logic is the failure of the distributive law. If a lattice satisfies the distributive law, it is called a \emph{distributive lattice}:
+\begin{Definition}[Distributive Lattice]
+	Let $(V, \wedge, \vee)$ be a lattice. It is called distributive if, for all $a,b,c\in V$, we have
+	\[
+	a\wedge (b\vee c)=(a\wedge b)\vee(a\wedge c),\qquad a\vee (b\wedge c)=(a\vee b)\wedge(a\vee c)
+	.\] 
+\end{Definition}
+This does not hold in quantum logic
+\begin{Example}
+	We define three statements
+	\begin{align*}
+		a&:\text{``The particle has momentum in the interval $[0,1 / 6]$''}\\
+		b&:\text{``The particle is in the interval $[-1,1]$''}\\
+		c&: \text{``The particle is in the interval $[1,3]$''}
+	\end{align*}
+	The distributive law
+	\[
+	a\wedge (b\vee c) = (a \wedge b)\vee (a \wedge c)
+	\]
+	does not hold, where $\wedge$ is logical AND and $\vee$ is logical OR.
+\end{Example}
+\begin{proof}
+	We do not prove this in detail. However, we note that the Heisenberg uncertainty principle implies that $(a\wedge b)\vee (a \wedge c)$ is a harsher condition.
+\end{proof}
+We can also include a logical NOT in the operation:
+\begin{Definition}[Orthomodular Lattice]
+	Let $(V, \wedge, \vee, 0, 1)$ be a lattice with a maximum and minimum element with a map $V\to V, v\mapsto v'$ that satisfies
+	\begin{enumerate}[label=(\alph*)]
+	\item $a\le b\implies b' \le a'$,
+	\item $(a')'=a$,
+	\item $a\wedge a' = 0$,
+	\item $a\vee a'=1$
+	\end{enumerate}
+	for all $a,b$, then $V$ is called orthocomplemented. If, in addition,
+	\begin{enumerate}[label=(\alph*), resume]
+		\item $a\le b \implies (a\vee b')\vee b = a$ for all $a,b\in V$,
+	\end{enumerate}
+	then it is called orthomodular.
+\end{Definition}
+First, we define the lattice of classical logic
+\begin{Example}[The lattice $2^M$]
+	Let $M$ be a set and $2^M$ its power set. Then define
+	\[
+	U\wedge V = U \cap V, \qquad U\vee V = U \cup V
+\]
+as well as $0=\varnothing,~1=M, U'= M \setminus U$. Then $2^M$ is an orthomodular distributive lattice with the partial order being set inclusion.
+\end{Example}
+The quantum logic lattice is equivalent to the lattice of closed subspaces:
+\begin{Example}[Lattice of Closed Subspaces]
+	Let $\mathcal{H}$ be a Hilbert space. We define a lattice on the set of all closed subspaces of $\mathcal{H}$ by
+	\[
+		U\wedge V = U \cap V,\qquad U\vee V = (U + V)^\text{cl}
+	,\]
+	and $U' = U^\perp,~0=\{0\},~1=\mathcal{H}$. Then the ordering is given by inclusion. If $\text{dim }\mathcal{H}\ge 2$ then this lattice is not distributive.
+\end{Example}
 \section{Bases}
 As one might expect, the next step up from a (Schauder) basis in a Banach space would be an orthonormal basis:
 \begin{Definition}[Orthonormal Basis]
 	An orthormal (Schauder) basis $\{v_n\}$ is a set of vectors whose closed linear span is the entire space, such that $\langle v_i, v_j\rangle =0$ for $i\neq j$, and $\|v_n\| = 1$.
 \end{Definition}
-Such bases always exist, by the classic Zorn's Lemma argument
-\begin{Theorem}
-	Every Hilbert space has an orthonormal Schauder basis.
+Note that orthogonality implies linear independence, with the same proof as in finite dimensions. Such bases are called Hilbert space bases. Such bases always exist, by the classic Zorn's Lemma argument. However, first we need to prove an inequality very reminiscent of finite dimensional linear algebra
+\begin{Theorem}[Bessel's Inequality]
+	Let $(e_j)_{j\in \N}$ be an orthonormal sequence in a Hilbert space $\mathcal{H}$. Then
+	\[
+		\sum_{k=1}^\infty |\langle e_k, x\rangle|^2 \le \|x\|^2
+	.\] 
 \end{Theorem}
 \begin{proof}
-	Consider all orthonormal sets, partially ordered by inclusion. By Zorn's Lemma, there is a maximal orthonormal set. 
+	We consider the ``basis decomposition'' of the vector $x$:
+	\begin{align*}
+		0\le \left\|x - \sum_{k=1}^n \langle e_k, x\rangle e_k\right\|^2 &=  \|x\|^2 - 2\sum_{k=1}^n \Re \langle\langle e_k, x\rangle e_k, x\rangle + \sum_{k=1}^n |\langle e_k, x\rangle|^2\\
+										 &= \|x\|^2 - \sum_{k=1}^n |\langle e_k, x\rangle|^2.\qedhere
+	\end{align*}
+\end{proof}
+As one might expect, if the $e_n$s form a Hilbert space basis we have equality
+\begin{Theorem}[Hilbert Space Bases]
+	Let $\{e_i\}_{i\in I}$ be an orthormal system in a Hilbert space $\mathcal{H}$. Then the following statements are equivalent:
+	\begin{parts}
+	\item The set $\{e_i\} $ is a maximal orthonormal system. 
+	\item $(\text{span}\{e_i\})^\perp = 0$.
+	\item The subspace spanned by the $\{e_i\} $s is dense in $\mathcal{H}$.
+	\item For all $\psi\in \mathcal{H}$ we have
+		\[
+			\psi = \sum_{i\in I}\langle e_i, \psi\rangle e_i
+		.\] 
+	\item For all $\varphi, \psi\in \mathcal{H}$ we have
+		\[
+		\langle \varphi, \psi\rangle = \sum_{i\in I}\langle \varphi, e_i\rangle \langle e_i, \psi\rangle
+		.\] 
+	\item Parseval's identity
+		\[
+			\|\psi\|^2 = \sum_{i\in I}|\langle e_i, \psi\rangle|^2
+		\]
+		holds.
+	\end{parts}
+\end{Theorem}
+\begin{proof}
+	Suppose (a). We argue in the contrapositive. If there is a nonzero vector $\psi$ that is perpendicular to all $e_i$, then we can append $\psi$ to the set to get a system that is still orthonormal.
+
+	Now suppose (b). 
+
+	Now suppose (c). 
+\end{proof}
+The existence of bases follows directly from the previous theorem.
+\begin{Theorem}
+	Every Hilbert space has an orthonormal Hilbert space basis.
+\end{Theorem}
+\begin{proof}
+	By Zorn's Lemma, maximal orthonormal systems exist. By the previous theorem, they are Hilbert space bases.
 \end{proof}
 As in finite dimensions, we have the Gram-Schmidt procedure for orthogonalizing a finite set of vectors:
 \begin{Theorem}[Gram-Schmidt]
 	Let $\{u_n\}$ be a basis for the Hilbert space $\mathcal{H}$. Then there exists an orthonormal basis $\{v_n\}$ such that the span of $v_1, \dots, v_n$ is the span of $u_1, \dots, u_n$.
 \end{Theorem}
+\begin{Example}
+	We can define a linear operator $T_n$ by $T_n(\sum a_k e_k)=\sum_{k=1}^n a_k e_k$. Then $T_nx\to x$, but $\|T_n - I\|\not\to 0$.
+\end{Example}
 \section{Applications}
 As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
 
