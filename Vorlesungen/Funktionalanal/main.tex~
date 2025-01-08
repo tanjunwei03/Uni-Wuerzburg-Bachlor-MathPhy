@@ -1525,15 +1525,6 @@ The last part can be understood by thinking of $\wedge$ as a logical AND and thi
 			a\vee c= (a \wedge b) \vee c =(a \wedge  b \wedge c) \vee c = [c\wedge (a \wedge b)] \vee c = c
 			.\] 
 	\end{enumerate}
-\item First, we show that these are actually lower and upper bounds respectively. We have
-	\[
-	(a\wedge b)\vee a = a,~(a\wedge b)\vee b = b
-	\] 
-	directly by definition. Similarly,
-	\[
-	a\vee (a\vee b)=(a\vee a)\vee b = a\vee b,~b \vee(a\vee b) = (b\vee b)\vee a = a \vee b
-	.\] 
-	Then, we show that these are minimal and maximal lower and upper bounds.\qedhere
 \end{parts}	
 \end{proof}
 \section{Bases}
