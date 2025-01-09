@@ -162,7 +162,7 @@ We prove the uniqueness similar to in \cite{rudin1976principles}. First, we requ
 		=&\alpha'(t)+\beta(t)\left[\alpha(t) + \int_a^t \alpha(s)\beta(s)\exp\left(\int_s^t \beta(r)\dd{r}\right)\dd{s}\right].\qedhere
 	\end{align*}
 \end{proof}
-Then, we define a slightly more useful notion of Lipschitz continuity:
+Then, we define a slightly weaker notion of Lipschitz continuity:
 \begin{Definition}[Linear Growth]
 	A function $g(t, x)$ on $[a,b]\times \R$ is said to satisfy the \uline{linear growth condition in $x$} if there exists $K>0$ such that
 	\[|g(t, x)|\le K(1+|x|)\]
@@ -175,7 +175,29 @@ the earlier definition is equivalent to the following definition:
 	A function $g(t,x)$ satisfies the linear growth condition if there exists $K>0$ such that
 	\[|g(t,x)|^2 \le K(1+x^2)\]
 \end{Proposition}
-The second definition is more commonly seen. Now, we continue to the proof of uniqueness:
+The second definition will be more useful in the following proofs. Note that it is indeed stronger
+\begin{Proposition}
+	Globally Lipschitz continuous functions satisfy the linear growth condition.
+\end{Proposition}
+\begin{proof}
+If $f(x)$ is Lipschitz, we have
+\[|f(x) - f(0)| \le K |x|,\]
+or
+\[|f(x)|\le |f(0)| + K|x|\]
+by the reverse triangle inequality.
+\end{proof}
+Conversely, linear growth does not imply Lipschitz continuity, or any kind of continuity
+\begin{Example}
+	Let
+	\[f(x) = \begin{cases}
+		x & x\in \Q,\\
+		0 & \text{otherwise}.
+	\end{cases}\]
+	Clearly, $f$ grows linearly, but is not Lipschitz continuous, or even continuous at any point.
+\end{Example}
+
+
+Now, we continue to the proof of uniqueness:
 \begin{Theorem}
 	Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
 	\[\dv{X_t}{t}=f(t, X_t)+\sigma(t, X_t)W_t\]
@@ -194,8 +216,15 @@ The second definition is more commonly seen. Now, we continue to the proof of un
 where the first line comes from the Ito isometry and the second comes from the Lipschitz condition. Similarly, for the second term, we have
 \begin{align*}
 	\left(\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\right)^2 &\le (t-a)\int_a^t (f(s, X_s) - f(s, Y_s))^2 \dd{s}\\
-	&\le (b-a)K^2 \int_a^t Z_s^2\dd{s}
+	&\le (b-a)K^2 \int_a^t Z_s^2\dd{s}.
 \end{align*}
+Putting these together, we get
+\[E(Z_t^2)\le 2K^2(1+b-a)\int_a^t E(Z_s^2)\dd{s}.\]
+This is a classical differential equation, and it is well known that the result is $E(Z_t^2)=0$ for all $t\in [a,b]$.
+
+This shows that $Z_t=0$, or $X_t=Y_t$ almost surely for all $t\in [a,b]$. 
+
+The last step is to extend this to show that $X_t=Y_t$. 
 \end{proof}
 \bibliographystyle{ieeetr}
 \bibliography{ref.bib}
