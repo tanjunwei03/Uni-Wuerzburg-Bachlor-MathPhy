@@ -6,6 +6,7 @@
 \usepackage{cancel}
 \usepackage{booktabs}
 \usepackage{tikz}
+\usepackage{pgf}
 \usepackage{xurl}
 \usepackage{hyperref}
 \usepackage{enumitem}
@@ -300,6 +301,32 @@ Now, we are ready to handle the general case
 	.\] 
 	These imply that the limit function satisfies the stochastic integral equation.
 \end{proof}
+\section{The Markov Property}
+It is a known property of initial value problems that the future solution is not dependent on the past. In particular, we can imagine that we have some initial state $x(0)$ and let it evolve a time $t$ to $x(t)$. Then we can let it evolve further. Alternatively, we can consider an initial value problem that has the value $x(t)$ at time $t$. We expect that these two solutions are identical. In a stochastic differential equation, this ```memory'' property is known as the Markov property. Before we define it, let us recall a few definitions:
+\begin{Definition}[Conditional Expectation]
+	Suppose $(\Omega, \mathcal{F}, \mathbb{P})$ is a probability space and $X$ is a real-valued random variable on that space with finite expectation. Let $\mathcal{H}\subseteq \mathcal{F}$ be a sub $\sigma$-algebra of $\mathcal{F}$. Then the conditional expectation of $X$ relative to $\mathcal{H}$ is a $\mathcal{H}$-$\mathcal{B}$ measurable function $\mathbb{E}(X|\mathcal{H})$ such that
+	\[
+		\int_H \mathbb{E}(X|\mathcal{H})\dd{\mathbb{P}}=\int_H X \dd{\mathbb{P}}
+	\]
+	for all $H\in \mathcal{H}$.
+\end{Definition}
+Examples are as follows
+\begin{Example}\noindent
+
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}
+				\addplot[domain=0:2, black, thick]{27*x^3/64-45*x^2/16+9*x/2+2};
+				\draw[thick, red] (axis cs:0,{875/256}) -- (axis cs:1,{875/256});
+				\draw[thick, red] (axis cs:1,{965/256}) -- (axis cs:2,{965/256});
+				\draw[thick,blue] (axis cs:0, {2*5947/4096}) -- (axis cs:0.5, {2*5947/4096});
+				\draw[thick, blue] (axis cs:0.5,{2*8053/4096}) -- (axis cs:1, {2*8053/4096});
+				\draw[thick, blue] (axis cs:1, {2*8251/4096}) -- (axis cs:1.5, {2*8251/4096});
+				\draw[thick, blue] (axis cs:1.5, {2*7189/4096}) -- (axis cs:2, {2*7189/4096});
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+\end{Example}
 \bibliographystyle{ieeetr}
 \bibliography{ref.bib}
 \end{document}
