@@ -296,9 +296,8 @@ Now, we are ready to handle the general case
 	\]
 	and
 	\[
-	\lim_{n \to \infty} \int_0^t b(s, X^{(n)}_s)\dd{s} = \int_0^t b(s, X_s)\dd{s}
+	\lim_{n \to \infty} \int_0^t b(s, X^{(n)}_s)\dd{s} = \int_0^t b(X_s)\dd{s}
 	.\] 
-	These imply that the limit function satisfies the stochastic integral equation.
 \end{proof}
 \bibliographystyle{ieeetr}
 \bibliography{ref.bib}
