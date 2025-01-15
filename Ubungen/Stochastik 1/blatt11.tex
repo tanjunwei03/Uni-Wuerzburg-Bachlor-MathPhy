@@ -1,0 +1,74 @@
+\begin{Problem}
+	Betrachte den Wahrscheinlichkeitsraum \(( [0, 1], \mathcal{B}([0, 1]), \mathcal{U}([0, 1]))\), mit \(\Omega = [0, 1]\) und der uniformen Verteilung \(\mathcal{U}([0, 1])\). Mit den Teilmengen 
+	\[
+	E_1 = [0, 1/4] \cup [1/2, 3/4], \quad E_2 = [0, 1/3] \cup [2/3, 1] \quad \text{und} \quad E_3 = [0, 1/2],
+	\]
+	seien zwei Mengensysteme \(\mathcal{E}_1\) und \(\mathcal{E}_2\) gegeben durch 
+	\[
+	\mathcal{E}_1 = \{E_1, E_2\}, \quad \mathcal{E}_2 = \{E_3\}.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Zeigen Sie, dass \(\mathcal{E}_1\) und \(\mathcal{E}_2\) unabhängig sind.
+		\item[(b)] Zeigen Sie, dass \(\sigma(\mathcal{E}_1)\) und \(\mathcal{E}_2\) nicht unabhängig sind.
+		\item[(c)] Folgern Sie, dass die von \(\mathcal{E}_1\) und \(\mathcal{E}_2\) erzeugten \(\sigma\)-Algebren nicht unabhängig sind. Wieso folgt aus (a) nicht die Unabhängigkeit der erzeugten \(\sigma\)-Algebren?
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item Wir müssen nur $E_1\cap E_3$ und $E_2\cap E_3$ betrachten. $E_1$ und $E_3$ sind unabhängig, da
+			\[
+				\mathbb{P}(E_1\cap E_3)=\mathbb{P}([0,1 / 4]) = \frac{1}{4} = \left( \frac{1}{2} \right) \left( \frac{1}{2} \right) =\mathbb{P}(E_1)\mathbb{P}(E_3)
+			.\] 
+			$E_2$ und $E_3$ sind unabhängig, da
+			\[
+				\mathbb{P}(E_2\cap E_3) = \mathbb{P}([0, 1 / 3]) = \frac{1}{3}= \left( \frac{2}{3} \right) \left( \frac{1}{2} \right) =\mathbb{P}(E_2)\mathbb{P}(E_3)
+			.\] 
+			Daher sind $\mathcal{E}_1$ und $\mathcal{E}_2$ unabhängig.
+		\item $E_1\cup E_2\in \sigma(\mathcal{E}_1)$. Es gilt auch $E_1\cup E_2 = [0,1 / 3] \cup [1 / 2, 1]$. Damit ist
+			\[
+				\mathbb{P}(E_3) = \frac{1}{2}, \qquad \mathbb{P}(E_1\cup E_2) = \frac{1}{3}+\frac{1}{2}=\frac{5}{6}
+			.\]
+			aber
+			\[
+				\mathbb{P}(E_3\cap(E_1\cup E_2)) = \mathbb{P}([1 / 3, 1 / 2]) = \frac{1}{6}\neq \mathbb{P}(E_3)\mathbb{P}(E_1\cup E_2)
+			.\] 
+		\item Da $\mathcal{E}_2\subseteq \sigma(\mathcal{E}_2)$ ist, können $\sigma(\mathcal{E}_1)$ und $\sigma(\mathcal{E}_2)$ nicht unabhängig sein, da die Bedingung auch nicht erfüllt ist, selbst wenn wir eine kleinere Menge betrachten.
+
+Die Unabhängigkeit folgt nicht aus (a), da $\mathcal{E}_1$ nicht $\cap$-stabil ist, weil $E_1\cap E_2\not\in \mathcal{E}_1$.\qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}
+	Es sei \(X\) eine exponentialverteilte Zufallsvariable, \(X \sim \text{Exp}(\lambda)\), \(\lambda > 0\). Die Zufallsvariable \(Y\) sei unabhängig von \(X\) mit 
+	\[
+	\mathbb{P}(Y = 1) = \mathbb{P}(Y = -1) = \frac{1}{2}.
+	\]
+	Leiten Sie die Verteilungsfunktion der Zufallsvariablen \(Z = X \cdot Y\) her.
+\end{Problem}
+\begin{proof}
+	Die Verteilungsfunktion ist definiert durch $F(x)=\mathbb{P}(Z \le x)$. Wir betrachten zwei F\"{a}lle:
+	\begin{enumerate}
+		\item $x\le 0$:
+
+	\begin{align*}
+		\mathbb{P}(Z\le x) &=\mathbb{P}(Y = -1 \cap X \ge (-x))\\
+				   &=\mathbb{P}(Y = -1)\mathbb{P}(X \ge (-x))\\
+				   &=\frac{1}{2}(e^{\lambda x})
+	\end{align*}
+\item $x > 0$:
+
+	\begin{align*}
+		\mathbb{P}(Z \le x) &= \mathbb{P}(Y = -1) + \mathbb{P}(Y = 1)\mathbb{P}(X \le x)\\
+				    &= \frac{1}{2}+ \frac{1}{2}(1 - e^{-\lambda x})\\
+				    &= 1-\frac{1}{2}e^{-\lambda x}
+	\end{align*}
+	\end{enumerate}
+	Damit ist die Verteilungsfunktion
+	\[
+	F_Z(x) = \begin{cases}
+		\frac{1}{2}e^{\lambda x} & x \le 0\\
+		1 - \frac{1}{2}e^{-\lambda x} & \text{sonst.}
+	\end{cases}
+	.\qedhere\] 
+\end{proof}
