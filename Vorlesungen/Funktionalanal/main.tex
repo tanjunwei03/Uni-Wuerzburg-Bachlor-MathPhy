@@ -1708,6 +1708,74 @@ As in finite dimensions, we have the Gram-Schmidt procedure for orthogonalizing 
 \begin{Example}
 	We can define a linear operator $T_n$ by $T_n(\sum a_k e_k)=\sum_{k=1}^n a_k e_k$. Then $T_nx\to x$, but $\|T_n - I\|\not\to 0$.
 \end{Example}
+
+\begin{Theorem}
+	Any two Hilbert bases have the same cardinality
+\end{Theorem}
+\begin{proof}
+	Let $e_i,~i\in I$ and $f_j,~j\in J$ be two Hilbert space bases for the Hilbert space $\mathcal{H}$. Then we let
+	\[
+	J_i=\{j\in J| \langle e_i, f_j\rangle \neq 0\} \subseteq J
+	.\] 
+	This is countable for all $i\in I$. Since $\{f_j\} $ is a Hilbert space basis, for every $j\in J$, there is $i\in I$ with $\langle e_i, f_j\rangle \neq 0$. We choose this to be $i(j)$.
+
+	Then, the mapping $J\ni j\mapsto (j, i(j)) \in \sqcup_{i\in J}J_{i(j)}\times \{i(j)\} $ is injective.
+
+	This is less than the $\#N\cdot \#I = \#I$.
+
+	Thus, $\# J \le \# I$. By symmetry, we have the opposite inequality. Thus, by Schr\"{o}der-Bernstein, we have equal cardinalities.
+
+	For the second part, we note that $(\langle e_i, \phi\rangle)_{i\in I}$ is square-summable, since the sum is equal to the norm, which is finite. We also note that
+	\[
+	\|U \Phi\|^2 = \|\phi\|^2<\infty
+\]
+which shows that $U\Phi\in \ell^2(I)$. By definition, $U$ is linear and isometric. \textcolor{red}{TODO} 
+\end{proof}
+
+\section{Constructions of Hilbert Spaces}
+\begin{Definition}[Direct Sum]
+	If $\{\mathcal{H}_i\}_{i\in I}$ is a collection of hilbert spaces, we define their direct product to be the linear algebraic direct product
+	\[
+		\mathcal{H}=\oplus_{i\in I}\mathcal{H}_i
+	\]
+	equipped with the inner product
+	\[
+		\langle (\phi_i)_{i\in I}, (\psi_i)_{i\in I}\rangle = \sum_{i\in I} \langle \phi_i, \psi_i\rangle
+	.\] 
+\end{Definition}
+
+\begin{Proposition}
+	Let $\{\mathcal{H}_i\}_{i\in I}$ be Hilbert spaces and $\mathcal{H}=\oplus_{i\in I}\mathcal{H}_i$. Then
+	\begin{parts}
+	\item $\hat{\mathcal{H}}=\{(\phi_i)_{i\in I}\in \prod_{i\in I}\mathcal{H}_i|\sum_{i\in I}\|\phi_i\|^2<\infty\} $ is a subspace of $\prod_{i\in I}\mathcal{H}_i$. For $(\phi_i)_{i\in I}\in \hat{\mathcal{H}}$ at most countably many $\phi_i$ are different from 0.
+	\item $\hat{\mathcal{H}}$ is a pre-Hilbert space with the sum above (absolutely convergent)
+	\item We have an isometric inclusion $\mathcal{H}\subseteq \hat{\mathcal{H}}$ with $\mathcal{H}^\text{cl}=\hat{\mathcal{H}}$. 
+	\item $\hat{\mathcal{H}}$ is the Hilbert space completion of $\mathcal{H}$.
+	\item Suppose $\{e^{(i)}_j\}_{j\in J_i}$ is a Hilbert space basis of $\mathcal{H}_i$. Then $(e_{ij})_{i\in I,j\in J_i}$ is a Hilbert space basis of $\hat{\mathcal{H}}$. 
+	\end{parts}
+\end{Proposition}
+\begin{proof}
+	We do the first 4 for $\ell^2(I, \mathbb{K})$.
+
+	For (v) we consider a dense space in $\mathcal{H}$, that is then dense in $\hat{\mathcal{H}}.$
+\end{proof}
+\begin{Definition}
+	Let $(\mathcal{H}_i)_{i\in I}$ be a collection of Hilbert spaces. Then the Hilbert space
+	\[
+		\hat{\oplus}_{i\in I}\mathcal{H}_i = \hat{\oplus_{i\in I} \mathcal{H}_i}= \hat{\mathcal{H}}
+	\]
+	is called the direct orthogonal sum of the $\mathcal{H}_i$s.
+\end{Definition}
+\begin{Definition}[Finite Tensor Product]
+	Let $\mathcal{H}_1, \dots, \mathcal{H}_n$ be pre-Hilbert spaces. Then we define an inner product on the tensor product by
+	\[
+	\langle \phi_1\otimes \dots \otimes \phi_n, \psi_1\otimes\dots \otimes \psi_n\rangle = \langle \phi_1, \psi_1\rangle \dots \langle \phi_n \psi_n\rangle
+	\] 
+	and extending the map using bilinearity.
+\end{Definition}
+Note that his is actually a scalar product. First, we note that it is (sesqui-)linear by definition. 
+
+Positivity is the hardest part. We choose a Hilbert space basis of each $\mathcal{H}_i$. Then, when we put in a sum, all cross terms vanish and we have a positive scalar product.
 \section{Applications}
 As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
 
