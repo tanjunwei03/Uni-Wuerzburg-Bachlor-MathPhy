@@ -1,0 +1,298 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Stochastic Differential Equations}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+
+\begin{Definition}
+	A stochastic differential equation is a (formal) equation of the form
+	\begin{equation}\label{eq:SDEdiff}
+	\dv{X_t}{t}=b(t, X_t)+\sigma(t, X_t)W_t,
+\end{equation}
+	where $W_t$ is white noise. 
+\end{Definition}
+This equation is to be interpreted as follows:
+\begin{Definition}
+	We say that the stochastic process $X_t$ is a \emph{solution} of the SDE \eqref{eq:SDEdiff} if
+	\[X_t = X_0+\int_0^t b(s, X_s)\dd{s}+ \int_0^t \sigma(s, X_s)\dd{B_s}\]
+\end{Definition}
+\begin{Example}
+	A model of a population is given by the stochastic differential equation
+	\[\dv{N_t}{t} = r N_t + \alpha W_t N_t.\]
+	Here, $r,\alpha$ are constants and $W_t$ is white noise.
+\end{Example}
+This is the well known model for a population, except that we have allowed $r$ to vary by a white noise term. The solution in the nonstochastic limit is given by a simple exponential. To solve this, we first rewrite the SDE in standard form:
+\[\dd{N_t}=r N_t\dd{t}+\alpha N_t \dd{B_t},\]
+or
+\[\frac{\dd{N_t}}{N_t} = r \dd{t} + \alpha \dd{B_t}.\]
+Inspired by the solution in the deterministic case, we guess $g(t, x)=\ln x$ in Ito's formula, and let $Y_t=g(t, N_t)$. Then, we have
+\[\dd{Y_t}=\frac{\dd{N_t}}{N_t}+\frac 12 \alpha^2 \dd{t}.\]
+Substituting, we have
+\[\dd{Y_t} = \left(r- \frac 12\alpha^2 \right)\dd{t} +\alpha B_t\]
+which integrates easily to yield
+\[N_t = N_0 \exp\left(\left(r - \frac 12 \alpha^2\right)t+\alpha B_t\right).\]
+Clearly, for $\alpha=0$, this reduces to the well known exponential solution. This process is known as \uline{geometric Brownian motion}, which, for example, is a solution to the Black-Scholes equation~\cite{inbook}.
+
+Now, we turn to the questions of existence and uniqueness. Recall the basic theorem for existence and uniqueness of a deterministic differential equation
+\begin{Theorem}[Picard-Lindelöf]
+	Let $\dot{x} = f(t,x)$ be a differential equation with $f$ defined on a rectangle $[a,b]\times \R^n$. If $f$ is Lipschitz continuous in $x$, with Lipschitz constant independent of time, and continuous in time, then the differential equation has a unique global solution on $[a,b]$.
+\end{Theorem}
+Note that for uniqueness we do not need the continuity in time; the Lipschitz condition alone suffices.
+\begin{Definition}[Linear Growth]
+	A function $g(t, x)$ on $[a,b]\times \R$ is said to satisfy the \uline{linear growth condition in $x$} if there exists $K>0$ such that
+	\[|g(t, x)|\le K(1+|x|)\]
+	for all $t\in [a,b]$ and $x\in \R$.
+\end{Definition}
+Because of the inequality
+\[1+x^2 \le (1+x)^2 \le 2(1+x^2),\]
+the earlier definition is equivalent to the following definition:
+\begin{Proposition}
+	A function $g(t,x)$ satisfies the linear growth condition if there exists $K>0$ such that
+	\[|g(t,x)|^2 \le K(1+x^2)\]
+\end{Proposition}
+The second definition will be more useful in the following proofs. Note that it is indeed stronger
+\begin{Proposition}
+	Globally Lipschitz continuous functions satisfy the linear growth condition.
+\end{Proposition}
+\begin{proof}
+If $f(x)$ is Lipschitz, we have
+\[|f(x) - f(0)| \le K |x|,\]
+or
+\[|f(x)|\le |f(0)| + K|x|\]
+by the reverse triangle inequality.
+\end{proof}
+Conversely, linear growth does not imply Lipschitz continuity, or any kind of continuity
+\begin{Example}
+	Let
+	\[f(x) = \begin{cases}
+		x & x\in \Q,\\
+		0 & \text{otherwise}.
+	\end{cases}\]
+	Clearly, $f$ grows linearly, but is not Lipschitz continuous, or even continuous at any point.
+\end{Example}
+
+We can prove uniqueness with just Lipschitz continuity, as we do in the deterministic case.
+\begin{Theorem}
+	Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
+	\[\dv{X_t}{t}=f(t, X_t)+\sigma(t, X_t)W_t\]
+	has at most one continuous solution on $[a,b]$.
+\end{Theorem}
+\begin{proof}
+	As one might expect, we assume that we have two solutions $X_t$ and $Y_t$ to the stochastic differential equation. Then $Z_t=X_t-Y_t$ is a stochastic process satisfying the stochastic differential equation, or equivalently integral equation
+	\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}.\]
+	Then we consider the expectation value of the square $Z_t^2$. Because $(a+b)^2 < 2(a^2+b^2)$, we have
+	\[Z_t^2 \le 2\left[\left(\int_a^t (\sigma(s, X_s) - \sigma(s, Y_s))\dd{B_s}\right)^2 + \left(\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\right)^2\right].\]
+	Now, we aim to estimate the expectation value of the two quantities in parentheses. As with deterministic differential equations, this is done using the Lipschitz condition:
+	\begin{align*}
+		E\left(\int_a^t (\sigma(s, X_s) - \sigma(s, Y_s))\dd{B(s)}\right)^2&= \int_a^t E[(\sigma(s, X_s)-\sigma(s, Y_s))^2]\dd{s}\\
+		&\le K^2 \int_a^t E(Z_s^2)\dd{s}
+	\end{align*} 
+where the first line comes from the Ito isometry and the second comes from the Lipschitz condition. Similarly, for the second term, we have
+\begin{align*}
+	\left(\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}\right)^2 &\le (t-a)\int_a^t (f(s, X_s) - f(s, Y_s))^2 \dd{s}\\
+	&\le (b-a)K^2 \int_a^t Z_s^2\dd{s}.
+\end{align*}
+Putting these together, we get
+\[E(Z_t^2)\le 2K^2(1+b-a)\int_a^t E(Z_s^2)\dd{s}.\]
+This is a classical differential equation, and it is well known that the result is $E(Z_t^2)=0$ for all $t\in [a,b]$.
+
+This shows that $Z_t=0$, or $X_t=Y_t$ almost surely for all $t\in [a,b]$. 
+
+The last step is to extend this to show that $X_t=Y_t$ almost surely.
+
+To do so, first we enumerate the rationals in $[a,b]$ as $r_1,r_2, \dots$. Because $Z_t=0$ almost surely for each $t$, we can find $\Omega_n$ with $\mathbb{P}(\Omega_n)=1$ and $Z_{r_n}=0$ on $\Omega_n$. Let $\Omega' = \bigcap_{k=1}^\infty \Omega_k$. Then $\mathbb{P}(\Omega')=1$.
+
+Then, by (almost surely path) continuity, we choose $\Omega^{\prime\prime}$ such that $\mathbb{P}(\Omega^{\prime\prime})=1$ and $t\mapsto Z_t(\omega)$ is continuous for all $\omega\in \Omega^{\prime\prime}$.
+
+Then, we let $\Omega_0=\Omega'\cap \Omega^{\prime\prime}$. Clearly, $Z_T$ is a continuous function that vanishes at all rationals in $[a,b]$. Thus, $Z_t$ is $0$ for all $t\in [a,b]$ and $\omega\in \Omega_0$.
+\end{proof}
+Note that the last part of the proof is necessary. The first part, which emulated the classical case, showed that the two processes are the same for all time almost certainly. However, unlike the classical case, knowing the distributions for all time $t$ does not suffice as a solution. As an example,
+\begin{Example}
+	Consider the two stochastic processes
+	\[
+	X_t(\omega) = \begin{cases}
+		1 & t = \omega\\
+		0  & \text{otherwise,}
+	\end{cases}
+	\]
+	and
+	\[
+	Y_t=0
+	.\] 
+	Then it is clear that for all $t\in [0,\infty)$ we have $X_t=Y_t$ almost certainly, but these two processes are clearly different. For example, $X_t$ is sample path discontinuous, while $Y_t$ is.
+\end{Example}
+Now that we have proven the weaker result (only of uniqueness), we can move on to prove the result of existence and uniqueness. It is instructive to first consider the proof for a constant $\sigma$ in Eq.~\eqref{eq:SDEdiff}
+\begin{Theorem}
+	The differential equation \eqref{eq:SDEdiff} has a solution with $\sigma$ constant, if $b(t, x)$ is Lipschitz continous in $x$.
+\end{Theorem}
+\begin{proof}
+	Uniqueness follows from the previous theorem. For existence, we iterate
+	\[
+	X^{(n+1)}_t(\omega)=X_t+\int_0^t b(s, X^{(n)}_s(\omega))\dd{s}+\sigma B(t)
+	.\] 
+	By hypothesis, $b$ is continuous. Thus, we can show by induction that $X_n$ has continuous paths --- if we suppose so, then we can find $\Omega$ such that $\mathbb{P}(\Omega)=1$ and $t\mapsto X_n(t, \omega)$ is continuous for all $\omega\in \Omega$. 
+
+	For all such $\omega$, $\int_0^t b(X_n(s, \omega))\dd{s}$ is continuous as a function of $t$ by the fundamental theorem of calculus, and $B(t)$ is known to be continuous. Thus, all the $X_n$s are almost certainly sample path continuous.
+
+	Then, we must show that the limit process satisfies the integral equation. To do so, first we show uniform convergence on compact intervals. This follows as it does in a deterministic differential equation: Since $b$ is Lipschitz, we can find $B$ such that
+	\[
+	|X^{(n+1)}_t(\omega)-X^{(n)}_t(\omega)| \le B \int_0^t |X^{(n)}_s(\omega) - X^{(n-1)}_s(\omega)|\dd{s} 
+	.\] 
+	Then, we proceed by induction: Since $|X_0|\le \omega$, we can show that
+	\[
+	|X^{(n)}_t| \le \frac{C \omega B^n t^n}{n!}
+	\]
+	for some $C>0$. Thus, $X_t(\omega)$ converges uniformly for all $t\in [0,T]$ for all $T>0$. 
+
+	Then, by the dominated convergence theorem, we have integrability with respect to $t$, as well as measurability with respect to $\omega$. The dominated convergence theorem also shows that the limit function satisfies the integral equation.
+\end{proof}
+Now, we are ready to handle the general case
+\begin{Theorem}
+	The stochastic differential equation \eqref{eq:SDEdiff} has a unique solution where $\sigma$ and $b$ are uniformly Lipschitz in $x$.
+\end{Theorem}
+\begin{proof}
+	Unlike in the previous theorem, we cannot do this by estimating the solutions directly. Instead, we apply our estimates to 2nd moments. For brevity, we assume that both functions are Lipschitz with the same Lipschitz constant; taking the maximum of the constants yields this result. 
+	\begin{align*}
+		&\mathbb{E}|X_{n+1}(t) - X_n(t)|\\
+	\le &\mathbb{E}\left( \int_0^t (b(s, X^{(n)}_s) - b(s, X^{(n)}_s)) + \int_0^t \sigma(s, X^{(n)}_s) - \sigma(s, X^{(n-1)}_s)\dd{s}\right)^2\\
+		\le & 2\mathbb{E}\left( \int_0^t (b(s, X^{(n)}_s) - b(s, X^{(n-1)}_s))\dd{s} \right)^2 + 2\mathbb{E}\left( \int_0^t (\sigma(s, X^{(n)}_s) - \sigma(s, X^{(n-1)}_s)) \right)^2\\
+		\le& 2B^2 \mathbb{E}\left( \int_0^t |X^{(n)}_s - X^{(n-1)}_s|\dd{s} \right)^2 + 2B^2 \int_0^t \mathbb{E}|X^{(n)}_s - X^{(n-1)}_s|^2 \dd{s}\\
+		\le& 2B^2 \mathbb{E}\left( t\int_0^t |X^{(n)}_s - X^{(n-1)}_s|^2\dd{s} \right)+2B^2 \int_0^t \mathbb{E}|X^{(n)}_s - X^{(n-1)}_s|^2\dd{s}\\
+		\le& 2B^2(T+1)\int_0^t \mathbb{E}|X^{(n)}_s - X^{(n-1)}_s|^2\dd{s}
+	\end{align*}
+	for all $t\in [0,T]$, where we have used the inequality $(x+y)^2 \le 2x^2+2y^2$ in the first line, the Ito isometry in the second, and the Cauchy Schwarz inequality in the third.
+
+	Now, we are basically done. Since $X^{(n)}_t \to X_t$ uniformly, Lipschitz continuity implies that $\mu(X^{(n)}_t) \to \mu(X_t)$ and $b(X^{(n)}_t)\to b(X_t)$ almost surely (since their squared expectations vanish). 
+
+	By the Ito isometry, we then have
+	\[
+	\lim_{n \to \infty} \int_0^t \sigma(s, X^{(n)}_s)\dd{B(s)} = \int_0^t \sigma(s, X(s))\dd{B(s)}
+	\]
+	and
+	\[
+	\lim_{n \to \infty} \int_0^t b(s, X^{(n)}_s)\dd{s} = \int_0^t b(s, X_s)\dd{s}
+	.\] 
+	These imply that the limit function satisfies the stochastic integral equation.
+\end{proof}
+\section{The Markov Property}
+It is a known property of initial value problems that the future solution is not dependent on the past. In particular, we can imagine that we have some initial state $x(0)$ and let it evolve a time $t$ to $x(t)$. Then we can let it evolve further. Alternatively, we can consider an initial value problem that has the value $x(t)$ at time $t$. We expect that these two solutions are identical. In a stochastic differential equation, this ```memory'' property is known as the Markov property. Before we define it, let us recall a few definitions:
+\begin{Definition}[Conditional Expectation]
+	Suppose $(\Omega, \mathcal{F}, \mathbb{P})$ is a probability space and $X$ is a real-valued random variable on that space with finite expectation. Let $\mathcal{H}\subseteq \mathcal{F}$ be a sub $\sigma$-algebra of $\mathcal{F}$. Then the conditional expectation of $X$ relative to $\mathcal{H}$ is a $\mathcal{H}$-$\mathcal{B}$ measurable function $\mathbb{E}(X|\mathcal{H})$ such that
+	\[
+		\int_H \mathbb{E}(X|\mathcal{H})\dd{\mathbb{P}}=\int_H X \dd{\mathbb{P}}
+	\]
+	for all $H\in \mathcal{H}$.
+\end{Definition}
+Examples are as follows
+\begin{Example}\noindent
+
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[axis lines = left, ytick=\empty, legend pos = south east]
+				\addplot[domain=0:2, black, thick]{27*x^3/64-45*x^2/16+9*x/2+2};
+				\draw[thick, red] (axis cs:0,{875/256}) -- (axis cs:1,{875/256});
+				%\draw[thick, red] (axis cs:1,{965/256}) -- (axis cs:2,{965/256});
+				\addplot[domain=1:2, thick, red]{965/256};
+				%\draw[thick,blue] (axis cs:0, {2*5947/4096}) -- (axis cs:0.5, {2*5947/4096});
+				\addplot[domain=0:0.5, thick, blue]{2*5947/4096};
+				\draw[thick, blue] (axis cs:0.5,{2*8053/4096}) -- (axis cs:1, {2*8053/4096});
+				\draw[thick, blue] (axis cs:1, {2*8251/4096}) -- (axis cs:1.5, {2*8251/4096});
+				\draw[thick, blue] (axis cs:1.5, {2*7189/4096}) -- (axis cs:2, {2*7189/4096});
+				\addlegendentry{$X$};
+				\addlegendentry{$\mathbb{E}(X|\mathcal{A})$};
+				\addlegendentry{$\mathbb{E}(X|\mathcal{B})$};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+\end{Example}
+Where $Y_1, \dots, Y_n$ is a collection of random variables, we use $\mathbb{E}(X|Y_1, \dots, Y_n)$ to denote $\mathbb{E}(X|\sigma(Y_1,\dots, Y_n))$, the conditional expectation on the $\sigma$-algebra generated by the $Y_i$s.
+
+Using this, we can define the conditional probability of an event,
+\begin{Definition}
+	The conditional probability of an event $A$, conditional on a $\sigma$-algebra $\mathcal{A}$, $\mathbb{P}(A|\mathcal{A})$ is given by $\mathbb{E}(1_A|\mathcal{A})$.
+\end{Definition}
+Now, we may define the Markov property
+\begin{Definition}
+	A stochastic process $X_t$, with $a\le t \le b$, is said to have the \emph{Markov property} if for all sequences $a < t_1 < \dots < t_n < t < b$ and corresponding $x_1, \dots, x_n$, we have
+	\[
+	\mathbb{P}(X_t\le x|X_{t_1}=x_1, \dots, X_{t_n}=x_n) = \mathbb{P}(X_t\le x|X_{t_n}=x_n)
+	.\] 
+\end{Definition}
+As an example, all processes with independent increments have the Markov property. 
+Before we move on, let us prove a useful lemma
+\begin{Lemma}
+	Suppose a stochastic process $X_t$ defined on $[a,b]$ is adapted to a filtration $\mathcal{F}_t$. Suppose also that
+	\[
+	\mathbb{P}(X_t\le x|\mathcal{F}_s) = \mathbb{P}(X_t \le x|X_s)
+	.\] 
+	Then $X_t$ is a Markov process.
+\end{Lemma}
+
+Finally, we move to characterise a Markov process by its marginal distributions. Recall that a discrete-time Markov process is characterised by its transition matrix --- that is, the probability to transition to a certain state given its current state.
+
+We define a Markov process on $[a,b]$ and let $a=t_1<t_2$. We have, by Bayes's Theorem
+\begin{align*}
+	\mathbb{P}(X_{t_1}\le c_1 \cap X_{t_2}\le c_2)=\mathbb{P}(X_{t_2}\le c_2 |X_{t_1}\le c_1)\mathbb{P}(X_{t_1}\le c_1)
+\end{align*}
+\bibliographystyle{ieeetr}
+\bibliography{ref.bib}
+\end{document}
+
