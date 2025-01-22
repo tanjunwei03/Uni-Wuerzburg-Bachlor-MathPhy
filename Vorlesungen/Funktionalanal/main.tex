@@ -1257,17 +1257,10 @@ The next theorem follows almost trivially from the open mapping theorem:
 	
 	The other direction of the proof is a well known property of topological spaces. If $L$ is continuous (not even necessarily linear), $v_n \to v$ and $Tv_n \to w$, we have $T (\lim v_n)= \lim Tv_n \to w$, thus the graph is closed. 
 \end{proof}
-As somewhat of a converse of the inverse mapping theorem, we have the following:
-\begin{Theorem}
-	Let $V$ be a normed space and $W$ a Banach space. If there exists a bijective bounded linear operator $\phi:V \to W$, then $V$ is Banach.
-\end{Theorem}
-\begin{proof}
-	We construct a second norm on $V$ $\|\cdot \|_V'$ using $\phi$: We define $\|v\|_V'=\|\phi v\|_W$. Clearly, this is a norm. It is homogeneous, positive (since $\phi$ is bijective), and since $\phi$ is linear, we have
-	\[\|v + w\|_V' = \|\phi v + \phi w\|_W \le \|\phi v\|_W + \|\phi w\|_W = \|v\|_V' + \|w\|_V'.\]
-	Now let us think about completeness relative to $\|\cdot \|_V'$. Consider a Cauchy sequence $v_n$ with respect to $\|\cdot\|_V'$. Then $\phi v_n$ is Cauchy in $W$, meaning it converges to some limit $w$. Thus, we have
-	\[\|v_n - \phi^{-1}w\|_V' = \|\phi v_n - w\|_W \to 0\]
-	showing that $v_n$ converges to $\phi^{-1}w$. This means that $V$ is complete with respect to $\|\cdot\|_V'$. Now we relate the two norms on $V$. Since $\phi$ is continuous with respect to $\|\cdot\|$, we have $\|v\|_V' = \|\phi v\|_W \le  C\|v\|_V$. \textcolor{red}{TODO}
-\end{proof}
+The use of the closed graph theorem is as follows: In a first countable space, continuity is equivalent to sequential continuity, that is, $f$ is continuous if and only if for all $x_n\to x$, we have $f(x_n) \to f(x)$. Here, we must prove first that $f(x_n)$ converges, before showing that it converges to $f(x)$.
+
+With the closed graph theorem, we can skip the first step. We can assume that $Tx_n$ converges, and all we need to show is that it converges to $Tx$.
+
 Now, we show that the hypotheses of the open mapping theorem are all necessary. First, we construct an example with the domain being incomplete.
 \begin{Example}
 	There exists a surjective continuous linear function $\phi: V \to W$, with $V$ incomplete, $W$ complete that is not open.
@@ -1776,6 +1769,224 @@ which shows that $U\Phi\in \ell^2(I)$. By definition, $U$ is linear and isometri
 Note that his is actually a scalar product. First, we note that it is (sesqui-)linear by definition. 
 
 Positivity is the hardest part. We choose a Hilbert space basis of each $\mathcal{H}_i$. Then, when we put in a sum, all cross terms vanish and we have a positive scalar product.
+\section{Adjoints}
+\begin{Definition}[Adjoints]
+	Let $A:\mathcal{H}\to \mathcal{K}$ be a map between pre-Hilbert spaces. Then $A$ is called adjointable if there is a map $A^\dagger:\mathcal{K}\to \mathcal{H}$ such that
+	\[
+		\langle \phi, A\psi\rangle_\mathcal{K}=\langle A^\dagger, \psi\rangle_\mathcal{H}
+	\]
+	for all $\phi\in \mathcal{K}, \psi\in \mathcal{H}$. The set of all adjointable operators is denoted by
+	\[
+		\mathcal{B}(\mathcal{H}, \mathcal{K})=\{A:\mathcal{H}\to \mathcal{K}|A\text{ is adjointable}\} 
+	.\] 
+\end{Definition}
+\begin{Theorem}[Algebraic Properties]
+	\begin{parts}
+	\item If $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$, then $A$ is linear and its adjoint is unique.
+	\item Let $A,B\in \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2), C\in \mathcal{B}(\mathcal{H}_2, \mathcal{H}_3), \alpha, \beta\in \mathbb{K}$. Then $\alpha A + \beta B\in \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2)$, $C\circ A\in \mathcal{B}(\mathcal{H}_1, \mathcal{H}_3)$ and $A^\dagger\in \mathcal{B}(\mathcal{H}_2, \mathcal{H}_1)$ with adjoints given by
+		\begin{align*}
+			(\alpha A + \beta B)^\dagger&=\overline{\alpha}A^\dagger+\overline{\beta}B^\dagger\\
+			(C\circ A)^\dagger&=A^\dagger\circ C^\dagger\\
+			(A^\dagger)^\dagger&= A
+		\end{align*}
+	\item For every pre-Hilbert space $\mathcal{H}$, the adjointable maps $\mathcal{B}(\mathcal{H})=\mathcal{B}(\mathcal{H}, \mathcal{H}')$ form a unital *-algebra with unit the identity and involution $A\mapsto A^\dagger$.
+	\end{parts}
+\end{Theorem}
+\begin{Example}[Rank One Operator]
+	Let $\phi\in \mathcal{H}, \psi\in \mathcal{K}$. Then define $\theta_{\psi, \phi}:\mathcal{H}\to \mathcal{K}$ by
+	\[
+		\theta_{\psi, \phi}(x) = \langle \phi, x\rangle_\mathcal{H} \psi
+	.\] 
+	In dirac's notation, this is $\theta_{\psi, \phi}=\ket{\psi}\bra{\psi}$. This map is adjointable with
+	\[
+		\theta_{\psi, \phi}^\dagger = \theta_{\phi, \psi}
+	.\] 
+\end{Example}
+\begin{Definition}[Finite Rank Operators]
+	Let $\mathcal{H}, \mathcal{K}$ be pre-Hilbert spaces. Then the linear span
+	\[
+		\mathcal{F}_{\mathcal{H}, \mathcal{K}} = \text{span}_\mathbb{K}\{\theta_{\psi, \phi}|\psi\in \mathcal{K}, \phi\in \mathcal{H}\} 
+	\]
+	are called finite rank operators.
+\end{Definition}
+\begin{Proposition}
+	Let $\mathcal{H}_i, i=1,2,3$ be pre-Hilbert spaces. 
+	\begin{parts}
+	\item $\mathcal{F}(\mathcal{H}_1, \mathcal{H}_2)\subseteq \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2)$.
+	\item 
+		\begin{align*}
+			\mathcal{F}(\mathcal{H}_2, \mathcal{H}_3) \circ \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2)&\subseteq \mathcal{F}(\mathcal{H}_1, \mathcal{H}_3)\\
+			\mathcal{B}(\mathcal{H}_2, \mathcal{H}_3) \circ \mathcal{F}(\mathcal{H}_1, \mathcal{H}_2)&\subseteq \mathcal{F}(\mathcal{H}_1, \mathcal{H}_2)\\
+			\mathcal{F}(\mathcal{H}_1, \mathcal{H}_2)^\dagger &= \mathcal{F}(\mathcal{H}_2, \mathcal{H}_1)
+		\end{align*}
+	\item $\mathcal{F}(\mathcal{H})\subseteq  \mathcal{B}(\mathcal{H)}$ forms a *-ideal. We have equality iff the diension is finite.
+	\end{parts}
+\end{Proposition}
+\begin{proof}
+	\begin{parts}
+	\item This is clear from the previous proposition.
+	\item We have
+		\begin{align*}
+			A\circ \theta_{\phi, \psi}&=\theta_{A\phi, \psi}\\
+			\theta_{x, \phi}\circ B&=\theta_{x, B^\dagger \phi}
+		\end{align*}
+	\item We note that 1 has finite rank by expressing it in terms of an orthonormal basis, and thus the dimension of its image is finite.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Example}[Inclusion Map]
+Let $\mathcal{H}$ be a pre-Hilbert space with inclusion into its completion $\iota:\mathcal{H}\to \\hat{\mathcal{H}}$. This is adjointable iff $\mathcal{H}=\hat{\mathcal{H}}$.
+\end{Example}
+\begin{proof}
+	Clearly, if $\mathcal{H}=\hat{\mathcal{H}}$, then $\iota$ is the identity map which is adjointable.
+
+	Now, we suppose that $\iota$ is adjointable. Note that 
+	\[
+		\langle \iota^\dagger \iota \phi, \psi\rangle_\mathcal{H}= \langle \iota \phi, \iota \psi\rangle_{\hat{\mathcal{H}}}=\langle \phi, \si\rangle_\mathcal{H}
+	.\] 
+	This implies that $\iota^\dagger\iota = \phi$. Define $P=\iota\iota^\dagger: \hat{\mathcal{H}}\to \hat{\mathcal{H}}$. Then $P^2=\iota\iota^\dagger\iota\iota^\dagger=P$, and thus $P$ is idempotent. Moreover, $P\iota\phi=\iota\phi$.
+
+ Thus, $\Phi\in \text{im }P\implies \Phi=\iota\iota^\dagger\Phi$. We then decompose $\hat{\mathcal{H}}=\iota \mathcal{H}\oplus \text{ker }P$. If $\Phi\in \text{ker }P, \psi\in \mathcal{H}$ then
+	\[
+	\langle \Phi, \iota\psi\rangle_\mathcal{H}=\langle \iota^\dagger\Phi, \psi\rangle_\mathcal{H}=0
+\]
+where the last equality comes from 
+\[
+P\Phi=\theta^\dagger \Phi = 0 \iff \iota^\dagger \Psi = 0
+.\] 
+The earlier argument implies that this is an \emph{orthogonal decomposition}. Since $\iota \mathcal{H}\subseteq \hat{\mathcal{H}}$ is dense, this implies that $P$ has trivial kernel and is a homeomorphism, thus $\mathcal{H}$ is complete and $\mathcal{H}= \hat{\mathcal{H}}$.
+\end{proof}
+\begin{Theorem}[Hellinger-Toeplitz]
+	Let $\mathcal{H}, \mathcal{K}$ be Hilbert spaces. Then $A:\mathcal{H}\to \mathcal{K}$ is adjointable iff $A$ is linear and bounded --- that is,
+	\[
+	\mathcal{B}(\mathcal{H}, \mathcal{K}) = L(\mathcal{H}, \mathcal{K})
+	.\] 
+\end{Theorem}
+\begin{proof}
+	Suppose $A$ is linear and continuous. Define the canonical isometries into the duals
+	\[
+		j_\mathcal{H}:\mathcal{H}\xrightarrow{\cong}\mathcal{H}', \qquad j_{\mathcal{K}}:\mathcal{K}\xrightarrow{\cong}\mathcal{K}'
+	.\] 
+	Then $A^\dagger = j_\mathcal{H}^{-1}\circ A' \circ j_{\mathcal{K}}$ will do the job, where $A'$ is the dual operator.
+
+	Now, assume $A$ is adjointable. Firstly, it is linear (this is true in pre-Hilbert spaces). Now, we attempt to use the closed graph theorem to show it is continuous. We seek to prove that the graph
+	\[
+		\text{graph }A = \{(\phi, A\phi)|\phi\in \mathcal{H}\} 
+	\]
+	is closed.
+
+	Let $(\phi_n)_{n\in \N}\subseteq \mathcal{H}, \phi_n \to \phi$ converge such that $A\phi_n\to \psi$ exists. Then, for $x\in \mathcal{K}$, we have
+	\begin{align*}
+		\langle x, \psi\rangle &= \langle x, \lim_{n\to \infty} A\phi_n\rangle \\
+				       &= \lim_{n \to \infty} \langle x, A \phi\rangle\\
+				       &= \lim_{n \to \infty} \langle A^\dagger x, \phi_n\rangle\\
+				       &= \langle A^\dagger x, \phi\rangle \\
+				       &=\langle x, A \phi\rangle
+	\end{align*}
+	This implies that $\psi = A \phi$, also the graph is closed. By the closed graph theorem, this implies that $A$ is continuous.
+\end{proof}
+These properties form a correspondence between the operator algebras and the C* algebras.
+\begin{Definition}[*-Algebra]
+	A *-algebra is a complex vector space with a bilinear associative product $(a,b) \mapsto ab$ and an inversion map $*:a\mapsto a^*$ such that
+	\begin{align*}
+		(\alpha a + \beta b)^* &= \overline{\alpha}a^* + \overline{\beta}b^*\\
+		(a^*)^*&=a\\
+		(ab)^* &= b^*a^*
+	\end{align*}
+\end{Definition}
+\begin{Definition}[C*-Algebra]
+	A C*-Algebra is a Banach algebra, that is, a complete normed space together with a product $(a, b)\mapsto ab$ such that $\|AB\|\le \|A\|\|B\|$, as well as an involution $*:A\mapsto A^*$ such that it is a *-algebra and 
+	\[
+\|A A^*\|= \|A\|\|A^*\|
+	.\] 
+\end{Definition}
+The property that needs to be checked for continuous operators on Hilbert spaces is the C* condition. 
+\begin{Proposition}
+	Continuous operators on Hilbert spaces are a C*-Algebra.
+\end{Proposition}
+\begin{proof}
+That it is a *-algebra has already been proven. We only need to verify the C* property.
+
+	If $\|A\|^2 = \|A^\dagger A\|\le \|A^\dagger\|\| A\|$, we have $\|A\|\le \|A^\dagger\|$ and $\|A\|\le \|A^\dagger\|$. By symmetry, this implies the C* property.
+
+	Now, we assume that $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then \textcolor{red}{TODO}
+\end{proof}
+\section{Strong \& Weak Operator Topology}
+\begin{Proposition}
+	\begin{parts}
+	\item Let $\mathcal{H}, \mathcal{K}$ be Hilbert spaces. A net $(A_i)_{i\in I}$of operators $\mathcal{B}(\mathcal{H}, \mathcal{K})$ converges to $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$ in the strong operator topology iff for every $\phi\in \mathcal{H}$ we have
+	\[
+		\lim_{i\in I}A_i\phi = A\phi
+	.\] 
+\item A net $(A_i)_{i\in I}$ is Cauchy in the strong operator topology iff for all $\phi \in \mathcal{H}$ we have $(A_i\phi)_{i\in I}$ Cauchy in $\mathcal{H}$. 
+\item $\mathcal{B}(\mathcal{H}, \mathcal{K})$ is sequentially complete in the strong operator topology.
+\item Composition is separately continuous in the strong operator topology, but not continuous in general.
+\end{parts}
+\end{Proposition}
+\begin{proof}
+	The first two are true for Banach spaces. The third is also true for Banach spaces:
+
+	Let $B : \mathcal{K}\to \mathcal{X}$ be continuous and linear. Then $L_B: \mathcal{B}(\mathcal{H}, \mathcal{K})\ni A \mapsto BA = L_B(A)\in \mathcal{B}(\mathcal{H}, \mathcal{X})$ is continuous. 
+
+	Suppose $\phi \in \mathcal{H}$. Then
+	 \begin{align*}
+		 \|L_B(A)\|_\phi &= \|BA\phi\|_\mathcal{X}\\
+		&\le \|B\|\|A\phi\|_{\mathcal{X}}\\
+		&= \|B\|\|A\|_\phi
+	\end{align*}
+	which implies that $L_B$ is continuous. 
+
+	For right multiplication, we fix $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$ and define the mapping $R_A:\mathcal{B}(\mathcal{K}, \mathcal{X})\to \mathcal{B}(\mathcal{H}, \mathcal{X})$, $R_A(B) = BA$. Then, for $\phi\in \mathcal{H}$, we have
+	\[
+		\|R_A(B)\|_\phi = \|BA\phi\| = \|B\|_{A\phi}
+\]
+implying that $R_A$ is continuous in the strong operator topology.
+\end{proof}
+\begin{Example}[Shift Operator]
+Let $\mathcal{H}=\ell^2$ and we express a vector $\psi\in \mathcal{H}$ as a sum of the canonical Hilbert basis $\psi=\sum_{n=1}^{\infty} \psi_n e_n$ with $\psi_n = \langle e_n, \psi\rangle$.
+
+We define the shift operator by
+\[
+	S\psi = \sum_{n=1}^{\infty} \psi_n e_{n+1}
+.\] 
+Then $S$ is an isometry that is not surjective.
+\end{Example}
+\begin{proof}
+	We have
+	\begin{align*}
+		\|S\psi\|^2 &= \langle \sum \psi_m e_{m+1}, \sum \psi_n e_{n+1}\rangle \\
+			    &= \sum \langle \psi_n, \psi_n \rangle\\
+			    &= \|\psi\|^2
+	\end{align*}
+	showing that $S$ is isometric. It is, however, clearly not surjective. Thus, it cannot be unitary:
+	\begin{align*}
+		\langle e_n, S^\dagger \psi\rangle &= \langle S e_n, \psi\rangle\\
+						   &= \langle e_{n+1}, \psi\rangle\\
+						   &= \psi_{n+1}
+	\end{align*}
+	Thus, 
+	\[
+		S^\dagger \psi = \sum_{n=1}^{\infty} \langle e_n, S^\dagger \psi\rangle e_n = \sum_{n=1}^{\infty} \psi_{n+1} e_n
+	.\] 
+	Then, we conclude that $S^\dagger$ is the map
+	\[
+	S^\dagger: (\psi_1, \psi_2, \dots )\mapsto (\psi_2, \psi_3, \dots)
+	\]
+	and $S^\dagger e_1 = 0$. This shows that it cannot be the inverse of $S$.
+\end{proof}
+\begin{Proposition}
+	$(S^\dagger)^k\to 0$ in the strong operator topology, while $S^k\not\to 0$.
+\end{Proposition}
+\begin{proof}
+	We have
+	\[
+		\|(S^\dagger)^k \psi\|^2 = \sum_{n=1}^{\infty} |\psi_{n+k}|^2 = \sum_{k=1}^\infty |\psi_n|^2 \to 0
+	,\]
+	while
+	\[
+	\|S^k \psi\|= \|\psi\|
+\]
+which clearly does not converge to 0. This shows that * involution is not conitnuous in the strong operator topology.
+\end{proof}
 \section{Applications}
 As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
 
