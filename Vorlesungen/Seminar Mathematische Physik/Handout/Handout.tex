@@ -123,7 +123,7 @@ Note that for uniqueness we do not need the continuity in time; the Lipschitz co
 		\item We estimate the expectation value $\mathbb{E}(Z_t^2)$, using the Lipschitz condition.
 		\item We obtain an integral inequality
 			 \[
-			 E(Z_t^2) \le 2K^2 (1+b-a)\int_a^t \mathbb{E}(Z_s^2)\dd{s}
+			 \mathbb{E}(Z_t^2) \le 2K^2 (1+b-a)\int_a^t \mathbb{E}(Z_s^2)\dd{s}
 			,\]
 			which, by the theory of classical differential equations, implies that $Z_t$ is 0 almost surely for all $t$.
 		\item Then, we extend the solution to show that $Z_t$ is $0$ almost surely, using sample path continuity.\qedhere
@@ -134,11 +134,11 @@ The existence theorem is as follows:
 	The stochastic differential equation \eqref{eq:SDEdiff} has a unique solution with initial condition $\xi$, where $\xi^2$ has finite expectation, $\sigma$ and $b$ are Lipschitz in $x$, with Lipschitz constant independent of $t$, and continuous in $t$.
 \end{Theorem}
 \begin{proof}
-	The proof follows by Picard Iteration much as it does in the deterministic case. We define $X_0=\xi$ and
+	The proof follows by Picard Iteration much as it does in the deterministic case. We define $X^{(0)}=X_0=\xi$ and
 	\[
 	X_t^{(n+1)}=X_0+\int_0^t b(s, X_s^{(n)})\dd{s}+\int_0^t \sigma(s, X_s^{(n)})\dd{B_s}
 	.\] 
-	Then, the proof proceeds in two steps. First, we show that this sequence converges, If it does, and converges in a dominated manner, it satisfies the integral equation by the dominated convergence theorem. 
+	Then, the proof proceeds in two steps. First, we show that this sequence converges. If it does, it satisfies the integral equation by the dominated convergence theorem. 
 \end{proof}
 It is a known property of initial value problems that the future solution is not dependent on the past. In particular, we can imagine that we have some initial state $x(0)$ and let it evolve a time $t$ to $x(t)$. Then we can let it evolve further. Alternatively, we can consider an initial value problem that has the value $x(t)$ at time $t$. We expect that these two solutions are identical. In a stochastic differential equation, this ``memory'' property is known as the Markov property. 
 \begin{Definition}
