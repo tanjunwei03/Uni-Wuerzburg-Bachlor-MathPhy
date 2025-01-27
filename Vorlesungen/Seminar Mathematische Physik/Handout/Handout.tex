@@ -74,6 +74,22 @@ This equation is to be interpreted as follows:
 	We say that the stochastic process $X_t$ is a \emph{solution} of the SDE \eqref{eq:SDEdiff} if
 	\[X_t = X_0+\int_0^t b(s, X_s)\dd{s}+ \int_0^t \sigma(s, X_s)\dd{B_s}\]
 \end{Definition}
+The standard method to solve a stochastic differential equation is the Itô formula
+\begin{Theorem}[The 1-Dimensional Itô Formula]
+	Suppose $X_t$ is an Itô process defined by the formula
+	\[\dd{X_t}=u\dd{t}+v\dd{B_t}.\]
+	Let $g(t,x)\in C^2([0,\infty)\times \R)$. Then
+	\[Y_t=g(t, X_t)\]
+	is also an Itô process, and
+	\[\dd{Y_t}=\pdv{g}{t}(t, X_t)\dd{t}+\pdv{g}{x}(t, X_t)\dd{X_t}+\frac 12 \pdv[2]{g}{x}(t, X_t)\cdot (\dd{X_t})^2\]
+	where $(\dd{X_t})^2$ is computed according to the rules $\dd{t}\cdot \dd{t} = \dd{t}\cdot \dd{B_t}=0$ and $\dd{B_t}\cdot \dd{B_t}=\dd{t}$.
+\end{Theorem}
+where an Itô process is defined as follows
+\begin{Definition}[Itô Process]
+	An Itô process is a stochastic process of the form
+	\[X_t = X_a +\int_a^t b(s)\dd{s} + \int_a^t \sigma(s)\dd{B(s)}\]
+\end{Definition}
+Let us look at an example:
 \begin{Example}
 	A model of a population is given by the stochastic differential equation
 	\[\dv{N_t}{t} = r N_t + \alpha W_t N_t.\]
@@ -83,7 +99,7 @@ This is the well known model for a population, except that we have allowed $r$ t
 \[\dd{N_t}=r N_t\dd{t}+\alpha N_t \dd{B_t},\]
 or
 \[\frac{\dd{N_t}}{N_t} = r \dd{t} + \alpha \dd{B_t}.\]
-Inspired by the solution in the deterministic case, we guess $g(t, x)=\ln x$ in Ito's formula, and let $Y_t=g(t, N_t)$. Then, we have
+Inspired by the solution in the deterministic case, we guess $g(t, x)=\ln x$ in Itô's formula, and let $Y_t=g(t, N_t)$. Then, we have
 \[\dd{Y_t}=\frac{\dd{N_t}}{N_t}+\frac 12 \alpha^2 \dd{t}.\]
 Substituting, we have
 \[\dd{Y_t} = \left(r- \frac 12\alpha^2 \right)\dd{t} +\alpha B_t\]
@@ -95,43 +111,9 @@ Now, we turn to the questions of existence and uniqueness. Recall the basic theo
 \begin{Theorem}[Picard-Lindelöf]
 	Let $\dot{x} = f(t,x)$ be a differential equation with $f$ defined on a rectangle $[a,b]\times \R^n$. If $f$ is Lipschitz continuous in $x$, with Lipschitz constant independent of time, and continuous in time, then the differential equation has a unique global solution on $[a,b]$.
 \end{Theorem}
-Note that for uniqueness we do not need the continuity in time; the Lipschitz condition alone suffices.
-\begin{Definition}[Linear Growth]
-	A function $g(t, x)$ on $[a,b]\times \R$ is said to satisfy the \uline{linear growth condition in $x$} if there exists $K>0$ such that
-	\[|g(t, x)|\le K(1+|x|)\]
-	for all $t\in [a,b]$ and $x\in \R$.
-\end{Definition}
-Because of the inequality
-\[1+x^2 \le (1+x)^2 \le 2(1+x^2),\]
-the earlier definition is equivalent to the following definition:
-\begin{Proposition}
-	A function $g(t,x)$ satisfies the linear growth condition if there exists $K>0$ such that
-	\[|g(t,x)|^2 \le K(1+x^2)\]
-\end{Proposition}
-The second definition will be more useful in the following proofs. Note that it is indeed stronger
-\begin{Proposition}
-	Globally Lipschitz continuous functions satisfy the linear growth condition.
-\end{Proposition}
-\begin{proof}
-If $f(x)$ is Lipschitz, we have
-\[|f(x) - f(0)| \le K |x|,\]
-or
-\[|f(x)|\le |f(0)| + K|x|\]
-by the reverse triangle inequality.
-\end{proof}
-Conversely, linear growth does not imply Lipschitz continuity, or any kind of continuity
-\begin{Example}
-	Let
-	\[f(x) = \begin{cases}
-		x & x\in \Q,\\
-		0 & \text{otherwise}.
-	\end{cases}\]
-	Clearly, $f$ grows linearly, but is not Lipschitz continuous, or even continuous at any point.
-\end{Example}
-
-We can prove uniqueness with just Lipschitz continuity, as we do in the deterministic case.
+Note that for uniqueness we do not need the continuity in time; the Lipschitz condition alone suffices. This extends to the stochastic case:
 \begin{Theorem}
-	Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
+	Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$, and $\mathcal{F}$ a filtration such that the Brownian motion is adapted to it. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
 	\[\dv{X_t}{t}=f(t, X_t)+\sigma(t, X_t)W_t\]
 	has at most one continuous solution on $[a,b]$.
 \end{Theorem}
@@ -158,69 +140,22 @@ The existence theorem is as follows:
 	.\] 
 	Then, the proof proceeds in two steps. First, we show that this sequence converges, If it does, and converges in a dominated manner, it satisfies the integral equation by the dominated convergence theorem. 
 \end{proof}
-\section{The Markov Property}
-It is a known property of initial value problems that the future solution is not dependent on the past. In particular, we can imagine that we have some initial state $x(0)$ and let it evolve a time $t$ to $x(t)$. Then we can let it evolve further. Alternatively, we can consider an initial value problem that has the value $x(t)$ at time $t$. We expect that these two solutions are identical. In a stochastic differential equation, this ```memory'' property is known as the Markov property. Before we define it, let us recall a few definitions:
-\begin{Definition}[Conditional Expectation]
-	Suppose $(\Omega, \mathcal{F}, \mathbb{P})$ is a probability space and $X$ is a real-valued random variable on that space with finite expectation. Let $\mathcal{H}\subseteq \mathcal{F}$ be a sub $\sigma$-algebra of $\mathcal{F}$. Then the conditional expectation of $X$ relative to $\mathcal{H}$ is a $\mathcal{H}$-$\mathcal{B}$ measurable function $\mathbb{E}(X|\mathcal{H})$ such that
-	\[
-		\int_H \mathbb{E}(X|\mathcal{H})\dd{\mathbb{P}}=\int_H X \dd{\mathbb{P}}
-	\]
-	for all $H\in \mathcal{H}$.
-\end{Definition}
-Examples are as follows
-\begin{Example}\noindent
-
-	\begin{center}
-		\begin{tikzpicture}
-			\begin{axis}[axis lines = left, ytick=\empty, legend pos = south east]
-				\addplot[domain=0:2, black, thick]{27*x^3/64-45*x^2/16+9*x/2+2};
-				\draw[thick, red] (axis cs:0,{875/256}) -- (axis cs:1,{875/256});
-				%\draw[thick, red] (axis cs:1,{965/256}) -- (axis cs:2,{965/256});
-				\addplot[domain=1:2, thick, red]{965/256};
-				%\draw[thick,blue] (axis cs:0, {2*5947/4096}) -- (axis cs:0.5, {2*5947/4096});
-				\addplot[domain=0:0.5, thick, blue]{2*5947/4096};
-				\draw[thick, blue] (axis cs:0.5,{2*8053/4096}) -- (axis cs:1, {2*8053/4096});
-				\draw[thick, blue] (axis cs:1, {2*8251/4096}) -- (axis cs:1.5, {2*8251/4096});
-				\draw[thick, blue] (axis cs:1.5, {2*7189/4096}) -- (axis cs:2, {2*7189/4096});
-				\addlegendentry{$X$};
-				\addlegendentry{$\mathbb{E}(X|\mathcal{A})$};
-				\addlegendentry{$\mathbb{E}(X|\mathcal{B})$};
-			\end{axis}
-		\end{tikzpicture}
-	\end{center}
-\end{Example}
-Where $Y_1, \dots, Y_n$ is a collection of random variables, we use $\mathbb{E}(X|Y_1, \dots, Y_n)$ to denote $\mathbb{E}(X|\sigma(Y_1,\dots, Y_n))$, the conditional expectation on the $\sigma$-algebra generated by the $Y_i$s.
-
-Using this, we can define the conditional probability of an event,
-\begin{Definition}
-	The conditional probability of an event $A$, conditional on a $\sigma$-algebra $\mathcal{A}$, $\mathbb{P}(A|\mathcal{A})$ is given by $\mathbb{E}(1_A|\mathcal{A})$.
-\end{Definition}
-Now, we may define the Markov property
+It is a known property of initial value problems that the future solution is not dependent on the past. In particular, we can imagine that we have some initial state $x(0)$ and let it evolve a time $t$ to $x(t)$. Then we can let it evolve further. Alternatively, we can consider an initial value problem that has the value $x(t)$ at time $t$. We expect that these two solutions are identical. In a stochastic differential equation, this ``memory'' property is known as the Markov property. 
 \begin{Definition}
 	A stochastic process $X_t$, with $a\le t \le b$, is said to have the \emph{Markov property} if for all sequences $a < t_1 < \dots < t_n < t < b$ and corresponding $x_1, \dots, x_n$, we have
 	\[
 	\mathbb{P}(X_t\le x|X_{t_1}=x_1, \dots, X_{t_n}=x_n) = \mathbb{P}(X_t\le x|X_{t_n}=x_n)
 	.\] 
 \end{Definition}
-As an example, all processes with independent increments have the Markov property. 
-Before we move on, let us prove a useful lemma
-\begin{Lemma}
-	Suppose a stochastic process $X_t$ defined on $[a,b]$ is adapted to a filtration $\mathcal{F}_t$. Suppose also that
-	\[
-	\mathbb{P}(X_t\le x|\mathcal{F}_s) = \mathbb{P}(X_t \le x|X_s)
-	.\] 
-	Then $X_t$ is a Markov process.
-\end{Lemma}
+As an example, all processes with independent increments have the Markov property. The theorem we seek is thus
 
-Finally, we move to characterise a Markov process by its marginal distributions. Recall that a discrete-time Markov process is characterised by its transition matrix --- that is, the probability to transition to a certain state given its current state.
+\begin{Theorem}
+	The solution to \eqref{eq:SDEdiff} is a Markov process.
+\end{Theorem}
 
-We define a Markov process on $[a,b]$ and let $a=t_1<t_2$. We have, by Bayes's Theorem
-\begin{align*}
-	\mathbb{P}(X_{t_1}\le c_1 \cap X_{t_2}\le c_2)=\mathbb{P}(X_{t_2}\le c_2 |X_{t_1}\le c_1)\mathbb{P}(X_{t_1}\le c_1)
-\end{align*}
 The final property that is of interest to us is time translation invariance. For a deterministic differential equation $\dot{x} = f(x)$, we know that the solution exhibits time translation invariance. In the deterministic case, this is quite easy to see, and follows from the fact that $\dv{t}\varphi(t - t_0) = \varphi'(t-t_0)$. 
 
-In this case, the relevant property is called the \emph{stationary markov property}
+In this case, the relevant property is called the \emph{stationary Markov property}
 \begin{Definition}
 	A stochastic process $X$ is called stationary if the moments are time translation invariant:
 	\[
@@ -231,9 +166,40 @@ In this case, the relevant property is called the \emph{stationary markov proper
 
 Thus, we have our final theorem
 \begin{Theorem}
-	Suppose that $b(x)$ and $\sigma(x)$ are functions satisfying the Lipschitz condition. Then the solution to Eq. \eqref{eq:SDEdiff} is a stationary Markov process.
+	Suppose that $b(x)$ and $\sigma(x)$ are functions satisfying the Lipschitz condition. Then the solution to
+		\begin{equation}\label{eq:SDEdiff2}
+		\dv{X_t}{t}=b(X_t)+\sigma(X_t)W_t,
+	\end{equation}
+	is a stationary Markov process.
+\end{Theorem}
+As an example of this, we solve the Langevin equation
+\begin{Example}
+	The Langevin equation is the SDE given by
+	\[\dd{X_t} = \mu X_t \dd{t} + \sigma \dd{B_t}.\]
+	It has solutions
+	\[X_t = e^{\mu t}X_0 + \int_0^t \sigma e^{\mu(t-s)}\dd{B_s}\]
+\end{Example}
+\begin{proof}
+	We multiply by the ``integrating factor'' $e^{-\mu t}$ and consider
+	\[Y_t = e^{-\mu t}X_t.\]
+	By Itô's formula, we have
+	\begin{align*}
+	\dd{Y_t} &= -\mu e^{-\mu t}X_t \dd{t} + e^{-\mu t}\dd{X_t}\\
+	&=  -\mu e^{-\mu t}X_t \dd{t} + e^{-\mu t}(\mu X_t \dd{t} + \sigma \dd{B_t})\\
+	&= e^{-\mu t}\sigma \dd{B_t}
+\end{align*}
+implying that
+\[X_t = e^{\mu t}X_0 + \int_0^t \sigma e^{\mu(t-s)}\dd{B_s}.\qedhere\]
+\end{proof}
+Finally, we note that some stochastic processes can be described through density functions. Where such a density function is available, it satisfies the \emph{Fokker-Planck Equation}
+\begin{Theorem}
+	The probability density of the solution to Eq. \eqref{eq:SDEdiff} $p(x,t)$ satisfies the equation
+	\[\pdv{p(x,t)}{t}=-\pdv{x}[b(x,t)p(x,t)]+\pdv[2]{x}[D(x,t)p(x,t)]\]
+	where $D(x,t) =\frac{\sigma^2(X_t, t)}{2}$ is the diffusion coefficient.
 \end{Theorem}
 \bibliographystyle{ieeetr}
 \bibliography{ref.bib}
+\nocite{kuo2005introduction}
+\nocite{oksendal2010stochastic}
 \end{document}
 
