@@ -1,0 +1,27 @@
+\begin{Problem}
+	In einer Meinungsumfrage soll die Zustimmung oder Ablehnung eines generellen Tempolimits in der Bevölkerung geschätzt werden. Dazu werden \( n \) zufällig ausgewählte Personen befragt. Dabei wird \( S_n/n \), die relative Anzahl der Befürworter unter den befragten Personen, als Schätzung für die Zustimmungsrate \( p \) verwendet.
+	
+	\begin{enumerate}
+		\item[(a)] Begründen Sie, weshalb \( S_n \) näherungsweise als binomialverteilt, \( S_n \sim \text{Bin}(n,p) \), angenommen werden kann.
+		
+		\item[(b)] Verwenden Sie den Satz von de Moivre-Laplace, um folgende Approximation herzuleiten:
+		\[
+		\mathbb{P} \left( \left| \frac{S_n}{n} - p \right| > \varepsilon \right) \approx 2 \left( 1 - \Phi \left( \frac{\sqrt{n} \varepsilon}{\sqrt{p(1 - p)}} \right) \right),
+		\]
+		wobei \( \Phi \) die Verteilungsfunktion der Standard-Normalverteilung bezeichnet.
+		
+		\item[(c)] Wie viele Personen sollte ein Meinungsforschungsinstitut befragen, um sicherzustellen, dass mit einer Wahrscheinlichkeit von mindestens \( \alpha \in (0,1) \) die relative Anzahl der Befürworter nicht mehr als 5\% von der wahren Zustimmungsrate \( p \) abweicht?
+	\end{enumerate}
+\end{Problem}
+
+\begin{Problem}
+	\begin{enumerate}
+		\item[(a)] Seien \( X_1, \dots, X_n \) identisch verteilte, reellwertige Zufallsvariablen (nicht notwendigerweise unabhängig) mit \( \mathbb{E}[X_1^2] < \infty \). Angenommen, es existiert ein festes \( h \geq 1 \), so dass \(\text{Cov}(X_j, X_k) = 0\) für \( |j - k| \geq h \). Zeigen Sie unter dieser Annahme für \( S_n = \sum_{i=1}^{n} X_i \) die Abschätzung
+		\[
+		\text{Var}(S_n) \leq 2nh \, \text{Var}(X_1).
+		\]
+		
+		\item[(b)] Folgern Sie, unter Verwendung von (a), dass auch unter diesen Annahmen ein schwaches Gesetz der großen Zahlen erfüllt ist.
+	\end{enumerate}
+	
+\end{Problem}
