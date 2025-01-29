@@ -266,7 +266,7 @@ Theorem \ref{thm:bairecond} is clearly unwieldy, and one must first show that a 
 	Conversely, given $x$ and $y$, we can find disjoint open sets $U$ and $V$ containing $x$ and $y$, and $U\times V$ does not intersect the diagonal, since they are disjoint. 
 \end{proof}
 Now, we move on to our first result about regularity. This is independent of the other separation axioms:
-\begin{Theorem}[Regularity of Topological Groups]
+\begin{Theorem}
 	Let $G$ be a topological group. It is regular. In particular, for all points $x\in G$ and closed sets $A$ not containing $x$, we have a neighbourhood $V$ of $e$ such that $V\cdot x$ and $V\cdot A$ are disjoint.
 \end{Theorem}
 \begin{proof}
@@ -290,7 +290,7 @@ We can also extend this to compact sets:
 	As usual, we apply the previous corollary to each point $x\in K$. Then we choose a finite subcover of these, and take their intersections.
 \end{proof}
 Now, we move on to the more important result:
-	\begin{Theorem}[Separation Properties of Topological Groups]
+	\begin{Theorem}
 		Let $G$ be a $T_0$ topological group. Then it is $T_1, T_2$ and $T_3$.
 	\end{Theorem} 
 \begin{proof}
@@ -306,10 +306,6 @@ Now, we move on to the more important result:
 	
 	Since all topological groups are regular, this shows $T_3$.
 \end{proof}
-As a final result, we note that finite dimensional topological vector spaces are boring:
-\begin{Theorem}\label{thm:finitedimboring}
-	All Hausdorff topological vector spaces of finite dimension $n$ are isometrically isomorphic to $\R^n$ or $\C^n$.
-\end{Theorem}
 	\section{Continuity}
 	\begin{Definition}[Uniform Continuity]
 		Let $V,W$ be topological vector spaces and $\phi:V\to W$ be a map. Then $\phi$ is called uniformly continuous if for all neighbourhoods $U\subseteq W$ of $0$ there exists a neighbourhood $Z\subseteq V$ such that $v-v'\in Z\implies \phi(v)-\phi(v')\in U$.
@@ -360,12 +356,6 @@ Suppose $v,w\in W^\text{cl}$. Then there are nets $(v_i)_{i\in I}$ converging to
 \end{Theorem}
 \begin{proof}
 The proof follows in two steps: First, we translate an open set contained in $S$ to the origin. Then, since all neighbourhoods of the origin are absorbing, $S=V$ by scaling.
-\end{proof}
-\begin{Theorem}
-	All finite dimensional subspaces of a Hausdorff topological vector space are closed.
-\end{Theorem}
-\begin{proof}
-	Since a subspace of a Hausdorff space must itself be Hausdorff, it is isometrically isomorphic to $\mathbb{K}^n$ by Theorem \ref{thm:finitedimboring}. Thus, it is complete and hence closed. 
 \end{proof}
 	\chapter{Banach Spaces}
 	\section{Introductory Definitions}
@@ -446,30 +436,6 @@ We can see that boundedness in the normed setting implies boundedness in the gen
 	\[\|BAv\|\le \|B\| \|Av\| \le \|B\| \|A\| \|v\|.\qedhere\]
 \end{proof}
 Note that the above definition shows once again the continuity of composition. Also note that this norm turns $L(V,W)$ into a normed space.
-
-Another interesting property that can be defined with a norm is that of \emph{absolute convergence} of series. Recall the following definitions
-\begin{Definition}[Absolute Convergence]
-	A series $\displaystyle\sum_{n=1}^\infty x_n$ is called \emph{absolutely convergent} if the series $\displaystyle\sum_{n=1}^\infty \|x_n\|$ converges.
-\end{Definition}
-\begin{Definition}[Unconditional Convergence]
-	A series is called \emph{unconditionally convergent} if every rearrangement of the series converges to the same value.
-\end{Definition}
-The first result is familiar to all:
-\begin{Proposition}
-Let $V$ be a complete normed space. Then an absolutely convergent series $\displaystyle \sum_{n=1}^\infty v_n$ is convergent.
-\end{Proposition}
-\begin{proof}
-	We have
-	\[\left\|\sum_{n=N}^M v_n \right\| \le \sum_{n=N}^M \| v_n\|\]
-	which shows that the series is Cauchy. Since $V$ is complete, it is convergent.  
-\end{proof}
-The second result is that absolute convergence implies unconditional convergence
-\begin{Theorem}[Absolute implies Unconditional Convergence]
-	Suppose the series $\sum_{n=1}^\infty v_n$ in a Banach space is absolutely convergent. Then it is unconditionally convergent.
-\end{Theorem} 
-\begin{proof}
-	Since the series is in a Banach space, it is convergent. Denote its limit by $v$. \textcolor{red}{TODO}
-\end{proof}
 	\subsection{Bases}
 	\begin{Definition}[Hamel Basis]
 		A Hamel basis is a set $B\subseteq V$ such that for all $v\in V$, we have
@@ -513,16 +479,16 @@ The importance of a Schauder basis is that it is countable, and we are still abl
 \[Av = \sum_{k=1}^\infty a_k Ae_k.\]
 Also important to note is that this basis must be \emph{ordered}, since the sum does not necessarily converge unconditionally. 
 \subsection{Examples}
-\begin{Example}[The Space $c$]
+\begin{Example}
 	The space $c$ is the space of convergent sequences.
 \end{Example}
-\begin{Example}[The Space $c_0$]
+\begin{Example}
 	The space $c_0$ is the space of sequences converging to 0. It is a subspace of $c$ with codimension 1.
 \end{Example}
-\begin{Example}[The Space $c_{00}$]
+\begin{Example}
 	The space $c_{00}$ is the space of sequences that are 0 outside of finitely many elements. This is a subspace of $c_0$. It is the prototype for a non complete space. 
 \end{Example}
-\begin{Example}[Discontinuous Linear Functionals]
+\begin{Example}
 	There are discontinuous linear functionals.
 	
 	The simplest example in a non-complete space is the functional $f(e_i)=i$ defined on $c_{00}$. 
@@ -882,25 +848,6 @@ The canonical map $i$ allows us to define a weak topology on $V'$ generated by t
 		\|A\|= \sup_{\varphi\neq 0, w \neq 0}\frac{|\varphi(A v)|}{\|\varphi\|_{W'}\|v\|_V}=\sup_{\|\varphi\|=\|v\|=1} |\varphi(A v)|=\|A'\|
 	.\] 
 \end{Theorem}
-These also allow us to define multiple topologies on the space of bounded linear operators $L(V,W)$:
-\begin{Definition}[Strong Operator Topology]
-	The strong operator is the topology generated by the seminorms $T\mapsto \| Tx\|$ for $x\in V$.
-\end{Definition}
-This corresponds to convergence in the following sense:
-\begin{Proposition}
-	Convergence of a sequence $T_n$ in the strong operator norm is equivalent to convergence of $T_nx\to Tx$ for all $x\in V$.
-\end{Proposition}
-We also have the weak operator topology:
-\begin{Definition}[Weak Operator Topology]
-	The weak topology is generated by the seminorms $T\mapsto \varphi(Tv)$ for all $v\in V$ and $\varphi\in W'$.
-\end{Definition}
-Convergence in this case is equivalent to the following notion
-\begin{Proposition}
-	Convergence in the weak operator topology is equivalent to convergence $\varphi(T_n v)\to \varphi(Tv)$ for all $\varphi\in W'$ and $v\in V$.
-	
-	In other words, the net $(T_i v)$ converges weakly to $Tv$ for all $v\in V$.
-\end{Proposition}
-We note that the weak topology is weaker than the strong topology, which is in turn weaker than the norm topology.
 \subsection{Polars \& Banach-Alaoglu Theorems}
 \begin{Definition}
 	Let $V$ be a topological vector space with topological dual $V'$.
@@ -1695,48 +1642,21 @@ The quantum logic lattice is equivalent to the lattice of closed subspaces:
 \section{Bases}
 As one might expect, the next step up from a (Schauder) basis in a Banach space would be an orthonormal basis:
 \begin{Definition}[Orthonormal Basis]
-	A Hilbert space basis $\{v_n\}$ is a set of vectors whose closed linear span is the entire space, such that $\langle v_i, v_j\rangle =0$ for $i\neq j$, and $\|v_n\| = 1$.
+	An orthormal (Schauder) basis $\{v_n\}$ is a set of vectors whose closed linear span is the entire space, such that $\langle v_i, v_j\rangle =0$ for $i\neq j$, and $\|v_n\| = 1$.
 \end{Definition}
-Note that orthogonality implies linear independence, with the same proof as in finite dimensions. Such bases are called Hilbert space bases. Such bases always exist, by the classic Zorn's Lemma argument. Let us first prove a series of properties of an orthonormal system of vectors:
-\begin{Theorem}[Orthonormal System]
-	Let $\mathcal{H}$ be a pre-Hilbert space and $\{e_i\}_{i\in I}$ an orthonormal system of vectors in $\mathcal{H}$. Then
-	\begin{parts}
-		\item For every finite subset $J\subseteq I$ we have
-		\[\sum_{j\in J}|\langle e_j, \psi\rangle|^2 \le \|\psi\|^2.\]
-		\item For every $\psi\in \mathcal{H}$ the set
-		\[I_\psi = \{i\in I|\langle e_i, \psi\rangle \neq 0\}\subseteq I\]
-		is a countable subset of $I$.
-		\item Bessel's Inequality
-		\[
-		\sum_{i\in I} |\langle e_k, \psi\rangle|^2 \le \|\psi\|^2
-		\]
-		holds in the sense that only countably many of these are nonzero.
-		\item For all $\varphi, \psi\in \mathcal{H}$ we have
-		\[\sum_{i\in I}|\langle \varphi, e_i\rangle \langle e_i, \psi\rangle|\le \|\varphi\| \|\psi\|\] 
-		where the sum is to be interpreted as in the previous part.
-		\item If $\mathcal{H}$ is complete, and $U$ is the closed linear span of the $\{e_i\}$s, then for every $\psi\in \mathcal{H}$ the series
-		\[\sum_{i\in I}\langle e_i, \psi\rangle e_i=\psi_{\parallel}\]
-		converges unconditionally to the parallel component of $\psi$.
-	\end{parts}
+Note that orthogonality implies linear independence, with the same proof as in finite dimensions. Such bases are called Hilbert space bases. Such bases always exist, by the classic Zorn's Lemma argument. However, first we need to prove an inequality very reminiscent of finite dimensional linear algebra
+\begin{Theorem}[Bessel's Inequality]
+	Let $(e_j)_{j\in \N}$ be an orthonormal sequence in a Hilbert space $\mathcal{H}$. Then
+	\[
+		\sum_{k=1}^\infty |\langle e_k, x\rangle|^2 \le \|x\|^2
+	.\] 
 \end{Theorem}
 \begin{proof}
-	\begin{parts}
-	\item 	We consider the ``basis decomposition'' of the vector $\psi$:
+	We consider the ``basis decomposition'' of the vector $x$:
 	\begin{align*}
-		0\le \left\|x - \sum_{k=1}^n \langle e_k, \psi\rangle e_k\right\|^2 &=  \|\psi\|^2 - 2\sum_{k=1}^n \Re \langle\langle e_k, \psi\rangle e_k, \psi\rangle + \sum_{k=1}^n |\langle e_k, \psi\rangle|^2\\
-		&= \|\psi\|^2 - \sum_{k=1}^n |\langle e_k, \psi\rangle|^2.
+		0\le \left\|x - \sum_{k=1}^n \langle e_k, x\rangle e_k\right\|^2 &=  \|x\|^2 - 2\sum_{k=1}^n \Re \langle\langle e_k, x\rangle e_k, x\rangle + \sum_{k=1}^n |\langle e_k, x\rangle|^2\\
+										 &= \|x\|^2 - \sum_{k=1}^n |\langle e_k, x\rangle|^2.\qedhere
 	\end{align*}
-\item This follows from the previous part, and is the elementary result that an uncountable sum of positive numbers must be infinite: Consider an uncountable sum $\sum_{i\in I}x_i$. Then we have
-\[\{x_i\}_{i\in I}= \bigcup_{n=1}^\infty \left\{x_i | x_i > \frac 1n\right\}.\]
-Since at least one of these sets must be infinite, the sum must diverge.
-\item Follows immediately from the preceding two parts.
-\item First, note that the only nonzero indices are those in $I_\varphi \cap I_\psi$, which must be countable. Then, using Hölder's inequality, we have
-\begin{align*}
-	\sum_{i\in I}|\langle \varphi, e_i\rangle \langle e_i, \psi\rangle| &= \sum_{i\in I_\varphi \cap I_\psi}|\langle \varphi, e_i\rangle \langle e_i, \psi\rangle|\\
-	&\le \sqrt{\sum_{i\in I_\varphi \cap I_\psi}|\langle e_i, \varphi\rangle|^2}\sqrt{\sum_{i\in I_\varphi \cap I_\psi}\langle e_i, \psi\rangle|^2}\\
-	&\le \|\varphi\| \|\psi\|
-\end{align*}
-	\end{parts}
 \end{proof}
 As one might expect, if the $e_n$s form a Hilbert space basis we have equality
 \begin{Theorem}[Hilbert Space Bases]
@@ -1921,7 +1841,7 @@ Let $\mathcal{H}$ be a pre-Hilbert space with inclusion into its completion $\io
 
 	Now, we suppose that $\iota$ is adjointable. Note that 
 	\[
-		\langle \iota^\dagger \iota \phi, \psi\rangle_\mathcal{H}= \langle \iota \phi, \iota \psi\rangle_{\hat{\mathcal{H}}}=\langle \phi, \psi\rangle_\mathcal{H}
+		\langle \iota^\dagger \iota \phi, \psi\rangle_\mathcal{H}= \langle \iota \phi, \iota \psi\rangle_{\hat{\mathcal{H}}}=\langle \phi, \si\rangle_\mathcal{H}
 	.\] 
 	This implies that $\iota^\dagger\iota = \phi$. Define $P=\iota\iota^\dagger: \hat{\mathcal{H}}\to \hat{\mathcal{H}}$. Then $P^2=\iota\iota^\dagger\iota\iota^\dagger=P$, and thus $P$ is idempotent. Moreover, $P\iota\phi=\iota\phi$.
 
@@ -2068,86 +1988,34 @@ Then $S$ is an isometry that is not surjective.
 which clearly does not converge to 0. This shows that * involution is not conitnuous in the strong operator topology.
 \end{proof}
 \section{Types of Operators}
-\begin{Definition}[Projector]
-	An operator $P$ is called a projector if $P=P^\dagger = P^2$.
-\end{Definition}
 \begin{Definition}[Partial Isometry]
 	A map between Hilbert spaces $U:\mathcal{H}\to \mathcal{K}$ is called a partial isometry, if the restriction
 	\[
-	U|_{\text{ker }U}:(\text{ker }U)^\perp \to \text{im }U
+		U|_{\text{ker }U}:(\text{ker }U)^\perp \to \text{im }U
 	\]
 	is an isometric isomorphism.
 \end{Definition}
 \begin{Theorem}[Partial Isometries]
 	Let $U\in \mathcal{B}(\mathcal{H},\mathcal{K})$. Then the following are equivalent:
 	\begin{parts}
-		\item $U$ is a partial isometry.
-		\item $P=U^\dagger U$ is a projection.
-		\item $U^\dagger$ is a partial isometry
+	\item $U$ is a partial isometry.
+	\item $P$ is a projection.
+	\item $U^\dagger$ is a partial isometry
 	\end{parts}
 \end{Theorem}
 \begin{proof}
 	If $U$ is a partial isometry, we have
 	\begin{align*}
-		\mathcal{H}&= \text{ker }U\oplus(\text{ker U})^\perp\\
+		\mathcal{H}&= \text{ker }U\oplus(\text{ker u})^\perp\\
 		\mathcal{K}&= \text{im }U\oplus (\text{im }U)^\perp
 	\end{align*}
 	and we define $P=U^\dagger U\in \mathcal{B}(\mathcal{H})$. Clearly, we have $P=P^\dagger$. Now, we consider $\psi\in \mathcal{K}$ and $\phi\in \text{ker }U$. We have
 	\[
-	\langle \phi, U^\dagger\psi\rangle_\mathcal{H}= \langle U\phi, \psi\rangle_\mathcal{K}=0\implies U^\dagger \psi \in (\text{ker }U)^\perp
+		\langle \phi, U^\dagger\psi\rangle_\mathcal{H}= \langle U\phi, \psi\rangle_\mathcal{K}=0\implies U^\dagger \psi \in (\text{ker }U)^\perp
 	.\] 
-	This means that $\text{im }U^\dagger\subseteq (\text{ker }U)^\perp$.	
-\end{proof}
-Let us consider two vector spaces $\mathcal{H}$ and $\mathcal{H}$ such that $\mathcal{H}=\oplus_{i\in I} \mathcal{H}_i$ and $\mathcal{K}=\oplus_{j\in J}\mathcal{K}_j$. Then we define $P_i: \mathcal{H}\to \mathcal{H}_i$, which is an element of $\mathcal{B}(\mathcal{H}, \mathcal{H}_i)$ and similarly $Q_j:\mathcal{K}\to \mathcal{K}_j$.
-\begin{parts}
-\item Let $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then we have continuous operators
-	\[
-		A_{ji}=Q_jAP_i:\mathcal{H}_i \to \mathcal{K}_j
-	.\]
-	with adjoints
-	\[
-		A_{ji}^\dagger = P_i A^\dagger Q_j:\mathcal{K}_j\to \mathcal{H}_j
-	\]
-	satisfying
-	\[
-		\|A_{ji}\|\le \|A\|
-	.\] 
-\item Conversely, given $A_{ji}\in \mathcal{B}(\mathcal{H}_j, \mathcal{K}_j)$ define an $A_{ji}\in \mathcal{B}(\mathcal{H}, \mathcal{K})$ by setting $A_{ji}|_{\mathcal{H}_{i'}}=0, i\neq  i'$. Then 
-	\[
-		Q_{j'}A_{ji}P_{i'}=A_{ji}\delta_{ii'}\delta_{jj'}
-	.\] 
-\item Let $A_{ji}\in \mathcal{B}(\mathcal{H}_i, \mathcal{K}_j)$ for $i\in I, j\in J$ such that
-	\[
-		\sum_{i\in I,j\in J}\|A_{ji}\|^2<\infty
-	.\] 
-	Then the blockwise defined operator
-	\[
-		A = \bigoplus_{i\in I, j\in J}A_{ji}:\mathcal{H}\to \mathcal{K}
-	\]
-	is a continuous operator $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$ with
-	\[
-		\|A\|\le \sqrt{\sum_{i\in I, j\in J} \|A_{ji}\|^2} 
-	.\] 
-\item Let $A_i\in  \mathcal{B}(\mathcal{H}_i)$. Then, suppose that for $i\in I$ we have $\sup_{i\in I}\|A_i\|<\infty$. Then,
-	\[
-		A=\bigoplus_{i\in I}A_i\in \mathcal{B}(\mathcal{H}).
-	\]
-	is bounded with
-	\[
-		\|A\|\le \sup_{i\in I}\|A_i\|
-	.\] 
-\end{parts}
+	This implies, in turn, that
 
-\begin{Theorem}[Tensor Products]
-	Let $\mathcal{H}_i, \mathcal{K}_i, i=1,2,3$ be Hilbert spaces, and let $A\in \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2)$ and $B\in \mathcal{B}(\mathcal{H}_2, \mathcal{H}_3),\tilde{A}\in \mathcal{B}(\mathcal{K}_1, \mathcal{K}_2),\tilde{B}\in \mathcal{B}(\mathcal{K}_2, \mathcal{K}_3)$. Then
-	\begin{parts}
-	\item The map $A\otimes \tilde{A}: \mathcal{H}_1\otimes \mathcal{K}_1 \to \mathcal{H}_2 \otimes \mathcal{K}_2$ is continuous and extends to a continuous linear map
-		\[
-			A \hat{\otimes}\tilde{A}\in \mathcal{B}(\mathcal{H}\hat{\otimes}\mathcal{K}_1, \mathcal{H}_2 \hat{\otimes}\mathcal{K}_2)
-		.\] 
-	\item One has $\|A \hat{\otimes}\tilde{A}\|=\|A\|\|\tilde{A}\|$ and $\hat{\otimes}: \mathcal{B}(\mathcal{H}_1, \mathcal{H}_2)\times \mathcal{B}(\mathcal{K}_1, \mathcal{K}_2)\to \mathcal{B}(\mathcal{H}_1\hat{\otimes}\mathcal{K}_1, \mathcal{H}_2 \hat{\otimes}\mathcal{K}_2), (A, \tilde{A})\mapsto A \hat{\otimes}\tilde{A}$ is a continuous bilinear map with respect to the operator norms.
-	\end{parts}
-\end{Theorem}
+\end{proof}
 \section{Applications}
 As a first application, we prove the Radon-Nikodym theorem as a consequence of the Riesz Representation theorem. First, we need to define a few terms
 
@@ -2206,6 +2074,4 @@ Now, we prove the full Radon-Nikodym theorem. This is a purely measure theoretic
 \listoftheorems[ignoreall, onlynamed={Definition}]
 \renewcommand{\listtheoremname}{List of Theorems}
 \listoftheorems[ignoreall, onlynamed={Theorem}]
-\renewcommand{\listtheoremname}{List of Examples}
-\listoftheorems[ignoreall, onlynamed={Example}]
 \end{document}
