@@ -532,6 +532,55 @@ Also important to note is that this basis must be \emph{ordered}, since the sum 
 \begin{Example}[Non-Closed Subspaces]
 	Every subspace of a Banach space with countable dimension cannot be closed, as it would then be complete, a contradiction, as Banach spaces cannot have countable dimension. 
 \end{Example}
+\begin{Example}[Smooth Functions]
+	The space $C^k([a,b])$ of $k$ times continuously differentiable functions becomes a Banach space with the norm
+	\[\|f\| = \sum_{n=0}^k \sup_{x\in [a,b]} f^{(n)}(x).\]
+\end{Example}
+The prototypical example of a dual is the $\ell^p$ and $\ell^q$ spaces, i.e. the sequence spaces
+\begin{Definition}[$\ell^p$]
+	The space of sequences $(x_n)_{n\in \N}$ with the norm
+	\[\|x\|_p = \left(\sum_{k=1}^\infty |x_n|^p\right)^{1/p}\]
+	is a Banach space with $p\in (1,\infty)$. If $p=\infty$, we define
+	\[\|x\|_\infty = \sup_{k\in \N} |x_k|\]
+	and it is still a Banach space.
+\end{Definition}
+That this is a Banach space follows from the 3 classic inequalities
+\begin{Theorem}[Young's Inequality]
+	Let $a,b\ge 0$ and $p,q>1$ such that
+	\[\frac 1p + \frac 1q = 1.\]
+	Then
+	\[ab \le \frac{a^p}{p}+ \frac{a_q}{q}\]
+\end{Theorem}
+\begin{Theorem}[Hölder's Inequality]
+	Let $(x_n)_{n\in \N},~(y_n)_{n\in \N}$ be sequences in $\ell^p$ and $\ell^q$ respectively with
+	\[\frac 1p + \frac 1q = 1.\]
+	We define the product sequence $xy$ such that $(xy)_k = x_k y_k$. Then
+	\[\|xy\| \le \|x\|_p \|y\|_q.\]
+\end{Theorem}
+\begin{Corollary}\label{cor:productwelldef}
+	Suppose
+	\[\frac 1p + \frac 1q = 1.\]
+	Then the product of sequences
+	\[\ell^p \times \ell^q\ni (x_n)_{n\in \N}\times (y_n)_{n\in N} \to (x_ny_n)_{n\in \N}\]
+	is a continuous bilinear map into $\ell^1$.
+\end{Corollary}
+\begin{proof}
+Hölder's inequality tells us that
+\[\|xy\|_1 \le \|x\|_p \|y\|_q\]
+or that this is well defined, and bounded with operator norm less than one. It is also clearly bilinear.
+\end{proof}
+\begin{Example}[$(\ell^p)' =\ell^q$]
+	Let $p\in (1,\infty)$ and $q\in (1,\infty]$ with $\frac 1p + \frac 1q = 1$. Then the multiplication
+	\[\ell^p \times \ell^q \ni (x_n)_{n\in \N} \times (y_n)_{n\in \N} \to \sum_{k=1}^\infty x_k y_k\]
+	is a continuous linear functional on $\ell^p$ for each $y\in \ell^q$, thus inducing a continuous linear functional $\phi:\ell^q \to (\ell^p)'$. Additionally, $\phi$ is invertible with $\phi^{-1}$ being an isometry.
+\end{Example}
+\begin{proof}
+	From Corollary \ref{cor:productwelldef}, we know that this sum converges absolutely and is hence convergent. Additionally, we have
+	\[\left| \sum_{k=1}^\infty \right| \le \sum_{k=1}^\infty |x_k y_k| \le \|x\|\|y\|\]
+	Thus shows us that the induced functional is continuous with operator norm less than the norm of $y$. Thus, the induced map $\phi$ is continuous with operator norm less than 1.
+	
+	For the inverse, we consider a Schauder basis $(e_n)$ of $\ell^p$ \textcolor{red}{TODO}
+\end{proof}
 	\section{The Hahn-Banach Theorems}
 	\subsection{Sublinear Functionals}
 	\begin{Definition}
@@ -607,8 +656,9 @@ Now, we move on to the proof of the main result.
 	\[
 	p(v)\le p(v-v)-p(-v)
 ,\]
-or $p(v)+p(-v)\le 0$, as desired. Finally, we show the boundedness which we require to apply Zorn's Lemma
+or $p(v)+p(-v)\le 0$, as desired. 
 \end{proof}
+Finally, we show the boundedness which we require to apply Zorn's Lemma.
 \begin{Theorem}
 	For every sublinear functional $p$, we have a linear functional $f\le p$. 
 \end{Theorem}
@@ -818,12 +868,20 @@ Equivalently, we could also have defined the weak topology as the weakest topolo
 		B_{p_{\varphi, \frac{r}{2}}}(v)\times B_{p_{\varphi, \frac{r}{2}}}(v')\subseteq +^{-1}B_{p_{\varphi, r}}(v+v')
 		.\] 
 		Thus, $+$ is continuous at $(v, v')$. Continuity of multiplication follows by the homogenity of seminorms.
-		\item If $p_\varphi(v-v')<\epsilon$, we also have $p_\varphi(v-v')=|\varphi(v-v')| \le \| \varphi\| \|v-v'\|$, thus showing that we can choose $\delta$ such that $B_\delta(v)\subseteq B_{p_{\varphi, \epsilon}}(v)$.
+		\item If $p_\varphi(v-v')<\epsilon$, we also have $p_\varphi(v-v')=|\varphi(v-v')| \le \| \varphi\| \|v-v'\|$, thus showing that we can choose $\delta$ such that $B_\delta(v)\subseteq B_{p_{\varphi, \epsilon}}(v)$. This means that every weakly open set is also norm open.
 		\item If  $\varphi$ is weakly continuous it is norm continuous because of (b). Conversely, we see that $\varphi^{-1}(B_r(0))=B_{p_{\varphi,r}}(0)$, which is an element of the subbasis. Thus, $\varphi$ is weakly continuous.
 		\item Suppose $v\neq 0$. Then, we define a continuous linear functional $\varphi$ such that $r=\varphi(v)>0$ by Hahn-Banach. Then $B_{p_{\varphi, r / 2}}(0)\cap B){p_{\varphi, r / 2}}(v )=\varnothing$.
 		\item Follows by definition.\qedhere
 	\end{parts}
 \end{proof}
+\begin{Example}[Weak, Weak-* and Strong Topology Are Different]
+	Let $V=c_0$, then $V'=\ell^1$ and $V^{\prime\prime}=\ell^\infty$. If we let $e_1, e_2, \dots$ be the standard basis of $V, V'$ or $V^{\prime\prime}$. Then
+	\begin{parts}
+		\item The sequence $e_1, \dots$ converges weakly in $V$ to $0$, but does not converge strongly.
+		\item The sequence $e_1, \dots$ converges in the weak* sense in $V'$ to 0 but does not converge either weakly or strongly.
+		\item The sequence $\sum_{m=n}^\infty e_m$ for $n\in \N$ converges in the weak* topology of $V^{\prime\prime}$ to 0, but does not converge either weakly or strongly.
+	\end{parts}
+\end{Example}
 \begin{Theorem}
 	Let $V$ be a topological vector space.
 	\begin{parts}
@@ -1058,6 +1116,12 @@ Approximating each of these by $\epsilon$, we have'
 \[|f_0(\alpha x + \beta y)-\alpha f_0(x) - \beta f_0(y)|= \epsilon (1+|\alpha|+|\beta|)\]
 showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for all $v\in A$. Thus, we have $f_0\in A^\polar$, completing the proof.
 \end{proof}
+Banach-Alaoglu is commonly cited as the following theorem
+\begin{Corollary}
+	The closed unit ball in the dual space is weak-* compact.
+\end{Corollary}
+Note that this does not imply that the dual space is locally weak-* compact, as the closed unit ball has empty interior in the weak-* topology!
+
 The importance of Banach-Alaoglu comes from sequential compactness, which we investigate in the following theorems:
 \begin{Definition}
 	A space $X$ is called \emph{sequentially compact} if every sequence has a convergent subsequence.
@@ -1260,7 +1324,7 @@ The condition above is also known as the property of being \uline{open at 0}. Be
 \begin{proof}
 	Clearly, (c) is equivalent to (a). (d) also clearly implies (c) and (e). 
 	
-	Now we show equivalence of (b) and (d). Suppose (b). Then we know that $L(B_1(0_V))$ contains an open ball $B_r(0_W)$. This then implies (d) by linearity. Conversely, we know that the image of the open ball with radius $C$ includes the open ball of radius $1$ around the origin, which shows openness at 0.  
+	Now we show equivalence of (b) and (d). Suppose (b). Then we know that $L(B_1(0_V))$ contains an open ball $B_r(0_W)$. By rescaling, given $w$, we know that $L(B_{2\|w\|/r}(0))$ contains $w$ by linearity. Conversely, we know that the image of the open ball with radius $C$ includes the open ball of radius $1$ around the origin, which shows openness at 0.  
 	
 	Now suppose (e). We show (d) by observing that we can approximate $w\in W$ arbitrarily well by vectors from $P$. Thus, we approximate $w$ using a sequence $w_n$ such that $\sum w_n = w$. For each $w_n$, we can solve the equation to get $v_n$, with $\| v_n\| \le C \| w_n\|$. By the triangle inequality and completeness of $V$, we have $\|v\| \le C \|w\|$ and $Lv = w$. 
 	
@@ -1315,7 +1379,7 @@ The use of the closed graph theorem is as follows: In a first countable space, c
 With the closed graph theorem, we can skip the first step. We can assume that $Tx_n$ converges, and all we need to show is that it converges to $Tx$.
 
 Now, we show that the hypotheses of the open mapping theorem are all necessary. First, we construct an example with the domain being incomplete.
-\begin{Example}
+\begin{Example}[Nonopen Surjective Map with Incomplete Domain]
 	There exists a surjective continuous linear function $\phi: V \to W$, with $V$ incomplete, $W$ complete that is not open.
 \end{Example}
 \begin{proof}
@@ -1328,7 +1392,7 @@ Now, we show that the hypotheses of the open mapping theorem are all necessary. 
 	If $\iota$ were open, then it would be a homeomorphism, and thus $f$ would be continuous relative to $\|\cdot\|$ too, a contradiction.
 \end{proof}
 In general, the above argument required the axiom of choice to prove existence of a Hamel basis. Here, we provide an example that does not
-\begin{Example}
+\begin{Example}[Nonopen Surjective Map With Incomplete Codomain]
 	Let $V$ be $C([0,1])$. The identity map $(V, \|\cdot\|_\infty)\to (V, \|\cdot\|_1)$ is not open. 
 \end{Example}
 \begin{proof}
@@ -2033,7 +2097,7 @@ Then $S$ is an isometry that is not surjective.
 \begin{proof}
 	We have
 	\begin{align*}
-		\|S\psi\|^2 &= \langle \sum \psi_m e_{m+1}, \sum \psi_n e_{n+1}\rangle \\
+		\|S\psi\|^2 &= \left\langle \sum \psi_m e_{m+1}, \sum \psi_n e_{n+1}\right\rangle \\
 			    &= \sum \langle \psi_n, \psi_n \rangle\\
 			    &= \|\psi\|^2
 	\end{align*}
