@@ -68,7 +68,7 @@
 	\begin{Definition}
 		A stochastic differential equation is a (formal) equation of the form
 		\begin{equation}\label{eq:SDEdiff}
-			\dv{X_t}{t}=b(t, X_t)+\sigma(t, X_t)W_t,
+			\dv{X_t}{t}=\mu(t, X_t)+\sigma(t, X_t)W_t,
 		\end{equation}
 		where $W_t$ is white noise. 
 	\end{Definition}
@@ -79,25 +79,22 @@
 	However, as we know from the previous presentations, $B_t$ is almost certainly nowhere differentiable. Hence, we cannot take the derivative. Instead, we are to interpret this in a \emph{distributional} sense: (Write definition)}
 	\begin{Definition}
 		We say that the stochastic process $X_t$ is a \emph{solution} of the SDE \eqref{eq:SDEdiff} if
-		\[X_t = X_0+\int_0^t b(s, X_s)\dd{s}+ \int_0^t \sigma(s, X_s)\dd{B_s}\]
+		\[X_t = X_0+\int_0^t \mu(s, X_s)\dd{s}+ \int_0^t \sigma(s, X_s)\dd{B_s}\]
 	\end{Definition}
 	{\color{red} This should be reminiscent of the integral form of an ordinary differential equation. Let us look at some solutions.}
 	
-	The standard method to solve a stochastic differential equation is the Itô formula {\color{red}, which unfortunately there was no presentation on, so I shall simply state it without proof:}
-	\begin{Theorem}[The 1-Dimensional Itô Formula]
-		Suppose $X_t$ is an Itô process defined by the formula
-		\[\dd{X_t}=u\dd{t}+v\dd{B_t}.\]
-		Let $g(t,x)\in C^2([0,\infty)\times \R)$. Then
-		\[Y_t=g(t, X_t)\]
-		is also an Itô process, and
-		\[\dd{Y_t}=\pdv{g}{t}(t, X_t)\dd{t}+\pdv{g}{x}(t, X_t)\dd{X_t}+\frac 12 \pdv[2]{g}{x}(t, X_t)\cdot (\dd{X_t})^2\]
-		where $(\dd{X_t})^2$ is computed according to the rules $\dd{t}\cdot \dd{t} = \dd{t}\cdot \dd{B_t}=0$ and $\dd{B_t}\cdot \dd{B_t}=\dd{t}$.
-	\end{Theorem}
-	where an Itô process is defined as follows
-	\begin{Definition}[Itô Process]
-		An Itô process is a stochastic process of the form
-		\[X_t = X_a +\int_a^t b(s)\dd{s} + \int_a^t \sigma(s)\dd{B(s)}\]
-	\end{Definition}
+	The standard method to solve a stochastic differential equation is the Itô formula {\color{red}, which \begin{Theorem}[The 1-Dimensional Itô Formula]
+			Suppose $X_t$ is an Itô process. Let $g(t,x)\in C^2([0,\infty)\times \R)$. Then
+			\[Y_t=g(t, X_t)\]
+			is also an Itô process, and
+			\[\dd{Y_t}=\pdv{g}{t}(t, X_t)\dd{t}+\pdv{g}{x}(t, X_t)\dd{X_t}+\frac 12 \pdv[2]{g}{x}(t, X_t)\cdot (\dd{X_t})^2\]
+			where $(\dd{X_t})^2$ is computed according to the rules $\dd{t}\cdot \dd{t} = \dd{t}\cdot \dd{B_t}=0$ and $\dd{B_t}\cdot \dd{B_t}=\dd{t}$.
+		\end{Theorem}
+		where an Itô process is defined as follows
+		\begin{Definition}[Itô Process]
+			An Itô process is a stochastic process of the form
+			\[X_t = X_a +\int_a^t \mu(s)\dd{s} + \int_a^t \sigma(s)\dd{B(s)}\]
+		\end{Definition}
 	{\color{red} Using this, we can solve some stochastic differential equations by guessing the solutions.}
 	
 	Let us look at an example:
@@ -131,7 +128,7 @@
 	Note that for uniqueness we do not need the continuity in time; the Lipschitz condition alone suffices. This extends to the stochastic case:
 	\begin{Theorem}
 		Let $\sigma(t,x)$ and $f(t,x)$ be measurable functions on $[a,b]\times \R$ satisfying the Lipschitz condition in $x$, and $\mathcal{F}$ a filtration such that the Brownian motion is adapted to it. Suppose $\xi$ is an $\mathcal{F}_a$-measurable random variable satisfying $\mathbb{E}[\xi^2]<\infty$. Then the stochastic differential equation
-		\[\dv{X_t}{t}=f(t, X_t)+\sigma(t, X_t)W_t\]
+		\[\dv{X_t}{t}=\mu(t, X_t)+\sigma(t, X_t)W_t\]
 		has at most one continuous solution on $[a,b]$.
 	\end{Theorem}
 	\begin{proof}
@@ -139,7 +136,7 @@
 		\begin{enumerate}
 			\item We estimate the expectation value $\mathbb{E}(Z_t^2)$, using the Lipschitz condition.
 			{\color{red}
-					\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (f(s, X_s) - f(s, Y_s))\dd{s}.\]}
+					\[Z_t = \int_a^t (\sigma(s, X_s) - \sigma (s, Y_s))\dd{B(s)}+\int_a^t (\mu(s, X_s) - \mu(s, Y_s))\dd{s}.\]}
 			\item We obtain an integral inequality
 			\[
 			E(Z_t^2) \le 2K^2 (1+b-a)\int_a^t \mathbb{E}(Z_s^2)\dd{s}
@@ -158,7 +155,7 @@
 	\end{proof}
 	The existence theorem is as follows:
 	\begin{Theorem}
-		The stochastic differential equation \eqref{eq:SDEdiff} has a unique solution with initial condition $\xi$, where $\xi^2$ has finite expectation, $\sigma$ and $b$ are Lipschitz in $x$, with Lipschitz constant independent of $t$, and continuous in $t$.
+		The stochastic differential equation \eqref{eq:SDEdiff} has a unique solution with initial condition $\xi$, where $\xi^2$ has finite expectation, $\sigma$ and $\mu$ are Lipschitz in $x$, with Lipschitz constant independent of $t$, and continuous in $t$.
 	\end{Theorem}
 	\begin{proof}
 		The proof follows by Picard Iteration much as it does in the deterministic case. We define $X_0=\xi$ and
@@ -170,7 +167,7 @@
 		\[
 				\mathbb{E}|X_{n+1}(t) - X_n(t)|\le 2B^2(T+1)\int_0^t \mathbb{E}|X^{(n)}_s - X^{(n-1)}_s|^2\dd{s}
 		.\]
-		This is reminiscent of a geometric sequence, and using this, we can see that we have uniform convergence on compact intervals. Then, by the Lipschitz continuity, we have $b(X^{(n)}) \to b(X)$ and $\sigma(X^{(n)})\to \sigma(X)$.
+		This is reminiscent of a geometric sequence, which converges to 0. Using this, we can see that we have uniform convergence on compact intervals. Then, by the Lipschitz continuity, we have $\mu(X^{(n)}) \to \mu(X)$ and $\sigma(X^{(n)})\to \sigma(X)$.
 		
 		Then, by the dominated convergence theorem, we can take the limit into the integral and show that the limit function $X$ is a solution of the SDE.
 		}
@@ -206,9 +203,9 @@
 	
 	Thus, we have our final theorem
 	\begin{Theorem}
-		Suppose that $b(x)$ and $\sigma(x)$ are functions satisfying the Lipschitz condition. Then the solution to
+		Suppose that $\mu(x)$ and $\sigma(x)$ are functions satisfying the Lipschitz condition. Then the solution to
 		\begin{equation}\label{eq:SDEdiff2}
-			\dv{X_t}{t}=b(X_t)+\sigma(X_t)W_t,
+			\dv{X_t}{t}=\mu(X_t)+\sigma(X_t)W_t,
 		\end{equation}
 		is a stationary Markov process.
 	\end{Theorem}
@@ -234,12 +231,8 @@
 	Finally, we note that some stochastic processes can be described through density functions. Where such a density function is available, it satisfies the \emph{Fokker-Planck Equation}
 	\begin{Theorem}
 		The probability density of the solution to Eq. \eqref{eq:SDEdiff} $p(x,t)$ satisfies the equation
-		\[\pdv{p(x,t)}{t}=-\pdv{x}[b(x,t)p(x,t)]+\pdv[2]{x}[D(x,t)p(x,t)]\]
+		\[\pdv{p(x,t)}{t}=-\pdv{x}[\mu(x,t)p(x,t)]+\pdv[2]{x}[D(x,t)p(x,t)]\]
 		where $D(x,t) =\frac{\sigma^2(X_t, t)}{2}$ is the diffusion coefficient.
 	\end{Theorem}
-	\bibliographystyle{ieeetr}
-	\bibliography{ref.bib}
-	\nocite{kuo2005introduction}
-	\nocite{oksendal2010stochastic}
 \end{document}
 

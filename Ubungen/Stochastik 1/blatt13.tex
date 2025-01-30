@@ -13,7 +13,41 @@
 		\item[(c)] Wie viele Personen sollte ein Meinungsforschungsinstitut befragen, um sicherzustellen, dass mit einer Wahrscheinlichkeit von mindestens \( \alpha \in (0,1) \) die relative Anzahl der Befürworter nicht mehr als 5\% von der wahren Zustimmungsrate \( p \) abweicht?
 	\end{enumerate}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item Die Anzahl der zustimmenden Menschen ist $Np$, wobei $N$ die gesamte Anzahl von Personen ist. Wenn man eine Person zufällig wählt, ist die Wahrscheinlichkeit dafür, dass sie zustimmt, $p$. Für $N$ groß genug bleibt die Wahrscheinlichkeit $p$ bei weitere zufällige gewählte Personen. Damit ist die Verteilung eine Bernoulli-Verteilung. 
+	\item Nach Moivre-Laplace ist
+	\begin{align*}
+		\mathbb{P}\left( a \le \frac{S_n - n p}{\sqrt{np(1-p)} } \le b\right) &\approx \Phi(b) - \Phi(a)\\
+		\mathbb{P}\left( a\sqrt{np(1-p)}  \le S_n - np \le b\sqrt{np(1-p)} \right) &\approx \Phi(b) - \Phi(a)\\
+		\mathbb{P}\left( a\sqrt{\frac{p(1-p)}{n}}  \le\frac{S_n}{n} - p \le b\sqrt{\frac{p(1-p)}{n}} \right) &\approx \Phi(b) - \Phi(a)\\
+		\mathbb{P}\left( a\le\frac{S_n}{n} - p \le b \right) &\approx \Phi\left( \frac{b\sqrt{n} }{\sqrt{p(1-p)} } \right)  - \Phi\left( \frac{a\sqrt{n} }{\sqrt{p(1-p)} } \right) 
+	\end{align*}
+	Wegen der Symmetrie ist
+	\begin{align*}
+		\mathbb{P}\left( a \le \left| \frac{S_n}{n}-p \right| \le b \right) &= 2\mathbb{P}\left( a \le \frac{S_n}{n}-p\le b \right) \\
+		&\approx 2\left( \Phi\left( \frac{b\sqrt{n} }{\sqrt{p(1-p)} } \right) -\Phi\left( \frac{a\sqrt{n} }{\sqrt{p(1-p)} } \right)  \right) 
+	\end{align*}
+	Aufgrund der Stetigkeit ist
+	\[
+		\mathbb{P}\left( a \le \left| \frac{S_n}{n}-p \right|  \right) =\lim_{b \to \infty} \mathbb{P}\left( a\le \left| \frac{S_n}{n}-p \right| \le b \right) 
+	.\]
+	Weil $\lim_{b \to \infty} \Phi(b) = 1$, ist
+	\[
+		\mathbb{P}\left( a \le \left| \frac{S_n}{n}-p \right| \le b \right) \approx 2\left( 1 - \Phi\left( \frac{a\sqrt{n} }{\sqrt{p(1-p)} } \right)  \right) 
+	.\] 
+\item Wir wollen: $\epsilon = 5\% = 0.05$ und
+	\[
+		\mathbb{P}\left( \left| \frac{S_n}{n}-p \right| >\epsilon \right) \le 1 - \alpha
+	.\] 
+	Nach (b) ist
+	\begin{align*}
+		1 - \Phi\left( \frac{\sqrt{n} \epsilon}{\sqrt{p(1-p)} } \right)&\lesssim \frac{1}{2}-\frac{\alpha}{2} \\
+		\Phi\left( \frac{\sqrt{n} \epsilon}{\sqrt{p(1-p)} } \right) &\gtrsim \frac{1+\alpha}{2}\\
+		n&\gtrsim \frac{p(1-p)}{\epsilon^2}\Phi^{-1}\left( \frac{1+\alpha}{2} \right).\qedhere
+	\end{align*}
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	\begin{enumerate}
 		\item[(a)] Seien \( X_1, \dots, X_n \) identisch verteilte, reellwertige Zufallsvariablen (nicht notwendigerweise unabhängig) mit \( \mathbb{E}[X_1^2] < \infty \). Angenommen, es existiert ein festes \( h \geq 1 \), so dass \(\text{Cov}(X_j, X_k) = 0\) für \( |j - k| \geq h \). Zeigen Sie unter dieser Annahme für \( S_n = \sum_{i=1}^{n} X_i \) die Abschätzung
@@ -25,3 +59,29 @@
 	\end{enumerate}
 	
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Es gilt
+		\begin{align*}
+			\text{Var}(S_n)&= \sum_{i,j=1}^n \text{Cov}(X_i, X_j) & \text{Linearität}\\
+				       &=\sum_{i=1}^n \sum_{\substack{j=1\\|j-i|<h}}^n \text{Cov}(X_i, X_j)\\
+				       &\le\sum_{i=1}^n \sum_{\substack{j=1\\|j-i|<h}}^n \sqrt{\text{Var}(X_i)}\sqrt{\text{Var}(X_j)} &\text{Cauchy-Schwarz} \\
+				       &=\sum_{i=1}^n \sum_{\substack{j=1\\|j-i|<h}}^n \text{Var}(X_1) & \text{identisch verteilt}\\
+				       &\le \sum_{i=1}^n 2h \text{Var}(X_1)\\
+			&= 2hn\text{Var}(X_1)
+		\end{align*}
+	\item Wegen Linearität des Erwartungwerts ist noch $\mathbb{E}(S_n) = n \mathbb{E}(X_1)$. Nach (a) ist $\text{Var}(S_n)<\infty$. Damit gilt nach Tschebyschev:
+		\begin{align*}
+			\mathbb{P}\left( \left| \frac{S_n}{n}-\mathbb{E}(X_1) \right|  \ge\epsilon \right) &= \mathbb{P}\left( \left| \frac{S_n - n \mathbb{E}(X_1)}{n} \right| \ge \epsilon \right) \\
+													   &= \mathbb{P}\left( \left| \frac{S_n - \mathbb{E}(S_n)}{n} \right| \ge\epsilon \right) \\
+													   &= \mathbb{P}\left( |S_n - \mathbb{E}(S_n)| \ge n\epsilon \right) \\
+													   &\frac{1}{(n\epsilon)^2}\text{Var}(S_n)\\
+													   &\le \frac{1}{(n\epsilon)^2}(2hn\text{Var}(X_1))\\
+													   &\le \frac{2h\text{Var}(X_1)}{n\epsilon^2}
+		\end{align*}
+		also
+		\[
+		\lim_{n \to \infty} 	\mathbb{P}\left( \left| \frac{S_n}{n}-\mathbb{E}(X_1) \right|  \ge\epsilon \right) = 0
+		.\qedhere\] 
+	\end{parts}
+\end{proof}
