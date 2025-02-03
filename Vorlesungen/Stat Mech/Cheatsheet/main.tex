@@ -1,0 +1,143 @@
+\documentclass[prb,12pt]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Funktionalanalysis Notizen}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\section{Mathematics}
+	Gamma Function
+	\begin{align*}
+		\Gamma(z)&=\int_0^\infty t^{z-1}e^{-t}\dd{t}\\
+		\Gamma(z+1)&=z\Gamma(z)\\
+		\Gamma\left(\frac 12\right)&=\sqrt{\pi}\\
+		\Gamma(n)&=(n-1)!,~n\in \N
+	\end{align*}
+	Gaussian Integral
+	\[\int_0^\infty x^n e^{-k x^2}\dd{x} = \frac 12 k^{-(n+1)/2}\Gamma\left(\frac{1+n}{2}\right)\]
+	Fermi-Dirac Integral
+	\[f_\alpha(z) =\frac 1{\Gamma(\alpha)}\int_0^\infty \frac{\xi^{\alpha-1}}{e^{\xi}/z + 1}\dd{\xi}\]
+	General Series Expansion
+	\[f_\alpha(z) \approx f_\alpha(z_0) + \frac{f_{\alpha - 1}(z_0)}{z_0}(z-z_0)+\frac{f_{\alpha -2}(z_0) - f_{\alpha - 1}(z_0)}{2z_0^2}(z-z_0)^2\]
+	Expansion around 0
+	\[f_\alpha(z) = \sum_{n=1}^\infty \frac{(-1)^{n-1}z^n}{n^\alpha}\]
+	Derivative
+	\[f_{n-1}(z) =z\pdv{z}f_n(z)\]
+	Bose-Einstein Integral
+	\[g_\alpha(z) = \frac{1}{\Gamma(\alpha)}\int_0^\infty \frac{\xi^{n-1}}{e^\xi/z-1}\dd{\xi}\]
+	General Series Expansion
+	\[g_\alpha(z) \approx g_\alpha(z_0) + \frac{g_{\alpha - 1}(z_0)}{z_0}(z-z_0)+\frac{g_{\alpha -2}(z_0) - g_{\alpha - 1}(z_0)}{2z_0^2}(z-z_0)^2\]
+	Around 0
+	\[g_\alpha(z)=\sum_{n=1}^\infty\frac{z^n}{n^\alpha}\]
+	Derivatives
+	\[g_{\alpha - 1}(z) =z\pdv{z}g_\alpha(z)\]
+\section{Thermodynamic Potentials}
+\textbf{Energy}
+\begin{align*}
+	U&= TS - PV + \mu N\\
+	\dd{U} &= T\dd{S}-P\dd{V}+\mu\dd{N}
+\end{align*}
+\textbf{Helmholtz Free Energy}
+Helmholtz free energy is the maximal work in an isothermal process.
+\begin{align*}
+	F&= U - TS\\
+	F &= -PV + \mu N\\
+	\dd{F}&= -S\dd{T} -P\dd{V} + \mu \dd{N}
+\end{align*}
+\textbf{Enthalpy}
+\begin{align*}
+	H &= U + PV\\
+	H &= TS + \mu N\\
+	\dd{H} = T\dd{S} + V\dd{P} + \mu \dd{N}
+\end{align*}
+\textbf{Gibbs Free Energy}
+\begin{align*}
+	G&= U + PV - TS\\
+	G&=\mu N\\
+	\dd{G}&= - T\dd{S} + V\dd{P} + \mu \dd{N}
+\end{align*}
+\textbf{Grand Canonical Potential}
+\begin{align*}
+	J &=F - \mu N\\
+	J &= - PV\\
+	\dd{J} &= -S\dd{T} - P \dd{V} - N \dd{\mu}
+\end{align*}
+\section{Ensembles}
+\textbf{General Definitions}
+Gibbs Entropy
+\[S = -k_B \sum p_n \ln p_n=-k_B \tr(\hat{\rho}\ln \hat{\rho})\]
+\textbf{Microcanonical Ensemble}
+Energy fixed, 
+\[\mathbb{P} \propto \Omega\]
+Partition function
+\[\Omega = e^{S(E)}\]
+\textbf{Canonical Ensemble}
+
+Partition function
+\[Z = \tr e^{-\beta \hat{H}}\]
+Thermodynamic Potential
+\[F = -k_B T \ln Z\]
+
+\textbf{Grand Canonical Ensemble}
+
+Partition Function
+\begin{align*}
+Z_G
+\end{align*}
+\end{document}
+
