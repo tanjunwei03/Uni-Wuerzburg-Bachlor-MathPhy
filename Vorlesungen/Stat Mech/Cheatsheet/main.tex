@@ -79,7 +79,7 @@
 	Derivative
 	\[f_{n-1}(z) =z\pdv{z}f_n(z)\]
 	Bose-Einstein Integral
-	\[g_\alpha(z) = \frac{1}{\Gamma(\alpha)}\int_0^\infty \frac{\xi^{n-1}}{e^\xi/z-1}\dd{\xi}\]
+	\[g_\alpha(z) = \frac{1}{\Gamma(\alpha)}\int_0^\infty \frac{\xi^{\alpha-1}}{e^\xi/z-1}\dd{\xi}\]
 	General Series Expansion
 	\[g_\alpha(z) \approx g_\alpha(z_0) + \frac{g_{\alpha - 1}(z_0)}{z_0}(z-z_0)+\frac{g_{\alpha -2}(z_0) - g_{\alpha - 1}(z_0)}{2z_0^2}(z-z_0)^2\]
 	Around 0
@@ -93,6 +93,7 @@
 	\dd{U} &= T\dd{S}-P\dd{V}+\mu\dd{N}
 \end{align*}
 \textbf{Helmholtz Free Energy}
+
 Helmholtz free energy is the maximal work in an isothermal process.
 \begin{align*}
 	F&= U - TS\\
@@ -103,7 +104,7 @@ Helmholtz free energy is the maximal work in an isothermal process.
 \begin{align*}
 	H &= U + PV\\
 	H &= TS + \mu N\\
-	\dd{H} = T\dd{S} + V\dd{P} + \mu \dd{N}
+	\dd{H} &= T\dd{S} + V\dd{P} + \mu \dd{N}
 \end{align*}
 \textbf{Gibbs Free Energy}
 \begin{align*}
@@ -119,9 +120,11 @@ Helmholtz free energy is the maximal work in an isothermal process.
 \end{align*}
 \section{Ensembles}
 \textbf{General Definitions}
+
 Gibbs Entropy
 \[S = -k_B \sum p_n \ln p_n=-k_B \tr(\hat{\rho}\ln \hat{\rho})\]
 \textbf{Microcanonical Ensemble}
+
 Energy fixed, 
 \[\mathbb{P} \propto \Omega\]
 Partition function
@@ -132,12 +135,30 @@ Partition function
 \[Z = \tr e^{-\beta \hat{H}}\]
 Thermodynamic Potential
 \[F = -k_B T \ln Z\]
-
 \textbf{Grand Canonical Ensemble}
 
 Partition Function
 \begin{align*}
-Z_G
+Z_G &= \tr(e^{-\beta(H-\mu N)})\text{(quantum)}\\
+&= \sum_{n=0}^\infty z^n Z_k(n)\\
+&= \sum_{n=0}^\infty \frac 1{n!} z^n (Z_k)^n \text{(classical indistinguishable particles only)}  
+\end{align*}
+\section{Quantum Statistics}
+Determining the DOS:
+\begin{enumerate}
+	\item Find the number of states with energy $E\le \epsilon$
+	\item Differentiate
+\end{enumerate}
+Momentum Space Sums
+\[\dd{k_x} =\frac{2\pi}{L_x},~\va k = \frac{\va p}{\hbar}\]
+\[\sum_{\va p} f(\va p) = \frac{V}{h^3}\int f(\va p)\dd{\va p}\]
+
+\textbf{Fermi-Dirac Distribution}
+\begin{align*}
+	Z &= \sum_{n_1, n_1, \dots, n_N = 0}^1 \bra{n_1, \dots, n_N}e^{-\beta(H - \mu N)}\ket{n_1, \dots, n_N}\\
+	&= \sum_{n_1, n_1, \dots, n_N = 0}^1 \bra{n_1, \dots, n_N}\prod_{k=1}^N e^{-\beta(E_k - \mu)c_k^\dagger c_k}\ket{n_1, \dots, n_N}\\
+	&= \prod_{k=1}^n \sum_{n_k=0}^1 e^{-\beta(E_k - \mu)n_k}\\
+	&= \prod_{k=1}^n [1 + e^{-\beta(E_k - \mu)}]
 \end{align*}
 \end{document}
 
