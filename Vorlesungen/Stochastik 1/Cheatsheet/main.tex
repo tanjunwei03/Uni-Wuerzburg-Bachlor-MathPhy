@@ -1,0 +1,136 @@
+\documentclass[prb,12pt, twocolumn]{revtex4-2}
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[style=thmbox, name=Theorem, numberwithin=section]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+\declaretheorem[sibling=Theorem, style=thmbox, name= ]{Note}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+\begin{document}
+	\title{Stochastik 1}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+	\section{Laplace-Räume}
+	\begin{Note}
+		mit Zurücklegen mit Beachtung der Reihenfolge
+		\[\Omega_I^{k,n}=\{1,\dots, n\}^k,~\text{card }\Omega_I^{k,n} = n^k\]
+	\end{Note}
+	\begin{Note}
+		ohne Zurücklegen mit Beachtung der Reihenfolge
+		\begin{align*}
+		\Omega_{II}^{k,n}=\{\omega =& (\omega_1, \dots, \omega_k)\in \{1,\dots, n\}^k\\
+		&|\omega_i \neq \omega_j, i\neq j\}\\
+		\text{card }\Omega_{II}^{k,n} =&\frac{n!}{(n-k)!}=(n)_k
+		\end{align*}
+	\end{Note}
+	\begin{Note}
+		ohne Zurücklegen ohne Beachtung der Reihenfolge
+		\begin{align*}
+		\Omega_{III}^{k,n}&=\{A\subseteq \{1,\dots, n\}|\text{card }A=k\}\\
+		\text{card }\Omega_{III}^{k,n}&=\frac{n!}{(n-k)!k!}=\binom{n}{k}
+	\end{align*}
+	\end{Note}
+	\begin{Note}
+		mit Zurücklegen ohne Beachtung der Reihenfolge
+		\begin{align*}
+			\Omega_{IV}^{k, n}=&\{\omega=(\omega_1, \dots, \omega_k)\in \{1, \dots, n\}^k\\
+			&|\omega_1\le \dots \le \omega_k\}\\
+			\text{card }\Omega_{IV}^{k,n}=&\binom{k+n-1}{k}=\binom{k+n-1}{n-1}
+		\end{align*}
+	\end{Note}
+\section{Wahrscheinlichkeitsräume}
+\begin{Note}[Einschluss-Ausschluss]
+\begin{widetext}
+\[\mathbb{P}(A_1\cup \dots \cup A_n)=\sum_{k=1}^n (-1)^{k-1}\sum_{1\le i_1< i_2<\dots < i_k\le n}\mathbb{P}(A_{i_1}\cap \dots \cap A_{i_k})\]
+\end{widetext}
+\end{Note}
+\begin{Note}[Bedingte Wahrscheinlichkeit]
+\[\mathbb{P}(A|B)=\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}\]
+\end{Note}
+\begin{Note}[Bayes-Formel]
+\[\mathbb{P}(B|A)=\frac{\mathbb{P}(A|B)\mathbb{P}(B)}{\mathbb{P}(A)}\]
+\end{Note}
+\begin{Note}[Unabhängige Mengensysteme] $\mathcal{A}=\{A_1, \dots, A_n\}$ unabhängig, falls
+\[\mathbb{P}\left(\bigcap_{i\in I} A_i\right)=\prod_{i\in I}\mathbb{P}(A_i)\]
+für alle $I\subseteq \{1,\dots, n\}$.	
+\end{Note}
+\begin{Note}[Diskret]
+	Ein abzählbarer Maßraum mit einem Wahrscheinlichkeitsmaß definiert auf der Potenzmenge heißt diskreter Wahrscheinlichkeitsraum.
+\end{Note}
+\begin{Note}[Wahrscheinlichkeitsfunktion]
+	Die Wahrscheinlichkeits funktion $p(x)$ ist $p(x) = \mathbb{P}(\{x\})$. 
+\end{Note}
+\section{Zufallsvariablen}
+\begin{Note}
+	\[\mathbb{P}(X = x) = \mathbb{P}(X^{-1}(x))\]
+\end{Note}
+\begin{Note}[Verteilung]
+	Die Verteilung ist definiert durch das Maß
+	\[\mathbb{P}\circ X^{-1}\]
+	auf $\R$.
+\end{Note}
+\begin{Note}[Bernoulli-Verteilung]
+	Eine Verteilung $\mathbb{P}_X$ auf $\{0, 1\}$ mit $\mathbb{P}_X (1) = p_X(1) = p \in [0, 1]$ heißt bernoulli-Verteilung Ber($p$).
+\end{Note}
+\end{document}
+
