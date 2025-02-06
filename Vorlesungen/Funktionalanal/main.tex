@@ -577,24 +577,47 @@ The importance of a Schauder basis is that it is countable, and we are still abl
 Also important to note is that this basis must be \emph{ordered}, since the sum does not necessarily converge unconditionally. 
 \subsection{Examples}
 \begin{Example}[The Space $c$]
-	The space $c$ is the space of convergent sequences.
+	The space $c$ is the space of convergent sequences with the supremum norm. It is complete.
 \end{Example}
 \begin{Example}[The Space $c_0$]
-	The space $c_0$ is the space of sequences converging to 0. It is a subspace of $c$ with codimension 1.
+	The space $c_0$ is the space of sequences converging to 0 also with the supremum norm. It is a subspace of $c$ with codimension 1. It is also complete.
+	
+	To show this, we show that the limit functional is continuous and we have
+	\[c_0 = \ker \lim\]
+	which is closed.
 \end{Example}
 \begin{Example}[The Space $c_{00}$]
 	The space $c_{00}$ is the space of sequences that are 0 outside of finitely many elements. This is a subspace of $c_0$. It is the prototype for a non complete space. 
+	
+	In fact, we have
+	\[c_{00}^\text{cl}\subseteq c_0^\text{cl}=c_0\]
+	and we can show that every element of $c_0$ can be expressed as a limit of elements of $c_{00}$.
 \end{Example}
 \begin{Example}[Discontinuous Linear Functionals]
-	There are discontinuous linear functionals.
+	The simplest example of a discontinuous linear in a non-complete space is the functional $f(e_i)=i$ defined on $c_{00}$. 
 	
-	The simplest example in a non-complete space is the functional $f(e_i)=i$ defined on $c_{00}$. 
-	
-	In a complete space, this is significantly harder and requires the axiom of choice. This cannot be done with Hahn-Banach (to come), as Hahn-Banach extends bounded functionals. 
+	This is to be contrasted with Theorem \ref{thm:discontinuousfunctionals}, where we required the axiom of choice to construct a Hamel basis and then discontinuous linear functionals.
 \end{Example}
 \begin{Example}[Non-Closed Subspaces]
 	Every subspace of a Banach space with countable dimension cannot be closed, as it would then be complete, a contradiction, as Banach spaces cannot have countable dimension. 
 \end{Example}
+
+Note that we always have dense proper subspaces:
+
+\begin{Example}[Dense Proper Subspaces]
+	Let $V$ be any infinite dimensional normed space. Then $V$ has a proper dense subspace.
+\end{Example}
+\begin{proof}
+	We have a discontinuous linear functional $\varphi$ on it by Theorem \ref{thm:discontinuousfunctionals}. We claim that the \emph{topological annihilator}
+	\[\varphi^\perp = \{v\in V|\varphi(v) = 0\}\]
+	is a dense subspace of $V$.
+	
+	Since $\varphi$ is unbounded, we can choose a sequence $v_n$ with $\|v_n\| = 1$ and $|\varphi(v_n)| > n$. Then, we take
+	\[u_n = x - \frac{\varphi(x)}{\varphi(v_n)}v_n\in \varphi^\perp\]
+	and we have
+	\[\|x - u_n\| = \left|\frac{\varphi(x)}{\varphi(v_n)}\right|< \frac{\varphi(x)}{n}\]
+	showing that the topological annihilator is dense.
+\end{proof}
 \begin{Example}[Smooth Functions]
 	The space $C^k([a,b])$ of $k$ times continuously differentiable functions becomes a Banach space with the norm
 	\[\|f\| = \sum_{n=0}^k \sup_{x\in [a,b]} f^{(n)}(x).\]
@@ -612,7 +635,7 @@ That this is a Banach space follows from the 3 classic inequalities
 	Let $a,b\ge 0$ and $p,q>1$ such that
 	\[\frac 1p + \frac 1q = 1.\]
 	Then
-	\[ab \le \frac{a^p}{p}+ \frac{a_q}{q}\]
+	\[ab \le \frac{a^p}{p}+ \frac{b^q}{q}\]
 \end{Theorem}
 \begin{Theorem}[Hölder's Inequality]
 	Let $(x_n)_{n\in \N},~(y_n)_{n\in \N}$ be sequences in $\ell^p$ and $\ell^q$ respectively with
