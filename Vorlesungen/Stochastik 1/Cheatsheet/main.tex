@@ -25,7 +25,7 @@
 \renewcommand{\thesection}{\arabic{section}}
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
-
+\renewcommand{\proofname}{Beweis}
 
 \mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
 \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmbox}
@@ -110,7 +110,7 @@
 \begin{Note}[Bayes-Formel]
 \[\mathbb{P}(B|A)=\frac{\mathbb{P}(A|B)\mathbb{P}(B)}{\mathbb{P}(A)}\]
 \end{Note}
-\begin{Note}[Unabhängige Mengensysteme] $\mathcal{A}=\{A_1, \dots, A_n\}$ unabhängig, falls
+\begin{Note}[Unabhängige Ereignisse] $\mathcal{A}=\{A_1, \dots, A_n\}$ unabhängig, falls
 \[\mathbb{P}\left(\bigcap_{i\in I} A_i\right)=\prod_{i\in I}\mathbb{P}(A_i)\]
 für alle $I\subseteq \{1,\dots, n\}$.	
 \end{Note}
@@ -122,15 +122,293 @@ für alle $I\subseteq \{1,\dots, n\}$.
 \end{Note}
 \section{Zufallsvariablen}
 \begin{Note}
-	\[\mathbb{P}(X = x) = \mathbb{P}(X^{-1}(x))\]
+	\begin{align*}
+		\mathbb{P}(X = x) &= \mathbb{P}(X^{-1}(x))\\
+		\mathbb{P}(\{X\in A\})&=\mathbb{P}(X^{-1}(A))
+	\end{align*}
 \end{Note}
 \begin{Note}[Verteilung]
 	Die Verteilung ist definiert durch das Maß
 	\[\mathbb{P}\circ X^{-1}\]
 	auf $\R$.
 \end{Note}
+\begin{Note}[Transformationsformel]
+	Sei $(\Omega, \mathcal{A}, \mu)$ ein Maßraum und $(Y, \mathcal{C})$ ein Messraum. Sei $T:\Omega\to Y,~f:Y\to \overline{\R}$ messbar. Dann ist
+	\[\int_\Omega f\circ T\dd{\mu} = \int_Y f\dd{(\mu\circ T^{-1})}\]
+\end{Note}
+\begin{Note}
+	Ist $\mathbb{E}[X^2]<\infty$, dann existiert $\mathbb{E}[X]$ und $\text{var}(X)$.
+\end{Note}
+\subsection{Beispiele}
 \begin{Note}[Bernoulli-Verteilung]
 	Eine Verteilung $\mathbb{P}_X$ auf $\{0, 1\}$ mit $\mathbb{P}_X (1) = p_X(1) = p \in [0, 1]$ heißt bernoulli-Verteilung Ber($p$).
+\end{Note}
+\begin{Note}[Binomialverteilung]
+	\begin{gather*}
+	X: \{0,1\}^n \to \{0,\dots, n\},~X(\omega) = \sum_{j=1}^{n} \omega_j\\
+	p(k) = \binom{n}{k}p^k (1-p)^{n-k}
+\end{gather*}
+\end{Note}
+\begin{Note}[Hypergeometrische Verteilung]
+	$N$ Kugeln, $R$ davon rot, $n\le N$ Kugeln ohne Zur\"{u}cklegen gezogen, wahrscheinlichkeit dass genau $r$ rot sind
+	\[
+		\text{Hyp}(r; n, R, N)=\frac{\binom{R}{r}\binom{N-R}{n-r}}{\binom{N}{n}}
+	\]
+	mit Tr\"{a}ger
+	\[
+		r=\text{max}(n+R-N, 0), \dots, \text{min}(n,R)
+	.\] 
+\end{Note}
+\begin{Note}
+	F\"{u}r $n\ll N$ ist die hypergeometrische Verteilung fast die binomische Verteilung.
+\end{Note}
+\begin{Note}[Geometrische Verteilung]
+	\[
+		p(k) = (1-p)^{k-1}\cdot p
+	\]
+	mit Tr\"{a}ger $k\in \N$. Die stellt die Wartezeit bis zum ersten Erfolg in einer Folge Bernoulli-Experimenten mit Erfolgswahrscheinlichkeit $p$ dar.
+\end{Note}
+\begin{Note}[Poisson Verteilung]
+	\[
+		p(k) = e^{-\lambda} \cdot \frac{\lambda^k}{k!}
+	.\]
+	Die Poisson Verteilung beschreibt die Anzahl von Ereignissen in einem festen Zeitraum
+\end{Note}
+\begin{Note}
+	$\text{Poi}(n\cdot p_n)$ ist eine gute Approximation der Binomialverteilung $\text{Bin}(n, p_n)$ f\"{u}r große $n$ und kleine $p_n$.
+\end{Note}
+\subsection{Verteilungsfunktionen}
+\begin{Note}[Verteilungsfunktion]
+	Eine Funktion $F:\R\to[0,1]$ heißt Verteilungsfunktion, falls sie
+	\begin{enumerate}
+		\item monoton wachsend ist
+		\item rechtsseitig stetig ist
+		\item $\lim_{n \to \infty} F(n)=1,~\lim_{n \to \infty} F(-n)=0$
+	\end{enumerate}
+	Das Maß ist definiert durch
+	\[
+		\mu((-\infty, a]) = F(a)
+	.\] 
+\end{Note}
+\begin{Note}
+	Quantilsfunktion $Q_p(F)$ definiert durch
+	\[
+		Q_p(F) := F^{-1}(p) := \inf \{x\in \R|F(x) \ge p\} 
+	.\] 
+	\begin{enumerate}
+		\item Hat $F$ eine Sprungstelle, ist $Q_p(F)$ die Stelle, an der $F$ den Wert $p$ \"{u}berspringt.
+		\item Ist $F$ konstant, so ist $Q_p(F)$ die kleinste Stelle mit $F(x) =0$.
+	\end{enumerate}
+\end{Note}
+\subsection{Absolutstetige Verteilungen}
+\begin{Note}[Uniforme Verteilung]
+	Verteilung $\mathcal{U}([a,b])$: Dichte
+	\[
+		f(x) = \frac{1}{b-a}1_{[a,b]}(x)
+	.\] 
+\end{Note}
+\begin{Note}[Exponentialverteilung]
+	Verteilung Exp($\lambda$): Dichte
+	\[
+		f(x) = \lambda e^{-\lambda x}1_{[0,\infty)}(x)
+	.\] 
+\end{Note}
+\begin{Note}[Normalverteilung]
+	Dichte
+	\[
+	f(x;\mu, \sigma) = \frac{1}{\sigma \sqrt{2\pi} }\exp\left( -\frac{(x-\mu)^2}{2\sigma^2} \right) 
+	.\] 
+\end{Note}
+\section{Maßintegral}
+\begin{Note}[Absolutstetig]
+	$\nu \ll \mu$ ($\nu$ absolutstetig bzgl $\mu$), falls $\mu(A)=0\implies \nu(A)=0$.
+\end{Note}
+\begin{Note}[Radon-Nikodym]
+	Falls $\mu,\nu$ $\sigma$-endlich, $\nu\ll \mu$ genau dann wenn $f$ messbar nicht negative existiert mit
+\[
+	\nu(A) = \int_A f\dd{\mu}
+.\] 
+\end{Note}
+\section{Produktr\"{a}ume}
+\begin{Note}[Kovarianz]
+	\[
+		\text{Cov}(X,Y):= \mathbb{E}[(X-\mathbb{E}[x])(Y-\mathbb{E}[Y])]
+	.\] 
+\end{Note}
+\begin{Note}
+	\begin{enumerate}
+	\item $\text{Cov}(X, Y) = \mathbb{E}[X\cdot Y] - \mathbb{E}[X]\mathbb{E}[Y]$
+	\item  $\text{Cov}(X,Y)=\text{Cov}(Y,X),~\text{Cov}(X,X)=\text{Var}(X)$
+	\item  $\text{Cov}(aX+b, Y) = a\text{Cov}(X, Y)$ 
+	\item $\displaystyle \text{Cov}\left( \sum_{i=1}^m a_i X_i, \sum_{j=1}^n b_j Y_j \right)= \sum_{i=1}^m \sum_{j=1}^n a_i b_i \text{Cov}(X_i, Y_j) $
+	\item $\text{Var}(X_1+\dots + X_m) = \sum_{i=1}^{m} \text{Var}(X_i) + 2\cdot \sum_{1\le i < j \le m} \text{Cov}(X_i, X_j)$.
+	\end{enumerate}
+\end{Note}
+\begin{Note}[Korrelationskoeffizient]
+	\[
+		\rho(X, Y) :=\frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)} }
+	.\] 
+\end{Note}
+\begin{Note}[Cauchy-Schwarz]
+	\[
+		(\text{Cov}(X, Y))^2 \le \text{Var}(X)\text{Var}(Y)
+	.\] 
+\end{Note}
+\begin{Note}[Unabh\"{a}ngig Mengensysteme]
+	Mengensysteme $\mathcal{E}_1, \dots, \mathcal{E}_n$ sind unab\"{a}ngig, falls f\"{u}r alle $A_1\in \mathcal{E}_1, \dots, A_n \in \mathcal{E}_n$ die Ereignisse $A_1, \dots, A_n$ unabh\"{a}ngig sind.
+\end{Note}
+\begin{Note}
+	Sind $\mathcal{E}_1, \dots, \mathcal{E}_n$ unabh\"{a}ngige Mengensysteme und ist jedes $\mathcal{E}_i$ $\cap$-stabil, also der Schnitt zwei Ereignisse aus $\mathcal{E}_i$ ist wieder in $\mathcal{E}_i$, sind $\sigma(\mathcal{E}_1), \dots, \sigma(\mathcal{E}_n)$ unabh\"{a}ngig.
+\end{Note}
+\begin{Note}[Unabh\"{a}ngige Zufallsvariablen]
+	Zufallsvariablen $X_1, \dots, X_n$ heißen unabhängig, falls die erzeugten $\sigma$-Algebren $X_k^{-1}(\mathcal{B})$ unabh\"{a}ngig sind.
+\end{Note}
+\begin{Note}[Faltung]
+	Seien $X,Y:\Omega \to \R^d$ unabh\"{a}ngige Zufallsvariablen. Dann gilt f\"{u}r $A,B\in \mathcal{B}^d$ 
+	\[
+		\mathbb{P}(X+Y\in B, Y\in A)=\int_A P_X(B-y)\dd{P}_Y(y)
+	,\]
+	insbesondere
+	\begin{align*}
+		\mathbb{P}(X+Y\in B)&=\int_{\R^d} P_X(B-y)\dd{P_Y(y)} \\
+				    &= \int_{\R^d} P_Y(B-x)\dd{P_X(x)}
+			    .\end{align*}
+\end{Note}
+\begin{proof}
+	Nach der Transformationsformel folgt
+	\begin{align*}
+		&\mathbb{P}(X+Y\in B, Y\in A)\\
+		=&~\int_{\R^{2d}}1_B(x+y)1_A(y)\dd{(P_x\otimes P_y)}\\
+		=&~\int_A \left(\int_{\R^d} 1_{B-y}(x)\dd{P}_X\right)\dd{P}_y\\
+		=&~\int_A P_X(B-y)\dd{P_y}.\qedhere
+	\end{align*}
+\end{proof}
+\begin{Note}
+	In 1-dim mit Verteilungsfunktionen $F$, $G$ und Dichten $f$ und $g$:
+	\begin{align*}
+		F_Z(z) &= \int_{-\infty}^\infty F(z-t)g(t)\dd{t}\\
+		&= \int_{-\infty}^\infty G(t)f(z-t)
+	\end{align*}
+\end{Note}
+\begin{Note}
+	Sind die Zufallsvariablen $X,Y:\Omega \to \Z$ unabh\"{a}ngig, so gilt
+	\[
+		\mathbb{P}(X+Y=k)=\sum_{j\in \Z}\mathbb{P}(X=j)\mathbb{P}(Y=k-j)
+	.\] 
+\end{Note}
+\begin{Note}
+	Sind $X,Y:\Omega \to \N_0$ unabh\"{a}ngig, so ist
+	\[
+		\mathbb{P}(X+Y=k)=\sum_{j=0}^k \mathbb{P}(X=j)\mathbb{P}(Y=k-j)
+	.\] 
+\end{Note}
+\begin{Note}
+	Sind $X,Y:\Omega\to \R$ unabh\"{a}ngige, reellwertige und absolutstetige Zufallsvariablen mit den Dichten $f$ und $g$. Dann ist auch $X+Y$ absolutstetig mit der Dichte
+	\[
+		(f\star g)(z) = \int_\R f(z-t)g(t)\dd{t}
+	.\] 
+\end{Note}
+\begin{Note}[Abhängige Zufallsvariablen]
+	\[f_Z(z)=\int_{-\infty}^\infty f_{XY}(x, z-x)\dd{x}.\]
+Wenn $X$ und $Y$ unabh\"{a}ngig sind, ist $f_{XY}=f_X(x)f_Y(y)$ und die obere Formel folgt.
+\end{Note}
+\section{Konvergenzbegriffe}
+\begin{Note}
+	Eine Folge reellwertiger Zufallsvariablen $(X_n)_{n\in \N}$ konvergiert gegen eine Zufallsvariable $X_n\xrightarrow{d}X$, falls die Verteilung in alle Stetigkeitsstellen konvergiert, also f\"{u}r alle $x\in \R$ in denen $F(x)$ stetig ist, gilt
+	\[F_n(x) \to F(x)\]
+\end{Note}
+\begin{Note}[Beispiel]
+	Sei $X_n\in \mathcal{U}((0,1/n))$. Dann gilt $F_n(x) \xrightarrow{d} x$ f\"{u}r alle $x\neq 0$, jedoch nicht in $x=0$, wobei $F_n(0) = 0$ und $F(0)=1$, weil die Zufallsvariablen gegen die konstante Variable $1$ konvergieren.
+\end{Note}
+\begin{Note}
+	Eine Folge $(X_n)_{n\in \N}$ reellwertiger Zufallsvariablen konvergiert $\mathbb{P}$-stochastisch gegen eine Zufallsvariable $X$, falls f\"{u}r alle $\epsilon>0$ gilt
+	\[
+		\lim_{n \to \infty} \mathbb{P}(|X_n - X|\ge \epsilon) =0
+	.\] 
+\end{Note}
+\begin{Note}[Fast sichere Konvergenz]
+	Eine Folge von Zufallsvariablen $(X_n)_{n\in \N}$ konvergiert $\mathbb{P}$-fast sicher, kurz $\mathbb{P}$-f.s. gegen eine Zufallsvariable $X$, falls eine $\mathbb{P}$-Nullmenge $A\in \mathcal{A}$ existiert, sodass
+	\[
+	X_n(\omega)\to X(\omega)~\forall \omega\in A^c
+	.\] 
+	Dies entspricht $\mathbb{P}$-fast \"{u}berall Konvergenz.
+\end{Note}
+\section{Asymptotische Gesetze}
+\begin{Note}[Markov-Ungleichung]
+	Ist $X:\Omega\to \R$ eine Zufallsvariable und $p,c>0$, dann gilt
+	\begin{align*}
+		\mathbb{P}(|X|\ge c) &\le \frac{1}{c^p}\mathbb{E}[|X|^p \cdot 1_{|X|\ge c}]\\
+				     &\le \frac{1}{c^p}\mathbb{E}[|X|^p]
+	\end{align*}
+\end{Note}
+\begin{Note}[Tschebyschev-Ungleichung]
+	Ist $X:\Omega\to \R$ eine Zufallsvariable mit $\mathbb{E}[X^2]<\infty$ und $\epsilon>0$, so ist
+	\[
+		\mathbb{P}(|X- \mathbb{E}[X]|\ge \epsilon) \le \frac{1}{\epsilon^2}\text{Var}(X)
+	.\] 
+\end{Note}
+\begin{Note}[Schwaches Gesetz der Großen Zahlen]
+	Sind $X_1, \dots, X_n$ uiv mit $\mathbb{E}[X_1^2]<\infty$, so gilt:
+	\[\lim_{n\to\infty}\mathbb{P}\left(\left|\frac 1n \sum_{i=1}^n X_i - \mathbb{E}[X_1]\right|\ge \epsilon \right)=0\]
+	in anderen Wörter: Die Summe $X_n$ konvergiert stochastisch gegen den Erwartungswert.
+\end{Note}
+\begin{Note}
+	Sei $S_n\in \text{Bin}(n, p)$. Bezeichne $S_n^\star=\frac{S_n - np}{\sqrt{np(1-p)}}$. Dann gilt f\"{u}r alle $a<b$:
+	\[\lim_{n\to\infty} \mathbb{P}(a\le S_n^\star \le b)=\Phi(b) - \Phi(a)\]
+\end{Note}
+\begin{Note}[Stetigkeitskorrektur]
+	\begin{align*}
+	\mathbb{P}(k\le S_n \le l)\approx& \Phi\left(\frac{l - np + \frac 12}{\sqrt{np(1-p)}}\right)\\
+	&-\Phi\left(\frac{k - np - \frac 12}{\sqrt{np(1-p)}}\right)
+\end{align*}
+\end{Note}
+\begin{Note}[Zentraler Grenzwertsatz]
+		Sei $X_1, \dots, X_n$ uiv mit $\mathbb{E}[X_1^2]<\infty$, $\mu=\mathbb{E}[X_1]$, $\sigma^2 = \text{Var}(X_1)>0$ und $S_n = \sum_{k=1}^n S_k$. Bezeichne $S_n^\star=\frac{S_n - n\mu}{\sqrt{n}\sigma}$. Dann gilt f\"{u}r alle $a<b$:
+		\[\lim_{n\to\infty} \mathbb{P}(S_n^\star \le b)=\Phi(b)\]
+\end{Note}
+\begin{Note}[Terminales Ereignis]
+	Seien $X_1, X_2,\dots:\Omega\to \R$ Zufallsvariablen und
+	\[\mathcal{F}_n' = \sigma(X_k, k\ge n)\]
+	die $\sigma$-Algebra der Zukunft ab dem Zeitpunkt $n$, und
+	\[\mathcal{J} = \bigcap_{n=1}^\infty \mathcal{F}_n'\]
+\end{Note}
+\begin{Note}[Unendlich oft]
+	Seien $B_n\in\mathcal{B}$, dann gilt
+	\begin{align*}
+	&\{X_n \in B_n \text{ unendlich oft (u.o.)}\}\\
+	&=\bigcap_{n=1}^\infty \bigcup_{k\ge n}\{X_k \in B_k\}\in \mathcal{J}
+\end{align*}
+\end{Note}
+\begin{Note}[Kolmorogov 0-1 Gesetz]
+	Sind $X_1, \dots$ unabh\"{a}ngig, so gilt f\"{u}r alle $A\in \mathcal{J}$
+	\[\mathbb{P}(A)=0\text{ oder }\mathbb{P}(A)=1\]
+\end{Note}
+\begin{Note}[Borel-Cantelli I]
+	Ist $\sum_{n=1}^\infty \mathbb{P}(A_n)<\infty$, so ist $\mathbb{P}(A_n\text{ u.o.})=0$.
+\end{Note}
+\begin{Note}[Borel-Cantelli II]
+	Sind $(A_n)$ unabh\"{a}ngig und $\sum_{n=1}^\infty \mathbb{P}(A_n)=\infty$, so ist $\mathbb{P}(A_n\text{ u.o.})=1$.
+\end{Note}
+\begin{Note}
+	Sind $X_1, \dots$ uiv mit $\mathbb{E}[|X_1|]=\infty$, dann gilt f\"{u}r $S_n = X_1 + \dots + X_n$
+	\[\mathbb{P}\left(\lim_{n\to\infty} \frac{S_n}{n}\text{ existiert in }\R\right)=0\]
+\end{Note}
+\begin{Note}[Starkes Gesetz der großen Zahlen]
+	Sind $X_1, \dots$ uid mit $\mathbb{E}[|X_1|]<\infty$, so gilt f\"{u}r $S_n = \sum_{i=1}^n X_i$, dass
+	\[\frac{S_n}{n}\to\mathbb{E}[X_1]\]
+	fast sicher.
+\end{Note}
+\begin{Note}[Empirische Verteilungsfunktion]
+	Seien $X_1, \dots$ uiv 
+	\begin{align*}
+	F_n(x) &=\frac 1n \sum_{k=1}^n 1_{(-\infty, x]}(X_k)\\
+	 &= \frac 1n \#\{k|X_k \le x\}
+\end{align*}
+\end{Note}
+\begin{Note}[Glivenko-Cantelli]
+	Seien $X_1, \dots$ uiv mit Verteilungsfunktion $F$, so gilt
+	\[\sup_{x\in \R}|F_n(x) - F(x)|\to 0\]
+	fast sicher.
 \end{Note}
 \end{document}
 

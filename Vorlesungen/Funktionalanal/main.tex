@@ -1204,9 +1204,16 @@ showing that $f_0$ is linear. Similarly, we conclude that $|f_0(v)|\le 1$ for al
 \end{proof}
 Banach-Alaoglu is commonly cited as the following theorem
 \begin{Corollary}
-	The closed unit ball in the dual space is weak-* compact.
+	The closed unit ball in the dual space of a normed vector space is weak-* compact.
 \end{Corollary}
 Note that this does not imply that the dual space is locally weak-* compact, as the closed unit ball has empty interior in the weak-* topology!
+
+This corollary has a simpler proof by Tao:
+\begin{proof}
+	The closed unit ball $B'$ maps the closed unit ball into the closed disk with radius 1 $D$. Thus, it can be identified with a subset of $D^B$, the functions from $D$ to $B$. 
+	
+	First, we show that the weak-* topology is the product topology on $D^B$. \textcolor{red}{TODO}
+\end{proof}
 
 The importance of Banach-Alaoglu comes from sequential compactness, which we investigate in the following theorems:
 \begin{Definition}
@@ -1358,7 +1365,7 @@ If $B$ is nonmeager, then $B=V$ and $\Gamma$ is equicontinuous.
 	\[
 		E=\bigcap_{\Lambda\in \Gamma} \Lambda^{-1}(\overline{U})
 	.\] 
-	If $v\in B$, then $\Gamma(v)\in nU$ for some $n$, thus $v\in n E$. Hence, we have
+	If $v\in B$, then $\Gamma(v)\subseteq nU$ for some $n$, thus $v\in n E$. Hence, we have
 	\[
 	B\subseteq \bigcup_{n=1}^\infty n E
 	.\] 
@@ -1893,6 +1900,7 @@ Since at least one of these sets must be infinite, the sum must diverge.
 	&\le \sqrt{\sum_{i\in I_\varphi \cap I_\psi}|\langle e_i, \varphi\rangle|^2}\sqrt{\sum_{i\in I_\varphi \cap I_\psi}\langle e_i, \psi\rangle|^2}\\
 	&\le \|\varphi\| \|\psi\|
 \end{align*}
+\item Earlier, we have already shown convergence. It then remains to show that this convergence is unconditional. Let $\sigma: \N \to \N$ be a rearrangement of the series. To do so, we note that the sum gets arbitrarily close after a certain number $N$. Then, we let $N'$ be the smallest number such that $\{1,\dots, N\}\subseteq \sigma(\{1,\dots, N'\})$. This shows that it converges to the same number.
 	\end{parts}
 \end{proof}
 As one might expect, if the $e_n$s form a Hilbert space basis we have equality
@@ -2007,6 +2015,9 @@ Note that his is actually a scalar product. First, we note that it is (sesqui-)l
 
 Positivity is the hardest part. We choose a Hilbert space basis of each $\mathcal{H}_i$. Then, when we put in a sum, all cross terms vanish and we have a positive scalar product.
 \section{Adjoints}
+\begin{Definition}[Dual Operator]
+	If $A:\mathcal{H}\to \mathcal{K}$ is linear, then the dual operator $A':\mathcal{K} \to \mathcal{A}$
+\end{Definition}
 \begin{Definition}[Adjoints]
 	Let $A:\mathcal{H}\to \mathcal{K}$ be a map between pre-Hilbert spaces. Then $A$ is called adjointable if there is a map $A^\dagger:\mathcal{K}\to \mathcal{H}$ such that
 	\[
@@ -2145,7 +2156,12 @@ That it is a *-algebra has already been proven. We only need to verify the C* pr
 
 	If $\|A\|^2 = \|A^\dagger A\|\le \|A^\dagger\|\| A\|$, we have $\|A\|\le \|A^\dagger\|$ and $\|A\|\le \|A^\dagger\|$. By symmetry, this implies the C* property.
 
-	Now, we assume that $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then \textcolor{red}{TODO}
+	Now, we assume that $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then, for $v\in \mathcal{H}$, we have
+	\[\langle Av, Av\rangle = \langle v, A^\dagger A v\rangle \le \|v\|^2 \|A^\dagger A\|\]
+	or
+	\[\frac{\|Av\|^2}{\|v\|^2}\le \|A^\dagger A\|\]
+	which shows by definition that
+	\[\|A\|^2 \le \|A^\dagger A\|.\qedhere\]
 \end{proof}
 \section{Strong \& Weak Operator Topology}
 \begin{Proposition}
