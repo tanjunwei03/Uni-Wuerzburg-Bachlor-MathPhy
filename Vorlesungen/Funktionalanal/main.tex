@@ -2132,37 +2132,7 @@ The earlier argument implies that this is an \emph{orthogonal decomposition}. Si
 	\end{align*}
 	This implies that $\psi = A \phi$, also the graph is closed. By the closed graph theorem, this implies that $A$ is continuous.
 \end{proof}
-These properties form a correspondence between the operator algebras and the C* algebras.
-\begin{Definition}[*-Algebra]
-	A *-algebra is a complex vector space with a bilinear associative product $(a,b) \mapsto ab$ and an inversion map $*:a\mapsto a^*$ such that
-	\begin{align*}
-		(\alpha a + \beta b)^* &= \overline{\alpha}a^* + \overline{\beta}b^*\\
-		(a^*)^*&=a\\
-		(ab)^* &= b^*a^*
-	\end{align*}
-\end{Definition}
-\begin{Definition}[C*-Algebra]
-	A C*-Algebra is a Banach algebra, that is, a complete normed space together with a product $(a, b)\mapsto ab$ such that $\|AB\|\le \|A\|\|B\|$, as well as an involution $*:A\mapsto A^*$ such that it is a *-algebra and 
-	\[
-\|A A^*\|= \|A\|\|A^*\|
-	.\] 
-\end{Definition}
-The property that needs to be checked for continuous operators on Hilbert spaces is the C* condition. 
-\begin{Proposition}
-	Continuous operators on Hilbert spaces are a C*-Algebra.
-\end{Proposition}
-\begin{proof}
-That it is a *-algebra has already been proven. We only need to verify the C* property.
-
-	If $\|A\|^2 = \|A^\dagger A\|\le \|A^\dagger\|\| A\|$, we have $\|A\|\le \|A^\dagger\|$ and $\|A\|\le \|A^\dagger\|$. By symmetry, this implies the C* property.
-
-	Now, we assume that $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then, for $v\in \mathcal{H}$, we have
-	\[\langle Av, Av\rangle = \langle v, A^\dagger A v\rangle \le \|v\|^2 \|A^\dagger A\|\]
-	or
-	\[\frac{\|Av\|^2}{\|v\|^2}\le \|A^\dagger A\|\]
-	which shows by definition that
-	\[\|A\|^2 \le \|A^\dagger A\|.\qedhere\]
-\end{proof}
+These properties form a correspondence between the operator algebras and the C* algebras, which we will discuss in Section \ref{sec:C*algebras}
 \section{Strong \& Weak Operator Topology}
 \begin{Proposition}
 	\begin{parts}
@@ -2238,12 +2208,15 @@ Then $S$ is an isometry that is not surjective.
 	\[
 	\|S^k \psi\|= \|\psi\|
 \]
-which clearly does not converge to 0. This shows that * involution is not conitnuous in the strong operator topology.
+which clearly does not converge to 0. This shows that involution is not continuous in the strong operator topology.
 \end{proof}
 \section{Types of Operators}
 \begin{Definition}[Projector]
 	An operator $P$ is called a projector if $P=P^\dagger = P^2$.
 \end{Definition}
+Note that this is sometimes called an \emph{orthogonal} projector due to the additional condition $P=P^\dagger$. It does not follow that all idempotent mappings are orthogonal projectors; for example, consider the subspaces $V=\text{span}((1,1)^T)$ and $W=\text{span}((1,0)^T)$ of $\R^2$. We have the direct sum decomposition $\R^2 = V\oplus W$, and an operator that projects onto the first ($V$) component is idempotent, but it is not an orthogonal projector.
+
+Note that there is a 1 to 1 correspondence between projectors and closed subspaces of $\mathcal{H}$. For every projector, the kernel is a subspace of $\mathcal{H}$, closed because it is continuous. Conversely, given a closed subspace, we can define an orthogonal projector using the direct sum decomposition; we can directly show that it is idempotent and hence has operator norm 1.
 \begin{Definition}[Partial Isometry]
 	A map between Hilbert spaces $U:\mathcal{H}\to \mathcal{K}$ is called a partial isometry, if the restriction
 	\[
@@ -2375,6 +2348,90 @@ Now, we prove the full Radon-Nikodym theorem. This is a purely measure theoretic
 	for measurable $E$. Then we let $g=\sum_{n=1}^\infty g_n \chi_{A_n}$. By the monotone convergence theorem, this is also positive and measurable. Then
 	\[\nu(E) = \sum_{n=1}^\infty \nu(E \cap A_n) = \sum_{n=1}^\infty \int_{A_n} g\dd{\mu} = \int g\dd{\mu}.\qedhere\]
 \end{proof}
+
+\chapter{The Spectral Theorem}
+\section{Operators \& Their Spectra}
+\section{C* Algebras}\label{sec:C*algebras}
+\begin{Definition}[*-Algebra]
+	A *-algebra is a complex vector space with a bilinear associative product $(a,b) \mapsto ab$ and an inversion map $*:a\mapsto a^*$ such that
+	\begin{align*}
+		(\alpha a + \beta b)^* &= \overline{\alpha}a^* + \overline{\beta}b^*\\
+		(a^*)^*&=a\\
+		(ab)^* &= b^*a^*
+	\end{align*}
+\end{Definition}
+\begin{Definition}[C*-Algebra]
+	A C*-Algebra is a Banach algebra, that is, a complete normed space together with a product $(a, b)\mapsto ab$ such that $\|AB\|\le \|A\|\|B\|$, as well as an involution $*:A\mapsto A^*$ such that it is a *-algebra and 
+	\[
+	\|A A^*\|= \|A\|\|A^*\|
+	.\] 
+\end{Definition}
+The property that needs to be checked for continuous operators on Hilbert spaces is the C* condition. 
+\begin{Example}
+	Continuous operators on Hilbert spaces are a C*-Algebra.
+\end{Example}
+\begin{proof}
+	That it is a *-algebra has already been proven. We only need to verify the C* property.
+	
+	If $\|A\|^2 = \|A^\dagger A\|\le \|A^\dagger\|\| A\|$, we have $\|A\|\le \|A^\dagger\|$ and $\|A\|\le \|A^\dagger\|$. By symmetry, this implies the C* property.
+	
+	Now, we assume that $A\in \mathcal{B}(\mathcal{H}, \mathcal{K})$. Then, for $v\in \mathcal{H}$, we have
+	\[\langle Av, Av\rangle = \langle v, A^\dagger A v\rangle \le \|v\|^2 \|A^\dagger A\|\]
+	or
+	\[\frac{\|Av\|^2}{\|v\|^2}\le \|A^\dagger A\|\]
+	which shows by definition that
+	\[\|A\|^2 \le \|A^\dagger A\|.\qedhere\]
+\end{proof}
+First, we note that in general, a C* algebra need not have an identity. However, we can assume that it has an identity without loss of generality due to the following proposition
+\begin{Proposition}
+	If $\mathcal{A}$ is a C* algebra, then there is a C* algebra $\mathcal{A}_1$ with an identity that contains $\mathcal{A}$ as an ideal. If $\mathcal{A}$ does not have an identity, then $\mathcal{A}$ has codimension 1 in $\mathcal{A}_1$. 
+\end{Proposition}
+\begin{proof}
+	We assume that $\mathcal{A}$ does not have an identity. Define $\mathcal{A}_1 = \{a + \alpha|a\in \mathcal{A}, \alpha\in \C\}$. We define multiplication and addition in the obvious way, as well as defining involution by $(a+\alpha)^* = a^* + \overline{\alpha}$. We define the norm by
+	\[\|a + \alpha\| = \sup\{\|a x + \alpha x\| | x\in\mathcal{A}, \|x\| \le 1\}\]
+\end{proof}
+\section{Projection Valued Measures}
+The natural and obvious question is when we can express an operator in a ``diagonal'' form. However, in infinite dimensions, it becomes less obvious what diagonal actually means. The most useful characterisation is that the operator can be decomposed as a sum of rank 1 operators onto the ``eigenspaces'' - in the language of physics, this means
+\[\mathcal{H}= \int E \ket{E} \bra{E}\dd{E}\]
+where the set of $\ket{E}$ represent some orthogonal states. This is known as a \emph{resolution of the identity}. We will call it a \emph{projector-valued measure}.
+
+\begin{Definition}[Projector-Valued Measure]\label{def:PVM}
+	Let $(X, \mathcal{A})$ be a measurable space. A map $E: \mathcal{A}\to \mathcal{B}(\mathcal{H})$ is called a projection valued measure if
+	\begin{enumerate}
+		\item $E_U$ is a projector for all $U\in \mathcal{A}$.
+		\item $E_\varnothing=0$ and $E_X=1$.
+		\item $E_{U\cup V}= E_U + E_V$ if $U$ and $V$ are disjoint
+		\item The map $\langle \phi, E\psi\rangle : U \mapsto \langle \phi, E_U\psi\rangle$ is a complex measure on $X$ for all $\phi,\psi\in \mathcal{H}$.
+	\end{enumerate}
+\end{Definition}
+
+The first step is to prove that this definition actually suffices to prove many of the familiar properties of measures that we know. For example, we lack a useful formula for the measure of an intersection of sets. Additionally, we do not have $\sigma$-additivity. Thus, we move forward to prove the following theorems
+
+\begin{Proposition}
+	\begin{enumerate}
+		\item For all $U,V\in \mathcal{A}$ we have
+		\[E_{U\cap V} = E_U E_V = E_V E_U\]
+		\item The projection-value measure is $\sigma$ additive in the strong operator topology; i.e. 
+		\[\sum_{n=1}^\infty E_{U_n}\phi = E_{\bigcup_{n=1}^\infty U_n}\phi\]
+		where the sum on the left is convergent in the norm topology.
+		\item Conversely, if we have $\sigma$-additivity in the definition instead of part 4. of Definition \ref{def:PVM}, then $E$ is a projector-valued measure
+		\item For $\phi\in \mathcal{H}$ the map $E_\phi(U) = \langle \phi, E_U\phi$ is a finite positive measure.
+	\end{enumerate}
+\end{Proposition}
+
+\begin{proof}
+	\begin{enumerate}
+		\item First, we consider the case where they are disjoint. Then, we have $E_{U\cup V}=E_U + E_V$. By squaring this, we get
+		\[E_U+E_V=E_{U\cup V}=E_{U\cup V}^2 = (E_U + E_V)^2 = E_U + E_V + E_UE_V + E_VE_U\]
+		and hence
+		\[E_UE_V = -E_VE_U.\]
+		By taking adjoints of the above equation, we see that $E_UE_V$ is antihermitian and hence normal. By multiplying the above equation with $E_U$ and $E_V$ respectively, we see that
+		\[E_UE_V + E_VE_UE_V = 0\]
+		and
+		\[E_UE_VE_U + E_VE_U = 0\]
+	\end{enumerate}
+\end{proof}
+
 \renewcommand{\listtheoremname}{List of Definitions}
 \listoftheorems[ignoreall, onlynamed={Definition}]
 \renewcommand{\listtheoremname}{List of Theorems}
