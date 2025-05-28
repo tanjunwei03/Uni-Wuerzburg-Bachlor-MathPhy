@@ -1,0 +1,266 @@
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmnobox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=chapter,style=thmnobox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Postulate]{Postulate}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+
+
+\begin{document}
+	\newgeometry{margin=1in}
+	\begin{titlepage}
+		{\begingroup% AW, Design of Books
+			%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+			%\drop = 0.14\textheight
+			\centering
+			%\vspace*{\drop}
+			{\Large Notes for the course in}\\[\baselineskip]
+			{\Huge\bfseries QUANTUM MECHANICS}\\[\baselineskip]
+			{\Large Held in SS25\\ At the JMU Würzburg\\ By Prof. Dr. }\\[\baselineskip]
+			{\LARGE By}\\[\baselineskip]
+			{\LARGE Jun Wei Tan}\par
+			\vfill
+			{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+			\vfill
+			{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+			\endgroup}
+	\end{titlepage}
+	\restoregeometry
+	\tableofcontents
+\chapter{Quantum Postulates \& Density Operators}
+\section{Postulates Revision}
+\begin{Postulate}[Schr\"{o}dinger Equation]
+	The time evolution of a state is given by
+	\[
+		i\hbar \pdv{t}\ket{\psi} = H\ket{\psi}
+	.\] 
+\end{Postulate}
+\begin{Theorem}[Time Evolution]
+	The time evolution of a state can be given by the exponential of the Hamiltonian operator, if it is not explicitly time dependent
+	\[
+		\ket{\psi(t)} = e^{-iH t / \hbar}\ket{\psi(0)}
+	.\] 
+\end{Theorem}
+\begin{Theorem}[Time-Dependent Hamiltonians]
+	Where the Hamiltonian is time-dependent, the we must use the \textbf{time-ordering operator}
+	\[
+		\ket{\psi(t)} = T_+ e^{i H t / \hbar} \ket{\psi(0)}
+	.\] 
+\end{Theorem}
+The time ordering operator is given by
+\begin{Definition}
+	The time-ordering operator is a metaoperator acting on operators
+	\[
+		T_+\{ H(t_1)H(t_2)\} = \begin{cases}
+			H(t_1)H(t_2) & t_1 < t_2\\
+			H(t_2)H(t_1) & \text{otherwise}.
+		\end{cases}
+	\] 
+\end{Definition}
+\begin{Postulate}[General Measurement]
+	A general measurement of a quantum state is defined by a set of measurement operators $\{M_k\}_{k=1}^n$ satisfying the normalisation condition
+	\[
+	\sum_{k=1}^{n} M_k^\dagger M_k =1
+	.\] 
+	After the measurement, the quantum state is given by
+	\[
+		\ket{\psi}\to \frac{M_k \ket{\psi}}{\sqrt{p_k} }
+	\] 
+	with probability
+\[
+	p_k = \bra{\psi}M_k^\dagger M_k\ket{\psi}
+.\] 
+\end{Postulate}
+\begin{Example}[Projection Valued Measurement]
+	In a projection valued measurement, we have a set of orthogonal projectors for the measurement operators. 
+\end{Example}
+
+\begin{Remark}[Positive Operator Valued Measurement]
+	Notice that the operator $E_k = M_k^\dagger M_k$ is a positive operator. Hence, the set of measurement operators is associated with a set of positive operators $E_k$. We call these operators the POVM elements.
+\end{Remark}
+\section{Density Operator}
+The density operator describes ``mixed states'', or states where we are not entirely certain what quantum state the quantum system is in. For example, in quantum computing, we do not know the output of a measurement, only that it will be a few states with a certain probability.
+\begin{Definition}[Density Operator]
+	A density operator is a positive trace 1 operator.
+\end{Definition}
+\begin{Remark}[Physical Construction]
+	Where a system can be in any of a set of states $\{\ket{\psi_k}\}$ with probability $p_k$, the density operator is given by
+	\begin{equation}\label{eq:densitymatrix}
+		\rho = \sum_{k=1}^n p_k \ket{\psi_k}\bra{\psi_k}
+	.\end{equation}
+	We can show that it has trace 1, either by picking the states $\ket{\psi_k}$ as a basis and using the normalisation of probability, or by computing this in any other basis.
+\end{Remark}
+\begin{Definition}[Pure State]
+	A state is pure if there is only one state in the expansion Eq. \eqref{eq:densitymatrix}. Equivalently, the density matrix is an orthogonal projector.
+\end{Definition}
+\begin{Remark}
+	This means that we know what state the density operator is in. Note: This state could be entangled.
+\end{Remark}
+\begin{Corollary}
+	A state is pure if and only if $\Tr \rho^2 = 1$.
+\end{Corollary}
+\begin{Theorem}[Time Evolution]
+	The time evolution of a density matrix is given by
+	\[
+	\rho(t) = U\rho U^\dagger
+\]
+where $U$ is the propagator.
+\end{Theorem}
+\begin{proof}
+	This is done simply by considering the expansion Eq. \eqref{eq:densitymatrix}.
+\end{proof}
+\begin{Theorem}[Liouville Equation]
+	The time evolution of a density matrix is given by
+	\[
+		\dv{\rho(t)}{t} = -i\hbar [H, \rho]
+	.\] 
+\end{Theorem}
+\begin{proof}
+	We write the Schr\"{o}dinger equation and its transpose
+	\begin{align*}
+		i\hbar \pdv{t}\ket{\psi(t)}&=H \ket{\psi(t)}  \\
+		-i\hbar \bra{\psi(t)} &= \bra{\psi(t)} H.
+	\end{align*}
+	Then, we differentiate Eq. \eqref{eq:densitymatrix} to get
+	\begin{align*}
+		\dv{t} \sum_{k=1}^{n} p_k \ket{\psi_k(t)}\bra{\psi_k(t)} &= \sum_{k=1}^{n} p_k \left[ \ket*{\dot{\psi}(t)} \bra{\psi(t)} + \ket{\psi(t)}\bra*{\dot{\psi}(t)} \right]  \\
+									 &= \sum_{k=1}^{n} p_k \left[ -i \hbar H \ket{\psi_k(t)}\bra{\psi_k(t)} + i \hbar \ket{\psi_k(t)} \bra{\psi_k(t)} H\right]  \\
+									 &= -i \hbar[H, \rho].\qedhere
+	\end{align*}
+\end{proof}
+\begin{Theorem}
+	A measurement of a density matrix $\rho$ has outcomes with probability
+	\[
+		\mathbb{P}(j) = \Tr (M_j^\dagger M_j \rho)
+\]
+where we denote the probability as $\mathbb{P}(j)$ to distinguish this from the probabilities in Eq. \eqref{eq:densitymatrix} and the state after the measurement is
+\[
+\rho \to \frac{M_k \rho M_K^\dagger}{p_k}
+.\] 
+\end{Theorem}
+\begin{proof}
+	Let us consider the expansion Eq. \eqref{eq:densitymatrix} of $\rho$ in states $\{\ket{\psi_k}\}_{k=1}^n$ and a measurement defined by measurement operators $\{M_j\}_{j=1}^m$. The probability of a measurement outcome $j$ is given by the sum of the probabilities over all states $k$:
+	\begin{align*}
+		\mathbb{P}(j) &= \sum_{k=1}^n p_k \bra{\psi_k}M_j^\dagger M_j \ket{\psi_k} \\ 
+			      &= \sum_{k=1}^n p_k\Tr(M_j^\dagger M_j \ket{\psi_k}\bra{\psi_k}) \\
+			      &= \Tr (M_k^\dagger M_k \rho),
+	\end{align*}
+	The density matrix after the measurement is given by
+	\begin{align*}
+		\rho &= \sum_{k=1}^{n} p_k \ket{\psi_k}\bra{\psi_k}\\
+		     &\to \sum_{k=1}^{n} p_k \frac{M_j \ket{\psi_k}}{\sqrt{\mathbb{P}(j)} } \frac{\bra{\psi_k} M_j^\dagger}{\sqrt{\mathbb{P}(j)} }.\qedhere
+	\end{align*}
+\end{proof}
+We have used the following lemma in the above proof;
+\begin{Lemma}
+	\[
+		\Tr(A \ket{\psi}\bra{\psi}) = \matrixelement{\psi}{A}{\psi}
+	.\] 
+\end{Lemma}
+\begin{proof}
+	We have
+	\begin{align*}
+	\Tr(A \ket{\psi}\bra{\psi}) &= \sum_{k=1}^n \matrixelement{\varphi_k}{A}{\psi}\braket{\psi}{\varphi_k}\\
+					    &= \braket{\psi}{\varphi_k} \matrixelement{\varphi_k}{A}{\psi}\\
+					    &= \matrixelement{\psi}{A}{\psi}.\qedhere
+	\end{align*}
+\end{proof}
+\begin{Proposition}[Composite Systems]
+	For composite systems, the tensor product basis is given by the tensor products of the basis elements $\ket{i} \otimes \ket{j}$. Hence, the density matrix can be expanded in its matrix elements
+	\[
+		\rho = \sum_{ij\mu\nu}\lambda_{ij\mu\nu} \ket{i}\bra{j}\otimes \ket{\mu}\bra{\nu}
+	.\] 
+\end{Proposition}
+\begin{Remark}[Separable Systems]
+	If there are no cross terms, i.e. $\lambda_{ij\mu\nu}=\lambda_{ij}^A\lambda_{\mu\nu}^B$, we can write the density matrix as
+	\[
+	\rho = \rho_A \otimes \rho_B
+\]
+where
+\[
+	\rho_A = \sum_{ij} \lambda_{ij}^A \ket{i}\bra{j},\qquad \rho_B = \sum_{\mu\nu} \lambda_{\mu\nu}^B \ket{\mu}\bra{\nu}
+.\] 
+\end{Remark}
+However, systems are not in general separable. The next question is how to deal with observables of one system
+\section{The Interaction Picture}
+The interaction picture describes evolution under a composite Hamiltonian
+\[
+H=H_0+H_1
+.\]
+While this can in principle be done all the time, in general we will use this where $H_0$ is an easy Hamiltonian to solve while $H_1$ is difficult. We want to apply concepts like in the Heisenberg picture to eliminate the rotation of the state from $H_0$. Thus, we define the state in the interaction picture to be
+\[
+	\ket{\psi_I(t)} = U_0^\dagger(t)\ket{\psi_S(t)}
+\]
+where $\ket{\psi_I}$ and $\ket{\psi_S}$ are the state vectors in the interaction and schr\"{o}dinger picture respectively and $U_0(t)$ is the propagator.
+
+\section{The Lindblad Equation}
+
+\end{document}
