@@ -73,8 +73,9 @@
 \allowdisplaybreaks
 %polar set
 \newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
-
+\allowdisplaybreaks
 \tcbset{colback=white}
+\renewcommand\comment[1]{ {\color{red} Comment: #1}}
 \begin{document}
 	\newgeometry{margin=1in}
 	\begin{titlepage}
@@ -112,12 +113,32 @@
 	\end{align*}
 	By converting this back into an integral, we see that
 	\[
-	\ket{\psi} = \left(e^{-i \int_{-\infty}^t \dd{t'}H_0} - i \int_{-\infty}^t \dd{t'} f(t') e^{-i \int_{t'}^t \dd{t^{\prime\prime}} H_0} O_1 e^{-i\int_{-\infty}^{t'} \dd{t''}H_0}\right)\ket{\psi}
+	\ket{\psi_n(t)} = \left(e^{-i \int_{-\infty}^t \dd{t'}H_0} - i \int_{-\infty}^t \dd{t'} f(t') e^{-i \int_{t'}^t \dd{t^{\prime\prime}} H_0} O_1 e^{-i\int_{-\infty}^{t'} \dd{t''}H_0}\right)\ket{\psi_n}
+	.\] 
+	Hence, we have
+	\begin{align*}
+		\delta \ket{\psi_n(t)} &= -i\int_{t_{-\infty}}^t \dd{t'}f(t')e^{-iH_0(t-t')}O_1 e^{-iH_0(t'-t_{-\infty})} \ket{\psi_n}\\
+		&= -i\int_{t_{-\infty}}^t \dd{t'}f(t') e^{-iH_0(t-t_{-\infty})}O_1(t')\ket{\psi_n}
+	\end{align*}
+	where we define the operator $O_1$ in the interaction picture to be
+	\[
+	O_1(t) = e^{iH_0(t-t_{-\infty})}O_1e^{-iH_0(t-t_{-\infty})}
 	.\] 
 	Then, we consider an observable $O_2$ and define the change in $O_2$ to be
 	\begin{align*}
-		\delta \mel{\psi_n(t)}{O_2}{\psi_n(t)} &:= \mel{\psi_n(t)}{O_2}{\psi_n(t)} - \mel{\psi_n}{e^{iH_0(t-t_{-\infty})}O_2 e^{-i H_0 (t-t_{-\infty})}}{\psi_n}
+		\delta \mel{\psi_n(t)}{O_2}{\psi_n(t)} &:= \mel{\psi_n(t)}{O_2}{\psi_n(t)} - \mel{\psi_n}{e^{iH_0(t-t_{-\infty})}O_2 e^{-i H_0 (t-t_{-\infty})}}{\psi_n}\\
+		&= \mel{\delta\psi_n(t)}{O_2e^{-iH_0(t-t_{-\infty})}}{\psi_n} + \mel{\psi_n}{e^{iH_0(t-t_{-\infty})}O_2}{\delta\psi_n(t)}\\
+		&= -i\int_{-\infty}^t \dd{t'} f(t') \bra{\psi_n}[O_2(t), O_1(t')]\ket{\psi_n}+O(f^2)\\
+		&=\int_{-\infty}^\infty \dd{t'}D(t,t')f(t')
 	\end{align*}
+where
+\[
+D(t, t') =   -i\theta(t-t') \mel{\psi_n}{[O_2(t), O_1(t')]}{\psi_n}
+.\] 
+Because $ H_0$ is not time dependent, we have \comment{figure out how this works}
+\begin{align*}
+	[O_2(t), O_1(t')] &=  e^{iH(t-t_{-\infty})}O_2 e^{iH(t-t')}O_1 e^{-iH(t'-t_{-\infty})} - e^{iH(t'-t_{-\infty})}O_1 e^{iH(t-t')} O_2 e^{-iH(t-t_{-\infty})}
+\end{align*}
 	\section{Superconductivity}
 	We consider an operator creating a pair of electrons with 0 total momentum above the Fermi sea:
 	\[
