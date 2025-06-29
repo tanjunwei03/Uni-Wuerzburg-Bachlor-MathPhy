@@ -1,0 +1,147 @@
+\fbox{
+\begin{parbox}{\textwidth}{
+I forgot to bring my tablet on the train so please enjoy the \LaTeX~solutions.
+}
+\end{parbox}
+}
+\begin{Problem}[Getting familiar with the Pauli spin vector]
+
+\begin{enumerate}[label=(\alph*)]
+\item Prove the relation 
+\[ (\sigma \cdot A)(\sigma \cdot B) = A \cdot B + i\sigma \cdot (A \times B)\]
+where \( \sigma = (\sigma_x, \sigma_y, \sigma_z) \) denotes the vector of the \( 2 \times 2 \) Pauli-spin matrices. \( A = (A_x, A_y, A_z)^T \) and \( B = (B_x, B_y, B_z)^T \) are arbitrary vectors.
+
+\item Show that 
+\[ \sigma \cdot \hat{p} = \frac{1}{r^2}(\sigma \cdot r)\left(-i\hbar r\partial_r + i\sigma \cdot \hat{L}\right)\]
+where \( \hat{p} = -i\hbar\nabla \) and \( \hat{L} = r \times \hat{p} \).
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+	\item 
+		\begin{align*}
+			(\sigma \cdot A)(\sigma \cdot B) &= (\sigma_iA_i)(\sigma_jB_j)\\
+							 &= A_i B_j(\delta_{ij}I+i\epsilon_{ijk}\sigma_k)\\
+							 &= A_i B_i I +  i \epsilon_{ijk} A_i B_j \sigma_k\\
+							 &= (A\cdot B)I + i \sigma_k\epsilon_{kij}A_i B_j \\
+							 &= (A\cdot B)I + i \sigma\cdot (A\times B) \\
+		\end{align*}
+	\item 
+		\begin{align*}
+			\sigma\cdot \hat{p} &= -i \hbar \sigma_i \partial_i\\
+		\end{align*}
+\end{enumerate}
+\end{proof}
+\begin{Problem}[Majorana representation of the Dirac equation]
+
+Multiplying the Dirac equation known from the lecture by \( -\frac{i}{\hbar} \) we get 
+\[ H_D \Psi = \left(\frac{\partial}{\partial t} + \vec{\alpha} \cdot \vec{\nabla} + im_0 \beta\right) \Psi = 0\]
+with 
+\[ \beta = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad \vec{\alpha} = \begin{pmatrix} 0 & \vec{\sigma} \\ \vec{\sigma} & 0 \end{pmatrix}, \quad \vec{\sigma} = \begin{pmatrix} \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \end{pmatrix}. \]
+
+Thus, some of the matrices in \( H_D \) are imaginary. Show that the transformation 
+\[ \Psi' = U \Psi \tag{4} \]
+with 
+\[ U = \frac{1}{\sqrt{2}}(\alpha_y + \beta) \]
+results in a representation of the Dirac-equation where \( H_D' = UH_DU^{-1} \) is purely real.
+\end{Problem}
+\begin{proof}
+	We begin by showing that $U$ is unitary (which is needed to argue that this is a unitary transformation anyway):
+	\begin{align*}
+		U^\dagger U &= \frac{1}{2}\begin{pmatrix}  I_2 & \sigma_y^\dagger \\ \sigma_y^\dagger & -I_2\end{pmatrix} \begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix}\\
+			    &=\frac{1}{2}\begin{pmatrix} I_2 + \sigma_y^\dagger\sigma_y & \sigma_y - \sigma_y^\dagger \\ \sigma_y^\dagger - \sigma_y & \sigma_y^\dagger\sigma_y + I_2 \end{pmatrix}  \\
+			    &=  \begin{pmatrix} I_2 & 0 \\ 0 & I_2 \end{pmatrix} 
+	\end{align*}
+	Note that since $U$ is both Hermitian and unitary, its inverse is itself. Then we simply apply this to all of the matrices:
+	\begin{align*}
+		2U\beta U &=  \begin{pmatrix}  I_2 & \sigma_y \\ \sigma_y & -I_2\end{pmatrix} \begin{pmatrix} I_2 & 0 \\ 0 & -I_2 \end{pmatrix} \begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix}   \\
+			  &=\begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix} \begin{pmatrix} I_2 & \sigma_y \\ -\sigma_y & I_2 \end{pmatrix}   \\
+			  &= \begin{pmatrix} I_2 - \sigma_y^2 & 2\sigma_y \\ 2\sigma_y & \sigma_y^2 - I_2 \end{pmatrix}  \\
+			  &= \begin{pmatrix} 0 & 2\sigma_y \\ 2\sigma_y & 0 \end{pmatrix} 
+	\end{align*}
+	After the multiplication by $i$, this is purely real. We now proceed to the rest:
+	\begin{align*}
+		2U\alpha_i U &= \begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix} \begin{pmatrix} 0 & \sigma_i \\ \sigma_i & 0 \end{pmatrix} \begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix}  \\
+			     &= \begin{pmatrix} I_2 & \sigma_y \\ \sigma_y & -I_2 \end{pmatrix} \begin{pmatrix} \sigma_i \sigma_y & -\sigma_i \\ \sigma_i & \sigma_i \sigma_y \end{pmatrix}  \\
+			     &= \begin{pmatrix} \sigma_i \sigma_y + \sigma_y \sigma_i & -\sigma_i + \sigma_y\sigma_i\sigma_y \\ \sigma_y\sigma_i \sigma_y- \sigma_i & -\sigma_y \sigma_i - \sigma_i \sigma_y \end{pmatrix}  \\
+	\end{align*}
+	Then we evaluate this for $i\in \{x,y,z\} $:
+	\begin{align*}
+		2U\alpha_x U &= \begin{pmatrix} 0 & -2\sigma_x \\ -2\sigma_x & 0 \end{pmatrix} \\
+		2U\alpha_y U &= \begin{pmatrix} 2I_2 & 0 \\ 0 & -2I_2 \end{pmatrix}\\
+		2U\alpha_z U &= \begin{pmatrix} 0 & -2\sigma_z \\ -2\sigma_z & 0 \end{pmatrix} 
+	\end{align*}
+	all of which are real.\qedhere
+\end{proof}
+\begin{Problem}[Some properties of the \(\gamma\) matrices]
+
+\begin{enumerate}[label=(\alph*)]
+\item By considering \(\mu = \nu = 0\), \(\mu = \nu \neq 0\) and \(\mu \neq \nu\) show that
+
+\[ \{ \gamma^{\mu}, \gamma^{\nu} \} = 2g^{\mu\nu}. \]
+
+where \(\{ , \}\) denotes the anti-commutator.
+
+\item Show that
+
+\[ (\gamma^{\mu})^{\dagger} = \gamma^{0} \gamma^{\mu} \gamma^{0}. \]
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\noindent
+
+
+\fbox{
+\begin{parbox}{\textwidth}{
+		The $\gamma$ matrices are defined by
+		\[
+		\gamma^0 = \beta, \qquad \gamma^i = \beta \alpha^i
+.\]} 
+\end{parbox}}
+\begin{enumerate}[label=(\alph*)]
+	\item We consider the different cases
+		\begin{enumerate}[label=(\arabic*)]
+			\item $\mu=\nu=0$:
+\[
+	\beta^2 = \begin{pmatrix} 1 & 0 & 0 & 0\\
+	0 & 1 & 0 & 0\\
+0 & 0 & -1 & 0\\
+0 & 0 & 0 & -1\end{pmatrix} \begin{pmatrix} 1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & -1 & 0\\
+0 & 0 & 0 & -1\end{pmatrix} =I_4= g^{00}I_4 \\
+.\] 
+\item $\mu = \nu \neq 0$:
+	\begin{align*}
+		(\gamma^\mu)^2 &= \beta\alpha^\mu \beta\alpha^\mu\\
+		       &= \begin{pmatrix} I_2 & 0 \\ 0 & -I_2 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} \begin{pmatrix} I_2 & 0 \\ 0 & -I_2 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix}\\
+		       &= \begin{pmatrix} I_2 & 0 \\ 0 & -I_2 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\mu \\ -\sigma^\mu & 0 \end{pmatrix} \\
+		       &=\begin{pmatrix} I_2 & 0 \\ 0 & -I_2 \end{pmatrix} \begin{pmatrix} -I_2 & 0 \\ 0 & I_2 \end{pmatrix}   \\
+		       &= -I_4 = g^{\mu\mu}I_4
+	\end{align*}
+\item $\mu\neq\nu$:
+	The relevant commutator is $\{\beta\alpha^\mu, \beta\alpha^\nu\}$. We then use the anticommutator identity
+	 \[
+		 \{A, BC\} = \{A, B\}C - B[A,C]
+	\] 
+	as well as the commutator identity
+\[
+	[AB, C] = A[B,C]+[A,C]B
+.\] 
+	to expand
+	\begin{align*}
+		\{\beta \alpha^\mu, \beta\alpha^\nu\} &= \{\beta\alpha^\mu, \beta\}\alpha^\nu - \beta[\beta\alpha^\mu, \alpha^\nu] \\
+						      &= (\{\beta, \beta\}\alpha^\mu - \beta[\beta, \alpha^\mu])\alpha^\nu - \beta(\beta[\alpha^\mu,\alpha^\nu]+[\beta, \alpha^\nu]\alpha^\mu)  \\
+	\end{align*}
+		\end{enumerate}
+	\item We have
+		\begin{align*}
+			(\gamma^\mu)^\dagger &= (\beta\alpha^\mu)^\dagger\\
+					     &= (\alpha^\mu)^\dagger \beta^\dagger \\
+					     &= \alpha^\mu \beta & \alpha,\beta\text{ hermitian}\\
+					     &= \beta^{-1}\gamma^\mu \beta\\
+					     &= \beta \gamma^{\mu}\beta
+		\end{align*}
+		where it is understood that $\alpha^0=I_4$.
+\end{enumerate}
+\end{proof}
