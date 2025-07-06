@@ -17,6 +17,7 @@ where \( \hat{p} = -i\hbar\nabla \) and \( \hat{L} = r \times \hat{p} \).
 \end{enumerate}
 \end{Problem}
 \begin{proof}
+	It shall be understood here that we sum over all repeated indices.
 \begin{enumerate}[label=(\alph*)]
 	\item 
 		\begin{align*}
@@ -30,6 +31,33 @@ where \( \hat{p} = -i\hbar\nabla \) and \( \hat{L} = r \times \hat{p} \).
 		\begin{align*}
 			\sigma\cdot \hat{p} &= -i \hbar \sigma_i \partial_i\\
 		\end{align*}
+		We have
+		\begin{align*}
+			\frac{1}{r^2}(\sigma\cdot r)\left( -i \hbar r\partial_r + i \sigma\cdot L \right) &= \frac{1}{r^2}(\sigma_j r_j)\left( -i \hbar r \partial_r + i\epsilon_{lmn}\sigma_l r_m (-i \hbar \partial_n) \right)  \\
+													  &= \frac{-i \hbar}{r^2}(\sigma_j r_j) (r\partial_r + \epsilon_{lmn} \sigma_l r_m \partial_n) \\
+													  &= \frac{-i \hbar }{r^2}(\sigma_j r_j)(r (\partial_r r_k)\partial_k + \epsilon_{lmn}\sigma_l r_m \partial_n) \\
+													  &=  \frac{-i \hbar }{r^2}(\sigma_j r_j)(r(\partial_r r_n) + \epsilon_{lmn} \sigma_l r_m)\partial_n \\
+													  &= \frac{-i \hbar }{r^2}(\sigma_j r_j) (r_n \partial_n + \epsilon_{lmn} \sigma_l r_m \partial_n) 
+		\end{align*}
+		So now the goal is to show that
+		\[
+			\frac{\sigma_j r_j}{r^2}(r(\partial_r r_n) + \epsilon_{lmn}\sigma_l r_m) = \sigma_n
+		.\] 
+or
+\[
+	\frac{1}{r^2}(\sigma_j r_j)(r_n + \epsilon_{lmn}\sigma_l r_m)=\sigma_n
+.\] 
+We do this by considering
+\begin{align*}
+	& \frac{1}{r^2}(\sigma_j r_j)(r_n + \epsilon_{lmn} \sigma_l r_m)\\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{lmn} r_j \sigma_j \sigma_l r_m\\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{lmn}r_jr_m(\delta_{jl}I_2+i\epsilon_{jlr}\sigma_r)\\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{jmn} r_j r_m + \frac{i}{r^2}\epsilon_{lmn}\epsilon_{jlr}r_j r_m \sigma_r\\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{jmn} r_j r_m + \frac{i}{r^2}\epsilon_{lmn}\epsilon_{lrj}r_j r_m \sigma_r \\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{jmn} r_j r_m + \frac{i}{r^2}\left( \delta_{mr}\delta_{nj}-\delta_{mj}\delta_{nr} \right) r_j r_m \sigma_r \\
+	=&\frac{1}{r^2}\sigma_j r_j r_n + \frac{1}{r^2}\epsilon_{jmn} r_j r_m + \frac{i}{r^2}r_n r_r \sigma_r - \frac{i}{r^2} r_m r_m \sigma_n \\
+\end{align*}
+		(I have no clue how to do this I give up).\qedhere
 \end{enumerate}
 \end{proof}
 \begin{Problem}[Majorana representation of the Dirac equation]
@@ -120,19 +148,32 @@ where \(\{ , \}\) denotes the anti-commutator.
 		       &= -I_4 = g^{\mu\mu}I_4
 	\end{align*}
 \item $\mu\neq\nu$:
-	The relevant commutator is $\{\beta\alpha^\mu, \beta\alpha^\nu\}$. We then use the anticommutator identity
-	 \[
-		 \{A, BC\} = \{A, B\}C - B[A,C]
-	\] 
-	as well as the commutator identity
-\[
-	[AB, C] = A[B,C]+[A,C]B
-.\] 
-	to expand
+	Since
+	\[\alpha^\mu=\begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} ,\]
+	we have
 	\begin{align*}
-		\{\beta \alpha^\mu, \beta\alpha^\nu\} &= \{\beta\alpha^\mu, \beta\}\alpha^\nu - \beta[\beta\alpha^\mu, \alpha^\nu] \\
-						      &= (\{\beta, \beta\}\alpha^\mu - \beta[\beta, \alpha^\mu])\alpha^\nu - \beta(\beta[\alpha^\mu,\alpha^\nu]+[\beta, \alpha^\nu]\alpha^\mu)  \\
+		\beta\alpha^\mu &= \begin{pmatrix} 0 & \sigma^\mu \\ -\sigma^\mu & 0 \end{pmatrix} \\
+		\alpha^\mu\beta &= \begin{pmatrix} 0 & -\sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} 
 	\end{align*}
+	Thus, if $\mu=0$, we have
+	\begin{align*}
+		\{\beta\alpha^\mu, \beta\alpha^\nu\} &= \{\beta\beta, \beta\alpha^\nu\} \\
+						     &= \{1, \beta\alpha^\nu\} \\
+						     &= \begin{pmatrix} 0 & \sigma^\nu \\ -\sigma^\nu & 0 \end{pmatrix} + \begin{pmatrix} 0 & -\sigma^\nu \\ \sigma^\nu & 0 \end{pmatrix} =0 \\
+	\end{align*}
+	If not, we have
+	\[
+		\{\beta\alpha^\mu, \beta\alpha^\nu\} = -\{\alpha^\mu, \alpha^\nu\} 
+	\]
+	and
+	\begin{align*}
+		\begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\nu \\ \sigma^\nu & 0 \end{pmatrix} &= \begin{pmatrix} \sigma^\mu\sigma^\nu & 0 \\ 0 & \sigma^\mu\sigma^\nu \end{pmatrix}  \\
+		\begin{pmatrix} 0 & \sigma^\nu \\ \sigma^\nu & 0 \end{pmatrix} \begin{pmatrix} 0 & \sigma^\mu \\ \sigma^\mu & 0 \end{pmatrix} &= \begin{pmatrix} \sigma^\nu\sigma^\mu & 0 \\ 0 & \sigma^\nu\sigma^\mu \end{pmatrix}
+	\end{align*}
+	Thus, we have
+	\[
+		\{\beta\alpha^\mu, \beta\alpha^\nu\} = -\begin{pmatrix} \{\sigma^\mu, \sigma^\nu\} & 0 \\ 0 & \{\sigma^\mu, \sigma^\nu\} \end{pmatrix} =0
+	.\] 
 		\end{enumerate}
 	\item We have
 		\begin{align*}
@@ -142,6 +183,6 @@ where \(\{ , \}\) denotes the anti-commutator.
 					     &= \beta^{-1}\gamma^\mu \beta\\
 					     &= \beta \gamma^{\mu}\beta
 		\end{align*}
-		where it is understood that $\alpha^0=I_4$.
+		where it is understood that $\alpha^0=I_4$.\qedhere
 \end{enumerate}
 \end{proof}
