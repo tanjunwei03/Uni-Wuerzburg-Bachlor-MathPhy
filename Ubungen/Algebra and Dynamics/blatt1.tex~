@@ -1,0 +1,141 @@
+\begin{Problem}[CCRs vs. Boundedness]
+Consider two bounded operators $A$ and $B$ on a Hilbert space $\mathcal{H}$, i.e.
+\begin{subequations}
+	\begin{align}
+		\exists a \in \mathbb{R} : \forall \psi \in \mathcal{H} : \|A \psi\| \leq a \|\psi\|, \label{1a} \\
+		\exists b \in \mathbb{R} : \forall \psi \in \mathcal{H} : \|B \psi\| \leq b \|\psi\|. \label{1b}
+	\end{align}
+\end{subequations}
+
+Show that the canonical commutation relations
+\begin{equation}
+	[A,B] = AB - BA = i
+\end{equation}
+are inconsistent with the assumption of boundedness for the operators $A$ and $B$.
+
+\noindent \textbf{NB:} It is not necessary to find an original proof. It suffices to find, understand and present a proof from the literature.
+\end{Problem}
+
+\begin{proof}
+	The proof comes from rudin: Let $A$ be a normed algebra, and $x,y\in A$. We assume that
+	\[xy - yx = 1\]
+	The first step is to prove that $xy^n - y^n x = ny^{n-1}$ for all $n\in \N$. This is true for $n=1$. Then, by induction, if
+	\[
+	xy^n - y^n x = ny^{n-1}
+	,\] 
+	it follows that
+	\begin{align*}
+		xy^{n+1} - y^{n+1}x &= (xy^n - y^n x)y + y^n (xy - yx)\\
+		&= ny^n + y^n\\
+		&= (n+1)y^n
+	\end{align*}
+	Additionally, we note that $y^n\neq 0$ for all $n$. Otherwise, we would choose the minimum $n$, and get
+	\[
+	0 = xy^n - y^n x = n y^{n-1}
+	,\]
+	a contradiction to the minimality of $n$. Now, we have
+	\[
+	n \|y^{n-1}\|= \|xy^n - y^n x\|\le 2 \|x\|\|y\|\|y\|^{n-1}
+	\] 
+	and
+	\[
+	2\|x\|\|y\|\ge n
+	,\]
+	a contradiction.
+\end{proof}
+\begin{Problem}[Classical Dynamics on the 2-Torus]
+
+Consider a classical dynamical system with the 2-Torus $T^2 = S^1 \times S^1$ as phase space $\Gamma$ (this is not a cotangent bundle, but it has the technical advantage of being compact).
+
+Using standard coordinates $(\theta_1, \theta_2) \in [0, 2\pi)^2$, a consistent Poisson bracket is given by
+\begin{equation}
+	\{f,g\} = \frac{\partial f}{\partial \theta_1} \frac{\partial g}{\partial \theta_2} - \frac{\partial f}{\partial \theta_2} \frac{\partial g}{\partial \theta_1}.
+\end{equation}
+
+Assume that the Hamiltonian is
+\begin{align}
+	H : \Gamma &\to \mathbb{R} \nonumber \\
+	(\theta_1, \theta_2) &\mapsto H(\theta_1, \theta_2) = c\cos \theta_1.
+\end{align}
+
+In order to be well defined globally, the Hamiltonian must be periodic in $\theta_1$ and $\theta_2$. This is the simplest choice.
+
+\begin{enumerate}
+	\item Derive the equations of motion.
+	\item Determine the flow $\Phi$ of a phase space point $(\theta_1, \theta_2) \in \Gamma$.
+	\item Determine the time evolution of the state $\omega$, where
+	\begin{equation}
+		\omega(f) = \int_{\Gamma} \dd[2]{\theta}f(\theta_1, \theta_2) \, \omega(\theta)
+	\end{equation}
+	with
+	\begin{align}
+		\omega : \Gamma &\to \mathbb{R}\nonumber \\
+		(\theta_1, \theta_2) &\mapsto \omega(\theta_1, \theta_2) = \frac{1}{\pi^2} \sin^2 \theta_1 \sin^2 \theta_2.
+	\end{align}
+\end{enumerate}
+\end{Problem}
+\begin{revision}
+	\section*{Hamiltonian Dynamics}
+The Hamiltonian is a function on the phase space
+\[H = H(q_1, \dots, q_n, p_1, \dots, p_n).\]
+The flow solves the canonical equations of motion
+\begin{align*}
+\dv{q_i}{t} &= \pdv{H}{p_i}\\
+\dv{p_i}{t} &= -\pdv{H}{q_i}
+\end{align*}
+We can also define the Poisson bracket
+\[\{f,g\} = \sum_i \left(\pdv{f}{q_i}\pdv{g}{p_i} - \pdv{f}{p_i}\pdv{g}{q_i}\right)\]
+It is immediately clear that the Poisson bracket is antisymmetric; additionally, we have the canonical commutation relations
+\[\{q,p\}= 1, \{q,q\}=\{p,p\}=0\]
+Clearly, because $\pdv{q}{p} = \pdv{p}{q} = 0$, we can rewrite the canonical commutation relations as
+\begin{align*}
+	\dv{q_i}{t} &= \{q_i, H\}\\
+	\dv{p_i}{t} &= \{p_i, H\}
+\end{align*}
+\section*{States as Functionals}
+\end{revision}
+\begin{proof}
+	\begin{enumerate}
+		\item The equations of motion are
+		\[\dv{\theta_1}{t} = \pdv{H}{\theta_2}=0\]
+		and 
+		\[\dv{\theta_2}{t} = -\pdv{H}{\theta_1}=c\sin\theta_1\]
+		\item Clearly, the first equation tells us that $\theta_1$ is a constant; since the right hand side of equation 2 is now a constant, $\theta_2$ varies linearly with time.
+		\[\Phi^t \begin{pmatrix}
+			\theta_1 \\ \theta_2
+		\end{pmatrix} = \begin{pmatrix}
+		\theta_1 \\ \theta_2 + ct\cos\theta_1
+	\end{pmatrix}\]
+	\end{enumerate}
+\end{proof}
+\begin{Problem}[Classical Dynamics on the 2-Sphere]
+
+Consider a classical dynamical system with the 2-Sphere $S^2$ as phase space $\Gamma$ (this is again not a cotangent bundle, but the technical advantage of being compact and is highly symmetric).
+
+Using standard spherical coordinates $(\theta, \phi) \in [0, \pi] \times [0, 2\pi)$, a consistent Poisson bracket is given by
+\begin{equation}
+	\{f,g\} = \frac{1}{\sin \theta} \left(\frac{\partial f}{\partial \theta} \frac{\partial g}{\partial \phi}- \frac{\partial f}{\partial \phi} \frac{\partial g}{\partial \theta} \right).
+\end{equation}
+
+Assume that the Hamiltonian is
+\begin{align}
+	H : \Gamma &\to \mathbb{R} \nonumber \\
+	(\phi, \theta) &\mapsto H(\phi, \theta) = \cos \theta.
+\end{align}
+
+In order to be well defined globally, the Hamiltonian must be periodic in $\theta$ and $\phi$. This is one of the simplest choices.
+
+\begin{enumerate}
+	\item Show that the Poisson bracket satisfies all requirements.
+	\item Determine the flow $\Phi$ of a phase space point $(\theta, \phi) \in \Gamma$.
+	\item Determine the time evolution of the state $\omega$, where
+	\begin{equation}
+		\omega(f) = \int_{\Gamma}\sin\theta \dd{\theta}\dd{\phi} f(\theta, \phi) \, \omega(\theta, \phi)
+	\end{equation}
+	with
+	\begin{align}
+		\omega : \Gamma &\to \mathbb{R}\nonumber\\
+		(\theta, \phi) &\mapsto \omega(\theta, \phi) = \frac{2}{\pi^2} \sin \theta \cos^2 \phi.
+	\end{align}
+\end{enumerate}
+\end{Problem}

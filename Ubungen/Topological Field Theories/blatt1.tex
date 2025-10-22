@@ -1,0 +1,52 @@
+	\begin{Problem}[\textbf{Gaussian integral for bosonic fields}]
+	Verify the functional integral
+	\[
+	\int \mathcal{D}\phi \, \exp\left( -\frac{1}{2} \phi^T M \phi + J^T \phi \right) = (2\pi)^{N/2} (\det M)^{-1/2} \exp\left( \frac{1}{2} J^T M^{-1} J \right),
+	\]
+	where $\phi^T = (\phi_1, \ldots, \phi_N)$ and $J^T = (J_1, \ldots, J_N)$ are real vectors, $M$ a symmetric $N \times N$ matrix, and the integration is carried out over all the fields $\phi_i,\, i = 1, \ldots, N$,
+	\[
+	\int \mathcal{D} \phi \equiv \int d\phi_1 \ldots d\phi_N.
+	\]
+\end{Problem}
+	\begin{proof}
+		Since $M$ is symmetric, we can diagonalise it orthogonally with a matrix $U$ such that
+		\[\phi^T M \phi = \phi^T U^T D U \phi\]
+		with $D$ diagonal. Call $\eta = U\phi$. Then 
+	\end{proof}
+	\begin{Problem}[\textbf{Green’s function of Laplacian in two dimensions}]
+	Verify
+	\[
+	\partial \bar{\partial} \ln(z \bar{z}) = \pi \delta(\tau)\delta(x),
+	\]
+	where $z = x + i \tau$, $\bar{z} = x - i \tau$.
+\end{Problem}
+	
+	\begin{Problem}[\textbf{Dirac Lagrangian in two dimensions}] 
+	Consider the 2D Dirac Lagrangian in Minkowski space,
+	\[
+	\mathcal{L}_{D, M} = \frac{1}{\pi} \bar{\Psi}_D i \slashed{\partial} \Psi_D,
+	\]
+	where $\Psi_D = \Psi_D^\dagger \gamma^0$, $\Psi_D^\dagger = (\bar{\psi}^*, \psi^*)$, $\slashed{\partial} = \gamma^\mu \partial_\mu = \gamma^0 \partial_0 + \gamma^1 \partial_1$, and
+	\[
+	\Psi_D = \begin{pmatrix} \psi \\ \bar{\psi} \end{pmatrix}, \quad
+	\gamma^0 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad
+	\gamma^1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Show that $\{\gamma^\mu, \gamma^\nu\} = 2 g^{\mu\nu}$, where $g^{00} = -g^{11} = 1$ is the Minkowski metric.
+		\item[(b)] Obtain the equation of motion from $\mathcal{L}_{D,M}$.
+		\item[(c)] Verify that $\mathcal{L}_{D,M}$ is invariant under the U(1) vector symmetry $\Psi_D \to e^{i\lambda} \Psi_D$ and obtain the associated conserved current, the vector current $J^\mu_V$.
+		\item[(d)] Verify that $\mathcal{L}_{D,M}$ is invariant under the U(1) axial symmetry $\Psi_D \to e^{i\lambda\gamma^5} \Psi_D$ and obtain the associated conserved current, the axial current $J^\mu_A$.
+		\item[(e)] Compare the Lagrangian, as well as the results from (b)-(d), to the results we obtained in Euclidean space with complex space time coordinates $z = \tau + ix$, $\bar{z} = \tau - ix$ in class.
+	\end{enumerate}
+			
+\end{Problem}
+	
+	\begin{Problem}[\textbf{Partial integration in the complex plane}]
+			Determine the coefficients $a$ and $b$ in the formula
+	\[
+	\frac{1}{\pi} \int \dd{\tau} \dd{x} \left( \bar{\partial} f(z) + \partial \bar{f}(\bar{z}) \right) = a \oint dz f(z) + b \oint d\bar{z} \bar{f}(\bar{z}),
+	\]
+	where $f(z)$ and $\bar{f}(\bar{z})$ are independent functions, the $\dd{\tau} \dd{x}$ integration extends over the entire plane and the contour integrals are taken counter-clockwise around the entire $z$ or $\bar{z}$ planes in the respective terms.
+\end{Problem}
