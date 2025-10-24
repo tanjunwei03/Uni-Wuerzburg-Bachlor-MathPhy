@@ -106,6 +106,13 @@ Clearly, because $\pdv{q}{p} = \pdv{p}{q} = 0$, we can rewrite the canonical com
 		\end{pmatrix} = \begin{pmatrix}
 		\theta_1 \\ \theta_2 + ct\cos\theta_1
 	\end{pmatrix}\]
+\item The flow is defined by
+\[\omega_t(f) = \omega(\Phi_t(f))=\omega(f\circ \Phi_t).\]
+On the right hand side, we desire
+\begin{align*}
+\omega_t(f) &= \frac{1}{\pi^2}\int_\Gamma \dd[2]{\theta}f(\theta_1, \theta_2 + ct\cos\theta_1)\omega(\theta_1,\theta_2) \\
+&= \frac{1}{\pi^2}\int_\Gamma \dd[2]{\theta}f(\theta_1, \theta_2)\omega(\theta_1,\theta_2-ct\cos\theta_1).\qedhere
+\end{align*}
 	\end{enumerate}
 \end{proof}
 \begin{Problem}[Classical Dynamics on the 2-Sphere]
@@ -120,7 +127,7 @@ Using standard spherical coordinates $(\theta, \phi) \in [0, \pi] \times [0, 2\p
 Assume that the Hamiltonian is
 \begin{align}
 	H : \Gamma &\to \mathbb{R} \nonumber \\
-	(\phi, \theta) &\mapsto H(\phi, \theta) = \cos \theta.
+	(\phi, \theta) &\mapsto H(\phi, \theta) = c\cos \theta.
 \end{align}
 
 In order to be well defined globally, the Hamiltonian must be periodic in $\theta$ and $\phi$. This is one of the simplest choices.
@@ -139,3 +146,24 @@ In order to be well defined globally, the Hamiltonian must be periodic in $\thet
 	\end{align}
 \end{enumerate}
 \end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item It is clearly antisymmetric
+		\item We have the equations of motion
+		\begin{align*}
+			\dv{\theta}{t} &= \{\theta, H\} = 0\\
+			\dv{\phi}{t} &= \{\phi, H\} = -\frac{1}{\sin\theta} (-c\sin\theta) = c
+		\end{align*}
+	and solutions
+	\begin{align*}
+		\theta(t) &= \theta(0)\\
+		\phi(t) &= \phi(0) + ct
+	\end{align*}
+\item Again
+\begin{align*}
+	\omega_t(f) &= \omega(f\circ \Phi_t)\\
+	&= \frac2{\pi^2} \int_\Gamma \sin\theta \dd{\theta}\dd{\phi} f(\theta, \phi+ct) \, \omega(\theta, \phi)\\
+	&=\frac2{\pi^2} \int_\Gamma \sin\theta \dd{\theta}\dd{\phi} f(\theta, \phi) \, \omega(\theta, \phi-ct)
+\end{align*}
+	\end{enumerate}
+\end{proof}
