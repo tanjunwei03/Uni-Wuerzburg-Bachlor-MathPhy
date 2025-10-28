@@ -11,7 +11,16 @@
 	\begin{proof}
 		Since $M$ is symmetric, we can diagonalise it orthogonally with a matrix $U$ such that
 		\[\phi^T M \phi = \phi^T U^T D U \phi\]
-		with $D$ diagonal. Call $\eta = U\phi$. Then 
+		with $D$ diagonal. Call $\eta = U\phi$. Then we have
+		\begin{align*}
+			\int \mathcal{D}\phi \exp\left( -\frac{1}{2}\phi^T M \phi + J^T \phi \right) &= \int \mathcal{D}\phi \exp\left( -\frac{1}{2}\eta D\eta + J^T U^T \eta \right)  \\
+			&= \int \mathcal{D}\eta \exp\left( -\frac{1}{2}\eta^T D\eta + (UJ)^T \eta \right)  \\
+			&= \int \mathcal{D}\eta \exp\left( -\frac{1}{2}\sum D_i \eta_i^2 + \sum(UJ)_i \eta_i \right)  \\
+			&= \prod_i \int \dd{\eta_i} \exp\left( -\frac{1}{2}D_i \eta_i^2 + (UJ)_i \eta_i \right)  \\
+			&= \prod_i \sqrt{\frac{2\pi}{D_i}}e^{\frac{(UJ)_i^2}{2D_i}}  \\
+			&= (2\pi)^{N / 2}\left( \prod_i D_i \right)^{-1 / 2} \exp\left( \frac{1}{2}\sum \frac{(UJ)_i^2}{D_i} \right)   \\
+			&= (2\pi)^{N / 2}\left( \det M \right)^{-1 / 2} \exp\left( \frac{1}{2}J^T M^{-1}J \right).\qedhere 
+		\end{align*}
 	\end{proof}
 	\begin{Problem}[\textbf{Green’s function of Laplacian in two dimensions}]
 	Verify
@@ -20,17 +29,31 @@
 	\]
 	where $z = x + i \tau$, $\bar{z} = x - i \tau$.
 \end{Problem}
-	
+\begin{proof}
+	We begin by expanding to get
+	\[
+	\partial \overline{\partial}\ln z \overline{z}=\frac{1}{4}(\partial_\tau^2+\partial_x^2)\ln(\tau^2+x^2)	
+	.\] 
+	Up to some constants, this is just the Laplace's equation for the potential of a line charge at $(x,y)=(0,0)$, at which point the properties are obvious. By direct computation, it can be seen that this vanishes for $(\tau,x)\neq (0,0)$. 
+
+	The interesting bit is to show that it is truly the dirac delta, and we do so using Gauss's Theorem:
+	\begin{align*}
+		\int_{D_\epsilon(0)} \ln r^2 \dd{A} &= \int_{\partial D_\epsilon(0)} \frac{2}{r} r\dd{\theta}\\
+		&=  2\pi 
+	\end{align*}
+	whereupon normalisation yields the desired result.
+\end{proof}
+
 	\begin{Problem}[\textbf{Dirac Lagrangian in two dimensions}] 
 	Consider the 2D Dirac Lagrangian in Minkowski space,
 	\[
 	\mathcal{L}_{D, M} = \frac{1}{\pi} \bar{\Psi}_D i \slashed{\partial} \Psi_D,
 	\]
-	where $\Psi_D = \Psi_D^\dagger \gamma^0$, $\Psi_D^\dagger = (\bar{\psi}^*, \psi^*)$, $\slashed{\partial} = \gamma^\mu \partial_\mu = \gamma^0 \partial_0 + \gamma^1 \partial_1$, and
+	where $\overline{\Psi}_D = \Psi_D^\dagger \gamma^0$, $\Psi_D^\dagger = (\bar{\psi}^*, \psi^*)$, $\slashed{\partial} = \gamma^\mu \partial_\mu = \gamma^0 \partial_0 + \gamma^1 \partial_1$,
 	\[
-	\Psi_D = \begin{pmatrix} \psi \\ \bar{\psi} \end{pmatrix}, \quad
-	\gamma^0 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad
-	\gamma^1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.
+	\Psi_D = \begin{pmatrix} \overline{\psi} \\ \psi \end{pmatrix}, \quad
+	\gamma^0 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+	\gamma^1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix},\text{ and }\gamma_5 =\gamma^0\gamma^1 = \begin{pmatrix}  1 & 0 \\ 0 & -1 \end{pmatrix} 
 	\]
 	
 	\begin{enumerate}
@@ -42,7 +65,83 @@
 	\end{enumerate}
 			
 \end{Problem}
-	
+\begin{proof}
+	\begin{parts}
+	\item Direct computation in mathematica.
+	\item Direct variation of the action with respect to  $\overline{\psi}_D$ yields
+		\[
+		\delta S \propto i \slashed{\partial} \Psi_D = 0	
+		.\] 
+		This is the Dirac equation. Similarly, we have
+		\begin{align*}
+			\delta S &\propto \int \dd{\tau}\dd{x} \overline{\Psi}_D i \slashed{\partial}(\delta \Psi_D) \\
+			&=\int \dd{\tau}\dd{x} \overline{\Psi}_D i \gamma^\mu\partial_\mu(\delta \Psi_D)\\
+			&= \int \dd{\tau}\dd{x} (\partial_\mu \overline{\Psi}_D)\gamma^\mu \delta\psi_D=0
+		\end{align*}
+		and hence
+		\[
+		(\partial_\mu \overline{\Psi}_D)\gamma^\mu=0
+		.\] 
+	\item We have (in the notation of the lecture)
+		\[
+		D\Psi_D = i\Psi_D,\qquad D \overline{\Psi}_D = -i \Psi_D
+		.\] 
+		Noting that $\mathcal{L}_{D,M}(\lambda) = \mathcal{L}_{D,M}$, i.e. $\mathcal{L}_{D,M}$ does not depend on $\lambda$ at all, we have
+		\[
+		J^\mu = \fdv{\mathcal{L}_{D,M}}{(\partial_\mu \phi)}D\phi,\qquad J^\mu \propto \overline{\Psi}_D \gamma^\mu\Psi_D
+		.\] 
+		For purposes of comparison later, the components are
+		\begin{align*}
+			J^0 &= \overline{\psi}^* \overline{\psi} + \psi^*\psi, \\
+			J^1 &= \overline{\psi}^* \overline{\psi} - \psi^*\psi. 
+		\end{align*}
+	\item First we note that
+		\[
+			\overline{\Psi}_D = \overline{\Psi}_D e^{i\lambda \gamma^5}
+		.\] 
+		Thus, we have
+		\[
+			\mathcal{L}_{D,M}(\lambda) = \frac{1}{\pi}\overline{\Psi}_D e^{i\lambda \gamma^5} i\slashed{\partial}e^{i\lambda \gamma^5} \Psi_D
+		.\]
+		Since
+		\[
+		\gamma^5 \gamma^0\gamma^5=-\gamma^0, \qquad \gamma^5 \gamma^1 \gamma^0
+	,\]
+	by direct expansion of the exponential we find that
+	\[
+		e^{i\lambda \gamma^5}\gamma^0 e^{i\lambda\gamma^5}=\gamma^0, \qquad e^{i\lambda \gamma^5}\gamma^1 e^{i\lambda\gamma^5}=\gamma^1
+	.\] 
+	Thus, the Lagrangian does not depend on $\lambda$. Then, the differentials are given by
+	\[
+	D\Psi_D = i\gamma^5 \Psi_D,\qquad D \overline{\Psi}_D = i\Psi_D \gamma^5
+	.\] 
+	Then the conserved current is
+	\[
+	J^\mu = \frac{1}{\pi}\overline{\Psi}_D i\gamma^\mu (i\gamma^5 \Psi_D) \propto \overline{\Psi}_D \gamma^\mu \gamma^5 \Psi_D
+	.\] 
+\item For the Lagrangian, we had
+	\begin{align*}
+		\mathcal{L}_D &= \mathcal{L}_{M 1}+\mathcal{L}_{M 2}\\
+		&= \frac{1}{2\pi}(\overline{\psi}_1\partial \overline{\psi}_1+\psi_1 \overline{\partial}\psi_1)+\frac{1}{2\pi}(\overline{\psi}_2\partial \overline{\psi}_2 + \psi_2 \overline{\partial}\psi_2)
+	\end{align*}
+	Here, we have
+	\begin{align*}
+		\mathcal{L}_{D,M} &= \frac{1}{\pi}\overline{\Psi}_D i\slashed{\partial}\Psi_D \\
+&= \frac{i}{\Pi}\left[ \begin{pmatrix} \overline{\psi}^*\\ \psi^* \end{pmatrix} \cdot \partial_0 \begin{pmatrix} \overline{\psi}\\ \psi \end{pmatrix} + \begin{pmatrix} \overline{\psi}^*  \\ \psi^* \end{pmatrix} \cdot \gamma^5\partial_1 \begin{pmatrix} \overline{\psi} \\ \psi \end{pmatrix}  \right]  \\
+&= \frac{i}{\pi}\left[ \overline{\psi}^* \partial_0 \overline{\psi}+ \psi^* \partial_0 \psi + \overline{\psi}^*\partial_1 \overline{\psi}- \psi^* \partial_1 \psi \right]. 
+	\end{align*}
+	Noting that
+	\[
+	\psi=\frac{1}{\sqrt{2} }( \psi_1+i\psi_2), \qquad \overline{\psi}=\frac{1}{\sqrt{2} }(\overline{\psi}_1 - i \overline{\psi}_2)
+	,\] 
+	we can substitute this to get
+	\begin{align*}
+		\mathcal{L}_{D,M} =&~  \frac{i}{2\pi}[(\overline{\psi}_1+i \overline{\psi}_2) \partial_0 (\overline{\psi}_1 - i \overline{\psi}_2)+ (\psi_1-i\psi_2)\partial_0 (\psi_1+i\psi_2) \\
+				   &~+ (\overline{\psi}_1+i \overline{\psi}_2)\partial_1 (\overline{\psi}_1 - i \overline{\psi}_2) -(\psi_1-i\psi_2)\partial_1(\psi_1+i\psi_2)]
+	\end{align*}
+	(I have no clue how to simplify this further).\qedhere
+	\end{parts}
+\end{proof}	
 	\begin{Problem}[\textbf{Partial integration in the complex plane}]
 			Determine the coefficients $a$ and $b$ in the formula
 	\[
@@ -50,3 +149,14 @@
 	\]
 	where $f(z)$ and $\bar{f}(\bar{z})$ are independent functions, the $\dd{\tau} \dd{x}$ integration extends over the entire plane and the contour integrals are taken counter-clockwise around the entire $z$ or $\bar{z}$ planes in the respective terms.
 \end{Problem}
+\begin{proof}
+	The constants can be determined by substituting in the functions $1 / z$ and $1 / \overline{z}$. We know that
+	\[
+		\oint \frac{1}{z}\dd{z} = 2\pi i
+	.\]
+	On the other hand, we have
+	\[
+		\int \dd{\tau}\dd{x} \overline{\partial}\frac{1}{z}=\int\dd{\tau}\dd{x} \pi\delta(\tau)\delta(x) = \pi
+	.\] 
+	Thus, by comparison of coefficients, we have $a=\frac{1}{2\pi i}$. A similar argument extends to yield $b=\frac{1}{2\pi i}$.
+\end{proof}

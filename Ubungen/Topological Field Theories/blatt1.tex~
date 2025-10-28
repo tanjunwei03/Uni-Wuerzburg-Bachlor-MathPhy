@@ -1,126 +1,96 @@
-\begin{Problem}[CCRs vs. Boundedness]
-Consider two bounded operators $A$ and $B$ on a Hilbert space $\mathcal{H}$, i.e.
-\begin{subequations}
-	\begin{align}
-		\exists a \in \mathbb{R} : \forall \psi \in \mathcal{H} : \|A \psi\| \leq a \|\psi\|, \label{1a} \\
-		\exists b \in \mathbb{R} : \forall \psi \in \mathcal{H} : \|B \psi\| \leq b \|\psi\|. \label{1b}
-	\end{align}
-\end{subequations}
-
-Show that the canonical commutation relations
-\begin{equation}
-	[A,B] = AB - BA = i
-\end{equation}
-are inconsistent with the assumption of boundedness for the operators $A$ and $B$.
-
-\noindent \textbf{NB:} It is not necessary to find an original proof. It suffices to find, understand and present a proof from the literature.
-\end{Problem}
-
-\begin{proof}
-	The proof comes from rudin: Let $A$ be a normed algebra, and $x,y\in A$. We assume that
-	\[xy - yx = 1\]
-	The first step is to prove that $xy^n - y^n x = ny^{n-1}$ for all $n\in \N$. This is true for $n=1$. Then, by induction, if
+	\begin{Problem}[\textbf{Gaussian integral for bosonic fields}]
+	Verify the functional integral
 	\[
-	xy^n - y^n x = ny^{n-1}
-	,\] 
-	it follows that
-	\begin{align*}
-		xy^{n+1} - y^{n+1}x &= (xy^n - y^n x)y + y^n (xy - yx)\\
-	\end{align*}
-\end{proof}
-\begin{Problem}[Classical Dynamics on the 2-Torus]
-
-Consider a classical dynamical system with the 2-Torus $T^2 = S^1 \times S^1$ as phase space $\Gamma$ (this is not a cotangent bundle, but it has the technical advantage of being compact).
-
-Using standard coordinates $(\theta_1, \theta_2) \in [0, 2\pi)^2$, a consistent Poisson bracket is given by
-\begin{equation}
-	\{f,g\} = \frac{\partial f}{\partial \theta_1} \frac{\partial g}{\partial \theta_2} - \frac{\partial f}{\partial \theta_2} \frac{\partial g}{\partial \theta_1}.
-\end{equation}
-
-Assume that the Hamiltonian is
-\begin{align}
-	H : \Gamma &\to \mathbb{R} \nonumber \\
-	(\theta_1, \theta_2) &\mapsto H(\theta_1, \theta_2) = c\cos \theta_1.
-\end{align}
-
-In order to be well defined globally, the Hamiltonian must be periodic in $\theta_1$ and $\theta_2$. This is the simplest choice.
-
-\begin{enumerate}
-	\item Derive the equations of motion.
-	\item Determine the flow $\Phi$ of a phase space point $(\theta_1, \theta_2) \in \Gamma$.
-	\item Determine the time evolution of the state $\omega$, where
-	\begin{equation}
-		\omega(f) = \int_{\Gamma} \dd[2]{\theta}f(\theta_1, \theta_2) \, \omega(\theta)
-	\end{equation}
-	with
-	\begin{align}
-		\omega : \Gamma &\to \mathbb{R}\nonumber \\
-		(\theta_1, \theta_2) &\mapsto \omega(\theta_1, \theta_2) = \frac{1}{\pi^2} \sin^2 \theta_1 \sin^2 \theta_2.
-	\end{align}
-\end{enumerate}
+	\int \mathcal{D}\phi \, \exp\left( -\frac{1}{2} \phi^T M \phi + J^T \phi \right) = (2\pi)^{N/2} (\det M)^{-1/2} \exp\left( \frac{1}{2} J^T M^{-1} J \right),
+	\]
+	where $\phi^T = (\phi_1, \ldots, \phi_N)$ and $J^T = (J_1, \ldots, J_N)$ are real vectors, $M$ a symmetric $N \times N$ matrix, and the integration is carried out over all the fields $\phi_i,\, i = 1, \ldots, N$,
+	\[
+	\int \mathcal{D} \phi \equiv \int d\phi_1 \ldots d\phi_N.
+	\]
 \end{Problem}
-\begin{revision}
-	\section*{Hamiltonian Dynamics}
-The Hamiltonian is a function on the phase space
-\[H = H(q_1, \dots, q_n, p_1, \dots, p_n).\]
-The flow solves the canonical equations of motion
-\begin{align*}
-\dv{q_i}{t} &= \pdv{H}{p_i}\\
-\dv{p_i}{t} &= -\pdv{H}{q_i}
-\end{align*}
-We can also define the Poisson bracket
-\[\{f,g\} = \sum_i \left(\pdv{f}{q_i}\pdv{g}{p_i} - \pdv{f}{p_i}\pdv{g}{q_i}\right)\]
-It is immediately clear that the Poisson bracket is antisymmetric; additionally, we have the canonical commutation relations
-\[\{q,p\}= 1, \{q,q\}=\{p,p\}=0\]
-Clearly, because $\pdv{q}{p} = \pdv{p}{q} = 0$, we can rewrite the canonical commutation relations as
-\begin{align*}
-	\dv{q_i}{t} &= \{q_i, H\}\\
-	\dv{p_i}{t} &= \{p_i, H\}
-\end{align*}
-\section*{States as Functionals}
-\end{revision}
+	\begin{proof}
+		Since $M$ is symmetric, we can diagonalise it orthogonally with a matrix $U$ such that
+		\[\phi^T M \phi = \phi^T U^T D U \phi\]
+		with $D$ diagonal. Call $\eta = U\phi$. Then 
+	\end{proof}
+	\begin{Problem}[\textbf{Green’s function of Laplacian in two dimensions}]
+	Verify
+	\[
+	\partial \bar{\partial} \ln(z \bar{z}) = \pi \delta(\tau)\delta(x),
+	\]
+	where $z = x + i \tau$, $\bar{z} = x - i \tau$.
+\end{Problem}
 \begin{proof}
-	\begin{enumerate}
-		\item The equations of motion are
-		\[\dv{\theta_1}{t} = \pdv{H}{\theta_2}=0\]
-		and 
-		\[\dv{\theta_2}{t} = -\pdv{H}{\theta_1}=c\sin\theta_1\]
-		\item Clearly, the first equation tells us that $\theta_1$ is a constant; since the right hand side of equation 2 is now a constant, $\theta_2$ varies linearly with time.
-		\[\Phi^t \begin{pmatrix}
-			\theta_1 \\ \theta_2
-		\end{pmatrix} = \begin{pmatrix}
-		\theta_1 \\ \theta_2 + ct\cos\theta_1
-	\end{pmatrix}\]
-	\end{enumerate}
+	We begin by expanding to get
+	\[
+	\partial \overline{\partial}\ln z \overline{z}=\frac{1}{4}(\partial_\tau^2+\partial_x^2)\ln(\tau^2+x^2)	
+	.\] 
+	Up to some constants, this is just the Laplace's equation for the potential of a line charge at $(x,y)=(0,0)$, at which point the properties are obvious. By direct computation, it can be seen that this vanishes for $(\tau,x)\neq (0,0)$. 
+
+	The interesting bit is to show that it is truly the dirac delta, and we do so using Gauss's Theorem:
+	\begin{align*}
+		\int_{D_\epsilon(0)} \ln r^2 \dd{A} &= \int_{\partial D_\epsilon(0)} \frac{2}{r} r\dd{\theta}\\
+		&=  2\pi 
+	\end{align*}
+	whereupon normalisation yields the desired result.
 \end{proof}
-\begin{Problem}[Classical Dynamics on the 2-Sphere]
 
-Consider a classical dynamical system with the 2-Sphere $S^2$ as phase space $\Gamma$ (this is again not a cotangent bundle, but the technical advantage of being compact and is highly symmetric).
-
-Using standard spherical coordinates $(\theta, \phi) \in [0, \pi] \times [0, 2\pi)$, a consistent Poisson bracket is given by
-\begin{equation}
-	\{f,g\} = \frac{1}{\sin \theta} \left(\frac{\partial f}{\partial \theta} \frac{\partial g}{\partial \phi}- \frac{\partial f}{\partial \phi} \frac{\partial g}{\partial \theta} \right).
-\end{equation}
-
-Assume that the Hamiltonian is
-\begin{align}
-	H : \Gamma &\to \mathbb{R} \nonumber \\
-	(\phi, \theta) &\mapsto H(\phi, \theta) = \cos \theta.
-\end{align}
-
-In order to be well defined globally, the Hamiltonian must be periodic in $\theta$ and $\phi$. This is one of the simplest choices.
-
-\begin{enumerate}
-	\item Show that the Poisson bracket satisfies all requirements.
-	\item Determine the flow $\Phi$ of a phase space point $(\theta, \phi) \in \Gamma$.
-	\item Determine the time evolution of the state $\omega$, where
-	\begin{equation}
-		\omega(f) = \int_{\Gamma}\sin\theta \dd{\theta}\dd{\phi} f(\theta, \phi) \, \omega(\theta, \phi)
-	\end{equation}
-	with
-	\begin{align}
-		\omega : \Gamma &\to \mathbb{R}\nonumber\\
-		(\theta, \phi) &\mapsto \omega(\theta, \phi) = \frac{2}{\pi^2} \sin \theta \cos^2 \phi.
-	\end{align}
-\end{enumerate}
+	\begin{Problem}[\textbf{Dirac Lagrangian in two dimensions}] 
+	Consider the 2D Dirac Lagrangian in Minkowski space,
+	\[
+	\mathcal{L}_{D, M} = \frac{1}{\pi} \bar{\Psi}_D i \slashed{\partial} \Psi_D,
+	\]
+	where $\overline{\Psi}_D = \Psi_D^\dagger \gamma^0$, $\Psi_D^\dagger = (\bar{\psi}^*, \psi^*)$, $\slashed{\partial} = \gamma^\mu \partial_\mu = \gamma^0 \partial_0 + \gamma^1 \partial_1$,
+	\[
+	\Psi_D = \begin{pmatrix} \overline{\psi} \\ \psi \end{pmatrix}, \quad
+	\gamma^0 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+	\gamma^1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix},\text{ and }\gamma_5 =\gamma^0\gamma^1 = \begin{pmatrix}  1 & 0 \\ 0 & -1 \end{pmatrix} 
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Show that $\{\gamma^\mu, \gamma^\nu\} = 2 g^{\mu\nu}$, where $g^{00} = -g^{11} = 1$ is the Minkowski metric.
+		\item[(b)] Obtain the equation of motion from $\mathcal{L}_{D,M}$.
+		\item[(c)] Verify that $\mathcal{L}_{D,M}$ is invariant under the U(1) vector symmetry $\Psi_D \to e^{i\lambda} \Psi_D$ and obtain the associated conserved current, the vector current $J^\mu_V$.
+		\item[(d)] Verify that $\mathcal{L}_{D,M}$ is invariant under the U(1) axial symmetry $\Psi_D \to e^{i\lambda\gamma^5} \Psi_D$ and obtain the associated conserved current, the axial current $J^\mu_A$.
+		\item[(e)] Compare the Lagrangian, as well as the results from (b)-(d), to the results we obtained in Euclidean space with complex space time coordinates $z = \tau + ix$, $\bar{z} = \tau - ix$ in class.
+	\end{enumerate}
+			
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Direct computation in mathematica.
+	\item Direct variation of the action with respect to  $\overline{\psi}_D$ yields
+		\[
+		\delta S \propto i \slashed{\partial} \Psi_D = 0	
+		.\] 
+		This is the Dirac equation. Similarly, we have
+		\begin{align*}
+			\delta S &\propto \int \dd{\tau}\dd{x} \overline{\Psi}_D i \slashed{\partial}(\delta \Psi_D) \\
+			&=\int \dd{\tau}\dd{x} \overline{\Psi}_D i \gamma^\mu\partial_\mu(\delta \Psi_D)\\
+			&= \int \dd{\tau}\dd{x} (\partial_\mu \overline{\Psi}_D)\gamma^\mu \delta\psi_D=0
+		\end{align*}
+		and hence
+		\[
+		(\partial_\mu \overline{\Psi}_D)\gamma^\mu=0
+		.\] 
+	\item We have (in the notation of the lecture)
+		\[
+		D\Psi_D = i\Psi_D,\qquad D \overline{\Psi}_D = -i \Psi_D
+		.\] 
+		Noting that $\mathcal{L}_{D,M}(\lambda) = \mathcal{L}_{D,M}$, i.e. $\mathcal{L}_{D,M}$ does not depend on $\lambda$ at all, we have
+		\[
+		J^\mu = \fdv{\mathcal{L}_{D,M}}{(\partial_\mu \phi)}D\phi,\qquad J^\mu \propto \overline{\Psi}_D \gamma^\mu\Psi_D
+		.\] 
+	\item Again we have
+		\[
+		D\Psi_D = i\gamma^5 \Psi_D,\qquad D \overline{\Psi}_D = -i\Psi_D
+		.\] 
+	\end{parts}
+\end{proof}	
+	\begin{Problem}[\textbf{Partial integration in the complex plane}]
+			Determine the coefficients $a$ and $b$ in the formula
+	\[
+	\frac{1}{\pi} \int \dd{\tau} \dd{x} \left( \bar{\partial} f(z) + \partial \bar{f}(\bar{z}) \right) = a \oint dz f(z) + b \oint d\bar{z} \bar{f}(\bar{z}),
+	\]
+	where $f(z)$ and $\bar{f}(\bar{z})$ are independent functions, the $\dd{\tau} \dd{x}$ integration extends over the entire plane and the contour integrals are taken counter-clockwise around the entire $z$ or $\bar{z}$ planes in the respective terms.
 \end{Problem}

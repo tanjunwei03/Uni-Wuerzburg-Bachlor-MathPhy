@@ -1,0 +1,206 @@
+\begin{Problem}
+\begin{itemize}
+    \item Consider a system consisting of \(N\) spin-\(\frac{1}{2}\) particles, each of which can be in one of two quantum states, namely \( \uparrow \) and \( \downarrow \). In presence of a magnetic field \(B\), the energy of a spin in a \( \uparrow / \downarrow\) state is \( \epsilon = \pm\mu_B B / 2 \) where \( \mu_B \) is the magnetic moment. Show that the partition function is
+    \[
+    Z = 2^N \cosh^N \left( \frac{\mu_B B}{2 k_B T} \right),
+    \]
+    with \( 1/\beta = k_B T \) in the canonical ensemble. Find the average energy \( E \) and entropy \( S \). Compute both quantities at zero temperature and \( T \to \infty \).
+\end{itemize}
+\end{Problem}
+\begin{proof}
+	The partition function of a single particle is
+	\begin{align*}
+		Z_1 &= \sum_{s \in \{\uparrow, \downarrow\} } e^{-\beta H(s)} \\
+		  &= e^{-\beta \epsilon_\uparrow} + e^{-\beta\epsilon_\downarrow} \\
+		  &= e^{\frac{\beta \mu_B B}{2}} + e^{-\frac{\beta \mu_B B}{2}} \\
+		  &= 2\cosh \frac{\mu_B B}{2k_B T}
+	.\end{align*}
+	The partition function of $N$ particles is the product of their partition functions; in this case, it is simply
+	\[
+	Z=Z_1^n = 2^N \cosh^N \left( \frac{\mu_B B}{2 k_B T} \right) 
+	.\] 
+	The average energy is given by
+	\begin{align*}
+		\langle E \rangle &= - \pdv{\ln Z}{\beta} \\
+				  &= -\pdv{\beta}N\ln\left[ 2\cosh \left( \frac{\beta \mu_B B}{2} \right)  \right]   \\
+				  &= -N \pdv{\beta} \ln \cosh \frac{\beta \mu_B B}{2} \\
+				  &= -\frac{N}{\cosh \frac{\beta\mu_B B}{2}}\left(\sinh \frac{\beta \mu_B B}{2}\right)\left( \frac{\mu_B B}{2} \right)  \\
+				  &=  -\frac{N\mu_B B}{2}\tanh \frac{\beta \mu_B B}{2} \\
+				  &= -\frac{N\mu_B B}{2}\tanh\left( \frac{\mu_B B}{2k_B T} \right) 
+	\end{align*}
+	The Helmholtz free energy is given by
+	\[
+	F(T,V,N) = -k_B T \ln Z
+	.\] 
+	The entropy can be computed from the Helmholtz free energy as
+	\[
+		S = -\pdv{F}{T}
+	.\] 
+	This leads to the expression
+	\begin{align*}
+		\pdv{\ln Z}{T} &= N\pdv{T}\left( \ln\left[ 2 \cosh \left( \frac{\mu_B B}{2k_B T} \right)  \right]  \right)  \\
+			       &=  N\pdv{T} \left( \ln \cosh \left( \frac{\mu_B B}{2k_B T} \right)  \right)  \\
+			       &= N\frac{1}{\cosh \frac{\mu_B B}{2k_B T}} \left(\sinh \frac{\mu_B B}{2k_B T}\right)\left( -\frac{\mu_B B}{2k_B T^2} \right) \\
+			       &= -N\frac{\mu_B B}{2k_B T^2}\tanh \frac{\mu_B B}{2 k_B T}
+	\end{align*}
+	Then, we expand
+	\begin{align*}
+		S &=  -\pdv{F}{T} \\
+		  &= k_B \ln Z +k_B T \pdv{T}\ln Z \\
+		  &= k_B N \ln\left[ 2\cosh \left( \frac{\mu_B B}{2k_B T} \right)  \right]-\frac{N\mu_B B}{2T}\tanh \frac{\mu_B B}{2k_B T}  
+	\end{align*}
+	We note that
+	\[
+	\lim_{x \to \infty} \tanh(x) = 1, \qquad \lim_{x \to -\infty} \tanh(x) = -1,\qquad\tanh(0)=0
+	.\] 
+	Thus, the average energy $\langle E\rangle$ is, in the limits,
+	\begin{align*}
+		\langle E \rangle &\xrightarrow{T\to 0} -\frac{N\mu_B B}{2},\\
+		\langle E\rangle &\xrightarrow{T\to \infty}0.
+	\end{align*}
+	In the limit of $T\to \infty$, the second term in the entropy vanishes due to the $\frac{1}{T}$factor. Since $\cosh(0)=1$, we are left with
+	\[
+		S\xrightarrow{T\to \infty} = k_B N \ln 2
+	.\] 
+	The limit $T\to 0$ is the most subtle. We massage the entropy into a desired form by
+	\begin{align*}
+		S &= k_B N \left\{ \ln \left[ 2\cosh \left( \frac{\mu_B B}{2k_B T} \right)  \right] - \frac{\mu_B B}{2k_B T}\tanh \frac{\mu_B B}{2k_B T} \right\}  \\
+		  &= k_B N \left\{ \ln \left[ 2\cosh \left( \frac{\mu_B B}{2k_B T} \right)  \right] - \ln \exp\left[\frac{\mu_B B}{2k_B T}\tanh \frac{\mu_B B}{2k_B T}\right] \right\}  \\
+		  &= k_B N \ln \frac{e^{\frac{\mu_B B}{2k_BT}}+e^{-\frac{\mu_B B}{2k_B T}}}{\left(e^{\frac{\mu_B B}{2k_B T}}\right)^{\tanh \frac{\mu_B B}{2k_B T}}} \\
+		  &= k_B N \ln \frac{1+e^{-\frac{\mu_B B}{k_B T}}}{\left(e^{\frac{\mu_B B}{2k_B T}}\right)^{\tanh \left(\frac{\mu_B B}{2k_B T}\right)-1}} 
+	\end{align*}
+	Now all we need to do is to simplify
+	\begin{align*}
+		\exp\left( \frac{\mu_B B}{2k_B T}\left( \tanh \left(\frac{\mu_B B}{2k_B T}\right)-1 \right)  \right) &= \exp\left( \frac{\mu_B B}{2k_B T}\left( \frac{e^{\frac{\mu_B B}{k_B T}}-1}{e^{\frac{\mu_B B}{k_B T}}+1}-1 \right)  \right)\\ 
+														     &=\exp\left( \frac{\mu_B B}{2k_B T} \frac{-2}{e^{\frac{\mu_B B}{k_B T}}+1}  \right)\\
+														     &\xrightarrow{T\to 0} 1
+	\end{align*}
+	and hence
+	\[
+		S \xrightarrow{T\to 0} k_B N \ln 1 = 0
+	.\qedhere\] 
+\end{proof}
+\begin{Problem}
+\begin{itemize}
+    \item Compute the partition function of a quantum harmonic oscillator at frequency \( \omega \) in the canonical ensemble. \textit{Hint:} The energy levels are given by
+    \[
+    E_n = \hbar \omega \left( n + \frac{1}{2} \right),
+    \]
+    with \( n \in \mathbb{Z} \).
+    
+    \item A simple model of a solid can be made considering \(N\) atoms that vibrate all of them at the same frequency \( \omega \). Consider these vibrations as a harmonic oscillator. Show that at high temperatures, \( k_B T \gg \hbar \omega \), one has a heat capacity
+    \[
+    C_V = N k_B.
+    \]
+    
+    \item Derive the limit also for low temperatures.
+\end{itemize}
+\end{Problem}
+\begin{proof}
+	The partition function is given by
+	\begin{align*}
+		Z &= \sum_n e^{-\beta E_n} \\
+		  &= \sum_{n=0}^{\infty} e^{-\beta\hbar\omega \left( n+\frac{1}{2} \right) } \\
+		  &= e^{-\frac{\beta \hbar\omega}{2}} \sum_{n=0}^{\infty} e^{-\beta\hbar\omega n}\\
+		  &= e^{-\frac{\beta \hbar\omega}{2}} \frac{e^{\beta \hbar\omega}}{e^{\beta \hbar\omega}-1}\\
+		  &= \frac{1}{e^{\frac{\beta \hbar\omega}{2}} + e^{-\frac{\beta \hbar\omega}{2}}} \\
+		  &= \frac{1}{2\sinh \left( \frac{\beta \hbar\omega}{2} \right) }
+	\end{align*}
+	We then determine the average energy of a single particle as in the previous problem
+	\begin{align*}
+		U:= \langle E \rangle &= -\pdv{\ln Z}{\beta} \\
+				      &= \pdv{\beta}\ln \left[ 2\sinh\left( \frac{\beta \hbar\omega}{2} \right)  \right]  \\
+				      &= \pdv{\beta}\ln \left[ \sinh\left( \frac{\beta \hbar\omega}{2} \right)  \right]  \\
+				      &=\frac{1}{\sinh\left( \frac{\beta \hbar\omega}{2} \right) } \left[ \cosh\left( \frac{\beta \hbar\omega}{2} \right)  \right] \frac{\hbar\omega}{2}\\
+				      &= \frac{\hbar\omega}{2}\coth\left( \frac{\beta \hbar\omega}{2} \right) 
+	\end{align*}
+	At high temperatures, $\beta$ is low and we can make use of the well known expansion in small $\beta$ 
+	\[
+	U = \frac{\hbar\omega}{2} \frac{2}{\beta \hbar\omega}+ O(\beta)=k_B T + O\left( \frac{1}{T} \right) 
+	.\] 
+	By inspection, we see that the heat capacity $\pdv{U}{T}=k_B$, and for $N$ noninteracting harmonic oscillators, we simply multiply by $N$ to get
+	\[
+	C_V = N k_B
+	.\] 
+	In the low temperature limit, $\beta$ is very high. We approximate
+	\begin{align*}
+		\cosh(x) &\approx \frac{e^x}{2}\\
+		\sinh(x) &\approx \frac{e^x}{2}
+	\end{align*}
+	to get
+	\[
+	U\approx \frac{\hbar\omega}{2}
+	.\] 
+	Since $U$ does not depend on $T$ in this limit, the heat capacity $\pdv{U}{T} $ vanishes - without putting in any heat, it is possible to change the temperature.
+\end{proof}
+\begin{Problem}
+\begin{itemize}
+    \item Consider the Gibbs entropy for a probability distribution \( p(n) \),
+    \[
+    S = -k_B \sum_n p(n) \ln p(n).
+    \]
+    
+    \item Through the use of a Lagrange multiplier, show that when restricted to states of fixed energy \( E \), the entropy is maximized by the microcanonical ensemble, in which all such states are equally likely. Further show that in this case, the Gibbs entropy coincides with the Boltzmann entropy. \textit{Hint:} Recall that probabilities are positive and constrained to sum up to 1.
+    
+    \item Show that at fixed average energy, i.e.: \( \langle E \rangle = \sum_n p(n) E_n \), the entropy is maximized by the canonical ensemble. Moreover, show that the Lagrange multiplier imposing the constraint is proportional to the inverse of temperature, \( \beta \). Check that maximizing the entropy is equivalent to minimizing the free energy.
+\end{itemize}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The constraint equation is given by
+		\[
+			\sum_{n} p(n) = 1
+		.\] 
+		Hence, the (constrained) maximization of the entropy can be replaced by an unconstrained maximization over the functional
+		\[
+		S' = -k_B \sum_n p(n) \ln p(n) + \lambda\left( \sum_n p(n) - 1 \right) 
+		.\] 
+		We extremize this by taking the partial derivatives. The partial derivative with respect to an occupation $p(k)$ is given by
+		\[
+			\pdv{S'}{p(k)} = -k_B\left( \ln p(k) + 1 \right) + \lambda=0
+		\] 
+		and the partial derivative with respect to $\lambda$ returns the constraint equation
+		\[
+		\sum_n p(n) = 1
+	\]
+	as expected. Rearranging the partial derivative with respect to $p(k)$ yields
+	\[
+	\ln p(k) = \frac{\lambda}{k_B}-1
+	.\] 
+	Since this must be true for all $k$, it tells us that $\ln p(k)$ is the same for all $k$. Since $\ln$ is monotonic, then $p(k)$ must be the same for all $k$. In this case, the normalisation condition yields, for a total of $N$ microstates,
+	\[
+	p(k) = \frac{1}{N}~\forall k
+.\]
+The Gibbs entropy is given by
+\begin{align*}
+	S &= -k_B \sum_{n=1}^{N} \frac{1}{N}\ln \frac{1}{N}\\
+	&= k_B \ln N
+\end{align*}
+This is, by definition, the Boltzmann entropy.
+\item We follow the same procedure, defining instead the functional
+	\[
+	S' = -k_B \sum_n p(n) \ln p(n)+ \lambda\left( \sum_n p(n) E_n - U \right) +\eta\left( \sum_n p(n) - 1 \right) 
+\]
+where we denote the average energy by $\langle E \rangle =: U$. Then, the derivatives yield
+\begin{align*}
+	\pdv{S'}{p(k)} &= -k_B(\ln p(k)+1) + \lambda E_k +\eta=0 \\
+	\pdv{S'}{\lambda} &= \sum_n p(n)E_n - U = 0 \\
+	\pdv{S'}{\eta} &= \sum_n p(n) - 1 =0
+\end{align*}
+We proceed in a manner analogous to the previous part: By solving the equation for $p(k)$. We have
+\[
+\ln p(k) + 1 = \frac{1}{k_B}\left( \eta + \lambda E_k \right) 
+\]
+and
+\begin{align*}
+	p(k) &= e^{-1} e^{\frac{1}{k_B}(\eta + \lambda E_k)}\\
+	     &= e^{-1}e^{\eta / k_B} e^{\lambda E_k} 
+\end{align*}
+From this, we see by inspection that $\lambda$ is proportional to the inverse temperature $\beta$.
+\item The Helmholtz free energy is given by
+	 \[
+	F = U - TS
+	.\] 
+	Since $U$ and $T$ are fixed in the canonical ensemble, minimizing $S$ is equivalent to maximizing $F$.\qedhere
+	\end{parts}
+\end{proof}
