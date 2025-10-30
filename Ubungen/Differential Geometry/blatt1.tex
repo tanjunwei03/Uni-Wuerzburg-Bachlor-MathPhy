@@ -1,0 +1,85 @@
+\section*{Topological stuff for warming up\ldots}
+
+\begin{Problem}
+	Give an example that in general a family of open sets is not closed under infinite intersections.
+\end{Problem}
+\begin{proof}
+	\[\bigcap_{n=1}^\infty \left(-\frac 1n, 1 + \frac 1n\right)=[0,1].\qedhere\]
+\end{proof}
+\begin{Problem}
+	Give an example that a bijective continuous function $f : E \to F$ between topological spaces is not necessarily a homeomorphism.
+\end{Problem}
+\begin{proof}
+	Consider $f:[0,2\pi)\to S^1$, $f(x) = e^{ix}$. This is bijective and continuous, but its inverse is not, because two points that are near $(1,0)$ map to different ends of the interval.
+\end{proof}
+\begin{Problem}
+	Give an example of a connected topological space which is not path (or arcwise) connected.
+\end{Problem}
+\begin{proof}
+	Topologists' sine curve (see Ana2).
+\end{proof}
+\begin{Problem}
+	Give an example of a connected topological space which is not locally connected.
+\end{Problem}
+\begin{proof}
+	Topologists' sine curve
+\end{proof}
+\begin{Problem}
+	Recall the 
+	\textbf{Definition.} A topological space $X$ is \textit{totally disconnected} if the connected components of $X$ are single points.
+	
+	Give an example of a totally disconnected topological space.
+\end{Problem}
+\begin{proof}
+	Discrete space.
+\end{proof}
+\begin{Problem}
+	Recall the \textbf{Definition.} Let $X$ be a topological space. A subset $S \subset X$ is said to be \textit{dense} in $X$ if, for each $x \in X$ and each neighborhood $U$ of $x$ there is a point $s \in S$ s.t. $s \in U$.
+	
+	Give an example of a dense subset of $\mathbb{R}$ (with usual topology).
+\end{Problem}
+\begin{proof}
+	\[\Q\qedhere\]
+\end{proof}
+\begin{Problem}
+	Let $X$ be the space of continuous functions on the interval $I := [0,1]$. Show that $d(f,g) := \max_{x \in I} |f(x) - g(x)|$ defines a metric on $X$.
+\end{Problem}
+\begin{proof}
+	We check 3 properties
+	\begin{enumerate}
+		\item $d(f,f) = 0$: Clear
+		\item $d(f,g) = d(g,f)$: Also clear
+		\item Triangle inequality:
+		\begin{align*}
+			d(f,g) &= \max_{x\in I}|f(x) - g(x)|\\
+			&= \max_{x\in I}|f(x) - h(x) + h(x) - g(x)|\\
+			&\le \max_{x\in I}\left[ |f(x) - h(x)| + |h(x) - g(x)|\right]\\
+			&\le \max_{x\in I}|f(x) - h(x)| + \max_{x\in I}|h(x) - g(x)|\\
+			&=d(f,h) + d(h,g).\qedhere
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+\section*{Differential calculus}
+
+\begin{Problem}
+	Recall from elementary linear algebra that the dual space $E^*$ of a finite dimensional vector space $E$ of dimension $n$ also has dimension $n$ and so the space and its dual are isomorphic. For general Banach spaces this is no longer true. However, it is true for Hilbert spaces.
+	
+	Prove the following 
+	
+	\textbf{Theorem. (Riesz Representation Theorem)} Let $E$ be a real (resp., complex) Hilbert space. The map $e \mapsto \langle \cdot, e \rangle$ is a linear (resp., antilinear) norm-preserving isomorphism of $E$ with $E^*$; for short, $E \cong E^*$.
+	
+	Recall that a map $A : E \to F$ between complex vector spaces is called antilinear if we have the identities $A(e + e') = Ae + Ae'$, and $A(\alpha e) = \bar{\alpha} Ae$.
+\end{Problem}
+\begin{proof}
+	It is clearly antilinear. The proof idea is that a continuous 1-form is uniquely defined up to scaling by its kernel. 
+\end{proof}
+\begin{Problem}
+	Add to your personal mathematical tool box the following
+	
+	\textbf{Definition.}
+	\begin{itemize}
+		\item[(a)] Let $E$ be a normed space and $f : U \subset E \to \mathbb{R}$ be differentiable so that $Df(u) \in L(E,\mathbb{R}) = E^*$. In this case we sometimes write $df(u)$ for $Df(u)$ and call $df$ the differential of $f$. Thus $df : U \to E^*$.
+		
+		\item[(b)] Let $(E, \langle \cdot,\cdot \rangle)$ be a Hilbert space and $f : U \subset E \to \mathbb{R}$ be differentiable. The \textit{gradient} of $f$ is the map $\nabla f := \nabla f : U \to E$ defined (implicitly) by $\langle \nabla f(u), e \rangle := df(u) \cdot e$, meaning the linear map $df(u)$ applied to the vector $e$ (directional derivative).
+	\end{itemize}
+\end{Problem}

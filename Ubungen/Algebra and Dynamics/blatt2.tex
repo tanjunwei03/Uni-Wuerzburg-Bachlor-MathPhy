@@ -1,0 +1,109 @@
+\begin{Problem}[Adjoining a Unit]
+	Just like in Theorem 2.1, let $\mathcal{A}$ be a $C^*$-algebra \textit{without} identity and $\bar{\mathcal{A}}$ denote the set of pairs
+	\begin{equation}
+		\bar{\mathcal{A}} = \{ (\alpha, A) : \alpha \in \mathbb{C}, A \in \mathcal{A} \}.
+	\end{equation}
+	
+	The $*$-algebra operations are again
+	\begin{subequations}
+		\begin{align}
+			\mu(\alpha, A) + \lambda(\beta, B) &= (\mu \alpha + \lambda \beta, \mu A + \lambda B), \\
+			(\alpha, A)(\beta, B) &= (\alpha \beta, \alpha B + \beta A + AB), \\
+			(\alpha, A)^* &= (\bar{\alpha}, A^*).
+		\end{align}
+	\end{subequations}
+	
+	We can define a norm via
+	\begin{equation}
+		\|(\alpha, A)\|_{\bar{\mathcal{A}}} = \sup_{B \in \mathcal{A}, \|B\|_{\mathcal{A}} = 1} \|\alpha B + AB\|_{\mathcal{A}}.
+	\end{equation}
+	
+	\begin{enumerate}
+		\item Show that (3) satisfies the triangle inequality
+		\begin{equation}
+			\|(\alpha, A) + (\beta, B)\|_{\bar{\mathcal{A}}} \leq \|(\alpha, A)\|_{\bar{\mathcal{A}}} + \|(\beta, B)\|_{\bar{\mathcal{A}}}.
+		\end{equation}
+		
+		\item Show that (3) satisfies the product inequality
+		\begin{equation}
+			\|(\alpha, A)(\beta, B)\|_{\bar{\mathcal{A}}} \leq \|(\alpha, A)\|_{\bar{\mathcal{A}}} \, \|(\beta, B)\|_{\bar{\mathcal{A}}}.
+		\end{equation}
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			\begin{align*}
+				\|(\alpha, A) + (\beta, B)\| &= \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|(\alpha+\beta)C + (A+B)C\|_\mathcal{A} \\
+							     &\le \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1}\left[ \|\alpha C + A C\|_\mathcal{A} + \|\beta C + BC\| \right]\\ 
+							     &\le \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|\alpha C + A C\|_\mathcal{A} + \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|\beta C + B C\| \\
+							     &= \|(\alpha, A)\|_{\overline{\mathcal{A}}} + \|(\beta, B)\|_{\overline{\mathcal{A}}}
+			\end{align*}
+		\item 
+			\begin{align*}
+				\|(\alpha, A)(\beta, B)\|_{\overline{\mathcal{A}}} &= \|(\alpha\beta, \alpha B + \beta A + AB)\|_{\overline{\mathcal{A}}} \\
+			&= \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|\alpha\beta C + (\alpha B+ \beta A + AB)C\|_\mathcal{A} \\
+			&= \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|(\alpha + A)(\beta + B)C\|_\mathcal{A} \\
+			&\le \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|\alpha + A\|_\mathcal{A} \|(\beta + B)C\|_\mathcal{A} \\
+			&\le \sup_{D\in \mathcal{A}, \|D\|_\mathcal{A}=1}\|(\alpha + A)D\|_\mathcal{A} \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|(\beta + B)C\|_\mathcal{A}\\
+			&= \|(\alpha, A)\|_{\overline{\mathcal{A}}} + \|(\beta, B)\|_{\overline{\mathcal{A}}}.
+			\end{align*}
+where we used the equation
+\[
+	\|\alpha + A\|_\mathcal{A}\le \sup_{D\in \mathcal{A}, \|D\|_\mathcal{A}=1}\|(\alpha + A)D\|
+\]
+by noting that $D = (\alpha + A)^*$ yielded an appropriate lower bound on $\|(\alpha + A)D\|$ (this is where the $C^*$ algebra property was required).\qedhere
+	\end{enumerate}
+\end{proof}	
+\begin{Problem}[Ideals]
+	A subspace $\mathcal{B} \subseteq \mathcal{A}$ is called a left ideal, if $\forall A \in \mathcal{A}, B \in \mathcal{B}: AB \in \mathcal{B}$. A subspace $\mathcal{B} \subseteq \mathcal{A}$ is called a right ideal, if $\forall A \in \mathcal{A}, B \in \mathcal{B}: BA \in \mathcal{B}$. If $\mathcal{B}$ is both a left and a right ideal it is called a two-sided ideal.
+	
+	\begin{enumerate}
+		\item Show that every ideal is a (sub-)algebra.
+		\item Show that if $\mathcal{B}$ is self-adjoint and a left or right ideal, it is necessarily two-sided.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+\begin{enumerate}
+	\item We recall the definition of an algebra: An algebra $\mathcal{A}$ is a vector space equipped with a product $\cdot: \mathcal{A}\times \mathcal{A}\to \mathcal{A}$ with the properties that for all $x,y,z\in \mathcal{A},~\alpha,\beta\in \mathbb{K}$, 
+		\begin{align*}
+			z(\alpha x + \beta y) &= \alpha(zx)+\beta(zy) \\
+			(\alpha x + \beta y)z &= \alpha(xz) + \beta(yz) \\
+			(\alpha x)(\beta y) &= (\alpha\beta)(xy)
+		\end{align*}
+		By definition, it remains a subspace. The multiplication within $\mathcal{B}$ is well defined by the ideal property. The remaining properties are all inherited from the algebra $\mathcal{A}$. 
+	\item Let $b\in \mathcal{B}$, $a\in \mathcal{A}$. We assume that $\mathcal{B}$ is a left sided ideal; the proof will follow analogously for the other assumption. We seek to show that $\mathcal{B}$ is a right sided ideal - that is, that $ba\in \mathcal{B}$. Since $\mathcal{B}$ is self-adjoint, we have $b=c^*$ for $c= b^*$. Then, $ba = c^* a = (a^* c)^*$. Since $a^* c\in \mathcal{B}$ by the left adjoint property and $\mathcal{B}$ is self adjoint, this must lie in $\mathcal{B}$. \qedhere 
+\end{enumerate}
+\end{proof}
+
+
+\begin{Problem}[Factor Algebras]
+	Let $\mathcal{I}$ be a two-sided ideal of an algebra $\mathcal{A}$.
+	
+	\begin{enumerate}
+		\item Show that the factor space $\mathcal{A}/\mathcal{I}$ is also an algebra, i.e.\ that the algebra operations are well defined for the equivalence classes
+		\begin{equation}
+			[A] = \{ A + I : I \in \mathcal{I} \}.
+		\end{equation}
+		
+		\item Show that this is also true for $\mathcal{A}/\mathcal{I}$ if $\mathcal{A}$ is a
+		\begin{enumerate}
+			\item $*$-algebra and $\mathcal{I} = \mathcal{I}^*$,
+			\item Banach algebra and $\mathcal{I}$ is complete.
+		\end{enumerate}
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item For the equivalence classes to be at all defined, we only need $ \mathcal{I}$ to be a subspace. We define $a\equiv b$ to mean $a-b\in \mathcal{I}$, and the properties we desire all follow from the subspace property of $\mathcal{I}$. This is the statement that all subgroups of an abelian group are normal, and the division is well defined. For this reason, the addition of equivalence classes is also clearly well defined. The scalar multiplication is also well defined.
+
+			It only remains to verify the multiplication property, which follows from
+			\begin{align*}
+				[A][B] &= \{(A+I_1)(B+I_2)|I_1,I_2\in \mathcal{I}\}  \\
+				&= \{AB + A I_2 + I_1B + I_1I_2|I_1,I_2\in \mathcal{I}\} 
+			\end{align*}
+			By the ideal property, we know that $A I_2\in \mathcal{I}$, and $I_1B\in \mathcal{I}$. Thus, we are done. The ideal had to be 2-sided because $A$ and $B$ appeared on different sides of $I_1$ and $I_2$ respectively. Note also that we implicitly proved that the multiplication does not depend on the choice of representative of the equivalence class, as we could absorb any shifts into the $I_1$ and $I_2$ factors beside the $A$ and $B$.
+		\item If $\mathcal{A}$ is a *-algebra and $\mathcal{I}$ is self-adjoint, it is also a two sided ideal from the previous problem.
+		\item 
+	\end{enumerate}
+\end{proof}

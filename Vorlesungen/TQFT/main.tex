@@ -1,0 +1,418 @@
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+%\documentclass[12pt]{article}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
+
+\usepackage{amsmath, amssymb,physics-patch,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{tensor}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmnobox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=chapter,style=thmnobox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Postulate]{Postulate}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+\allowdisplaybreaks
+\tcbset{colback=white}
+\renewcommand\comment[1]{ {\color{red} Comment: #1}}
+\begin{document}
+\iffalse
+	\newgeometry{margin=1in}
+	\begin{titlepage}
+		{\begingroup% AW, Design of Books
+			%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+			%\drop = 0.14\textheight
+			\centering
+			%\vspace*{\drop}
+			{\Large Notes in}\\[\baselineskip]
+			{\Huge\bfseries Field Theory}\\[\baselineskip]
+			{\LARGE By}\\[\baselineskip]
+			{\LARGE Jun Wei Tan}\par
+			\vfill
+			{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+			\vfill
+			{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+			\endgroup}
+	\end{titlepage}
+	\restoregeometry
+	\tableofcontents
+\fi
+\chapter{Conventions}
+\section{Spacetime Coordinates}
+\begin{align*}
+	x^0 &= x_0 = t = -i\tau \\
+	x^1 &= -x_1 = x\\
+	\mathcal{L}_E &= - \mathcal{L}_M(t \to -i\tau, \partial_t \to -i\partial_\tau)\\
+	x^{\pm} &= \frac{1}{\sqrt{2} }(x^0 \pm x^1) \\
+	\partial_{\pm} &= \frac{1}{\sqrt{2} }(\partial_0 \pm \partial_1)
+\end{align*}
+In 1-dim,
+\[
+A_\mu B^\mu = A^0B_0 - A^1 B^1
+.\] 
+Complex coordinates for euclidean space:
+\[
+z, \overline{z}=\tau \pm ix = i\sqrt{2} x^\pm
+,\]
+\[
+	\partial, \overline{\partial}=\frac{1}{2}\left( \pdv{\tau}\pm i\pdv{x} \right)=-\frac{i}{\sqrt{2} }(\partial_+, \partial_-) 
+.\] 
+and
+\[
+\partial \overline{\partial}=\frac{1}{4}(\partial_\tau^2+\partial_x^2)=-\frac{1}{4}(\partial_t^2 - \partial_x^2)=\frac{1}{2}\partial_+ \partial_-
+.\] 
+then
+\[
+	\dd{\tau}\dd{x}=\dd{\tau}\wedge \dd{x} = \frac{i}{2}\dd{z}\wedge \dd{\overline{z}}
+.\] 
+\subsection{Einstein Summation Convention}
+Replace indices $\mu,\nu\in \{0,1\} $ with indices $\alpha, \beta \in \{z, \overline{z}\} $ s.t.
+\begin{align*}
+	x^z &=  z = \tau + ix \\
+	x^{\overline{z}} &= \overline{z} = \tau - ix
+\end{align*}
+with derivatives
+\begin{align*}
+	\partial_z &= \pdv{x^z} = \pdv{z} = \frac{1}{2}(\partial_\tau - i\partial_x)\\
+	\partial_{\overline{z}} &= \pdv{x^{\overline{z}}} = \frac{1}{2}(\partial_\tau + i\partial_x)
+\end{align*}
+We define the covariant operators
+\begin{align*}
+	x_z &= \frac{1}{2}(\tau - ix)\\
+	x_{\overline{z}} &= \frac{1}{2}(\tau + ix)\\
+	\partial^z &= \pdv{x_z} = \partial_\tau + i\partial_x\\
+	\partial^{\overline{z}} &= \partial_\tau - i\partial_x
+\end{align*}
+This leads us to the metric
+\begin{align*}
+	g_{\alpha\beta} = \begin{pmatrix} 0 & \frac{1}{2} \\ \frac{1}{2} & 0 \end{pmatrix} , g^{\alpha\beta} = \begin{pmatrix}  0 & 2 \\ 2 & 0 \end{pmatrix} , \tensor{g}{_\alpha^\beta} = \begin{pmatrix} 1 & 0 \\ 0  & 1 \end{pmatrix} 
+\end{align*}
+\chapter{Bosonisation in Field Theory}
+\section{Majorana Fermions}
+Euclidean space action
+\[
+	S = \int \dd{\tau}\dd{x} \mathcal{L}_{MF},
+\] 
+where
+\begin{align*}
+	\mathcal{L}_{MF} &= \frac{1}{2\pi}(\overline{\psi}, \psi)\begin{pmatrix} \partial & 0 \\ 0 & \overline{\partial} \end{pmatrix} \begin{pmatrix} \overline{\psi} \\ \psi \end{pmatrix} \\
+			 &= \frac{1}{2\pi}(\overline{\psi}\partial \overline{\psi}- \psi \overline{\partial}\psi)
+.\end{align*} 
+The term $(\overline{\psi}, \psi)^T$ is a spinor; $\psi$ and $\overline{\psi}$ are independent \emph{real} fields. The fact that these are real suggests that the fermions are Majorana fermions.
+\begin{tcolorbox}[title=Euler-Lagrange Equations]
+	In $d+1$-dimensional Minkowski space, the action is given by
+	\[
+		S = \int\dd{t}\dd[d]{x} \mathcal{L}(\phi, \partial_\mu \phi)
+	.\] 
+	We seek stable points in the action $S$ and do so by performing a variation in the field
+	\begin{align*}
+		0 &= \delta S = \int \dd{t} \dd[d]{x} \left\{ \fdv{\mathcal{L}}{(\partial_\mu \phi)} \underbrace{\var{(\partial_\mu\phi)}}_{\partial_\mu(\delta\phi)} - \fdv{\mathcal{L}}{\phi}\delta \phi \right\} \\
+		  &= \int \dd{t} \dd[d]{x} \left\{ -\left( \partial_\mu \fdv{\mathcal{L}}{(\partial_\mu\phi)} -\fdv{\mathcal{L}}{\phi} \right) \delta\phi + \text{bound. terms} \right\} 
+.\end{align*} 
+\end{tcolorbox}
+For the MF, we use the $z,\overline{z}$convention to get the EL equation
+\[
+	\underbrace{\partial \fdv{\mathcal{L}}{\partial \overline{\psi}}}_{-\frac{1}{2\pi}\overline{\psi}} + \underbrace{\overline{\partial}\fdv{\mathcal{L}}{(\overline{\partial}\overline{\psi})}}_0 - \underbrace{\fdv{\mathcal{L}}{\overline{\psi}}}_{\frac{1}{2\pi}\partial \overline{\psi}} = 0
+.\] 
+This leads to
+\[
+\partial \psi = 0, \qquad \overline{\psi}= \overline{\psi}(\overline{z})
+.\] 
+This tells us that $\overline{\psi}$ is the right mover $R$, because it depends on $\tau - ix = -i(t-x)$. By performing something similar with the other field, we get that
+\[
+	\overline{\partial}\psi = 0,\qquad \psi = \psi(z)
+\]
+which tells us that the field $\psi$ is the left mover $L$. Here, it is important to note that this does not mean that the two fields do not depend on the two different complex variables from the start; this is the \emph{equation of motion}. We started out with a Lagrangian that depended on two fields, and the equations of motion tell us that the fields are constant on the other variable.
+\paragraph{Quantum Propagator}
+For a feld theory defined by the action
+\[
+	S = \frac{1}{2}\int \dd{\tau}\dd[d]{x} \phi M \phi
+\]
+
+where $M$ is some kind of matrix, for e.g. $-\partial_\mu\partial^\mu$, the propagator is given by the time ordered correlation function
+\[
+\langle \mathcal{T}\phi(x) \phi(y)\rangle
+.\] 
+In this course, we will omit the time ordering as it is understood in all correlation functions. By direct evaluation of the functional integral, we arrive at the expression 
+\[
+	\langle \mathcal{T}\phi(x)\phi(y)\rangle = (M^{-1})_{xy}
+.\] 
+The above expression holds for both bosonic and fermionic variables.
+\begin{Example}
+	Compute the inverse of $M=\frac{1}{\pi}\overline{\partial}$. 
+\end{Example}
+\begin{proof}
+	We use the identity $\overline{\partial}\partial \ln (z \overline{z}) = \pi \delta^{(2)}(z)=\pi \delta(\tau)\delta(x)$. Thus 
+	\[
+	\langle \psi(z) \psi(w)\rangle = \frac{1}{z-w}
+\]
+and
+\[
+\langle \overline{\psi}(\overline{z})\overline{\psi}(\overline{w})\rangle = \frac{1}{\overline{z}-\overline{w}}
+.\] 
+\end{proof}
+\section{Dirac Fermions}
+We assemble two real majorana fermions $(\overline{\psi}_1, \psi_1), (\overline{\psi}_2, \psi_2)$ into 1 complex dirac fermion
+\begin{align*}
+	\begin{pmatrix} \overline{\psi}_D \\ \psi_D \end{pmatrix} &= \frac{1}{\sqrt{2} } \begin{pmatrix}  \overline{\psi}_1 - i \overline{\psi}_2 \\ \psi_1 + i\psi_2 \end{pmatrix} \\
+	\mathcal{L}_D &=  \frac{1}{\pi} \begin{pmatrix} \overline{\psi}_D^* & \psi_D^* \end{pmatrix} \begin{pmatrix} \partial & 0 \\ 0 & \overline{\partial} \end{pmatrix} \begin{pmatrix} \overline{\psi}_D \\ \psi_D\end{pmatrix} =\mathcal{L}_{MF_1} + \mathcal{L}_{MF_2} 
+\end{align*}
+which leads us to the propagator
+\begin{align*}
+	\langle \psi_D^*(z) \psi_D(w) \rangle &= \frac{1}{z-w}\\
+	\langle \overline{\psi}_D^*(\overline{z}) \overline{\psi}(\overline{z})\rangle &= \frac{1}{\overline{z}-\overline{w}}
+\end{align*}
+\section{Noether's Theorem}
+Suppose we have a continuous symmetry of a field $\phi(x) \to \phi(x, \lambda)$ such that
+\[
+	\mathcal{D}\mathcal{L}= \dv{\mathcal{L}(x, \lambda)}{\lambda}|_{\lambda=0}=\partial_\mu F^\mu(x)
+.\] 
+Then
+\[
+	J^\mu = \fdv{\mathcal{L}}{(\partial_\mu \phi)} \mathcal{D}\phi - F^\mu(x)
+\]
+is conserved.
+\section{Bosons \& Bosonisation}
+We have
+\begin{align*}
+	J(z) &= i\partial \Phi\\
+	\overline{J}(\overline{z})&=-i \overline{\partial}\Phi
+\end{align*}
+The conservation law
+\[
+\overline{\partial}J(z)=\partial \overline{J}(\overline{z})=0
+\]
+is equivalent to the equation of motion. These currents can be derived from a ``symmetry'' of the bosonic theory: If we translate the fields, we get
+\[
+\Phi(\lambda)=\Phi+\lambda
+,\]
+the Lagrangian transforms as
+\[
+\mathcal{L}_B = \frac{1}{2\pi}\partial \Phi \overline{\partial}\Phi
+\]
+and thus $D\mathcal{L}_B=0$. Thus, we get the conserved currents
+\begin{align*}
+	J^z &= \fdv{\mathcal{L}}{\partial_z \Phi} 1 = \frac{i}{2\pi}\overline{J}(\overline{z}) \\
+	J^{\overline{z}} &= \fdv{\mathcal{L}}{(\partial_{\overline{z}}\Phi)} = -\frac{i}{2\pi}J(z)
+\end{align*}
+The current conservation tells us that
+\[
+	\partial_z J^z + \partial_{\overline{z}} J^{\overline{z}} = 0
+\]
+or
+\[
+\frac{1}{\pi}\partial \overline{\partial}\Phi=0
+.\] 
+This is not a problem since $\Phi\to \Phi+\lambda$ since $\Phi$ is not a physical field! 
+
+If $\Phi \to \Phi+\lambda$ were a physical symmetry, it could be spontaneously broken, contradicting the Mermin-Wagner Theorem (no goldstone modes in 1 + 1 dim!).
+\section{Why non-abelian bosonization?}
+Consider $N$ Dirac fermions $\begin{pmatrix} \overline{\psi}_r \\ \psi_r \end{pmatrix} , r= 1,2,\ldots, N$. The Lagrangian is
+\[
+	\mathcal{L}_F = \frac{1}{\pi}\sum_{r=1}^N (\overline{\psi}_r^* \partial \overline{\psi}_r + \psi_r^* \overline{\partial}\psi_r
+.\] 
+Abelian bosonisation in Sec 1.3 suggests that this is physically equivalent to
+\[
+	\mathcal{L}_B = \frac{1}{2\pi}\sum_{r=1}^N \partial \Phi_r \overline{\partial}\Phi_r
+.\] 
+Note: While $\mathcal{L}_F$ has a $U(N) \times U(N)$ symmetry with $\psi(z) = \begin{pmatrix}  \psi_1 \\ \vdots \\ \psi_N \end{pmatrix} $, $\mathcal{L}_F$ is also invariant under
+\[
+\psi(z) \to \Lambda \psi(z), \qquad \psi^\dagger(z) \to \psi^\dagger(z) \Lambda^\dagger
+\]
+where $\Lambda\in U(N)_L$ is a unitary $N\times N$ matrix such that $\Lambda^\dagger \Lambda = 1$. The conserved currents generate
+\[
+	J_{rr'}(z) = \frac{1}{\pi}:\psi_r^*\psi_{r'}:(z)
+\]
+and
+\[
+	\overline{J}_{rr'}(\overline{z}) = \frac{1}{\pi}:\overline{\psi}_r^* \overline{\psi}_{r'}:(\overline{z}) 
+.\] 
+We note that $J_{rr'}^\dagger = J_{r'r}$ so that the off diagonal maps map into each other under hermitian conjugation. Only $J_{rr'}^\dagger + J_{rr'}$ is hermitian. Thus, there are a total of $2 \cdot \frac{1}{2}N(N+1)$, where the first $2$ comes from the left and right movers.
+\begin{align*}
+	\overline{\partial}J_{rr'}(z) &= 0\\
+	\partial \overline{J}_{rr'}(z) &= 0
+\end{align*}
+for all $r,r\in 1,\ldots, N$. However, $\mathcal{L}_B$ only has $2N$ conserved currents $\partial \Phi_r$, $\overline{\partial}\Phi_r$. Note that this problem shows up already when particles have $SU(2)$ spin. The solution is non-abelian bosonization.
+
+For example, the WZW action
+\[
+S = S_0 + K \Gamma
+,\]
+where
+\[
+	S_0 = \frac{1}{16\pi}\int_{S^2}\dd{x}\dd{\tau} \Tr(\partial_\mu g \partial^\mu g^{-1}), ~\mu = 0,1
+\]  
+where $g(z,\overline{z})\in U(N)$ are matrix-valued fields. $\Gamma$ is defined by
+\[
+	\Gamma = \frac{1}{24\pi}\int_{B^3} \tilde{g}^* W
+,\]
+where $\tilde{g}^*$ is the pullback of 3-form $W$ onto $B^3$,
+\[
+	W = \Tr(\tilde{g}^{-1}\dd{\tilde{g}} \wedge \tilde{g}^{-1} \dd{\tilde{g}} \wedge \tilde{g}^{-1}\dd{\tilde{g}})
+.\] 
+The conserved currents in this case would be given by
+\begin{align*}
+	J(z) &=  \frac{1}{\pi}g^{-1}\partial g, \qquad \overline{\partial}J(z) = 0 \\
+	\overline{J}(\overline{z}) &= -\frac{1}{\pi}(\overline{\partial}g)g^{-1},\qquad \partial \overline{J}(\overline{z}) = 0
+\end{align*}
+The WZW model is far more general than the problem of non-Abelian bosonization! Instead of $U(N)\sim SU(N)\text{ ``spin''}\times U(1)\text{ ``charge''}$. we can take any lie group  $G$.
+\chapter{$\theta$ Terms}
+\section{Example: Particle on a Ring}
+Consider a particle on a ring, parametrised by coordinate $\phi$ with a flux $\Phi$ through the ring. The Hamiltonian is given by
+\[
+	H = \frac{1}{2}(-i\partial_\phi - A)^2
+\] 
+where $A = \frac{\Phi}{\Phi_0}$ and $\Phi_0=2\pi$. The wavefunction is naturally periodic $\psi(2\pi)=\psi(0 )$. The solutions are 
+\[
+	\psi_n = \frac{1}{\sqrt{2\pi} }e^{in\phi},\qquad \epsilon_n = \frac{1}{2}\left( n - \frac{\Phi}{\Phi_0} \right)^2 
+.\] 
+We reformulate the problem as a path integral. First, we express the Hamiltonian as a function of $p$ and $x$:
+\[
+H=\frac{1}{2}(p_\varphi-A)^2
+.\] 
+The Hamiltonian equations of motion are
+\begin{align*}
+	\dv{\varphi}{t} &= \pdv{H}{p_\varphi}=p_\varphi - A \\
+	\dv{p_\varphi}{t} &= -\pdv{H}{\varphi} = 0
+\end{align*}
+The Lagrangian is
+\[
+	L = p_\varphi \dot{\phi} - H = (\dot{\varphi} + A)\dot{\varphi} -\frac{1}{2}\dot{\varphi}^2 = \frac{1}{2}\dot{\varphi}^2 + A\dot{\varphi}
+.\] 
+In euclidean space, this is
+\[
+	L_E = -L(t\to -i\tau, \partial_t \to i\partial_\tau) =\frac{1}{2}(\partial_\tau\varphi)^2 -iA\partial_\tau\varphi
+.\] 
+The equation of motion is
+\[
+	\partial_\tau \fdv{L_E}{(\partial_\tau\varphi)} - \fdv{L_E}{\varphi} = 0
+\] 
+which is
+\[
+\partial_\tau^2 \varphi = 0
+.\] 
+We generate the path integral using the standard formula
+\[
+	Z = \int_{\varphi(\beta)-\varphi(0)\in 2\pi \Z} \mathcal{D}\varphi e^{-S_E},\qquad S_E = \int\dd{\tau} L_E
+.\] 
+This gives a family of classical solutions
+\[
+\varphi_W(\tau) = 2\pi W \frac{\tau}{\beta}
+.\]
+We note that the solutions are mappings
+\[
+\varphi:S^1\to S^1,\qquad \tau\mapsto \varphi(\tau)
+.\] 
+The former must be periodic because of the periodic boundary conditions in the partition function, while $\varphi(\tau)$ lives on a circle. There is an integer winding number $W$ associated with each path that cannot be changed by a continuous deformation. We can perform the path integral separately over each of these sectors, and there will be a classical solution in each of them:
+\[
+	Z = \sum_W \int_{\varphi(\beta) - \varphi(0) = 2\pi W} \mathcal{D}\varphi e^{-\dd{\tau}L_E(\varphi, \partial_\tau \varphi)}
+.\] 
+The integral over the second term of the euclidean space action can be performed directly
+\[
+	\int_{\varphi(\beta) - \varphi(0)=2\pi W}(-iA\partial_\tau\varphi) = -iA \varphi(\tau)|_0^\beta = -2\pi i A W
+\] 
+leading to the euclidean space action
+\[
+	Z = \sum_W e^{2\pi i A W}\int_{\varphi(\beta) - \varphi(0)=2\pi W} \mathcal{D}\varphi e^{-\int \dd{\tau}(\partial_\tau\varphi)^2}
+.\] 
+The first term is an example of a topological term: It depends on the boundary conditions of the path, in the same sense that a gauge field can only be measured when one moves along a complete path. The kinetic information remains in the quadratic term.
+
+Some notes
+\begin{enumerate}
+	\item $S_\text{top}=-2\pi i W A$ is the simplest example of a topological term and belongs to the class of $\theta$ terms.
+	\item $S_\text{top}$ is sensitive only to the topological sector, which is a global property, and does not depend on the local properties of the path. Thus, it cannot affect the equation of motion.
+	\item $S_\text{top}$ is invariant to changes of the metric of the base manifold (e.g. scaling $\tau \to \alpha_\tau$)
+	\item $e^{-S_\text{top}}$ (or $e^{i S_\text{top}^M}$ in Minkowski space) is always a pure phase. 
+\end{enumerate}
+Note that $e^{-S_\text{top}}$ is invariant under $A\to A+\Z$.
+\section{Homotopy}
+Fields are mappings on a manifold $\phi: M \to T$. $M$ is known as the base manifold, and $T$ is known as the target space. Usually, the base manifold is $\R^d$. For low energy physics, it is sensible to consider field configurations which approach a constant value at the boundary of $M$. Thus, we can consider $M\cong S^d$. 
+
+We say that two field configurations $\phi_1,~\phi_2$ are topologically equivalent if they can be deformed continuously into each other, meaning there exists a homotopy
+\[
+	\hat{\phi}: S^d \times [0,1]\to T,~(x,\lambda) \to \hat{\phi}(x,\lambda)
+\]
+suuch that $\phi$ is continuous as a function from $S^d\times [0,1]$ in the usual product topology. Clearly, this is an equivalence relation; we call this the homotopy class. In general, we have $\pi_n(S^d)=\{0\} $ if $n<d$ and $\pi_n(S^n)=\Z$.
+
+Some examples:
+\begin{enumerate}
+	\item $\pi_n(S^d)=\{0\} $ if $n<d$, $\pi_n(S^n) = \Z$.
+	\item $\pi_1(T^d) = \pi_1(S^1\times S^1 \dots \times S^1) = \Z \times \Z \dots \times Z$
+\end{enumerate}
+\subsection{$\theta$-terms in general}
+Recall that each $\phi: M\to T$ belongs to a certain homotopy class $[\phi]$. Thus, we can organise $Z$.
+\[
+	Z = \sum_{w\in G} \int \Dd{\phi_W} e^{-S[\phi]}
+.\] 
+where $W$ labels the homotopy class, $G$ is the homotopy group and we integrate over all $\phi$s in the homotopy class. This leads to an action
+\[
+	S[\phi] = S_0[\phi]+\underbrace{S_\text{top}[\phi]}_{=F(W)}
+\]
+and
+\[
+	Z = \sum_{w\in G}e^{-F(w)} \int \Dd{\phi_W} e^{-S_0[\phi]}
+.\] 
+Now, we can ask how $F(W)$ depends on $W$. In general, we will see that this is linear - $F(w_1+w_2) = F(w_1)+F(w_2)$.
+\end{document}

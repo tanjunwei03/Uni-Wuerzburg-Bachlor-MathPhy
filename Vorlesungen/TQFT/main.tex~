@@ -1,0 +1,242 @@
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+%\documentclass[12pt]{article}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont]{thmnobox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=chapter,style=thmnobox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Postulate]{Postulate}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmnobox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+\allowdisplaybreaks
+\tcbset{colback=white}
+\renewcommand\comment[1]{ {\color{red} #1}}
+\begin{document}
+	\newgeometry{margin=1in}
+	\begin{titlepage}
+		{\begingroup% AW, Design of Books
+			%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+			%\drop = 0.14\textheight
+			\centering
+			%\vspace*{\drop}
+			{\Large Notes in}\\[\baselineskip]
+			{\Huge\bfseries Field Theory}\\[\baselineskip]
+			{\LARGE By}\\[\baselineskip]
+			{\LARGE Jun Wei Tan}\par
+			\vfill
+			{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+			\vfill
+			{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+			\endgroup}
+	\end{titlepage}
+	\restoregeometry
+	\tableofcontents
+
+	\chapter{Introduction}
+	\section{Mean Field Theory \& Phase Transitions}
+	We characterise phases by order parameters. An order parameter is a quantity that vanishes throughout a disordered phase, but spontaneously breaks a symmetry to take a finite value in an ordered phase. 
+	\section{Linear Responses}
+	We consider a Hamiltonian $H_0$. Then, we introduce a perturbation $f(t)O_1$ such that
+	\[
+	H(t) = H_0+f(t) O_1
+	.\] 
+	We seek to compute the perturbation. We do so by expanding the time ordered exponential
+	\begin{align*}
+		T(e^{-i \sum_j \Delta t_j (H_0 + f(t_j) O_1)})&= \prod_j e^{-i \Delta t_j (H_0 + f(t_j) O_1)}\\
+		&= \prod_j e^{-i \Delta t_j H_0} (1- i \Delta t_j f(t_j) O_1)\\
+		&= e^{-i \sum_j \Delta t_j H_0} - i \sum_j \Delta t_j \left( \prod_{k\ge j}e^{-i \Delta t_k H_0} \right) f(t_j) O_1 \left( \prod_{k < j} e^{-i \Delta t_k H_0} \right).
+	\end{align*}
+	By converting this back into an integral, we see that
+	\[
+	\ket{\psi_n(t)} = \left(e^{-i \int_{-\infty}^t \dd{t'}H_0} - i \int_{-\infty}^t \dd{t'} f(t') e^{-i \int_{t'}^t \dd{t^{\prime\prime}} H_0} O_1 e^{-i\int_{-\infty}^{t'} \dd{t''}H_0}\right)\ket{\psi_n}
+	.\] 
+	Hence, we have
+	\begin{align*}
+		\delta \ket{\psi_n(t)} &= -i\int_{t_{-\infty}}^t \dd{t'}f(t')e^{-iH_0(t-t')}O_1 e^{-iH_0(t'-t_{-\infty})} \ket{\psi_n}\\
+		&= -i\int_{t_{-\infty}}^t \dd{t'}f(t') e^{-iH_0(t-t_{-\infty})}O_1(t')\ket{\psi_n}
+	\end{align*}
+	where we define the operator $O_1$ in the interaction picture to be
+	\[
+	O_1(t) = e^{iH_0(t-t_{-\infty})}O_1e^{-iH_0(t-t_{-\infty})}
+	.\] 
+	Then, we consider an observable $O_2$ and define the change in $O_2$ to be
+	\begin{align*}
+		\delta \mel{\psi_n(t)}{O_2}{\psi_n(t)} &:= \mel{\psi_n(t)}{O_2}{\psi_n(t)} - \mel{\psi_n}{e^{iH_0(t-t_{-\infty})}O_2 e^{-i H_0 (t-t_{-\infty})}}{\psi_n}\\
+		&= \mel{\delta\psi_n(t)}{O_2e^{-iH_0(t-t_{-\infty})}}{\psi_n} + \mel{\psi_n}{e^{iH_0(t-t_{-\infty})}O_2}{\delta\psi_n(t)}\\
+		&= -i\int_{-\infty}^t \dd{t'} f(t') \bra{\psi_n}[O_2(t), O_1(t')]\ket{\psi_n}+O(f^2)\\
+		&=\int_{-\infty}^\infty \dd{t'}D(t,t')f(t')
+	\end{align*}
+where
+\[
+D(t, t') =   -i\theta(t-t') \mel{\psi_n}{[O_2(t), O_1(t')]}{\psi_n}
+.\] 
+Because $ H_0$ is not time dependent, we have \comment{figure out how this works}
+\begin{align*}
+	[O_2(t), O_1(t')] &=  e^{iH(t-t_{-\infty})}O_2 e^{iH(t-t')}O_1 e^{-iH(t'-t_{-\infty})} - e^{iH(t'-t_{-\infty})}O_1 e^{iH(t-t')} O_2 e^{-iH(t-t_{-\infty})}
+\end{align*}
+	\section{Superconductivity}
+	We consider an operator creating a pair of electrons with 0 total momentum above the Fermi sea:
+	\[
+	\Lambda^\dagger = \int \dd[3]{x}\dd[3]{x'} \phi(\va x - \va{x}')\psi_{\downarrow}^\dagger(\va x)\psi_{\uparrow}^\dagger(\va{x}')
+	.\] 
+	By performing a Fourier transform, we get the momentum space representation
+	\[
+	\Lambda^\dagger = \sum_{\va k}\phi_{\va k}c_{\va k \downarrow}^\dagger c_{-\va k\uparrow}^\dagger
+	.\] 
+	The structure of $\Phi$ represents the type of superconductor; for example, when $\phi(\va k) = \phi(k)$, this is known as an s-wave superconductor.
+	\chapter{The Path Integral}
+	\section{Phase Space Path Integrals}
+	\section{The Grassman Algebra}
+	\subsection{Introduction}
+	Because every operator can be written in the formalism of second quantisation as a product of creation and annihilation operators, coherent states turn these operators into scalars, which are then easier to deal with. We define a fermionic coherent state by the usual equation
+	\[
+		a_k \ket{\phi} = \phi_k \ket{\phi}
+	.\] 
+	Because annihilation operators for different $k$ anticommute rather than commute, we must have
+	\[
+	\phi_i \phi_j = -\phi_j\phi_i
+	.\] 
+	Thus, the $\phi_i$s cannot be part of a field, because they must anticommute rather than commute! We define the Grassman algebra to be generated by $n$ generators $\xi_i$, with the basis coming from all products $\xi_i\xi_j$ etc. We will assume that there is an even number of generators, and to each generator $\xi_i$ we assign an inversion $(\xi_i)^* = \xi_j$ such that the inversion satisfies $(\xi^*)^* = \xi$ and $(\xi_i\xi_j)^* = \xi_j^*\xi_i^*$. 
+
+	Because of the anticommutativity, we have $\xi^2=-\xi^2=0$ for all Grassman numbers $\xi$. Explicitly, we can construct the Grassman algebra as the exterior algebra on some differential forms. Thus, all analytic functions can be expressed in terms of their Taylor series
+	\[
+	f(\xi) = f_0+ f_1\xi
+	.\] 
+	All operators are then bilinear:
+	\[
+	A(\xi^*, \xi) = a_0 + a_1\xi + a_2 \xi^* + a_{12} \xi^* \xi
+	.\] 
+	We define the derivatives to be equal to the integral
+	\[
+		\pdv{\xi}f(\xi) = f_1 = \int \dd{\xi} f(\xi)
+	.\] 
+	Notably, we work in spirit analogously to the Wirtinger derivatives, and let $\xi$ and $\xi^*$ be independent. For reasons of anticommutativity, we require that the derivative be next to $\xi$ in order to act on it, for example
+	\[
+		\pdv{\xi}(\xi^*\xi) = \pdv{\xi}(-\xi\xi^*) = -\xi^*
+	.\] 
+	Next, we seek to deal with Gaussian integrals. We will see how they pop up later; for now, it suffices to say that the partition function is the integral of an exponential. After substituting in the fermionic coherent states, we will get something that looks like a Gaussian integral. The desired result is
+	\begin{tcolorbox}[title=Gaussian Integrals]
+		\[
+			\int \pi_\alpha \dd{\xi_\alpha^*}\dd{\xi_\alpha} \exp \left[ -\sum_{\alpha,\beta} \xi_\alpha^* M_{\alpha,\beta} \xi_\alpha + \sum_\alpha \left( J_\alpha^* \xi_\alpha + \xi_\alpha^* J_\alpha \right)  \right] = \det(M) \exp\left( \sum_{\alpha,\beta}J_\alpha^* (M^{-1})_{\alpha, \beta} J_\beta \right) 
+		\]
+		where the $J$s are Grassman variables and $M$ is Hermitian.
+	\end{tcolorbox}
+	We show this by diagonalising $\lambda=(\lambda_i)_{ii} = UMU^\dagger$. Then, 
+	\begin{align*}
+		-\xi^\dagger M \xi + J^\dagger\xi +\xi^\dagger J &= -\xi^\dagger U^\dagger \lambda U \xi + J^\dagger U^\dagger U \xi + \xi^\dagger U^\dagger U J \\
+								 &= \sum_\alpha (-\lambda_\alpha \eta_\alpha^* \eta_\alpha + \tilde{J}_\alpha^\dagger + \eta_\alpha + \eta_\alpha^\dagger \tilde{J}_\alpha
+	\end{align*}
+	and hence the integral simplifies to
+	\begin{align*}
+	& \int \prod_\alpha \dd{\eta_\alpha^\dagger}\dd{\eta_\alpha} \exp\left[ \sum_\alpha -\lambda_\alpha \eta_\alpha^\dagger \eta_\alpha + \tilde{J}_\alpha^* \eta_\alpha + \eta_\alpha^* \tilde{J}_\alpha \right] \\
+		=& \prod_\alpha \int \dd{\eta_\alpha^\dagger}\dd{\eta_\alpha}\exp\left[ -\lambda \eta_\alpha^\dagger \eta_\alpha \right] \exp\left[ J_\alpha^* \eta_\alpha + \eta_\alpha^* J_\alpha \right] \\
+		=& \det(M) \exp(J^\dagger M^{-1}J)
+	\end{align*}
+	\subsection{Wick's Theorem}
+	Now, we are in a good position to prove Wick's theorem, the statement of which is
+\begin{tcolorbox}[title=Wick's Theorem]
+\[
+	\frac{\int \prod_\alpha \dd{\psi_\alpha^*}\dd{\psi_\alpha} e^{-\sum_{i,j} \psi_i^* M_{ij} \psi_j + \sum_i (J_i^* \psi_i + \psi_i^* J_i)}}{\int \prod_\alpha \dd{\psi_\alpha^*}\dd{\psi_\alpha} e^{-\sum_{ij} \psi_i^* M_{ij} \psi_j}}=\sum_P \zeta^P M^{-1}_{i_{P_n}, j_n} \dots M^{-1}_{i_{P_1}, j_1}
+.\] 	
+\end{tcolorbox}
+	To do so, we consider the generating function
+	\[
+		G(J^*, J) = \frac{\int \prod_\alpha \dd{\psi_\alpha^*}\dd{\psi_\alpha} e^{-\sum_{i,j} \psi_i^* M_{ij} \psi_j + \sum_i (J_i^* \psi_i + \psi_i^* J_i)}}{\int \prod_\alpha \dd{\psi_\alpha^*}\dd{\psi_\alpha} e^{-\sum_{ij} \psi_i^* M_{ij} \psi_j}}=e^{\sum_{ij} J_i^* (M^{-1})_{ij}J_j}
+	\]
+	(note that the action of dividing is to take away the $\det M$). We differentiate the first line \comment{TODO}
+	\subsection{Fermionic Coherent States}
+	Now, we move on to construct fermionic coherent states. We define that the Grassman numbers anticommute with the annihilation operators, and define
+	\[
+		\ket{\xi} = e^{-\sum_\alpha \xi_\alpha a_\alpha^\dagger} \ket{0} = \prod_\alpha (1-\xi_\alpha a_\alpha^\dagger)\ket{0}
+	.\]
+	To show that this is a coherent state, we simply act on this with $a_\beta$:
+	\begin{align*}
+		a_\beta\ket{\xi} &= a_\beta \prod_\alpha (1-\xi_\alpha a_\alpha^\dagger)\ket{0}\\
+				 &= \prod_{\alpha \neq \beta} (1-\xi_\alpha a_\alpha^\dagger)a_\beta (1-\xi_\beta a_\beta^\dagger) \ket{0} \\
+				 &= \prod_{\alpha \neq \beta} (1-\xi_\alpha a_\alpha^\dagger)\xi_\beta (1-\xi_\beta a_\beta^\dagger) \ket{0} \\
+				 &=\xi_\beta \prod_\alpha (1-\xi_\alpha a_\alpha^\dagger)\ket{0}  \\
+	\end{align*}
+	Note that here we used the commutativity where $\alpha\neq \beta$ as well as the relation
+	\begin{align*}
+		\alpha_\beta (1-\xi_\beta a_\beta^\dagger)\ket{0} &= -\alpha_\beta \xi_\beta a_\beta^\dagger\ket{0} \\
+								  &= \xi_\beta a_\beta a_\beta^\dagger\ket{0} \\
+								  &= \xi_\beta\ket{0} \\
+								  &= \xi_\beta(1 - \xi_\beta a_\beta^\dagger)\ket{0}
+	\end{align*}
+	Then, we can easily show the expressions for the scalar product
+	\begin{align*}
+		\braket{\xi}{\xi'} &= \mel{0}{\prod_{\alpha,\beta} (1+\xi_\alpha a_\alpha)(1-\xi'_\beta a^\dagger_\beta)}{0}\\
+			&= \prod_\alpha ( 1+\xi_\alpha^* \xi'_\alpha ) \\
+			&= e^{\sum_\alpha \xi^*_\alpha \xi_\alpha'}
+	\end{align*}
+	Similarly, we can show that we can produce a partition of unity using
+	\[
+		1 = \int \prod_\alpha \dd{\xi_\alpha^*}\dd{\xi_\alpha} e^{-\sum_\alpha \xi_\alpha^* \xi_\alpha} \ket{\xi}\bra{\xi}
+	.\] 
+	\chapter{The Functional Renormalisation Group}
+\end{document}
