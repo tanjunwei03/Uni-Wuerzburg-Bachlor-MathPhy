@@ -1,0 +1,102 @@
+\begin{Problem}[Norm]
+	Which of the maps $\mathcal{M}_2 \to [0,\infty)$
+	\begin{align}
+		M &\mapsto |\det M| \tag{1a}\\
+		M &\mapsto |\operatorname{tr} M| \tag{1b}\\
+		M &\mapsto \sup_{ij} |M_{ij}| \tag{1c}\\
+		M &\mapsto \sup_{\substack{v\in\mathbb{C}^2, \\ \|v\|=1}} \|Mv\| \quad \text{(with } \|v\| = \sqrt{|v_1|^2 + |v_2|^2}) \tag{1d}
+	\end{align}
+	define a norm on the algebra $\mathcal{M}_2$ of complex $2\times 2$ matrices? Which turn $\mathcal{M}_2$ into a $C^*$-algebra?
+\end{Problem}
+\begin{proof}
+	The first is not homogeneous, because multiplying $M$ by a constant multiplies $\det M$ by the squared constant.
+	
+	The second is not positive definite: $\Tr(\text{diag}(1,-1))=0$, but $\text{diag}(1,-1)\neq 0$.
+	
+	The third is not a norm:
+	\begin{enumerate}
+		\item It is homogeneous.
+		\item It is positive definite
+		\item It satisfies the triangle inequality.
+		\item It is not submultiplicative: Consider
+			\[
+				A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
+			.\] 
+			Then
+			\[
+				A^2 = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix} 
+			,\]
+			thus
+			\[
+			2=\|A^2\|\not\leq \|A\|\|A\|=1
+			.\] 
+	\end{enumerate}
+\item This is the functional norm.\qedhere
+\end{proof}
+\begin{Problem}[Spectrum and Resolvent]
+	Use the Pauli matrices
+	\[
+	\sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+	\sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+	\sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+	\tag{2}
+	\]
+	to parametrize a general complex $2\times 2$ matrix $M \in \mathcal{M}_2$ by four complex numbers $(a_0, \vec{a})$:
+	\[
+	M(a_0, \vec{a}) = a_0 1 + \vec{a}\cdot \vec{\sigma} 
+	= a_0 1 + a_1\sigma_1 + a_2\sigma_2 + a_3\sigma_3
+	= \begin{pmatrix}
+		a_0 + a_3 & a_1 - i a_2 \\
+		a_1 + i a_2 & a_0 - a_3
+	\end{pmatrix}.
+	\tag{3}
+	\]
+	
+	\begin{enumerate}
+		\item For which $(a_0, \vec{a}) \in \mathbb{C}^4$ is $M(a_0, \vec{a})$
+		\begin{enumerate}[label=(\alph*)]
+			\item normal,
+			\item isometric,
+			\item unitary,
+			\item self-adjoint,
+			\item positive?
+		\end{enumerate}
+		
+		\item Determine the resolvent set $r_{\mathcal{M}_2}(M(a_0, \vec{a}))$ and spectrum $\sigma_{\mathcal{M}_2}(M(a_0, \vec{a}))$ for all $(a_0, \vec{a})$. Handle exceptional cases.
+		
+		\item Test the general results for the spectrum of normal, isometric, unitary, self-adjoint, and positive matrices.
+		
+		\item Compute the resolvent
+		\[
+		R^{a_0,\vec{a}} : r_{\mathcal{M}_2}(M(a_0, \vec{a})) \to \mathcal{M}_2, \quad 
+		z \mapsto (z1 - M(a_0, \vec{a}))^{-1}
+		\tag{4}
+		\]
+		as a $2\times 2$ matrix (i.e., perform the matrix inversion explicitly!).
+		
+		\item \textbf{NB:} In the lecture on \textit{Tuesday, November 4, 2025}, it will be shown that $P^{M(a_0,\vec{a})}_\mathcal{C}$ is indeed a projection, if $\mathcal{C}$ encircles a part of the spectrum $\sigma(M(a_0,\vec{a}))$. You can wait until then to complete the exercise, take a peek at the script, or just do the integral choosing typical examples for $\mathcal{C}$ based on your earlier results for $\sigma(M(a_0,\vec{a}))$.
+		
+		Compute the projections
+		\[
+		P^{M(a_0,\vec{a})}_\mathcal{C} = \int_{\mathcal{C}} \frac{dz}{2\pi i} \, R^{a_0,\vec{a}}(z)
+		\tag{5}
+		\]
+		for ``interesting'' $\mathcal{C}$ explicitly. Are there qualitatively different cases to consider?
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{enumerate}
+		\item 
+			\begin{parts}
+			\item We compute $A A^\dagger - A^\dagger A$ explicitly to get
+				\[
+				\left(
+\begin{array}{cc}
+ 2 i \left(a_1 \left(a_2\right){}^*-a_2 \left(a_1\right){}^*\right) & a_1 \left(-\left(a_0+a_3\right){}^*\right)+\left(a_1-i a_2\right) \left(a_0\right){}^*-\left(a_1-i a_2\right) \left(a_3\right){}^*+i a_2 \left(a_0+a_3\right){}^*+2 a_3 \left(a_1\right){}^*-2 i a_3 \left(a_2\right){}^* \\
+ a_1 \left(a_0+a_3\right){}^*-\left(a_1+i a_2\right) \left(a_0\right){}^*+\left(a_1+i a_2\right) \left(a_3\right){}^*+i a_2 \left(a_0+a_3\right){}^*-2 a_3 \left(a_1\right){}^*-2 i a_3 \left(a_2\right){}^* & 2 i \left(a_2 \left(a_1\right){}^*-a_1 \left(a_2\right){}^*\right) \\
+\end{array}
+\right)
+				.\] 
+			\end{parts}
+	\end{enumerate}
+\end{proof}

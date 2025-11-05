@@ -52,7 +52,22 @@ where we used the equation
 \[
 	\|\alpha + A\|_\mathcal{A}\le \sup_{D\in \mathcal{A}, \|D\|_\mathcal{A}=1}\|(\alpha + A)D\|
 \]
-by noting that $D = (\alpha + A)^*$ yielded an appropriate lower bound on $\|(\alpha + A)D\|$ (this is where the $C^*$ algebra property was required).\qedhere
+by noting that $D = (\alpha + A)^*$ yielded an appropriate lower bound on $\|(\alpha + A)D\|$ (this is where the $C^*$ algebra property was required).
+
+{\color{red} The above proof is false as $\alpha + A$ is not defined without a unit in the algebra}
+
+The proof follows analogously to that of bounded linear operators. We treat $(\alpha, A)$ as a linear operator on $\mathcal{A}$ through left multiplication. All operators remain bounded because
+\begin{align*}
+\|(\alpha, A)C\|_\mathcal{A} &= \|\alpha C + AC\| \\
+			     &\le \alpha\|C\| + \|A\|\|C\| \\
+			     &= (\alpha + \|A\|) \|C\|
+\end{align*}
+Then, we can either cite the result, or we can prove it using
+\begin{align*}
+	\|(\alpha, A)(\beta, B)\|_{\overline{\mathcal{A}}} &= \sup_{C\in \mathcal{A}, \|C\|_\mathcal{A}=1} \|(\alpha, A)(\beta, B)C\| \\
+							   &\le \sup_{D \in \mathcal{A}, \|D\|_\mathcal{A}= \|(\beta, B)\|_{\overline{\mathcal{A}}}}\|(\alpha, A)D\|\\
+							   &\le \|(\alpha, A)\|_{\overline{\mathcal{A}}} \|(\beta, B)\|_{\overline{\mathcal{A}}}.
+\end{align*}
 	\end{enumerate}
 \end{proof}	
 \begin{Problem}[Ideals]
@@ -103,7 +118,21 @@ by noting that $D = (\alpha + A)^*$ yielded an appropriate lower bound on $\|(\a
 				&= \{AB + A I_2 + I_1B + I_1I_2|I_1,I_2\in \mathcal{I}\} 
 			\end{align*}
 			By the ideal property, we know that $A I_2\in \mathcal{I}$, and $I_1B\in \mathcal{I}$. Thus, we are done. The ideal had to be 2-sided because $A$ and $B$ appeared on different sides of $I_1$ and $I_2$ respectively. Note also that we implicitly proved that the multiplication does not depend on the choice of representative of the equivalence class, as we could absorb any shifts into the $I_1$ and $I_2$ factors beside the $A$ and $B$.
-		\item If $\mathcal{A}$ is a *-algebra and $\mathcal{I}$ is self-adjoint, it is also a two sided ideal from the previous problem.
-		\item 
+		\item If $\mathcal{A}$ is a *-algebra and $\mathcal{I}$ is self-adjoint, it is also a two sided ideal from the previous problem. Involution is well defined because
+			\[
+				(A+I)^* = A^* + I^* = A^* + I
+			.\] 
+		\item We define a norm on the equivalence classes through
+			\[
+				\|[A]\|= \inf_{a\in I}\|A + a\|
+			.\] 
+			This is a norm through the standard norm properties. For example, subadditivity (the triangle inequality) can be computed by
+			\begin{align*}
+				\|[A]+[B]\|&= \inf_{a\in I}\|A+B + a\| \\
+					   &= \inf_{a\in I, b\in I} \|A+B+a+b\| \\
+					   &\le \inf_{a\in I}\|A + a\| + \inf_{b\in I}\|B + b\|\\
+					   &= \|[A]\|+ \|[B]\|
+			\end{align*}
+			The submultiplicativity follows similarly. 
 	\end{enumerate}
 \end{proof}
