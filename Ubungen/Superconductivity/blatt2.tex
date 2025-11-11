@@ -1,0 +1,61 @@
+\begin{Problem}
+	Bose-Einstein condensation was obtained experimentally for the first time in 1995 by confining particles in a harmonic potential. Suppose you have particles in a potential \( V(\mathbf{r}) = \frac{1}{2} m \omega^2 r^2 \). Then, the particle states are characterized by three quantum numbers, \( n_x, n_y, n_z \), all integers and greater or equal to zero. The energy of each state is given by
+	
+	\[
+	\epsilon_{n_x, n_y, n_z} = \hbar \omega (n_x + n_y + n_z).
+	\]
+	
+	Notice that the zero energy level has been redefined so that the lowest energy state (the ground state) has energy 0.
+	
+	\begin{itemize}
+		\item Show that the grand canonical partition function can be written as
+		\[
+		\ln Z_G = - \sum_{n_x, n_y, n_z} \ln \left( 1 - z e^{-\beta \hbar \omega (n_x + n_y + n_z)} \right),
+		\]
+		where \( z = e^{\mu \beta} \) is the fugacity.
+		
+		\item Introduce \( n = n_x + n_y + n_z \) and rewrite the sum over states as the sum over \( n \) with multiplicity \( \Omega(n) \). Compute the number of states of a particle \( \Omega(n) \) at a given energy \( E_n = \hbar \omega n \) (notice that it is equivalent as, for instance, to distribute \( n \) equal books in 3 indistinguishable boxes).
+		
+		\item Which condition must be satisfied in order to approximate the sum by an integral? Approximate the sum in the grand canonical partition function by an integration assuming that the dominant contributions are from terms with \( n \gg 1 \). In \( Z_G \) should be written in terms of \( \text{Li}_s(z) \) defined as
+		\[
+		\text{Li}_s(z) = \frac{1}{\Gamma(s)} \int_0^\infty \frac{x^{s-1}}{e^x/z - 1} \, dx,
+		\]
+		with \( \Gamma \) is the Gamma function. \( \text{Li}_s(z) \) is the polylogarithm of order \( s \). It will become useful that \( \text{Li}_s(1) = \zeta(s) \), where \( \zeta \) is the Riemann Zeta function and \( \text{Li}_{s-1}(z) = \text{Li}_s(z) \).
+		
+		\item Find the expected number of particles \( N = \langle N \rangle \) expressed in terms of the fugacity. (Notice that the condensate is a particular limit when \( z \to 1 \).) Identify the occupation of the ground state and the occupation of excited states.
+		
+		\item Introduce \( 0 < f \le 1 \) to represent how many particles are in the lowest energy state, such that \( z = 1 / f N \). Discuss the thermodynamic limit and find the critical temperature \( T_c \). The critical temperature is where the ground state starts to become occupied when lowering the temperature.
+		
+		\item Calculate the internal energy and specific heat of the gas of temperature below the critical temperature.
+	\end{itemize}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The grand canonical partition function is given by
+		\begin{align*}
+			Z &= \sum e^{-\beta (H - \mu N)} \\
+			  &= \sum_{n_x,n_y,n_z=0}^\infty \sum_{N(n_x,n_y,n_z)=0}^\infty e^{-\beta N(n_x, n_y, n_z)(\hbar\omega-\mu) (n_x+n_y+n_z)} \\
+			  &= \sum_{n_x, n_y, n_z=0}^\infty \sum_{N(n_x,n_y,n_z)=0}^\infty (e^{-\beta(\hbar\omega -\mu)(n_x+n_y+n_z)})^{N(n_x,n_y,n_z)} \\
+			  &= \sum_{n_x,n_y,n_z=0}^\infty  \frac{1}{1-e^{-\beta(\hbar\omega - \mu)(n_x+n_y+n_z)}}
+		\end{align*}
+		where $N(n_x,n_y,n_z)$ is the number of particles in the state $(n_x,n_y,n_z)$. Notably, $n_x, n_y$ and $n_z$ represent just energy states, rather than the number of bosons in a state\footnote{This is bullshit}. Taking the logarithm yields
+		\[
+			\ln Z = -\sum_{n_x,n_y,n_z=0}^\infty\ln\left[ 1 - ze^{-\beta \hbar\omega(n_x+n_y+n_z)} \right] 
+		.\] 
+	\item Clearly, the partition function is given by
+		\[
+			\ln Z_G = \sum_{n=0}^{\infty} \sum_{n_x+n_y+n_z=n} \ln\left( 1-ze^{-\beta\hbar\omega(n_x+n_y+n_z)} \right) 
+		.\] 
+		Since the expression inside the sum only depends on $n$, the inner sum reduces to simply counting $\Omega(n)$. We begin by choosing any number between $0$ and $n$ for $n_x$. If $n_x=n$, we are done. Otherwise, we have $n - n_x$ possibilities for $n_y$. The final one is fixed. Thus, the total number of possibilities is
+		\[
+		\Omega(n) = 1+\sum_{n_x=0}^{n-1} (n-n_x) = 1+ \frac{n(n+1)}{2}=
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}
+	Prove that the entropy per photon in black body radiation is independent of temperature and in \( d \) spatial dimensions is given by
+	\[
+	s = \frac{S}{N} = k_B (d + 1) \frac{\sum_{n=1}^\infty n^{d-1}}{\sum_{n=1}^\infty n^{d}} = k_B (d + 1) \frac{\zeta(d + 1)}{\zeta(d)},
+	\]
+	where \( \zeta(s) \) is the Riemann Zeta function.
+\end{Problem}
