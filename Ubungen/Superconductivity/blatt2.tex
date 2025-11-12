@@ -133,5 +133,32 @@ Above this temperature, the occupation is microscopic and follows the distributi
 	where \( \zeta(s) \) is the Riemann Zeta function.
 \end{Problem}
 \begin{proof}
-	We 
+	This system is rather similar to that of the harmonic oscillator in the previous problem. In a one-dimensional box of length $L$, the wavelength is restricted by
+	\[
+	\lambda = \frac{2L}{n},~n\in \N
+	.\] 
+Thuus, the frequency is limited by
+\[
+	f = \frac{nc}{2L}
+\]
+and the energy is quantised
+\[
+E = hf = \frac{hc}{2L}n
+.\] 
+In $d$ dimensions, the energy is just the sum of the energy in all 3 modes to give
+\[
+	E = \frac{hc}{2L}\left( \sum_{i=1}^d n_i \right) 
+.\] 
+In general, the density of modes per unit volume for a given wavenumber $k$ is $k^{d-1}\dd{k}$ (the prefactors all do not matter, as we can simply normalise it - only the scaling really matters).
+
+Thus, using the Bose-Einstein distribution, we find that the average particle number and energy are given by (absorbing the normalisation of the partition function into a constant $A$)
+\begin{align*}
+	n &= A\int_0^\infty \frac{k^{d-1}}{e^{\beta\hbar ck}-1}\dd{k} \\
+	  &= \frac{A}{(\beta\hbar c k)^d}\int_0^\infty \frac{(\beta\hbar c k)^{d-1}}{e^{\beta\hbar ck}-1}\dd{(\beta\hbar c k)} \\
+	  &= \frac{A}{(\beta\hbar c k)^{d-1}}\Gamma(d)\text{Li}_d(1) \\
+	u &= A\int_0^\infty \frac{\hbar ck^d}{e^{\beta\hbar c k}-1}\dd{k} \\
+	  &= \frac{\hbar c A}{(\beta\hbar c)^{d+1}}\int_0^\infty \frac{(\beta\hbar c k)^d}{e^{\beta\hbar c k}-1}\dd{(\beta\hbar c k)} \\
+	  &= \frac{\hbar c A}{(\beta\hbar c)^{d+1}}\Gamma(d+1)\text{Li}_{d+1}(1) \\
+\end{align*}
+We begin by computing the partition function. This is similar to the previous problem, but we can simply note that the density of states, which plays the function of $\Omega(n)$ in the previous problem, is simply proportional to the $d-1$-th power of $n$. Here, as we are taking the limits as the size of the box tends to infinity, the energy levels become continuous and we can replace the sums by an integral.
 \end{proof}
