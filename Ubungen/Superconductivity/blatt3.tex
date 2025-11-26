@@ -1,0 +1,63 @@
+\begin{Problem}[Problem 1]
+	Consider two reservoirs for electrons at thermal equilibrium. Refer to them as left $L$ and right $R$ leads which extend in the $x$ direction. Imagine we apply small voltages to the two leads which tunes their chemical potential by $eV_L$ and $eV_R$.
+	
+	\begin{itemize}
+		\item Starting from the scattering matrix approach, relate the states entering and leaving each lead at the interface.
+		
+		\item Within the second quantization formalism, write the formula for the electrical current. \textbf{Hint:} it will be useful later to write it as an energy integration.
+		
+		\item Taking advantage of the elements of the scattering matrix, identify in the previous formula the transmission function.
+		
+		\item Identify the equilibrium conductance
+	
+	\[
+	G = \frac{e^2}{h} \, \mathrm{Tr}\!\left[ t^\dagger(E_F)\, t(E_F) \right],
+	\tag{1}
+	\]
+	
+	where $t(E_F)$ is the transmission matrix of our system evaluated at the Fermi energy $E_F$. What is the meaning of the eigenvalues of the hermitian matrix 
+	$t^\dagger(E_F)t(E_F)$?
+		\end{itemize}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We take each lead to have $n$ channels, each with a quantum number $\pm$ denoting whether a certain wave is moving right ($+$) or left ($-$). Thus, the outgoing waves for the $L$ ($R$) lead are those going in the $-$ ($+$) direction, and the incoming waves are those going in the $+$ ($-$) direction.
+
+		Then, denoting the amplitudes for each as $\va{a}_{L / R}^{\pm}$, where $\va{a}$ is a vector denoting the $n$ channels, the $S$-matrix relates the amplitudes of the ingoing and outgoing waves as
+		\[
+			\begin{pmatrix} \va{a}_L^- \\ \va{a}_R^+ \end{pmatrix} = \underbrace{\begin{pmatrix} \mathbf{r} & \mathbf{t}' \\ \mathbf{t} & \mathbf{r}' \end{pmatrix} }_{S}\begin{pmatrix} \va{a}_L^+ \\ \va{a}_R^- \end{pmatrix} 
+		.\] 
+	\item In general, the electrical current can be determined through the derivative $j^\mu = \fdv{S[A]}{A^\mu}$, and leads to the expression for free particles coupled to an electric field
+		\begin{align*}
+			\va{J}&= \va{J}^{\grad} + \va{J}^{\va A} \\
+			\va{J}^{\grad} &= \frac{\hbar}{2mi}\left[ \psi^\dagger \grad{\psi} - (\grad{\psi^\dagger})\psi \right]  \\
+			\va{J}^{\va A}&=-\frac{q}{m}\va{A}\psi^\dagger\psi
+		\end{align*}
+		In the case of a DC current, we usually have an electric field but no magnetic field. Hence, we can set $\va{A}=0$. 
+	\end{parts}
+\end{proof}
+
+
+\begin{Problem}[Problem 2]
+	Consider a wide conductor along $x$, e.g.\ width in $y$ direction is large $W$ while the height in $z$ direction is small. The length in the $x$ direction is large $L$.
+	
+	Given information: The density of states of a 2D spin degenerate system is
+	\[
+	\mathcal{D}_0 = \frac{m}{\pi \hbar^2}.
+	\]
+	The transmission through a wire with length $L$ is
+	\[
+	T = \frac{L_0}{L + L_0},
+	\]
+	where $L_0$ is the mean free path. The conductivity is
+	\[
+	\sigma = e^2 \mathcal{D}_0 D,
+	\]
+	where
+	\[
+	D = \frac{v_F L_0}{\pi}
+	\]
+	is the diffusion coefficient and $v_F$ is the Fermi velocity.
+	
+	Using this information, relate the previous results for conductance $G$ with Ohm's law. I.e., does the relationship between $G$ and conductivity $\sigma$ correspond to Ohm’s law?
+\end{Problem}
