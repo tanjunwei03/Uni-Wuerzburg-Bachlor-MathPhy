@@ -20,11 +20,11 @@
 		\[
 		\text{Li}_s(z) = \frac{1}{\Gamma(s)} \int_0^\infty \frac{x^{s-1}}{e^x/z - 1} \, dx,
 		\]
-		with \( \Gamma \) is the Gamma function. \( \text{Li}_s(z) \) is the polylogarithm of order \( s \). It will become useful that \( \text{Li}_s(1) = \zeta(s) \), where \( \zeta \) is the Riemann Zeta function and \( \text{Li}_{s-1}(z) = \text{Li}_s(z) \).
+		with \( \Gamma \) is the Gamma function. \( \text{Li}_s(z) \) is the polylogarithm of order \( s \). It will become useful that \( \text{Li}_s(1) = \zeta(s) \), where \( \zeta \) is the Riemann Zeta function and \( z\text{Li}_{s}'(z) = \text{Li}_{s-1}(z) \).
 		
 		\item Find the expected number of particles \( N = \langle N \rangle \) expressed in terms of the fugacity. (Notice that the condensate is a particular limit when \( z \to 1 \).) Identify the occupation of the ground state and the occupation of excited states.
 		
-		\item Introduce \( 0 < f \le 1 \) to represent how many particles are in the lowest energy state, such that \( z = 1 / f N \). Discuss the thermodynamic limit and find the critical temperature \( T_c \). The critical temperature is where the ground state starts to become occupied when lowering the temperature.
+		\item Introduce \( 0 < f \le 1 \) to represent how many particles are in the lowest energy state, such that \( z =1- 1 / f N \). Discuss the thermodynamic limit and find the critical temperature \( T_c \). The critical temperature is where the ground state starts to become occupied when lowering the temperature.
 		
 		\item Calculate the internal energy and specific heat of the gas of temperature below the critical temperature.
 	\end{itemize}
@@ -60,12 +60,140 @@ Thus the partition function is
 		\ln Z_G &\approx \int_0^\infty \frac{n^2}{2} \ln \left( 1 - ze^{-\beta\hbar\omega n} \right)\dd{n} \\
 		&=\left[ \frac{n^3}{6}\ln\left( 1 - ze^{-\beta \hbar\omega n} \right) \right]_0^\infty -\int_0^\infty \frac{n^3}{6} \frac{1}{1-ze^{-\beta\hbar\omega n}}(-ze^{-\beta \hbar\omega n})(-\beta\hbar\omega)\dd{n} 
 	\end{align*}
+	We must show that the constant part vanishes. Clearly the lower limit vanishes. The upper limit is a bit more subtle: We expand
+	\[
+	\ln(1-x)\approx -x
+	\]
+	and note that the exponential prefactor now standing in front of the polynomial forces the term to vanish. Thus, we have
+	\begin{align*}
+		\ln Z_G &= -\frac{\beta \hbar\omega }{6}\int_0^\infty  \frac{n^3}{\frac{1}{z}e^{\beta\hbar\omega n} - 1}\dd{n}\\
+			&= -\frac{\beta \hbar\omega}{6}\int_0^\infty \frac{1}{(\beta\hbar\omega)^4} \frac{(\beta \hbar\omega n)^3}{\frac{1}{z}e^{\beta \hbar\omega n}-1}\dd{(\beta\hbar\omega n)}  \\
+			&= \frac{1}{6(\beta\hbar\omega)^3}(\Gamma(4)\text{Li}_4(z)) \\
+			&= \frac{1}{(\beta\hbar\omega)^3}\text{Li}_4(z) 
+	\end{align*}
+\item The grand canonical potential is given by
+	\[
+	J = -\frac{1}{\beta}\ln Z_G
+	.\] 
+We can then determine the expectation value of the particle number as
+\[
+	N=-\left( \pdv{J}{\mu} \right)_T
+.\] 
+This gives us
+\begin{align*}
+	\langle N \rangle &= \frac{1}{\beta}\pdv{\mu}\ln Z_G \\
+			  &= \frac{1}{\beta}\frac{1}{\beta\hbar\omega}\pdv{\mu}\text{Li}_4(z) \\
+			  &= \frac{1}{\beta}\frac{1}{\beta\hbar\omega}\left(\pdv{z}\text{Li}_4(z)\right)\pdv{z}{\mu} 
+\end{align*}
+The first derivative is clear:
+\[
+	\pdv{z}{\mu}=z\beta
+.\] 
+For the second, we use the hint to get
+\begin{align*}
+	\langle N\rangle &= \frac{1}{\beta(\beta\hbar\omega)^3}\beta z \text{Li}_4'(z) \\
+			 &= \frac{1}{(\beta\hbar\omega)^3} \text{Li}_3(z) 
+\end{align*}
+Anticipating a transition when lowering temperature, we analyse what happens when we lower the temperature while keeping the number of particles constant. As temperature decreases, the polylogarithmic function must increase to keep the number of particles constant. Hence, $z$ increases and thus $\mu$ must increase. However,  the maximum value of $\mu$ is 0 - at this value of $\mu$, we have $z=1$ and $\text{Li}_3(1)=\zeta(3)\approx 1.2$. 
+
+Since we can decrease $T$ arbitrarily, but cannot increase $\text{Li}_3(z)$ arbitrarily to compensate, we must conclude that we have missed out something in our analysis. This is the assumption that there are no macroscopically occupied states. Thus, above a transition temperature $T_c$, we have a macroscopic occupation of the ground state.
+
+We compute this occupation number by bounding $\langle N \rangle$ using the maximum value
+\[
+	\langle N \rangle \le \frac{\zeta(3)}{(\beta \hbar\omega)^3}=\zeta(3)\left( \frac{k_B T}{\hbar\omega} \right)^3
+.\] 
+Thus, for a fixed total particle number $N_\text{tot}$, we find that the critical temperature is
+\[
+	T_c = \left( \frac{\hbar\omega}{k_B} \right) \left(\frac{N_\text{tot}}{\zeta(3)}\right)^{1 / 3}
+.\] 
+Above this temperature, the occupation is microscopic and follows the distribution derived above. Below this temperature, the ground state is occupied microscopically; the number of particles in the excited states is limited to our bounding value, and all particles not there are in the ground state.
+\item Below the transition temperature, the number of particles in excited states remains at
+	\[
+	N = \frac{\zeta(3)}{(\beta \hbar\omega)^3}
+	.\] 
+	The number of particles in the ground state is h ence
+	\[
+		N_0 = N_\text{tot} - \frac{\zeta(3)}{(\beta\hbar\omega)^3}
+	.\] 
+	If we define $f = N_0 / N_\text{tot}$, we get
+	\[
+		f = 1 - \frac{\zeta(3)}{N_\text{tot}(\beta\hbar\omega)^3}
+	.\] 
+\item Below the transition temperature, the particles in the ground state do not contribute any energy, and hence the energy can be computed from the grand canonical partition function approximated using an integral
+	\[
+	E = -\left( \pdv{J}{T} \right) = \pdv{T}\left[ \frac{(k_B T)^4}{(\hbar\omega)^3}\text{Li}_4(z) \right]=4 k_B \left( \frac{k_B T}{\hbar\omega} \right)^3 \text{Li}_4(z)
+	.\] 
+	The heat capacity is given by
+	\[
+	c_V = \pdv{E}{T} = 12 k_B^2 \frac{(k_B T)^2}{(\hbar\omega)^3}\text{Li}_4(z)
+	.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
 	Prove that the entropy per photon in black body radiation is independent of temperature and in \( d \) spatial dimensions is given by
 	\[
-	s = \frac{S}{N} = k_B (d + 1) \frac{\sum_{n=1}^\infty n^{d-1}}{\sum_{n=1}^\infty n^{d}} = k_B (d + 1) \frac{\zeta(d + 1)}{\zeta(d)},
+	s = \frac{S}{N} = k_B (d + 1) \frac{\sum_{n=1}^\infty n^{-d-1}}{\sum_{n=1}^\infty n^{-d}} = k_B (d + 1) \frac{\zeta(d + 1)}{\zeta(d)},
 	\]
 	where \( \zeta(s) \) is the Riemann Zeta function.
 \end{Problem}
+\begin{proof}
+	This system is rather similar to that of the harmonic oscillator in the previous problem. In a one-dimensional box of length $L$, the wavelength is restricted by
+	\[
+	\lambda = \frac{2L}{n},~n\in \N
+	.\] 
+Thuus, the frequency is limited by
+\[
+	f = \frac{nc}{2L}
+\]
+and the energy is quantised
+\[
+E = hf = \frac{hc}{2L}n
+.\] 
+In $d$ dimensions, the energy is just the sum of the energy in all 3 modes to give
+\[
+	E = \frac{hc}{2L}\left( \sum_{i=1}^d n_i \right) 
+.\] 
+This is rather reminiscent of the previous problem; we define $\Omega(n)$ analogously. We note that $\Omega(n)$ solves a \href{https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics)}{Stars and Bars problem}. Essentially, we imagine arranging the $n$ books in a line and partition them into the $k$ boxes by placing $k-1$ dividers such that the books within a single group into a single box. We can arrange them by imagining the $n$ books and $k-1$ dividers as $n+k-1$ symbols, and we must choose $k-1$ to be dividers. Filling in the rest of the symbols with books yields our partitions. Thus, we have
+\[
+\Omega(n) = \binom{n+d-1}{d-1} = \frac{(n+d-1)!}{(d-1)!n!}
+.\] 
+Importantly, we note that for high $n$ this is well approximated by
+\[
+\Omega(n) \approx \frac{1}{(d-1)!}n^{d-1}
+.\] 
+Substituting this in the expression from the previous problem, we find that the partition function $Z_G$ is given by
+\begin{align*}
+	\ln Z_G &= \sum_{n=0}^\infty \Omega(n) \ln\left(1 - ze^{-\beta \frac{hc}{2L}n}\right)\\
+	&= \int_0^\infty \frac{1}{(d-1)!}n^{d-1}\ln\left( 1-ze^{-\beta \frac{hc}{2L}n} \right)\dd{n} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \beta \frac{hc}{2L} \right)^{d}}\int_0^\infty \left( \beta \frac{hc}{2L}n \right)^{d-1}\ln\left( 1-ze^{-\beta \frac{hc}{2L}n} \right)\dd{\left( \beta \frac{hc}{2L}n \right)}
+\end{align*}
+We then evaluate the second integral by integration by parts analogously to the previous problem
+\begin{align*}
+	&~\int_0^\infty x^{d-1}\ln (1-ze^{-x})\dd{x} \\
+	=&~\left[\frac{x^d}{d}\ln(1-ze^{-x})  \right]_0^\infty- \int_0^\infty \frac{x^d}{d}\frac{1}{1-ze^{-x}} (ze^{-x})\dd{x}\\
+	=& ~ \frac{1}{d}\int_0^\infty \frac{x^d}{e^x / z - 1}\dd{x}\\
+	=&~\frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)
+\end{align*}
+Substituting this yields the grand canonical partition function $J = -k_B T \ln Z_G$
+\[
+J = -\frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)
+.\] 
+From here, we can compute the entropy as
+\begin{align*}
+	S &= -\left( \pdv{J}{T} \right)_{V,\mu} \\
+	&= \frac{d+1}{(d-1)!}\frac{k_B}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)\\
+	&= \frac{d+1}{(d-1)!}\frac{k_B}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(1)
+\end{align*}
+and the expected number of particles as
+\begin{align*}
+	n &= -\left( \pdv{J}{n} \right)_{T,\mu}\\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}'(z) \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1) \frac{\text{Li}_d(z)}{z}\pdv{z}{\mu} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1) \frac{\text{Li}_d(z)}{z}\beta e^{\beta\mu} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1) \text{Li}_d(1) 
+\end{align*}
+We note that in the last line of all of these computations, we have used the fact that photons can be created and destroyed and thus $\mu = 0$ (or $z=1$) for the photons. Dividing yields
+\[
+\frac{S}{n} = (d+1)k_B \frac{\text{Li}_{d+1}(1)}{\text{Li}_d(1)}=(d+1)k_B \frac{\zeta(d+1)}{\zeta(d)}
+.\qedhere\] 
+\end{proof}

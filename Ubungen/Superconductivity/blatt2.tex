@@ -33,14 +33,14 @@
 	\begin{parts}
 	\item The grand canonical partition function is given by
 		\begin{align*}
-			Z &= \sum e^{-\beta (H - \mu N)} \\
+			Z_G &= \sum e^{-\beta (H - \mu N)} \\
 			  &= \sum_{n_x,n_y,n_z=0}^\infty \sum_{N(n_x,n_y,n_z)=0}^\infty e^{-\beta N(n_x, n_y, n_z)(\hbar\omega-\mu) (n_x+n_y+n_z)} \\
 			  &= \sum_{n_x, n_y, n_z=0}^\infty \sum_{N(n_x,n_y,n_z)=0}^\infty (e^{-\beta(\hbar\omega -\mu)(n_x+n_y+n_z)})^{N(n_x,n_y,n_z)} \\
 			  &= \sum_{n_x,n_y,n_z=0}^\infty  \frac{1}{1-e^{-\beta(\hbar\omega - \mu)(n_x+n_y+n_z)}}
 		\end{align*}
-		where $N(n_x,n_y,n_z)$ is the number of particles in the state $(n_x,n_y,n_z)$. Notably, $n_x, n_y$ and $n_z$ represent just energy states, rather than the number of bosons in a state\footnote{This is bullshit}. Taking the logarithm yields
+		where $N(n_x,n_y,n_z)$ is the number of particles in the state $(n_x,n_y,n_z)$. Notably, $n_x, n_y$ and $n_z$ represent just energy states, rather than the number of bosons in a state. Taking the logarithm yields
 		\[
-			\ln Z = -\sum_{n_x,n_y,n_z=0}^\infty\ln\left[ 1 - ze^{-\beta \hbar\omega(n_x+n_y+n_z)} \right] 
+			\ln Z_G = -\sum_{n_x,n_y,n_z=0}^\infty\ln\left[ 1 - ze^{-\beta \hbar\omega(n_x+n_y+n_z)} \right] 
 		.\] 
 	\item Clearly, the partition function is given by
 		\[
@@ -54,7 +54,7 @@ Thus the partition function is
 \[
 \ln Z_G = \sum_{n=0}^\infty \Omega(n) \ln(1-ze^{-\beta\hbar\omega n})=\sum_{n=0}^\infty \frac{(n+1)(n+2)}{2}\ln(1-ze^{-\beta\hbar\omega n})
 .\] 
-\item In general, a sum can be approximated by an integral when it does not change much over an interval of length 1. If we ignore the prefactor, this occurs when the energy spacing between the levels is small, i.e. $\beta\hbar\omega \le 1$.
+\item In general, a sum can be approximated by an integral when it does not change much over an interval of length 1. This occurs when the energy spacing between the levels is small, i.e. $\beta\hbar\omega \le 1$.
 \item For high $n$, the prefactor simplifies to $\frac{n^2}{2}$. Thus, we approximate the partition function using an integral
 	\begin{align*}
 		\ln Z_G &\approx \int_0^\infty \frac{n^2}{2} \ln \left( 1 - ze^{-\beta\hbar\omega n} \right)\dd{n} \\
@@ -77,7 +77,7 @@ Thus the partition function is
 	.\] 
 We can then determine the expectation value of the particle number as
 \[
-	N=-\left( \pdv{J}{\mu} \right)_T
+	\langle N\rangle=-\left( \pdv{J}{\mu} \right)_T
 .\] 
 This gives us
 \begin{align*}
@@ -119,10 +119,17 @@ Above this temperature, the occupation is microscopic and follows the distributi
 	\[
 		f = 1 - \frac{\zeta(3)}{N_\text{tot}(\beta\hbar\omega)^3}
 	.\] 
-\item Below the transition temperature, the particles in the ground state do not contribute any energy, and hence the energy is just
+\item Below the transition temperature, the particles in the ground state do not contribute any energy, and hence the energy can be computed from the grand canonical partition function approximated using an integral
+	\begin{align*}
+	E &= -\left( \pdv{J}{T} \right) \\
+	&= \pdv{T}\left[ \frac{(k_B T)^4}{(\hbar\omega)^3}\text{Li}_4(z) \right] \\
+	&=4 k_B \left( \frac{k_B T}{\hbar\omega} \right)^3 \text{Li}_4(z) \\
+	&=4k_B \left( \frac{k_B T}{\hbar\omega} \right)^3 \zeta(4)
+\end{align*}
+where we note that the chemical potential is $0$ under the transition temperature. The heat capacity is given by
 	\[
-	E = 
-	.\] 
+	c_V = \pdv{E}{T} = 12 k_B^2 \frac{(k_B T)^2}{(\hbar\omega)^3}\zeta(4)
+	.\qedhere\] 
 	\end{parts}
 \end{proof}
 \begin{Problem}
@@ -149,16 +156,47 @@ In $d$ dimensions, the energy is just the sum of the energy in all 3 modes to gi
 \[
 	E = \frac{hc}{2L}\left( \sum_{i=1}^d n_i \right) 
 .\] 
-In general, the density of modes per unit volume for a given wavenumber $k$ is $k^{d-1}\dd{k}$ (the prefactors all do not matter, as we can simply normalise it - only the scaling really matters).
-
-Thus, using the Bose-Einstein distribution, we find that the average particle number and energy are given by (absorbing the normalisation of the partition function into a constant $A$)
+This is rather reminiscent of the previous problem; we define $\Omega(n)$ analogously. We note that $\Omega(n)$ solves a Stars and Bars problem. Essentially, we imagine arranging the $n$ books in a line and partition them into the $k$ boxes by placing $k-1$ dividers such that the books within a single group into a single box. We can arrange them by imagining the $n$ books and $k-1$ dividers as $n+k-1$ symbols, and we must choose $k-1$ to be dividers. Filling in the rest of the symbols with books yields our partitions. Thus, we have
+\[
+\Omega(n) = \binom{n+d-1}{d-1} = \frac{(n+d-1)!}{(d-1)!n!}
+.\] 
+Importantly, we note that for high $n$ this is well approximated by
+\[
+\Omega(n) \approx \frac{1}{(d-1)!}n^{d-1}
+.\] 
+Substituting this in the expression from the previous problem, we find that the partition function $Z_G$ is given by
 \begin{align*}
-	n &= A\int_0^\infty \frac{k^{d-1}}{e^{\beta\hbar ck}-1}\dd{k} \\
-	  &= \frac{A}{(\beta\hbar c k)^d}\int_0^\infty \frac{(\beta\hbar c k)^{d-1}}{e^{\beta\hbar ck}-1}\dd{(\beta\hbar c k)} \\
-	  &= \frac{A}{(\beta\hbar c k)^{d-1}}\Gamma(d)\text{Li}_d(1) \\
-	u &= A\int_0^\infty \frac{\hbar ck^d}{e^{\beta\hbar c k}-1}\dd{k} \\
-	  &= \frac{\hbar c A}{(\beta\hbar c)^{d+1}}\int_0^\infty \frac{(\beta\hbar c k)^d}{e^{\beta\hbar c k}-1}\dd{(\beta\hbar c k)} \\
-	  &= \frac{\hbar c A}{(\beta\hbar c)^{d+1}}\Gamma(d+1)\text{Li}_{d+1}(1) \\
+	\ln Z_G &= \sum_{n=0}^\infty \Omega(n) \ln\left(1 - ze^{-\beta \frac{hc}{2L}n}\right)\\
+	&= \int_0^\infty \frac{1}{(d-1)!}n^{d-1}\ln\left( 1-ze^{-\beta \frac{hc}{2L}n} \right)\dd{n} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \beta \frac{hc}{2L} \right)^{d}}\int_0^\infty \left( \beta \frac{hc}{2L}n \right)^{d-1}\ln\left( 1-ze^{-\beta \frac{hc}{2L}n} \right)\dd{\left( \beta \frac{hc}{2L}n \right)}
 \end{align*}
-We begin by computing the partition function. This is similar to the previous problem, but we can simply note that the density of states, which plays the function of $\Omega(n)$ in the previous problem, is simply proportional to the $d-1$-th power of $n$. Here, as we are taking the limits as the size of the box tends to infinity, the energy levels become continuous and we can replace the sums by an integral.
+We then evaluate the second integral by integration by parts analogously to the previous problem
+\begin{align*}
+	&~\int_0^\infty x^{d-1}\ln (1-ze^{-x})\dd{x} \\
+	=&~\left[\frac{x^d}{d}\ln(1-ze^{-x})  \right]_0^\infty- \int_0^\infty \frac{x^d}{d}\frac{1}{1-ze^{-x}} (ze^{-x})\dd{x}\\
+	=& ~ \frac{1}{d}\int_0^\infty \frac{x^d}{e^x / z - 1}\dd{x}\\
+	=&~\frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)
+\end{align*}
+Substituting this yields the grand canonical partition function $J = -k_B T \ln Z_G$
+\[
+J = -\frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)
+.\] 
+From here, we can compute the entropy as
+\begin{align*}
+	S &= -\left( \pdv{J}{T} \right)_{V,\mu} \\
+	&= \frac{d+1}{(d-1)!}\frac{k_B}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(z)\\
+	&= \frac{d+1}{(d-1)!}\frac{k_B}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}(1)
+\end{align*}
+and the expected number of particles as
+\begin{align*}
+	n &= -\left( \pdv{J}{n} \right)_{T,\mu}\\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1)\text{Li}_{d+1}'(z) \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1) \frac{\text{Li}_d(z)}{z}\pdv{z}{\mu} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d+1} \frac{1}{d}\Gamma(d+1) \frac{\text{Li}_d(z)}{z}\beta e^{\beta\mu} \\
+	&= \frac{1}{(d-1)!}\frac{1}{\left( \frac{hc}{2L} \right)^d}(k_B T)^{d} \frac{1}{d}\Gamma(d+1) \text{Li}_d(1) 
+\end{align*}
+We note that in the last line of all of these computations, we have used the fact that photons can be created and destroyed and thus $\mu = 0$ (or $z=1$) for the photons. Dividing yields
+\[
+\frac{S}{n} = (d+1)k_B \frac{\text{Li}_{d+1}(1)}{\text{Li}_d(1)}=(d+1)k_B \frac{\zeta(d+1)}{\zeta(d)}
+.\qedhere\] 
 \end{proof}
