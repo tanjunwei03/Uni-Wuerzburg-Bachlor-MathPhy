@@ -11,12 +11,12 @@
 		\item Identify the equilibrium conductance
 	
 	\[
-	G = \frac{e^2}{h} \, \mathrm{Tr}\!\left[ t^\dagger(E_F)\, t(E_F) \right],
+		G = \frac{e^2}{h} \, \mathrm{Tr}\!\left[ \mathbf{t}^\dagger(E_F)\, \mathbf{t}(E_F) \right],
 	\tag{1}
 	\]
 	
 	where $t(E_F)$ is the transmission matrix of our system evaluated at the Fermi energy $E_F$. What is the meaning of the eigenvalues of the hermitian matrix 
-	$t^\dagger(E_F)t(E_F)$?
+	$\mathbf{t}^\dagger(E_F)\mathbf{t}(E_F)$?
 		\end{itemize}
 \end{Problem}
 \begin{proof}
@@ -27,13 +27,43 @@
 		\[
 			\begin{pmatrix} \va{a}_L^- \\ \va{a}_R^+ \end{pmatrix} = \underbrace{\begin{pmatrix} \mathbf{r} & \mathbf{t}' \\ \mathbf{t} & \mathbf{r}' \end{pmatrix} }_{S}\begin{pmatrix} \va{a}_L^+ \\ \va{a}_R^- \end{pmatrix} 
 		.\] 
+		Due to this constraint, the Hilbert space dimension is $2n$ instead of the $4n$ that we would get from $4n$ independent modes. We can write creation operators for the $2n$ eigenstates as $b_{\lambda, R / L}^\dagger$, where $\lambda$ denotes the channel and
+		\begin{align*}
+			b_{\lambda, L}^\dagger &= (c_{\lambda, L}^+)^\dagger + \sum_{\lambda'=1}^n \left[r_{\lambda'\lambda} (c_{\lambda',L}^-)^\dagger + t_{\lambda'\lambda} (c_{\lambda',R}^+)^\dagger\right] \\
+			b_{\lambda, R}^\dagger &= (c_{\lambda, R}^-)^\dagger + \sum_{\lambda'=1}^{n} \left[ (t')_{\lambda'\lambda}(c_{\lambda', L}^-)^\dagger + (r')_{\lambda'\lambda} (c_{\lambda', R}^+)^\dagger \right] 
+		.\end{align*}
 	\item In general, the electrical current can be determined through the derivative $j^\mu = \fdv{S[A]}{A^\mu}$, and leads to the expression for free particles coupled to an electric field
 		\begin{align*}
 			\va{J}&= \va{J}^{\grad} + \va{J}^{\va A} \\
 			\va{J}^{\grad} &= \frac{\hbar}{2mi}\left[ \psi^\dagger \grad{\psi} - (\grad{\psi^\dagger})\psi \right]  \\
 			\va{J}^{\va A}&=-\frac{q}{m}\va{A}\psi^\dagger\psi
 		\end{align*}
-		In the case of a DC current, we usually have an electric field but no magnetic field. Hence, we can set $\va{A}=0$. 
+		In the case of a DC current, we usually have an electric field but no magnetic field. Hence, we can set $\va{A}=0$. We can write this as the current operator
+		\[
+			\mathbf{J}=\frac{\hbar}{2mi}\left[ \vec{\partial} + \backvec{\partial} \right] 
+		\] 
+		where the very dumb arrow denotes that the derivative acts to the left or to the right, because we have to write it as a matrix before second quantising it :((
+
+		We second quantise it in the typical fashion by taking the matrix elements
+		\[
+			\mathbf{\hat{J}} = \sum_{\lambda\lambda'} \mel{\lambda}{\mathbf{J}}{\lambda'}b^\dagger_\lambda b_{\lambda'} 
+		\]
+		where we have cheated by letting $\lambda$ include the quantum number $L / R$ because this is a formal expression anyway. In the case of a continuous spectrum, we replace the sum by an integral
+		\[
+			\mathbf{\hat{J}} = \iint_{\lambda\lambda'}\mel{\lambda}{\mathbf{J}}{\lambda'}b_\lambda^\dagger b_{\lambda'}\dd{\lambda}\dd{\lambda'}
+		.\] 
+		Now, we assume that the leads are coupled to thermal baths, i.e that the correlation functions are given by, with $\eta\in \{L,R\} $
+		\[
+			\langle b^\dagger_{\lambda, \eta}b_{\lambda', \eta'} \rangle = \delta_{\eta\eta'}\delta_{\lambda\lambda'} f_{\mu_\eta}(E_\lambda)
+		.\] 
+		The function $f_\mu$ is the fermi function
+		\[
+			f_\mu(x) = \frac{1}{e^{\beta(x-\mu)}+ 1}
+		\] 
+	and the chemical potentials are
+	\[
+		\mu_{L / R} = eV_{L / R}
+	.\] 
 	\end{parts}
 \end{proof}
 
