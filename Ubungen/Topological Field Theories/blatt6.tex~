@@ -1,0 +1,262 @@
+
+\begin{revision}
+	I have another class on this so I'm taking this opportunity to revise and make clear to myself what we are actually doing. Please feel free to ignore everything in this box.
+\end{revision}
+
+\begin{Problem}[Exterior multiplication in phase space]
+
+Consider the 2-form
+\[
+\omega^2 = \sum_{i=1}^n p_i \wedge q_i.
+\]
+Evaluate the \(2k\)-form
+\[
+\underbrace{\omega^2 \wedge \omega^2 \wedge \ldots \wedge \omega^2}_{k\ \text{factors}}
+\]
+in terms of the \(p_i\)'s and the \(q_i\)'s.
+\end{Problem}
+
+\begin{proof}
+	\begin{revision}
+	The wedge product is defined by	
+	\end{revision}
+	We note that if $f$ is a 1-form, we have $f\wedge f = 0$. Thus, all factors must be distinct. We can permute 2-forms through each other without picking up a sign:
+	\[
+	p_i \wedge q_i \wedge p_j \wedge q_j = p_j \wedge q_j \wedge p_i \wedge q_i
+	.\] 
+	Thus, we can characterise all combinations that remain using a strictly increasing multi-index $I = (i_1, \dots, i_k),~i_1< i_2<\dots < i_k$. Given a multi-index, this will appear in the product exactly $k!$ times, representing the $k!$ ways this can be permuted. Thus,
+	\[
+		\omega^2 \wedge \omega^2 \wedge \dots \wedge \omega^2 = k! \sum_{i_1<\dots< i_k} (p_{i_1}\wedge q_{i_1}) \wedge \dots \wedge (p_{i_k} \wedge q_{i_k})
+	.\] 
+\end{proof}
+\begin{Problem}[Example of a pullback of a differential form]
+
+Consider the mapping \( f : M = \mathbb{R}^3 \to N = \mathbb{R}^2 \):
+\[
+y_1 = x_1 + x_2^2 + x_3^3, \qquad y_2 = x_1 x_2 x_3,
+\]
+and the 2-form \( \omega = dy_1 \wedge dy_2 \).
+Evaluate the form \( f^*\omega \) on \(M\).  
+Is \( f^*\omega \) a 2-form or a 3-form?
+\end{Problem}
+\begin{proof}
+	\begin{revision}
+		If $f: M \to N$ is a smooth map, with $M$ and $N$ smooth manifolds, and $\omega\in T^* N$ is a covector field, then the pullback $f^* \omega \in T^* M$ is a smooth covector field on $M$ given by
+		\[
+			(f^*\omega)(v) = \omega(\dd{f}(v))
+		.\] 
+		It is obvious that the pullback is linear. If $\eta$ is a $k$-covariant tensor on $N$, we can define $k$-covariant tensor on $M$ analogously by
+		\[
+			(f^*\eta)(v_1, \dots, v_k) = \eta(\dd{f}(v_1), \dots, \dd{f}(v_k))
+		.\] 
+		The following properties follow directly from the definition:
+		\begin{align*}
+			f^*(A\otimes B) &= f^*A\otimes f^* B \\
+			f^*(A+B) &= f^*A + f^* B 
+		\end{align*}
+		and if $\eta$ is alternating, $f^*\eta$ is alternating too.
+	\end{revision}
+	$f^*\omega$ is a 2-form on $M$ - that is, it takes in 2 vectors. To determine its components, we thus need to determine
+	\[f^*\omega\left(\pdv{x^i}, \pdv{x^j}\right)\]
+	for $i,j\in \{1,2,3\}$. We do so by
+	\begin{align*}
+		f^*\omega\left( \pdv{x^i}, \pdv{x^j} \right) &= \omega\left[ \dd{f}\left( \pdv{x^i} \right) , \dd{f}\left( \pdv{x^j} \right)  \right]  \\	
+							     &= \omega\left[ \pdv{f^l}{x^i}\pdv{y^l}, \pdv{f^m}{x^j}\pdv{y^m} \right] \\
+							     &= \pdv{f^l}{x^i}\pdv{f^m}{x^j} \omega\left( \pdv{y^l},\pdv{y^m} \right) 
+	\end{align*}
+	Since $\omega$ takes a particularly simple form, we just need to compute
+	\[
+		f^*\omega\left( \pdv{x^i}, \pdv{x^j} \right) = \pdv{f^1}{x^i}\pdv{f^2}{x^j}
+	.\] 
+	From this, we can reconstruct the tensor as
+	\[
+		f^*\omega = \sum_{i,j}\left[ f^*\omega\left( \pdv{x^i},\pdv{x^j} \right)  \right]\dd{x^i}\wedge \dd{x^j}
+	.\] 
+	Using this, we get
+	\begin{align*}
+		f^*\omega =& ~ (x_1x_3-2x_2^2x_3)\dd{x_1}\wedge\dd{x_2} + (2x_1x_2^2 - 3x_1x_3^3)\dd{x_2}\wedge\dd{x_3}\\
+				       &~+(4x_2x_3^3-x_1x_2)\dd{x_3}\wedge\dd{x_1}.
+	\end{align*}
+	We could have alternatively just computed
+	\begin{align*}
+		\dd{y_1} &= \dd{x_1} + 2x_2\dd{x_2} + 3x_3^2 \dd{x_3}\\
+		\dd{y_2} &= x_2x_3\dd{x_1} + x_1x_3\dd{x_2} + x_1x_2\dd{x_3} \\
+		\dd{y_1}\wedge\dd{y_2} &= x_1x_3\dd{x_1}\wedge\dd{x_2} + x_1x_2\dd{x_1}\wedge\dd{x_3}+2x_2^2x_3\dd{x_2}\wedge\dd{x_1} \\
+				       &~+2x_1x_2^2 \dd{x_2}\wedge\dd{x_3} + 3x_2x_3^3\dd{x_3}\wedge\dd{x_1} + 3x_1x_3^3 \dd{x_3}\wedge\dd{x_2}\\
+				       &= (x_1x_3-2x_2^2x_3)\dd{x_1}\wedge\dd{x_2} + (2x_1x_2^2 - 3x_1x_3^3)\dd{x_2}\wedge\dd{x_3}\\
+				       &~+(4x_2x_3^3-x_1x_2)\dd{x_3}\wedge\dd{x_1}.\qedhere
+	\end{align*}
+\end{proof}
+\begin{Problem}[Derivation of the Jacobian determinant formula]
+
+Consider the mapping
+\[
+f : M = \mathbb{R}^k \to N = \mathbb{R}^k : x \in D \rightarrow y \in f(D),
+\]
+where \(D\) is a convex polyhedron in \(M\).  
+Use the identity
+\[
+\int_D f^*\omega = \int_{f(D)} \omega
+\]
+to derive the Jacobian for a transformation of integration variables from \( dy_1 dy_2 \ldots dy_k \)  
+to \( dx_1 dx_2 \ldots dx_k \).  
+Hint: the most general \(k\)-form on \(N\) is
+\[
+\omega^k = \phi(y)\, dy_1 \wedge dy_2 \wedge \cdots \wedge dy_k.
+\]
+\end{Problem}
+\begin{proof}
+	Again, $f^*\omega$ is proportional to $\dd{x_1}\wedge\dd{x_2}\wedge\dots\dd{x_k}$. To determine the constant of proportionality, we need to evaluate its action on $\pdv{x^1}, \pdv{x^2}, \dots, \pdv{x^k}$. Thus we get
+	\begin{align*}
+		\Phi(x) &= \omega\left( \pdv{f^{i_1}}{x^1}\pdv{y^{i_1}}, \dots, \pdv{f^{i_k}}{x^k}\pdv{y^{i_k}} \right)  \\
+	\end{align*}
+\end{proof}
+\begin{Problem}[Exterior differentiation]
+
+	\begin{parts}
+\item Show \( d(\omega \wedge \omega') = d\omega \wedge \omega' + (-1)^k\, \omega \wedge d\omega' \).  
+
+\item Show \( d(d\omega) = 0 \) for all \(\omega\).  
+
+\item Let \( f : M \to N \) be a differentiable mapping, and \(\omega^k\) a \(k\)-form on \(N\).  
+Show \( f^*(d\omega) = d(f^*\omega) \).
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{revision}
+		The exterior derivative is defined by
+		\[
+			\dd{\left( \sum_I f_I \eta_I\right) }= \sum_I \dd{f_I}\wedge\eta_I
+		.\] 
+		This is well defined due to the tensor characterization lemma (Lemma 12.24 in Lee), which shows that any multilinear map on the space of smooth vector fields is induced by a smooth covariant tensor field.
+	\end{revision}
+	\begin{parts}
+	\item We begin by showing this for a product of 0-forms, i.e. two smooth functions
+		\begin{align*}
+			\dd{fg} &= \pdv{fg}{x^i} \dd{x^i} \\
+				&= \left( \pdv{f}{x^i}g + \pdv{g}{x^i}f \right)\dd{x^i} \\
+				&= g \pdv{f}{x^i}\dd{x^i} + f\pdv{g}{x^i}\dd{x^i} \\
+				&= g\dd{f} + f\dd{g} 
+		\end{align*}
+		Then, we write $\omega$ and $\omega'$ in terms of the basis forms indexed by some multi-indices $I$ and $J$:
+		\begin{align*}
+			\omega &= \sum_I \omega_I \eta_I \\
+			\omega' &= \sum_J \omega'_J \eta_J \\
+			\omega\wedge\omega' &= \sum_{IJ} \omega_I \omega'_J \eta_I\wedge\eta_J \\
+			\dd{\omega\wedge\omega'} &= \sum_{IJ} \dd{\omega_I \omega'_J} \eta_I\wedge\eta_J \\
+						 &= \sum_{IJ} \omega_I \dd{\omega'_J} \wedge\eta_I\wedge\eta_J + \sum_{IJ}\omega'_J \underbrace{\dd{\omega_I} \wedge\eta_I}_{\dd{\omega}}\wedge\eta_J \\
+						 &= \sum_{IJ}(-1)^{|I|}  \omega_I \eta_I \wedge \dd{\omega'_J} \wedge \eta_J + \sum_{IJ} \dd{\omega}\wedge \omega' \\
+						 &= \omega\wedge\dd{\omega'}+\dd{\omega}\wedge\omega' 
+		\end{align*}
+		where $\eta_I = \dd{x_{i_1}}\wedge \dots \dd{x_{i_k}}$ is the elementary $k$-form, we have used the fact that the differential of a function is a 1-form to anticommute it $|I|$ times through $\eta_I$.
+	\item First, we note that $\dd{\eta_I}=0$, because we can treat the prefactor in front as the constant 1, which has 0 differential. Thus,
+		\begin{align*}
+			\dd{\dd{\left( \sum_I f_I \eta_I \right)}} &= \sum_I \dd{(\dd{f_I}\wedge\eta_I)} \\
+								   &= \sum_I \left[ \dd{\dd{f_I}}\wedge \eta_I + \cancel{\dd{f_I}\wedge\eta_I} \right]  
+		\end{align*}
+		Thus, all we need to do is to show that $\dd{(\dd{f_I})}=0$ for $f_I$ a smooth function. We do this by
+		\begin{align*}
+			\dd{f_I} &= \pdv{f}{x^i}\dd{x^i} \\
+			\dd{(\dd{f_I})} &= \pdv{f}{x^i}{x^j}\dd{x^j}\wedge\dd{x^i}
+		\end{align*}
+		Now we note that these come in pairs, and cancel out due to the antisymmetry. Thus, $\dd{(\dd{f})}=0$, completing the proof.
+	\item Because of the linearity of the pullback, we only show this for an elementary form:
+		\[
+		f^*(\dd{(g \eta^I)}) = f^*(\dd{g}\wedge \eta^I)= f^*\dd{g} \wedge f^*\eta^I = \dd{(f^* g \eta_I)}
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}[Exterior derivatives in \(\mathbb{R}^3\)]
+
+Recall the definitions:
+\[
+\omega_A^1(\xi) = (A,\xi) \equiv A \cdot \xi,\qquad
+\omega_A^2(\xi_1,\xi_2) = (A,\xi_1,\xi_2) \equiv A \cdot (\xi_1 \times \xi_2),
+\]
+and the identities:
+\[
+\omega_A^1 \wedge \omega_B^1 = \omega_{A \times B}^2, \qquad
+\omega_A^1 \wedge \omega_B^2 = (A,B)\, dx_1 \wedge dx_2 \wedge dx_3.
+\]
+
+Show:
+
+\begin{parts}
+\item \( df = \omega_{\nabla f}^1. \)
+\item \( d\omega_A^1 = \omega_{\nabla \times A}^2. \)
+\item \( d\omega_A^2 = (\nabla \cdot A)\, dx_1 \wedge dx_2 \wedge dx_3. \)
+\end{parts}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item By definition
+	\item 
+		\begin{align*}
+			\dd{\omega_A^1} &= \dd{\left( \sum_i A^i \dd{x^i} \right)}  \\
+					&= \sum_i \dd{A^i}\wedge\dd{x^i} \\
+					&= \sum_{ij} \pdv{A^i}{x^j} \dd{x^j}\wedge\dd{x^i} 
+		\end{align*}
+		Then, we gather together the terms in the sum to get $\pdv{A^i}{x^j} - \pdv{A^j}{x^i}$. It can then be shown that the identity holds. We note that in principle this can be done by
+		\begin{align*}
+			\sum_{ij}\pdv{A^i}{x^j}\dd{x^j}\wedge \dd{x^i} &= \sum_{ij}\pdv{x^j}\dd{x^j}\wedge A^i \dd{x^i}\\
+			&= \left( \sum_i \pdv{x^j}\dd{x^j} \right)\wedge \left( A^i \dd{x^i} \right)\\
+			&= \omega_{\nabla}^1 \wedge \omega_A^1\\
+			&= \omega_{\curl{A}}^2
+		\end{align*}
+		but just writing that made me feel dirty. However, because the identity was proven using a simple index manipulation, it does not actually matter what kind of objects are in front of the basis 1-forms.
+	\item Again
+		\begin{align*}
+			\dd{\omega_A^2} &= \dd{\epsilon_{ijk} A^i \dd{x^j}\wedge\dd{x^k}}\\
+			&= \epsilon_{ijk} \pdv{A^i}{x_l} \dd{x^l}\wedge\dd{x^j}\wedge\dd{x^k}
+		\end{align*}
+		Note that for this sum to not vanish, we require $l,j,k$ to be pairwise distinct. Thus, only one combination remains which is the divergence.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}[Vector analysis in \(\mathbb{R}^3\)]
+
+Show:
+
+\begin{parts}
+\item \( \nabla \cdot (A \times B) = (\nabla \times A) \cdot B - A \cdot (\nabla \times B). \)
+
+\item \( \nabla \times (aA) = (\nabla a) \times A + a(\nabla \times A). \)
+
+\item \( \nabla(aA) = (\nabla a)A + a(\nabla A). \)
+
+\item \( \nabla \times (\nabla f) = 0. \)
+
+\item \( \nabla \cdot (\nabla \times A) = 0. \)
+\end{parts}
+\end{Problem}
+\begin{proof}
+	I realised at the end of this problem that I basically gave up on the upper and lower indices and swapped them. Please pretend this did not happen.
+	\begin{parts}
+	\item 
+		\begin{align*}
+			\div{(A\times B})\dd{x^1}\wedge\dd{x^2}\wedge\dd{x^3} &= \dd{\omega_{A\times B}^2}\\
+			&= \dd{(\omega_A^1 \wedge \omega_B^1)}\\
+			&= \dd{\omega_A^1}\wedge \omega_B^1+ \omega_A^1\wedge\dd{\omega_B^1}\\
+			&= \omega^2_{\curl{A}} \wedge \omega_B^1 + \omega_A^1\wedge\omega_{\curl{B}}^2
+		\end{align*}
+		Comparison of coefficients yields the desired result.
+	\item I do not see how to do this with forms easily, but the proof will probably look like the classical proof:
+		\begin{align*}
+			[\curl{(aA)}]_i &= \epsilon_{ijk}\partial_j (aA_k)\\
+			&= \epsilon_{ijk}\{[(\partial_j a) A_k] + a \partial_j A_k\}\\
+			&= [\grad{a}\times A + a(\curl{A})]_i
+		\end{align*}
+	\item 
+		\begin{align*}
+			\dd{\omega_{aA}^1} &= \dd{\left( aA_i \dd{x^i} \right)}\\
+			&= \pdv{a A_i}{x^j} \dd{x^j}\\
+			&= \left( \pdv{a}{x^j}A_i + a \pdv{A_i}{x^j} \right)\dd{x^j}
+		\end{align*}
+	\item \[
+		\omega^1_{\curl{\grad{f}}}=\dd{\dd{f}}=0
+	.\] 
+\item 
+	\[
+	\div{\curl{A}}\dd{x^1}\wedge\dd{x^2}\wedge\dd{x^3} =\dd{\omega_{\curl{A}}^2}=\dd{\dd{\omega_A^1}}=0
+	.\qedhere\] 
+	\end{parts}
+\end{proof}
