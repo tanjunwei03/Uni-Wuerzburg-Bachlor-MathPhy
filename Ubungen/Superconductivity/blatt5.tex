@@ -1,0 +1,135 @@
+\begin{Problem}
+	Show that the Ginzburg-Landau free energy of a domain wall can be written as
+	\[
+	\Delta F = A\frac{u}{4} \int dx \left[ \psi_0^4 - \psi^4(x) \right],
+	\]
+	where $A = L^{d-1}$ is the area of the domain wall. Using this result, show that the surface tension $\sigma = \Delta F / A$ is given by
+	\[
+	\sigma = \frac{\sqrt{8}}{3} \xi u \psi_0^4,
+	\]
+	with $\xi$ the correlation length. To get the final result, you will need to recall the functional form of the soliton, i.e., the solution to the Ginzburg-Landau equation through the domain wall.
+\end{Problem}
+\begin{proof}
+	Landau theory consists of expanding the free energy as a function of the order parameter near to the phase transition, when the free energy is small:
+	\[
+	F_L(\psi) = \int\frac{r}{2}\psi^2 + \frac{u}{4}\psi^4-h\psi\dd{V}
+	,\] 
+	where $h$ describes a conjugate field such as a magnetic field. To describe the possible effects of a spatially varying order parameter, we include a gradient term
+	\[
+	F_{GL}(\psi) = \int \frac{s}{2}(\grad{\psi})^2 + \frac{r}{2}\psi^2+\frac{u}{4}\psi^4 -h\psi \dd{V}
+	.\] 
+We seek solutions, i.e. order parameter fields that minimise the Ginzburg-Landau functional. This is done by functional differentiation to obtain
+\begin{align*}
+	\var{F_{GL}(\psi)} &= \int s(\grad{\psi})\cdot \grad{\delta\psi} + r\psi\delta\psi + u\psi^3 \delta\psi - h\delta\psi \dd{V}\\
+	&=\int s\div{(\delta{\psi}\grad{\psi})} - s(\laplacian{\psi})\delta\psi + r\psi\delta\psi + u\psi^3 \delta\psi - h\delta\psi \dd{V}\\
+	&= \int - s(\laplacian{\psi})\delta\psi + r\psi\delta\psi + u\psi^3 \delta\psi - h\delta\psi \dd{V}
+\end{align*}
+This leads to the equation
+\[
+-s (\laplacian{\psi}) + r\psi + u\psi^3 - h = 0
+.\] 
+The domain wall we seek is a solition like solution where the order parameter goes from one minimum to the other within a finite range of $x$. For $h=0$ (no external field), these minima are symmetric, and we will call them $\psi_0$. Defining the derivative of the Landau free energy as 
+\[
+f_L'[\psi] = r\psi + u\psi^3
+,\]
+we can summarise by saying that a domain wall is a solution of the equation
+\[
+s\dv[2]{\psi}{x} = f_L'[\psi(x)]
+\]
+with asymptotic boundary conditions
+\[
+\psi \xrightarrow{x\to\infty} = \psi_0,\qquad \psi \xrightarrow{x\to-\infty} = -\psi_0
+.\] 
+Due to the symmetry in all directions other than $x$, the free energy is the Ginzburg-Landau energy multiplied by the area $A$ of the other dimensions., we find that
+\begin{align*}
+	F[\psi] &= A\int \frac{s}{2}(\grad{\psi})^2 + \frac{r}{2}\psi^2 + \frac{u}{4}\psi^4 \dd{V}\\
+	&= A\int -\frac{s}{2}\psi\laplacian{\psi} +  \frac{r}{2}\psi^2 + \frac{u}{4}\psi^4 \dd{V}\\
+	&= A\int -\frac{\psi}{2}\left( r\psi + u\psi^3 \right)+\frac{r}{2}\psi^2 + \frac{u}{4}\psi^4\dd{V}\\
+	&= -A\int \frac{u}{4}\psi^4\dd{V}
+\end{align*}
+We need to subtract off the energy associated with a uniform configuration $\psi_0$, which is clearly given by
+\[
+F_0[\psi_0] = A\int \frac{r}{2}\psi_0^2 + \frac{u}{4}\psi_0^4 \dd{V}
+.\] 
+Since $\psi_0$ must minimise the Landau free energy, we must have
+\[
+r\psi_0 + u\psi_0^3 = 0
+\]
+which leads to
+\[
+	F_0[\psi_0]=A\int -\frac{u}{2}\psi_0^4 + \frac{u}{4}\psi_0^4 \dd{V} = -A \int \frac{u}{4}\psi_0^4
+.\] 
+This, of course, could also have been derived by substituting $\psi_0$ for $\psi$ in the earlier expression for $F[\psi]$. Subtracting, we find that the energy of the domain wall is given by
+\[
+	\Delta F = \frac{u}{4}\int \dd{x}[\psi_0^4 - \psi^4(x)]
+.\] 
+Before we proceed further, we will need to solve the equation for the order parameter field explicitly. We can solve this by analogy to Newton's Second Law with $f_L'$ as the potential. Defining $v=\dv{\psi}{x}$, we can rewrite the equation using the chain rule as
+\[
+	sv\dv{v}{\psi} = f_L'[\psi] = r\psi + u\psi^3
+.\] 
+We note that the initial conditions are that at the start, $v=0$ and $\psi=-\psi_0$. Thus, separating variables yields
+\begin{align*}
+	\int_0^v sv\dd{v} &= \int_{-\psi_0}^\psi r\psi + u \psi^3\dd{\psi}\\
+	\frac{1}{2}sv^2 &= \left[ \frac{r}{2}\psi^2 +\frac{u}{4}\psi^4  \right]_{-\psi_0}^{\psi}\\
+			&= \frac{r}{2}(\psi^2 - \psi_0^2) + \frac{u}{4}(\psi^4 - \psi_0^4) 
+\end{align*}
+Again, we simplify this by noting that $\psi_0$ was the minimum of the Landau energy and hence satisfied the equation
+\[
+r + u\psi_0^2 = 0
+.\] 
+Substituting, we find that
+\begin{align*}
+	\frac{1}{2}sv^2 &=  -\frac{u\psi_0^2}{2}(\psi^2 - \psi_0^2) +\frac{u}{4}(\psi^4 - \psi_0^4) \\
+&= u\left[ -\frac{1}{2}\psi^2\psi_0^2+\frac{1}{2}\psi_0^4 + \frac{1}{4}\psi^4 - \frac{1}{4}\psi_0^4  \right] \\
+&= \frac{u}{4}\left[ \psi_0^4 + \psi^4 - 2\psi^2\psi_0^2 \right]  \\
+&= \frac{u}{4}(\psi_0^2 - \psi^2)^2 
+\end{align*}
+Since $v=\psi'$ must always be of the same sign, we choose the positive sign to allow us to travel from $-\psi_0$ to $\psi_0$. Thus, this simplifies to
+\begin{align*}
+	v &= \sqrt{\frac{u}{2s}}(\psi_0^2 - \psi^2)\\
+	&= \frac{\psi_0}{\sqrt{2} \xi}\left( 1-\frac{\psi^2}{\psi_0^2} \right)  
+\end{align*}
+where $\xi$ is defined as the correlation length $\xi = \sqrt{s / |r|} $. We can then integrate this differential equation to get
+\[
+	\frac{\psi_0}{\sqrt{2} \xi}\dd{x} = \frac{1}{1 - \frac{\psi^2}{\psi_0^2}}\dd{\xi}
+.\] 
+This yields the desired solution
+\[
+\psi(x) = \psi_0 \tanh\left(\frac{x-x_0}{\sqrt{2} \xi}  \right) 
+.\] 
+\end{proof}
+\begin{Problem}
+	Consider a two-component Dirac electron moving in one dimension through a domain wall, described by the wave equation
+	\[
+	\left( -i \sigma_1 \nabla_x - m(x) \sigma_3 \right) \psi = E \psi,
+	\]
+	where the mass field forms a domain wall, changing sign at the origin according to
+	\[
+	m(x) = m_0 \tanh \left( \frac{x}{\sqrt{2} \xi} \right).
+	\]
+	Asymptotically, the energy of the excitation is gapped, with an excitation spectrum $E(k) = \sqrt{k^2 + m_0^2}$. Show that the domain wall gives rise to a zero energy bound state and derive the form of its wave function.
+\end{Problem}
+\begin{proof}
+	Since it is given that the bound state has 0 energy, we seek such states directly:
+	\[
+	(-i\sigma_1\nabla_x - m(x)\sigma_3) \psi = 0
+	.\] 
+	This corresponds to, in matrix form, if $\psi = (\psi_1, \psi_2)^T$
+	\[
+	\begin{pmatrix} i\partial_x{\psi_2} + m(x)\psi_1 \\ i\partial_x{\psi_1} + m(x)\psi_2 \end{pmatrix}=0 
+	.\] 
+	We differentiate the first equation one more time to get
+	\begin{align*}
+		0 &= i\partial_x^2 \psi_2 + m(x) \partial_x \psi_1\\
+		&= i\partial_x^2 \psi_2 + m(x)\left[im(x)\psi_2  \right] 
+	\end{align*}
+	Thus the equation for $\psi_2$ is
+	\[
+\partial_x^2 \psi_2 + m(x)^2 \psi_2 = 0
+	.\] 
+	This is a Schr\"{o}dinger like equation in the position basis. We seek a solution inspired by the WKB method. However, since no perturbative corrections are demanded, we will simply write down the solution:
+	\[
+	\psi_2(x) = Ae^{\int_0^x i m(x) x\dd{x}}\psi_2(0)
+	.\] 
+	This can be proven by simply differentiating:
+\end{proof}

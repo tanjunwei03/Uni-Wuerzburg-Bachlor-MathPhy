@@ -1,0 +1,119 @@
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=chapter,style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+
+
+\begin{document}
+\newgeometry{margin=1in}
+\begin{titlepage}
+	{\begingroup% AW, Design of Books
+		%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+		%\drop = 0.14\textheight
+		\centering
+		%\vspace*{\drop}
+		{\Large Notes for the course in}\\[\baselineskip]
+		{\Huge\bfseries FUNCTIONAL ANALYSIS}\\[\baselineskip]
+		{\Large Held in WS24/25\\ At the JMU Würzburg\\ By Prof. Dr. Stefan Waldmann}\\[\baselineskip]
+		{\LARGE By}\\[\baselineskip]
+		{\LARGE Jun Wei Tan}\par
+		\vfill
+		{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+		\vfill
+		{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+		\endgroup}
+\end{titlepage}
+\restoregeometry
+	\tableofcontents
+\chapter{$C^*$ Algebras}
+\begin{Theorem}
+	If we have an algebra $\mathcal{A}$, there is an algebra $\bar{\mathcal{A}}$ containing $\mathcal{A}$ as a sub algebra that has an identity. If $\mathcal{A}$ is $C^*$, then so is $\overline{\mathcal{A}}$.
+\end{Theorem}
+\begin{Definition}
+	The set of $\lambda$ such that $\lambda 1 - A$ is invertible is called the resolvent set of $A$. Its complement in the complex plane is called the spectrum.
+\end{Definition}
+\begin{Definition}[Von-Neumann Series]
+	We can expand the resolvent using the geometric series
+	\[
+	\frac{1}{\lambda - A}= \frac{1}{\lambda}\frac{1}{1 - A / \lambda} = \frac{1}{\lambda}\sum_{n=0}^{\infty} \left( \frac{A}{\lambda} \right)^n
+	.\] 
+\end{Definition}
+\begin{Remark}
+	This shows that for $\lambda>\|A\|$, the series is absolutely convergent. This implies that the spectrum is bounded.
+\end{Remark}
+test
+\renewcommand{\listtheoremname}{List of Definitions}
+\listoftheorems[ignoreall, onlynamed={Definition}]
+\renewcommand{\listtheoremname}{List of Theorems}
+\listoftheorems[ignoreall, onlynamed={Theorem}]
+\renewcommand{\listtheoremname}{List of Examples}
+\listoftheorems[ignoreall, onlynamed={Example}]
+\end{document}

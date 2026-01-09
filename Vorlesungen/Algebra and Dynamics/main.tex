@@ -1,0 +1,245 @@
+\documentclass[twoside,symmetric, openany, 12pt]{./tuftebook}
+
+\usepackage{geometry}
+\geometry{
+	left=10mm, % left margin
+	textwidth=170mm, % main text block
+	marginparsep=0mm, % gutter between main text block and margin notes
+	marginparwidth=10mm % width of margin notes
+}
+
+
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{cancel}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=12pt, innerbottommargin=8pt}
+\declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={  } ]{thmbox}
+%put nobreak in mdframed
+\declaretheorem[numberwithin=chapter,style=thmbox, name=Theorem]{Theorem}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Definition]{Definition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Corollary]{Corollary}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Example]{Example}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Proposition]{Proposition}
+\declaretheorem[sibling=Theorem, style=thmbox, name=Lemma]{Lemma}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+%\newtheorem{Theorem}{Theorem}
+%\numberwithin{Theorem}{chapter}
+%\newtheorem{Proposition}{Proposition}
+%\newtheorem{Lemma}[Theorem]{Lemma}
+%\newtheorem{Corollary}[Theorem]{Corollary}
+%\newtheorem{Example}[Theorem]{Example}
+%\theoremstyle{definition}
+\theoremstyle{definition}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+%tikz	
+\tcbset{breakable=true,toprule at break = 0mm,bottomrule at break = 0mm}
+\usetikzlibrary{patterns}
+\usetikzlibrary{matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+%polar set
+\newcommand{\polar}{\textrm{\tiny \fontencoding{U}\fontfamily{ding}\selectfont\symbol{'136}}}
+
+
+\begin{document}
+\newgeometry{margin=1in}
+\begin{titlepage}
+	{\begingroup% AW, Design of Books
+		%\FSfont{5pl} % FontSite URW Palladio (Palatino)
+		%\drop = 0.14\textheight
+		\centering
+		%\vspace*{\drop}
+		{\Large Notes for the course in}\\[\baselineskip]
+		{\Huge\bfseries FUNCTIONAL ANALYSIS}\\[\baselineskip]
+		{\Large Held in WS24/25\\ At the JMU Würzburg\\ By Prof. Dr. Stefan Waldmann}\\[\baselineskip]
+		{\LARGE By}\\[\baselineskip]
+		{\LARGE Jun Wei Tan}\par
+		\vfill
+		{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+		\vfill
+		{\small\sffamily \href{mailto:jun-wei.tan@stud-mail.uni-wuerzburg.de}{jun-wei.tan@stud-mail.uni-wuerzburg.de}}\par
+		\endgroup}
+\end{titlepage}
+\restoregeometry
+	\tableofcontents
+\chapter{$C^*$ Algebras}
+\begin{Theorem}
+	If we have an algebra $\mathcal{A}$, there is an algebra $\bar{\mathcal{A}}$ containing $\mathcal{A}$ as a sub algebra that has an identity. If $\mathcal{A}$ is $C^*$, then so is $\overline{\mathcal{A}}$.
+\end{Theorem}
+\begin{Definition}
+	The set of $\lambda$ such that $\lambda 1 - A$ is invertible is called the resolvent set of $A$. Its complement in the complex plane is called the spectrum.
+\end{Definition}
+\begin{Definition}[Von-Neumann Series]
+	We can expand the resolvent using the geometric series
+	\[
+	\frac{1}{\lambda - A}= \frac{1}{\lambda}\frac{1}{1 - A / \lambda} = \frac{1}{\lambda}\sum_{n=0}^{\infty} \left( \frac{A}{\lambda} \right)^n
+	.\] 
+\end{Definition}
+\begin{Remark}
+	This shows that for $\lambda>\|A\|$, the series is absolutely convergent. This implies that the spectrum is bounded.
+\end{Remark}
+\begin{Theorem}
+	The spectral radius is given, for general $A$, by
+	\[\rho(A) = \inf_n \|A^n\|^{1/n} = \lim_{n\to \infty} \|A^n\|^{1/n} \le \|A\|\]
+\end{Theorem}
+\begin{proof}
+	The former follows from the root test. 
+\end{proof}
+\begin{Theorem}
+	Let $\mathcal{A}$ be a unital $C^*$ algebra. 
+	\begin{enumerate}
+		\item If $A$ is normal then
+		\[\rho(A) = \|A\|\]
+		\item If $A$ is an isometry, then
+		\[\rho(A) = 1\]
+		\item If $A$ is unitary, then
+		\[\sigma_A\subseteq S^1\]
+		\item If $A$ is self adjoint, its spectrum is real
+		\item For all polynomials $P$,
+		\[\sigma(P(A))= P(\sigma(A))\]
+	\end{enumerate}
+\end{Theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item We use the $C^*$ property to move the power out of the norm:
+			\begin{align*}
+				\|A^{2^n}\|^2&= \|(A^* A)^{2^n}\|\\
+					     &= \|(A^* A)^{2^{n - 1}}\|^2\\
+					     &= \|A^* A\|^{2^{n}}\\
+					     &= \|A\|^{2^{n+1}}
+			\end{align*}
+		\item We have
+			\begin{align*}
+				\|A^{2n}\|^2 &= \|(A^*)^{2n}A^{2n}\|\\
+					     &= \|1\|=1
+			\end{align*}
+		\item We have
+			\[
+				\sigma(A) = \overline{\sigma(A^*)}=\overline{\sigma(A^{-1})}=\left( \overline{\sigma(A)} \right)^{-1}
+			.\qedhere\] 
+	\end{enumerate}
+\end{proof}
+\begin{Theorem}[Uniqueness]
+	The norm of a $C^*$ algebra is unique.
+\end{Theorem}
+\begin{proof}
+	The norm is given by, for normal elements,
+	\[
+	\|A\|=\rho(A)
+	.\] 
+	For not normal elements, we have
+	\[
+	\|A\|= \sqrt{\|A^* A\|}=\rho(A^*A)
+	.\qedhere\] 
+\end{proof}
+\chapter{Homomorphisms}
+\begin{Theorem}
+	Homomorphisms preserve positivity
+\end{Theorem}
+\begin{Theorem}
+	The kernel of a homomorphism is a 2 sided ideal.
+\end{Theorem}
+\begin{Definition}[Approximative Identity]
+	If $\mathcal{I}$ is a right sided ideal, an approximate identity is defined such that
+	\[
+		\|E_\alpha I - I\|\xrightarrow{\alpha \to\infty}0
+	.\] 
+\end{Definition}
+\begin{Theorem}
+	Every right ideal possesses an approximate identity.
+\end{Theorem}
+\begin{proof}
+	The idea is: We partially order the set of all finite families $\alpha = \{A_1, \dots, A_{|\alpha|}\} $, then we construct
+	\[
+	F_\alpha = \sum_{i=1}^{|\alpha|} A_\alpha A_\alpha^*
+	.\] 
+	Then, by adjoining a unit to $\mathcal{A}$ if necessary, we can define
+	\[
+	E_\alpha = |\alpha| F_\alpha \frac{1}{1+|\alpha|F_\alpha}=1 - \frac{1}{1+|\alpha|F_\alpha}
+	.\] 
+	The proof idea is showing that $\alpha\to\infty$, hence this looks like a 1.
+\end{proof}
+\begin{Theorem}
+	Every closed two sided ideal is self adjoint and the factor algebra is a $C^*$ algebra.
+\end{Theorem}
+\chapter{Quantum Mechanics}
+\begin{Definition}[Symplectic Vector Space]
+	A symplectic vector space is a real vector space with a nondegenerate antisymmetric bilinear map. Nondegenerate means that if
+	\[
+	\theta(u,v)=0
+\]
+for all $u\in V$, then $v=0$.
+\end{Definition}
+\begin{Definition}[Weyl System]
+	A Weyl system of a symplectic vector space is a map $V\to \mathcal{A}$ such that
+	\begin{align*}
+		W(0) &= 1 \\
+		(W(\phi))^* &= W(-\phi) \\
+		W(\phi)W(\psi) &= e^{-\frac{i}{2}\theta(\phi,\psi)}W(\phi+\psi) 
+	\end{align*}
+\end{Definition}
+\begin{Definition}[Weyl Algebra]
+	We define a particular vector space by letting $V=\R^2$, and defining the symplectic product as
+	\[
+	\theta((\xi_1,\eta_1), (\xi_2, \eta_2) )= \eta_1\xi_2-\xi_1\eta_2
+	.\] 
+	The algebra generated by $W(\xi, 0),~W(0,\eta)$ is called the Weyl algebra.
+\end{Definition}
+\begin{Theorem}
+	Let $(\mathcal{A},W)$ be a Weyl system of a symplectic vector space $(V,\theta)$. Then
+	\begin{enumerate}
+		\item $W(\phi)$ is unitary for all $\phi\in V$ 
+		\item $\|W(\phi)-W(\psi)\|=2$ for all $\phi\neq\psi \in V$.
+		\item $\mathcal{A}$ is not separable, unless $V=\{0\} $.
+		\item The family $\{W(\phi)\}_{\phi\in V}$ is linearly independent.
+	\end{enumerate}
+\end{Theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item We have
+			\begin{align*}
+				[W(\phi)]^*W(\phi) &= W(-\phi)W(\phi) \\
+						   &= e^{-\frac{i}{2}\theta(-\phi,\phi)}W(0) 
+			\end{align*}
+			Because $\theta$ is antisymmetric, it follows that $\theta(-\phi,\phi) =-\theta(\phi,\phi) = 0$.
+		\item 
+	\end{enumerate}
+\end{proof}
+\renewcommand{\listtheoremname}{List of Definitions}
+\listoftheorems[ignoreall, onlynamed={Definition}]
+\renewcommand{\listtheoremname}{List of Theorems}
+\listoftheorems[ignoreall, onlynamed={Theorem}]
+\renewcommand{\listtheoremname}{List of Examples}
+\listoftheorems[ignoreall, onlynamed={Example}]
+\end{document}
