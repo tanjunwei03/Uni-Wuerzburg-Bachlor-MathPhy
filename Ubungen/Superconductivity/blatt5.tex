@@ -61,7 +61,7 @@ which leads to
 .\] 
 This, of course, could also have been derived by substituting $\psi_0$ for $\psi$ in the earlier expression for $F[\psi]$. Subtracting, we find that the energy of the domain wall is given by
 \[
-	\Delta F = \frac{u}{4}\int \dd{x}[\psi_0^4 - \psi^4(x)]
+	\Delta F = A\frac{u}{4}\int \dd{x}[\psi_0^4 - \psi^4(x)]
 .\] 
 Before we proceed further, we will need to solve the equation for the order parameter field explicitly. We can solve this by analogy to Newton's Second Law with $f_L'$ as the potential. Defining $v=\dv{\psi}{x}$, we can rewrite the equation using the chain rule as
 \[
@@ -97,6 +97,12 @@ This yields the desired solution
 \[
 \psi(x) = \psi_0 \tanh\left(\frac{x-x_0}{\sqrt{2} \xi}  \right) 
 .\] 
+Now all we need to do is substitute this back in to get
+\begin{align*}
+	\sigma=\frac{\Delta F}A &= \frac u4 \psi_0^4 \int_{-\infty}^\infty \left[1-\tanh^4\left(\frac{x-x_0}{\sqrt{2} \xi}  \right) \right]\dd{x}\\
+	&= \frac{\xi u}{\sqrt{8}} \psi_0^4 \int_{-\infty}^\infty \left[1-\tanh^4\left(u\right) \right]\dd{u}\\
+	&= \frac{\sqrt{8}}3\xi u\psi_0^4.\qedhere
+\end{align*}
 \end{proof}
 \begin{Problem}
 	Consider a two-component Dirac electron moving in one dimension through a domain wall, described by the wave equation
@@ -114,22 +120,38 @@ This yields the desired solution
 	\[
 	(-i\sigma_1\nabla_x - m(x)\sigma_3) \psi = 0
 	.\] 
-	This corresponds to, in matrix form, if $\psi = (\psi_1, \psi_2)^T$
+	This corresponds to, in terms of the components, if $\psi = (\psi_1, \psi_2)^T$
 	\[
 	\begin{pmatrix} i\partial_x{\psi_2} + m(x)\psi_1 \\ i\partial_x{\psi_1} + m(x)\psi_2 \end{pmatrix}=0 
 	.\] 
-	We differentiate the first equation one more time to get
-	\begin{align*}
-		0 &= i\partial_x^2 \psi_2 + m(x) \partial_x \psi_1\\
-		&= i\partial_x^2 \psi_2 + m(x)\left[im(x)\psi_2  \right] 
-	\end{align*}
-	Thus the equation for $\psi_2$ is
-	\[
-\partial_x^2 \psi_2 + m(x)^2 \psi_2 = 0
-	.\] 
-	This is a Schr\"{o}dinger like equation in the position basis. We seek a solution inspired by the WKB method. However, since no perturbative corrections are demanded, we will simply write down the solution:
-	\[
-	\psi_2(x) = Ae^{\int_0^x i m(x) x\dd{x}}\psi_2(0)
-	.\] 
-	This can be proven by simply differentiating:
+	Alternatively, we could also write
+	\[\pdv{x} \begin{pmatrix}
+		\psi_1 \\ \psi_2
+	\end{pmatrix}=-im(x)\begin{pmatrix}
+	0 & 1 \\ 1 & 0
+\end{pmatrix}\begin{pmatrix}
+\psi_1 \\ \psi_2
+\end{pmatrix}=m(x)\sigma_2 \begin{pmatrix}
+\psi_1 \\ \psi_2
+\end{pmatrix}\]
+This is a linear differential equation and can be solved using the matrix exponential
+\[\begin{pmatrix}
+	\psi_1(x) \\\psi_2(x)
+\end{pmatrix}=\exp\left(\sigma_2 \int_0^x m(x)\dd{x}\right)\begin{pmatrix}
+\psi_1(0) \\ \psi_2(0)
+\end{pmatrix}\]
+While this matrix exponential can be explicitly evaluated, we can proceed in a more clever manner. The zero energy state must be normalisable, and hence must decay at $\pm\infty$. Since the function $m(x)$ is even, we can write
+\[\begin{pmatrix}
+	\psi_1(x) \\\psi_2(x)
+\end{pmatrix}=\exp\left(\sigma_2 \int_0^{|x|} m(x)\dd{x}\right)\begin{pmatrix}
+	\psi_1(0) \\ \psi_2(0)
+\end{pmatrix}\]
+from which it is clear that the integral is always positive. Now, since $\sigma_2$ has eigenvalues $\pm 1$, we must choose the negative eigenvector $(1,-i)$. Thus, we find that the state is given by, up to a constant prefactor,
+\[\begin{pmatrix}
+	\psi_1(x) \\\psi_2(x)
+\end{pmatrix}=\exp\left(\sigma_2 \int_0^{|x|} m(x)\dd{x}\right)\begin{pmatrix}
+	1 \\ -i
+\end{pmatrix}=\exp\left(-\int_0^{|x|} m(x)\dd{x}\right)\begin{pmatrix}
+1 \\ -i
+\end{pmatrix}.\qedhere\]
 \end{proof}
