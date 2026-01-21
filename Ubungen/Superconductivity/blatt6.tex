@@ -1,0 +1,119 @@
+\begin{Problem}z
+	
+	Let us consider an infinite multimoded wire, i.e.\ a 2D system that is infinite
+	in the $x$ direction but finite in the $y$ direction. The Hamiltonian for the wire
+	is
+	\begin{equation}
+		H = -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2}
+		+ \frac{\partial^2}{\partial y^2}\right) + U(y).
+	\end{equation}
+	
+	Here $U(y)$ is the confining potential in the $y$ direction. Derive the Green's
+	function for a semi-infinite wire using eigenfunction expansion (Lehmann
+	representation),
+	\begin{equation}
+		G^r(\mathbf{x},\mathbf{x}')
+		= -\frac{i}{\hbar v_m}
+		\sum_m \chi_m(y)\chi_m(y') e^{ik_m|x-x'|},
+	\end{equation}
+	with
+	\[
+	k_m = \sqrt{\frac{2m}{\hbar^2}(E-\varepsilon_{m,0})},
+	\qquad
+	v_m = \frac{\hbar k_m}{m},
+	\]
+	and $\chi_m(y)$ the transverse eigenfunctions.
+\end{Problem}
+\begin{proof}
+	Clearly, since the Hamiltonians are additive, there is no interaction between the x and y parts and thus we can diagonalise them separately. 
+	
+	The Lehmann representation is given by
+	\[
+	C^+(\omega) = \frac 1Z \sum_{\alpha\beta}X_{1\alpha\beta}X_{2\beta\alpha}\left[\frac{e^{-\beta E_\alpha}}{\omega+E_{\alpha\beta}+i\eta}+\frac{e^{-\beta E_\beta}}{\omega+E_{\alpha\beta}+i\eta}\right]
+	\]
+\end{proof}
+\begin{Problem}
+	
+	The scattering matrix is related to the Green function via the Fisher-Lee relation
+	\begin{equation}
+		s_{nm} = -\delta_{nm}
+		+ \frac{i\hbar\sqrt{v_n v_m}}{a}
+		\int dy_p dy_q \,
+		\chi_n(y_q) G^r(y_q,y_p) \chi_m(y_p),
+	\end{equation}
+	where $G^r(y_q,y_p)$ is the retarded Green function connecting a point in lead $p$
+	to one in lead $q$.
+	
+	Derive the expression for the transmission probability from lead $q$ to lead $p$,
+	\begin{equation}
+		T_{pq} = \mathrm{Tr}\left[\Gamma_p G^r \Gamma_q G^a\right],
+	\end{equation}
+	and compare with the result from the Normal Metals exercise sheet.
+\end{Problem}
+
+\begin{Problem}
+	
+	Consider the Hamiltonian
+	\begin{equation}
+		H = H_{\text{el-gas}} + H_{\text{ph}}
+		+ \sum_{kq} g_q (a_q + a_{-q}^\dagger)c_{k+q}^\dagger c_k,
+	\end{equation}
+	where $H_{\text{el-gas}}$ describes free electrons, $H_{\text{ph}}$ free phonons,
+	and $a_q$ ($c_k$) are phonon (electron) annihilation operators.
+	
+	\begin{enumerate}
+		\item[(a)] Find the bare phonon Green's function
+		\[
+		D_0(q,t) = -i\langle\phi_0|T[A_q(t)A_q(0)]|\phi_0\rangle,
+		\quad A_q=a_q+a_{-q}^\dagger .
+		\]
+		
+		\item[(b)] Fourier transform to frequency space and show
+		\[
+		D_0(q,\omega) = \frac{2\omega_q}{\omega^2-\omega_q^2+i\eta}.
+		\]
+		
+		\item[(c)] Draw the Feynman diagram for the effective electron--electron
+		interaction mediated by a phonon and show that
+		\[
+		V_{k,k'} = |g_{k-k'}|^2 D_0(k-k',\omega).
+		\]
+		
+		Assuming acoustic phonons with $g_q=g\sqrt{q}$ and $\omega_q=u q$, show that the
+		interaction becomes momentum independent in the static limit.
+	\end{enumerate}
+\end{Problem}
+
+\begin{Problem}
+	
+	Generalize Cooper's calculation to a pair with finite center-of-mass momentum
+	$\mathbf{p}$.
+	
+	\begin{enumerate}
+		\item[(a)] Show that the operator creating a Cooper pair
+		\begin{equation}
+			\Delta_{\mathbf{p}}^\dagger =
+			\int d^3x\, d^3x'\,
+			\phi(\mathbf{x}-\mathbf{x}')
+			\psi_\uparrow^\dagger(\mathbf{x})
+			\psi_\downarrow^\dagger(\mathbf{x}')
+			e^{i\mathbf{p}\cdot(\mathbf{x}+\mathbf{x}')/2}
+		\end{equation}
+		can be written as
+		\begin{equation}
+			\Delta^\dagger(\mathbf{p})
+			= \sum_{\mathbf{k}} \phi(\mathbf{k})
+			c_{\mathbf{k}+\mathbf{p}/2,\uparrow}^\dagger
+			c_{-\mathbf{k}+\mathbf{p}/2,\downarrow}^\dagger .
+		\end{equation}
+		
+		\item[(b)] Show that the energy $E_p$ of the pair satisfies
+		\begin{equation}
+			1+\frac{g_0}{V}
+			\sum_{0<\varepsilon_k-\varepsilon_F<\omega_D}
+			\frac{1}{E-(\varepsilon_{k+p/2}+\varepsilon_{k-p/2})}=0.
+		\end{equation}
+	\end{enumerate}
+\end{Problem}
+
+
