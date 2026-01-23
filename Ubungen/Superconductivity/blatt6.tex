@@ -1,4 +1,4 @@
-\begin{Problem}z
+\begin{Problem}
 	
 	Let us consider an infinite multimoded wire, i.e.\ a 2D system that is infinite
 	in the $x$ direction but finite in the $y$ direction. The Hamiltonian for the wire
@@ -25,12 +25,82 @@
 	and $\chi_m(y)$ the transverse eigenfunctions.
 \end{Problem}
 \begin{proof}
-	Clearly, since the Hamiltonians are additive, there is no interaction between the x and y parts and thus we can diagonalise them separately. 
-	
-	The Lehmann representation is given by
+	The two particle retarded correlation function is given by
 	\[
+		C^+(t)=-i\theta(t)\langle [\hat{X}_1(t), \hat{X}_2(0)]_\zeta\rangle
+	.\] 
+	\begin{tcolorbox}[title=Derivation of the Lehmann Representation, breakable]
+		We are interested in the two particle retarded Green's function, which is given by
+		\[
+		C^+(t) = -i\theta(t)\left( \langle \hat{X}_1(t)\hat{X}_2(0)\rangle - \zeta \langle\hat{X}_2(0)\hat{X}_1(t)\rangle \right) 
+		\]
+		where the thermal expectation value is given by
+		\[
+			\langle \dots\rangle = \frac{1}{Z}\Tr \left(\dots e^{-\beta(\hat{H}-\mu \hat{N})}\right)
+		.\] 
+		We define the eigenstates of $\hat{H}-\mu \hat{N}$ as $\ket{\alpha}$ with eigenvalue $E_\alpha$. Then, we can compute the two point correlation function
+		\begin{align*}
+			\langle \hat{X}_1(t)\hat{X}_2(0)\rangle &= \frac{1}{Z}\sum_\alpha \mel{\alpha}{\left( \hat{X}_1(t)\hat{X}_2(0) \right)e^{-\beta(\hat{H}-\mu \hat{N})}}{\alpha} \\
+								&= \frac{1}{Z}\sum_\alpha \mel{\alpha}{\left( \hat{X}_1(t)\hat{X}_2(0) \right)}{\alpha}e^{-\beta E_\alpha} \\
+								&= \frac{1}{Z}\sum_{\alpha,\beta} \mel{\alpha}{\hat{X}_1(t)}{\beta}\mel{\beta}{\hat{X}_2(0)}{\alpha}e^{-\beta E_\alpha} \\
+								&= \frac{1}{Z}\sum_{\alpha,\beta} {X}_{1,\alpha\beta}(t) X_{2,\beta\alpha} e^{-\beta E_\alpha} 
+		\end{align*}
+		with the matrix elements defined appropriately. Next, we note that the time dependence comes from the Heisenberg representations to compute
+		\begin{align*}
+			X_{1,\alpha\beta}(t) &= \mel{\alpha}{e^{it(\hat{H}-\mu \hat{N})}X_1 e^{-it(\hat{H}-\mu \hat{N})}}{\beta}\\
+			&= e^{itE_\alpha} \mel{\alpha}{X_1}{\beta} e^{-itE_\beta} \\
+			&= e^{it(E_\alpha-E_\beta)} X_{1,\alpha\beta} 
+		\end{align*}
+		We then perform an analogous computation on the other correlation function to get
+		\begin{align*}
+			\langle \hat{X}_2(0) \hat{X}_1(t)\rangle &= \frac{1}{Z}\sum_{\alpha,\beta} \zeta \mel{\alpha}{\hat{X}_2(0)}{\beta}\mel{\beta}{\hat{X}_1(t)}{\alpha} e^{-\beta E_\alpha} \\
+								 &= \frac{1}{Z}\sum_{\alpha,\beta}{X}_{2,\alpha\beta}X_{1,\beta\alpha}e^{-it(E_\alpha-E_\beta)} e^{-\beta E_\alpha} \\
+								 &= \frac{1}{Z}\sum_{\alpha,\beta}{X}_{2,\beta\alpha}X_{1,\alpha\beta}e^{-it(E_\beta-E_\alpha)} e^{-\beta E_\beta} 
+		\end{align*}
+		Thus, we find that the correlation function is equal to
+		\[
+			C^+(t) = -\frac{i\theta(t)}{Z}\sum_{\alpha,\beta} X_{1,\alpha\beta}X_{2,\beta\alpha}e^{it(E_\alpha-E_\beta)}\left[ e^{-\beta E_\alpha} - \zeta e^{-\beta E_\beta} \right] 
+		.\] 
+		This can be fourier transformed into frequency space to give us
+		\[
 	C^+(\omega) = \frac 1Z \sum_{\alpha\beta}X_{1\alpha\beta}X_{2\beta\alpha}\left[\frac{e^{-\beta E_\alpha}}{\omega+E_{\alpha\beta}+i\eta}+\frac{e^{-\beta E_\beta}}{\omega+E_{\alpha\beta}+i\eta}\right]
-	\]
+		\] 
+		where $E_{\alpha\beta}=E_\alpha - E_\beta$.
+	\end{tcolorbox}
+In this case, we are looking for the field operators $X_1=\Psi(\va x),~X_2 = \Psi^\dagger(\va x') $. The field operators are defined in terms of the single body eigenstates $\phi_n$ by
+\[
+\Psi(\va x) = \sum_n \phi_n(\va x)c_n,\qquad \Psi(\va x') = \sum_n \phi_n^*(\va x')c_n^\dagger
+.\] 
+
+
+Substituting this in, we find that
+\begin{align*}
+	C^+(\omega) &= \frac{1}{Z}\sum_{\alpha\beta nn'}\phi_n(\va x)\phi_{n'}^*(\va x')\mel{\alpha}{c_n}{\beta}\mel{\beta}{c_{n'}^\dagger}{\alpha}  \left[\frac{e^{-\beta E_\alpha}}{\omega+E_{\alpha\beta}+i\eta}+\frac{e^{-\beta E_\beta}}{\omega+E_{\alpha\beta}+i\eta}\right]\\
+	 &= \frac{1}{Z}\sum_{\alpha\beta n}\phi_n(\va x)\phi_n^*(\va x')\mel{\alpha}{c_n}{\beta}\mel{\beta}{c_{n}^\dagger}{\alpha}  \left[\frac{e^{-\beta E_\alpha}}{\omega+E_{\alpha\beta}+i\eta}+\frac{e^{-\beta E_\beta}}{\omega+E_{\alpha\beta}+i\eta}\right]
+\end{align*}
+We note that this means that state $\beta$ must have an additional mode as compared to state $\alpha$ created by $c_n^\dagger$. Thus, we have $E_{\alpha\beta} = -\epsilon_n$, and $e^{-\beta E_\alpha} + e^{-\beta E_\beta} = e^{-\beta E_\alpha}(1 + e^{-\beta \epsilon_n})$. Thus, the nonvanishing terms simplify to
+\[
+	C^+(\omega) = \frac{1}{Z}\sum_{n\alpha} e^{-\beta E_\alpha}\phi_n(\va x)\phi_n^*(\va x') \frac{1+e^{-\beta\epsilon_n}}{\omega- \epsilon_n + i\eta}
+.\] 
+Before we move on, we must talk about the thermal factor. We note that the only $\alpha$ that contribute are those where the orbital $n$ are empty. Then, we split the sum to find
+\[
+	C^+(\omega) = \sum_n \phi_n(\va x)\phi_n^*(\va x')\frac{1}{\omega-\epsilon_n+i\eta} \frac{1}{Z}\sum_\alpha \left[e^{-\beta E_\alpha}+e^{-\beta(E_\alpha + \epsilon_n)}\right]  
+\]
+We see that the two terms in the sum provide exactly the sum over all possible many body states that appear in the partition function. Hence, they cancel out and we find that
+\[
+	C^+(\omega) = \sum_n \phi_n(\va x)\phi_n^*(\va x') \frac{1}{\omega - \epsilon_n + i\eta}
+.\] 
+
+Now it is finally time to make use of the structure of the problem. Since the Hamiltonian can be separated into two parts concerning the $x$ and $y$ directions, $n$ is actually a multiindex consisting of $(k, m) $. The wavefunctions are given by
+\[
+	\phi_{m,k} = \frac{1}{\sqrt{2\pi} }e^{ikx}\chi_m(y),\qquad \epsilon_{m,k}=\epsilon_{m,0 }+\frac{\hbar^2 k^2}{2m}
+.\] 
+We substitute this back and replace the sum over states with the measure $\sum_m \int \dd{k}$ to get
+\begin{align*}
+	C^+(\omega) &= \sum_m \int \frac{\chi_m(y)\chi_m^*(y')e^{ik(x-x')}}{\omega - \epsilon_{m,0} - \frac{\hbar^2k^2}{2m}+i\eta}\frac{\dd{k}}{2\pi}\\
+		    &= \frac{1}{2}\sum_m \chi_m(y)\chi_m(y')\left[ \frac{\exp\left( i \sqrt{\frac{2m}{\hbar^2}(\omega - \epsilon_{m,0} + i\eta)}|x-x'|  \right) }{ \frac{\hbar^2}{2m}\sqrt{\frac{2m}{\hbar^2}\left( \omega-\epsilon_{m,0} + i\eta \right) } } \right] \\
+		    &= -\frac{i}{\hbar}\sum_m \frac{1}{v_m}\chi_m(y)\chi_m(y')e^{ik_m|x-x'|}.\qedhere 
+\end{align*}
 \end{proof}
 \begin{Problem}
 	
@@ -51,69 +121,195 @@
 	and compare with the result from the Normal Metals exercise sheet.
 \end{Problem}
 
-\begin{Problem}
-	
-	Consider the Hamiltonian
-	\begin{equation}
-		H = H_{\text{el-gas}} + H_{\text{ph}}
-		+ \sum_{kq} g_q (a_q + a_{-q}^\dagger)c_{k+q}^\dagger c_k,
-	\end{equation}
-	where $H_{\text{el-gas}}$ describes free electrons, $H_{\text{ph}}$ free phonons,
-	and $a_q$ ($c_k$) are phonon (electron) annihilation operators.
-	
-	\begin{enumerate}
-		\item[(a)] Find the bare phonon Green's function
-		\[
-		D_0(q,t) = -i\langle\phi_0|T[A_q(t)A_q(0)]|\phi_0\rangle,
-		\quad A_q=a_q+a_{-q}^\dagger .
-		\]
-		
-		\item[(b)] Fourier transform to frequency space and show
-		\[
-		D_0(q,\omega) = \frac{2\omega_q}{\omega^2-\omega_q^2+i\eta}.
-		\]
-		
-		\item[(c)] Draw the Feynman diagram for the effective electron--electron
-		interaction mediated by a phonon and show that
-		\[
-		V_{k,k'} = |g_{k-k'}|^2 D_0(k-k',\omega).
-		\]
-		
-		Assuming acoustic phonons with $g_q=g\sqrt{q}$ and $\omega_q=u q$, show that the
-		interaction becomes momentum independent in the static limit.
-	\end{enumerate}
+\begin{Problem}[Phonon-mediated electron--electron interaction]
+
+Consider the following Hamiltonian
+\[
+H = H_{\text{el-gas}} + H_{\text{ph}} + \sum_{kq} g_q \left(a_q + a_{-q}^\dagger\right)
+c_{k+q,\sigma}^\dagger c_{k\sigma},
+\]
+where \(H_{\text{el-gas}}\) describes a free electronic gas, and
+\(H_{\text{ph}}\) describes the free phonon part. The last term describes
+an interaction between the electrons and phonons with coupling constant
+\(g_q\), and where \(c_{k\sigma}\) (\(a_q\)) describes an electronic
+(phononic) destruction operator.
+
+Since the phonon operators appear in the combination
+\(a_q + a_{-q}^\dagger\), it is often convenient to define the phonon
+Green’s function in terms of the combined operator
+\[
+A_q = a_q + a_{-q}^\dagger .
+\]
+
+\begin{itemize}
+\item[(a)] Find the bare phonon Green’s function from the definition
+\[
+D_0(q,t) = -i \langle \Phi_0 | T \bigl[ A_q(t) A_q^\dagger(0) \bigr] | \Phi_0 \rangle .
+\tag{6}
+\]
+Here \(|\Phi_0\rangle\) is the phonon vacuum/ground state and
+\(T\) is the time-ordering operator. Use the interaction picture where
+\[
+A_q(t) = e^{iH_0 t} A_q e^{-iH_0 t},
+\qquad
+H_0 = H_{\text{ph}} = \sum_q \omega_q a_q^\dagger a_q .
+\]
+
+\item[(b)] Apply a Fourier transform to frequency space to get
+\[
+D_0(q,\omega) =
+\frac{2\omega_q}{\omega^2 - \omega_q^2 + i\eta},
+\tag{7}
+\]
+where \(\eta = 0^+\).
+\emph{Note: during the Fourier transform you will need to introduce
+factors \(i\delta\), with \(\delta = 0^+\), as appropriate to make sure
+the integrals converge.}
+
+\item[(c)] Draw a Feynman diagram depicting an effective electron--electron
+interaction mediated by the phonon propagator \(D_0\), i.e.\ glue two phonon
+lines together from the diagram depicting electron--phonon coupling.
+Also assume the two incoming electrons have opposite momentum
+\(k,-k\) and opposite spin.
+
+From this, read off the interaction strength (with \(k' = k + q\)) as
+\[
+V_{k,k'} = |g_{k'-k}|^2 \, D_0(k' - k, \omega).
+\tag{8}
+\]
+
+We often take the static limit \(\omega = 0\) and assume the phonon-mediated
+attraction is only active for electrons with an energy smaller than the
+Debye frequency (maximum phonon energy) relative to the Fermi level.
+Show that the interaction becomes independent of momentum if we take the
+simple jellium model acoustic phonons
+\[
+g_q = g\sqrt{q}, \qquad \omega_q = u q .
+\]
+
+\end{itemize}
+
 \end{Problem}
 
-\begin{Problem}
-	
-	Generalize Cooper's calculation to a pair with finite center-of-mass momentum
-	$\mathbf{p}$.
-	
-	\begin{enumerate}
-		\item[(a)] Show that the operator creating a Cooper pair
-		\begin{equation}
-			\Delta_{\mathbf{p}}^\dagger =
-			\int d^3x\, d^3x'\,
-			\phi(\mathbf{x}-\mathbf{x}')
-			\psi_\uparrow^\dagger(\mathbf{x})
-			\psi_\downarrow^\dagger(\mathbf{x}')
-			e^{i\mathbf{p}\cdot(\mathbf{x}+\mathbf{x}')/2}
-		\end{equation}
-		can be written as
-		\begin{equation}
-			\Delta^\dagger(\mathbf{p})
-			= \sum_{\mathbf{k}} \phi(\mathbf{k})
-			c_{\mathbf{k}+\mathbf{p}/2,\uparrow}^\dagger
-			c_{-\mathbf{k}+\mathbf{p}/2,\downarrow}^\dagger .
-		\end{equation}
-		
-		\item[(b)] Show that the energy $E_p$ of the pair satisfies
-		\begin{equation}
-			1+\frac{g_0}{V}
-			\sum_{0<\varepsilon_k-\varepsilon_F<\omega_D}
-			\frac{1}{E-(\varepsilon_{k+p/2}+\varepsilon_{k-p/2})}=0.
-		\end{equation}
-	\end{enumerate}
+\begin{proof}
+	\begin{parts}
+	\item We can write the time ordered product as
+		\[
+			T[A_q(t)A_q^\dagger(0)] = \theta(t)A_q(t)A_q^\dagger(0)+\zeta\theta(-t)A_q^\dagger(0)A_q(t)
+		\] 
+		where $\zeta=1$ due to the bosonic statistics. Then we compute each expectation value separately:
+		\begin{align*}
+			\langle A_q(t)A_q^\dagger(0)\rangle &= \mel{\Phi_0}{\left( e^{iH_0t}A_qe^{-iH_0t}A_q^\dagger \right)}{\Phi_0}  \\
+ &= \mel{\Phi_0}{\left( A_qe^{-iH_0t}A_q^\dagger \right)}{\Phi_0}  \\
+ &= \mel{\Phi_0}{\left( a_qe^{-iH_0t}a_{-q}^\dagger \right)}{\Phi_0}  \\
+ &= \mel{\Phi_0}{\left( a_qe^{-i\omega_{q}t}a_{q}^\dagger \right)}{\Phi_0}  \\
+ &= e^{-i\omega_q t} 
+		\end{align*}
+		and
+		\begin{align*}
+			\langle A_q^\dagger(0) A_q(t)\rangle &=  \mel{\Phi_0}{\left(A_q^\dagger e^{iH_0t} A_q e^{-iH_0t}  \right)}{\Phi_0}  \\
+ &=  \mel{\Phi_0}{\left(A_q^\dagger e^{iH_0t} A_q  \right)}{\Phi_0}  \\
+ &=  \mel{\Phi_0}{\left(a_{-q} e^{iH_0t} a_{-q}^\dagger  \right)}{\Phi_0}  \\
+ &= e^{i \omega_{-q}t} 
+		\end{align*}
+Noting that the phonon dispersion is even due to the symmetry of the lattice, we find that
+\[
+	D_0(q, t) = -i[\theta(t)e^{-i\omega_q t} + \theta(-t)e^{i\omega_qt}]
+.\] 
+\item We use the convention
+	\[
+		\mathcal{F}(f)(\omega) = \hat{f}(\omega) = \int_{-\infty}^\infty f(t)e^{-i\omega t}\dd{t}
+	.\] 
+	We start with the first term as an example and compute
+	\begin{align*}
+		\mathcal{F}{\left( \theta(t)e^{-i\omega_qt} \right) }&= \int_{-\infty}^\infty \theta(t)e^{-i(\omega+\omega_q )t}e^{-\eta t}\dd{t} \\
+							      &= \int_0^\infty e^{-i(\omega+\omega_q)t}e^{-\eta t}\dd{t} \\
+							     &= \frac{1}{\eta + i(\omega+\omega_q)}\\
+		\mathcal{F}\left( \theta(-t)e^{i\omega_q t} \right) &= \int_{-\infty}^\infty \theta(-t) e^{i(\omega_q-\omega)t}e^{\eta t} \\
+								    &= \int_{-\infty}^0 e^{i(\omega_q-\omega)t} e^{\eta t}\dd{t} \\
+								    &= \frac{1}{\eta - i(\omega-\omega_q)} 
+	\end{align*}
+	Then, substituting this in, we find that
+	\begin{align*}
+		D_0(q, \omega) &= -i \left[ \frac{1}{\eta + i(\omega+\omega_q)}+ \frac{1}{\eta - i(\omega - \omega_q)} \right]\\ 
+			       &= -i \left[ \frac{\eta + i(\omega + \omega_q) + \eta - i(\omega - \omega_q)}{[\eta + i(\omega + \omega_q)][\eta - i(\omega - \omega_q)]} \right]\\
+			       &= \frac{2\omega_q - 2i\eta}{\omega^2 -\omega_q^2 + i\eta} \\
+			       &= \frac{2\omega_q}{\omega^2 - \omega_q^2+i\eta} 
+	\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}[Cooper pairs with finite momentum]
+
+Generalize Cooper’s calculation to a pair with finite momentum.
+In particular:
+
+\begin{itemize}
+\item[(a)] Show that the operator that creates a Cooper pair at a finite
+momentum \(\vec{p}\),
+\[
+\Lambda_{\vec{p}}^\dagger
+=
+\int d^3x\, d^3x'\,
+\phi(\vec{x}-\vec{x}')
+\psi_\uparrow^\dagger(\vec{x})
+\psi_\downarrow^\dagger(\vec{x}')
+e^{i\vec{p}\cdot(\vec{x}+\vec{x}')/2},
+\tag{9}
+\]
+can be rewritten in the form
+\[
+\Lambda^\dagger(\vec{p})
+=
+\sum_{\vec{k}}
+\phi(\vec{k})\,
+c_{\vec{k}+\vec{p}/2,\uparrow}^\dagger
+c_{-\vec{k}+\vec{p}/2,\downarrow}^\dagger .
+\tag{10}
+\]
+
+\item[(b)] Show that the energy \(E_p\) of the pair state
+\(\Lambda^\dagger(\vec{p})|\mathrm{FS}\rangle\) is given by the (complex)
+roots \(z = E_p\) of the equation
+\[
+1 + \frac{g_0}{V}
+\sum_{0 < \epsilon_k < \omega_D}
+\frac{1}{z - (\epsilon_{k+p/2} + \epsilon_{k-p/2})}
+= 0 .
+\tag{11}
+\]
+
+Here
+\[
+|\mathrm{FS}\rangle
+=
+\prod_{k<k_F}
+c_{k\uparrow}^\dagger
+c_{k\downarrow}^\dagger
+|0\rangle
+\]
+defines the filled Fermi sea,
+\(\epsilon_k\) is the energy of an electron with momentum \(k\),
+\(g_0\) is the strength of the phonon-mediated electron--electron interaction,
+\(V\) is a volume factor, and \(\omega_D\) is the Debye frequency.
+\end{itemize}
+
 \end{Problem}
-
-
+\begin{proof}
+	\begin{parts}
+	\item We begin by performing a fourier transform
+		\[
+			\psi^\dagger(\va r)=\frac{1}{\sqrt{V} }\sum_{\va k}e^{-i\va k \va r}a_{\va k}^\dagger,\qquad \psi(\va r) = \frac{1}{\sqrt{V} }\sum_{\va k} e^{i\va k \va r}c_{\va k}
+		.\] 
+		Substituting, we find that
+		\begin{align*}
+			\Psi_{\va p}^\dagger &= \int \dd[3]{x}\dd[3]{x'} \phi(\va x - \va x')\psi_{\uparrow}^\dagger \psi_{\downarrow}^\dagger e^{i\va p(\va x + \va x') / 2} \\
+					     &= \frac{1}{V}\sum_{\va k, \va k'}\int \dd[3]{x}\dd[3]{x'}\phi(\va x - \va x') e^{i\va k \va x}e^{i\va k'\va x'}c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow} e^{i\va p (\va x + \va x') / 2}\\
+					     &= \frac{1}{V}\sum_{\va k, \va k'}\int \dd[3]{x}\dd[3]{x'}\phi(\va x - \va x') c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow} e^{i(\va k + \va p / 2)\va x}e^{i(\va k' + \va p / 2)\va x'}\\
+					     &= \frac{1}{V}\sum_{\va k, \va k'}\int \dd[3]{R}\dd[3]{x'}\phi(\va R) c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow} e^{i(\va k + \va p / 2)(\va x'+\va R)}e^{i(\va k' + \va p / 2)\va x'}\\
+					     &= \frac{1}{V}\sum_{\va k, \va k'}\int \dd[3]{x'}\phi(\va k + \va p / 2) c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow} e^{i(\va k + \va p / 2)\va x'}e^{i(\va k' + \va p / 2)\va x'}\\
+					     &= \sum_{\va k, \va k'}\phi(\va k + \va p / 2) c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow}\delta_{\va k + \va k' + \va p}\\ 
+					     &= \sum_{\va k}\phi(\va k + \va p / 2) c^\dagger_{\va k, \uparrow} c^\dagger_{-\va k - \va p, \downarrow}\\
+					     &= \sum_{\va k}\phi(\va k) c^\dagger_{\va k + \va p / 2, \uparrow} c^\dagger_{-\va k + \va p / 2, \downarrow}\\
+		\end{align*}
+	\end{parts}
+\end{proof}
