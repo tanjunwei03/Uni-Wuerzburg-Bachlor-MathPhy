@@ -159,7 +159,6 @@ H_0 = H_{\text{ph}} = \sum_q \omega_q a_q^\dagger a_q .
 \[
 D_0(q,\omega) =
 \frac{2\omega_q}{\omega^2 - \omega_q^2 + i\eta},
-\tag{7}
 \]
 where \(\eta = 0^+\).
 \emph{Note: during the Fourier transform you will need to introduce
@@ -175,7 +174,6 @@ Also assume the two incoming electrons have opposite momentum
 From this, read off the interaction strength (with \(k' = k + q\)) as
 \[
 V_{k,k'} = |g_{k'-k}|^2 \, D_0(k' - k, \omega).
-\tag{8}
 \]
 
 We often take the static limit \(\omega = 0\) and assume the phonon-mediated
@@ -236,6 +234,47 @@ Noting that the phonon dispersion is even due to the symmetry of the lattice, we
 			       &= \frac{2\omega_q - 2i\eta}{\omega^2 -\omega_q^2 + i\eta} \\
 			       &= \frac{2\omega_q}{\omega^2 - \omega_q^2+i\eta} 
 	\end{align*}
+\item Can you suggest a good package for feynman diagrams this looks horrible :((
+
+\begin{tikzpicture}[scale=2]
+	\begin{feynman}
+		\vertex (i1) {$\va k$};
+		\vertex [above right = of i1] (a);
+		\vertex [right=of a] (b);
+		\vertex [above left =of a] (i3) {$\va k + \va q$};
+		\vertex [above right=of b] (i2) {$-\va k - \va q$};
+		\vertex [below right=of b] (i0) {$-\va k$};
+
+		\diagram* {
+			(i1) -- [fermion] (a) -- [fermion] (i3);
+			(i0) -- [fermion] (b) -- [fermion] (i2);
+			(a) -- [photon, reversed momentum'=\(\va q\)] (b);
+		};
+	\end{feynman}
+\end{tikzpicture}
+
+Clarifying note on what we are doing: If we perform perturbation theory on the electron-phonon interaction, we will find terms like
+\[\langle O\rangle = \int\left[\sum_{kk'qq'} g_q g_{q'}OA_q A_{q'}\overline{\psi}_{k+q,\sigma}\psi_{k,\sigma}\overline{\psi}_{k'+q',\sigma}\psi_{k',\sigma}\right]e^{-S_\text{el}[\psi,\overline{\psi}]-S_\text{ph}[z,\overline{z}]}\mathcal{D}(\psi,\overline{\psi}) \mathcal{D}(z,\overline{z})\]
+If we want to compute 2 particle correlation functions, i.e. have two creation and two annihilation operators in $O$, we connect Green's functions into to the vertex elements to get the diagram above. Since the variables $A$ and those of $\psi$ are uncorrelated (corresponding to two different actions), we just find that
+\[
+\langle O\rangle = \int\left[\sum_{kk'qq'} g_q g_{q'}O\langle A_q A_{q'}\rangle\overline{\psi}_{k+q,\sigma}\psi_{k,\sigma}\overline{\psi}_{k'+q',\sigma}\psi_{k',\sigma}\right]e^{-S_\text{el}[\psi,\overline{\psi}]}\mathcal{D}(\psi,\overline{\psi})
+\]
+By an electron-electron interaction, we mean an interaction vertex that reproduces the correlation functions. If we had a two-particle interaction $S_\text{int} = \sum_{0123}V_{0123}\overline{\psi}_3\psi_1\overline{\psi}_2\psi_0$, the expectation values would be given by
+\[\langle O\rangle = \int \left[\sum_{0123} OV_{0123}\overline{\psi}_3\psi_1\overline{\psi}_2\psi_0\right] e^{-S_\text{el}[\psi,\overline{\psi}]}\mathcal{D}(\psi,\overline{\psi})\]
+where 0123 are just shorthand for phase space coordinates. Thus, by comparison, setting $k'=-k$ and noting that $q'=-q$ for the functional average to be nonvanishing, we find that the effective interaction is given by
+\[
+V_{k,k'} = |g_{k'-k}|^2 \, D_0(k' - k, \omega).
+\]
+where the propagator $D_0$ is the functional average $\langle A_q A_{q'}\rangle$ (note implicit time ordering in path integral).
+
+If we take the jellium model acoustic phonons $g_q =g\sqrt{q},~\omega_q = uq$ we find that
+\begin{align*}
+	V_{k,k'} &= |g_{k'-k}|D_0(k'-k,\omega) \\
+	&= g^2 |q| \frac{2\omega_q}{\omega^2 - \omega_q^2 + i\eta}\\
+	&= g^2 |q| \frac{2u |q|}{\omega^2 - u q^2 + i\eta}\\
+	&= g^2 |q| \frac{2u |q|}{-u q^2 + i\eta}\\
+	&= -2g^2.\qedhere
+\end{align*}
 	\end{parts}
 \end{proof}
 \begin{Problem}[Cooper pairs with finite momentum]
@@ -298,7 +337,7 @@ defines the filled Fermi sea,
 	\begin{parts}
 	\item We begin by performing a fourier transform
 		\[
-			\psi^\dagger(\va r)=\frac{1}{\sqrt{V} }\sum_{\va k}e^{-i\va k \va r}a_{\va k}^\dagger,\qquad \psi(\va r) = \frac{1}{\sqrt{V} }\sum_{\va k} e^{i\va k \va r}c_{\va k}
+			\psi^\dagger(\va r)=\frac{1}{\sqrt{V} }\sum_{\va k}e^{-i\va k \va r}c_{\va k}^\dagger,\qquad \psi(\va r) = \frac{1}{\sqrt{V} }\sum_{\va k} e^{i\va k \va r}c_{\va k}
 		.\] 
 		Substituting, we find that
 		\begin{align*}
