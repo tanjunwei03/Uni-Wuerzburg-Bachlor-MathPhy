@@ -236,6 +236,7 @@ Noting that the phonon dispersion is even due to the symmetry of the lattice, we
 	\end{align*}
 \item Can you suggest a good package for feynman diagrams this looks horrible :((
 
+\iffalse
 \begin{tikzpicture}[scale=2]
 	\begin{feynman}
 		\vertex (i1) {$\va k$};
@@ -252,6 +253,7 @@ Noting that the phonon dispersion is even due to the symmetry of the lattice, we
 		};
 	\end{feynman}
 \end{tikzpicture}
+\fi
 
 Clarifying note on what we are doing: If we perform perturbation theory on the electron-phonon interaction, we will find terms like
 \[\langle O\rangle = \int\left[\sum_{kk'qq'} g_q g_{q'}OA_q A_{q'}\overline{\psi}_{k+q,\sigma}\psi_{k,\sigma}\overline{\psi}_{k'+q',\sigma}\psi_{k',\sigma}\right]e^{-S_\text{el}[\psi,\overline{\psi}]-S_\text{ph}[z,\overline{z}]}\mathcal{D}(\psi,\overline{\psi}) \mathcal{D}(z,\overline{z})\]
@@ -349,6 +351,10 @@ defines the filled Fermi sea,
 					     &= \sum_{\va k, \va k'}\phi(\va k + \va p / 2) c^\dagger_{\va k, \uparrow} c^\dagger_{\va k', \downarrow}\delta_{\va k + \va k' + \va p}\\ 
 					     &= \sum_{\va k}\phi(\va k + \va p / 2) c^\dagger_{\va k, \uparrow} c^\dagger_{-\va k - \va p, \downarrow}\\
 					     &= \sum_{\va k}\phi(\va k) c^\dagger_{\va k + \va p / 2, \uparrow} c^\dagger_{-\va k + \va p / 2, \downarrow}\\
+		\end{align*}
+		\item We write the eigenvalue equation $H\ket{\psi} = E\ket{\psi}$ to get, defining $\ket{k,p} = c^\dagger_{\vec{k}+\vec{p}/2,\uparrow} c^\dagger_{-\vec{k}+\vec{p}/2,\downarrow}\ket{FS}$,
+		\begin{align*}
+			E_{\vec{p}}\sum_{\vec k}\phi_{\vec{k}} \ket{\vec{k}, \vec{p}} &= \sum_{|\vec{k} + \vec{p}/2|\ge k_F} (\epsilon_{\vec{k}+\vec{p}/2}+\epsilon_{\vec{k}-\vec{p}/2})\phi_{\vec{k}}\ket{\vec{k},\vec{p}}+\sum_{\vec{k},\vec{k}'}\ket{\vec{k},\vec{p}}\mel{\vec{k},\vec{p}}{V}{\vec{k}',\vec{p}}\phi_{\vec{k}',\vec{p}}
 		\end{align*}
 	\end{parts}
 \end{proof}
