@@ -254,12 +254,12 @@ Noting that the phonon dispersion is even due to the symmetry of the lattice, we
 
 \begin{tikzpicture}[scale=2]
 	\begin{feynman}
-		\vertex (i1) {$\va k, \uparrow$};
+		\vertex (i1) {$\va k$};
 		\vertex [above right = of i1] (a);
 		\vertex [right=of a] (b);
-		\vertex [above left =of a] (i3) {$\va k + \va q, \uparrow$};
-		\vertex [above right=of b] (i2) {$-\va k - \va q, \downarrow$};
-		\vertex [below right=of b] (i0) {$-\va k, \downarrow$};
+		\vertex [above left =of a] (i3) {$\va k + \va q$};
+		\vertex [above right=of b] (i2) {$-\va k - \va q$};
+		\vertex [below right=of b] (i0) {$-\va k$};
 
 		\diagram* {
 			(i1) -- [fermion] (a) -- [fermion] (i3);
@@ -275,7 +275,7 @@ If we want to compute 2 particle correlation functions, i.e. have two creation a
 \[
 \langle O\rangle = \int\left[\sum_{kk'qq'} g_q g_{q'}O\langle A_q A_{q'}\rangle\overline{\psi}_{k+q,\sigma}\psi_{k,\sigma}\overline{\psi}_{k'+q',\sigma}\psi_{k',\sigma}\right]e^{-S_\text{el}[\psi,\overline{\psi}]}\mathcal{D}(\psi,\overline{\psi})
 \]
-By an electron-electron interaction, we mean an interaction vertex that reproduces the correlation functions. While this diagram is a 2nd order perturbation theory diagram, the phonons can in principle be integrated out exactly because the action is Gaussian. If we had a two-particle interaction $S_\text{int} = \sum_{0123}V_{0123}\overline{\psi}_3\psi_1\overline{\psi}_2\psi_0$, the expectation values would be given by
+By an electron-electron interaction, we mean an interaction vertex that reproduces the correlation functions. If we had a two-particle interaction $S_\text{int} = \sum_{0123}V_{0123}\overline{\psi}_3\psi_1\overline{\psi}_2\psi_0$, the expectation values would be given by
 \[\langle O\rangle = \int \left[\sum_{0123} OV_{0123}\overline{\psi}_3\psi_1\overline{\psi}_2\psi_0\right] e^{-S_\text{el}[\psi,\overline{\psi}]}\mathcal{D}(\psi,\overline{\psi})\]
 where 0123 are just shorthand for phase space coordinates. Thus, by comparison, setting $k'=-k$ and noting that $q'=-q$ for the functional average to be nonvanishing, we find that the effective interaction is given by
 \[
@@ -368,24 +368,24 @@ defines the filled Fermi sea,
 		\end{align*}
 	\item We write the eigenvalue equation $H\ket{\psi} = E\ket{\psi}$ to get
 			\[
-			E_{\va{p}}\sum_{\va k}\phi_{\va{k}} \ket{\va{k}, \va{p}} = \sum_{|\va{k} + \va{p}/2|\ge k_F} (\epsilon_{\va{k}+\va{p}/2}+\epsilon_{\va{k}-\va{p}/2})\phi_{\va{k}}\ket{\va{k},\va{p}}+\sum_{\va{k},\va{k}'}\ket{\va{k},\va{p}}\mel{\va{k},\va{p}}{V}{\va{k}',\va{p}}\phi_{\va{k}',\va{p}}
+			E_{\vec{p}}\sum_{\vec k}\phi_{\vec{k}} \ket{\vec{k}, \vec{p}} = \sum_{|\vec{k} + \vec{p}/2|\ge k_F} (\epsilon_{\vec{k}+\vec{p}/2}+\epsilon_{\vec{k}-\vec{p}/2})\phi_{\vec{k}}\ket{\vec{k},\vec{p}}+\sum_{\vec{k},\vec{k}'}\ket{\vec{k},\vec{p}}\mel{\vec{k},\vec{p}}{V}{\vec{k}',\vec{p}}\phi_{\vec{k}',\vec{p}}
 		\]
 		where we have defined
 		\[
-		\ket{\va{k},\va{p}} = c^\dagger_{\va{k}+\va{p}/2,\uparrow} c^\dagger_{-\va{k}+\va{p}/2,\downarrow}\ket{FS}
+		\ket{\vec{k},\vec{p}} = c^\dagger_{\vec{k}+\vec{p}/2,\uparrow} c^\dagger_{-\vec{k}+\vec{p}/2,\downarrow}\ket{FS}
 		.\] 
-		Here, we note that since $V$ does not change the total momentum, even though $\dyad{\va{k},\va{p}}{\va{k},\va{p}}$ is not a full resolution of the identity (which would involve a sum over $\va{p}$), it still does not change the expression. Comparing coefficients of $\ket{\va{k},\va{p}}$ and considering the special case where the matrix element is a constant $\mel{\va{k},\va{p}}{V}{\va{k},\va{p}}=-g_0 / V$ just like in the BCS model, we find the equation
+		Here, we note that since $V$ does not change the total momentum, even though $\dyad{\vec{k},\vec{p}}{\vec{k},\vec{p}}$ is not a full resolution of the identity (which would involve a sum over $\vec{p}$), it still does not change the expression. Comparing coefficients of $\ket{\vec{k},\vec{p}}$ and considering the special case where the matrix element is a constant $\mel{\vec{k},\vec{p}}{V}{\vec{k},\vec{p}}=-g_0 / V$ just like in the BCS model, we find the equation
 		\[
-		E_{\va{p}}\phi_{\va{k}}=(\epsilon_{\va{k}+\va{p} / 2}-\epsilon_{\va{k} - \va{p} / 2})\phi_{\va k} - \frac{g_0}{V}\sum_{0< \epsilon_{\va{k} \pm \va{p} / 2} <\omega_D} \phi_{\va{k}'}
+		E_{\vec{p}}\phi_{\vec{k}}=(\epsilon_{\vec{k}+\vec{p} / 2}-\epsilon_{\vec{k} - \vec{p} / 2})\phi_{\vec k} - \frac{g_0}{V}\sum_{0< \epsilon_{\vec{k} \pm \vec{p} / 2} <\omega_D} \phi_{\vec{k}'}
 		\] 
 		where the interaction is once again limited to pairs with energy less than the Debye frequency. We can solve this to find
 		\[
-		\phi_{\va{k}} = \frac{1}{\epsilon_{\va{k} + \va{p} / 2} + \epsilon_{\va{k} - \va{p} / 2} - E_{\va{p}}} \frac{g_0}{V}\sum_{0<\epsilon_{\va{k}\pm \va{p} / 2} < \omega_D} \phi_{\va{k}'}
+		\phi_{\vec{k}} = \frac{1}{\epsilon_{\vec{k} + \vec{p} / 2} + \epsilon_{\vec{k} - \vec{p} / 2} - E_{\vec{p}}} \frac{g_0}{V}\sum_{0<\epsilon_{\vec{k}\pm \vec{p} / 2} < \omega_D} \phi_{\vec{k}'}
 		.\] 
-		Finally, we sum over $\va{k}$ and cancel out the common sum of $\phi_{\va{k}'}$ to find
+		Finally, we sum over $\vec{k}$ and cancel out the common sum of $\phi_{\vec{k}'}$ to find
 		\[
-		1 + \frac{g_0}{V}\sum_{0<\epsilon_{\va{k} \pm \va{p} / 2}<\omega_D}\frac{1}{E_{\va{p}} - \epsilon_{\va{k} + \va{p} / 2} - \epsilon_{\va{k} - \va{p} / 2}}=0
+		1 + \frac{g_0}{V}\sum_{0<\epsilon_{\vec{k} \pm \vec{p} / 2}<\omega_D}\frac{1}{E_{\vec{p}} - \epsilon_{\vec{k} + \vec{p} / 2} - \epsilon_{\vec{k} - \vec{p} / 2}}=0
 		.\] 
-		This is the desired equation that $E_{\va{p}}$ must solve.\qedhere
+		This is the desired equation that $E_{\vec{p}}$ must solve.\qedhere
 	\end{parts}
 \end{proof}

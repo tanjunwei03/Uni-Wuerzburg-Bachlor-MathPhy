@@ -23,6 +23,7 @@
 \usepackage{float}
 \usepackage{multirow}
 \usepackage{subcaption}
+\usepackage{bbm}
 \usepackage{mathtools}
 \usepackage{thmtools}
 \usepackage{thm-restate}
@@ -93,6 +94,206 @@
 \end{titlepage}
 \restoregeometry
 	\tableofcontents
+\section{Introduction}
+\begin{enumerate}
+	\item A $C^*$ algebra satisfies the following conditions
+		\begin{enumerate}[label=(\arabic*)]
+			\item $\|x+y\|\le \|x\|+\|y\|$ 
+			\item $\|xy\|\le \|x\|\|y\|$
+			\item $(x^*)^* = x$ 
+			\item $(x+y)^*=x^*+y^*$ 
+			\item $(\alpha x)^* = \overline{\alpha}x^*$ 
+			\item $(xy)^* =y^*x^*$ 
+			\item $\|x^*\|= \|x\|$ 
+			\item $\|x^*x\|=\|x\|^2$ ($C^*$ property)
+		\end{enumerate}
+	\item States are positive linear functionals. This corresponds to the expected value of the observable.
+	\item Cauchy-Schwarz Inequality:
+		\[
+			\omega[(\alpha f + \beta g)^*(\alpha f + \beta g)] = \begin{pmatrix} \overline{\alpha} & \overline{\beta} \end{pmatrix} \begin{pmatrix} \omega(f^*f) & \omega(f^* g) \\ \omega(g^* f) & \omega(g^* g) \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \ge 0
+		\]
+		and thus
+		\[
+		|\omega(f^* g)| \le \sqrt{\omega(f^* f)} \sqrt{\omega(g^* g)} 
+		.\] 
+	\item We have, from the positivity $\omega[(\lambda A + \mathbbm{1})^* (\lambda A + \mathbbm{1})] \le 0$, that $\omega(A^*) = \overline{\omega(A)}$. 
+
+		Proof: First, we expand to find that
+		\[
+			0\le |\lambda|^2\omega(A^* A)+\lambda\omega(A)+\overline{\lambda}\omega(A^*)+\omega(\mathbbm{1})
+		.\] 
+		First, we take $\lambda\in \R$ and note that this means that $\omega(A) +\omega(A^*)$ is real. Then, let $\lambda$ be pure imaginary and see that $\omega(A)-\omega(A^*)$ is purely imaginary. Thus, we see that $\omega(A) = \overline{\omega(A^*)}$
+\end{enumerate}
+\section{$C^*$ Algebras}
+\begin{enumerate}
+	\item Let $\mathcal{A}$ be a $C^* $ algebra without identity. We can construct an algebra with identity $\overline{\mathcal{A}}=\mathbb{C}\times \mathcal{A}$ with identity using the product and sum
+		\begin{align*}
+			\mu(\alpha, A) + \lambda(\beta, B) &= (\mu \alpha + \lambda\beta, \mu A + \lambda B) \\
+			(\mu, A)(\beta, B) &= (\alpha\beta, \alpha B + \beta A + AB) \\
+			(\mu, A)^* &= (\overline{\alpha}, A^*) 
+		\end{align*}
+		and norm $\|(\alpha, A)\|= \sup_{\|B\|=1} \|\alpha B + AB\|$. The identity is $(1,0)$.
+	\item Ideals are subalgebras.
+	\item Self adjoint ideals are two sided.
+	\item Factor spaces are algebras.
+	\item Two sided ideals are not necessarily self-adjoint! Let $\mathcal{A}=C(S^2)$ with product $(fg)(x)= f(x)g(x)$ and inversion $f^*(x) = \overline{f}(-x)$. Then $\mathcal{I}=\{f|f(\text{north pole})=0\} $. IT is clear that $\mathcal{I}$ is two sided and $\mathcal{I}^* = \{f|f(\text{south pole}) = 0\} $.
+	\item The resolvent of $A\in \mathcal{A}$ is the subset of $\mathbb{C}$ such that $\lambda\mathbbm{1} -  A$ is invertible for $\lambda\in r_{\mathcal{A}}(A)$. 
+	\item The spectrum is the complement of the resolvent.
+	\item \textbf{(Von Neumann Series)} Formally, we have
+		\[
+			\frac{1}{\lambda \mathbbm{1} - A}= \frac{1}{\lambda}\sum_{m=0}^{\infty} \left( \frac{A}{\lambda} \right)^m
+		.\] 
+		It is clear that this is a power series in $\frac{1}{\lambda}$ and converges for $\|A\| / |\lambda| < 1$. Here, we have used $\|A^n\|\le \|A\|^n$. Hence, we cannot find the radius of convergence using the geometric series formula.
+	\item By a similar power series argument, we can show that the resolvent is open. Hence, the spectrum is compact.
+	\item The spectral radius is $R = \sup_{\lambda\in \sigma_{\mathcal{A}}(A)}|\lambda|$. We have $R \le \|A\|$. 
+	\item The spectral radius is given by $\rho(A) = \inf_{n\in \N}\|A^n\|^{1 / n}=\lim_{n \to \infty} \|A^n\|^{1 / n}$. 
+
+		This is the root test: The radius of convergence of $\sum_{n=0}^{\infty} A_n (z-a)^n$ is $\left( \limsup_{n\to\infty} \|A_n\|^{1 / n} \right)^{-1}$.
+	\item In a unital *-algebra,
+		\[
+			\sigma_{\mathcal{A}}(A) +\mu = \sigma_{\mathcal{A}}(A + \mu \mathbbm{1}),~\sigma_{\mathcal{A}}(A^*) = \overline{\sigma_{\mathcal{A}}(A)},~\sigma_{\mathcal{A}}(AB) \cup \{0\} = \sigma_{\mathcal{A}}(BA) \cup \{0\} 
+		.\] 
+		The third statement is proven by $(\mathbbm{1}\lambda+AB)A=A(\lambda\mathbbm{1}+BA)$ and hence $(\lambda\mathbbm{1}+AB)A \frac{1}{\lambda\mathbbm{1}+BA}=A$, and then adding $(\lambda\mathbbm{1}-AB)$ to get an inverse.
+	\item Let $\mathcal{A}$ be a unital $C^*$ algebra.
+		\begin{enumerate}
+			\item If $A$ is normal then $\rho(A) = \|A\|$.
+\[
+	\|A^{2^n}\|^2 = \|(A^*)^{2^n}A^{2^n}\|=\|(A^*A)^{2^n}\|=\|(A^*A)^{2^{n-1}}\|^2=\|A^*A\|^{2^n}=\|A\|^{2^{n+1}}
+.\] 
+\item If $A$ is an isometry, i.e. $A^*A=\mathbbm{1}$, then $\rho(A)=1$. 
+	\[
+		\|A^n\|^2 = \|(A^*)^nA^n\|=\|\mathbbm{1}\|=1
+	.\] 
+\item If $A$ is unitary, then $\sigma_{\mathcal{A}}\subseteq S^1$.
+	\[
+		\sigma_{\mathcal{A}}(A)=\overline{\sigma_{\mathcal{A}}(A^*)}=\overline{\sigma_{\mathcal{A}}(A^{-1})}=\left( \overline{\sigma_{\mathcal{A}}(A)} \right)^{-1}
+	.\] 
+\item If $A$ is self adjoint, then $\sigma_{\mathcal{A}}(A)\subseteq [-\|A\|, \|A\|]\subseteq \mathbb{R}$, and $\sigma_{\mathcal{A}}(A^2)\subseteq [0,\|A\|^2]$.
+
+	We construct a unitary $U=(1-i|\lambda|A)\frac{1}{1+i|\lambda|A}$ for $\lambda > 1 / \|A\|$. Then we show that $\frac{1-i|\lambda|\alpha}{1+i|\lambda|\alpha}\in \sigma_{\mathcal{A}}(U)$ if and only if $\alpha = \overline{\alpha}$. Then do a long computation.
+\item For all $A\in \mathcal{A}$ and polynomials $P$, $\sigma_{\mathcal{A}}(P(A))=P(\sigma_{\mathcal{A}}(A))$.
+
+	Prove by factoring.
+		\end{enumerate}
+\end{enumerate}
+\section{Representations}
+The point of this chapter is to characterise the Hilbert space realisations of a $C^*$ algebra.
+\begin{enumerate}
+	\item Homomorphisms preserve positivity
+	\item The kernel of a homomorphism is a two sided ideal.
+	\item If $\mathcal{I}$ is a right ideal, an approximate identity $\{E_\alpha\}_\alpha$ is an increasing set of positive operators $0\le E_i \le E_{i+1}$ satisfying the properties
+		\[
+		\|E_\alpha\|\le 1,\qquad \alpha\le \beta \implies E_\alpha \le E_\beta,\qquad \|E_\alpha I - I \|\to 0
+		.\] 
+	\item Every right ideal has an approximate identity.
+
+		Proof: Partially order every finite family of elements $\{A_1,A_2,\dots, A_{|alpha|}\} $. Then define $F_\alpha = \sum_{i=1}^{|\alpha|} A_i^*A_i$. The approximate identity will be
+		\[
+		E_\alpha = |\alpha|F_\alpha \frac{1}{1+|\alpha|F_\alpha}=1-\frac{1}{1+|\alpha|F_\alpha}
+		.\] 
+		Eventually the estimate will be, for $A_i\in\alpha$, $(E_\alpha A_i-A_i)^* (A_\alpha A_i - A_i)\le \frac{1}{|\alpha|}\mathbbm{1}$.
+	\item Every closed two sided ideal is self-adjoint and the factor algebra with the norm $\|\hat{A}\|_{\mathcal{A} / \mathcal{I}}=\inf_{I\in \mathcal{I}}\|A+I\|_{\mathcal{A}}$ is a $C^*$ algebra. 
+
+		Proof: $\|A^* E_\alpha - A^*\|=\|A_\alpha - A\|\to 0$, hence $A^*\in \mathcal{I}$ (note that $A^*E_\alpha\in \mathcal{I}$ for all $A^*$). Then, we adjoint a unit and show $C^*$ properties.
+	\item Let $\mathcal{A}$ be a unital Banach *-algebra and $\mathcal{B}$ a $C^*$ algebra, and $\pi:\mathcal{A}\to \mathcal{B}$ a *-homomorphism. Then $\pi$ is continuous with $\pi(A)\le A$. Additionally, if $\mathcal{A}$ is $C^*$, then its image is a $C^*$ subalgebra.
+
+		Idea: Compare spectra. If $\lambda\mathbbm{1}-A$ is invertible, then $\pi((\lambda\mathbbm{1}-A)^{-1})$ is an inverse of $\lambda\mathbbm{1}-\pi(A) $. Hence for normal elements we have the desired result. For non normal elements we have $\|\pi(A)\|^2 = \|\pi(A^*A)\|\le \|A^*A\|=\|A\|^2$.
+	\item The factor space of the kernel is isomorphic to the image.
+
+		Proof: It is clearly vector space isomorphic. Then, for any invertible $\pi$, we have $\|A\|=\|\pi^{-1}(\pi(A))\|\le \|\pi(A)\|\le A$ and hence $\pi$ is norm preserving.
+	\item A $C^*$ representation is faithful if it satisfies any of the following equivalent conditions
+		\begin{enumerate}
+			\item $\ker \pi = \{0\} $,
+			\item $\|\pi(A)\|=\|A\|$ 
+			\item $\pi(A) > 0$ for all $A>0$
+		\end{enumerate}
+		a is obvious, $a\implies b$ by constructing isomorphism onto its image, $b\implies c$ simply because $\|A\|>0\implies \|\pi(A)\|>0$ - note that this is fundamentally a statement about the kernel, and preservation of positivity is obvious and was proven long ago, and $c\implies a$ is clear. 
+	\item Given an invariant closed subspace, we can decompose the representation into a direct sum on it and its orthogonal complement.
+	\item A representation is called nondegenerate, if the subspace annihilated by it is trivial.
+	\item A vector is called cyclic if the span of $B\Omega$ is dense in $\mathcal{H}$.
+	
+		Cyclic representations are nondegenerate: If we have a nonzero vector $\pi(B)\Omega$ that was annihilated, then we would have $\pi(A)\pi(B)\Omega=\pi(AB)\Omega=0$ for all $A$. If we choose $A=\mathbbm{1}$ then this means $\pi(B)\Omega=0$.
+
+		Basically: Because $\pi(\mathbbm{1})=\mathbbm{1}$, this is about invariant subspaces.
+	\item The norm of a $C^*$ algebra is unique.
+
+		If $A$ is normal, $\|A\|=\rho(A)$. Otherwise, $\|A\|=\sqrt{\|A^* A\|} =\sqrt{\rho(A^*A)} $.
+	\item If $\mathcal{B}$ is a unital $C^*$-subalgebra of $\mathcal{A}$ (also $C^*$) and the unit elements coincide, then the spectra of all elements coincide.
+	\item We define projectors by $P_\Gamma = \frac{1}{2\pi i}\oint_\Gamma \frac{\dd{z}}{z\mathbbm{1}-A}$. We can show that this is a projector and projects onto the ``eigenspace''
+	\item The proof involves Hilbert's identity $R(z_1)-R(z_2)=(z_2-z_1)R(z_1)R(z_2)$ which is proven by $(R(z_2))^{-1}-(R(z_1))^{-1}=(z_2-z_1)\mathbbm{1}$.
+	\item We define functions of operators by $\hat{f}(A) = \frac{1}{2\pi i}\oint_\Gamma \frac{f(z)}{z\mathbbm{1}-A}\dd{z}$. This is a homomorphism, i.e. it works on products of functions.
+	\item If $f:\mathbb{C} \to \mathbb{C}$ is analytic on a neighbourhood of $\sigma_{\mathcal{A}}(A)$, then $f(\sigma(A))=\sigma(f(A))$. 
+
+		If $\lambda \not\in \sigma(A)$, then $h_1=(\lambda - f(z))^{-1}$ is holomorphic on a neighbourhood of $\sigma(A)$. Then $\hat{h}_1(A)$ is an inverse of $\lambda\mathbbm{1}-f(\hat{A})$.
+
+		If $\lambda\in f(\sigma(A))$, we define $\lambda=f(z_0)$ and there exists a $h_2$ holomorphic on a neighbourhood of $\sigma(A)$ with $\lambda-f(z)=f(z_0)-f(z)=(z_0-z)h_2(z)$. Hence, $\lambda\mathbbm{1}-\hat{f}(A)=(z_0\mathbbm{1}-A)\hat{h}_2(A)$.
+	\item $\hat{f}\circ \hat{g} = \widehat{f\circ g}$
+\end{enumerate}
+\section{States}
+\begin{enumerate}
+	\item A linear functional is called positive if $\omega(A^*A)\ge 0$ for all $A$. If it has norm 1, it is called a state.
+	\item Examples of states:
+		\begin{enumerate}
+			\item Vector states: $\langle \Omega, \pi(A)\Omega\rangle$ 
+			\item Statistical matrices: $\sum p_i\omega_i,~0\le p_i\le 1, \sum p_i = 1$.
+			\item Density matrices: $\Tr(\rho\pi(A))=\omega(A)$.
+		\end{enumerate}
+	\item Cauchy-Schwarz: $|\omega(A^*B)| \le \sqrt{\omega(A^* A)} \sqrt{\omega(B^* B)} $.
+	\item For all $\omega$, the following are equivalent:
+		\begin{enumerate}
+			\item $\omega$ is positive
+			\item $\omega$ is continuous and $\|\omega\|=\lim_{\alpha \to \infty} \omega(E_\alpha^2)$.
+		\end{enumerate}
+		Additionally, for positive $\omega$, we have
+		\begin{enumerate}
+			\item $\omega(A^*)=\overline{\omega(A)}$ 
+			\item $|\omega(A)|^2 = \omega(A^* A)\|\omega\|$ 
+			\item $|\omega(A^*BA)|\le \omega(A^*A)\|B\|$ 
+			\item $\|\omega\|=\sup_{\|A\|=1}\omega(A^* A)$ 
+			\item $\|\omega\|=\lim_{\alpha \to \infty} \omega(E_\alpha)$
+		\end{enumerate}
+		Since this is a very long proof, we wil split it into many parts
+		\begin{itemize}
+			\item \textbf{(Positivity implies Continuity)} First, we prove that positivity implies continuity and the additional identity.
+
+				We choose a sequence of $\{A_n\}_n,~0\le A_n,~\|A_n\|\le 1$. If for all sequences $\lambda_n$ we have $\sum \lambda_n A_n\to A\ge 0$, then we also know $\sum_{n=1}^{N} \lambda_n\omega(A_n) \le \omega(A)<\infty$. This can only be true for all $\lambda_n$ if $\omega$ are uniformly bounded, i.e. $M_+=\sup_{\|A\|=1}\omega(A)<\infty$. By decomposition, $\|\omega\|<4M_+$.
+			\item \textbf{(Alternate Proof)} We alternatively note that $-\mathbbm{1}\|A\|\le A \le \mathbbm{1}\|A\|$. Hence $|f(a)|\le \|A\|f(\mathbbm{1})$. This is generalised in the second equation.
+			\item \textbf{(Proof of the Supplementary Identities)} Since we will need the supplementary identities in the next part, we prove them first. All of them are clear except two, which we shall prove using:
+				\[
+				|\omega(A^*BA)|^2 \le \omega(A*A)\omega(A^*B^*BA),\qquad A^*B^*BA \le A^* \|B\|^2 A
+				\] 
+				and
+				\[
+					E_\alpha^2\le E_\alpha \implies \|\omega\|\le \lim_{\alpha \to \infty} \omega(E_\alpha^2) \le \lim_{\alpha \to \infty} \omega(E_\alpha)\le \|\omega\|
+				.\] 
+			\item \textbf{(Proof Sketch: Continuity implies Positivity)} The proof will proceed in three parts. First, we will show that $\omega(\mathbbm{1})=1$, adjoining an identity if necessary. Then, we will show that $\omega(A)$ must be real for $A$ self adjoint. Finally, we will show the desired result.
+			\item \textbf{(Proof that $\omega(\mathbbm{1})=1$)} We show that $\lim_{\alpha \to \infty} E_\alpha^2 = 1$. Then, we have $\omega(\mathbbm{1}) = \lim_{\alpha \to \infty} \omega(E_\alpha^2) = 1$.
+
+				In the non unital case, we adjoin a unit, then prove that the extension $\tilde{\omega}((\lambda, A)) = \lambda + \omega(A)$ that $\|\tilde{\omega}\|=1$. We do this by $|\tilde{\omega}(\lambda\mathbbm{1}+A)| = |\lambda+\omega(A)| = \lim_{\alpha \to \infty} |\lambda\omega(E_\alpha^2)+\omega(AE_\alpha^2)| = \limsup_{\alpha\to\infty} \|\lambda E_\alpha^2 + AE_\alpha^2\|_{\mathcal{A}}\le \sup_{\|B\|=1}\|\lambda B + AB\|=\|\lambda\mathbbm{1}+A\|_{\overline{\mathcal{A}}}$, and thus $\|\tilde{\omega}\|\le 1$. However, since $\tilde{\omega}(\mathbbm{1})=1$, and thus $\|\tilde{\omega}\|=1$. 
+			\item \textbf{($\omega(A)$ is real if $A$ is self adjoint)} First, we assume that $\omega(A) =\alpha + i\beta$. Then, we consider $A+i\gamma\mathbbm{1}$. Since the spectrum of $A$ is real and $A+i\gamma\mathbbm{1}$ is normal, then $\|A+i\gamma\mathbbm{1}\|=\rho(A+i\gamma\mathbbm{1})=\sqrt{\|A\|^2 + \gamma^2} $. Now, $|\omega(\alpha+i\gamma\mathbbm{1})|=|\alpha+i(\beta+\gamma)|=|\alpha+i(\beta+\gamma)|=\sqrt{\alpha^2 + (\beta+\gamma)^2} \ge |\beta + \gamma|$. 
+
+				Hence, $|\beta + \gamma| \le \sqrt{\|A\|^2 + \gamma^2} $ for all $\gamma$. If we choose $\gamma=\delta \|A\|^2 \beta / |\beta|$, we find that $\beta^2 + 2\delta |\beta| \|A\|^2 \le \|A\|^2$. Sending $\delta\to\infty$, we find that $\beta = 0$.
+			\item \textbf{(Final Steps)} Since $A^*A \ge 0$, 
+				\[
+					\|\mathbbm{1} - \frac{A^* A}{\|A^* A\|}\|=\|1- \frac{A^* A}{\|A\|^2}\|\le 1
+				.\] 
+				We then have
+				\[
+					\left| \omega(\mathbbm{1}) - \frac{\omega(A^* A)}{\|A\|^2} \right|\le 1 
+				\]
+				and
+				\[
+				\left| 1 - \frac{\omega(A^* A)}{\|A\|^2} \right| \le 1
+				.\] 
+				This shows that $\omega$ is positive.
+		\end{itemize}
+	\item The sum of two positive linear functionals $\omega_1,~\omega_2$ is positive and $\|\omega_1+\omega_2\|=\|\omega_1\|+\|\omega_2\|$. 
+
+		Proof: $\lim (\omega_1(E_\alpha^2) +\omega_2(E_\alpha^2)) = \lim\omega_1(E_\alpha^2) + \lim\omega_2(E_\alpha^2)=\|\omega_1\|+\|\omega_2\| $. Hence, the states form a convex subset.
+	\item We can define a partial order: $\omega_1\le \omega_2$ if $\omega_2-\omega_1$ is positive.
+	\item We call a state $\omega$ pure, if $\eta\le\omega$ implies that $\eta=\lambda\omega $.
+	\item \textbf{(GNS Construction)} 
+		\end{enumerate}
 \chapter{$C^*$ Algebras}
 \begin{Theorem}
 	If we have an algebra $\mathcal{A}$, there is an algebra $\bar{\mathcal{A}}$ containing $\mathcal{A}$ as a sub algebra that has an identity. If $\mathcal{A}$ is $C^*$, then so is $\overline{\mathcal{A}}$.

@@ -1,0 +1,117 @@
+\begin{Problem}
+
+The BCS wavefunction in momentum space can be written as
+\begin{equation}
+|\Psi_{\mathrm{BCS}}\rangle
+= \prod_{\mathbf{k}} \exp\left( \phi_{\mathbf{k}} c^\dagger_{\mathbf{k}\uparrow} c^\dagger_{-\mathbf{k}\downarrow} \right)|0\rangle
+= \prod_{\mathbf{k}} \left(1 + \phi_{\mathbf{k}} c^\dagger_{\mathbf{k}\uparrow} c^\dagger_{-\mathbf{k}\downarrow}\right)|0\rangle .
+\end{equation}
+
+\begin{itemize}
+\item Show that the BCS ground state is the vacuum for the Bogoliubov quasiparticles, i.e. that the destruction operators $\alpha_{\mathbf{k},\sigma}$ annihilate the BCS ground state. Here
+\begin{equation}
+\alpha_{\pm\mathbf{k},\sigma} = u_{\mathbf{k}} c_{\pm\mathbf{k}\sigma} + v_{\mathbf{k}} c^\dagger_{\mp\mathbf{k}\overline{\sigma}},
+\end{equation}
+and you may assume that $u_{\mathbf{k}}, v_{\mathbf{k}}$ are real for convenience.
+
+\item If the Bogoliubov quasiparticle is $\alpha^\dagger_{\mathbf{k}\uparrow} = u_{\mathbf{k}} c^\dagger_{\mathbf{k}\uparrow} + v_{\mathbf{k}} c_{-\mathbf{k}\downarrow}$, then starting from the equation of motion of the Bogoliubov quasiparticle
+\begin{equation}
+	[H,\alpha^\dagger_{\mathbf{k}\uparrow}] = \pdv{\alpha_{\mathbf{k}\uparrow}^\dagger}{\tau}=E_{\mathbf{k}} \alpha^\dagger_{\mathbf{k}\uparrow},
+\end{equation}
+show that $(u_{\mathbf{k}}, v_{\mathbf{k}})^T$ is an eigenvector of
+\begin{equation}
+	h_{\mathbf{k}} = \begin{pmatrix} u_{\mathbf{k}} \\ v_{\mathbf{k}} \end{pmatrix} = \begin{pmatrix} \epsilon_{\mathbf{k}} & \Delta \\ \Delta & -\epsilon_{\mathbf{k}} \end{pmatrix} \begin{pmatrix} u_{\mathbf{k}} \\ v_{\mathbf{k}} \end{pmatrix} = E_{\mathbf{k}} \begin{pmatrix} u_{\mathbf{k}} \\ v_{\mathbf{k}} \end{pmatrix}  
+\end{equation}
+By solving the eigenvalue problem and assuming the gap is real, give  an explicit expression for $u_{\mathbf{k}}$ and $v_{\mathbf{k}}$ in terms of $\Delta$ and $\epsilon_{\mathbf{k}}$. 
+\end{itemize}
+\end{Problem}
+
+\begin{Problem}
+
+One useful way to regard superconductors is via the semiconductor analogy, in which the quasiparticles are treated like the positive and negative energy excitations of a semiconductor. To do so we divide the Brillouin zone up into equal halves and redefine a set of positive and negative energy quasiparticle operators according to
+$\alpha^\dagger_{\mathbf{k},\sigma+} = \alpha^\dagger_{\mathbf{k}\sigma}$ and $\alpha^\dagger_{\mathbf{k}\sigma-} = \operatorname{sgn}(\sigma)\,a_{-\mathbf{k}-\sigma}
+\text{ for } \mathbf{k} \in \tfrac12 \mathrm{BZ}.$
+
+\begin{itemize}
+\item By this procedure rewrite the BCS Hamiltonian in terms of these new operators, and show that the excitation spectrum can be interpreted in terms of an empty band of positive energy excitation and a filled band of negative energy excitations.
+
+\item Show that the BCS ground state wave functions can be regarded as a filled sea of negative energy quasiparticle states and an empty sea of positive energy quasiparticle states.
+\end{itemize}
+\end{Problem}
+
+
+\begin{Problem}
+
+\begin{itemize}
+\item Assuming that the Debye frequency is a small fraction of the bandwidth, show that the difference between the superconducting and normal-state free energies can be written as
+\begin{equation}
+\mathcal{F}_S - \mathcal{F}_N =
+-2T N(0) \int_{-\omega_D}^{\omega_D}
+\ln\!\left[
+\frac{\cosh\!\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)}
+{\cosh(\varepsilon/2T)}
+\right] d\varepsilon
++ V \frac{|\Delta|^2}{g_0}.
+\end{equation}
+
+Notice that the previous expression is invariant under changes in the phase of the gap parameter. What consequences does it imply?
+
+\item By differentiating the expression of the Free energy with respect to $\Delta$, confirm the zero temperature gap equation
+\begin{equation}
+\frac{V}{g_0 N(0)} =
+\int_0^{\omega_D} \frac{d\varepsilon}{\sqrt{\varepsilon^2+\Delta_0^2}},
+\end{equation}
+where $\Delta_0 = \Delta(T = 0)$. Use this result to eliminate $g_0$, to show that the free energy can be written as
+\begin{equation}
+\mathcal{F}_S - \mathcal{F}_N =
+N(0)\Delta_0^2\,
+\Phi\!\left[\frac{\Delta}{\Delta_0},\frac{T}{\Delta_0}\right],
+\end{equation}
+where the dimensionless function
+\begin{equation}
+\Phi[\delta,t] =
+\int_0^\infty dx
+\left\{
+-4t \ln
+\frac{\cosh\!\left(\sqrt{x^2+\delta^2}/2t\right)}
+{\cosh(x/2t)}
++ \frac{\delta^2}{\sqrt{x^2+1}}
+\right\}.
+\end{equation}
+
+What implies the change in the integration boundary to infinity?
+\end{itemize}
+\end{Problem}
+
+
+\begin{Problem}
+
+Consider two superconductors which are connected via a small bridge, also superconducting, of length $L$. Each of those superconductors can be thought as a lead with all of its properties well defined and each of the wave function in this bridge
+\begin{equation}
+\Psi(x \to 0) = \Psi_1 = |\Psi_0|e^{i\phi_1}
+\end{equation}
+\begin{equation}
+\Psi(x \to L) = \Psi_2 = |\Psi_0|e^{i\phi_2}
+\end{equation}
+for the edges. In this area the wave function can be thought as a superposition of those two
+\begin{equation}
+\Psi(x) = |\Psi_0|e^{i\phi_1} g(x) + |\Psi_0|e^{i\phi_2}(1-g(x)),
+\end{equation}
+with the only requirement that $g(x \to 0) \to 1$ and $g(x \to L) \to 0$. We aim to get the behaviour of $g(x)$, in order to do so use the Ginzburg Landau equation
+\begin{equation}
+-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}
++ \alpha \Psi + \beta|\Psi|^2\Psi = 0,
+\end{equation}
+to have a complete description.
+
+\textit{Hint:} It might be useful to think of $\Psi(x)=|\Psi_0|f(x)$ and rewrite an equation for $f(x)$.
+Use $|\Psi_0|^2=-\alpha/\beta$ and define also $\xi^2=\hbar^2/(2m|\alpha|)$. Use the hypothesis of short link $L \ll \xi$.
+\end{Problem}
+
+\begin{Problem}
+With the previous result, compute the Josephson current. Show that it depends exclusively on $\phi =\phi_2-\phi_1$ and not on each phase individually. What is the expression for the free energy?	
+\end{Problem}
+
+\begin{Problem}
+	How is the current changed when one applies a voltage? Consider the Schr\"{o}dinger equation and assume $\Psi(x,t) = |\Psi(x)|e^{i\phi(t)} $. Use that to find $\phi(t)$ assuming $\phi(t=0)=\phi_0$. You may associate the energy of the external superconductors with their chemical potential, and the difference of chemical potential with the applied voltage.	
+\end{Problem}
