@@ -25,7 +25,25 @@ show that $(u_{\mathbf{k}}, v_{\mathbf{k}})^T$ is an eigenvector of
 By solving the eigenvalue problem and assuming the gap is real, give  an explicit expression for $u_{\mathbf{k}}$ and $v_{\mathbf{k}}$ in terms of $\Delta$ and $\epsilon_{\mathbf{k}}$. 
 \end{itemize}
 \end{Problem}
-
+\begin{proof}
+	We apply the annihilation operators directly. For concreteness, we will consider $\alpha_{\va k,\uparrow}$. Since we can commute $\alpha$ through all bilinears $1+\phi_{\va q}c_{\va q}^\dagger c_{\va q}^\dagger$ with $\va q \neq \va k$, we will ignore them all and simply look at the product
+	\[( u_{\mathbf{k}} c_{\mathbf{k},\uparrow} + v_{\mathbf{k}} c^\dagger_{-\mathbf{k},\downarrow})(1+\phi_{\va k}c_{\va k,\uparrow}^\dagger c_{-\va k,\downarrow}^\dagger)(1+\phi_{-\va k}c_{-\va k,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger)\]
+	applied to the ground state. This product would yield $2^3=8$ terms. However, we can immediately see that some fo them drop out. The product $c_{\va k,\uparrow}$ with the two 1s would yield an annihilation operator applied to the vacuum; it vanishes. We may not multiply $c_{-\va k,\downarrow}^\dagger$ with itself; squares of fermion operators vanish. Thus, two more terms drop out. If we multiply $c_{\va k,\uparrow}$ with something not containing $c_{\va k,\uparrow}^\dagger$, we could simply anticommute it to the end, where it would annihilate the ground state again. Thus, there are only 4 terms left, and we find
+	\begin{align*}
+		&~( u_{\va{k}} c_{\va{k},\uparrow} + v_{\va{k}} c^\dagger_{-\va{k},\downarrow})(1+\phi_{\va k}c_{\va k,\uparrow}^\dagger c_{-\va k,\downarrow}^\dagger)(1+\phi_{-\va k}c_{-\va k,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger)\\
+		=&~u_{\va k}c_{\va k,\uparrow} \phi_{\va k}c_{\va k,\uparrow}^\dagger c_{-\va k,\downarrow}^\dagger + u_{\va k}c_{\va k,\uparrow} \phi_{\va k}c_{\va k,\uparrow}^\dagger c_{-\va k,\downarrow}^\dagger \phi_{-\va k}c^{\dagger}_{-\va k,\uparrow}c_{\va k,\downarrow}^\dagger \\
+		&+ v_{\va k}c_{-\va k,\downarrow}^\dagger + v_{\va k}\phi_{-\va k}c_{-\va k,\downarrow}^\dagger \phi_{-\va k}c_{-\va k,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger\\
+		=& -u_{\va k}\phi_{\va k}c_{-\va k,\downarrow}^\dagger - u_{\va k}\phi_{\va k}\phi_{-\va k}c_{-\va k,\downarrow}^\dagger c_{-\va k,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger\\
+		&+ v_{\va k}c_{-\va k,\downarrow}^\dagger + v_{\va k}\phi_{-\va k}c_{-\va k,\downarrow}^\dagger \phi_{-\va k}c_{-\va k,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger\\
+		=&\phi_{-\va k}c_{-\va k\downarrow}^\dagger c_{-\va ,\uparrow}^\dagger c_{\va k,\downarrow}^\dagger (-u_{\va k}\phi_{\va k} +v_{\va k})+c_{-\va k,\downarrow}(-u_{\va k}\phi_{\va k} +v_{\va k})
+	\end{align*}
+	where we have used the fermionic anticommutation relations to swap $c_{\va k,\uparrow}$ with $c_{\va k,\uparrow}^\dagger$ before pulling it through the rest of the operators to annihilate the ground state. Thus, we see that these operators annihilate the ground state if we have
+	\[v_{\va k} = u_{\va k}\phi_{\va k}\]
+	In principle, we could use this and the requirement that the transformation stay canonical to determine the parameters $u_{\va k}$ and $v_{\va k}$. But we continue...
+	
+	Next, we compute the commutator $[H, \alpha_{\va k\uparrow}^\dagger]$ directly. We have previously done a mean field expansion on the BCS Hamiltonian
+	\[H = \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} c_{\va k\uparrow}^\dagger \]
+\end{proof}
 \begin{Problem}
 
 One useful way to regard superconductors is via the semiconductor analogy, in which the quasiparticles are treated like the positive and negative energy excitations of a semiconductor. To do so we divide the Brillouin zone up into equal halves and redefine a set of positive and negative energy quasiparticle operators according to
