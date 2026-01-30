@@ -42,7 +42,13 @@ By solving the eigenvalue problem and assuming the gap is real, give  an explici
 	In principle, we could use this and the requirement that the transformation stay canonical to determine the parameters $u_{\va k}$ and $v_{\va k}$. But we continue...
 	
 	Next, we compute the commutator $[H, \alpha_{\va k\uparrow}^\dagger]$ directly. We have previously done a mean field expansion on the BCS Hamiltonian
-	\[H = \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} c_{\va k\uparrow}^\dagger \]
+	\[H = \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger c_{\va k',\uparrow} c_{-\va k', \downarrow} \]
+	using the mean field $\Delta = -\frac{g}{V}\langle c_{\va k,\uparrow}c_{-\va k,\downarrow}\rangle$. After decomposing, we find that
+	\begin{align*}
+		H &= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger c_{\va k',\uparrow} c_{-\va k', \downarrow} \\
+		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} \left(\overline{\Delta} - (\overline{\Delta}-c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger)\right)\left(\Delta - (\Delta - c_{\va k',\uparrow} c_{-\va k', \downarrow})\right)\\
+		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}()
+	\end{align*}
 \end{proof}
 \begin{Problem}
 
