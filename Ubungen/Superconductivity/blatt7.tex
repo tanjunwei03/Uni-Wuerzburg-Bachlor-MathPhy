@@ -46,9 +46,18 @@ By solving the eigenvalue problem and assuming the gap is real, give  an explici
 	using the mean field $\Delta = -\frac{g}{V}\langle c_{\va k,\uparrow}c_{-\va k,\downarrow}\rangle$. After decomposing, we find that
 	\begin{align*}
 		H &= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger c_{\va k',\uparrow} c_{-\va k', \downarrow} \\
-		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{g}{V} \left(\overline{\Delta} - (\overline{\Delta}-c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger)\right)\left(\Delta - (\Delta - c_{\va k',\uparrow} c_{-\va k', \downarrow})\right)\\
-		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}()
+		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} -\sum_{\va k, \va k'}\frac{V}{g} \left(\overline{\Delta} -\left(\overline{\Delta}-\frac{g}{V}c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger\right)\right)\left(\Delta - \left(\Delta - \frac{g}{V}c_{\va k',\uparrow} c_{-\va k', \downarrow}\right)\right)\\
+		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} +\sum_{\va k, \va k'}\left[\overline{\Delta}c_{-\va k \downarrow}c_{\va k\uparrow}+c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger \Delta\right]+\frac{V}{g}\overline{\Delta}\Delta
 	\end{align*}
+In principle, defining the Nambu spinor $\Psi_{\va k} = (c_{\va k \uparrow}, c_{-\va k\downarrow}^\dagger)^T$, we could rewrite the Hamiltonian as (up to constants)
+\[H = \Psi_{\va k}^\dagger \begin{pmatrix}
+	\epsilon_{\va k} & \Delta \\
+	\overline{\Delta} & -\epsilon_{\va k}
+\end{pmatrix}\Psi_{\va k}\]
+which would give the desired result. However, we continue as requested: We compute the equation of motion
+\[[H, \alpha_{\va k\uparrow}^\dagger]= [H, u_{\va k}c_{\va k\uparrow}^\dagger + v_{\va k}c_{-\va k\downarrow}]=E_{\va k}a_{\va k\uparrow}^\dagger\]
+For the kinetic term, we find that
+\[[H_\text{kin},  u_{\va k}c_{\va k\uparrow}^\dagger + v_{\va k}c_{-\va k\downarrow}]=\]
 \end{proof}
 \begin{Problem}
 
@@ -62,7 +71,9 @@ $\alpha^\dagger_{\mathbf{k},\sigma+} = \alpha^\dagger_{\mathbf{k}\sigma}$ and $\
 \item Show that the BCS ground state wave functions can be regarded as a filled sea of negative energy quasiparticle states and an empty sea of positive energy quasiparticle states.
 \end{itemize}
 \end{Problem}
-
+\begin{proof}
+	We rewrite the BCS Hamiltonian:
+\end{proof}
 
 \begin{Problem}
 
