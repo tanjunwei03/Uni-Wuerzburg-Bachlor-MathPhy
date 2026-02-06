@@ -50,14 +50,35 @@ By solving the eigenvalue problem and assuming the gap is real, give  an explici
 		&= \sum_{\va k,\sigma}\epsilon_{\va k}  c_{\va k,\sigma}^\dagger c_{\va k,\sigma} +\sum_{\va k, \va k'}\left[\overline{\Delta}c_{-\va k \downarrow}c_{\va k\uparrow}+c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger \Delta\right]+\frac{V}{g}\overline{\Delta}\Delta
 	\end{align*}
 In principle, defining the Nambu spinor $\Psi_{\va k} = (c_{\va k \uparrow}, c_{-\va k\downarrow}^\dagger)^T$, we could rewrite the Hamiltonian as (up to constants)
-\[H = \Psi_{\va k}^\dagger \begin{pmatrix}
+\[H = \begin{pmatrix}
+	c_{\va k \uparrow}^\dagger \\ c_{-\va k\downarrow}
+\end{pmatrix}\cdot\begin{pmatrix}
+	\epsilon_{\va k} & \Delta \\
+	\overline{\Delta} & -\epsilon_{\va k}
+\end{pmatrix}\begin{pmatrix}
+c_{\va k \uparrow} \\ c_{-\va k\downarrow}^\dagger
+\end{pmatrix} = \Psi_{\va k}^\dagger \begin{pmatrix}
 	\epsilon_{\va k} & \Delta \\
 	\overline{\Delta} & -\epsilon_{\va k}
 \end{pmatrix}\Psi_{\va k}\]
 which would give the desired result. However, we continue as requested: We compute the equation of motion
 \[[H, \alpha_{\va k\uparrow}^\dagger]= [H, u_{\va k}c_{\va k\uparrow}^\dagger + v_{\va k}c_{-\va k\downarrow}]=E_{\va k}a_{\va k\uparrow}^\dagger\]
 For the kinetic term, we find that
-\[[H_\text{kin},  u_{\va k}c_{\va k\uparrow}^\dagger + v_{\va k}c_{-\va k\downarrow}]=\]
+\[[H_\text{kin},  u_{\va k}c_{\va k\uparrow}^\dagger + v_{\va k}c_{-\va k\downarrow}]=\epsilon_{\va k}u_{\va k}c^\dagger_{\va k\uparrow} - \epsilon_{\va k}v_{\va k}c_{-\va k\downarrow}\]
+and for the mean field term, we also find that
+\begin{align*}
+[H_\text{MF},  v_{\va k}c_{-\va k\downarrow}] &= \Delta v_{\va k}[c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger, c_{-\va k\downarrow}]\\
+&=\Delta v_{\va k}\left(c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger c_{-\va k\downarrow}-c_{-\va k\downarrow}c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger \right)\\
+&=\Delta v_{\va k}\left(c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}^\dagger c_{-\va k\downarrow}+c_{\va k\uparrow}^\dagger (-c^\dagger_{-\va k\downarrow} c_{-\va k\downarrow} + 1)\right)\\
+&= \Delta v_{\va k}c_{\va k\uparrow}^\dagger \\
+[H_\text{MF},  u_{\va k}c_{\va k\uparrow}^\dagger] &= \overline\Delta u_{\va k}[c_{-\va k\downarrow}c_{\va k\uparrow}, c_{\va k\uparrow}^\dagger]\\
+&= \overline\Delta u_{\va k}\left(c_{-\va k\downarrow}c_{\va k\uparrow}c_{\va k\uparrow}^\dagger - c_{\va k\uparrow}^\dagger c_{-\va k\downarrow}c_{\va k\uparrow}\right) \\
+&= \overline\Delta u_{\va k}\left(c_{-\va k\downarrow}c_{\va k\uparrow}c_{\va k\uparrow}^\dagger +  c_{-\va k\downarrow}(-c_{\va k\uparrow}c_{\va k\uparrow}^\dagger+1)\right) \\
+&=\overline\Delta u_{\va k}c_{-\va k\downarrow}
+\end{align*}
+Thus, we find that
+\[[H, \alpha_{\va k\uparrow}^\dagger] = \epsilon_{\va k}u_{\va k}c^\dagger_{\va k\uparrow} - \epsilon_{\va k}v_{\va k}c_{-\va k\downarrow}+\Delta v_{\va k}c_{\va k\uparrow}^\dagger+\overline\Delta u_{\va k}c_{-\va k\downarrow}\]
+By comparison of the above equation with the equation $[H,\alpha_{\va k\uparrow}^\dagger]=E_{\va k}\alpha_{\va k\uparrow}^\dagger$ and comparing the coefficients of $c_{\va k\uparrow}^\dagger$ and $c_{\va k\uparrow}$, we find that $(u_{\va k}, v_{\va k})$ is an eigenvector of the desired matrix.
 \end{proof}
 \begin{Problem}
 
@@ -72,7 +93,8 @@ $\alpha^\dagger_{\mathbf{k},\sigma+} = \alpha^\dagger_{\mathbf{k}\sigma}$ and $\
 \end{itemize}
 \end{Problem}
 \begin{proof}
-	We rewrite the BCS Hamiltonian:
+For reference the BCS Hamiltonian referred to in the problem is the already diagonalised BCS mean field Hamiltonian in the quasiparticle basis
+\[H = \sum_{\va k}E_{\va k}(a_{\va k\uparrow}^\dagger a_{\va k\uparrow} - a_{-\va k\downarrow}a_{-\va k\downarrow}^\dagger)+V\frac{\overline{\Delta}\Delta}{g_0}\]
 \end{proof}
 
 \begin{Problem}
@@ -117,7 +139,58 @@ where the dimensionless function
 What implies the change in the integration boundary to infinity?
 \end{itemize}
 \end{Problem}
+\begin{proof}
+	The expression for the free energy is assumed to be known in the question: It can be derived by performing a Hubbard-Stratonovich transformation, integrating out the fermions and then performing a mean field substitution on the Hubbard-Stratonovich field, with which the path integral disappears and only the product of eigenvalues forming a determinant remain.
+	
+	The free energy is given by
+	\[\mathcal{F}[\Delta, T] = -T\sum_{\va k, n}\ln[\omega_n^2+\epsilon_{\va k}^2+|\Delta|^2]+V\frac{|\Delta|^2}{g_0}\]
+	where it is to be understood that the momentum sum is restricted to a shell around the Fermi surface - while the free energy would involve all electrons, not just those in this small shell, it makes no difference when finding minima, as they are noninteracting and hence behave like free electrons. In the path integral, this would be understood as simply integrating out these fermions and ignoring the constants resulting therefrom. Carrying out the Matsubara sum, it can be found that (as I understand, this result is also assumed)
+	\[\mathcal{F}= -2TV\int_{|\epsilon_{\va k}|<\omega_D}\frac{\dd[3]{k}}{(2\pi)^3}\left[\ln[2\cosh(\beta E_{\va k}/2)]\right]+V\frac{|\Delta|^2}{g_0}\]
+	where $E_{\va k}$ is the quasiparticle dispersion $E_{\va k} = \sqrt{\epsilon_{\va k}^2 + \Delta^2}$ (assuming the gap parameter $\Delta$ is real).
+	
+	The normal state free energy is just the free energy evaluated at zero gap parameter $\Delta$. Substituting, we easily find that
+	\[\mathcal{F}_S-\mathcal{F}_N = -2TV \int \frac{\dd[3]{k}}{(2\pi)^3}\ln \left[\frac{\cosh\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)}
+	{\cosh(\varepsilon/2T)}\right]+V\frac{|\Delta|^2}{g_0}\]
+	The last step in this derivation is to replace the integration measure with an integral over the energy and the density of states $V\frac{\dd[3]{k}}{(2\pi)^3}=N(\epsilon)\dd{\epsilon}$ and approximate the density of states as constant within a tiny shell around the Fermi surface to get
+\[\mathcal{F}_S - \mathcal{F}_N =
+-2T N(0) \int_{-\omega_D}^{\omega_D}
+\ln\!\left[
+\frac{\cosh\!\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)}
+{\cosh(\varepsilon/2T)}
+\right] d\varepsilon
++ V \frac{|\Delta|^2}{g_0}.\]
+	where $N(0)$ is the density of states at the Fermi surface.
+	
+	Next, we differentiate the free energy as requested to find
+	\begin{align*}
+		\dv{\Delta}\Delta\mathcal{F}=&~ -2TN(0)\int_{-\omega_D}^{\omega_D} \tanh\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)\frac{\Delta}{2T\sqrt{\epsilon^2+\Delta^2}}\\
+		&~+\frac{2V\Delta}{g_0}=0
+	\end{align*}
+Noting that $\tanh(1/T)\to 1$ as $T\to 0$, we have
+\[N(0)\int_{-\omega_D}^{\omega_D} \frac{1}{\sqrt{\epsilon^2+\Delta^2_0}}\dd{\epsilon}=\frac{2V}{g_0}\]
+Using the evenness of the integrand to allow us to integrate over only half of the specified interval, this reduces to
+\[\frac{V}{g_0 N(0)} =
+\int_0^{\omega_D} \frac{\dd\varepsilon}{\sqrt{\varepsilon^2+\Delta_0^2}}\]
+as desired.
 
+The final expression we are asked to show follows by simply  substituting to find
+\begin{align*}
+	\mathcal{F}_S - \mathcal{F}_N &= -2T N(0) \int_{-\omega_D}^{\omega_D}
+	\ln\!\left[
+	\frac{\cosh\!\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)}
+	{\cosh(\varepsilon/2T)}
+	\right] \dd\varepsilon
+	+ |\Delta|^2N(0)\int_0^{\omega_D} \frac{\dd\varepsilon}{\sqrt{\varepsilon^2+\Delta_0^2}}\\
+	&=N(0)\int_0^{\omega_D} -4T\ln\!\left[
+	\frac{\cosh\!\left(\sqrt{\varepsilon^2+|\Delta|^2}/2T\right)}
+	{\cosh(\varepsilon/2T)}\right] + \frac{|\Delta|^2}{\sqrt{\epsilon^2+\Delta_0^2}}\dd{\epsilon}
+\end{align*}
+The derivation of the desired expression
+\[\mathcal{F}_S - \mathcal{F}_N =
+N(0)\Delta_0^2\,
+\Phi\!\left[\frac{\Delta}{\Delta_0},\frac{T}{\Delta_0}\right]\]
+is now obvious. We note that during this derivation, we would replace $\epsilon/ \Delta_0$ with $x$; in the case where the gap parameter is small, this would extend the integration bounds to infinity.
+\end{proof}
 
 \begin{Problem}
 
@@ -142,6 +215,20 @@ to have a complete description.
 \textit{Hint:} It might be useful to think of $\Psi(x)=|\Psi_0|f(x)$ and rewrite an equation for $f(x)$.
 Use $|\Psi_0|^2=-\alpha/\beta$ and define also $\xi^2=\hbar^2/(2m|\alpha|)$. Use the hypothesis of short link $L \ll \xi$.
 \end{Problem}
+\begin{proof}
+	As suggested, we think of $\Psi(x)$ as $|\Psi_0|f(x)$. Then, we substitute this into the Ginzburg-Landau equation to find
+	\begin{align*}	
+		0&=-\frac{\hbar^2}{2m}\pdv[2]{f(x)}{x}+ \alpha f(x) + \beta |\Psi_0|^2 |f(x)|^2f(x)\\
+		&=-\frac{\hbar^2}{2m}\pdv[2]{f(x)}{x}+ \alpha f(x) -\alpha |f(x)|^2f(x)\\
+		&= \zeta^2 \pdv[2]{f(x)}{x}+f(x)(1-|f(x)|^2)
+	\end{align*}
+The first step is to de-dimensionalise this equation. We do so by substituting $x \to Ly$, which yields $\dv{x} = \frac 1L \dv{y}$. Substituting, we find that
+\[\pdv[2]{f(y)}{y} + \epsilon^2 f(y)(1-|f(y)|^2)=0\]
+where $\epsilon = L / \zeta$ is the small parameter. Then, we substitute a WKB style ansatz
+\[f(y) = A(y) e^{S(y)}\]
+to find
+
+\end{proof}
 
 \begin{Problem}
 With the previous result, compute the Josephson current. Show that it depends exclusively on $\phi =\phi_2-\phi_1$ and not on each phase individually. What is the expression for the free energy?	
