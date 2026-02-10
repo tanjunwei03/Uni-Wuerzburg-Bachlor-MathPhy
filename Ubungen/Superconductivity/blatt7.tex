@@ -83,7 +83,7 @@ By comparison of the above equation with the equation $[H,\alpha_{\va k\uparrow}
 \begin{Problem}
 
 One useful way to regard superconductors is via the semiconductor analogy, in which the quasiparticles are treated like the positive and negative energy excitations of a semiconductor. To do so we divide the Brillouin zone up into equal halves and redefine a set of positive and negative energy quasiparticle operators according to
-$\alpha^\dagger_{\mathbf{k},\sigma+} = \alpha^\dagger_{\mathbf{k}\sigma}$ and $\alpha^\dagger_{\mathbf{k}\sigma-} = \operatorname{sgn}(\sigma)\,a_{-\mathbf{k}-\sigma}
+$\alpha^\dagger_{\mathbf{k},\sigma+} = a^\dagger_{\mathbf{k}\sigma}$ and $\alpha^\dagger_{\mathbf{k}\sigma-} = \operatorname{sgn}(\sigma)\,a_{-\mathbf{k}-\sigma}
 \text{ for } \mathbf{k} \in \tfrac12 \mathrm{BZ}.$
 
 \begin{itemize}
@@ -94,7 +94,23 @@ $\alpha^\dagger_{\mathbf{k},\sigma+} = \alpha^\dagger_{\mathbf{k}\sigma}$ and $\
 \end{Problem}
 \begin{proof}
 For reference the BCS Hamiltonian referred to in the problem is the already diagonalised BCS mean field Hamiltonian in the quasiparticle basis
-\[H = \sum_{\va k}E_{\va k}(a_{\va k\uparrow}^\dagger a_{\va k\uparrow} - a_{-\va k\downarrow}a_{-\va k\downarrow}^\dagger)+V\frac{\overline{\Delta}\Delta}{g_0}\]
+\[H = \sum_{\va k}E_{\va k}(a_{\va k\uparrow}^\dagger a_{\va k\uparrow} - a_{-\va k\downarrow}a_{-\va k\downarrow}^\dagger)+V\frac{\overline{\Delta}\Delta}{g_0}.\]
+We ignore the constants and divide the sum to a sum over half of the Brillouin zone to find
+\begin{align*}
+	H &= \sum_{\va k\in \frac 12\text{BZ}}E_{\va k}(a_{\va k\uparrow}^\dagger a_{\va k\uparrow} - a_{-\va k\downarrow}a_{-\va k\downarrow}^\dagger)+\sum_{\va k\in \frac 12\text{BZ}}E_{\va k}(a_{-\va k\uparrow}^\dagger a_{-\va k\uparrow} - a_{\va k\downarrow}a_{\va k\downarrow}^\dagger)\\
+	&=\sum_{\va k\in \frac 12\text{BZ},\sigma}E_{\va k}(a_{\va k\sigma}^\dagger a_{\va k\sigma} - a_{-\va k\sigma}a_{-\va k\sigma}^\dagger)\\
+	&=\sum_{\va k\in \frac 12\text{BZ},\sigma}E_{\va k}\left(\alpha_{\va k\sigma+}^\dagger \alpha_{\va k\sigma+}- \alpha_{\va k-}^\dagger \alpha_{\va k\sigma-}\right)
+\end{align*}
+from which we see that the Hamiltonian has factored into positive and negative energy quasiparticles.
+
+We previously the BCS ground state wavefunction in terms of the Bogoliubov quasiparticles by annihilating all quasiparticles
+\[\ket{BCS} = \sum_{\va k}a_{-\va k\downarrow}a_{\va k\uparrow}\ket{0}.\]
+Dividing the Brillouin zone again into two, we find that
+\begin{align*}
+	\ket{BCS} &= \prod_{\va k\in \frac 12\text{BZ}}(a_{\va k\downarrow}a_{\va k\uparrow})(a_{-\va k\downarrow}a_{-\va k\uparrow})\ket{0}\\
+	&=\prod_{\va k\in \frac12 \text{BZ},\sigma}\alpha_{\va k\sigma+}\prod_{\va k\in \frac12 \text{BZ},\sigma}\alpha_{\va k\sigma-}^\dagger\ket{0}
+\end{align*}
+from which we see that the negative energy quasiparticle band is fully filled, while the positive energy quasiparticle band is fully empty.
 \end{proof}
 
 \begin{Problem}
@@ -222,18 +238,57 @@ Use $|\Psi_0|^2=-\alpha/\beta$ and define also $\xi^2=\hbar^2/(2m|\alpha|)$. Use
 		&=-\frac{\hbar^2}{2m}\pdv[2]{f(x)}{x}+ \alpha f(x) -\alpha |f(x)|^2f(x)\\
 		&= \zeta^2 \pdv[2]{f(x)}{x}+f(x)(1-|f(x)|^2)
 	\end{align*}
-The first step is to de-dimensionalise this equation. We do so by substituting $x \to Ly$, which yields $\dv{x} = \frac 1L \dv{y}$. Substituting, we find that
-\[\pdv[2]{f(y)}{y} + \epsilon^2 f(y)(1-|f(y)|^2)=0\]
-where $\epsilon = L / \zeta$ is the small parameter. Then, we substitute a WKB style ansatz
-\[f(y) = A(y) e^{S(y)}\]
-to find
-
+Since we know $L$ is small, the second derivative scales as
+\[|f^{\prime\prime}|\sim \frac{\Delta f}{L^2}\]
+Since $L\ll\zeta$, we find that
+\[\zeta^2 f^{\prime\prime}\sim \left(\frac{\zeta}{L}\right)^2\Delta f \gg \Delta f\]
+Hence, we find that
+\[\zeta^2 f^{\prime\prime}\approx 0\]
+This was also to be expected, because we could have sent $\zeta^2$ to infinity while keeping the magnitude of $f$ constant (due to boundary conditions). Thus, we find that $f$ is linear, $f= A + B x$. There is only one solution that satisfies the boundary conditions:
+\[f(x) = e^{i\phi_1}+\frac{x}{L}(e^{i\phi_2}-e^{i\phi_1}).\qedhere\]
 \end{proof}
 
 \begin{Problem}
 With the previous result, compute the Josephson current. Show that it depends exclusively on $\phi =\phi_2-\phi_1$ and not on each phase individually. What is the expression for the free energy?	
 \end{Problem}
-
+\begin{proof}
+	The current is given by
+	\begin{align*}
+		J_s &= \frac{e\hbar}{2mi}\left(\psi^* \pdv{\psi}{x} - \psi \pdv{\psi^*}{x}\right)\\
+		&= \frac{e\hbar}{m}\Im\left(\psi^* \pdv{\psi}{x}\right)\\
+		&= \frac{e\hbar}{m}\Im\left[\left(e^{-i\phi_1}+\frac{x}{L}(e^{-i\phi_2}-e^{-i\phi_1})\right)\left(e^{i\phi_2}-e^{i\phi_1}\right)\right]\\
+		&=\frac{e\hbar}{m} \Im\left[e^{-i\phi_1}\left(e^{i\phi_2}-e^{i\phi_1}\right) + \frac{x}{L}\underbrace{\left(e^{-i\phi_2}-e^{-i\phi_1}\right)\left(e^{i\phi_2}-e^{i\phi_1}\right)}_{\R}\right]\\
+		&= \frac{e\hbar}{m} \Im\left[e^{-i\phi_1}\left(e^{i\phi_2}-e^{i\phi_1}\right)\right]\\
+		&= \frac{e\hbar}{m}\Im\left[e^{i(\phi_2-\phi_1)}-1\right]
+	\end{align*}
+at which point we have already shown that it only depends on the difference. However, we can simplify it further to find
+\[J_s = \frac{e\hbar}{m}\sin(\phi_2-\phi_1)\]
+The Ginzburg-Landau free energy is given by
+\[F_{GL} = \int \frac{\hbar^2}{2m}|\grad{\Psi}|^2 + \alpha |\Psi|^2 + \beta |\Psi|^4\dd{V}\]
+In the short junction limit, we approximate the magnitude of $\Psi$ as being constant and equal to $|\Psi_0|$. Hence, the other terms vanish and we are left with
+ \begin{align*}
+ 	F_{GL} &= A \int \frac{\hbar^2}{2m} |\grad{\Psi}|^2\dd{x}\\
+ 	&= \frac{\hbar^2 A}{2m}\int \left|\pdv{\Psi}{x}\right|^2\dd{x}\\
+ 	&=\frac{\hbar^2 A|\Psi_0|^2}{2mL^2}\int_0^L \left|e^{i\phi_2}-e^{i\phi_1}\right|^2\dd{x}\\
+ 	&=\frac{\hbar^2 A|\Psi_0|^2}{2m}\left[(\cos\phi_2 - \cos\phi_1)^2 + (\sin\phi_2-\sin\phi_1)^2\right]\\
+ 	&=\frac{\hbar^2 A|\Psi_0|^2}{2m}\left[2 - 2\cos\phi_1\cos\phi_2 - 2\sin\phi_1\sin\phi_2\right]\\
+ 	&= \frac{\hbar^2 A|\Psi_0|^2}{2m}\left[1-\cos(\phi_2-\phi_1)\right]
+ \end{align*}
+where $A$ is the area of the superconductor.
+\end{proof}
 \begin{Problem}
 	How is the current changed when one applies a voltage? Consider the Schr\"{o}dinger equation and assume $\Psi(x,t) = |\Psi(x)|e^{i\phi(t)} $. Use that to find $\phi(t)$ assuming $\phi(t=0)=\phi_0$. You may associate the energy of the external superconductors with their chemical potential, and the difference of chemical potential with the applied voltage.	
 \end{Problem}
+\begin{proof}
+We assume that the applied voltage is small such that the magnitude does not change, i.e. $\Psi(x,t) = |\Psi(x)|e^{i\phi(t)}$. Now, we use the Schr\"{o}dinger equation
+\[-i\hbar \pdv{\psi}{t}=-i\hbar\left[i\phi'(t)|\Psi(x)|e^{i\phi(t)}\right] = \phi'(t) |\Psi(x)|e^{i\phi(t)}=H\psi\]
+Since the Hamiltonian couples to the order parameter directly as a chemical potential, we find that
+\[\hbar\phi'(t)|\Psi(x)|e^{i\phi(t)} = \mu |\Psi(x)|e^{i\phi(t)}\]
+which obviously has the solution
+\[\phi(t) = \phi_0 + \frac{\mu}{\hbar} t\]
+We recall from earlier that
+\[J_s = \frac{e\hbar}{m}\sin(\phi_2-\phi_1).\]
+We can set $\phi_1(t) = \phi_1(0) =0$ without loss of generality. Thus, we will assume that there is only a voltage acting on $\phi_2$. This leads to the solution (setting the chemical potential $\mu=eV$)
+\[J_s = \frac{e\hbar}{m} \sin\left(\phi_0 + \frac{eV}{\hbar} t\right)\]
+Note that if there is a voltage $-V$ acting on the phase $\phi_1$, then there will be an additional factor of 2 as the voltage difference is double.
+\end{proof}
