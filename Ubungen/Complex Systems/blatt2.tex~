@@ -1,0 +1,156 @@
+\begin{Problem}[Drunk Driver Statistics (2P)]
+	According to German police statistics, the age of the drunk drivers involved in car accidents with physical injuries are distributed as follows:
+	\[
+	\begin{array}{c|cccccc}
+		\text{Age} & 18\text{-}24 & 25\text{-}34 & 35\text{-}44 & 45\text{-}54 & 55\text{-}64 & \ge 65 \\
+		\hline
+		\% & 26.1 & 22.4 & 18.9 & 18.5 & 8.7 & 5.4
+	\end{array}
+	\]
+	
+	At given age, the percentage of \emph{female} drivers involved in such accidents is fairly low:
+	\[
+	\begin{array}{c|cccccc}
+		\text{Age} & 18\text{-}24 & 25\text{-}34 & 35\text{-}44 & 45\text{-}54 & 55\text{-}64 & \ge 65 \\
+		\hline
+		\% & 9.1 & 11.9 & 15.2 & 14.4 & 12.3 & 9.2
+	\end{array}
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] What is the probability of being female in such an accident? (1P)
+		\item[(b)] Use Bayes formula to compute the probability of having such an accident depending on the age given that the driver is female. Where is the maximum? (1P)
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item To unpack the mildly unclear language in the description of the tables: Given that someone is in a car accident, the probability that they are in each age group is given in the first table.
+	
+Of all the car accidents, the percentage involving female drivers is given in the second table. This is as opposed to the percentage of female drivers involved in such accidents. In other words
+\begin{align*}
+\text{Table 2} &\ni\frac{\text{total number of female drivers in accident}}{\text{total number of drivers in accident}}\\
+&\neq \frac{\text{total number of female drivers in accident}}{\text{total number of female drivers}}
+\end{align*}
+	
+	We thus calculate, for each age group $i$ (we will say age $i$, but this will mean an age group as in the table),
+
+	\begin{align*}
+		P(\text{female, accident}) =&~ \sum_i P(\text{female, accident}|\text{age }i)P(\text{age }i)\\
+		=&~ 10^{-4}(9.1\cdot 26.1 + 11.9 \cdot 22.4 + 15.2 \cdot 18.9 \\
+		&~+ 14.4 \cdot 18.5+12.3\cdot 8.7 + 9.2 \cdot 5.4)\\
+		=&~0.1214
+	\end{align*}
+	
+\item We state Bayes's theorem
+	\begin{align*}
+		P(\text{accident}|\text{female}) = \frac{P(\text{female}|\text{accident})P(\text{accident})}{P(\text{female})}
+	\end{align*}
+\end{parts}
+\end{proof}
+\begin{Problem}[Poisson Distribution (6P)]
+	The Poisson distribution
+	\[
+	P_\lambda(k) = \frac{\lambda^k}{k!} e^{-\lambda}
+	\]
+	can be understood as the limit of the binomial distribution in the case of ``rare events''.
+	
+	\begin{enumerate}
+		\item[(a)] Let $p = \lambda/N$ and take $N \to \infty$ while keeping $\lambda$ and $k$ constant. Show that in this limit we can approximate $(1-p)^{N-k} \approx e^{-\lambda}$. (1P)
+		\item[(b)] Show similarly that
+		\[
+		\binom{N}{k} \approx \frac{N^k}{k!}.
+		\]
+		(1P)
+		\item[(c)] Use (a) and (b) to show that in this limit, the binomial distribution tends to the Poisson distribution. (1P)
+		\item[(d)] Check that the Poisson distribution is properly normalized. (1P)
+		\item[(e)] Compute the moment- and cumulant-generating functions (MGF and CGF). (1P)
+		\item[(f)] Determine all cumulants. (1P)
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We recall the definition 
+		\[
+		e = \lim_{n \to \infty} \left( 1+\frac{1}{n} \right)^n
+		.\] 
+		Then we have
+		\begin{align*}
+			\lim_{N \to \infty} \left( 1-\frac{\lambda}{N} \right)^{N - k} &=\lim_{N \to \infty} \left( 1-\frac{\lambda}{N} \right)^N \left( 1-\frac{\lambda}{N} \right)^{-k}\\
+&=\left[\lim_{N \to \infty} \left( 1-\frac{\lambda}{N} \right)^N \right]\left[ \lim_{N \to \infty} \left( 1-\frac{\lambda}{N} \right)^{-k}\right]\\
+&=\left[\lim_{N \to \infty} \left( 1+\frac{1}{N} \right)^{-\lambda N} \right]\\
+&=\lim_{N \to \infty} \left[\left( 1+\frac{1}{N} \right)^{N}\right]^{-\lambda} \\
+&=\left[\lim_{N \to \infty} \left( 1+\frac{1}{N} \right)^{N}\right]^{-\lambda} \\
+&=e^{-\lambda}
+		\end{align*}
+	\item We have as an exact expression
+		\[
+		\binom{N}{k} = \frac{N!}{k!(N-k)!}
+		.\] 
+		Since $k$ is held constant, we only need to show that
+		\[
+		\frac{N!}{(N-k)!}\xrightarrow{N\to\infty} N^k
+		\] 
+		or alternatively
+		\[
+		\frac{N!}{N^k(N-k)!}\xrightarrow{N\to\infty} 1
+		.\] 
+		We do this by
+		\begin{align*}
+			\frac{N!}{N^k(N-k)!} &= \frac{1}{N^k}N(N-1)\dots (N-k+1)\\
+			&= 1\left( 1- \frac{1}{N} \right)\left( 1 -\frac{2}{N} \right)\dots \left( 1-\frac{k-1}{N} \right)\\
+			&\xrightarrow{N\to\infty} 1
+		\end{align*}
+	\item The binomial distribution is given by the PDF
+		\[
+		P_{N,p}(k)=\binom{N}{k}p^k q^{n-k}
+		.\] 
+		We take $p=\lambda / N$ and approximate
+		\begin{align*}
+			P_{N,p}(k) &\xrightarrow{N\to\infty} \frac{N^k}{k!}\left( \frac{\lambda}{N} \right)^k e^{-\lambda}\\
+			&= \frac{\lambda^k}{k!}e^{-\lambda}
+		\end{align*}
+	\item The total probability must sum up to 1:
+		\begin{align*}
+			\sum_{k=0}^{\infty} P_\lambda(k) &= \sum_{k=0}^{\infty} \frac{\lambda^k}{k!}e^{-\lambda}\\
+			&= e^{-\lambda} e^{\lambda} = 1
+		\end{align*}
+		using the Taylor series for $\exp(x)$.
+	\item The MGF is given by
+		\begin{align*}
+			M_X(t) &= \langle \exp(tX)\rangle\\
+			&= \sum_{x=0}^{\infty} e^{tx}P(X=x)\\\
+			&= \sum_{x=0}^{\infty} e^{tx} \frac{\lambda^x}{x!}e^{-\lambda}\\
+			&= e^{-\lambda}\sum_{x=0}^{\infty}  \frac{(\lambda\exp(t))^x}{x!}\\
+			&= e^{-\lambda} e^{\lambda \exp(t)}\\
+			&= e^{\lambda[\exp(t)-1]}
+		\end{align*}
+		The CGF is the logarithm of the MGF:
+		\[
+			K_X(t)=\ln M_X(t)=\lambda[\exp(t)-1]
+			\]
+		\item The cumulants are the coefficients of the Taylor series in $K_X$:
+			\[
+			K_X(t) =\sum_{n=1}^{\infty} \frac{\kappa_n}{n!}t^n
+			.\] 
+			Thus, we expand
+			\begin{align*}
+				K_X(t) &= \lambda \left[ \left(\sum_{k=0}^{\infty} \frac{t^k}{k!}\right)-1 \right] \\
+				&=\lambda \sum_{k=1}^{\infty} \frac{t^k}{k!}
+			\end{align*}
+			from which we can read off all cumulants other than $\kappa_0$ as being equal to $\lambda$.
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[Reconstruct Probabilities from Given Moments (4P)]
+	Consider a system with three configurations $\Omega = \{a,b,c\}$ together with an associated map $X : \Omega \to \mathbb{R}$ defined by
+	\[
+	X_a = 1, \quad X_b = 3, \quad X_c = 5.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] How many moments do you have to know in order to be able to reconstruct the probability distribution $\{P_a, P_b, P_c\}$ and why?
+		\item[(b)] Suppose that $M_1$ and $M_2$ are given (with the map $X$ defined above). Find the solution for the probabilities $P_a, P_b,$ and $P_c$.
+		\item[(c)] Not all possible values for $M_1$ and $M_2$ lead to consistent results. Give a counterexample.
+		\item[(d)] Let $M_1 = \tfrac{7}{2}$ and $M_2 = 15$. Compute the probabilities $P_a, P_b, P_c$ and find a general formula for the higher moments $M_n$ with $n = 3,4,\dots,\infty$.
+	\end{enumerate}
+\end{Problem}
