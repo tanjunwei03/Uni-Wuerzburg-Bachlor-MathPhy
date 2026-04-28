@@ -154,3 +154,55 @@ Of all the car accidents, the percentage involving female drivers is given in th
 		\item[(d)] Let $M_1 = \tfrac{7}{2}$ and $M_2 = 15$. Compute the probabilities $P_a, P_b, P_c$ and find a general formula for the higher moments $M_n$ with $n = 3,4,\dots,\infty$.
 	\end{enumerate}
 \end{Problem}
+\begin{proof}
+\begin{parts}
+\item Since we are in a discrete probability space (in particular, with the discrete measure), the probability measure is defined by the measure of the three point sets $P(\{a\}) $, $P(\{b\} )$ or $P(\{c\} )$.
+
+	Thus, if we are given the first two moments, we can construct two equations; the normalisation of probability yields a third. We can solve these three equations to find the 3 probabilities.
+\item We explicitly write the equations
+	\begin{align*}
+		1 &= P_a + P_b + P_c\\ 
+		M_1 &= X_a P_a + X_b P_b + X_c P_c \\
+		M_2 &= X_a^2 P_a + X_b^2 P_b + X_c^2 P_c
+	\end{align*}
+	This is a linear system of equations
+	\[
+		\begin{pmatrix} 1 & 1 & 1 \\ X_a & X_b & X_c \\ X_a^2 & X_b^2 & X_c^2 \end{pmatrix} \begin{pmatrix}  P_a \\ P_b \\ P_c \end{pmatrix} = \begin{pmatrix} 1 \\ M_1 \\ M_2 \end{pmatrix} 
+	.\] 
+	On a side note, this simple formulation provides another easy proof for the moment problem on a discrete distribution and the conditions therefore: The matrix is an example of a Vandermonde matrix, which is invertible iff all $X_i$s are distinct (obviously, if any two were not distinct, we would have a repeated column, forcing the determinant to vanish).
+
+	We can then invert this matrix to find
+	\begin{align*}
+		\begin{pmatrix} 1 & 1 & 1 \\ X_a & X_b & X_c \\ X_a^2 & X_b^2 & X_c^2 \end{pmatrix}^{-1} =&~\left[X_a^2 \left(-X_b\right)+X_a X_b^2+X_a^2 X_c-X_a X_c^2+X_b X_c^2-X_b^2 X_c\right]^{-1} \\
+				  &\cdot\left(
+\begin{array}{ccc}
+ X_b X_c^2-X_b^2 X_c & X_b^2-X_c^2 & X_c-X_b \\
+ X_a^2 X_c-X_a X_c^2 & X_c^2-X_a^2 & X_a-X_c \\
+ X_a X_b^2-X_a^2 X_b & X_a^2-X_b^2 & X_b-X_a \\
+\end{array}
+\right)\\ 
+		=&~\left(
+\begin{array}{ccc}
+ \frac{15}{8} & -1 & \frac{1}{8} \\
+ -\frac{5}{4} & \frac{3}{2} & -\frac{1}{4} \\
+ \frac{3}{8} & -\frac{1}{2} & \frac{1}{8} \\
+\end{array}
+\right) 
+	\end{align*}
+	which, when applied to the moment vector, yields
+
+	\[
+	\begin{pmatrix} P_a \\ P_b \\ P_c \end{pmatrix} =
+\begin{pmatrix}  -M_1+\frac{M_2}{8}+\frac{15}{8}\\\frac{3 M_1}{2}-\frac{M_2}{4}-\frac{5}{4}\\-\frac{M_1}{2}+\frac{M_2}{8}+\frac{3}{8} \end{pmatrix} 
+	.\] 
+\item Clearly, $M_1=M_2=0$ would make $P_b$ negative, which is not allowed (this would be clear because all values of $X$ are strictly positive, thus the expectation value cannot be zero).
+\item Substituting in the values yields $P_a=1 / 4,~P_b = 1 / 4, ~P_c=1 / 2$.
+
+	The general moment is given by
+	 \begin{align*}
+		M_n &= X_a^n P_a + X_b^n P_b + X_c^n P_c \\
+		&= 1^n \left( \frac{1}{4} \right)+3^n \left( \frac{1}{4} \right) + 5^n\left( \frac{1}{2} \right)  \\
+		&= \frac{1}{4}+ \frac{3^n}{4}+\frac{5^n}{2}.\qedhere 
+	\end{align*}
+\end{parts}
+\end{proof}
