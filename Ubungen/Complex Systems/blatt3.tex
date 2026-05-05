@@ -1,0 +1,253 @@
+\begin{Problem}[Central Limit Theorem (CLT) (6P)]
+	Let $X_1, X_2, \dots, X_N$ be statistically independent and identically distributed random variables with the probability density function
+	\[
+	p_X(x) =
+	\begin{cases}
+		e^{-x} & \text{if } x \ge 0, \\
+		0 & \text{otherwise}.
+	\end{cases}
+	\]
+	
+	With this exercise we would like to demonstrate the CLT for $Z_N = \sum_{i=1}^N X_i$ in the limit $N \to \infty$.
+	
+	\begin{enumerate}
+		\item[(a)] Show that the $N$-fold convolution product of $p(x)$ is given by
+		\[
+		p_{Z_N}(z) = p_X^{*N}(z) = (p_X * p_X * \cdots * p_X)(z)
+		= \frac{z^{N-1}}{(N-1)!} e^{-z}, \quad (z \ge 0).
+		\]
+		
+		\item[(b)] Check the norm and compute the mean and the variance of $p_{Z_N}(z)$. (1P)
+		
+		\item[(c)] Standardize the distribution by shifting and rescaling $Z_N$ in such a way that the new random variable $\tilde{Z}_N$ has a probability density $\tilde{p}_{Z_N}(z)$ with unit norm, zero mean, and unit variance. (1P)
+		
+		\item[(d)] Show that the cumulant-generating function $K_{\tilde{Z}}(t)$ of the standardized probability density $\tilde{p}_{Z_N}(z)$ is given by
+		\[
+		K_{\tilde{Z}}(t) = \frac{1}{2} N \ln N - t\sqrt{N} - N \ln(\sqrt{N} - t).
+		\]
+		
+		\item[(e)] Compute all cumulants $\kappa_n$ and show that only $\kappa_2$ survives in the limit $N \to \infty$. What does it mean? (2P)
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item The convolution of two continuous probability distributions is given by
+		\[(f_X* f_X)(z)=\int_{-\infty}^\infty f_X(x)f_Y(z-x)\dd{x}\]
+		Thus we can compute
+		\begin{align*}
+			(p_X*p_X)(z) &= \int_{-\infty}^\infty p_X(x)p_X(z-x)\dd{x}\\
+			&= \int_{-\infty}^\infty \theta(x)e^{-x}\theta(z-x)e^{x-z}\dd{x}\\
+			&= \int_0^z e^{-z}\dd{x} & z \ge 0\\
+			&= ze^{-z}
+		\end{align*}
+		and $0$ for $z<0$. Inspired by this, we consider the convolution, defining $g_X(x)=\theta(x) x^n e^{-x}$ of
+		\begin{align*}
+			(g_X * p_X)(z) &= \int_{-\infty}^\infty \theta(x)x^n e^{-x}\theta(z-x)e^{x-z}\dd{x}\\
+			&=\int_0^z x^n e^{-z}\dd{x} & z \ge 0\\
+			&= \frac{z^{n+1}}{n+1}e^{-z}
+		\end{align*}
+		again, for $z\ge 0$, and $0$ otherwise. The rest of the proof follows by induction, which I will write out fully since I don't know how much is required.
+
+		Suppose $p_{Z_N}=\frac{z^{N-1}}{(N-1)!}e^{-z}\theta(z)$. Then we have
+		\begin{align*}
+			p_{Z_{N+1}}(z) &= (p_X*P_{Z_N})(z)\\
+			&= \frac{1}{(N-1)!}(p_X * z^{N-1}e^{-z}\theta(z))(z)\\
+			&= \frac{1}{(N-1)!}\left( \frac{z^N}{N+1} \right)e^{-z}\theta(z)\\
+			&= \frac{z^N}{N!}e^{-z}\theta(z)
+		\end{align*}
+		showing the inductive hypothesis. The base case is obvious. Thus we have proved the desired statement.
+	\item The desired statement is to show that
+		\[
+		\int_{-\infty}^\infty p_{Z_N}(z)\dd{z} = \int_0^\infty \frac{z^{N-1}}{(N-1)!}e^{-z}\dd{z} = 1
+		.\] 
+		But this is exactly the expression for the gamma function
+		\[
+		\int_0^\infty \frac{z^{N-1}}{(N-1)!}e^{-z} = \frac{1}{(N-1)!}\Gamma(N)=1
+		.\] 
+		We compute the mean in much the same way
+		\begin{align*}
+			\mathbb{E}[Z_N] &= \int_{-\infty}^\infty x p_{Z_N}(x)\dd{x}\\
+			&= \int_0^\infty \frac{z^N}{(N-1)!}e^{-z}\dd{z}\\
+			&= \frac{1}{(N-1)!}\Gamma(N+1)\\
+			&= \frac{N!}{(N-1)!}=N
+		\end{align*}
+		This is to be expected since the expectation value is linear (although we didn't compute the expectation value of a single $X$, at least we expect linear scaling with $N$).
+
+		To compute the variance, first we compute
+\begin{align*}
+	\mathbb{E}[Z_N^2] &= \int_{-\infty}^\infty x^2 p_{Z_N}(x) \dd{x}\\
+			&= \int_0^\infty \frac{z^{N+1}}{(N-1)!}e^{-z}\dd{z} \\
+			&= \frac{1}{(N-1)!}\Gamma(N+2) \\
+			&= \frac{(N+1)!}{(N-1)!}=(N+1)N 
+\end{align*}
+Then we have
+\begin{align*}
+\text{Var}(Z_N) &= \mathbb{E}[X^2]-\mathbb{E}[X]^2 \\
+	&= N^2 + N - N^2 = N 
+\end{align*}
+\item We must rescale $Z_N$ by
+	\[
+		\tilde{Z}_N = \frac{Z_N - \mathbb{E}[Z_N]}{\sigma}
+	\] 
+	where $\sigma=\sqrt{\text{Var}(Z_N)} $ is the standard deviation. This can be easily proven:
+	\begin{align*}
+		\mathbb{E}[\tilde{Z}_N] &= \frac{1}{\sigma}\left[ \mathbb{E}[Z_N] - \mathbb{E}[\mathbb{E}[Z_N] \right]  \\
+					&= \frac{1}{\sigma}\left[ \mathbb{E}[Z_N]-\mathbb{E}[Z_N] \right]  \\
+					&= 0 \\
+	\text{Var}(\tilde{Z}_N) &= \mathbb{E}[\tilde{Z}_N^2] - \cancelto{0}{\mathbb{E}[\tilde{Z}_N]^2} \\
+				&= \frac{1}{\sigma^2}\mathbb{E}[(Z_N-\mathbb{E}[Z_N])^2] \\
+				&= \frac{1}{\sigma^2}\text{Var}(Z_N)\\
+				&= 1
+	\end{align*}
+	Thus the random variable with the desired distribution is
+	\[
+		\tilde{Z}_N = \frac{Z_N - N}{\sqrt{N} }
+	.\] 
+	The probability distribution is affected as follows: Subtraction simply translates the PDF by $N$, and scaling scales the probability horizontally while scaling it vertically to remain norm 1. The new PDF is
+	\[
+		\tilde{p}_{Z_N}(z) = \sqrt{N}\left[ \frac{[\sqrt{N} z+N]^{N-1}}{(N-1)!}e^{-\sqrt{N} z-N} \right] \theta(z-\sqrt{N})
+	.\] 
+\item The moment-generating function is given by
+	\begin{align*}
+		M_{\tilde{Z}_N}(t)&= \mathbb{E}[e^{t\tilde{Z}_N}] \\
+				  &= \int_{-\sqrt{N}}^\infty e^{tz} \sqrt{N} \frac{[\sqrt{N} z + N]^{N-1}}{(N-1)!}e^{-\sqrt{N} z-N} \dd{z}
+	\end{align*}
+	We perform a change of variables $x=\sqrt{N} z + N,~\dd{x}=\sqrt{N} \dd{z}$ to find
+	\begin{align*}
+		M_{\tilde{Z}_N}(t) &= \int_0^\infty e^{t\frac{x-N}{\sqrt{N} }} \frac{1 }{(N-1)!}x^{N-1}e^{-x}\dd{x} \\
+				   &= \frac{1 }{(N-1)!}\int_0^\infty x^{N-1}e^{-x + \frac{t}{\sqrt{N} }x}e^{-\sqrt{N}t}\dd{x} \\
+				    &= \frac{1 }{(N-1)!}\int_0^\infty x^{N-1}e^{-\left(1 - \frac{t}{\sqrt{N} }\right)x}e^{-\sqrt{N}t}\dd{x}
+	\end{align*}
+Then we again substitute $u=\left(1 - \frac{t}{\sqrt{N} }\right)x$ to find
+\begin{align*}
+	M_{\tilde{Z}_N}(t) &= \frac{e^{-\sqrt{N}t}}{(N-1)!}\int_0^\infty \left(1 - \frac{t}{\sqrt{N} }\right)^{-N}u^{N-1}e^{-u}\dd{u}\\
+	&= \frac{e^{-\sqrt{N}t}}{(N-1)!}\left(1 - \frac{t}{\sqrt{N} }\right)^{-N}\Gamma(N)\\
+	&= e^{-\sqrt{N}t}\left(1 - \frac{t}{\sqrt{N} }\right)^{-N}\\
+	&=e^{-\sqrt{N}t}N^{N/2}(\sqrt{N}-t)^{-N}
+\end{align*}
+Finally, to find the cumulant generating function, we take the logarithm to find
+\begin{align*}
+	K_{\tilde{Z}_N}(t) &= \ln M_{\tilde{Z}_N}(t)\\
+	&=\frac 12 N\ln N - t\sqrt{N} - N\ln(\sqrt{N}-t)
+\end{align*}
+\item We perform a Taylor expansion in $t$, noting the well known series
+\[\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\dots=\sum_{k=1}^\infty \frac{(-1)^{k+1}x^k}{k}\]
+We thus expand
+\begin{align*}
+	\ln (\sqrt{N}-t)&= \ln\left[\sqrt{N}\left(1-\frac{t}{\sqrt{N}}\right)\right]\\
+	&= \ln \sqrt{N} + \ln\left(1-\frac{t}{\sqrt{N}}\right)\\
+	&= \frac 12\ln N - \sum_{k=1}^\infty \frac 1k \left(\frac{t}{\sqrt{N}}\right)^k
+\end{align*}
+and substitute to find
+\begin{align*}
+K_{\tilde{Z}_N}(t) &= \frac 12 N\ln N - t\sqrt{N} - \frac N2 \ln N + \sum_{k=1}^\infty \frac{N}{k}\left(\frac{t}{\sqrt{N}}\right)^k\\
+&=-t\sqrt{N} + \sum_{k=1}^\infty \frac{N}{kN^{k/2}}t^k\\
+&=-t\sqrt{N} +t\sqrt{N} + \sum_{k=2}^\infty \frac{N}{kN^{k/2}}t^k\\
+&= \sum_{k=2}^\infty \frac{(k-1)!N}{k! N^{k/2}}t^k
+\end{align*}
+from which we can easily read off $\kappa_1=0$, and, for the rest of the cumulants
+\[
+	\kappa_n = (k-1)! N^{1 - \frac{n}{2}} \qquad n \ge 2
+.\] 
+In particular, se wee that $\kappa_2$ does \emph{not} scale with $N$, while $\kappa_3$ scales with $N^{- 1 / 2}$, $\kappa_4$ scales with $N^{-1}$, and all higher cumulants decay even faster with $N$. Thus, as we take $N\to\infty$, we see that the only nonvanishing cumulant will be $\kappa_2$. 
+
+If we consider the limit of the CGF, we see that
+\[
+	K_{\tilde{Z}_N}(t) \xrightarrow{N\to\infty} \frac{t^2}{2}
+\]
+which is the CGF of the standard normal distribution, showing that the distribution converges (in distribution) to the standard normal distribution.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}[Vector Notation and Liouville Operator (6P)]
+	Consider a continuous-time Markov process (see lecture notes) with the master equation
+	\[
+	\dot{P}_c(t) = \sum_{c'} P_{c'}(t) w_{c' \to c} - P_c(t) \sum_{c'} w_{c \to c'}
+	\quad \Longleftrightarrow \quad
+	|\dot{P}\rangle = -\mathcal{L} |P\rangle.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Prove that the matrix elements of the Liouville operator $\mathcal{L}$ are given by
+		\[
+		\langle c' | \mathcal{L} | c \rangle = - w_{c \to c'} + \delta_{c,c'} \sum_{c''} w_{c \to c''}.
+		\]
+		
+		\item[(b)] Consider a system with three configurations $1,2,3$ and the transition rates
+		\[
+		w_{1 \to 2} = w_{3 \to 2} = 3, \quad
+		w_{2 \to 1} = 1, \quad
+		w_{1 \to 3} = \tfrac{1}{2}, \quad
+		w_{2 \to 3} = 2,
+		\]
+		in units of $1/\text{time}$ (all other rates are zero). Determine the matrix of the Liouville operator. (1P)
+		
+		\item[(c)] Calculate the so-called zero vectors, i.e., the left and right eigenvectors to the eigenvalue zero. (1P)
+		
+		\item[(d)] Normalize the right zero vector in order to interpret it as a probability distribution which describes the stationary state of the system. (1P)
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item We recall that the vector $\ket{P}$ is given by the column vector $P_c$ for different $c$s. Thus, the matrix form of the equation is given by
+			\[
+				\dot{P}_{c'} = - \sum_{c} \mel{c'}{\mathcal{L}}{c} P_{c}
+			.\] 
+			We then compare this with the expanded form of the master equation
+			\begin{align*}
+				\dot{P}_{c'} &= \sum_c P_{c}(t) w_{c \to c'} - P_{c'}(t) \sum_{c} w_{c' \to c} \\
+					     &= -\left[ -\sum_c P_c(t) w_{c\to c'} + P_{c'}(t) \sum_c w_{c'\to c} \right]  \\
+					     &= -\left[ -\sum_{c^{\prime\prime}} P_{c^{\prime\prime}}(t) w_{c^{\prime\prime}\to c'} + \sum_{c^{\prime\prime}}P_{c^{\prime\prime}}(t) \delta_{c' c^{\prime\prime}}\sum_c w_{c^{\prime\prime}\to c} \right]  \\
+					     &= -\sum_{c^{\prime\prime}}\left[ -w_{c^{\prime\prime}\to c'} +\delta_{c' c^{\prime\prime}}\sum_c w_{c^{\prime\prime}\to c} \right]P_{c^{\prime\prime}}(t)  \\
+					     &= -\sum_{c}\left[ -w_{c\to c'} +\delta_{c' c}\sum_{c^{\prime\prime}} w_{c\to c^{\prime\prime}} \right]P_{c^{\prime\prime}}(t)  
+			\end{align*}
+			upon which we can identify the matrix element with the term in parentheses to find the desired result
+\[
+	\mel{c'}{\mathcal{L}}{c} =  -w_{c\to c'} +\delta_{c' c}\sum_{c^{\prime\prime}} w_{c\to c^{\prime\prime}} 
+.\] 
+\item On the off diagonals, we see that the matrix elements are simply the negative of the transition rates. On the diagonals, since there is no transition from any state to itself, the elements are simply the net transition rate out of the state. We compute
+	\begin{align*}
+		|\mathcal{L}_{11}| &= 3 + \frac{1}{2}= \frac{7}{2} \\
+		|\mathcal{L}_{22}| &= 1 + 2 = 3 \\
+		|\mathcal{L}_{33}| &= 3 
+	\end{align*}
+	and thus we find that the Liouvillian is given by
+	\[
+		\mathcal{L}=\begin{pmatrix} \frac{7}{2} & -1 & 0 \\
+		-3 & 3 & -3 \\
+	-\frac{1}{2} & -2 & 3\end{pmatrix} 
+	.\] 
+\item First, we note that adding the third row to the second yields the negative of the first row - thus, this matrix is not invertible and we have a zero eigenvalue. We simply seek the null space of $\mathcal{L}$ and of $\mathcal{L}^T$. If we denote the right eigenvector to the eigenvalue 0 as $(x,y,z)^T$, the first equation is
+	\[
+	\frac{7}{2}x - y = 0
+\]
+which has the easy solution $y = \frac{7}{2}x$. The second equation is
+\[
+-x + y - z = 0
+\] 
+which leads to the equation
+\[
+\frac{5}{2}x = z
+.\] 
+Thus, we see that the null space (eigenspace to the eigenvalue 0) is spanned out by the vector $(1, \frac{7}{2}, \frac{5}{2})^T$. 
+
+The transpose is given by
+\[
+	\mathcal{L}^T = \begin{pmatrix} \frac{7}{2} & -3 & -\frac{1}{2}\\
+	-1 & 3 & -2\\
+0 & -3 & 3\end{pmatrix} 
+.\] 
+Because $\mathcal{L}$ was not invertible, $\mathcal{L}^T$ cannot be either as their determinants coincide. Again we denote the left eigenvector (which is the right eigenvector of $\mathcal{L}^T$ ) as $(x,y,z)$ and find that the third equation demands
+\[
+-3y + 3z = 0
+.\] 
+Then, the second equation demands
+\[
+-x + 3y -2z = 0
+\] 
+which tells us that $x = z$. Thus, we find that the null space is spanned by the vector $(1,1,1)$, as we expect from the lecture notes.
+\item In a normalised vector, the probabilities must sum up to 1; currently, they sum up to $1 + \frac{7}{2}+\frac{5}{2}=7$. Thus, we can divide to get the normalised vector
+	\[
+		P_\text{stationary} = \begin{pmatrix} \frac{1}{7} \\ \frac{1}{2} \\ \frac{5}{14} \end{pmatrix} 
+	.\qedhere\] 
+	\end{parts}
+\end{proof}

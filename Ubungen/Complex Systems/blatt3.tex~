@@ -1,0 +1,96 @@
+\begin{Problem}[Central Limit Theorem (CLT) (6P)]
+	Let $X_1, X_2, \dots, X_N$ be statistically independent and identically distributed random variables with the probability density function
+	\[
+	p_X(x) =
+	\begin{cases}
+		e^{-x} & \text{if } x \ge 0, \\
+		0 & \text{otherwise}.
+	\end{cases}
+	\]
+	
+	With this exercise we would like to demonstrate the CLT for $Z_N = \sum_{i=1}^N X_i$ in the limit $N \to \infty$.
+	
+	\begin{enumerate}
+		\item[(a)] Show that the $N$-fold convolution product of $p(x)$ is given by
+		\[
+		p_{Z_N}(z) = p_X^{*N}(z) = (p_X * p_X * \cdots * p_X)(z)
+		= \frac{z^{N-1}}{(N-1)!} e^{-z}, \quad (z \ge 0).
+		\]
+		
+		\item[(b)] Check the norm and compute the mean and the variance of $p_{Z_N}(z)$. (1P)
+		
+		\item[(c)] Standardize the distribution by shifting and rescaling $Z_N$ in such a way that the new random variable $\tilde{Z}_N$ has a probability density $\tilde{p}_{Z_N}(z)$ with unit norm, zero mean, and unit variance. (1P)
+		
+		\item[(d)] Show that the cumulant-generating function $K_{\tilde{Z}}(t)$ of the standardized probability density $\tilde{p}_{Z_N}(z)$ is given by
+		\[
+		K_{\tilde{Z}}(t) = \frac{1}{2} N \ln N - t\sqrt{N} - N \ln(\sqrt{N} - t).
+		\]
+		
+		\item[(e)] Compute all cumulants $\kappa_n$ and show that only $\kappa_2$ survives in the limit $N \to \infty$. What does it mean? (2P)
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item The convolution of two continuous probability distributions is given by
+		\[(f_X* f_X)(z)=\int_{-\infty}^\infty f_X(x)f_Y(z-x)\dd{x}\]
+		Thus we can compute
+		\begin{align*}
+			(p_X*p_X)(z) &= \int_{-\infty}^\infty p_X(x)p_X(z-x)\dd{x}\\
+			&= \int_{-\infty}^\infty \theta(x)e^{-x}\theta(z-x)e^{x-z}\dd{x}\\
+			&= \int_0^z e^{-z}\dd{x} & z \ge 0\\
+			&= ze^{-z}
+		\end{align*}
+		and $0$ for $z<0$. Inspired by this, we consider the convolution, defining $g_X(x)=\theta(x) x^n e^{-x}$ of
+		\begin{align*}
+			(g_X * p_X)(z) &= \int_{-\infty}^\infty \theta(x)x^n e^{-x}\theta(z-x)e^{x-z}\dd{x}\\
+			&=\int_0^z x^n e^{-z}\dd{x} & z \ge 0\\
+			&= \frac{z^{n+1}}{n+1}e^{-z}
+		\end{align*}
+		again, for $z\ge 0$, and $0$ otherwise. The rest of the proof follows by induction, which I will write out fully since I don't know how much is required.
+
+		Suppose $p_{Z_N}=\frac{z^{N-1}}{(N-1)!}e^{-z}\theta(z)$. Then we have
+		\begin{align*}
+			p_{Z_{N+1}}(z) &= (p_X*P_{Z_N})(z)\\
+			&= \frac{1}{(N-1)!}(p_X * z^{N-1}e^{-z}\theta(z))(z)\\
+			&= \frac{1}{(N-1)!}\left( \frac{z^N}{N+1} \right)e^{-z}\theta(z)\\
+			&= \frac{z^N}{N!}e^{-z}\theta(z)
+		\end{align*}
+		showing the inductive hypothesis. The base case is obvious. Thus we have proved the desired statement.
+	\item The desired statement is to show that
+		\[
+		\int_{-\infty}^\infty p_{Z_N}(z)\dd{z} = \int_0^\infty \frac{z^{N-1}}{(N-1)!}e^{-z}\dd{z} = 1
+		.\] 
+		But this is exactly the expression for the gamma function
+		\[
+		\int_0^\infty \frac{z^{N-1}}{(N-1)!}e^{-z} = \frac{1}{(N-1)!}\Gamma(N)=1
+		.\] 
+	\end{parts}
+\end{proof}
+\begin{Problem}[Vector Notation and Liouville Operator (6P)]
+	Consider a continuous-time Markov process (see lecture notes) with the master equation
+	\[
+	\dot{P}_c(t) = \sum_{c'} P_{c'}(t) w_{c' \to c} - P_c(t) \sum_{c'} w_{c \to c'}
+	\quad \Longleftrightarrow \quad
+	|\dot{P}\rangle = -\mathcal{L} |P\rangle.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Prove that the matrix elements of the Liouville operator $\mathcal{L}$ are given by
+		\[
+		\langle c' | \mathcal{L} | c \rangle = - w_{c \to c'} + \delta_{c,c'} \sum_{c''} w_{c \to c''}.
+		\]
+		
+		\item[(b)] Consider a system with three configurations $1,2,3$ and the transition rates
+		\[
+		w_{1 \to 2} = w_{3 \to 2} = 3, \quad
+		w_{2 \to 1} = 1, \quad
+		w_{1 \to 3} = \tfrac{1}{2}, \quad
+		w_{2 \to 3} = 2,
+		\]
+		in units of $1/\text{time}$ (all other rates are zero). Determine the matrix of the Liouville operator. (1P)
+		
+		\item[(c)] Calculate the so-called zero vectors, i.e., the left and right eigenvectors to the eigenvalue zero. (1P)
+		
+		\item[(d)] Normalize the right zero vector in order to interpret it as a probability distribution which describes the stationary state of the system. (1P)
+	\end{enumerate}
+\end{Problem}

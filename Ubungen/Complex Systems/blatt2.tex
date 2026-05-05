@@ -24,7 +24,7 @@
 \end{Problem}
 \begin{proof}
 	\begin{parts}
-	\item To unpack the mildly unclear language in the description of the tables: Given that someone is in a car accident, the probability that they are in each age group is given in the first table.
+	\item To unpack the mildly unclear language in the description of the tables: Given that someone is in a car accident, the probability that they are in each age group is given in the first table. We will denote this by $P(A_i)$, with $i$ denoting the age group.
 	
 Of all the car accidents, the percentage involving female drivers is given in the second table. This is as opposed to the percentage of female drivers involved in such accidents. In other words
 \begin{align*}
@@ -32,19 +32,28 @@ Of all the car accidents, the percentage involving female drivers is given in th
 &\neq \frac{\text{total number of female drivers in accident}}{\text{total number of female drivers}}
 \end{align*}
 	
-	We thus calculate, for each age group $i$ (we will say age $i$, but this will mean an age group as in the table),
+	We denote this as $P(F|A_i)$. Thus, we find
 
 	\begin{align*}
-		P(\text{female, accident}) =&~ \sum_i P(\text{female, accident}|\text{age }i)P(\text{age }i)\\
+		P(F) =&~ \sum_i P(F|A_i)P(A_i)\\
 		=&~ 10^{-4}(9.1\cdot 26.1 + 11.9 \cdot 22.4 + 15.2 \cdot 18.9 \\
 		&~+ 14.4 \cdot 18.5+12.3\cdot 8.7 + 9.2 \cdot 5.4)\\
 		=&~0.1214
 	\end{align*}
 	
 \item We state Bayes's theorem
-	\begin{align*}
-		P(\text{accident}|\text{female}) = \frac{P(\text{female}|\text{accident})P(\text{accident})}{P(\text{female})}
-	\end{align*}
+	\[
+		P(A_i|F) = \frac{P(F|A_i)P(A_i)}{P(F)} 
+	\]
+	This gives, given that one is female and in such an accident, the probability distribution of the ages. We then compute this for the various ages to find the following table
+		\[
+	\begin{array}{c|cccccc}
+		\text{Age} & 18\text{-}24 & 25\text{-}34 & 35\text{-}44 & 45\text{-}54 & 55\text{-}64 & \ge 65 \\
+		\hline
+		\% & 19.56 & 21.95 & 23.66 & 21.94 & 8.811 & 4.091
+	\end{array}
+	.\]
+	The maximum is at 35-44.\qedhere
 \end{parts}
 \end{proof}
 \begin{Problem}[Poisson Distribution (6P)]
@@ -158,7 +167,7 @@ Of all the car accidents, the percentage involving female drivers is given in th
 \begin{parts}
 \item Since we are in a discrete probability space (in particular, with the discrete measure), the probability measure is defined by the measure of the three point sets $P(\{a\}) $, $P(\{b\} )$ or $P(\{c\} )$.
 
-	Thus, if we are given the first two moments, we can construct two equations; the normalisation of probability yields a third. We can solve these three equations to find the 3 probabilities.
+	Thus, if we are given the first \uline{two} moments, we can construct two equations; the normalisation of probability yields a third. We can solve these three equations to find the 3 probabilities. We do this explicitly in (b), and also prove there the conditions for solvability.
 \item We explicitly write the equations
 	\begin{align*}
 		1 &= P_a + P_b + P_c\\ 
@@ -196,13 +205,18 @@ Of all the car accidents, the percentage involving female drivers is given in th
 \begin{pmatrix}  -M_1+\frac{M_2}{8}+\frac{15}{8}\\\frac{3 M_1}{2}-\frac{M_2}{4}-\frac{5}{4}\\-\frac{M_1}{2}+\frac{M_2}{8}+\frac{3}{8} \end{pmatrix} 
 	.\] 
 \item Clearly, $M_1=M_2=0$ would make $P_b$ negative, which is not allowed (this would be clear because all values of $X$ are strictly positive, thus the expectation value cannot be zero).
+
+Intuitively, since the possible values of our random variable are bounded, we also cannot take $M_2$ too large; choosing a sufficiently large $M_2$ would make $P_a$ and $P_c$ greater than 1, which is also not allowed.
+
+Lastly, even for values not obviously out of the allowable ranges, we find that some results are still not consistent - for example, $M_1=3=M_2$ yields $P_a=-3/4$, also not allowed.
 \item Substituting in the values yields $P_a=1 / 4,~P_b = 1 / 4, ~P_c=1 / 2$.
 
 	The general moment is given by
 	 \begin{align*}
 		M_n &= X_a^n P_a + X_b^n P_b + X_c^n P_c \\
 		&= 1^n \left( \frac{1}{4} \right)+3^n \left( \frac{1}{4} \right) + 5^n\left( \frac{1}{2} \right)  \\
-		&= \frac{1}{4}+ \frac{3^n}{4}+\frac{5^n}{2}.\qedhere 
+		&= \frac{1}{4}+ \frac{3^n}{4}+\frac{5^n}{2}
 	\end{align*}
+for $n\ge 1$, and obviously $M_0=1$.\qedhere
 \end{parts}
 \end{proof}
