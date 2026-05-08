@@ -1,0 +1,66 @@
+\begin{Problem}
+	\textbf{Exercise 4.1: Convolution product \hfill (6P)}
+	
+	Let us consider the probability density of the gaps between Poisson-distributed events
+	(the length $x$ of silence between the clicks of a Geiger counter), which is defined by
+	\[
+	p(x)=w e^{-wx}
+	\qquad (x\ge 0,\; w>0).
+	\]
+	
+	\begin{enumerate}[label=(\alph*)]
+		\item Compute the corresponding characteristic function (see lecture notes). \hfill (1P)
+		
+		\item Compute the two-fold convolution product $(p*p)(x)$ and the three-fold convolution
+		product $(p*p*p)(x)$. \hfill (2P)
+		
+		\item Guess a general formula for the $N$-fold convolution product
+		$p^{*N}(x)$ and prove it by recursion. \hfill (2P)
+		
+		\item Fit a normal distribution with mean $\mu$ and width $\sigma$ to the probability
+		density computed in (c) for large $N$.
+		
+		\textit{Hint:} Recall the behavior of cumulants. \hfill (1P)
+	\end{enumerate}
+\end{Problem}
+
+\begin{Problem}
+	\textbf{Exercise 4.2: Harmonic oscillator \hfill (6P)}
+	
+	Consider a harmonic oscillator with eigenstates
+	\[
+	|n\rangle = |0\rangle, |1\rangle, |2\rangle, \ldots
+	\]
+	and eigenenergies
+	\[
+	E_n = \hbar \omega \left(n+\frac12\right).
+	\]
+	
+	Let us assume that the eigenstates correspond to classical configurations and that
+	the system evolves stochastically according to a continuous-time Markov process as follows:
+	\[
+	n \to n+1 \qquad \text{with rate } \omega_\uparrow
+	\]
+	\[
+	n \to n-1 \qquad \text{with rate } \omega_\downarrow
+	\]
+	
+	\begin{enumerate}[label=(\alph*)]
+		\item Calculate the Liouville operator $\mathcal{L}$. \hfill (1P)
+		
+		\item Determine the left and the right eigenvector to the eigenvalue zero. \hfill (2P)
+		
+		\item Normalize the right eigenvector obtained in (b) so that it can be interpreted
+		as a probability distribution. Under which condition is the normalization possible?
+		\hfill (2P)
+		
+		\item In a canonical ensemble the probability of finding the system at energy $E_n$
+		is proportional to
+		\[
+		\exp\!\left(-\frac{E_n}{k_B T}\right),
+		\]
+		where $T$ is the temperature and $k_B$ is the Boltzmann constant.
+		Express the temperature $T$ in terms of the rates
+		$\omega_\uparrow$ and $\omega_\downarrow$. \hfill (1P)
+	\end{enumerate}
+\end{Problem}
