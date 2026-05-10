@@ -1,5 +1,4 @@
-\begin{Problem}
-	\textbf{Exercise 4.1: Convolution product \hfill (6P)}
+\begin{Problem}[Convolution product (6P)]
 	
 	Let us consider the probability density of the gaps between Poisson-distributed events
 	(the length $x$ of silence between the clicks of a Geiger counter), which is defined by
@@ -23,7 +22,50 @@
 		\textit{Hint:} Recall the behavior of cumulants. \hfill (1P)
 	\end{enumerate}
 \end{Problem}
-
+\begin{proof}
+	\begin{parts}
+	\item The characteristic function is given by
+		\[
+			\phi_X(t) = E[e^{itX}]
+		.\] 
+		We simply compute this
+		\begin{align*}
+			\phi_X(t) &= E[e^{itX}] \\
+				  &= \int_0^\infty e^{itx}we^{-wx}\dd{x} \\
+				  &= w \int_0^\infty e^{(it-w)x}\dd{x} \\
+				  &= w\left[ \frac{1}{it-w}e^{(it-w)x} \right]_0^\infty  \\
+				  &= \frac{w}{w-it}
+		\end{align*}
+	\item The convolution of two probability distributions is given by
+		\[
+			(f*g)(z)=\int_{-\infty}^\infty f(z-t)g(t)\dd{t}
+		.\] 
+		Again, we substitute this in, using a step function $\theta(t)$ to ensure that the probability distribution of the Poisson distribution only has support on the positive real axis.
+		\begin{align*}
+			(p*p)(z) &= \int_{-\infty}^\infty we^{-w(z-t)}\theta(z-t)we^{-wt}\theta(t) \dd{t}\\
+				 &= w^2 \theta(z)\int_0^z e^{-wz}e^{wt}e^{-wt}\dd{t} \\
+				 &= w^2 ze^{-wz} \theta(z)
+		\end{align*}
+		We compute the threefold product similarly
+		\begin{align*}
+			(p*p*p)(z) &= w^3 \int_{-\infty}^\infty e^{-w(z-t)}\theta(z-t)te^{-wt}\theta(t)\dd{t} \\
+				   &= w^3 \theta(z)\int_0^z e^{-wz}t\dd{t}\\
+				   &= w^3 \frac{z^2}{2}e^{-wz} 
+		\end{align*}
+	\item We conjecture that
+		\[
+			p^{*N}(x) = w^N \frac{x^N}{N!}e^{-wx}\theta(x) 
+		.\] 
+		We prove this by induction. Suppose this is true for $N$. We will prove it is true for $N+ 1$. We compute this product directly
+		\begin{align*}
+			p^{*(N+1)}(z) &= (p*p^{*N})(z) \\
+				      &= \int_{-\infty}^\infty we^{-w(z-t)}\theta(z-t)w^N \frac{t^N}{N!}e^{-wt}\theta(t)\dd{t} \\
+				      &= w^{N+1} \theta(z)\int_0^z e^{-wz} \frac{t^N}{N!}\dd{t} \\
+				      &= w^{N+1} \frac{t^{N+1}}{(N+1)!}e^{-wz}\theta(z)
+		\end{align*}
+		Since the base cases with $N=1$ and $N=2$ have already been proven, this proves the theorem.
+	\end{parts}
+\end{proof}
 \begin{Problem}
 	\textbf{Exercise 4.2: Harmonic oscillator \hfill (6P)}
 	
@@ -64,3 +106,32 @@
 		$\omega_\uparrow$ and $\omega_\downarrow$. \hfill (1P)
 	\end{enumerate}
 \end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Recall that the Liouvillian is defined through the master equation
+		\[
+			\partial_t \ket{P_t} = -\mathcal{L}\ket{P_t}
+		.\] 
+		Since it is stated that we may assume the eigenstates correspond to classical configurations, there is no need to concern ourselves with possible superpositions. Since the rate of jumping up a step is given by $\omega_{\uparrow}$, there must be a term $-\dyad{n+1}{n}\omega_{\uparrow}$, and similarly for $\omega_{\downarrow}$. Summing this up over all $n$, we find that the Liouvillian is given by
+		\[
+			\mathcal{L}=-\omega_{\uparrow}\dyad{1}{0}+\omega_{\uparrow}\dyad{0}{0} - \sum_{n=1}^{\infty} \left[ \omega_{\uparrow}\dyad{n+1}{n} + \omega_{\downarrow}\dyad{n-1}{n} -(\omega_{\uparrow}+\omega_{\downarrow})\dyad{n}{n}\right] 
+		.\] 
+	\item For the left eigenvector, we require that 
+		\begin{align*}
+			0 =&~ \bra{\psi}\mathcal{L} \\
+			=&~ -\omega_{\uparrow}\braket{\psi}{1}\bra{0} +\omega_{\uparrow}\braket{\psi}{0}\bra{0}\\
+			  &- \sum_{n=1}^{\infty} \left[ \omega_{\uparrow} \braket{\psi}{n+1}\bra{n} + \omega_{\downarrow}\braket{\psi}{n-1}\bra{n}-(\omega_{\uparrow}+\omega_{\downarrow})\braket{\psi}{n}\bra{n} \right]  \\
+			=&~ -\omega_{\uparrow}\braket{\psi}{1}\bra{0}+\omega_{\uparrow}\braket{\psi}{0}\bra{0}\\
+			 &- \sum_{n=1}^{\infty} \left[ \omega_{\uparrow} \braket{\psi}{n+1} + \omega_{\downarrow}\braket{\psi}{n-1}-(\omega_{\uparrow}+\omega_{\downarrow})\braket{\psi}{n} \right]\bra{n} 
+		\end{align*}
+		Demanding that all components of this vector vanish then demand that
+		\[
+			\braket{\psi}{1} -\braket{\psi}{0}= 0
+		\] 
+		and
+		\[
+			\omega_{\uparrow}\braket{\psi}{n+1} + \omega_{\downarrow}\braket{\psi}{n-1}=0
+		\] 
+		for all $n$.
+	\end{parts}
+\end{proof}
