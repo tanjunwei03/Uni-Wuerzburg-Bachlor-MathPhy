@@ -15,10 +15,19 @@
 \usepackage{cancel}
 \usepackage[most]{tcolorbox}
 \usepackage{booktabs}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
 \usepackage{tikz}
+\usepackage{pgfplots}
 \usepackage{wasysym}
+\usepackage{listings}
 \usepackage{bbm}
 \usepackage{hyperref}
+\usepackage{./mmacells}
 \usepackage{enumitem}
 \usepackage{transparent}
 \usepackage{float}
@@ -82,7 +91,7 @@
 \lstset{style=mystyle}
 
 \begin{document}
-	\title{Physics of Complex Systems Homework 2}
+	\title{Physics of Complex Systems Homework 4}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
@@ -91,8 +100,8 @@
 %\input{blatt1.tex}
 %\input{blatt2.tex}
 %\input{blatt3.tex}
-\input{blatt4.tex}
-%\input{blatt5.tex}
+%\input{blatt4.tex}
+\input{blatt5.tex}
 %\input{blatt6.tex}
 %\input{blatt7.tex}
 \end{document}

@@ -54,20 +54,101 @@
 		\end{align*}
 	\item We conjecture that
 		\[
-			p^{*N}(x) = w^N \frac{x^N}{N!}e^{-wx}\theta(x) 
+			p^{*N}(x) = w^N \frac{x^{N-1}}{(N-1)!}e^{-wx}\theta(x) 
 		.\] 
 		We prove this by induction. Suppose this is true for $N$. We will prove it is true for $N+ 1$. We compute this product directly
 		\begin{align*}
 			p^{*(N+1)}(z) &= (p*p^{*N})(z) \\
-				      &= \int_{-\infty}^\infty we^{-w(z-t)}\theta(z-t)w^N \frac{t^N}{N!}e^{-wt}\theta(t)\dd{t} \\
-				      &= w^{N+1} \theta(z)\int_0^z e^{-wz} \frac{t^N}{N!}\dd{t} \\
-				      &= w^{N+1} \frac{t^{N+1}}{(N+1)!}e^{-wz}\theta(z)
+				      &= \int_{-\infty}^\infty we^{-w(z-t)}\theta(z-t)w^N \frac{t^{N-1}}{(N-1)!}e^{-wt}\theta(t)\dd{t} \\
+				      &= w^{N+1} \theta(z)\int_0^z e^{-wz} \frac{t^{N-1}}{(N-1)!}\dd{t} \\
+				      &= w^{N+1} \frac{t^{N}}{N!}e^{-wz}\theta(z)
 		\end{align*}
 		Since the base cases with $N=1$ and $N=2$ have already been proven, this proves the theorem.
+	\item By a suitable analytic continuation, we compute the moment generating function
+		\[
+		M_X(t) = \phi_X(-it)=\frac{w}{w-t}
+		.\] 
+		Then the cumulant generating function is
+		\begin{align*}
+			K_X(t) &= \ln M_X(t) = \ln \frac{w}{w-t}=-\ln \left( 1-\frac{t}{w} \right)\\
+			&= \sum_{n=1}^{\infty} \frac{1}{n}\left( \frac{t}{w} \right)^n  
+	\end{align*}
+We know that the cumulant generating function of the sum of $N$ random variables is the sum of the CGFs. Thus, the CGF of $p^{*N}$ is given by
+\[K_{NX}(t) = -N\ln \left( 1-\frac{t}{w} \right) =\sum_{n=1}^{\infty} \frac{N}{nw^n}t^n\]
+We first standardise the distribution; we do this for only one variable, since both the variance and expectation values are linear. We have the expectation value
+\begin{align*}
+	\mathbb{E}[X] &= \int_0^\infty xwe^{-wx}\dd{x} = \frac{1}{w} \\
+	\text{Var}(X) &= \mathbb{E}[X^2]-\mathbb{E}[X]^2 \\
+	\mathbb{E}[X^2] &= \int_0^\infty x^2 we^{-wx}\dd{x} = \frac{2}{w^2} \\
+	\text{Var}(X) &= \frac{1}{w^2} 
+\end{align*}
+Thus, we standardise the distribution as
+\[
+Z_N = \frac{X_N - \mu_N}{\sigma_N}
+\]
+where $\mu_N = N / w$ and $\sigma_N = \sqrt{N} / w$. The cumulant generating function of $Z_N$ is given by
+\begin{align*}
+	K_{Z_N} &= - \frac{\mu_N}{\sigma_N}t + K_{NX}\left( \frac{t}{\sigma_N} \right)  \\
+	&= -\sqrt{N} t- N \ln \left( 1 - \frac{t}{\sqrt{N} } \right)  \\
+	&= -\sqrt{N} t + N \sum_{n=1}^{\infty} \frac{1}{n}\left( \frac{t}{\sqrt{N} } \right)^n \\
+	&= N \sum_{n=2}^{\infty} \frac{1}{n}\left( \frac{t}{\sqrt{N} } \right)^n \\
+	&=  \sum_{n=2}^{\infty} \frac{1}{n}N^{1 - n / 2} t^n
+\end{align*}
+Again, we find that the only cumulant that does not vanish at $N\to\infty$ is the $N^0=\kappa_2$ second cumulant. Thus, the standardised distribution converges to the CGF of a standard normal distribution. Inverting, we find that
+\[
+	p^{*N} \xrightarrow{N\to\infty} \mathcal{N}\left( \frac{N}{w}, \frac{N}{w^2} \right) 
+\] 
+where $\mathcal{N}(\mu,\sigma^2)$ represents the probability density function of a normal distribution with mean $\mu$ and variance $\sigma^2$. Explicitly, we have
+\[
+	p^{*N}(x) \xrightarrow{N\to\infty} \frac{w}{\sqrt{2\pi N} } e^{-\frac{(N-wx)^2}{2N}} 
+.\] 
+In other words, we have a mean $\mu = \frac{N}{w}$ and a standard deviation $\sigma = \frac{\sqrt{N}}{w}$. This is a relatively good agreement; see Fig. \ref{fig:complexsystemsblatt4-1}.\qedhere
+\begin{figure}
+	\begin{subfigure}{0.4\textwidth}
+		\caption{}
+		\begin{tikzpicture}
+			\begin{axis}[
+				axis lines = left,
+				thick, 
+				xlabel = $x$,
+				scale=0.9
+				]
+				%Below the red parabola is defined
+				\addplot[domain=0:30, samples = 1000, thick]{1^(10)*x^9 / (9!)*e^(-1*x)};
+				\addlegendentry{\(p^{*9}(x)\)}
+				\addplot[domain=0:30, samples = 1000, thick, color = blue]{1 / sqrt(2*pi*9)*exp( -(9 - x)^2 / (2*9) )};
+				\addlegendentry{\(\mathcal{N}( 9 / w, 9 / w^2 ) \)}
+				
+			\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\hspace{\fill}
+		\begin{subfigure}{0.4\textwidth}
+			\caption{}
+		\begin{tikzpicture}
+			\begin{axis}[
+				axis lines = left,
+				thick, 
+				xlabel = $x$,
+				scale =0.9,
+				legend style={at={(0.99,0.05)}, anchor=south east}
+				]
+				%Below the red parabola is defined
+				\addplot[domain=60:140, samples = 1000, thick]{1^(100)*x^(99) / (99!)*e^(-1*x)};
+				\addlegendentry{\(p^{*99}(x)\)}
+				\addplot[domain=60:140, samples = 1000, thick, color = blue]{1 / sqrt(2*pi*(99))*exp( -(99 - x)^2 / (2*99) )};
+				\addlegendentry{\(\mathcal{N}( 99 / w, 99 / w^2 ) \)}
+				
+			\end{axis}
+		\end{tikzpicture}
+	\end{subfigure}
+	\caption{Fits between the $N$ times convoluted probability distribution for \textbf{(a)} $N=9$ and \textbf{(b)} $N=99$ with $w=1$}.
+		\label{fig:complexsystemsblatt4-1}
+\end{figure}
+
 	\end{parts}
 \end{proof}
-\begin{Problem}
-	\textbf{Exercise 4.2: Harmonic oscillator \hfill (6P)}
+\begin{Problem}[Harmonic oscillator (6P)]
 	
 	Consider a harmonic oscillator with eigenstates
 	\[
@@ -110,28 +191,115 @@
 	\begin{parts}
 	\item Recall that the Liouvillian is defined through the master equation
 		\[
-			\partial_t \ket{P_t} = -\mathcal{L}\ket{P_t}
+			\partial_t \ket{\Psi} = -\mathcal{L}\ket{\Psi}
 		.\] 
-		Since it is stated that we may assume the eigenstates correspond to classical configurations, there is no need to concern ourselves with possible superpositions. Since the rate of jumping up a step is given by $\omega_{\uparrow}$, there must be a term $-\dyad{n+1}{n}\omega_{\uparrow}$, and similarly for $\omega_{\downarrow}$. Summing this up over all $n$, we find that the Liouvillian is given by
+		Since it is stated that we may assume the eigenstates correspond to classical configurations, there is no need to concern ourselves with possible superpositions. The transition rates, by definition, lead to the following equations for the time evolution of the occupation probabilities
 		\[
-			\mathcal{L}=-\omega_{\uparrow}\dyad{1}{0}+\omega_{\uparrow}\dyad{0}{0} - \sum_{n=1}^{\infty} \left[ \omega_{\uparrow}\dyad{n+1}{n} + \omega_{\downarrow}\dyad{n-1}{n} -(\omega_{\uparrow}+\omega_{\downarrow})\dyad{n}{n}\right] 
+			\pdv{P_n}{t} = -(\omega_\downarrow+\omega_\uparrow)P_n + \omega_\downarrow P_{n+1} + \omega_\uparrow P_{n-1}
+		.\] 
+		Note that this equation does not work for $n=0$, since obviously there is no state at $-1$. We will handle this separately, but the general argument remains. Since each individual probability is the component of a vector $P_n = \braket{n}{\Psi}$, we find that
+		\begin{align*}
+			\pdv{t}\braket{n}{\Psi} &= -(\omega_\downarrow+\omega_\uparrow)\braket{n}{P_t} + \omega_\downarrow \braket{n+1}{\Psi} + \omega_\uparrow \braket{n-1}{\Psi}\\
+			\mel{n}{\pdv{t}}{\Psi} &= \left[-(\omega_\downarrow+\omega_\uparrow)\bra{n} + \omega_\downarrow \bra{n+1} + \omega_\uparrow \bra{n-1}\right]\ket{\psi}\\
+			\pdv{t}\ket{\Psi} &= \sum_n\ket{n}\left[-(\omega_\downarrow+\omega_\uparrow)\bra{n} + \omega_\downarrow \bra{n+1} + \omega_\uparrow \bra{n-1}\right]\ket{\psi}
+		\end{align*}
+		Handling the $n=0$ case properly and writing the sum bounds explicitly, we find that the Liouvillian operator is given by
+		\[
+			\mathcal{L}=-\omega_{\downarrow}\dyad{0}{1}+\omega_{\uparrow}\dyad{0}{0} - \sum_{n=1}^{\infty} \left[ \omega_{\uparrow}\dyad{n}{n-1} + \omega_{\downarrow}\dyad{n}{n+1} -(\omega_{\uparrow}+\omega_{\downarrow})\dyad{n}{n}\right] 
 		.\] 
 	\item For the left eigenvector, we require that 
 		\begin{align*}
-			0 =&~ \bra{\psi}\mathcal{L} \\
-			=&~ -\omega_{\uparrow}\braket{\psi}{1}\bra{0} +\omega_{\uparrow}\braket{\psi}{0}\bra{0}\\
-			  &- \sum_{n=1}^{\infty} \left[ \omega_{\uparrow} \braket{\psi}{n+1}\bra{n} + \omega_{\downarrow}\braket{\psi}{n-1}\bra{n}-(\omega_{\uparrow}+\omega_{\downarrow})\braket{\psi}{n}\bra{n} \right]  \\
-			=&~ -\omega_{\uparrow}\braket{\psi}{1}\bra{0}+\omega_{\uparrow}\braket{\psi}{0}\bra{0}\\
-			 &- \sum_{n=1}^{\infty} \left[ \omega_{\uparrow} \braket{\psi}{n+1} + \omega_{\downarrow}\braket{\psi}{n-1}-(\omega_{\uparrow}+\omega_{\downarrow})\braket{\psi}{n} \right]\bra{n} 
+			0 =&~\bra{\Psi_L}\mathcal{L} \\
+			=&~-\omega_\downarrow\braket{\Psi_L}{0}\bra{1}+\omega_\uparrow \braket{\Psi_L}{0}\bra{0}\\
+			 &-\sum_{n=1}^{\infty}\left[ \omega_\uparrow \braket{\Psi_L}{n}\bra{n-1}+\omega_\downarrow \braket{\Psi_L}{n}\bra{n+1}-(\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n}\bra{n}  \right]\\
+			=&~-\omega_\downarrow\braket{\Psi_L}{0}\bra{1}+\omega_\uparrow \braket{\Psi_L}{0}\bra{0}\\
+			 &-\sum_{n=0}^{\infty} \omega_\uparrow \braket{\Psi_L}{n+1}\bra{n}-\sum_{n=2}^{\infty} \omega_\downarrow \braket{\Psi_L}{n-1}\bra{n}+\sum_{n=1}^{\infty} (\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n}\bra{n}  \\
+			=&~\omega_\uparrow \braket{\Psi_L}{0}\bra{0}-\omega_\uparrow \braket{\Psi_L}{1}\bra{0}\\
+			 &-\sum_{n=1}^{\infty} \omega_\uparrow \braket{\Psi_L}{n+1}\bra{n}-\sum_{n=1}^{\infty} \omega_\downarrow \braket{\Psi_L}{n-1}\bra{n}+\sum_{n=1}^{\infty} (\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n}\bra{n}  
 		\end{align*}
-		Demanding that all components of this vector vanish then demand that
+		upon which we may compare coefficients of all the basis 1-forms $\bra{n}$. Comparing that of $\bra{0}$, we find that $\braket{\Psi_L}{0}=\braket{\Psi_L}{1}$. Then, for all $n\ge 1$, we have 
 		\[
-			\braket{\psi}{1} -\braket{\psi}{0}= 0
-		\] 
-		and
+			(\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n} = \omega_\uparrow \braket{\Psi_L}{n+1} + \omega_\downarrow \braket{\Psi_L}{n-1}
+		.\] 
+		We now prove another statement by induction.
+		\begin{tcolorbox}
+			\begin{Lemma}
+				If $\braket{\Psi_L}{n}=\braket{\Psi_L}{n-1}$, then $\braket{\Psi_L}{n}=\braket{\Psi_L}{n+1}$.
+			\end{Lemma}
+			\begin{proof}
+				We have
+				\begin{align*}
+					(\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n} &= \omega_\uparrow \braket{\Psi_L}{n+1} + \omega_\downarrow \braket{\Psi_L}{n-1}\\
+					(\omega_\uparrow+\omega_\downarrow)\braket{\Psi_L}{n} &= \omega_\uparrow \braket{\Psi_L}{n+1} + \omega_\downarrow \braket{\Psi_L}{n}\\
+					\omega_\uparrow\braket{\Psi_L}{n} &= \omega_\uparrow \braket{\Psi_L}{n+1}\\ 
+					\braket{\Psi_L}{n} &= \braket{\Psi_L}{n+1}.\qedhere 
+				\end{align*}
+			\end{proof}
+		\end{tcolorbox}
+		From this statement, since we know that $\braket{\Psi_L}{0}=\braket{\Psi_L}{1}$, we find that the vector has all components be identical, which is what we expect from a normalised probability distribution. Alternatively, we can write the left eigenvector as
+		\[\Psi_L= \sum_{n=0}^\infty \bra{n}\]
+
+		Now we compute the right eigenvector in a similar manner:
+		\begin{align*}
+			0 =& \mathcal{L}\ket{\Psi_R} \\
+			=&~-\omega_\downarrow\ket{0}\braket{1}{\Psi_R} + \omega_\uparrow \ket{0}\braket{0}{\Psi_R}\\
+			 &-\sum_{n=1}^{\infty} \left[ \omega_\uparrow\ket{n}\braket{n-1}{\Psi_R}+\omega_\downarrow \ket{n}\braket{n+1}{\Psi_R}-(\omega_\downarrow+\omega_\uparrow)\ket{n}\braket{n}{\Psi_R} \right] 
+		\end{align*}
+		Now, we again compare the coefficients of the ket vectors $\ket{n}$. By analysing the coefficient of $\ket{0}$, we find that
 		\[
-			\omega_{\uparrow}\braket{\psi}{n+1} + \omega_{\downarrow}\braket{\psi}{n-1}=0
+			\omega_\downarrow \braket{1}{\Psi_R} = \omega_\uparrow \braket{0}{\Psi_R}
 		\] 
-		for all $n$.
+		or
+		\[
+			\braket{1}{\Psi_R} = \left( \frac{\omega_\uparrow}{\omega_\downarrow} \right) \braket{0}{\Psi_R}
+		.\] 
+		For $n\ge 1$, comparing coefficients of the $\ket{n}$ yields
+		\[
+			\omega_\uparrow \braket{n-1}{\Psi_R} +\omega_\downarrow \braket{n+1}{\Psi_R}-(\omega_\downarrow + \omega_\uparrow)\braket{n}{\Psi_R}=0
+		.\] 
+		We proceed again by induction. We first hypothesize that
+		\[
+			\braket{n}{\Psi_R} = \left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n \braket{0}{\Psi_R} 
+		.\] 
+		We know this is true for $n=1$ and $n=0$. Now, fix $n$, and assume the statement is true for all $k$ with $k\le n$ (strong induction). We will prove it is true for $n+1$. 
+		\begin{align*}
+			0&=\omega_\uparrow \braket{n-1}{\Psi_R} +\omega_\downarrow \braket{n+1}{\Psi_R}-(\omega_\downarrow + \omega_\uparrow)\braket{n}{\Psi_R}\\
+			0&=\omega_\uparrow \left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^{n-1}\braket{\Psi_R}{0} +\omega_\downarrow \braket{n+1}{\Psi_R}-(\omega_\downarrow + \omega_\uparrow)\left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n \braket{\Psi_R}{0} \\
+0&=\omega_\downarrow \braket{n+1}{\Psi_R}- \omega_\uparrow\left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n \braket{\Psi_R}{0} \\
+\braket{n+1}{\Psi_R}&= \left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^{n+1} \braket{\Psi_R}{0}
+		\end{align*}
+		This proves the statement, and thus we can write the right eigenvector as
+		\[\Psi_R = \sum_{n=0}^\infty\left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n\ket{n} \]
+	\item We must first calculate the sum of all components of the vector; the normalisation is possible if and only if this sum is finite. We sum
+		\begin{align*}
+			\sum_{n=0}^{\infty} \braket{n}{\Psi_R} &= \sum_{n=0}^{\infty} \left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n \braket{0}{\Psi_R} \\
+							     &= \frac{1}{1- \frac{\omega_\uparrow}{\omega_\downarrow}}\braket{0}{\Psi_R} & \left| \frac{\omega_\uparrow}{\omega_\downarrow} \right|<1 
+		\end{align*}
+		Dividing, we find that the components are given by
+		\[
+			\braket{n}{\Psi_R} = \left( 1- \frac{\omega_\uparrow}{\omega_\downarrow} \right)\left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n
+		\]
+		leading to a normalised vector
+		\[\Psi_R = \sum_{n=0}^\infty \left( 1- \frac{\omega_\uparrow}{\omega_\downarrow} \right)\left( \frac{\omega_\uparrow}{\omega_\downarrow} \right)^n\ket{n}\]
+		and this normalisation is possible if and only if we have
+		\[
+		\left| \frac{\omega_\uparrow}{\omega_\downarrow} \right| <1
+		.\] 
+	\item Noting the special form of the probability density as being a geometric progression, we seek to massage the probability density of the canonical ensemble into this form:
+		\begin{align*}
+			P_n &= \exp\left( - \frac{E_n}{k_B T} \right)  \\
+			    &= \exp\left[ -\frac{\hbar\omega}{k_B T}\left( n+\frac{1}{2} \right)  \right]  \\
+			    &= \exp\left(- \frac{\hbar\omega}{2k_B T} \right) \exp\left( -\frac{\hbar\omega n}{k_B T}  \right)  \\
+			    &= \exp\left(- \frac{\hbar\omega}{2k_B T} \right) \exp\left( -\frac{\hbar\omega }{k_B T}  \right)^n  
+		\end{align*}
+		At this point, it is only necessary to compare the decay rate with $n$. Essentially, we would be comparing the ratio $P_{n+1} / P_n$. By comparing this ratio between the two expressions and demanding that it be the same, we find that
+		\[
+		\frac{\omega_\uparrow}{\omega_\downarrow}= \exp\left( -\frac{\hbar\omega}{k_B T} \right) 
+		.\] 
+		After some massaging, we find that
+		\begin{align*}
+			\ln \frac{\omega_\downarrow}{\omega_\uparrow}&= \frac{\hbar\omega}{k_B T}\\	
+T &= \frac{\hbar\omega}{k_B \ln \frac{\omega_\downarrow}{\omega_\uparrow}}.\qedhere	
+		\end{align*}
 	\end{parts}
 \end{proof}

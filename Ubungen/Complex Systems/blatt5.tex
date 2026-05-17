@@ -1,0 +1,244 @@
+\begin{Problem}[Tensor Product]
+Let $A$ and $B$ be square matrices acting on the vector space $V$.
+
+\begin{enumerate}
+    \item[(a)] Prove that
+    \[
+    e^{A \otimes \mathbf{1} + \mathbf{1} \otimes B}
+    =
+    e^A \otimes e^B.
+    \]
+
+    \item[(b)] Consider the eigenvectors and eigenvalues of
+    \[
+    A\ket{a} = a\ket{a},
+    \qquad
+    B\ket{b} = b\ket{b}.
+    \]
+    What are the eigenvalues and eigenvectors of $A \otimes B$?
+
+    \item[(c)] Compute the commutators of the Pauli matrices
+    \[
+    [\sigma_i,\sigma_j]
+    \qquad \text{and} \qquad
+    [\sigma_i \otimes \sigma_i,\sigma_j \otimes \sigma_j].
+    \]
+
+    \item[(d)] Compute
+    \[
+    e^{\phi\, \sigma_i \otimes \sigma_j}
+    \qquad \text{for } \phi \in \mathbb{R}.
+    \]
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	Since it is not clear what properties of the tensor product I am allowed to use, I begin by proving a few elementary properties of the tensor product.
+	\begin{Definition}
+		The tensor product of two vector spaces $V\otimes W$ is a vector space with a bilinear map $\phi:V\times W \to V\otimes W$ such that every bilinear map $L$ on $V\times W$ induces a unique linear map $\tilde{L}$ on $V\otimes W$ such that $L(v,w)=\tilde{L}(v\otimes w)$.
+	\end{Definition}
+	\begin{Remark}
+		We can take a ``tensor product'' of two vectors; this will mean the image of their cartesian product under the tensor product map $\phi$. In other words, $v\otimes w := \phi((v,w))$.
+	\end{Remark}
+	\begin{Remark}
+		Given any two linear maps $A:V\to V'$, and $B:W\to W'$, we define the tensor product $A\otimes B$ as the unique linear map between $V\otimes W$ and $V'\otimes W'$ such that $(A\otimes B)(v\otimes w)=A(v)\otimes B(w)$.
+	\end{Remark}
+	\begin{Theorem}\label{thm:complexsystemsblatt5-1}
+		Suppose $A':V \to V',~A:V'\to V^{\prime\prime},~B:W\to W',~B':W'\to W^{\prime\prime}$ are linear maps between vector spaces. Then 
+		\[
+			(A\otimes B)(A'\otimes B') = A A'\otimes BB'
+		.\] 
+	\end{Theorem}
+	\begin{proof}
+		This follows directly from the definition:
+		\begin{align*}
+			(A\otimes B)(A'\otimes B')(v\otimes w)&= (A\otimes B)(A'(v)\otimes B'(w)) \\
+			&= A A'v\otimes BB'w.\qedhere
+		\end{align*}
+	\end{proof}
+	\begin{Theorem}[Tensor Products from Bases]\label{thm:complexsystemsblatt5-2}
+		The tensor product space $V\otimes W$ is the set spanned by the vectors $\ket{e_i}\otimes \ket{b_j}$ where $\ket{e_i}$ and $\ket{b_j}$ are a basis for $V$ and $W$ respectively.
+	\end{Theorem}
+	\begin{proof}
+		We can expand all bilinear operators $L:V\times W\to Z$ as
+		\begin{align*}
+			L(v, w) &= L(v^i e_i, w^j b_j) \\
+			&= v^i w^j L(e_i, b_j)  
+		\end{align*}
+		which allows us to construct $\phi:V\times W \to V\otimes W$ with $\phi(e_i, b_j) = e_i\otimes b_j$ and extending by linearity. Then, we can extend bilinear maps using the computation above and evaluating the bilinear maps on the basis elements. 
+	\end{proof}
+	\begin{parts}
+	\item We compute
+		\begin{align*}
+			e^{\mathbf{A}\otimes \mathbbm{1}+\mathbbm{1}\otimes \mathbf{B}}&= \sum_{n=0}^{\infty} \frac{1}{n!}\left( \mathbf{A}\otimes \mathbbm{1} + \mathbbm{1}\otimes \mathbf{B} \right)^n  \\
+										       &= \sum_{n=0}^{\infty}\frac{1}{n!} \sum_{k=0}^{n} \binom{n}{k}(\mathbf{A}\otimes \mathbbm{1})^{n-k} (\mathbbm{1}\otimes \mathbf{B})^k\\
+										       &= \sum_{n=0}^{\infty}\frac{1}{n!} \sum_{k=0}^{n} \frac{n!}{k!(n-k)!}(\mathbf{A}\otimes \mathbbm{1})^{n-k} (\mathbbm{1}\otimes \mathbf{B})^k\\
+										       &= \sum_{n=0}^{\infty}\sum_{k=0}^{n} \frac{1}{k!(n-k)!}(\mathbf{A}\otimes \mathbbm{1})^{n-k} (\mathbbm{1}\otimes \mathbf{B})^k\\
+										       &= \sum_{n=0}^{\infty}\sum_{m=0}^{\infty} \frac{1}{n!m!}(\mathbf{A}\otimes \mathbbm{1})^{m} (\mathbbm{1}\otimes \mathbf{B})^n\\
+										       &= e^{\mathbf{A}\otimes \mathbbm{1}}e^{\mathbbm{1}\otimes\mathbf{B}} \\
+										       &= e^{\mathbf{A}}\otimes e^\mathbf{B} \\
+		\end{align*}
+		where we have used Theorem \ref{thm:complexsystemsblatt5-1} to show that $\mathbf{A}\otimes\mathbbm{1}$ and $\mathbbm{1}\otimes \mathbf{B}$ commute.
+	\item The eigenvalues and eigenvectors of $A\otimes B$ are given by $\ket{a}\otimes \ket{b}$. We can see this by definition:
+		\[
+			(\mathbf{A}\otimes \mathbf{B})(\ket{a}\otimes\ket{b})=\mathbf{A}\ket{a}\otimes \mathbf{B}\ket{b}=a\ket{a}\otimes b\ket{b} = ab\ket{a}\otimes\ket{b}
+		.\] 
+		By Theorem \ref{thm:complexsystemsblatt5-2}, we know that this forms a basis for the tensor product space; hence, we have found all eigenvectors.
+
+		Note that if $\mathbf{A}$ or $\mathbf{B}$ are not diagonalisable, the argument still follows by choosing generalised eigenvectors instead, which always form a basis.
+	\item We do this by brute force. Since $\sigma_0=\mathbbm{1}$, it commutes with all matrices, and the other Pauli matrices in particular:
+		\[
+			[\sigma_0,\sigma_i]=[\sigma_i, \sigma_0]=0,\qquad i\in \{0,1,2,3\} 
+		.\] 
+		Then we compute the other commutators:
+		\begin{align*}
+			[\sigma_1,\sigma_2] &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix}  0 & -i \\ i & 0 \end{pmatrix} -\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  \\
+					    &= \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix} - \begin{pmatrix} -i & 0 \\ 0 & i \end{pmatrix}  \\
+					    &= 2 i\begin{pmatrix}1 & 0 \\ 0 & -1  \end{pmatrix}  \\
+			[\sigma_1, \sigma_3] &= \begin{pmatrix}  0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix}  1 & 0 \\ 0 & -1 \end{pmatrix} -\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix}  0 & 1 \\ 1 & 0 \end{pmatrix}  \\
+					     &= \begin{pmatrix}  0 & -1 \\ 1 & 0 \end{pmatrix} - \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}  \\
+					     &= \begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix}  \\
+					     &= -2i \begin{pmatrix} 0 &-i \\ i & 0 \end{pmatrix}  \\
+			[\sigma_2,\sigma_3] &= \begin{pmatrix}  0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} - \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix}  1 & 0 \\ 0 & -1 \end{pmatrix}  \\
+					    &= \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix} - \begin{pmatrix}  0 & -i \\ -i & 0 \end{pmatrix}   \\
+					    &= \begin{pmatrix} 0 & 2i \\ 2i & 0 \end{pmatrix}  \\
+					    &= 2i \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}  
+		\end{align*}
+		The remaining follow by anticommutativity. In summary, we have
+		\[
+			[\sigma_j,\sigma_k]=2i\epsilon_{jkl}\sigma_l
+	\]
+	with $j,k,l\in \{1,2,3\} $. We also note that we have shown en passant that for $i\neq j$, we have
+	\[
+		\sigma_i\sigma_j=i\epsilon_{ijk}\sigma_k
+	.\] 
+
+	We then compute
+	\begin{align*}
+		[\sigma_i\otimes \sigma_i, \sigma_j\otimes \sigma_j] &= (\sigma_i\otimes \sigma_i)(\sigma_j\otimes \sigma_j) - (\sigma_j\otimes \sigma_j)(\sigma_i\otimes \sigma_i) \\
+		&=\sigma_i\sigma_j \otimes \sigma_i\sigma_j -\sigma_j\sigma_i \otimes \sigma_j\sigma_i  \\
+		&= i\epsilon_{ijk}\sigma_k \otimes i\epsilon_{ijk}\sigma_k - (-i\epsilon_{ijk}\sigma_k) \otimes (-i\epsilon_{ijk}\sigma_k) \\
+		&= 0 
+	\end{align*}
+\item We note that
+	\[
+		(\sigma_i\otimes \sigma_j)^2 = \sigma_i^2 \otimes \sigma_j^2 = \mathbbm{1}\otimes \mathbbm{1}
+	\]
+	(this is simple to prove by direct computation), and thus we have
+	\[
+		(\sigma_i\otimes \sigma_j)^n = \begin{cases}
+			\mathbbm{1} \otimes \mathbbm{1} & n\text{ even}\\
+			\sigma_i\otimes\sigma_j & n\text{ odd}
+		\end{cases}
+	.\] 
+	The exponential can then be expanded as
+	\begin{align*}
+		e^{\phi \sigma_i\otimes \sigma_j} &= \sum_{n=0}^{\infty} \frac{1}{n!}\phi^n (\sigma_i\otimes\sigma_j)^n \\
+						  &= \sum_{n\text{ even}} \frac{1}{n!}\phi^n (\mathbbm{1}\otimes \mathbbm{1}) + \sum_{n\text{ odd}} \frac{1}{n!}\phi^n (\sigma_i\otimes\sigma_j) \\
+						  &= \cosh(\phi)(\mathbbm{1}\otimes\mathbbm{1}) + \sinh(\phi)(\sigma_i\otimes\sigma_j).\qedhere 
+	\end{align*}
+	\end{parts}
+\end{proof}
+\begin{Problem}[Creation--Annihilation Model]
+Consider a one-dimensional chain of three sites which are either empty $(\emptyset)$ or occupied by a single particle $(A)$, assuming closed (non-periodic) boundary conditions. On neighboring sites the particles diffuse and react with each other according to the following rules:
+\[
+\emptyset A \leftrightarrow A \emptyset
+\qquad \text{diffusion at rate } D,
+\]
+\[
+\emptyset A / A\emptyset \to AA
+\qquad \text{offspring production at rate } \lambda,
+\]
+\[
+AA \to \emptyset\emptyset
+\qquad \text{pair annihilation at rate } \mu.
+\]
+
+\begin{enumerate}
+    \item[(a)] Construct the $4 \times 4$ interaction matrix of the two-site Liouville operator $\mathcal{L}^{(2)}$ in the canonical configuration basis
+    \[
+    (\emptyset\emptyset,\emptyset A,A\emptyset,AA).
+    \]
+
+    \item[(b)] Determine the $8 \times 8$ matrix of the Liouville operator
+    \[
+    \mathcal{L}^{(3)}
+    =
+    \mathbf{1}\otimes \mathcal{L}^{(2)}
+    +
+    \mathcal{L}^{(2)} \otimes \mathbf{1}
+    \]
+    acting on a chain with three sites
+    ($\mathbf{1}$ denotes the $2\times 2$ unit matrix).
+
+    \item[(c)] Consider the special case $\lambda = 0$ and calculate the eigenvalues of $\mathcal{L}^{(3)}$. Why is the ground state two-fold degenerate?
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The three kinds of transitions are described above; in fact, since we only have two sites, there is no complication of having nearest neighbour interactions only. Thus, the Liouvillian is given by
+		\[
+			\mathcal{L}= \begin{pmatrix} 0 & 0 & 0 & -\mu \\
+				0 & D+\lambda & -D & 0\\
+				0 & -D & D+\lambda & 0 \\
+				0 & -\lambda & -\lambda & \mu
+			\end{pmatrix} 
+		.\] 
+	\item First let us describe the formalism. The Hilbert space of a single site is given by $\mathcal{H}=\text{span}(\ket{\phi},\ket{A}) $. The Hilbert space of two sites is given by $\mathcal{H}^2 := \mathcal{H}\otimes \mathcal{H}$, which has the canonical basis as given in the above problem. On $\mathcal{H}^2$, we have defined a Liouvillian operator $\mathcal{L}^{(2)}:\mathcal{H}^2 \to \mathcal{H}^2$. Since we are in a system with open boundary conditions, the interaction acts between the first and second sites, as well as on the second and third sites.
+
+
+	We compute the tensor product using the Mathematica function KroneckerProduct as described in the lecture notes: First, since we require the $D$ symbol and we don't need the original use of it, we unprotect and redefine it
+	\begin{mmaCell}{Input}
+		Unprotect[D];
+	\end{mmaCell}
+	\begin{mmaCell}{Input}
+		Remove[D];
+	\end{mmaCell}
+	Then we define the Liouvillian
+\begin{mmaCell}[functionlocal=y]{Input}
+	\mmaUnd{\(\pmb{\mathcal{L}}\)} = \{\{0,0,0,-\mmaUnd{\(\pmb{\mu}\)}\}, \{0, \mmaUnd{\(\pmb{D}\)}+\mmaUnd{\(\pmb{\lambda}\)},-\mmaUnd{\(\pmb{D}\)},0\}, \{0,-\mmaUnd{\(\pmb{D}\)} , \mmaUnd{\(\pmb{D}\)}+\mmaUnd{\(\pmb{\lambda}\)},0\},\{0,-\mmaUnd{\(\pmb{\lambda}\)},-\mmaUnd{\(\pmb{\lambda}\)},\mmaUnd{\(\pmb{\mu}\)}\}\} 
+\end{mmaCell}
+\begin{mmaCell}{Output}
+	\{\{0,0,0,-\(\mu\)\}, \{0,D+\(\lambda\),-D,0\}, \{0,-D,D+\(\lambda\),0\}, \{0, -\(\lambda\), -\(\lambda\), \(\mu\)\}\}
+\end{mmaCell}
+and finally we compute the tensor product
+\begin{mmaCell}[moredefined=KroneckerProduct]{Input}
+	\mmaUnd{\(\pmb{\mathcal{L}3}\)} = KroneckerProduct[\mmaUnd{\(\pmb{\mathcal{L}}\)}, IdentityMatrix[2]] +  KroneckerProduct[IdentityMatrix[2], \mmaUnd{\(\pmb{\mathcal{L}}\)}] 
+\end{mmaCell}
+which yields the matrix form
+\[
+	\mathcal{L}^{(3)} =\left(
+\begin{array}{cccccccc}
+ 0 & 0 & 0 & -\mu  & 0 & 0 & -\mu  & 0 \\
+ 0 & D+\lambda  & -D & 0 & 0 & 0 & 0 & -\mu  \\
+ 0 & -D & 2 D+2 \lambda  & 0 & -D & 0 & 0 & 0 \\
+ 0 & -\lambda  & -\lambda  & D+\lambda +\mu  & 0 & -D & 0 & 0 \\
+ 0 & 0 & -D & 0 & D+\lambda  & 0 & 0 & -\mu  \\
+ 0 & 0 & 0 & -D & 0 & 2 D+2 \lambda  & -D & 0 \\
+ 0 & 0 & -\lambda  & 0 & -\lambda  & -D & D+\lambda +\mu  & 0 \\
+ 0 & 0 & 0 & -\lambda  & 0 & -2 \lambda  & -\lambda  & 2 \mu  \\
+\end{array}
+\right) 
+.\] 
+We diagonalise this, again, in Mathematica
+\begin{mmaCell}{Input}
+	Eigenvalues[\mmaUnd{\(\pmb{\mathcal{L}3}\)}/.\mmaUnd{\(\pmb{\lambda}\)} \(\to\) 0]
+\end{mmaCell}
+to find the eigenvalues
+\begin{align*}
+&\{0,0,D,3 D,2 \mu ,D+\mu ,\frac{1}{2} \left(-\sqrt{9 D^2-2 D \mu +\mu ^2}+3 D+\mu \right),\\
+&\frac{1}{2} \left(\sqrt{9 D^2-2 D \mu +\mu ^2}+3 D+\mu \right)\}
+\end{align*}
+First, we note that $0$ is the ground state: This follows because
+\[
+	\sqrt{9D^2 - 2D\mu + \mu^2} = \sqrt{(3D+\mu)^2 - 8D\mu} \le 3D+\mu
+\]
+and thus the square root terms are all positive (assuming, of course, that $D$ and $\mu$ are nonzero, in which case we could possibly expect a higher degeneracy anyway). The twofold degeneracy originates from the vacuum and the single particle states; since there is no offspring production and annihilation requires at least two particles, both these sectors do not hybridise with sectors of other particle number. After accounting for diffusion, the ground states are given by
+\[
+	\ket{\emptyset\emptyset\emptyset}
+\] 
+and
+\[
+	\ket{A\emptyset\emptyset}+\ket{\emptyset A\emptyset}+\ket{\emptyset\emptyset A}
+.\] 
+	\end{parts}
+\end{proof}
