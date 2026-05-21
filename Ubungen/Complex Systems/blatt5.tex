@@ -75,10 +75,10 @@ Let $A$ and $B$ be square matrices acting on the vector space $V$.
 										       &= \sum_{n=0}^{\infty}\sum_{k=0}^{n} \frac{1}{k!(n-k)!}(\mathbf{A}\otimes \mathbbm{1})^{n-k} (\mathbbm{1}\otimes \mathbf{B})^k\\
 										       &= \sum_{n=0}^{\infty}\sum_{m=0}^{\infty} \frac{1}{n!m!}(\mathbf{A}\otimes \mathbbm{1})^{m} (\mathbbm{1}\otimes \mathbf{B})^n\\
 										       &= e^{\mathbf{A}\otimes \mathbbm{1}}e^{\mathbbm{1}\otimes\mathbf{B}} \\
-										       &= e^{\mathbf{A}}\otimes e^\mathbf{B} \\
+										       &= e^{\mathbf{A}}\otimes e^\mathbf{B} 
 		\end{align*}
-		where we have used Theorem \ref{thm:complexsystemsblatt5-1} to show that $\mathbf{A}\otimes\mathbbm{1}$ and $\mathbbm{1}\otimes \mathbf{B}$ commute.
-	\item The eigenvalues and eigenvectors of $A\otimes B$ are given by $\ket{a}\otimes \ket{b}$. We can see this by definition:
+		where we have used Theorem \ref{thm:complexsystemsblatt5-1} to show that $\mathbf{A}\otimes\mathbbm{1}$ and $\mathbbm{1}\otimes \mathbf{B}$ commute, because $(\mathbf{A}\otimes \mathbbm{1})(\mathbbm{1}\otimes\mathbf{B}) = (\mathbbm{1}\otimes \mathbf{B})(\mathbf{A}\otimes \mathbbm{1}) = \mathbf{A}\otimes \mathbf{B}$.
+	\item The eigenvalues and eigenvectors of $\mathbf{A}\otimes \mathbf{B}$ are given by $\ket{a}\otimes \ket{b}$. We can see this by definition:
 		\[
 			(\mathbf{A}\otimes \mathbf{B})(\ket{a}\otimes\ket{b})=\mathbf{A}\ket{a}\otimes \mathbf{B}\ket{b}=a\ket{a}\otimes b\ket{b} = ab\ket{a}\otimes\ket{b}
 		.\] 
@@ -239,6 +239,6 @@ and thus the square root terms are all positive (assuming, of course, that $D$ a
 and
 \[
 	\ket{A\emptyset\emptyset}+\ket{\emptyset A\emptyset}+\ket{\emptyset\emptyset A}
-.\] 
+.\qedhere\] 
 	\end{parts}
 \end{proof}
