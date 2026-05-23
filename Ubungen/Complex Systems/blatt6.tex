@@ -1,0 +1,174 @@
+\begin{Problem}[Exercise 6.1: Spectrum-generating algebra]
+Let us consider a three-site symmetric exclusion process $(w_L = w_R = 1)$
+with closed boundaries as shown in the figure. Its Liouvillian is given by
+\[
+\mathcal{L} = \mathcal{L}_{12} + \mathcal{L}_{23}
+\]
+where
+\[
+X := \mathcal{L}_{12} = \mathcal{L}^{(2)} \otimes \mathbbm{1},
+\qquad
+Y := \mathcal{L}_{23} = \mathbbm{1} \otimes \mathcal{L}^{(2)}.
+\]
+
+$\mathcal{L}$ has the eigenvalues
+\[
+\{0,0,0,0,1,1,3,3\}
+\]
+(on quartett and two doublets). Our aim is to compute the eigenvalues of
+$\mathcal{L}$ solely by algebraic methods without using any representation,
+in a similar way as one solves the harmonic oscillator in terms of $a,a^\dagger$.
+
+\begin{enumerate}
+    \item[(a)] Verify that the matrices $X$ and $Y$ obey the so-called
+    Temperley--Lieb algebra
+    \[
+    \text{Idempotence}
+    \qquad
+    X^2 = 2X,
+    \qquad
+    Y^2 = 2Y
+    \]
+    \[
+    \text{Braid group property}
+    \qquad
+    XYX = X,
+    \qquad
+    YXY = Y.
+    \]
+
+    Please use from now on exclusively the symbols $X$ and $Y$ and the four
+    algebraic relations given above. Do not use their explicit matrix
+    representation.
+
+    \item[(b)] Specify the monomials of the algebra, i.e.\ the elementary words
+    formed by the letters $X$ and $Y$ that cannot be reduced by means of the
+    algebraic relations.
+
+    \item[(c)] Joining two monomials by concatenation and applying the algebraic
+    relations one obtains another monomial. List all possible results in a
+    table.
+
+    \item[(d)] Now consider a polynomial, i.e.\ a linear combination of all
+    monomials with arbitrary coefficients. Apply the Liouvillian to this
+    polynomial and find the resulting polynomial, showing how the Liouvillian
+    acts in the linear space of polynomials.
+
+    \item[(e)] Determine the eigenpolynomials of
+    \[
+    \mathcal{L} = X + Y,
+    \]
+    i.e.\ those polynomials which are mapped by $\mathcal{L}$ onto themselves
+    up to a factor. Calculate the corresponding eigenvalues and compare them
+    with the spectrum given above.
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The symmetric exclusion process is defined in the lecture to act on two adjacent sites with the matrix representation
+		\[
+			\mathcal{L}^{(2)} = \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & w_L & -w_R & 0 \\ 0 & -w_L & w_R & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix} 
+		\] 
+		in the canonical basis $(\emptyset\emptyset, \emptyset A, A\emptyset, A A)$.
+
+		To show idempotence of $X$ and $Y$, we only need to show that $(\mathcal{L}^{(2)})^2=2\mathcal{L}^{(2)}$, because then we would have
+		\begin{align*}
+			X^2&= \mathcal{L}^{(2)}\mathcal{L}^{(2)}\otimes \mathbbm{1}=2\mathcal{L}^{(2)}\otimes \mathbbm{1}=2X\\
+			Y^2&= \mathbbm{1}\otimes\mathcal{L}^{(2)}\mathcal{L}^{(2)}=2\mathbbm{1}\otimes\mathcal{L}^{(2)}=2Y
+		\end{align*}
+		Additionally, since $\mathcal{L}^{(2)}$ has the block diagonal representation $\mathcal{L}^{(2)}=\text{diag}(0, L, 0)$ where
+		\[
+			L = \begin{pmatrix} w_L & -w_R \\ -w_L & w_R \end{pmatrix} 
+		,\]
+		we only need to show it for the $2\times 2$ matrix $L$, since clearly the $1\times 1$ matrix 0 is idempotent. Thus, we compute
+		\[
+		L^2 =\left(
+\begin{array}{cc}
+ w_L w_R+w_L^2 & -w_L w_R-w_R^2 \\
+ -w_L w_R-w_L^2 & w_L w_R+w_R^2 \\
+\end{array}
+\right) 
+		.\] 
+		Substituing $w_L=w_R=1$, we find
+		\[
+			L^2 = 2 \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}=2L 
+		\] 
+		as desired.
+	\item Clearly, $X$ and $Y$ are themselves words. We consider now how we can add letters to these single letter words to extend them. We cannot add an $X$ to $X $, because that would then be reducible by idempotence, and similarly we cannot add $Y$ to $Y$. Thus, we append the other letter to them to find that $XY$ and $YX$ are monomials. 
+
+		Now, again, we cannot add an $X$ to the left of $XY$, because it would be reducible by idempotence. We cannot add a $Y$ to its right, because it would then be reducible by the braid group property. The opposite argument holds with appending $Y$s to either side, and the same to $YX$. Thus, we cannot construct any three letter words that are irreducible.
+
+		We conclude that the only monomials are $X,~Y,~XY,$ and $YX$.
+	\item There are 4 monomials, resulting in $4\times 4 = 16$ possible products. We compute all possible results
+		\begin{align*}
+			XX &= X^2 = 2X \\
+			XY &= XY \\
+			X(XY) &= X^2 Y = 2XY \\
+			X(YX) &= XYX = X \\
+			YX &= YX \\
+			YY &= Y^2 = 2Y \\
+			Y(XY) &= YXY = Y \\
+			YYX &= Y^2 X = 2YX \\
+			(XY)X &= XYX = X \\
+			(XY)Y &= XY^2 = 2XY \\
+			(XY)(XY) &=  (XYX)Y = XY \\
+			(XY)(YX) &= XY^2X=2XYX = 2X\\
+			(YX)X &= YX^2 = 2YX \\
+			(YX)Y &= YXY = Y \\
+			(YX)(XY) &= YX^2Y = 2YXY = 2Y\\
+			(YX)(YX) &= (YXY)X = YX  
+		\end{align*}
+		As requested, we summarise this in a table
+\begin{center}
+\renewcommand\arraystretch{1.3}
+\setlength\doublerulesep{0pt}
+\begin{tabular}{c|c|c|c|c|}
+$\cdot$ & $X$ & $Y$ & $XY$ & $YX$ \\
+\hline
+	$X$ & $2X$ & $XY$ & $2XY$ & $X$ \\ 
+\hline
+$Y$ & $YX$ & $2Y$ & $Y$ & $2YX$ \\ 
+\hline
+$XY$ & $X$ & $2XY$ & $XY$ & $2X$ \\ 
+\hline
+$YX$ & $2YX$ & $Y$ & $2Y$ & $YX$ \\ 
+\hline
+\end{tabular}
+\end{center}
+The table is to be read as row $\times$ column.
+\item We write a polynomial as, given 4 coefficients $c_1,c_2,c_3,c_4$ in the underlying field,
+	\[
+		P[X,Y](c_1,c_2,c_3,c_4) = c_1 X + c_2 Y + c_3 XY + c_4 YX
+	.\] 
+	We then apply the Liouvillian to this polynomial
+	\begin{align*}
+		&~\mathcal{L}(c_1 X + c_2 Y + c_3 XY + c_4 YX)\\
+		=&~(X+Y)(c_1 X + c_2 Y + c_3 XY + c_4 YX)\\
+		=&~c_1 X^2 + c_2 XY + c_3 XXY + c_4 XYX\\
+		 &~+ c_1 YX + c_2 Y^2 + c_3 YXY + c_4 YYX\\
+		=&~2c_1 X + c_2 XY + 2c_3 XY + c_4 X\\
+		 &~+ c_1 YX + 2 c_2 Y + c_3 Y + 2c_4 YX\\
+		=&~(2c_1+c_4)X + (2c_2+c_3)Y + (c_2+2c_3)XY + (c_1+2c_4)YX
+	\end{align*}
+	Thus, in the linear space of polynomials, which we identify with $(c_1,c_2,c_3,c_4)\cong \R^3$, the Liouvillian acts as
+	\[
+		\mathcal{L}:\R^4 \to \R^4,\qquad \begin{pmatrix} c_1 \\ c_2 \\ c_3 \\c_4 \end{pmatrix} \mapsto \begin{pmatrix} 2 & 0 & 0 & 1\\
+	0 & 2 & 1 & 0 \\
+0 & 1 & 2 & 0 \\
+1 & 0 & 0 & 2\end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \\ c_3 \\ c_4 \end{pmatrix} 
+	.\] 
+	\end{parts}
+	We diagonalise this matrix, again, using python
+	\begin{lstlisting}[language=Python]
+		import numpy as np
+		L = np.array([[2,0,0,1],[0,2,1,0],[0,1,2,0],[1,0,0,2]])
+		np.linalg.eig(L)
+	\end{lstlisting}
+	which yields the eigenpolynomials and their associated eigenvalues $\lambda$:
+	\begin{align*}
+		\lambda=3:&~ X + YX\\
+		\lambda=3:&~Y+XY\\
+		\lambda=1:&~X - YX\\
+		\lambda=1:&~-Y + XY
+	\end{align*}
+\end{proof}
