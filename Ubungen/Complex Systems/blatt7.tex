@@ -1,0 +1,242 @@
+\begin{Problem}[NAND and XOR]
+	Let us represent Boolean values by $\text{FALSE}=0$ and $\text{TRUE}=1$. As activation function let us choose the step function
+	\[
+	\sigma(x)=
+	\begin{cases}
+		1 & \text{if } x\ge 0,\\
+		0 & \text{if } x<0.
+	\end{cases}
+	\]
+	
+	\begin{enumerate}
+		\item[(a)] Find suitable weights $\vec w=(w_1,w_2)$ and a bias $b$ so that a single perceptron emulates a NAND gate.
+		
+		\item[(b)] Show that it is impossible to realize a XOR gate with a single perceptron.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item A NAND gate outputs 1 in all cases unless both inputs are 1, in which case it returns 0. A perceptron outputs
+		\[f(x_1,x_2) = \sigma(w_1 x_1+w_2x_2 + b).\]
+		Substituting in 1 and 0 for $x_1$ and $x_2$ accordingly, and using the properties of the step function, we see that we are demanding that
+		\begin{align*}
+			b &\ge  0\\
+			w_1+w_2 + b&< 0\\
+			w_1 + b &\ge 0\\
+			w_2 + b &\ge 0 
+		\end{align*}
+	From comparing the second inequality with the third and fourth, we see that $w_1<0$ and $w_2 < 0$. The first inequality obviously says $b\ge 0$. However, we can see that there is no unique solution; for example, we have at least a constant prefactor degree of freedom on all of the parameters.
+	
+	Fixing the signs of all the parameters as defined above, the only constraints are
+	\begin{align*}
+		|w_1|, |w_2|&\le |b|\\
+		|w_1|+|w_2|&> |b|
+	\end{align*}
+An example solution is $b=3$, $w_1=w_2=-2$.
+\item An XOR gate outputs 1 if either input is TRUE, and 0 otherwise (including when both are TRUE). Substituting, we find that
+\begin{align*}
+	w_1 + b &\ge 0\\
+	w_2 + b &\ge 0\\
+	w_1+w_2+b &<0\\
+			b &< 0
+\end{align*}
+Now, the last inequality clearly states $b<0$. Comparing the first, second and third equations again, we find that $w_1<0$ and $w_2<0$. However, combining this with the fourth equation, it is now impossible for $w_1+b$ to be positive.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}[Gradient Method --- Steepest Descent]
+	Since learning in artificial neural networks can be viewed as some kind of optimization problem, this exercise aims to make you familiar with the method of steepest descent.
+	
+	Let us first consider a parabola $f(x)=\frac12 ax^2+bx+c$. Choosing an arbitrary starting value $x_0\in\mathbb R$, let us compute the iteration $x_0 \to x_1 \to x_2 \to \dots$ through updates of the form
+	\[
+	x_k \to x_{k+1}:=x_k-\alpha f'(x_k),
+	\]
+	where $\alpha\in\mathbb R$ is a constant.
+	
+	\begin{enumerate}
+		\item[(a)] Find the range for $\alpha$ where $\{x_k\}$ converges to the minimum of the function.
+		
+		\item[(b)] Determine the optimal value for $\alpha$ so that the iteration reaches the minimum already after a single iteration.
+		
+		\item[(c)] Use this method to find the minimum of
+		\[
+		f(x)=\cosh(x),
+		\]
+		starting with $x_0=1$. Choose the optimal $\alpha$ and carry out the computation numerically.
+		
+		\item[(d)] Now let us be more general and consider a function defined on a vector space. To this end, let $M$ be a real symmetric $n\times n$ matrix with nonzero eigenvalues and let the function $f:\mathbb R^n\to\mathbb R$ be given by
+		\[
+		f(\vec x)=\frac12(\vec x-\vec a)^T M^2 (\vec x-\vec a).
+		\]
+		
+		Rewrite $f(\vec x)$ in the form
+		\[
+		f(\vec x)=\frac12 \vec x^T A \vec x+\vec b\cdot \vec x+c
+		\]
+		and determine $A,\vec b,c$.
+		
+		\item[(e)] Prove that $f(\vec x)$ has a unique global minimum at $\vec x=\vec a$.
+		
+		\item[(f)] The iteration rule has now to be generalized as follows:
+		\[
+		\vec x_k \to \vec x_{k+1}:=\vec x_k-\alpha \nabla f(\vec x_k).
+		\]
+		
+		Compute the gradient $\nabla f(\vec x_k)$ and determine the optimal step size.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	We compute the minimum point:
+	\[f'(x) = ax + b\]
+	and thus the minimum point $x_\text{min}$ is given by
+	\[x_\text{min} = -\frac ba\]
+	We also note that the explicit form of the iteration is given by
+	\[x_{k+1} := x_k - \alpha (ax_k + b) = (1-\alpha a)x_k + \alpha b\]
+	\begin{parts}
+		\item We compute the distance from the minimum. Defining $\Delta_k = x_k - x_\text{min}$, we find the following recursion relation
+		\begin{align*}
+			\Delta_{k+1} &= x_{k+1} - x_\text{min}\\
+			&= \Delta_k - \alpha (a x_k + b)\\
+			&= \Delta_k - \alpha[a(\Delta_k+x_\text{min}) + b]\\
+			&= \Delta_k - \alpha a \Delta_k\\
+			&= \Delta_k(1-\alpha a)
+		\end{align*}
+	from which we can easily prove by induction that
+	\[\Delta_k = (1-\alpha a)^k \Delta_0\]
+	Now, we see that the distance from the minimum either increases or decreases monotonically, a consequence of the convexity of the function. For the $\Delta_k$s to decrease, we need $|1-\alpha a|<1$, and thus
+	\[0<\alpha < \frac 2a\]
+	\item From the previous expression, we require that $1-\alpha a = 0$, and thus
+	\[\alpha = \frac 1a\]
+	\item We note that $f'(x)=\sinh x$, and we know that the minimum point is $x_\text{min}=0$. For the optimal $\alpha$, we would require that $1 - \alpha\sinh 1 = 0$, and thus $\alpha = 1/\sinh 1 = \frac{2e}{e^2-1}$. However, we can also compute a more meaningful locally optimal $\alpha$ by expanding $\cosh$ locally. Since
+	\[\cosh x\approx 1 + \frac{x^2}{2} + O(x^4),\]
+	by comparison with the result from part (b), we can read off $a=1$ and thus a locally optimal $\alpha$ is given by $\alpha = 1$.
+	
+	We perform the iteration in Python
+	\begin{lstlisting}[language=Python]
+		x = 1
+		max_iter = 20
+		alpha = 0.1
+		xlst = [x]
+		for i in range(max_iter):
+			x -= alpha*np.sinh(x)
+			xlst.append(x)\end{lstlisting}
+		Performing this for $\alpha=0.1$, 0.5 and the optimal $\alpha$ determined earlier, we find the following convergence plot
+		
+		\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=12cm,
+				height=8cm,
+				xlabel={$x$},
+				ylabel={$y$},
+				grid=major,
+				legend pos=north east
+				]
+				
+				% First line
+				\addplot[
+				color=blue,
+				mark=*,
+				thick
+				]
+				table[
+				col sep=comma,
+				x=xvals,
+				y=0.2
+				]{blatt7_data.csv};
+				
+				\addlegendentry{$\alpha=0.2$}
+				
+				% Second line
+				\addplot[
+				color=red,
+				mark=square*,
+				thick
+				]
+				table[
+				col sep=comma,
+				x=xvals,
+				y=1
+				]{blatt7_data.csv};
+				
+				\addlegendentry{$\alpha=1$}
+				
+								% Second line
+				\addplot[
+				color=black,
+				mark=triangle*,
+				thick
+				]
+				table[
+				col sep=comma,
+				x=xvals,
+				y=optimal
+				]{blatt7_data.csv};
+				\addlegendentry{$\alpha=\frac{2e}{e^2-1}$}
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\item We have
+	\begin{align*}
+		f(\vec{x}) &= \frac 12 (\vec x - \vec a)^T \mathbf{M}^2(\vec x - \vec a)\\
+		&= \frac 12 (\vec x - \vec a)^T(\mathbf{M}^2 \vec x - \mathbf{M}^2\vec a)\\
+		&= \frac 12 \left[(\vec x)^T \mathbf{M}^2 \vec x - (\vec x)^T \mathbf{M}^2\vec a - (\vec a)^T \mathbf{M}^2 \vec x + (\vec a)^T \mathbf{M}^2\vec a\right] \\
+		&= \frac 12 \left[(\vec x)^T \mathbf{M}^2 \vec x - (\vec a)^T \mathbf{M}^2\vec x - (\vec a)^T \mathbf{M}^2 \vec x + (\vec a)^T \mathbf{M}^2\vec a\right] \\
+		&= \frac 12 (\vec x)^T \mathbf{M}^2 \vec x - (\mathbf{M}^2 \vec a)\cdot \vec x + \frac 12 (\vec a)^T \mathbf{M}^2\vec a
+	\end{align*}
+from which we can identify the various parameters
+\begin{align*}
+	\mathbf{A} &= \mathbf{M}^2\\
+	\vec b &= \mathbf{M}^2\vec{a}\\
+	c &= \frac 12 \vec a^T \mathbf{M}^2\vec a
+\end{align*}
+\item We use the original representation of $f(\vec{x})$. The key idea here is that $\mathbf{M}^2$ is positive and symmetric. We can thus diagonalise $\mathbf{M}^2$ as
+\[\mathbf{M}^2 = \sum_i \epsilon_i^2 \vec v_i \vec v_i^T\]
+where the $\epsilon_i$ are the eigenvalues of $\mathbf{M}$. Again, note that since $\mathbf{M}$ is real symmetric, the $\epsilon_i^2$ are all positive. Substituting, we find that
+\begin{align*}
+	f(\vec x) &= \frac 12 \sum_i \epsilon_i^2(\vec x - \vec a)^T \vec v_i \vec v_i^T(\vec x - \vec a) \\
+	&= \frac 12 \sum_i \epsilon_i^2 |\vec v_i^T(\vec x - \vec a)|^2\\
+	&\ge 0
+\end{align*}
+Thus, the range of $f$ is bounded from below. When $\vec x - \vec a = 0$, it is obvious that $f=0$. Thus $f$ has a minimum. Now we show that this minimum is unique. Suppose $\vec x - \vec a \neq 0$. Since the $\vec v_i$s form an orthogonal basis by the spectral theorem, it follows that $\vec v_i^T (\vec x - \vec a)\neq 0$ for at least one $i$, forcing $f$ to be positive. Thus $\vec x=\vec a$ is the only global minimum.
+\item We must first differentiate the function. Summing over repeated indices (so $\mathbf{M}_{ij}x_j$ has an implicit sum over $j$), we have
+	\begin{align*}
+		\partial_k f(\vec x) &= \frac{1}{2}\partial_k \left[ (x_i-a_i)M_{ij}(x_j-a_j) \right]  \\
+				     &= \frac{1}{2}\left\{ [\partial_k (x_i-a_i)]M_{ij}(x_j-a_j)+(x_i-a_i)M_{ij}[\partial_k (x_j-a_j)] \right\}  \\
+				     &= \frac{1}{2}\left[ \delta_{ik}M_{ij}(x_j-a_j) + (x_i-a_i)M_{ij}\delta_{kj} \right]  \\
+				     &= \frac{1}{2}\left[ M_{kj}(x_j-a_j) + (x_i-a_i)M_{ik} \right]  \\
+				     &= \frac{1}{2}\left[ M_{kj}(x_j-a_j) + (x_i-a_i)M_{ki} \right]  \\
+				     &= M_{kj}(x_j-a_j)
+	\end{align*}
+	Combining this for all components $k$, we find that
+	\[
+		\grad{f(\vec x)} = \mathbf{M}^2 (\vec x - \vec a)
+	.\] 
+	To determine the optimal step size, we again consider the vector $\vec\Delta = \vec x - \vec a$. The iteration then turns to
+	\begin{align*}
+		\vec{\Delta}_{k+1} &= \vec x_k - \alpha \grad{f(\vec x_k)} -\vec a\\
+				   &= \vec\Delta_k - \alpha \mathbf{M}^2 \vec \Delta_k \\
+				   &= (\mathbbm{1} - \alpha \mathbf{M}^2)\vec\Delta_k 
+	\end{align*}
+	reminding us of the previous expression in one dimension. However, now, $\mathbf{M}$ is a matrix, and thus it is not possible to tune $\alpha$ such that $\mathbbm{1}-\alpha\mathbf{M}^2=0$ unless $\mathbf{M}$ is a multiple of the identity.
+
+	We will decompose this into a set of 1 dimensional problems by choosing the eigenbasis of $\mathbbm{1}-\alpha \mathbf{M}^2$. We will denote the eigenvalues of $\mathbbm{M}^2$ with maximum and minimum value (again, note that this is possible because $\mathbbm{M}^2$ is positive) as $\lambda_\text{max}$ and $\lambda_\text{min}$.
+
+	For convergence, we require that $|1-\alpha \lambda|<1$ for all eigenvalues $\lambda$. This implies that $0<\lambda <2 / \alpha$. However, we only need to check the maximal eigenvalue. Thus, it converges if and only if
+	 \[
+		 0 < \lambda_\text{max} < \frac{2}{\alpha}
+	.\] 
+	The optimal $\alpha$ would minimise
+	\[
+	\max_i |1 - \alpha \lambda_i|
+	,\]
+	as the maximum value dominates the convergence. This leads to
+	\[
+		\alpha_\text{opt} = \frac{1}{\lambda_\text{min}+\lambda_\text{max}}
+	.\] 
+	Again, it is important to note that $\lambda$ are the eigenvalues of $\mathbf{M}^2$. In terms of the eigenvalues $\beta$ of $\mathbf{M}$, this would be
+	\[
+		\alpha_\text{opt} = \frac{1}{\beta_\text{min}^2+\beta_\text{max}^2}
+	\] 
+	where the subscripts max and min now denote the eigenvalues with the maximal or minimal \emph{absolute value}.\qedhere
+	\end{parts}
+\end{proof}

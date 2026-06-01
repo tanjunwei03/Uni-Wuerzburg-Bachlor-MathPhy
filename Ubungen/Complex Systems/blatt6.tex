@@ -1,4 +1,4 @@
-\begin{Problem}[Exercise 6.1: Spectrum-generating algebra]
+\begin{Problem}[Spectrum-generating algebra]
 Let us consider a three-site symmetric exclusion process $(w_L = w_R = 1)$
 with closed boundaries as shown in the figure. Its Liouvillian is given by
 \[
@@ -94,6 +94,53 @@ in a similar way as one solves the harmonic oscillator in terms of $a,a^\dagger$
 			L^2 = 2 \begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}=2L 
 		\] 
 		as desired.
+		
+		There is no nice way to show the braid group property; hence, we must verify it by direct computation. For variety, since the previous tutorial sheet was done in Mathematica, we do it in Python.
+			
+		\begin{lstlisting}[language=Python]
+	import numpy as np
+	from scipy.linalg import block_diag
+	L = np.array([[1,-1],[-1,1]])
+	L2 = block_diag(0,L,0)
+	X = np.kron(L2, np.eye(2))
+	Y = np.kron(np.eye(2), L2)	\end{lstlisting}
+	Here, we can compute the relevant products using np.matmul. For example, to compute $XYX$, we compute
+	\begin{lstlisting}[language=Python]
+	XYX = np.matmul(X, np.matmul(Y, X))\end{lstlisting}
+To verify that the identities hold, we can subtract the two sides of the equation and verify that they are the same
+\begin{lstlisting}[language=Python]
+	YXY = np.matmul(Y, np.matmul(X, Y))
+	print(np.max(X-XYX))
+	print(np.max(Y-YXY))\end{lstlisting}
+which yields $0$ for both, showing that the braid group identity holds. For completeness, we list the matrix forms of all the tensors
+\begin{align*}
+	X &= \left(
+	\begin{array}{cccccccc}
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0 & -1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 1 & 0 & -1 & 0 & 0 \\
+		0 & 0 & -1 & 0 & 1 & 0 & 0 & 0 \\
+		0 & 0 & 0 & -1 & 0 & 1 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	\end{array}
+	\right) \\
+	Y &= \left(
+	\begin{array}{cccccccc}
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 1 & -1 & 0 & 0 & 0 & 0 & 0 \\
+		0 & -1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 1 & -1 & 0 \\
+		0 & 0 & 0 & 0 & 0 & -1 & 1 & 0 \\
+		0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	\end{array}
+	\right)
+\end{align*}
+from which it is also possible to show by hand that $X=XYX$ and $Y=YXY$.
+		
 	\item Clearly, $X$ and $Y$ are themselves words. We consider now how we can add letters to these single letter words to extend them. We cannot add an $X$ to $X $, because that would then be reducible by idempotence, and similarly we cannot add $Y$ to $Y$. Thus, we append the other letter to them to find that $XY$ and $YX$ are monomials. 
 
 		Now, again, we cannot add an $X$ to the left of $XY$, because it would be reducible by idempotence. We cannot add a $Y$ to its right, because it would then be reducible by the braid group property. The opposite argument holds with appending $Y$s to either side, and the same to $YX$. Thus, we cannot construct any three letter words that are irreducible.
@@ -135,7 +182,7 @@ $YX$ & $2YX$ & $Y$ & $2Y$ & $YX$ \\
 \hline
 \end{tabular}
 \end{center}
-The table is to be read as row $\times$ column.
+The table is to be read as row $\times$ column. For example, $Y\cdot X = YX$, where $\cdot$ is concatenation.
 \item We write a polynomial as, given 4 coefficients $c_1,c_2,c_3,c_4$ in the underlying field,
 	\[
 		P[X,Y](c_1,c_2,c_3,c_4) = c_1 X + c_2 Y + c_3 XY + c_4 YX
@@ -157,13 +204,11 @@ The table is to be read as row $\times$ column.
 0 & 1 & 2 & 0 \\
 1 & 0 & 0 & 2\end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \\ c_3 \\ c_4 \end{pmatrix} 
 	.\] 
-	\end{parts}
-	We diagonalise this matrix, again, using python
+		We diagonalise this matrix, again, using python
 	\begin{lstlisting}[language=Python]
 		import numpy as np
 		L = np.array([[2,0,0,1],[0,2,1,0],[0,1,2,0],[1,0,0,2]])
-		np.linalg.eig(L)
-	\end{lstlisting}
+		np.linalg.eig(L)\end{lstlisting}
 	which yields the eigenpolynomials and their associated eigenvalues $\lambda$:
 	\begin{align*}
 		\lambda=3:&~ X + YX\\
@@ -171,4 +216,47 @@ The table is to be read as row $\times$ column.
 		\lambda=1:&~X - YX\\
 		\lambda=1:&~-Y + XY
 	\end{align*}
+	This is the same as the spectrum given above, with the exception of the 0 mode. This occurs due to the lack of an identity in the algebra, in accordance with the lecture notes. If we append an identity $\mathbbm{1}$ to the algebra, the answer to (c) would be
+	\begin{center}
+		\renewcommand\arraystretch{1.3}
+		\setlength\doublerulesep{0pt}
+		\begin{tabular}{c|c|c|c|c|c|}
+			$\cdot$ & $\mathbbm{1}$ & $X$ & $Y$ & $XY$ & $YX$ \\
+			\hline
+			$\mathbbm{1}$ & $\mathbbm{1}$  & $X$ & $Y$ & $XY$ & $YX$ \\
+			\hline
+			$X$ & $X$& $2X$ & $XY$ & $2XY$ & $X$ \\ 
+			\hline
+			$Y$ & $Y$& $YX$ & $2Y$ & $Y$ & $2YX$ \\ 
+			\hline
+			$XY$ & $XY$& $X$ & $2XY$ & $XY$ & $2X$ \\ 
+			\hline
+			$YX$ & $YX$& $2YX$ & $Y$ & $2Y$ & $YX$ \\ 
+			\hline
+		\end{tabular}
+	\end{center}
+	the answer to (d) would follow from
+	\begin{align*}
+		&~\mathcal{L}(c_0 \mathbbm{1}+ c_1 X + c_2 Y + c_3 XY + c_4 YX)\\
+		=&~c_0\mathcal{L} \mathbbm{1}+\mathcal{L}(c_1 X + c_2 Y + c_3 XY + c_4 YX)\\
+		=&~(2c_1+c_4+c_0)X + (2c_2+c_3+c_0)Y + (c_2+2c_3)XY + (c_1+2c_4)YX
+	\end{align*}
+	leading to a Liouvillian
+	\[
+	\mathcal{L}:\R^5 \to \R^5,\qquad \begin{pmatrix} c_0 \\ c_1 \\ c_2 \\ c_3 \\c_4 \end{pmatrix} \mapsto \begin{pmatrix}
+		0 & 0 & 0 & 0 & 0 \\ 
+		1 & 2 & 0 & 0 & 1\\
+		1 & 0 & 2 & 1 & 0 \\
+		0 & 0 & 1 & 2 & 0 \\
+		0 & 1 & 0 & 0 & 2\end{pmatrix} \begin{pmatrix} c_0 \\ c_1 \\ c_2 \\ c_3 \\ c_4 \end{pmatrix} 
+	.\] 
+	which, when diagonalised with basically the same code
+	\begin{lstlisting}[language=Python]
+		import numpy as np
+		L = np.array([[0,0,0,0,0],[1,2,0,0,1],[1,0,2,1,0],[0,0,1,2,0],[0,1,0,0,2]])
+		np.linalg.eig(L)\end{lstlisting}
+	yields the exact same eigenpolynomials with the addition of a zero vector
+	\[\lambda=0:~\mathbbm{1}- \frac 23(X+Y)+\frac 13(XY+YX)\]
+	As expected, this now has the full spectrum of the Liouvillian with multiplicities lost.\qedhere
+	\end{parts}
 \end{proof}
