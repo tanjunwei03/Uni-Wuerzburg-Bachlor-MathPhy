@@ -40,7 +40,25 @@ An example solution is $b=3$, $w_1=w_2=-2$.
 	w_1+w_2+b &<0\\
 			b &< 0
 \end{align*}
-Now, the last inequality clearly states $b<0$. Comparing the first, second and third equations again, we find that $w_1<0$ and $w_2<0$. However, combining this with the fourth equation, it is now impossible for $w_1+b$ to be positive.\qedhere
+Now, the last inequality clearly states $b<0$. Comparing the first, second and third equations again, we find that $w_1<0$ and $w_2<0$. However, combining this with the fourth equation, it is now impossible for $w_1+b$ to be positive.
+
+The graphical intuition of this is that we are trying to find a line that divides the plane into two halves, with the points $(0,0)$ and $(1,1)$ in one half, and $(1,0)$ and $(0,1)$ in the other. 
+
+\begin{center}
+	\begin{tikzpicture}[scale=2]
+		\draw[thick, -stealth] (0,0) -- (2,0);
+		\draw[thick, -stealth] (0,0) -- (0,2);
+		\draw[thick] (0,0.2) -- (2, 1.1);
+		\fill[red, opacity=0.3] (0,0.2) -- (2,1.1) -- (2,2) -- (0,2) -- cycle;
+		\fill[green,opacity=0.3] (0,0.2) -- (2,1.1) -- (2,0) -- (0,0) -- cycle;
+				\filldraw[fill=red,thick] (0,0) circle (1pt);
+		\filldraw[fill=red,thick] (1,1) circle (1pt);
+		\filldraw[fill=green,thick] (1,0) circle (1pt);
+		\filldraw[fill=green,thick] (0,1) circle (1pt);
+	\end{tikzpicture}
+\end{center}
+We have indirectly proven that this is impossible; this is also possible to prove geometrically using the Jordan Curve Theorem (which would not appeal to a global chart on $\R^2$, and only its topology).
+\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}[Gradient Method --- Steepest Descent]
@@ -63,16 +81,16 @@ Now, the last inequality clearly states $b<0$. Comparing the first, second and t
 		\]
 		starting with $x_0=1$. Choose the optimal $\alpha$ and carry out the computation numerically.
 		
-		\item[(d)] Now let us be more general and consider a function defined on a vector space. To this end, let $M$ be a real symmetric $n\times n$ matrix with nonzero eigenvalues and let the function $f:\mathbb R^n\to\mathbb R$ be given by
+		\item[(d)] Now let us be more general and consider a function defined on a vector space. To this end, let $\mathbf M$ be a real symmetric $n\times n$ matrix with nonzero eigenvalues and let the function $f:\mathbb R^n\to\mathbb R$ be given by
 		\[
-		f(\vec x)=\frac12(\vec x-\vec a)^T M^2 (\vec x-\vec a).
+		f(\vec x)=\frac12(\vec x-\vec a)^T \mathbf{M}^2 (\vec x-\vec a).
 		\]
 		
 		Rewrite $f(\vec x)$ in the form
 		\[
-		f(\vec x)=\frac12 \vec x^T A \vec x+\vec b\cdot \vec x+c
+		f(\vec x)=\frac12 \vec x^T \mathbf{A} \vec x+\vec b\cdot \vec x+c
 		\]
-		and determine $A,\vec b,c$.
+		and determine $\mathbf{A},\vec b,c$.
 		
 		\item[(e)] Prove that $f(\vec x)$ has a unique global minimum at $\vec x=\vec a$.
 		
@@ -200,12 +218,12 @@ where the $\epsilon_i$ are the eigenvalues of $\mathbf{M}$. Again, note that sin
 Thus, the range of $f$ is bounded from below. When $\vec x - \vec a = 0$, it is obvious that $f=0$. Thus $f$ has a minimum. Now we show that this minimum is unique. Suppose $\vec x - \vec a \neq 0$. Since the $\vec v_i$s form an orthogonal basis by the spectral theorem, it follows that $\vec v_i^T (\vec x - \vec a)\neq 0$ for at least one $i$, forcing $f$ to be positive. Thus $\vec x=\vec a$ is the only global minimum.
 \item We must first differentiate the function. Summing over repeated indices (so $\mathbf{M}_{ij}x_j$ has an implicit sum over $j$), we have
 	\begin{align*}
-		\partial_k f(\vec x) &= \frac{1}{2}\partial_k \left[ (x_i-a_i)M_{ij}(x_j-a_j) \right]  \\
-				     &= \frac{1}{2}\left\{ [\partial_k (x_i-a_i)]M_{ij}(x_j-a_j)+(x_i-a_i)M_{ij}[\partial_k (x_j-a_j)] \right\}  \\
-				     &= \frac{1}{2}\left[ \delta_{ik}M_{ij}(x_j-a_j) + (x_i-a_i)M_{ij}\delta_{kj} \right]  \\
-				     &= \frac{1}{2}\left[ M_{kj}(x_j-a_j) + (x_i-a_i)M_{ik} \right]  \\
-				     &= \frac{1}{2}\left[ M_{kj}(x_j-a_j) + (x_i-a_i)M_{ki} \right]  \\
-				     &= M_{kj}(x_j-a_j)
+		\partial_k f(\vec x) &= \frac{1}{2}\partial_k \left[ (x_i-a_i)\textbf{M}^2_{ij}(x_j-a_j) \right]  \\
+				     &= \frac{1}{2}\left\{ [\partial_k (x_i-a_i)]\textbf{M}^2_{ij}(x_j-a_j)+(x_i-a_i)\textbf{M}^2_{ij}[\partial_k (x_j-a_j)] \right\}  \\
+				     &= \frac{1}{2}\left[ \delta_{ik}\textbf{M}^2_{ij}(x_j-a_j) + (x_i-a_i)\textbf{M}^2_{ij}\delta_{kj} \right]  \\
+				     &= \frac{1}{2}\left[ \textbf{M}^2_{kj}(x_j-a_j) + (x_i-a_i)\textbf{M}^2_{ik} \right]  \\
+				     &= \frac{1}{2}\left[ \textbf{M}^2_{kj}(x_j-a_j) + (x_i-a_i)\textbf{M}^2_{ki} \right]  \\
+				     &= \textbf{M}^2_{kj}(x_j-a_j)
 	\end{align*}
 	Combining this for all components $k$, we find that
 	\[
@@ -231,11 +249,11 @@ Thus, the range of $f$ is bounded from below. When $\vec x - \vec a = 0$, it is 
 	,\]
 	as the maximum value dominates the convergence. This leads to
 	\[
-		\alpha_\text{opt} = \frac{1}{\lambda_\text{min}+\lambda_\text{max}}
+		\alpha_\text{opt} = \frac{2}{\lambda_\text{min}+\lambda_\text{max}}
 	.\] 
 	Again, it is important to note that $\lambda$ are the eigenvalues of $\mathbf{M}^2$. In terms of the eigenvalues $\beta$ of $\mathbf{M}$, this would be
 	\[
-		\alpha_\text{opt} = \frac{1}{\beta_\text{min}^2+\beta_\text{max}^2}
+		\alpha_\text{opt} = \frac{2}{\beta_\text{min}^2+\beta_\text{max}^2}
 	\] 
 	where the subscripts max and min now denote the eigenvalues with the maximal or minimal \emph{absolute value}.\qedhere
 	\end{parts}
