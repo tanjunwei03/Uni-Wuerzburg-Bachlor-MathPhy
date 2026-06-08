@@ -1,0 +1,142 @@
+\begin{Problem}[Fireflies]
+Imagine a huge cloud of fireflies (Glühwürmchen), each of them being at a fixed position
+$\vec x$ and randomly emitting light with probability $p(\vec x)$.
+
+You have made a snapshot with your camera, analyzing $N$ of these fireflies in detail.
+Indexing them by $i=1,\ldots,N$, you have produced a training data set $S=\{(\vec x_i,t_i)\},$ where $t_i=1$ means that the firefly emits light and $t_i=0$ means that it does not.
+Hence $p_i=\langle t_i\rangle$ is the probability of the firefly $i$ to emit light. Now you have trained a feed-forward
+network to predict this probability as a function of $\vec x$.
+
+\begin{enumerate}
+\item[(a)] Which activation function do you have to use in the last layer of the network?
+Explain your answer.
+
+\item[(b)] Let $\{q_i\}$ be the probability distribution predicted by the network.
+In machine learning, the cross entropy of the data set $S$ is defined as
+\[
+H_S
+=
+-\frac1N
+\sum_{i=1}^{N}
+\left(
+t_i \log_2(q_i)
++
+(1-t_i)\log_2(1-q_i)
+\right),
+\]
+where $\log_2$ denotes the logarithm to the base $2$ and where the sum runs over all
+training examples. What would be the expectation value of $H= \langle H_S\rangle$
+over infinitely many snapshots?
+
+\item[(c)] Give a reasonable argument why, for a sufficiently large training data set,
+it is reasonable to assume that
+\[
+H_S \approx H .
+\]
+
+\item[(d)] Prove that $H$ is minimal if the predicted probability distribution
+$\{q_i\}$ coincides with the true distribution $\{p_i\}$.
+
+\item[(e)] Let $H_{\min}$ be the minimal value of $H$.
+Show that the difference
+\[
+H-H_{\min}
+\]
+gives the so-called Kullback--Leibler divergence.
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+\begin{parts}
+\item The activation function has to be the softmax function. In the end, we require a normalised probability distribution - that is, the predicted probabilities have to sum up to 1. 
+
+	Additionally, we would probably require differentiability in backpropagation. The standard function that satisfies all these properties is the softmax function.
+\item Over infinitely many large snapshots, since the $q_i$s are constant, we would only average the $t_i$s, as the expression is linear. Thus, we would have
+	\begin{align*}
+		H &= -\frac{1}{N}\sum_{i=1}^{N} (\langle t_i \rangle \log_2 (q_i) + (1-\langle t_i\rangle) \log_2 (1-q_i)) \\
+		&= -\frac{1}{N}\sum_{i=1}^{N} (p_i \log_2 (q_i) + (1-p_i)\log_2(1-q_i)) 
+	\end{align*}
+\item By the central limit theorem, we expect the expectation value of $t_i$ to approach $p_i$, in the sense that the distribution of $\langle t_i\rangle$ should converge in distribution to a delta distribution with support only at $p_i$. Thus, since $H$ is linear in the $t_i$, as the number of samples increases, we expect $H_S\approx H$ (again, where the convergence is in distribution).
+\item We compute the partial derivative of this with respect to each $q_i$:
+	\begin{align*}
+		\pdv{H}{q_i} &= -\frac{1}{N\ln 2} \left[ \frac{p_i}{q_i}- \frac{1-p_i}{1-q_i} \right]=0 \\
+		\frac{p_i}{q_i}&= \frac{1-p_i}{1-q_i} \\
+		p_i (1-q_i) &= q_i (1-p_i)\\
+p_i &=  q_i 
+	\end{align*}
+	To show that it is indeed a minimum, we must compute the second partial derivative
+	\[
+		\pdv[2]{H}{q_i} = \frac{1}{N\ln 2}\left[ \frac{p_i}{q_i^2}+ \frac{1-p_i}{(1-q_i)^2} \right] >0
+	.\] 
+\item We begin by quoting the definition of the Kullback-Leibler divergence on wikipedia as referred to in the lecture notes
+	\[
+		D_\text{KL}(P | | Q)=\sum_{x\in \chi} P(x)\log_2 \frac{P(x)}{Q(x)}
+	\] 
+	where $P(x)$ is the real probability distribution. Since there are only two possible events, the sample space is $\chi = \{0,1\} $ and we have $P(1)=1-P(0) $. Defining $P(1)=p$, this means that the Kullback-Leibler divergence can be written as
+	\[
+		D_\text{KL}(P | |Q) = p \log_q \frac{p}{q} + (1-p) \log_2 \frac{1-p}{1-q}
+	.\] 
+
+	We compute the difference
+	\begin{align*}
+		H-H_\text{min} =&~ -\frac{1}{N}\sum_{i=1}^{N} (p_i \log_2(q_i)+(1-p_i)\log_2 (1-q_i)) \\
+			       &~+ \frac{1}{N}\sum_{i=1}^{N} (p_i \log_2(p_i) + (1-p_i) \log_2 (1-p_i)) \\
+		=&~ \frac{1}{N}\sum_{i=1}^{N} \left[ p_i \log_2 \left( \frac{p_i}{q_i} \right) + (1-p_i) \log_2 \left( \frac{1-p_i}{1-q_i} \right)  \right] 
+	\end{align*}
+	which is the same expression.\qedhere
+\end{parts}	
+\end{proof}
+
+\begin{Problem}[Cross Entropy]
+In the previous exercise, we considered probabilities of binary events
+(light or no light).
+
+Let us now consider $M$ different possible events indexed by
+$\mu=1,\ldots,M$.
+Let us assume that these outcomes occur with the (true) probabilities
+$p_\mu(\vec x)$.
+We would like to construct a network predicting these probabilities.
+
+\begin{enumerate}
+\item[(a)] Let $q_\mu(\vec x)$ be the probabilities predicted by the network.
+Write down the cross entropy loss function.
+
+\item[(b)] When minimizing the cross entropy, which constraint has to be taken
+into account?
+
+\item[(c)] Show that the extremum again takes place at the point where the
+probability distributions $p$ and $q$ coincide.
+Use the method of Lagrange multipliers to take care of the constraint in (b).
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item As given in the lecture notes, the cross entropy is given by
+		\[
+			\mathcal{E} = -\sum_{\mu=1}^{M} p_\mu(\vec{x}) \ln q_\mu(\vec{x}) 
+		.\] 
+	\item The constraint is the normalisation of the probability distribution
+		\[
+			\sum_{\mu=1}^M q_\mu(\vec{x}) = 1
+		.\] 
+	\item The parameters are the $q_\mu$. Thus, we introduce a Lagrange multiplier $\lambda$ and optimise with respect to $\{q_\mu, \lambda\} $ the auxilliary function
+		\[
+			g(\{q_\mu\}, \lambda) = -\sum_{\mu=1}^{M} p_\mu(\vec{x}) \ln q_\mu(\vec{x}) + \lambda \left[\sum_{\mu=1}^{M} q_\mu(\vec{x})-1\right]
+		.\] 
+		As usual, the $\lambda$ derivative yields the constraint equation. The other derivatives yield
+		\[
+			\pdv{q_\mu}g(\{q_\mu\} ,\lambda) = - \frac{p_\mu(\vec{x})}{q_\mu(\vec{x})}+\lambda = 0
+		.\] 
+		This has the easy solution
+		\[
+			q_\mu(\vec{x}) = \frac{1}{\lambda}p_\mu(\vec{x})
+		.\] 
+		Now, since we have the normalisation condition
+		\[
+			\sum_{\mu=1}^{M} p_\mu(\vec{x}) = 1
+		,\] 
+		the only possibility for this to be compatible with the constraint equation for $q_\mu$ is that $\lambda=1$, and thus we have
+		\[
+			q_\mu(\vec{x})=p_\mu(\vec{x}),\qquad \mu\in \{1, \dots, M\}  
+		.\qedhere\] 
+	\end{parts}
+\end{proof}
