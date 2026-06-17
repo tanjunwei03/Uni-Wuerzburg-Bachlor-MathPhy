@@ -1,0 +1,330 @@
+\begin{Problem}[Entropy of the Binomial Distribution]
+The binomial distribution reads
+\[
+P_n(k)=\binom{n}{k}p^k(1-p)^{n-k}.
+\]
+
+\begin{enumerate}
+\item[(a)] Use Mathematica\textsuperscript{\textregistered} or similar software packages to compute the Shannon entropy (measured in bit) for $p=\frac12$ and $n=1,2,4,8$.
+
+\item[(b)] Approximate the factorials by Stirling's formula, and Taylor-expand the resulting approximation in its maximum. Use this result to approximate the binomial distribution for $n\to\infty$ and $p=\frac12$ by a normal distribution.
+
+\item[(c)] Compute the entropy of the approximated distribution, replacing the sum by a continuous integration. How does it grow with \(n\)?
+\end{enumerate}
+\end{Problem}
+
+\begin{proof}
+\begin{parts}
+\item The Shannon entropy is given by
+	\[
+		H(X) = \mathbb{E}[-\log f(X)]=-\int_X f(x)\log f(x)\dd{x}
+	.\] 
+where $X$ is a discrete random variable, and hence the intergal is an integral over the counting measure, i.e. a sum.	
+	\[
+		H(x) = -\sum_{k=0}^{n} \binom{n}{k}p^k(1-p)^{n-k}\log\left[ \binom{n}{k}p^k(1-p)^{n-k} \right] 
+	.\] 
+We evaluate this with the following python code:
+\begin{lstlisting}[language=Python]
+import numpy as np
+from math import comb
+
+
+def binomial_entropy(n, p):
+    ans = 0
+    for k in range(n+1):
+        Pk = comb(n,k) * (p**k) * ((1-p)**(n-k))
+        ans -= Pk * np.log2(Pk)
+    return ans
+\end{lstlisting}
+which yields the results
+\begin{align*}
+	S(1) &= 1 \\
+	S(2) &= \frac{3}{2}\\
+	S(4) &=2.0306390622295662  \\
+	S(8) &=2.544197507453808  \\
+\end{align*}
+\item The binomial coefficient is given by
+	\[
+		\binom{n}{k} = \frac{n!}{k!(n-k)!}
+	.\] 
+	Since we are sending $n$ to infinity, we have to take $k$ and $n-k$ large. This works, since the rest of the distribution will tend to a set of measure zero. Thus, we apply Stirling's formula
+	\[
+	n!\sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^n
+	.\] 
+	Substituting this in, we find that
+	\begin{align*}
+		\binom{n}{k} &= \frac{1}{\sqrt{2\pi} }  \sqrt{\frac{n}{k(n-k)}} \frac{(n / e)^n}{(k / e)^k ((n-k) / e)^{n-k}}\\
+			     &= \frac{1}{\sqrt{2\pi} }\sqrt{\frac{n}{k(n-k)}} \frac{n^n}{k^k (n-k)^{n-k}} 
+	\end{align*}
+	Substituting, we find that
+	\[
+		P_n(k) =  \frac{1}{\sqrt{2\pi} }\sqrt{\frac{n}{k(n-k)}} \frac{n^n}{k^k (n-k)^{n-k}}p^k (1-p)^{n-k} 
+	.\] 
+	In expectation that the distribution will be peaked around $k=np$, we write $k=np + x$. Note that we assume that $np$ is integer. Since we are taking a limit, we can consider the subsequence of $n$ for which $np\in \Z$, which will yield the same limit. Then, the distribution simplifies to
+	\[
+		P_n(k) = \frac{1}{\sqrt{2\pi} } \sqrt{\frac{n}{(np + x)[(1-p)n - x]}}\left( \frac{np}{np + x} \right)^{np+x}\left[ \frac{n(1-p)}{(1-p)n-x} \right]^{(1-p)n-x} 
+	.\] 
+
+	We take the logarithm of the PDF to find
+	\[
+	\ln P_n(k) = \ln n! - \ln k! - \ln (n-k)! + k \ln p + (n-k)\ln (1-p)
+	.\] 
+	Then, we use Stirling's formula
+	\[
+	\ln n! = n \ln n - n
+	\] 
+	to find
+	\begin{align*}
+		\ln P_n(k) =&~ n\ln n - n -k \ln k + k - (n-k)\ln (n-k) + (n-k)\\
+		&~+k\ln p + (n-k)\ln (1-p)\\
+		=&~-n\ln n - k\ln k + (n-k)\ln (n-k) + k \ln p + (n-k)\ln (1-p)
+	\end{align*}
+	We seek to use Laplace's method on this. Thus, we differentiate
+	\[
+		\pdv{k} \ln P_n(k) = -\ln k + \ln (n-k) - \ln (1-p)+\ln p = 0
+	.\] 
+	Expanding this, we find that
+	\[
+	k(1-p) = (n-k)p
+	\] 
+	which after rearranging gives
+	\[
+	k = np
+	\] 
+	as one might expect. Now, we apply Laplace's method, which states that
+	\[
+		\int_a^b e^{Mf(x)}\dd{x} \xrightarrow{M\to\infty}e^{Mf(x_0)}\int_a^b e^{-\frac{1}{2}M|f''(x_0)|(x-x_0)^2}\dd{x} 
+	\] 
+	where $x_0$ is the maximum point of $f$. We thus expand
+	\[
+	\ln P_n(k) \approx \ln P_n(np) - \frac{(k-np)^2}{2np(1-p)}
+	.\] 
+	Exponentiating, we find that
+	\[
+	P_n(k) \propto \exp\left( -\frac{(k-np)^2}{2np(1-p)} \right) 
+	.\] 
+	This is of the form of a normal distribution. Including the normalisation, we would have
+	\[
+	P_n(k) = \frac{1}{\sqrt{2\pi np(1-p)} }\exp\left( -\frac{(k-np)^2}{2np(1-p)} \right) 
+	.\] 
+	In the case $p=\frac{1}{2}$, this is
+	\[
+	P_n(k) = \sqrt{\frac{2}{\pi n}} \exp\left( -\frac{2\left( k-\frac{n}{2} \right)^2}{n} \right) 
+	.\] 
+\item To compute the entropy, we approximate the sum $-\sum P_k \ln P_k$ with an integral  $-\int P_k(x)\ln P_k(x) \dd{x}$. Since the exponential falls very fast, we can assume that the integration bounds extend to infinity on both sides:
+	\[
+		S = \int_{-\infty}^\infty \sqrt{\frac{2}{\pi n}} \exp \left( - \frac{2\left( k-\frac{n}{2} \right)^2}{n} \right)\left[ \frac{1}{2}\ln \frac{2}{\pi n} - \frac{2\left( k - \frac{n}{2} \right)^2}{n} \right]  
+	.\] 
+\end{parts}
+\end{proof}
+\begin{Problem}[Generating Function]
+A function which can be represented as
+\[
+f(x)=\sum_{k=0}^{n} a_k x^k
+\]
+is called the generating function of the coefficients \(a_k\).
+
+\begin{enumerate}
+\item[(a)] Determine the coefficients \(\{a_k\}\) for
+\[
+f(x)=(1+x)^n
+\]
+and for
+\[
+f(x)=\frac{1}{1-bx}.
+\]
+
+\item[(b)] Find the generating function for the coefficients beginning with
+\[
+\{a_k\}
+=
+\{0,1,1,2,3,5,8,13,21,34,55,\ldots\}.
+\]
+
+There is a nice website at oeis.org. Identify the series and search for
+``g.f.'', which stands for ``generating function''.
+Verify your result e.g. with Mathematica\textsuperscript{\textregistered}.
+
+\item[(c)] Let \(f(x)\), \(g(x)\), and \(h(x)=f(x)g(x)\) be generating functions
+with coefficients \(\{a_k\}\), \(\{b_k\}\), and \(\{c_k\}\), respectively.
+Show that the \(c_k\) can be represented as a convolution of the
+\(\{a_k\}\) and \(\{b_k\}\). For simplicity ignore the radius of convergence.
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We simply expand them. By the binomial theorem,
+		\[
+			(1+x)^n = \sum_{k=0}^{n} \binom{n}{k}x^n
+		.\] 
+		These yield the coefficients directly, i.e.
+		\[
+		a_k = \begin{cases}
+			\binom{n}{k} & 0 \le k \le n\\
+			0 &\text{otherwise}
+		\end{cases}
+		.\] 
+		For the function $f(x) = (1-bx)^{-1}$, we apply the binomial series:
+		\[
+			(1+x)^\alpha = \sum_{n=0}^{\infty} \binom{\alpha}{n}x^n
+		.\] 
+		This directly yields
+		\begin{align*}
+			f(x) &= (1-bx)^{-1} \\
+			     &= \sum_{n=0}^{\infty} \binom{-1}{n}(-bx)^n 
+		\end{align*}
+		Now, we note that $\binom{-1}{n}$ is just $(-1)^{n}$, because
+		\[
+			\binom{-1}{n} = \frac{(-1)\overbrace{(-1 - 1)}^{-2}\dots \overbrace{(-1 - (n+1))}^{-n}}{n!}=(-1)^n
+		.\] 
+		Thus, we have
+		\[
+		f(x) = \sum_{n=0}^{\infty} (-1)^n (-1)^n b^n x^n = \sum_{n=0}^{\infty} b^n x^n
+		.\] 
+		Thus, the coefficients are given by
+		\[
+		a_k = b^k
+		.\] 
+	\item This is the Fibonacci sequence. It is given by the recursion relation
+		\[
+			a_{k+2} = a_{k+1} + a_{k},\qquad a_0 = 0,~a_1 = 1
+		.\] 
+		Assuming the relevant series converges, we denote the generating function by $G(x)$. We multiply this series with $x^k$ and sum up from $k=0$ to $\infty$:
+\begin{align*}
+	a_{k+2}x^k &= a_{k+1}x^k + a_k x^k \\
+	\sum_{k=0}^{\infty} a_{k+2}x^k &= \sum_{k=0}^{\infty} a_{k+1}x^k + \sum_{k=0}^{\infty} a_k x^k \\
+	\frac{1}{x^2}\sum_{k=0}^{\infty} a_{k+2}x^{k+2} &= \frac{1}{x}\sum_{k=0}^{\infty} a_{k+1}x^{k+1} + \sum_{k=0}^{\infty} a_k x^k \\
+	\frac{1}{x^2}\left[ G(x) - a_1x - a_0 \right] &= \frac{1}{x}\left[ G(x) - a_0 \right] +G(x) 
+\end{align*}
+Now, we have a simple algebraic equation that we can solve for $G(x)$. We do so easily:
+\begin{align*}
+	G(x) - a_1 x - a_0 &= x[G(x) - a_0] + x^2 G(x) \\
+	G(x)[x^2 + x - 1] &= - a_1x + a_0x + a_0 \\
+	G(x) &= \frac{-a_1 x + a_0 x + a_0}{x^2+x-1}\\
+	&= \frac{x}{1-x-x^2} 
+\end{align*}
+\item We have
+	\[
+		h(x) = f(x)g(x) = \left( \sum_{n=0}^{\infty} a_n x^n \right) \left( \sum_{m=0}^{\infty} b_m x^m \right) = \sum_{n=0}^{\infty} \sum_{m=0}^{\infty} a_n b_m x^{n+m}
+	.\] 
+	We focus on a the coefficient of $x^k$. To compute this coefficient, we set $m+n=k$. Then, we have $m=k-n$ and
+	\[
+		c_k x^k = \sum_{n=0}^{k} a_n b_{k-n}x^k
+	\] 
+	where we have implicitly defined $b_{k}=0$ for $k<0$. Comparing the coefficients, we find that
+	\[
+		c_k = \sum_{n=0}^k a_n b_{k-n}
+	.\] 
+	This is the desired convolution.\qedhere
+	\end{parts}
+\end{proof}
+\begin{Problem}[Entropy and Lagrange Multipliers]
+Consider a Markov jump process, where each configuration
+\(c\in\Omega\) is associated with a certain value
+\(\chi_c\in\mathbb{R}\) (for example, the energy).
+
+Use the method of Lagrange multipliers to maximize the entropy
+\[
+H=-\sum_{c\in\Omega} p_c \ln p_c
+\]
+under the constraint that the average value
+\[
+\bar{\chi}
+=
+\sum_c p_c \chi_c
+\]
+has a given positive value.
+
+Make sure that your result (the probability distribution \(p_c\))
+is properly normalized.
+\end{Problem}
+\begin{proof}
+	We introduce a Lagrange multiplier $\lambda$ for the average value and another $\zeta$ for the normalisation. We thus have to minimise
+	\[
+		\mathcal{L}=- \sum_{c\in\Omega} [p_c \ln p_c +\lambda p_c \chi_c + \zeta p_c]
+	\] 
+	with respect to the probabilities $p_c$, along with the constraint equations
+	\begin{align*}
+		\overline{\chi}&= \sum_{c\in\Omega} p_c \chi_c \\
+		1 &= \sum_{c\in \Omega} p_c 
+	\end{align*}
+	Differentiating with respect to an arbitrary $c$ and demanding that this partial derivative equal to 0, we find the equation
+	\[
+	0 = \ln p_c + 1 + \lambda \chi_c + \zeta
+	.\] 
+	This leads to the expression
+	\[
+	p_c = \exp(-1 - \zeta - \lambda\chi_c)
+	.\] 
+	Substituting this into the constraints, we find that
+	\begin{align*}
+		\overline{\chi} &= \exp(-1-\zeta)\sum_{c\in \Omega}\chi_c\exp(-\lambda\chi_c) \\
+		1 &= \exp(-1-\zeta) \sum_{c\in\Omega} \exp(-\lambda\chi_c) 
+	\end{align*}
+	The second constraint yields
+	\[
+		\exp(-1-\zeta) = \frac{1}{\sum_{c\in\Omega} \exp(-\lambda\chi_c)}
+	.\] 
+	Substituting this into the first equation, we find that
+	\[
+		\overline{\chi}= \frac{\sum_{c\in \Omega}\chi_c \exp(-\lambda\chi_c)}{\sum_{c\in \Omega}\exp(-\lambda \chi_c)}
+	.\] 
+	This implicitly defines the parameter $\lambda$; the probability is then given through
+	\[
+		p_c = \frac{\exp(-\lambda\chi_c)}{\sum_{c\in \Omega} \exp(-\lambda \chi_c)}
+	.\] 
+	This is the canonical ensemble at inverse temperature $\lambda$.
+\end{proof}
+\begin{Problem}[Differential Entropy]
+Let \(p(x)\) be a probability density normalized by $\int_{-\infty}^{+\infty} p(x)\,dx =1$. Then the corresponding differential entropy is defined by
+\[
+H_c
+=
+-\int_{-\infty}^{+\infty}
+p(x)\ln p(x)\,dx.
+\]
+
+Consider a discretization of the \(x\)-axis into equidistant
+intervals of size \(\Delta x\). Let
+\[
+p_j
+=
+\frac{p(j\Delta x)\Delta x}{\mathcal N}
+\]
+be a discrete probability distribution approximating \(p(x)\),
+where
+\[
+\mathcal N
+=
+\sum_{j=-\infty}^{+\infty}
+p(j\Delta x)\Delta x
+\]
+is the normalization.
+
+\begin{enumerate}
+\item[(a)] Show that in the limit \(\Delta x\to0\), the entropy
+\(H_c\) differs from the usual discrete Shannon entropy
+\[
+H
+=
+-\sum_j p_j\ln p_j
+\]
+only by an offset
+\[
+\Delta H:=H-H_c.
+\]
+
+\item[(b)] Compute this offset to leading order in \(\Delta x\).
+
+\item[(c)] Explain your findings qualitatively.
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The discrete Shannon entropy is given by
+		\begin{align*}
+			H &= -\sum_j p_j \ln p_j \\
+			&= -\sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}}\ln \frac{p(j\Delta x)\Delta x}{\mathcal{N}} \\
+		\end{align*}
+	\end{parts}
+\end{proof}
