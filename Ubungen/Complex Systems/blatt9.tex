@@ -17,9 +17,9 @@ P_n(k)=\binom{n}{k}p^k(1-p)^{n-k}.
 \begin{parts}
 \item The Shannon entropy is given by
 	\[
-		H(X) = \mathbb{E}[-\log f(X)]=-\int_X f(x)\log f(x)\dd{x}
+		H(X) = \mathbb{E}[-\log f(X)]=-\sum_x f(x)\log f(x)
 	.\] 
-where $X$ is a discrete random variable, and hence the intergal is an integral over the counting measure, i.e. a sum.	
+where $X$ is a discrete random variable.
 	\[
 		H(x) = -\sum_{k=0}^{n} \binom{n}{k}p^k(1-p)^{n-k}\log\left[ \binom{n}{k}p^k(1-p)^{n-k} \right] 
 	.\] 
@@ -41,30 +41,12 @@ which yields the results
 	S(1) &= 1 \\
 	S(2) &= \frac{3}{2}\\
 	S(4) &=2.0306390622295662  \\
-	S(8) &=2.544197507453808  \\
+	S(8) &=2.544197507453808  
 \end{align*}
 \item The binomial coefficient is given by
 	\[
 		\binom{n}{k} = \frac{n!}{k!(n-k)!}
 	.\] 
-	Since we are sending $n$ to infinity, we have to take $k$ and $n-k$ large. This works, since the rest of the distribution will tend to a set of measure zero. Thus, we apply Stirling's formula
-	\[
-	n!\sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^n
-	.\] 
-	Substituting this in, we find that
-	\begin{align*}
-		\binom{n}{k} &= \frac{1}{\sqrt{2\pi} }  \sqrt{\frac{n}{k(n-k)}} \frac{(n / e)^n}{(k / e)^k ((n-k) / e)^{n-k}}\\
-			     &= \frac{1}{\sqrt{2\pi} }\sqrt{\frac{n}{k(n-k)}} \frac{n^n}{k^k (n-k)^{n-k}} 
-	\end{align*}
-	Substituting, we find that
-	\[
-		P_n(k) =  \frac{1}{\sqrt{2\pi} }\sqrt{\frac{n}{k(n-k)}} \frac{n^n}{k^k (n-k)^{n-k}}p^k (1-p)^{n-k} 
-	.\] 
-	In expectation that the distribution will be peaked around $k=np$, we write $k=np + x$. Note that we assume that $np$ is integer. Since we are taking a limit, we can consider the subsequence of $n$ for which $np\in \Z$, which will yield the same limit. Then, the distribution simplifies to
-	\[
-		P_n(k) = \frac{1}{\sqrt{2\pi} } \sqrt{\frac{n}{(np + x)[(1-p)n - x]}}\left( \frac{np}{np + x} \right)^{np+x}\left[ \frac{n(1-p)}{(1-p)n-x} \right]^{(1-p)n-x} 
-	.\] 
-
 	We take the logarithm of the PDF to find
 	\[
 	\ln P_n(k) = \ln n! - \ln k! - \ln (n-k)! + k \ln p + (n-k)\ln (1-p)
@@ -111,10 +93,70 @@ which yields the results
 	\[
 	P_n(k) = \sqrt{\frac{2}{\pi n}} \exp\left( -\frac{2\left( k-\frac{n}{2} \right)^2}{n} \right) 
 	.\] 
-\item To compute the entropy, we approximate the sum $-\sum P_k \ln P_k$ with an integral  $-\int P_k(x)\ln P_k(x) \dd{x}$. Since the exponential falls very fast, we can assume that the integration bounds extend to infinity on both sides:
+\item To compute the entropy, we approximate the sum $-\sum P_k \log_2 P_k$ with an integral  $-\int P_k(x)\log_2 P_k(x) \dd{x}$. Since the exponential falls very fast, we can assume that the integration bounds extend to infinity on both sides. Additionally, for brevity, instead of computing this for $\log_2 P_k$, we will instead use $\ln P_k = \log_2 P_k / \log_2 e$. We will multiply this in the end to get the desired answer.
 	\[
 		S = \int_{-\infty}^\infty \sqrt{\frac{2}{\pi n}} \exp \left( - \frac{2\left( k-\frac{n}{2} \right)^2}{n} \right)\left[ \frac{1}{2}\ln \frac{2}{\pi n} - \frac{2\left( k - \frac{n}{2} \right)^2}{n} \right]  
 	.\] 
+	This is a simple gaussian integral, which can be evaluted easily by hand. We do it using Mathematica to find
+	\begin{mmaCell}{Input}
+Integrate[Sqrt[2/(Pi n)] Exp[-2 (k - n/2)^2 / n] (1/2 Log[2/(Pi n)] - 2 (k-n/2)^2 / n), \{k, -Infinity, Infinity\}]
+	\end{mmaCell}
+	\begin{mmaCell}{Output}
+1/2 (-1 + Log[2/(n Pi)])
+	\end{mmaCell}
+	or, better formatted,
+	\begin{align*}
+		S &= -\frac{1}{2}\left[ -1 + \ln \frac{2}{n\pi} \right]  \\
+		&= -\frac{1}{2}\left[ \ln \frac{2}{n\pi}-\ln e \right]  \\
+		&= \frac{1}{2}\ln \frac{n\pi e}{2} 
+	\end{align*}
+	To get the expressin in bits, we have to multiply by $\log_2 e$, or divide by $\ln 2$, to get
+	\[
+	S = \frac{1}{2}\log_2 \frac{n\pi e}{2}
+	.\] 
+	The entropy grows with $\log_2 n$. 
+		\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=12cm,
+				height=8cm,
+				xlabel={$n$},
+				grid=major,
+				legend pos=south east
+				]
+				
+				% First line
+				\addplot[
+				color=blue,
+				mark=*,
+				thick
+				]
+				table[
+				col sep=comma,
+				x=xvals,
+				y=data, only marks
+				]{blatt9_sim.csv};
+				
+				\addlegendentry{Exact entropy}
+				
+				% Second line
+				\addplot[
+				color=red,
+				thick
+				]
+				table[
+				col sep=comma,
+				x=xvals,
+				y=data
+				]{blatt9_fit.csv};
+				
+				\addlegendentry{$\frac{1}{2}\log_2 \frac{n\pi e}{2}$}
+				
+								% Second line
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	As can be seen in the figure above, the expression converges to the exact entropy as $n\to\infty$, as we might expect.\qedhere
 \end{parts}
 \end{proof}
 \begin{Problem}[Generating Function]
@@ -325,6 +367,23 @@ only by an offset
 		\begin{align*}
 			H &= -\sum_j p_j \ln p_j \\
 			&= -\sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}}\ln \frac{p(j\Delta x)\Delta x}{\mathcal{N}} \\
+			&= -\sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}} \ln p(j\Delta x) - \sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}}\ln \frac{\Delta x}{\mathcal{N}} \\
+			&= -\sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}} \ln p(j\Delta x) - \ln \frac{\Delta x}{\mathcal{N}} 
 		\end{align*}
+		In the limit of $\Delta x\to 0$, we expect sums to approach a Riemann integral in the normal (net convergence) sense. As a first consequence, this means that
+		\[
+			\mathcal{N}=\sum_{j=-\infty}^{\infty} p(j\Delta x)\Delta x \xrightarrow{\Delta x \to 0}\int_{-\infty}^\infty p(x)\dd{x} = 1 
+		.\] 
+		We will thus have
+		\[
+			-\sum_j \frac{p(j\Delta x)\Delta x}{\mathcal{N}}\ln p(j\Delta x)\xrightarrow{\Delta x \to 0}-\int_{-\infty}^\infty p(x)\ln p(x)\dd{x}=H_c 
+		.\] 
+		This means that
+		\[
+			H\xrightarrow{\Delta x \to 0}H_c - \ln \Delta x
+		\] 
+		from which we identify $\Delta H = -\ln \Delta x$ as desired.
+	\item The leading order expression remains $\Delta H = -\ln \Delta x$. It diverges, as $\Delta x \to 0$.
+	\item As the bins become smaller, the number of possible outcomes increase. Thus, we require more information to represent this distribution, resulting in a divergent entropy. In this case, only entropy differences or relative entropies are physical.\qedhere
 	\end{parts}
 \end{proof}

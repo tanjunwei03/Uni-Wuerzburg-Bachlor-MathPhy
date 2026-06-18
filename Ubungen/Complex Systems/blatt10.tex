@@ -1,0 +1,198 @@
+\begin{Problem}[Density Matrix of a Single Qubit]
+For a given ensemble of qubits the observables
+\[
+A=
+\begin{pmatrix}
+3 & 0\\
+0 & 1
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+1 & 1\\
+1 & -1
+\end{pmatrix},
+\qquad
+C=
+\begin{pmatrix}
+0 & 2i\\
+-2i & 0
+\end{pmatrix},
+\]
+have been measured many times, giving the expectation values
+\[
+\langle A\rangle = 2,
+\qquad
+\langle B\rangle = \frac12,
+\qquad
+\langle C\rangle = 0.
+\]
+
+\begin{enumerate}
+\item[(a)] Determine the density matrix of the ensemble.
+\item[(b)] Is the ensemble pure or mixed?
+\item[(c)] If we measure $\sigma^z$, what is the probability to get $+1$?
+\item[(d)] Determine the expectation values
+\[
+\langle \sigma^x\rangle,\qquad
+\langle \sigma^y\rangle,\qquad
+\langle \sigma^z\rangle.
+\]
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item Given a density matrix $\rho$, the expectation value of an operator $\mathbf{A}$ is given by $\langle \mathbf{A}\rangle = \Tr(\rho \mathbf{A})$. We implement the trace 1 and hermiticity conditions by defining our density matrix using
+		\[
+			\rho = \begin{pmatrix} a & b \\ b^* & 1-a \end{pmatrix} 
+		.\] 
+		Substituting this in, we find
+		\begin{align*}
+			\langle \mathbf{A}\rangle &= 1+2a = 2 \\
+			\langle \mathbf{B}\rangle &= -1+2a+b+b^* = \frac{1}{2} \\
+			\langle \mathbf{C}\rangle &= -2ib + 2ib^*=0 
+		\end{align*}
+		From the third equation, we see that $b=b^*$, i.e. $b$ is real. From the first equation, we can see easily that $a = \frac{1}{2}$. Substituting this in to the second equation, we find that $2b = \frac{1}{2}$, or $b = \frac{1}{4}$.
+	\item We do this using the trace criterion: We have
+		\[
+			\rho^2 = \begin{pmatrix} \frac{5}{16} & \frac{1}{4} \\ \frac{1}{4} & \frac{5}{16} \end{pmatrix} 
+		.\] 
+		Thus, the trace is
+		\[
+		\Tr(\rho^2) = \frac{10}{16}\neq 1
+		.\] 
+		The ensemble is mixed.
+	\item ..
+	\item We compute
+		\[
+			\rho \sigma^z = \begin{pmatrix} \frac{1}{2} & -\frac{1}{4} \\ \frac{1}{4} & -\frac{1}{2} \end{pmatrix} 
+		.\] 
+		Thus, we have
+		\[
+		\langle \rho\sigma^z\rangle = 0
+		.\] 
+		Similarly, we have
+		\[
+			\rho\sigma^x = \begin{pmatrix} \frac{1}{4} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{4} \end{pmatrix} 
+		\]
+		with
+		\[
+			\langle \rho \sigma^x\rangle = \frac{1}{2}
+		\]
+		and
+		\[
+			\rho \sigma^y = \begin{pmatrix} \frac{i}{4} & -\frac{i}{2} \\ \frac{i}{2} & -\frac{i}{4} \end{pmatrix} 
+		\]
+		with
+		\[
+		\langle \rho\sigma^y \rangle = 0
+		.\] 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[Criterion for the Equivalence of Ensembles]
+Consider a statistical ensemble $\{|\psi_i\rangle,p_i\}$ with the associated
+density matrix
+\[
+\rho=\sum_{i=1}^{N} p_i |\psi_i\rangle\langle\psi_i|.
+\]
+
+Here $N$ is arbitrary (smaller or larger than the dimension of the Hilbert
+space) and the vectors $|\psi_i\rangle$ are pairwise different and normalized
+but not necessarily orthogonal. Moreover, let
+\[
+\rho=\sum_{k=1}^{K}\lambda_k |k\rangle\langle k|
+\]
+be the spectral decomposition of $\rho$ with orthonormal eigenvectors $|k\rangle$
+and eigenvalues $\lambda_k$.
+
+The aim of this exercise is to work out an equivalence theorem for different
+ensembles with the same density matrix.
+
+\begin{enumerate}
+\item[(a)] Show that every vector $|\psi_i\rangle$ can be written as a linear
+combination of the eigenvectors $|k\rangle$, i.e.
+\[
+|\psi_i\rangle\in \mathrm{span}\{|k\rangle\}.
+\]
+
+\item[(b)] Use (a) to prove that every $|\psi_i\rangle$ can be written as
+\[
+\sqrt{p_i}\,|\psi_i\rangle
+=
+\sum_{k=1}^{K}
+c_{ik}\sqrt{\lambda_k}\,|k\rangle,
+\]
+with coefficients $c_{ik}$ obeying
+\[
+\sum_{i=1}^{N} c_{ik}c_{il}^{*}
+=
+\delta_{kl},
+\qquad
+k,l=1,\dots,K.
+\]
+
+\item[(c)] Because of (a) we know that $N\ge K$. For $N=K$ the result of (b)
+would imply that the coefficient matrix $c_{ik}$ is unitary. Show that for
+$N>K$ the rectangular matrix $c_{ik}$ can be extended to a square unitary
+matrix such that the relation in (b) still holds.
+
+\item[(d)] So far we have proven that if
+\[
+\sum_{i=1}^{N} p_i |\psi_i\rangle\langle\psi_i|
+=
+\sum_{k=1}^{K}\lambda_k |k\rangle\langle k|,
+\]
+then there exists a unitary $N\times N$ matrix $c_{ik}$ such that
+\[
+\sqrt{p_i}\,|\psi_i\rangle
+=
+\sum_{k=1}^{N}
+c_{ik}\sqrt{\lambda_k}\,|k\rangle.
+\]
+Prove the converse statement.
+
+\item[(e)] Use (a)--(d) to show that
+\[
+p_i=\sum_{k=1}^{N} T_{ik}\lambda_k,
+\]
+(or in vector form $\vec p=T\vec\lambda$),
+where $T$ is a doubly-stochastic matrix, i.e. all matrix entries are real
+and nonnegative and
+\[
+\sum_{i=1}^{N}T_{ik}
+=
+\sum_{k=1}^{N}T_{ik}
+=
+1.
+\]
+
+\item[(f)] Use e.g. Mathematica to work out the explicit example
+\[
+p_1=p_2=\frac12,
+\qquad
+|\psi_1\rangle
+=
+\frac1{\sqrt2}
+\begin{pmatrix}
+1\\
+1
+\end{pmatrix},
+\qquad
+|\psi_2\rangle
+=
+\begin{pmatrix}
+0\\
+1
+\end{pmatrix},
+\]
+with $N=K=2$, and determine
+$\lambda_{1,2}$, $|\phi_{1,2}\rangle$, $c_{ij}$, and $T_{ij}$.
+Check the properties derived in (e).
+\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item This follows from the spectral theorem; since $\rho$ is Hermitian, the eigenvectors $\ket{k}$ form an orthogonal decomposition of the Hilbert space.
+	\end{parts}
+\end{proof}
