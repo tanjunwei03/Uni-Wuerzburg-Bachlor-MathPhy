@@ -192,7 +192,147 @@ Check the properties derived in (e).
 \end{enumerate}
 \end{Problem}
 \begin{proof}
+	\textbf{Brief note on interpretation:} In the sum
+	\[
+		\rho = \sum_{k=1}^K \lambda_k \dyad{k}{k}
+	\]
+	the sum only contains the eigenvectors with \textbf{nonzero} eigenvalue. This is in contrast to the standard way the spectral theorem is written including the kernel. Otherwise, (a) would follow trivially from the spectral theorem, because the vectors $\ket{k}$ would span the space, and the opening statement in (c) would be false, because $K$ would be the dimension of the Hilbert space, and it is not necessarily true that $N\ge \dim \mathcal{H}$.
 	\begin{parts}
-	\item This follows from the spectral theorem; since $\rho$ is Hermitian, the eigenvectors $\ket{k}$ form an orthogonal decomposition of the Hilbert space.
+	\item As from the comment, in this problem we basically seek to show that $\ket{\psi_i}$ is spanned by the eigenvectors with nonzero eigenvalue. However, we also know that the eigenvectors with nonzero eigenvalue span the kernel. Thus, we decompose
+		\[
+			\mathcal{H }= \ker \rho \oplus \text{im } \rho = \ker\rho \oplus (\ker\rho)^\perp
+		.\] 
+		We seek to show that $\ket{\psi_i} \in \text{im }\rho$. Since this is an orthogonal decomposition, it suffices to show that $\braket{\phi}{\psi_i}=0$ for all $\ket{\phi}\in \ker \rho$, i.e. $\ket{\psi_i}$ is orthogonal to $\ker\rho$.
+
+		Consider $\ket{\phi}\in \ker\rho$. Then we have
+		\[
+			0 = \mel{\phi}{\rho}{\phi} = \sum_{i=1}^{N} p_i \braket{\phi}{\psi_i}\braket{\psi_i}{\phi} = \sum_{i=1}^N p_i |\braket{\phi}{\psi_i}|^2
+		.\] 
+		Since the terms in parentheses are all positive, it follows that $\braket{\phi}{\psi_i}=0$ for all $\ket{\psi_i}$. Since $\ket{\phi}$ was arbitrary, the conclusion follows.
+	\item Since $\ket{\psi_i}$ is in the span of $\ket{k}$, by definition
+		\[
+			\ket{\psi_i} = \sum_{k=1}^n a_{ik}\ket{k}
+		.\] 
+		By redefining the coefficients $a_{ik} = c_{ik} \sqrt{\lambda_k}  / \sqrt{p_i} $, we can write
+		\[
+			\sqrt{p_i} \ket{\psi_i}  = \sum_{k=1}^K c_{ik} \sqrt{\lambda_k} \ket{k}
+		.\] 
+		Note that we require that $p_i \neq 0$, but this is given. Thus we need to solve the second part. First, we take the conjugate to obtain
+		\[
+			\sqrt{p_i} \bra{\psi_i} = \sum_{k=1}^K c_{ik}^* \sqrt{\lambda_k} \bra{k}
+		.\] 
+		We substitute these in the expression from $\rho$ to get
+		\begin{align*}
+			\rho &= \sum_{i=1}^N p_i \dyad{\psi_i}{\psi_i} \\
+			     &= \sum_{i=1}^N p_i \left[ \frac{1}{\sqrt{p_i} }\sum_{k=1}^K c_{ik}\sqrt{\lambda_k} \ket{k} \right]\left[ \frac{1}{\sqrt{p_i} }\sum_{l=1}^K c_{il}^* \sqrt{\lambda_l}\bra{l}  \right]   \\
+			     &= \sum_{i=1}^N\sum_{k=1}^K \sum_{l=1}^K c_{ik}c_{il}^* \sqrt{\lambda_k\lambda_l} \dyad{k}{l} 
+		\end{align*}
+		Now, since the $\ket{k}$ are orthogonal by the spectral theorem, we are allowed to compare coefficients. The off diagonal terms must vanish and we have
+		\[
+			\sum_{i=1}^N c_{ik}c_{il}^* = \delta_{kl}
+		\]
+		to obtain the density matrix.
+	\item Note on the indices in $c_{ik}$: $i$ goes from 1 to $N$ and $k$ goes from 1 to $K<N$. Thus, for each $k$, we have a vector in $\C^N$. The $c$s are orthonormal for different $i$. By the basis extension theorem, we can extend this basis to an orthonormal basis of $\C^N$, i.e. pick $c_{ik}$ for $k>K$ such that $c_{ik}$s are orthonormal.
+	\item We simply substitute the second equation into the first
+		\begin{align*}
+			\sum_{i=1}^N p_i \dyad{\psi_i}{\psi_i} &= \sum_{i=1}^N (\sqrt{p_i} \ket{\psi_i})(\bra{\psi_i} \sqrt{p_i} ) \\
+							       &= \sum_{i=1}^N \left[ \sum_{k=1}^N c_{ik}\sqrt{\lambda_k} \ket{k} \right]\left[ \sum_{l=1}^N c_{il}^* \sqrt{\lambda_l} \bra{l} \right]   \\
+							       &= \sum_{k=1}^N \sum_{l=1}^N \underbrace{\left[ \sum_{i=1}^N c_{ik}c_{il}^* \right]}_{\delta_{kl}} \sqrt{\lambda_k\lambda_l} \dyad{k}{l} \\
+							       &= \sum_{k=1}^N \lambda_k \dyad{k}{k} 
+		\end{align*}
+	\item We take norms of the equation
+		\[
+			\sqrt{p_i} \ket{\psi_i} = \sum_{k=1}^n c_{ik}\sqrt{\lambda_k}\ket{k} 
+		\]
+		to get
+		\[
+			p_i = \sum_{k=1}^N |c_{ik}|^2 \lambda_k
+		.\] 
+		By inspection, we find
+		\[
+			T_{ik} = |c_{ik}|^2
+		.\] 
+		Clearly, all matrix entries are real and nonnegative. Now, we evaluate the sums
+		\begin{align*}
+			\sum_{k=1}^N T_{ik} &= \sum_{k=1}^N |c_{ik}|^2 \\
+					    &= \sum_{k=1}^N c_{ik}c_{ik}^* \\
+					    &= \sum_{k=1}^N c^\dagger_{ki}c_{ik} \\
+					    &= \delta_{kk} = 1 
+		\end{align*}
+		The other sum follows basically identically:
+		\begin{align*}
+			\sum_{i=1}^N T_{ik} &= \sum_{i=1}^N |c_{ik}|^2 \\
+					    &= \sum_{i=1}^N c_{ik}c_{ik}^* \\
+					    &= \sum_{i=1}^N c^\dagger_{ki}c_{ik} \\
+					    &= \delta_{kk}=1 
+		\end{align*}
+	\item We compute these in Mathematica. First, we directly compute
+		\begin{mmaCell}{Input}
+p1 = 1/2;
+\end{mmaCell}
+\begin{mmaCell}{Input}
+p2 = 1/2;
+\end{mmaCell}
+\begin{mmaCell}{Input}
+\mmaUnd{\(\psi1\)} = \{1, 1\}/\mmaSqrt{2};
+\end{mmaCell}
+\begin{mmaCell}{Input}
+\mmaUnd{\(\psi2\)} = \{0, 1\};
+\end{mmaCell}
+\begin{mmaCell}{Input}
+\mmaUnd{\(\rho\)} = \mmaUnd{p1} KroneckerProduct[\mmaUnd{\(\psi1\)}, \mmaUnd{\(\psi1\)}] + \mmaUnd{p2} KroneckerProduct[\mmaUnd{\(\psi2\)}, \mmaUnd{\(\psi2\)}]
+
+		\end{mmaCell}
+		\begin{mmaCell}{Output}
+\{\{1/4, 1/4\}, \{1/4, 3/4\}\}
+		\end{mmaCell}
+to find
+		\begin{align*}
+			\rho &= p_1 \dyad{\psi_1}{\psi_1} + p_2 \dyad{\psi_2}{\psi_2} \\
+			     &= \begin{pmatrix} \frac{1}{4} & \frac{1}{4}\\ \frac{1}{4 }& \frac{3}{4} \end{pmatrix} 
+		\end{align*}
+		Then, we compute the eigenvalues and eigenvectors using
+\begin{mmaCell}{Input}
+\{\mmaUnd{eigvals}, \mmaUnd{eigvecs}\} = Eigensystem[\mmaUnd{\(\rho\)}]
+\end{mmaCell}
+\begin{mmaCell}{Output}
+\{\{1/4 (2 + Sqrt[2]), 1/4 (2 - Sqrt[2])\}, \{\{-1 + Sqrt[2], 1\}, \{-1 - Sqrt[2], 1\}\}\} 
+\end{mmaCell}
+		leading to eigenvalues
+		\[
+			\lambda_{\pm} = \frac{1}{4}(2\pm \sqrt{2} )
+		\]
+		and associated eigenvectors
+		\[
+			\ket{\phi_{\pm}} = \begin{pmatrix} -1 \mp \sqrt{2}  \\ 1 \end{pmatrix} 
+		.\] 
+		Although these vectors are orthogonal, they are not normalised. Thus, we divide through
+		\begin{mmaCell}{Input}
+eivecsnorm = #/Norm[#] & /@ eigvecs
+		\end{mmaCell}
+\begin{mmaCell}{Output}
+\{\{(-1 + Sqrt[2])/Sqrt[1 + (-1 + Sqrt[2])^2], 1/Sqrt[1 + (-1 + Sqrt[2])^2]\}, \{(-1 - Sqrt[2])/Sqrt[1 + (1 + Sqrt[2])^2], 1/Sqrt[1 + (1 + Sqrt[2])^2]\}\}
+\end{mmaCell}
+
+
+		To compute the $c_{ik}$, we note that the $\ket{k}$ form an orthonormal basis by the spectral theorem. Thus, we have
+		\[
+			\sqrt{p_i}\braket{l}{\psi_i} = c_{il}\sqrt{\lambda_l} 
+		.\] 
+		Thus, we compute
+		\[
+			c_{ik} = \frac{\sqrt{p_i} \braket{k}{\psi_i}}{\sqrt{\lambda_k} }
+		.\] 
+		Defining $\ket{\phi_1} = \ket{\phi_+} = \ket{1}$ and $\ket{\phi_2}=\ket{\phi_-}=\ket{2}$, we thus evaluate these using
+		\begin{mmaCell}{Input}
+c = FullSimplify[Table[(Sqrt[p[[i]]] Conjugate[eivecsnorm[[k]]] . \mmaUnd{\(\psi\)}[[i]])/Sqrt[eigvals[[k]]], \{i, 1, 2\}, \{k, 1, 2\}]]
+		\end{mmaCell}
+		\begin{mmaCell}{Output}
+\{\{1/Sqrt[2], - 1/Sqrt[2]\}, \{1/Sqrt[2], 1/Sqrt[2]\}\}
+		\end{mmaCell}
+The $T$ matrix then follows easily, from $T = |c|^2$ elementwise as
+\[
+	T = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
+.\] 
 	\end{parts}
 \end{proof}

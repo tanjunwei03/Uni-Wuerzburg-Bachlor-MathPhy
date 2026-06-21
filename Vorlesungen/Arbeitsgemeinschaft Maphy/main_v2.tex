@@ -103,7 +103,6 @@
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
 	\date{\today}
 	\maketitle
-	
 	\begin{tcolorbox}
 		In the 1960s Friedrichs met Heisenberg, and used the occasion to express to him the deep gratitude of the community of mathematicians for having created quantum mechanics, which gave birth to the beautiful theory of operators in Hilbert space. Heisenberg allowed that this was so; Friedrichs then added that the mathematicians have, in some measure, returned the favor. Heisenberg looked noncommittal, so Friedrichs pointed out that it was a mathematician, von Neumann, who clarified the difference between a self-adjoint operator and one that is merely symmetric. ``What's the difference,'' said Heisenberg. \cite{lax2014functional}
 	\end{tcolorbox}
@@ -226,7 +225,7 @@ In addit.ion, the interactions will also often be \emph{finite range}, meaning t
 \]
 only has finitely many terms where $H_\Lambda$ intersects $A$.\note{ Probably comment something here about how this limit is in the sense of convergence of a net in the sense of the quasi-local algebra.}
 
-We will call the $C^*$ algebra the local algebra $\mathcal{A}_\text{loc}$ and the corresponding Hamiltonians the local Hamiltonians. Because of this, we can then show the time evolution for local systems, which we will state without proof:
+We will call the $C^*$ algebra the local algebra $\mathcal{A}_\text{loc}$ and the corresponding Hamiltonians the local Hamiltonians. Because of this, we can then show the time evolution for local systems:
 \begin{figure}
 	\begin{center}
 
@@ -396,7 +395,7 @@ Let $\omega$ be a state on $\mathcal{A}$ such that $\omega(A_s)=\omega(B_p)=1$ f
 	.\] 
 	Thus, we find that the expression is positive, and $\omega$ is then a ground state.
 \end{proof}
-Now, we reach the most interesting part of this presentation, which will be the equivalence of the toric code to a classical spin system. We will begin by defining an abelian subalgebra of $\mathcal{A}$.
+What do such states look like? Since $A_s$ or $B_p$ are the product of four spin operators, if we flip an even number of spins, $A_s$ or $B_p$ will not change in value. Thus, if we look at only the star or the plaquette operators, flipping spins in a loop will not affect their value. Joining the flipped spins together, we can construct ``ground states'' for the star and plaquette operators respectively (see Fig. \ref{fig:loopgas}).
 
 \begin{figure}
 	\begin{center}
@@ -426,46 +425,46 @@ Now, we reach the most interesting part of this presentation, which will be the 
 				\filldraw[fill=blue,draw=black,thick] (2, 3.5) circle (2pt);
 				\filldraw[fill=blue,draw=black,thick] (3, 2.5) circle (2pt);
 				
-				\foreach \x in {3.5, ..., 4.5}
-				\foreach \y in {3.5, ..., 4.5}
-				{
-					\fill (\x, \y) circle (1.7pt);
-				\draw[thick, -stealth] (\x, {\y -0.2}) -- ++(0,0.4);
-			}
+		%		\foreach \x in {3.5, ..., 4.5}
+		%		\foreach \y in {3.5, ..., 4.5}
+		%		{
+			%		\fill (\x, \y) circle (1.7pt);
+				%\draw[thick, -stealth] (\x, {\y -0.2}) -- ++(0,0.4);
+			%}
 			
-			\foreach \x in {0.5, ..., 4.5}
-			{
-				\fill (\x, 0.5) circle (1.7pt);
-				\draw[thick, -stealth] (\x, {0.5 -0.2}) -- ++(0,0.4);
-			}
+			%\foreach \x in {0.5, ..., 4.5}
+			%{
+			%	\fill (\x, 0.5) circle (1.7pt);
+				%\draw[thick, -stealth] (\x, {0.5 -0.2}) -- ++(0,0.4);
+			%}
 			
-			\foreach \y in {1.5, ..., 4.5}
-			{
-								\fill (0.5, \y) circle (1.7pt);
-			\draw[thick, -stealth] (0.5, {\y -0.2}) -- ++(0,0.4);
-			}
+			%\foreach \y in {1.5, ..., 4.5}
+			%{
+			%					\fill (0.5, \y) circle (1.7pt);
+			%\draw[thick, -stealth] (0.5, {\y -0.2}) -- ++(0,0.4);
+			%}
 			
-			\foreach \x in {1.5, 2.5}{
-			\fill (\x, 4.5) circle (1.7pt);
-			\draw[thick, -stealth] (\x, {4.5-0.2}) -- ++(0,0.4);
-		}
+			%\foreach \x in {1.5, 2.5}{
+			%\fill (\x, 4.5) circle (1.7pt);
+			%\draw[thick, -stealth] (\x, {4.5-0.2}) -- ++(0,0.4);
+		%}
 		
-		\foreach \y in {1.5, 2.5}{
-						\fill (4.5, \y) circle (1.7pt);
-			\draw[thick, -stealth] (4.5, {\y -0.2}) -- ++(0,0.4);
-		}
+		%\foreach \y in {1.5, 2.5}{
+	%					\fill (4.5, \y) circle (1.7pt);
+			%\draw[thick, -stealth] (4.5, {\y -0.2}) -- ++(0,0.4);
+		%}
 			
 						\foreach \y in {1.5, ..., 3.5}
 						\foreach \x in {1.5, 2.5}
 			{
 				\fill[blue] (\x, \y) circle (1.7pt);
-				\draw[thick, -stealth, blue] (\x, {\y +0.2}) -- ++(0,-0.4);
+				%\draw[thick, -stealth, blue] (\x, {\y +0.2}) -- ++(0,-0.4);
 			}
 			
 									\foreach \y in {1.5, 2.5}
 			{
 				\fill[blue] (3.5, \y) circle (1.7pt);
-				\draw[thick, -stealth, blue] (3.5, {\y +0.2}) -- ++(0,-0.4);
+				%\draw[thick, -stealth, blue] (3.5, {\y +0.2}) -- ++(0,-0.4);
 			}
 			
 			\end{tikzpicture}
@@ -492,30 +491,36 @@ Now, we reach the most interesting part of this presentation, which will be the 
 				\foreach \y in {2.5, 3.5}
 				\filldraw[fill=red,draw=black,thick] (\x, \y) circle (2pt);
 				
-				\foreach \x in {0, ..., 5}
-				\foreach \y in {0,1, 5}
-				{
-				\fill (\x, \y) circle (1.7pt);
-				\draw[thick, -stealth] (\x, {\y-0.2}) -- ++(0,0.4);
-				}
+				%\foreach \x in {0, ..., 5}
+				%\foreach \y in {0,1, 5}
+				%{
+				%\fill (\x, \y) circle (1.7pt);
+				%\draw[thick, -stealth] (\x, {\y-0.2}) -- ++(0,0.4);
+				%}
 				
-				\foreach \x in {0, 5}
-				\foreach \y in {2, ..., 4}
-				{
-								\fill (\x, \y) circle (1.7pt);
-				\draw[thick, -stealth] (\x, {\y-0.2}) -- ++(0,0.4);
-				}
+				%\foreach \x in {0, 5}
+				%\foreach \y in {2, ..., 4}
+				%{
+				%				\fill (\x, \y) circle (1.7pt);
+			%	\draw[thick, -stealth] (\x, {\y-0.2}) -- ++(0,0.4);
+				%}
 				
 				\foreach \x in {1, ..., 4}
-				\foreach \y in {2, ..., 4}
+				\foreach \y in {2, 4}
 				{								\fill[red] (\x, \y) circle (1.7pt);
-					\draw[thick, -stealth, red] (\x, {\y+0.2}) -- ++(0,-0.4);}
+				%	\draw[thick, -stealth, red] (\x, {\y+0.2}) -- ++(0,-0.4);
+				}
+				
+				\foreach \x in {1,4}
+				\fill [red] (\x, 3) circle (1.7pt);
 			\end{tikzpicture}
 		}
 	\end{center}
 	\caption{Loop gas of the toric code corresponds to an Ising model. \textbf{(a)} The spins corresponding to the plaquettes, when flipped, create a loop defined on the \emph{dual} lattice to the square lattice. \textbf{(b)} The spins corresponding to the stars create a loop within the original square lattice when flipped.}
 	\label{fig:loopgas}
 \end{figure}
+What about the ground state of the total Hamiltonian? Consider a loop formed on the lattice such as in Fig. \ref{fig:loopgas}(b). Notice that applying $B_p$ to a square within the loop does not change the loop structure\note{ Draw it out}. Thus, we conclude that the ground state must be invariant under the action of $B_p$. There is only one way for this to be true --- the ground state must be an invariant superposition of \emph{all} possible loops. Mathematically, the existence of this state is surprisingly easy to prove. We begin by defining an algebra that essentially captures all the relevant properties of the system. 
+
 \begin{Definition}
 	The classical algebra of the toric code is defined by
 	\[
@@ -523,7 +528,159 @@ Now, we reach the most interesting part of this presentation, which will be the 
 	\] 
 	i.e. it is the algebra generated by the operators $A_s$ and $B_p$.
 \end{Definition}
-As we now know, a classical $C^*$ algebra admits a realisation as a set of continuous functions via the Gel'fand transformation~\cite{takesaki1979theory}. Since the eigenvalues of $A_s$ and $B_p$ are $\pm 1$, a character must send each element to $\pm 1$. Thus, a homomorphism $\chi: \mathcal{A}_\text{cl}\to \C$ can be uniquely defined by giving $\chi(A_s)$ and $\chi(B_p)$ a value in $\{-1,1\} $ for each $s$ and $p$. This can be interpreted as mapping each star and plaquette into a spin. Thus, the spins and plaquettes correspond to Ising models. This can be understood as interpreting the ground state as a \emph{loop gas} as depicted in Fig. \ref{fig:loopgas}.
+As we now know, an abelian $C^*$ algebra admits a realisation as a set of continuous functions via the Gel'fand transformation~\cite{takesaki1979theory}. Since the eigenvalues of $A_s$ and $B_p$ are $\pm 1$, a character must send each element to $\pm 1$. Thus, a homomorphism $\chi: \mathcal{A}_\text{cl}\to \C$ can be uniquely defined by giving $\chi(A_s)$ and $\chi(B_p)$ a value in $\{-1,1\} $ for each $s$ and $p$. This can be interpreted as mapping each star and plaquette into a spin. Thus, the spins and plaquettes correspond to Ising models. Then, we choose the state with all spins pointing upwards. By the Hahn-Banach theorem, this state extends to a state on $\mathcal{A}$. It can be shown that this is the only translationally invariant ground state.
+
+\begin{figure}
+		\subfloat[][ ]{%
+	\begin{tikzpicture}
+		
+		\fill[opacity=0] (0,5) rectangle (0.2,5.2);
+		\fill[opacity=0] (0,0) rectangle (0.2,-0.2);
+		\draw[thick] (0,0) grid (5,5);
+		
+		\foreach \x in {0, ..., 5}
+		\foreach \y in {0.5, ..., 4.5}
+		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
+		
+		\foreach \x in {0.5, ..., 4.5}
+		\foreach \y in {0, ..., 5}
+		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
+		
+		
+		\draw[ultra thick, blue] (0.5,1.5) node[align=center] {$\pmb{\times}$} -- (0.5,2.5) -- (3.5, 2.5) node[align=center] {$\pmb{\times}$};
+		\foreach \x in {1,3}
+		\filldraw[fill=blue,draw=black, thick] (\x, 2.5) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (0.5, 2) circle (2pt);
+		\draw[ultra thick, red] (2,1) -- ++(2,0) -- ++(0,3) -- ++(-2,0) -- ++(0,-3); 
+		\foreach \x in {2.5, 3.5}
+		\foreach \y in {1, 4}
+		\filldraw[fill=red,draw=black,thick] (\x, \y) circle (2pt);
+		
+		\foreach \x in {2, 4}
+		\foreach \y in {1.5, 3.5}
+		\filldraw[fill=red,draw=black,thick] (\x, \y) circle (2pt);
+		
+		\filldraw[fill=red,draw=black,thick] (4, 2.5) circle (2pt);
+		\filldraw[fill=pink,draw=black,thick] (2, 2.5) circle (2pt);
+	\end{tikzpicture}
+}
+\hspace{1cm}
+\subfloat[][ ]{%
+	\begin{tikzpicture}
+		\draw[thick] (0,0) grid (5,5);
+		\foreach \x in {0, ..., 5}
+		\foreach \y in {0.5, ..., 4.5}
+		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
+		
+		\foreach \x in {0.5, ..., 4.5}
+		\foreach \y in {0, ..., 5}
+		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
+		
+		\draw[ultra thick, red] (2, 4) node[align=center] {$\pmb{\times}$} -- ++(0,-2) -- ++(1,0) -- ++(0,-1) node[align=center] {$\pmb{\times}$};
+		
+		\draw[ultra thick, blue] (1.5,2.5) -- ++(2,0) -- ++(0,1) -- ++(1,0) -- ++(0,1) -- ++(-3,0) -- cycle;
+		
+		\foreach \x in {2, ..., 4}
+		\filldraw[fill=blue,draw=black, thick] (\x, 4.5) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (1.5, 4) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (1.5, 3) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (4.5, 4) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (3.5, 3) circle (2pt); 
+		\filldraw[fill=blue,draw=black, thick] (3, 2.5) circle (2pt); 
+		
+		\filldraw[fill=red,draw=black, thick] (3, 1.5) circle (2pt);
+		\filldraw[fill=red,draw=black, thick] (2.5, 2) circle (2pt);  
+		\filldraw[fill=red,draw=black, thick] (2, 3.5) circle (2pt);
+		
+		\filldraw[fill=pink,draw=black, thick] (2, 2.5) circle (2pt);    
+	\end{tikzpicture}
+}
+	\caption{Detection of defects using Wilson loops. \textbf{(a)} An electric defect is detected using a Wilson loop of star operators. \textbf{(b)} A magnetic defect is detected using a Wilson loop of plaquette operators.}
+	\label{fig:wilsonloop}
+\end{figure}
+
+\section{Excitations of the Toric Code}
+\subsection{Construction of the Excitations}
+What would a state that is not a ground state look like? Suppose that one of the $A_s$ has eigenvalue $-1$. Clearly, they cannot come alone; they must come in (at least) pairs. Thus, an excitation could consist of a (noncyclic) path of flipped spins. These are called electric, or e type defects. Similarly, we can create magnetic type defects from broken chains on the reciprocal lattice.
+
+Clearly, this is not a particle type excitation, because it is equivalent to the ground state: By moving the ends of the path, we could get them to touch, thus annihilating each other. 
+
+Where do we look for a particle type excitation? We know that there is essentially only one irreducible representation of a finite dimensional $C^*$ algebra. Therefore, to find particle type excitations, we must look at infinite dimensional $C^*$ algebras, i.e. the thermodynamic limit.
+
+The problem previously was that we could force the two sides to annihilate each other. What if we sent one to infinity?
+
+\begin{Definition}
+	Let $\xi$ be a finite nonintersecting path on the lattice. Then we define the path operator $F_\xi = \otimes_{j\in \xi}\sigma_j^z$. 
+\end{Definition}
+
+Now, we are in a position to define our particles
+
+\begin{Definition}
+	Let $\xi_n$ be a family of paths with the same starting point, but such that the ending point goes to infinity as $n\to\infty$. Define
+	\[\rho(A) = \lim_{n\to\infty} F_{\xi_n}AF_{\xi_n}^*.\]
+\end{Definition}
+
+Then $\rho(A)$ defines an automorphism of $\mathcal{A}$, and thus a pure state. So far, we have worked with paths in the lattice. We will call these automorphisms $\rho^X$. If we instead worked with a path in the reciprocal lattice\note{ draw!}, we would have another automorphism $\rho^Z$, and we can then define $\rho^Y=\rho^X\circ \rho^Z$, leading to 3 different kind of particle-like excitations.\note{ The $\rho^Y$ can be understood as a pair excitation.}
+
+To detect the existence of particles, we use the Wilson loop operators (Fig. \ref{fig:wilsonloop}), defined as
+\[W_e = \prod_{l_e}\sigma^z, \qquad W_m = \prod_{l_m}\sigma^x\]
+Because each Wilson loop commutes with the Hamiltonian, it is effectively a flux representing how many excitations there are inside the loop. We have a particle type excitation if the flux is nonvanishing independently of the size of the loop.
+\begin{figure}
+\subfloat[][ ]{%
+	\begin{tikzpicture}
+		\fill (0,0) circle (2pt);
+		\fill[blue] (3,0) circle (2pt);
+		\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm] (0,0) to[bend left=80] (3,0);
+		\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm] (3,0) to[bend left=80] (0,0);
+				\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm, blue] (0,0) to[bend left=20] (3,0);
+		\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm, blue] (3,0) to[bend left=20] (0,0);
+	\end{tikzpicture}
+}
+\hspace{1cm}
+\subfloat[][ ]{%
+	\begin{tikzpicture}
+		\fill (0,0) circle (2pt);
+\fill[blue] (3,0) circle (2pt);
+\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm] (0,0) to[bend left=80] (3,0);
+\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm] (3,0) to[bend left=80] (0,0);
+\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm, blue] (3,0) arc(0:-360:0.2);
+	\end{tikzpicture}
+}
+\hspace{1cm}
+\subfloat[][ ]{%
+	\begin{tikzpicture}
+		\fill (0,0) circle (2pt);
+		\fill[blue] (3,0) circle (2pt);
+		\draw[ultra thick, -stealth,shorten <= 0.1cm, shorten >= 0.1cm] (0,0) arc(180:-180:2 and 1);
+	\end{tikzpicture}
+}
+\caption{Double exchange of particles is topologically equivalent to one particle winding around the other. \textbf{(a)} Double exchange process of two particles. \textbf{(b)} Inner loop can be deformed in a continuous manner until it is infinitesimally small. \textbf{(c)} When the inner loop has been deformed to be of 0 size, the outer particle simply winds around the inner particle.}
+\label{fig:doubleswap}
+\end{figure}
+\subsection{Statistics of the Excitations}
+Why did we care so much about this model? The answer is in the interesting statistics exhibited. We are used to fermions and bosons. However, in two dimensions, there is a much richer zoo of possible excitation statistics.\note{Make interactive? Talk about deforming the loop. Go through the original proof!} 
+
+Let us consider the double exchange process. In 3d, with fermions and bosons, this leads to the exact same wavefunction. Instead of computing it, we will compute what happens when one particle goes in a loop around the other, which is topologically equivalent (see Fig. \ref{fig:doubleswap}).
+
+First, what happens when an e particle moves around an m particle? We see that this is mathematically identical to a Wilson loop (Fig. \ref{fig:wilsonloop}). This means that a double exchange procedure leads to a sign of -1! This is not possible in 3 dimensions, and is known as \emph{semionic} statistics.
+
+Similarly, we can show due to commutativity that e and m particles are bosons.\note{Perhaps write it out?} Finally, we look at the e-m composite particle. This corresponds to a double exchange of an e particle with an m particle, as well as some e-m exchanges, leading to a sign of -1. Thus the composite particle is a fermion! This is the most basic example of \textbf{fractionalisation}.
+
+\subsection{Outlook}
+\begin{figure}
+\subfloat[][ ]{%
+	\includegraphics[height=5cm]{Rhoxy.jpg}
+}
+\hspace{1cm}
+\subfloat[][ ]{%
+	\includegraphics[height=5cm]{FQHE.png}
+}
+\caption{\textbf{(a)} Transverse resistivity in the integer Quantum hall effect shows peaks at integer Landau levels. Picture credit: wikimedia.org, Antikon, CC BY-SA 3.0. \textbf{(b)} A wide range of peaks are observed in the resistivity in the fractional Quantum Hall Effect. Picture from \cite{willett1987observation}.}
+\label{fig:qhe}
+\end{figure}
+Can fractionalisation be observed in experiments? The answer is yes. The classic example is in the fractional Quantum Hall Effect (QHE). First, we must describe the integer QHE, which was discovered here in W\"{u}rzburg by von Klitzling. In the integer QHE, resistivities are observed at values
+\[R_{xy} = \frac{h}{e^2\nu}\]
+where $\nu$ takes on integer values. However, later, the fractional QHE was discovered (Fig. \ref{fig:qhe}(b)). These fractional resistivities could be explained by fractional charges, but the fundamental particle is always the electron, which has a charge of 1$e$. It turns out that the current is transported by fractional charges, leading to the fractionalised resistance.
 \nocite{*}
 %\bibliographystyle{ieeetr}
 \bibliographystyle{apsrev4-2}
