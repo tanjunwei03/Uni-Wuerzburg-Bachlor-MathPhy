@@ -95,7 +95,7 @@
 
 \lstset{style=mystyle}
 
-\renewcommand{\note}[1]{{}}
+%\renewcommand{\note}[1]{{}}
 \begin{document}
 \title{Tensor Products on Quantum Spin Systems}
 	\author{Jun Wei Tan}
@@ -106,16 +106,33 @@
 	\begin{tcolorbox}
 		In the 1960s Friedrichs met Heisenberg, and used the occasion to express to him the deep gratitude of the community of mathematicians for having created quantum mechanics, which gave birth to the beautiful theory of operators in Hilbert space. Heisenberg allowed that this was so; Friedrichs then added that the mathematicians have, in some measure, returned the favor. Heisenberg looked noncommittal, so Friedrichs pointed out that it was a mathematician, von Neumann, who clarified the difference between a self-adjoint operator and one that is merely symmetric. ``What's the difference,'' said Heisenberg. \cite{lax2014functional}
 	\end{tcolorbox}
-What is a particle? 
 
-First, \textcolor{red}{To write introduction}
 
+	The proton was discovered at the turn of the 20th century by Ernest Rutherford. For a long time, it was thought to be a fundamental building block of matter. This would imply that charges are quantised in units of $1e$. However, we later discovered that protons are made of subatomic particles named \emph{quarks}, which each have a charge that is a fraction of $e$. 
+
+However, these quarks are tightly bound together by the strong nuclear force, and hence require a high energy to separate. Is it then impossible to have particles with such a fractional charge? The answer is no. The paradigmatic model is the \emph{toric code}, which we will discuss today. However, a rigorous treatment of any many body system requires a significant amount of machinery, which we will now discuss.\note{
+
+Today's talk will be about fractionalisation. What is fractionalisation? Generally, we choose quantum numbers to be integers. For example, the total charge of a system is an integer multiple of the number of electrons. Is it possible to obtain quantum numbers that are fractions?
+
+The first thing you might think of might be physically splitting the particle up. (Draw circle for proton) For example, we know that the proton can be split into even smaller particles, which are two up quarks and one down quark. However, these require extremely high energies to break up. 
+
+
+As it turns out, it is possible to have systems behave like the particles are fractional. Later, we will work with a system of spins, which are bosons. When swapping bosons, we obtain a sign of 1. We will see later that we get particles that act like fermions. As we know, fermions get a sign of -1 when we swap two of them. Thus, in some sense, fermions are half of bosons. Thus, we can think of them as fractional particles.
+
+What kind of systems does fractionalisation happen in? We will work with lattice systems (draw lattice). These lattices could consist of a bunch of atoms. These atoms have orbitals on them, for example the s or p orbitals (draw). Electrons can live in these orbitals. In the case where the electrons cannot move and cannot swap between orbitals, they act like a single spin. These are known as spin systems, and will be the main focus of today's talk.
+
+What concretely are these spin systems? We require a set of sites, which we will denote by $\Gamma$. A spin will live on each of these sites. The observables of spins are given by the $2\times 2$ hermitian matrices $H_2$. As we know previously, we require an algebra to describe the entire system. If we have any finite number of spins (draw a region on the lattice), we can construct an algebra using the tensor product. However, we also know that finite systems are boring.
+
+For example, there are no phase transitions in finite systems. Mathematically, we know that all representations of a finite dimensional $C^*$ algebra are unitarily equivalent. Thus, we must be able to handle the thermodynamic limit. The initial thought that we might have is to use the algebraic tensor product
+\[\bigotimes_{\Lambda\in \Gamma}\mathcal{A}_\Lambda\]
+However, this is an incredibly large space. It includes operators that act across all of spacetime. These are generally not physical due to entropy considerations
+}
 \section{The Quasi-Local Algebra}
 In the previous semester, we constructed our observable algebra in a rather ad hoc manner: We declared that we had an algebra $\mathcal{A}(\mathcal{O})$ for each region of spacetime $\mathcal{O}$. Then, we considered only algebras for which the asymptotic abelianness condition held.
 
 However, this ostensibly presents a number of conditions which our algebras have to fulfil. It no longer suffices to write down a model --- we have to then verify that the associated $C^*$ algebra satisfies these conditions. Instead, we will proceed with a more formal construction of the \emph{quasi-local algebra} as defined in \cite{bratteli2012operator}, and show that it satisfies all the conditions we seek.
 \begin{Definition}[Quasi-Local Algebra]
-	A quasi-local algebra is a $C^*$ algebra $\mathcal{A}$ and a net of $C^*$ algebras $\{\mathcal{A}_\alpha\}_{\alpha\in I}$ such that the net $I$ has an orthogonality relation $\perp$ and that satisfies the fololowing conditions.
+	A quasi-local algebra is a $C^*$ algebra $\mathcal{A}$ and a net of $C^*$ algebras $\{\mathcal{A}_\alpha\}_{\alpha\in I}$ such that the net $I$ has an orthogonality relation $\perp$ and that satisfies the following conditions.
 	\begin{enumerate}
 		\item If $\alpha\ge \beta$, then $\mathcal{A}_\alpha \supseteq \mathcal{A}_\beta$.
 		\item $\mathcal{A}=\overline{\cup_\alpha \mathcal{A}_\alpha}$, where the bar denotes norm closure.
@@ -219,7 +236,7 @@ We recall again that we are working with \emph{spin systems}. This will become i
 \[
 	H(\Lambda) = \sum_{X\subseteq \Lambda}\Phi(X)
 .\] 
-In addit.ion, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $|X| > N_\Phi$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation, because
+In addition, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $|X| > N_\Phi$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation, because
 \[
 	\delta^n(A) = i \lim_{\Lambda \to \infty}[H_\Lambda, A]
 \]
@@ -288,19 +305,16 @@ By a simple computation, it follows that
 .\] 
 Thus, the exponential exists for sufficiently small $t$.
 \end{proof}
-Now that we have constructed the exponential for local observables, we must extend it to the entire quasi-local algebra in the following theorem:
-\begin{Theorem}
-	There exists a one parameter group of automorphisms $\alpha_t$ on the quasi-local algebra $\mathcal{A}$.
-\end{Theorem}
-\begin{proof}
-	We will extend the group as follows. \note{Write this part in bullet points }First, we will begin with an interaction on a finite region. This will allow us to show isometry, which will then provide an extension to the quasi local algebra using well known results. Finally, we will extend the domain of $t$ from a neighbourhood of the origin to the entire real line.
+Since the local observables form a dense subset of the quasi-local algebra, we can then extend the automorphism to the entire algebra by continuity. The technical elements remain to be proven --- the multiplicativity, continuity and so on, but these generally follow from the geometric series bound.
+\note{Theorem: There exists a one parameter group of automorphisms $\alpha_t$ on the quasi-local algebra $\mathcal{A}$ that extends the automorphism $\exp(t\delta)$ defined on the local algebra.
+
+	Proof: We will extend the group as follows. \note{Write this part in bullet points }First, we will begin with an interaction on a finite region. This will allow us to show isometry, whicdefined on the local algebra.h will then provide an extension to the quasi local algebra using well known results. Finally, we will extend the domain of $t$ from a neighbourhood of the origin to the entire real line.
 
 	We begin by defining $\delta_{\Lambda}(A)  = i[H_{\Lambda}, A]$ for a finite subset $\Lambda$ of the sites. We also begin with a local operator $A\in \mathcal{A}(X)$. For each $\Lambda\supseteq X$, the derivations $\delta^n(A)$ and $\delta_{\Lambda}^n(A)$ will agree for $n\le N(\Lambda)$, where $N(\Lambda)$ is some function depending on $\Lambda$\note{~Probably draw here a picture about how the correlations spread}. Thus, we have
 	\[
 		\|\alpha_t^\Lambda(A) - \alpha_t(A)\|= \left\|\sum_{n=N(\Lambda)}^\infty \left( \frac{t^n\delta_{\Lambda}^n(A)}{n!} - \frac{t^n \delta^n(A)}{n!} \right) \right\|
 	.\] 
-	Note that $N(\Lambda)\xrightarrow{\Lambda\to\infty}\infty$. \textcolor{red}{Complete proof later}
-\end{proof}
+Note that $N(\Lambda)\xrightarrow{\Lambda\to\infty}\infty$.}
 Now that dynamics have been defined, the final ingredient we need is to define ground states. 
 \section{Ground States}
 Ground states are states of minimal energy. Since this does not affect the dynamics, we can always shift the zero of energy such that the ground state has zero energy\note{~Probably write down the derivation and show that the thing commutes}. Thus, ground states do not evolve in time\note{~Write down the $\exp(-iHt)$ expression here}. This leads us to our formal definition

@@ -52,7 +52,10 @@ have been measured many times, giving the expectation values
 			\langle \mathbf{B}\rangle &= -1+2a+b+b^* = \frac{1}{2} \\
 			\langle \mathbf{C}\rangle &= -2ib + 2ib^*=0 
 		\end{align*}
-		From the third equation, we see that $b=b^*$, i.e. $b$ is real. From the first equation, we can see easily that $a = \frac{1}{2}$. Substituting this in to the second equation, we find that $2b = \frac{1}{2}$, or $b = \frac{1}{4}$.
+		From the third equation, we see that $b=b^*$, i.e. $b$ is real. From the first equation, we can see easily that $a = \frac{1}{2}$. Substituting this in to the second equation, we find that $2b = \frac{1}{2}$, or $b = \frac{1}{4}$. This leads to the density matrix
+		\[
+			\rho = \begin{pmatrix} \frac{1}{2} & \frac{1}{4}\\ \frac{1}{4} & \frac{1}{2} \end{pmatrix} 
+		.\] 
 	\item We do this using the trace criterion: We have
 		\[
 			\rho^2 = \begin{pmatrix} \frac{5}{16} & \frac{1}{4} \\ \frac{1}{4} & \frac{5}{16} \end{pmatrix} 
@@ -62,7 +65,15 @@ have been measured many times, giving the expectation values
 		\Tr(\rho^2) = \frac{10}{16}\neq 1
 		.\] 
 		The ensemble is mixed.
-	\item ..
+	\item The probability is given by
+		\[
+			\mathbb{P}(\sigma^z=1) = \mel{\psi}{\sigma^z}{\psi}
+		\]
+		where $\ket{\psi}$ is the vector within the 1-dimensional eigenspace $\sigma^z=1$. In this basis, this eigenvector is given by $\ket{\psi}=(1,0)^T$. Substituting, we find that
+		\[
+			\begin{pmatrix} 1 \\ 0 \end{pmatrix} \cdot \begin{pmatrix} \frac{1}{2} & \frac{1}{4}\\ \frac{1}{4} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \frac{1}{2}
+		.\] 
+		Thus, the probability of measuring a 1 is $\frac{1}{2}$.
 	\item We compute
 		\[
 			\rho \sigma^z = \begin{pmatrix} \frac{1}{2} & -\frac{1}{4} \\ \frac{1}{4} & -\frac{1}{2} \end{pmatrix} 
@@ -71,7 +82,7 @@ have been measured many times, giving the expectation values
 		\[
 		\langle \rho\sigma^z\rangle = 0
 		.\] 
-		Similarly, we have
+		This agrees with the result in (c); with a probability of $\frac{1}{2}$ of getting a 1, there would be a probability of $\frac{1}{2}$ of getting a $-1$. This would result in an expectation value of 0. Similarly, we have
 		\[
 			\rho\sigma^x = \begin{pmatrix} \frac{1}{4} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{4} \end{pmatrix} 
 		\]
@@ -86,7 +97,7 @@ have been measured many times, giving the expectation values
 		with
 		\[
 		\langle \rho\sigma^y \rangle = 0
-		.\] 
+		.\qedhere\] 
 	\end{parts}
 \end{proof}
 
@@ -233,6 +244,16 @@ Check the properties derived in (e).
 		\]
 		to obtain the density matrix.
 	\item Note on the indices in $c_{ik}$: $i$ goes from 1 to $N$ and $k$ goes from 1 to $K<N$. Thus, for each $k$, we have a vector in $\C^N$. The $c$s are orthonormal for different $i$. By the basis extension theorem, we can extend this basis to an orthonormal basis of $\C^N$, i.e. pick $c_{ik}$ for $k>K$ such that $c_{ik}$s are orthonormal.
+
+		The basis extension theorem can be proven (easily) if we assume the axiom of choice: We order the sets by inclusion, and choose a maximal spanning set containing the basis of $K$ vectors. Then, by the Gram-Schmidt procedure, we can orthogonalise these vectors. 
+
+		Since these spaces are finite dimensional this can also be proven without the axiom of choice, but who does that anyway?
+
+		Note: In the sum
+		\[
+			\sqrt{p_i}\ket{\psi_i} = \sum_{k=1}^K c_{ik}\sqrt{\lambda_k} \ket{k}
+		,\]
+		we must extend the kets $\ket{k}$ for $k>K$ by just choosing kets within the kernel of $\rho$; since then $\lambda_k=0$, this makes no difference to the sum.
 	\item We simply substitute the second equation into the first
 		\begin{align*}
 			\sum_{i=1}^N p_i \dyad{\psi_i}{\psi_i} &= \sum_{i=1}^N (\sqrt{p_i} \ket{\psi_i})(\bra{\psi_i} \sqrt{p_i} ) \\
@@ -334,5 +355,11 @@ The $T$ matrix then follows easily, from $T = |c|^2$ elementwise as
 \[
 	T = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
 .\] 
+It is obvious that $T$ has all real and nonegative entries. It is also obvious that all rows and columns sum up to 1. 
+
+Finally, we can compute the product
+\[
+	T\vec{\lambda} = \frac{1}{2}\begin{pmatrix}1 & 1 \\ 1 & 1  \end{pmatrix} \begin{pmatrix} (2+\sqrt{2}) / 4 \\ (2 - \sqrt{2} ) / 4   \end{pmatrix} = \begin{pmatrix} 1 / 2 \\ 1 / 2 \end{pmatrix} =\vec{p} 
+.\qedhere\] 
 	\end{parts}
 \end{proof}
