@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_GB
 \documentclass[prb,12pt, nofootinbib]{revtex4-2}
 %fonts
 % Palatino for main text and math
@@ -63,7 +64,7 @@
 \newcommand{\C}{\mathbb{C}}
 \allowdisplaybreaks
 
-\newcommand{\note}[1]{{\color{red} #1}}
+\newcommand{\note}[1]{{\color{red} {#1}}}
 \newtcolorbox{revision}[1][]{empty, breakable, sharp corners, borderline north={1pt}{0pt}{black},
 	borderline west={5pt}{0pt}{black},
 	#1}
@@ -95,9 +96,17 @@
 
 \lstset{style=mystyle}
 
-%\renewcommand{\note}[1]{{}}
+\tikzset{
+	cross/.pic = {
+		\draw[rotate = 45] (-#1,0) -- (#1,0);
+		\draw[rotate = 45] (0,-#1) -- (0, #1);
+	}
+}
+
+
+\renewcommand{\note}[1]{{}}
 \begin{document}
-\title{Tensor Products on Quantum Spin Systems}
+\title{Fractionalisation and Irreducible Representations of $C^*$ Algebras on Quantum Spin Systems}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
@@ -183,7 +192,7 @@ In this talk, we will mostly work with \uline{spin systems}. In a spin system, w
 Having the algebra, we must next be able to define the dynamics of a quantum system. While it is possible to define the dynamics using a Hamiltonian in the GNS representation, this defeats the purpose of the algebraic approach to quantum mechanics. Thus, we seek with a purely $C^*$ algebraic way to generate dynamics. Let us begin with the goal:
 
 \begin{Definition}
-	A time evolution on a $C^*$ algebra $\mathcal{A}$ is an function $\alpha: \mathcal{A}\times \R\to \mathcal{A}$, that we denote as $\alpha_t$, such that each $\alpha_t$ is an automorphism.
+	A time evolution on a $C^*$ algebra $\mathcal{A}$ is a function $\alpha: \mathcal{A}\times \R\to \mathcal{A}$, that we denote as $\alpha_t$, such that each $\alpha_t$ is an *-automorphism. The pair $(\mathcal{A}, \alpha_t)$ is called a $C^*$ dynamical system.\note{ If it's not a star automorphism, you cannot prove that the time derivative is a derivation}
 \end{Definition}
 
 In the case where $\mathcal{A}$ has the form $\mathcal{B}(\mathcal{H})$, we can prove that the automorphisms are \emph{inner}, meaning that they can be represented as a unitary time evolution
@@ -206,7 +215,9 @@ This construction satisfies many of the properties we might expect. We will stat
 	\[
 	\delta(A) = \lim_{t \to 0}\left( \frac{\alpha_t(A) - A}{t} \right)  
 \]
-is a derivation, defined on the points where the limit exists.
+is a derivation, defined on the points where the limit exists.\note{ You show the product rule in the same way you show the product rule on an ordinary derivative: 
+	\[H'(x) = \lim_{h\to 0}\frac1h\left[f(x+h)g(x+h)-f(x)g(x+h)+f(x)g(x+h)-f(x)g(x)\right]\]
+}
 \end{Example}
 In a unitary time evolution on a Hilbert space, the corresponding derivation is given by the commutator as we might expect.
 \begin{Example}
@@ -227,12 +238,14 @@ Now that we have defined derivations, we move forward to define interactions.
 	In the Heisenberg model, we have
 	\[
 	\Phi(\{x,y\}) = \begin{cases}
-		J & \langle xy\rangle\\
+		J\sum_{i=1}^3 \sigma_x^i \sigma_y^i & \langle xy\rangle\\
 		0 & \text{otherwise.}
 	\end{cases}
 	\] 
 \end{Example}
-We recall again that we are working with \emph{spin systems}. This will become important here. In particular, it is important that the algebra on each site is finite. That means, if $\Lambda$ is bounded, then $\Phi(\Lambda)$ is finite dimensional. Thus, for each $\Lambda$, we can construct a \emph{bounded} Hamiltonian via
+We recall again that we are working with \emph{spin systems}. This will become important here. In particular, it is important that the algebra on each site is finite. That means, if $\Lambda$ is bounded, then $\Phi(\Lambda)$ is finite dimensional. We call the algebra of observables that are supported in such a bounded set the local algebra $\mathcal{A}_\text{loc}$.
+
+Thus, for each $\Lambda$, we can construct a \emph{bounded} Hamiltonian via
 \[
 	H(\Lambda) = \sum_{X\subseteq \Lambda}\Phi(X)
 .\] 
@@ -242,7 +255,7 @@ In addition, the interactions will also often be \emph{finite range}, meaning th
 \]
 only has finitely many terms where $H_\Lambda$ intersects $A$.\note{ Probably comment something here about how this limit is in the sense of convergence of a net in the sense of the quasi-local algebra.}
 
-We will call the $C^*$ algebra the local algebra $\mathcal{A}_\text{loc}$ and the corresponding Hamiltonians the local Hamiltonians. Because of this, we can then show the time evolution for local systems:
+Because of this, we can then show the time evolution for local systems:
 \begin{figure}
 	\begin{center}
 
@@ -297,18 +310,18 @@ We will call the $C^*$ algebra the local algebra $\mathcal{A}_\text{loc}$ and th
 .\] 
 The missing ingredient is a bound on the number of possible subsets $X_n$. Since the interaction is finite range, there is a constant $N_\Phi$ such that it suffices to consider $X_n$ with $|X_n| \le N_\Phi$. Thus, we have
 \[
-\|\delta^n(A)\|\le 2^n \|A\|\prod_{k=1}^{n} ((k-1)(N_\Phi-1)+|\Lambda|)\|\Phi\|^n 
-.\] 
-By a simple computation, it follows that
+\|\delta^n(A)\|\le 2^{n+C_\Phi} \|A\|\prod_{k=1}^{n} ((k-1)(N_\Phi-1)+|\Lambda|)\|\Phi\|^n 
+\] 
+where $C_\Phi$ is a constant proportional to $N_\Phi$. By a simple computation, it follows that\note{ To prove that first estimate, first note that $\|[A,B]\| \le 2 \|A\| \|B\|$. Then, pick a point in $S_n$, of which there are $|S_n|$ many. Then the size of the $N_\Phi$ ball around this point is bounded, leading to the constant $C_\Phi$.}
 \[
-	\|\delta^n(A)\|\le \|A\|n! e^{\lambda(|\Lambda|+1-N_\Phi)}\left( \frac{2\|\Phi\|e^{\lambda(N_\Phi-1)}}{\lambda} \right)^n
+	\|\delta^n(A)\|\le \|A\|n! e^{\lambda(|\Lambda|+1-N_\Phi)}\left( \frac{2C_\Phi\|\Phi\|e^{\lambda(N_\Phi-1)}}{\lambda} \right)^n
 .\] 
 Thus, the exponential exists for sufficiently small $t$.
 \end{proof}
 Since the local observables form a dense subset of the quasi-local algebra, we can then extend the automorphism to the entire algebra by continuity. The technical elements remain to be proven --- the multiplicativity, continuity and so on, but these generally follow from the geometric series bound.
 \note{Theorem: There exists a one parameter group of automorphisms $\alpha_t$ on the quasi-local algebra $\mathcal{A}$ that extends the automorphism $\exp(t\delta)$ defined on the local algebra.
 
-	Proof: We will extend the group as follows. \note{Write this part in bullet points }First, we will begin with an interaction on a finite region. This will allow us to show isometry, whicdefined on the local algebra.h will then provide an extension to the quasi local algebra using well known results. Finally, we will extend the domain of $t$ from a neighbourhood of the origin to the entire real line.
+	Proof: We will extend the group as follows. \note{Write this part in bullet points }First, we will begin with an interaction on a finite region. This will allow us to show isometry, which will then provide an extension to the quasi local algebra using well known results. Finally, we will extend the domain of $t$ from a neighbourhood of the origin to the entire real line.
 
 	We begin by defining $\delta_{\Lambda}(A)  = i[H_{\Lambda}, A]$ for a finite subset $\Lambda$ of the sites. We also begin with a local operator $A\in \mathcal{A}(X)$. For each $\Lambda\supseteq X$, the derivations $\delta^n(A)$ and $\delta_{\Lambda}^n(A)$ will agree for $n\le N(\Lambda)$, where $N(\Lambda)$ is some function depending on $\Lambda$\note{~Probably draw here a picture about how the correlations spread}. Thus, we have
 	\[
@@ -321,6 +334,17 @@ Ground states are states of minimal energy. Since this does not affect the dynam
 \begin{Definition}
 	Let $\alpha_t$ be a 1 parameter group of automorphisms on a $C^*$ algebra $\mathcal{A}$. Then a ground state $\omega$ is a state such that $\omega\circ \alpha_t=\omega$ for all $t$ and if $H_\omega\ge 0$ in the corresponding GNS representation\note{~The important point here is that even though the derivation $\delta$ exists on $\Lambda\to\infty$, $H$ does not, because it is unbounded; hence, we can only verify positivity in the GNS representation}.
 \end{Definition}
+First, we note that this implies that the vector $\ket{\omega}$ in the GNS construction must be the eigenvector of eigenvalue 0:
+
+\begin{Lemma}
+	Let $\omega$ be a ground state of a $C^*$ dynamical system. In the GNS representation, $\ket{\omega}$ is the eigenvector of $H_\omega$ with zero eigenvalue.
+\end{Lemma}
+\begin{proof}
+	The key ingredient is the invariance of $\omega$. First, we write the automorphism $\alpha_t$ as an inner automorphism, $\alpha_t(A) = U(t)^*AU(t)$. Then, invariance implies that
+	\[\mel{\omega}{U(t)^*\pi_\omega(A)U(t)}{\omega}=\mel{\omega}{\pi_\omega(A)}{\omega}\]
+	This then implies that $U(t)\ket{\omega}=\ket{\omega}$. Differentiating and applying Stone's theorem yields the desired result.
+\end{proof}
+
 However, this definition is clearly unwieldy, not least because we need to explicitly construct the Hamiltonian in the GNS representation. Instead, we seek another characterisation of ground states, which we will state without proof
 \begin{Theorem}
 	\label{thm:groundstate}
@@ -330,6 +354,16 @@ However, this definition is clearly unwieldy, not least because we need to expli
 		\item $-i\omega(A^*\delta(A))\ge 0$ for all $A\in D(\delta)$.
 	\end{enumerate}
 \end{Theorem}
+To illustrate why this ostensibly opaque theorem should be true, let us return to the case of operators on a Hilbert space, where $\delta(A)=i[H,A]$. In addition, we assume that we are in the GNS representation, where $\omega$ is represented by a vector state $\ket{\omega}$. Since Substituting this into the second expression, we find
+\begin{align*}
+-i\omega(A^*\delta(A)) &= -i \mel{\omega}{A^*\delta(A)}{\omega}\\
+&= \mel{\omega}{\left[A^*(HA - AH)\right]}{\omega}\\
+&= \mel{\omega}{\left[A^*(HA - AE_0)\right]}{\omega}\\
+&= \mel{\omega}{\left[A^*(H-E_0)A\right]}{\omega}\\
+&\ge 0
+\end{align*}
+where $E_0=0$ is the minimal eigenvalue.
+
 It is then finally time to discuss one of the system that characterised research in the 2000s.
 \section{The Toric Code}
 \begin{figure}
@@ -374,21 +408,25 @@ It is then finally time to discuss one of the system that characterised research
 	\label{fig:toriccode}
 \end{center}
 \end{figure}
-The Toric code, first proposed by Kitaev \cite{kitaev2003fault} in 1997, remains a paradigmatic model of topological physics. It is defined on a square lattice, with a spin degree of freedom on each \emph{edge}. We then define two operators, one defined on a ``star'' and one on a plaquette (see Fig. \ref{fig:toriccode}):
+The Toric code, first proposed by Kitaev \cite{kitaev2003fault} in 1997, remains a paradigmatic model of topological physics. What is topological physics? Physics is topological when it is not local. For example, a magnetisation measurement is local, because magnetisation is a field that can vary from place to place. Because of this, magnetisation can be destroyed at high temperatures by thermal fluctuations, which act locally. However, a topological system is characterised by behaviour that explicitly cannot be expressed locally. Thus, they are highly robust, which is important for many applications.
+
+ It is defined on a square lattice, with a spin degree of freedom on each \emph{edge}. We then define two operators, one defined on a ``star'' and one on a plaquette (see Fig. \ref{fig:toriccode}):
 \[
 	A_s = \bigotimes_{j\in s}\sigma_j^x,\qquad B_p = \bigotimes_{j\in p}\sigma_j^z
 .\] 
-We note that $A_s^2 = B_p^2 = \mathbbm{1}$, and that $[A_s, B_p]=0$ for all stars $s$ and plaquettes $p$. In particular, the eigenvalues of $A_s$ and $B_p$ are $\pm 1$. Now we seek a ground state. Let us begin by showing that $A_s$ and $B_p$ are \emph{stabilisers}.
+We note that $A_s^2 = B_p^2 = \mathbbm{1}$. In particular, the eigenvalues of $A_s$ and $B_p$ are $\pm 1$. In addition, we have $[A_s,B_p]=0$ for all stars $s$ and plaquettes $p$. We can observe this as follows: Consider any star $s$ and plaquette $p$. Either they are disjoint, or they share exactly two spins. If they share two spins, we can pull one Pauli matrix through the other using the anticommutativity to 
+
+Now we seek a ground state. Let us begin by showing that $A_s$ and $B_p$ are \emph{stabilisers}.
 \begin{Lemma}
 	Let $\mathcal{A}$ be a unital $C^*$ algebra,  $\omega$ a state on $\mathcal{A}$. Define $X\in \mathcal{A}$ such that $X=X^*$, $\omega(X)=1$ and $I-X$ is positive. Then for all $Y\in \mathcal{A}$ we have $\omega(XY)=\omega(YX)=\omega(Y)$.
 \end{Lemma}
 \begin{proof}
 	Because $\mathbbm{1}-X$ is positive, we can take the square root $\mathbbm{1}-X$. Then, we have
 	\begin{align*}
-		|\omega( (\mathbbm{1}-X)Y)|^2 &= |\omega(\sqrt{\mathbbm{1}-X}\sqrt{\mathbbm{1}-X}|^2  \\ 
+		|\omega( (\mathbbm{1}-X)Y)|^2 &= |\omega(\sqrt{\mathbbm{1}-X}\sqrt{\mathbbm{1}-X}Y)|^2  \\ 
 		&\le \omega(\mathbbm{1}-X)\omega(Y^* (\mathbbm{1}-X)Y)=0 
 	\end{align*}
-	\note{Write down the fact that $\omega( (\mathbbm{1}-X)Y)=0$ }where we used the Cauchy-Schwarz inequality before finding that $\omega(\mathbbm{1}-X)=0$. Similarly, we can show that $\omega(Y(\mathbbm{1}-X))=0$. Thus, by the linearity of states, we find that $\omega(XY)=\omega(YX)=\omega(Y)$. 
+	\note{Write down the fact that $\omega( (\mathbbm{1}-X)Y)=0$ }where we used the Cauchy-Schwarz inequality\note{ $|\omega(A^*B)|^2 \le \omega(A^*A)\omega(B^*B)$} before finding that $\omega(\mathbbm{1}-X)=0$. Similarly, we can show that $\omega(Y(\mathbbm{1}-X))=0$. Thus, by the linearity of states, we find that $\omega(XY)=\omega(YX)=\omega(Y)$. 
 \end{proof}
 Now, we show the stabilisor property of $A_s$ and $B_p$:
 \begin{Theorem}
@@ -407,7 +445,7 @@ Let $\omega$ be a state on $\mathcal{A}$ such that $\omega(A_s)=\omega(B_p)=1$ f
 	\[
 	\omega(A^*A)-\omega(A^* A_s A)=\omega(A^* (\mathbbm{1}-A_s)A)\ge 0
 	.\] 
-	Thus, we find that the expression is positive, and $\omega$ is then a ground state.
+	We do the same for the last two terms with $B_p$. Thus, we find that the expression is positive, and $\omega$ is then a ground state.
 \end{proof}
 What do such states look like? Since $A_s$ or $B_p$ are the product of four spin operators, if we flip an even number of spins, $A_s$ or $B_p$ will not change in value. Thus, if we look at only the star or the plaquette operators, flipping spins in a loop will not affect their value. Joining the flipped spins together, we can construct ``ground states'' for the star and plaquette operators respectively (see Fig. \ref{fig:loopgas}).
 
@@ -561,7 +599,7 @@ As we now know, an abelian $C^*$ algebra admits a realisation as a set of contin
 		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
 		
 		
-		\draw[ultra thick, blue] (0.5,1.5) node[align=center] {$\pmb{\times}$} -- (0.5,2.5) -- (3.5, 2.5) node[align=center] {$\pmb{\times}$};
+		\draw[ultra thick, blue] (0.5,1.5) pic[scale=1.5] {cross=3pt} -- (0.5,2.5) -- (3.5, 2.5) pic[scale=1.5] {cross=3pt};
 		\foreach \x in {1,3}
 		\filldraw[fill=blue,draw=black, thick] (\x, 2.5) circle (2pt); 
 		\filldraw[fill=blue,draw=black, thick] (0.5, 2) circle (2pt);
@@ -590,7 +628,7 @@ As we now know, an abelian $C^*$ algebra admits a realisation as a set of contin
 		\foreach \y in {0, ..., 5}
 		\filldraw[fill=white,draw=black,thick] (\x, \y) circle (2pt);
 		
-		\draw[ultra thick, red] (2, 4) node[align=center] {$\pmb{\times}$} -- ++(0,-2) -- ++(1,0) -- ++(0,-1) node[align=center] {$\pmb{\times}$};
+		\draw[ultra thick, red] (2, 4) pic[scale=1.5] {cross=3pt} -- ++(0,-2) -- ++(1,0) -- ++(0,-1) pic[scale=1.5] {cross=3pt};
 		
 		\draw[ultra thick, blue] (1.5,2.5) -- ++(2,0) -- ++(0,1) -- ++(1,0) -- ++(0,1) -- ++(-3,0) -- cycle;
 		
