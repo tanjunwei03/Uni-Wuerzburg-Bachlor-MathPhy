@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_GB
-\documentclass[prb,12pt, nofootinbib]{revtex4-2}
+\documentclass[prb,11pt, nofootinbib]{revtex4-2}
 %fonts
 % Palatino for main text and math
 \usepackage[osf,sc]{mathpazo}
@@ -29,7 +29,7 @@
 \usepackage{wasysym}
 \usepackage{listings}
 \usepackage{bbm}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{transparent}
 \usepackage{xcolor}
@@ -104,7 +104,7 @@
 }
 
 
-\renewcommand{\note}[1]{{}}
+%\renewcommand{\note}[1]{{}}
 \begin{document}
 \title{Fractionalisation and Irreducible Representations of $C^*$ Algebras on Quantum Spin Systems}
 	\author{Jun Wei Tan}
@@ -146,7 +146,7 @@ However, this ostensibly presents a number of conditions which our algebras have
 		\item If $\alpha\ge \beta$, then $\mathcal{A}_\alpha \supseteq \mathcal{A}_\beta$.
 		\item $\mathcal{A}=\overline{\cup_\alpha \mathcal{A}_\alpha}$, where the bar denotes norm closure.
 		\item The algebras $\mathcal{A}_\alpha$ all share an identity element $\mathbbm{1}$.
-		\item There exists an automorphism $\sigma$ with $\sigma^1=\mathbbm{1}$, such that $\sigma(\mathcal{A}_\alpha)=\mathcal{A}_\alpha$ and
+		\item There exists an automorphism $\sigma$ with $\sigma^2=\mathbbm{1}$, such that $\sigma(\mathcal{A}_\alpha)=\mathcal{A}_\alpha$ and
 			\[
 				[\mathcal{A}_\alpha^e, \mathcal{A}_\beta^e]=[\mathcal{A}_\alpha^e, \mathcal{A}_\beta^o] = \{\mathcal{A}_\alpha^o, \mathcal{A}_\beta^o \} = \{0\}
 			\] 
@@ -192,7 +192,7 @@ In this talk, we will mostly work with \uline{spin systems}. In a spin system, w
 Having the algebra, we must next be able to define the dynamics of a quantum system. While it is possible to define the dynamics using a Hamiltonian in the GNS representation, this defeats the purpose of the algebraic approach to quantum mechanics. Thus, we seek with a purely $C^*$ algebraic way to generate dynamics. Let us begin with the goal:
 
 \begin{Definition}
-	A time evolution on a $C^*$ algebra $\mathcal{A}$ is a function $\alpha: \mathcal{A}\times \R\to \mathcal{A}$, that we denote as $\alpha_t$, such that each $\alpha_t$ is an *-automorphism. The pair $(\mathcal{A}, \alpha_t)$ is called a $C^*$ dynamical system.\note{ If it's not a star automorphism, you cannot prove that the time derivative is a derivation}
+	A time evolution on a $C^*$ algebra $\mathcal{A}$ is a function $\alpha: \mathcal{A}\times \R\to \mathcal{A}$, that we denote as $\alpha_t$ that is a strongly continuous 1 parameter group of *-automorphism. The pair $(\mathcal{A}, \alpha_t)$ is called a $C^*$ dynamical system.\note{ If it's not a star automorphism, you cannot prove that the time derivative is a derivation}
 \end{Definition}
 
 In the case where $\mathcal{A}$ has the form $\mathcal{B}(\mathcal{H})$, we can prove that the automorphisms are \emph{inner}, meaning that they can be represented as a unitary time evolution
@@ -211,13 +211,12 @@ Essentially, the product rule suffices to define a derivative. This is reminisce
 
 This construction satisfies many of the properties we might expect. We will state a few examples without proof.
 \begin{Example}
-	Consider a $C^*$ algebra $\mathcal{A}$ with a strongly continuous 1 parameter group of automorphisms $\alpha_t$, meaning that $t\mapsto \alpha_t(A)$ is strongly continuous for each $A$. Then
+	Consider a $C^*$ dynamical system $(\mathcal{A}, \alpha_t)$. Then
 	\[
 	\delta(A) = \lim_{t \to 0}\left( \frac{\alpha_t(A) - A}{t} \right)  
 \]
 is a derivation, defined on the points where the limit exists.\note{ You show the product rule in the same way you show the product rule on an ordinary derivative: 
-	\[H'(x) = \lim_{h\to 0}\frac1h\left[f(x+h)g(x+h)-f(x)g(x+h)+f(x)g(x+h)-f(x)g(x)\right]\]
-}
+	\[H'(x) = \lim_{h\to 0}\frac1h\left[f(x+h)g(x+h)-f(x)g(x+h)+f(x)g(x+h)-f(x)g(x)\right]\]}
 \end{Example}
 In a unitary time evolution on a Hilbert space, the corresponding derivation is given by the commutator as we might expect.
 \begin{Example}
@@ -249,11 +248,11 @@ Thus, for each $\Lambda$, we can construct a \emph{bounded} Hamiltonian via
 \[
 	H(\Lambda) = \sum_{X\subseteq \Lambda}\Phi(X)
 .\] 
-In addition, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $|X| > N_\Phi$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation, because
+In addition, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $\text{diam } X > D_\Phi$. This also implies that the number of elements in $X$ must be smaller than a certain value, say $|X|<N_\Phi|$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation on the local algebra, because
 \[
 	\delta^n(A) = i \lim_{\Lambda \to \infty}[H_\Lambda, A]
 \]
-only has finitely many terms where $H_\Lambda$ intersects $A$.\note{ Probably comment something here about how this limit is in the sense of convergence of a net in the sense of the quasi-local algebra.}
+only has finitely many terms where the support of $H_\Lambda$ intersects that of $A$.\note{ Probably comment something here about how this limit is in the sense of convergence of a net in the sense of the quasi-local algebra.}
 
 Because of this, we can then show the time evolution for local systems:
 \begin{figure}
@@ -310,13 +309,13 @@ Because of this, we can then show the time evolution for local systems:
 .\] 
 The missing ingredient is a bound on the number of possible subsets $X_n$. Since the interaction is finite range, there is a constant $N_\Phi$ such that it suffices to consider $X_n$ with $|X_n| \le N_\Phi$. Thus, we have
 \[
-\|\delta^n(A)\|\le 2^{n+C_\Phi} \|A\|\prod_{k=1}^{n} ((k-1)(N_\Phi-1)+|\Lambda|)\|\Phi\|^n 
+\|\delta^n(A)\|\le 2^{n+nN_\Phi} \|A\|\prod_{k=1}^{n} ((k-1)(N_\Phi-1)+|\Lambda|)\|\Phi\|^n 
 \] 
-where $C_\Phi$ is a constant proportional to $N_\Phi$. By a simple computation, it follows that\note{ To prove that first estimate, first note that $\|[A,B]\| \le 2 \|A\| \|B\|$. Then, pick a point in $S_n$, of which there are $|S_n|$ many. Then the size of the $N_\Phi$ ball around this point is bounded, leading to the constant $C_\Phi$.}
+By a simple computation, it follows that\note{ To prove that first estimate, first note that $\|[A,B]\| \le 2 \|A\| \|B\|$. Then, pick a point in $S_n$, of which there are $|S_n|$ many. Then the size of the $N_\Phi$ ball around this point is bounded, leading to the constant $C_\Phi$.}
 \[
-	\|\delta^n(A)\|\le \|A\|n! e^{\lambda(|\Lambda|+1-N_\Phi)}\left( \frac{2C_\Phi\|\Phi\|e^{\lambda(N_\Phi-1)}}{\lambda} \right)^n
-.\] 
-Thus, the exponential exists for sufficiently small $t$.
+	\|\delta^n(A)\|\le \|A\|n! e^{\lambda(|\Lambda|+1-N_\Phi)}\left( \frac{2N_\Phi\|\Phi\|e^{\lambda(N_\Phi-1)}}{\lambda} \right)^n
+\] 
+where $\lambda$ is any positive real number. Thus, the exponential exists for sufficiently small $t$.\note{ We use the inequality $a^n \le n! \lambda^{-n}\exp(a\lambda)$ with $a=(n-1)(N_\Phi-1)+|\Lambda|$}
 \end{proof}
 Since the local observables form a dense subset of the quasi-local algebra, we can then extend the automorphism to the entire algebra by continuity. The technical elements remain to be proven --- the multiplicativity, continuity and so on, but these generally follow from the geometric series bound.
 \note{Theorem: There exists a one parameter group of automorphisms $\alpha_t$ on the quasi-local algebra $\mathcal{A}$ that extends the automorphism $\exp(t\delta)$ defined on the local algebra.
@@ -408,17 +407,20 @@ It is then finally time to discuss one of the system that characterised research
 	\label{fig:toriccode}
 \end{center}
 \end{figure}
-The Toric code, first proposed by Kitaev \cite{kitaev2003fault} in 1997, remains a paradigmatic model of topological physics. What is topological physics? Physics is topological when it is not local. For example, a magnetisation measurement is local, because magnetisation is a field that can vary from place to place. Because of this, magnetisation can be destroyed at high temperatures by thermal fluctuations, which act locally. However, a topological system is characterised by behaviour that explicitly cannot be expressed locally. Thus, they are highly robust, which is important for many applications.
+The toric code, first proposed by Kitaev \cite{kitaev2003fault} in 1997, remains a paradigmatic model of topological physics. What is topological physics? Physics is topological when it is not local. For example, a magnetisation measurement is local, because magnetisation is a field that can vary from place to place. Because of this, magnetisation can be destroyed at high temperatures by thermal fluctuations, which act locally. However, a topological system is characterised by behaviour that explicitly cannot be expressed locally. Thus, they are highly robust, which is important for many applications.
 
  It is defined on a square lattice, with a spin degree of freedom on each \emph{edge}. We then define two operators, one defined on a ``star'' and one on a plaquette (see Fig. \ref{fig:toriccode}):
 \[
 	A_s = \bigotimes_{j\in s}\sigma_j^x,\qquad B_p = \bigotimes_{j\in p}\sigma_j^z
 .\] 
-We note that $A_s^2 = B_p^2 = \mathbbm{1}$. In particular, the eigenvalues of $A_s$ and $B_p$ are $\pm 1$. In addition, we have $[A_s,B_p]=0$ for all stars $s$ and plaquettes $p$. We can observe this as follows: Consider any star $s$ and plaquette $p$. Either they are disjoint, or they share exactly two spins. If they share two spins, we can pull one Pauli matrix through the other using the anticommutativity to 
+We note that $A_s^2 = B_p^2 = \mathbbm{1}$. In particular, the eigenvalues of $A_s$ and $B_p$ are $\pm 1$. In addition, we have $[A_s,B_p]=0$ for all stars $s$ and plaquettes $p$. We can observe this as follows: Consider any star $s$ and plaquette $p$. Either they are disjoint, or they share exactly two spins. If they share two spins, we can pull one Pauli matrix through the other using the anticommutativity of two Pauli matrices.
+
+The Hamiltonian is then given by
+\[H = \sum_s A_s + \sum_p B_p\]
 
 Now we seek a ground state. Let us begin by showing that $A_s$ and $B_p$ are \emph{stabilisers}.
 \begin{Lemma}
-	Let $\mathcal{A}$ be a unital $C^*$ algebra,  $\omega$ a state on $\mathcal{A}$. Define $X\in \mathcal{A}$ such that $X=X^*$, $\omega(X)=1$ and $I-X$ is positive. Then for all $Y\in \mathcal{A}$ we have $\omega(XY)=\omega(YX)=\omega(Y)$.
+	Let $\mathcal{A}$ be a unital $C^*$ algebra,  $\omega$ a state on $\mathcal{A}$. Define $X\in \mathcal{A}$ such that $X=X^*$, $\omega(X)=1$ and $\mathbbm{1}-X$ is positive. Then for all $Y\in \mathcal{A}$ we have $\omega(XY)=\omega(YX)=\omega(Y)$.
 \end{Lemma}
 \begin{proof}
 	Because $\mathbbm{1}-X$ is positive, we can take the square root $\mathbbm{1}-X$. Then, we have
@@ -426,9 +428,9 @@ Now we seek a ground state. Let us begin by showing that $A_s$ and $B_p$ are \em
 		|\omega( (\mathbbm{1}-X)Y)|^2 &= |\omega(\sqrt{\mathbbm{1}-X}\sqrt{\mathbbm{1}-X}Y)|^2  \\ 
 		&\le \omega(\mathbbm{1}-X)\omega(Y^* (\mathbbm{1}-X)Y)=0 
 	\end{align*}
-	\note{Write down the fact that $\omega( (\mathbbm{1}-X)Y)=0$ }where we used the Cauchy-Schwarz inequality\note{ $|\omega(A^*B)|^2 \le \omega(A^*A)\omega(B^*B)$} before finding that $\omega(\mathbbm{1}-X)=0$. Similarly, we can show that $\omega(Y(\mathbbm{1}-X))=0$. Thus, by the linearity of states, we find that $\omega(XY)=\omega(YX)=\omega(Y)$. 
+	\note{The last equality follows from linearity, and thus $\omega(\mathbbm{1}-X)=0$. Write down the fact that $\omega( (\mathbbm{1}-X)Y)=0$ }where we used the Cauchy-Schwarz inequality\note{ $|\omega(A^*B)|^2 \le \omega(A^*A)\omega(B^*B)$} before finding that $\omega(\mathbbm{1}-X)=0$. Similarly, we can show that $\omega(Y(\mathbbm{1}-X))=0$. Thus, by the linearity of states, we find that $\omega(XY)=\omega(YX)=\omega(Y)$. 
 \end{proof}
-Now, we show the stabilisor property of $A_s$ and $B_p$:
+Now, we show the stabiliser property of $A_s$ and $B_p$:
 \begin{Theorem}
 Let $\omega$ be a state on $\mathcal{A}$ such that $\omega(A_s)=\omega(B_p)=1$ for all $s$ and $p$. Then $\omega$ is a ground state.
 \end{Theorem}
@@ -718,18 +720,19 @@ First, what happens when an e particle moves around an m particle? We see that t
 
 Similarly, we can show due to commutativity that e and m particles are bosons.\note{Perhaps write it out?} Finally, we look at the e-m composite particle. This corresponds to a double exchange of an e particle with an m particle, as well as some e-m exchanges, leading to a sign of -1. Thus the composite particle is a fermion! This is the most basic example of \textbf{fractionalisation}.
 
-\subsection{Outlook}
 \begin{figure}
-\subfloat[][ ]{%
-	\includegraphics[height=5cm]{Rhoxy.jpg}
-}
-\hspace{1cm}
-\subfloat[][ ]{%
-	\includegraphics[height=5cm]{FQHE.png}
-}
-\caption{\textbf{(a)} Transverse resistivity in the integer Quantum hall effect shows peaks at integer Landau levels. Picture credit: wikimedia.org, Antikon, CC BY-SA 3.0. \textbf{(b)} A wide range of peaks are observed in the resistivity in the fractional Quantum Hall Effect. Picture from \cite{willett1987observation}.}
-\label{fig:qhe}
+	\subfloat[][ ]{%
+		\includegraphics[height=5cm]{Rhoxy.jpg}
+	}
+	\hspace{1cm}
+	\subfloat[][ ]{%
+		\includegraphics[height=5cm]{FQHE.png}
+	}
+	\caption{\textbf{(a)} Transverse resistivity in the integer Quantum hall effect shows peaks at integer Landau levels. Picture credit: wikimedia.org, Antikon, CC BY-SA 3.0. \textbf{(b)} A wide range of peaks are observed in the resistivity in the fractional Quantum Hall Effect. Picture from \cite{willett1987observation}.}
+	\label{fig:qhe}
 \end{figure}
+\subsection{Outlook}
+
 Can fractionalisation be observed in experiments? The answer is yes. The classic example is in the fractional Quantum Hall Effect (QHE). First, we must describe the integer QHE, which was discovered here in W\"{u}rzburg by von Klitzling. In the integer QHE, resistivities are observed at values
 \[R_{xy} = \frac{h}{e^2\nu}\]
 where $\nu$ takes on integer values. However, later, the fractional QHE was discovered (Fig. \ref{fig:qhe}(b)). These fractional resistivities could be explained by fractional charges, but the fundamental particle is always the electron, which has a charge of 1$e$. It turns out that the current is transported by fractional charges, leading to the fractionalised resistance.
