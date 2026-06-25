@@ -351,15 +351,21 @@ c = FullSimplify[Table[(Sqrt[p[[i]]] Conjugate[eivecsnorm[[k]]] . \mmaUnd{\(\psi
 		\begin{mmaCell}{Output}
 \{\{1/Sqrt[2], - 1/Sqrt[2]\}, \{1/Sqrt[2], 1/Sqrt[2]\}\}
 		\end{mmaCell}
-The $T$ matrix then follows easily, from $T = |c|^2$ elementwise as
+		In a better formatted manner, we have the coefficients $c_{ik}$ form the matrix
+		\[\mathbf{c} = \frac1{\sqrt{2}}\begin{pmatrix}
+			1 & -1 \\ 1 & 1
+		\end{pmatrix}\]
+		Note that this is not the same basis that the vectors are given in! The $c_{ik}$s should be interpreted merely as numbers stored easily in this $2\times 2$ array. 
+		
+The $\mathbf{T}$ matrix then follows easily, from $\mathbf{T} = |\mathbf{c}|^2$ elementwise as
 \[
-	T = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
+	\mathbf T = \frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} 
 .\] 
-It is obvious that $T$ has all real and nonegative entries. It is also obvious that all rows and columns sum up to 1. 
+It is obvious that $\mathbf T$ has all real and nonegative entries. It is also obvious that all rows and columns sum up to 1. 
 
 Finally, we can compute the product
 \[
-	T\vec{\lambda} = \frac{1}{2}\begin{pmatrix}1 & 1 \\ 1 & 1  \end{pmatrix} \begin{pmatrix} (2+\sqrt{2}) / 4 \\ (2 - \sqrt{2} ) / 4   \end{pmatrix} = \begin{pmatrix} 1 / 2 \\ 1 / 2 \end{pmatrix} =\vec{p} 
+	\mathbf T\vec{\lambda} = \frac{1}{2}\begin{pmatrix}1 & 1 \\ 1 & 1  \end{pmatrix} \begin{pmatrix} (2+\sqrt{2}) / 4 \\ (2 - \sqrt{2} ) / 4   \end{pmatrix} = \begin{pmatrix} 1 / 2 \\ 1 / 2 \end{pmatrix} =\vec{p} 
 .\qedhere\] 
 	\end{parts}
 \end{proof}
