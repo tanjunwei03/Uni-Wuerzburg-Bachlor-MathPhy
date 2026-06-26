@@ -1,0 +1,163 @@
+\begin{Problem}[Entanglement of a Pure 2-Qubit State]
+	Consider the 2-qubit state
+	\[
+	\rho = |\psi\rangle\langle\psi|
+	\]
+	with
+	\[
+	|\psi\rangle
+	=
+	\frac15|00\rangle
+	+
+	\frac{2i\sqrt2}{5}|01\rangle
+	-
+	\frac{4}{15}|10\rangle
+	-
+	\frac{8i\sqrt2}{15}|11\rangle.
+	\]
+	
+	\begin{enumerate}
+		\item[(a)]
+		Use \emph{Mathematica} or similar tools to compute the $4\times4$
+		matrix $\rho$ in the qubit basis.
+		Verify that $\rho$ is pure.
+		
+		\item[(b)]
+		Compute the reduced density matrices
+		$\rho^{(L)}$ and $\rho^{(R)}$
+		for the left and right qubit by carrying out the partial traces
+		\[
+		\rho^{(L)}_{jk}
+		=
+		\sum_{m=0}^{1}
+		\rho_{jm,km},
+		\qquad
+		\rho^{(R)}_{mn}
+		=
+		\sum_{j=0}^{1}
+		\rho_{jm,jn}.
+		\]
+		
+		\item[(c)]
+		A pure state is called entangled if the reduced density matrices are
+		mixed.
+		Find out whether $\rho$ is entangled or not.
+	\end{enumerate}
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We define the 
+	\end{parts}
+\end{proof}
+\begin{Problem}[Quantum Cryptography]
+	
+	Encrypted communication requires that both parties share a key (a random
+	sequence of classical bits) that can be used to encode and decode messages
+	by bitwise XOR operations.
+	The problem of encryption therefore reduces to safely generating identical
+	keys on both sides.
+	
+	Alice randomly generates a classical bit
+	$a\in\{0,1\}$,
+	using it to prepare a qubit
+	
+	\[
+	|\psi\rangle
+	=
+	\begin{cases}
+		|0\rangle,&a=0,\\
+		|+\rangle,&a=1,
+	\end{cases}
+	\]
+	
+	where
+	
+	\[
+	|\pm\rangle
+	=
+	\frac1{\sqrt2}(|0\rangle\pm|1\rangle).
+	\]
+	
+	She sends this qubit to Bob.
+	
+	Likewise Bob randomly generates a classical bit
+	$b\in\{0,1\}$.
+	He chooses one of the two measurements
+	
+	\[
+	M_0
+	=
+	|0\rangle\langle0|
+	-
+	|1\rangle\langle1|,
+	\qquad
+	M_1
+	=
+	|+\rangle\langle+|
+	-
+	|-\rangle\langle-|.
+	\]
+	
+	Bob measures the incoming qubit and communicates the measurement result
+	$m=\pm1$ publicly.
+	They repeat the protocol until $m=-1$.
+	
+	\begin{enumerate}
+		\item[(a)]
+		Show that
+		$a=1-b$
+		if $m=-1$.
+		
+		\item[(b)]
+		How many qubits are on average needed to generate one bit of the key?
+		
+		\item[(c)]
+		Suppose Eve intercepts the communication and measures using
+		
+		\[
+		E
+		=
+		|\phi_+\rangle\langle\phi_+|
+		-
+		|\phi_-\rangle\langle\phi_-|,
+		\]
+		
+		where
+		
+		\[
+		|\phi_+\rangle
+		=
+		\alpha|0\rangle+\beta|1\rangle,
+		\]
+		
+		\[
+		|\phi_-\rangle
+		=
+		\beta^*|0\rangle-\alpha^*|1\rangle,
+		\]
+		
+		with
+		
+		\[
+		|\alpha|^2+|\beta|^2=1.
+		\]
+		
+		Show that Eve changes the measurement statistics seen by Alice and Bob,
+		depending effectively only on
+		
+		\[
+		u:=|\alpha|^2,
+		\qquad
+		v:=\frac12|\alpha+\beta|^2.
+		\]
+		
+		\item[(d)]
+		Determine $u$ and $v$ such that Bob and Alice cannot detect the
+		interception.
+		
+		\item[(e)]
+		In the case of part (d), is it possible for Eve to obtain information
+		about the key?
+		
+	\end{enumerate}
+\end{Problem}

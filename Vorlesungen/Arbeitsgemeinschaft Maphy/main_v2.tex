@@ -104,13 +104,13 @@
 }
 
 
-%\renewcommand{\note}[1]{{}}
+\renewcommand{\note}[1]{{}}
 \begin{document}
 \title{Fractionalisation and Irreducible Representations of $C^*$ Algebras on Quantum Spin Systems}
 	\author{Jun Wei Tan}
 	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
 	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
-	\date{\today}
+	\date{June 25, 2026}
 	\maketitle
 	\begin{tcolorbox}
 		In the 1960s Friedrichs met Heisenberg, and used the occasion to express to him the deep gratitude of the community of mathematicians for having created quantum mechanics, which gave birth to the beautiful theory of operators in Hilbert space. Heisenberg allowed that this was so; Friedrichs then added that the mathematicians have, in some measure, returned the favor. Heisenberg looked noncommittal, so Friedrichs pointed out that it was a mathematician, von Neumann, who clarified the difference between a self-adjoint operator and one that is merely symmetric. ``What's the difference,'' said Heisenberg. \cite{lax2014functional}
@@ -248,7 +248,7 @@ Thus, for each $\Lambda$, we can construct a \emph{bounded} Hamiltonian via
 \[
 	H(\Lambda) = \sum_{X\subseteq \Lambda}\Phi(X)
 .\] 
-In addition, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $\text{diam } X > D_\Phi$. This also implies that the number of elements in $X$ must be smaller than a certain value, say $|X|<N_\Phi|$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation on the local algebra, because
+In addition, the interactions will also often be \emph{finite range}, meaning that $\Phi(X)=0$ for sets larger than a certain diameter, say $\text{diam } X > D_\Phi$. This also implies that the number of elements in $X$ must be smaller than a certain value, say $|X|<N_\Phi$. If the interaction is finite range, then the sum of the local Hamiltonians induce a derivation on the local algebra, because
 \[
 	\delta^n(A) = i \lim_{\Lambda \to \infty}[H_\Lambda, A]
 \]
@@ -341,7 +341,9 @@ First, we note that this implies that the vector $\ket{\omega}$ in the GNS const
 \begin{proof}
 	The key ingredient is the invariance of $\omega$. First, we write the automorphism $\alpha_t$ as an inner automorphism, $\alpha_t(A) = U(t)^*AU(t)$. Then, invariance implies that
 	\[\mel{\omega}{U(t)^*\pi_\omega(A)U(t)}{\omega}=\mel{\omega}{\pi_\omega(A)}{\omega}\]
-	This then implies that $U(t)\ket{\omega}=\ket{\omega}$. Differentiating and applying Stone's theorem yields the desired result.
+	This, together with the group property, implies that $U(t)\ket{\omega}=e^{i\beta t}\ket{\omega}$ for some $\beta$ Differentiating and applying Stone's theorem yields the result 
+	\[He^{i\beta t}\ket{\omega} =0\]
+	which implies $H\ket{\omega}=0$ since $e^{i\beta t}$ is nonvanishing.
 \end{proof}
 
 However, this definition is clearly unwieldy, not least because we need to explicitly construct the Hamiltonian in the GNS representation. Instead, we seek another characterisation of ground states, which we will state without proof
@@ -416,7 +418,7 @@ The toric code, first proposed by Kitaev \cite{kitaev2003fault} in 1997, remains
 We note that $A_s^2 = B_p^2 = \mathbbm{1}$. In particular, the eigenvalues of $A_s$ and $B_p$ are $\pm 1$. In addition, we have $[A_s,B_p]=0$ for all stars $s$ and plaquettes $p$. We can observe this as follows: Consider any star $s$ and plaquette $p$. Either they are disjoint, or they share exactly two spins. If they share two spins, we can pull one Pauli matrix through the other using the anticommutativity of two Pauli matrices.
 
 The Hamiltonian is then given by
-\[H = \sum_s A_s + \sum_p B_p\]
+\[H = -\sum_s A_s - \sum_p B_p\]
 
 Now we seek a ground state. Let us begin by showing that $A_s$ and $B_p$ are \emph{stabilisers}.
 \begin{Lemma}
@@ -649,7 +651,7 @@ As we now know, an abelian $C^*$ algebra admits a realisation as a set of contin
 		\filldraw[fill=pink,draw=black, thick] (2, 2.5) circle (2pt);    
 	\end{tikzpicture}
 }
-	\caption{Detection of defects using Wilson loops. \textbf{(a)} An electric defect is detected using a Wilson loop of star operators. \textbf{(b)} A magnetic defect is detected using a Wilson loop of plaquette operators.}
+	\caption{Detection of defects using Wilson loops. \textbf{(a)} A magnetic defect is detected using a Wilson loop of star operators. \textbf{(b)} An electric defect is detected using a Wilson loop of plaquette operators.}
 	\label{fig:wilsonloop}
 \end{figure}
 
