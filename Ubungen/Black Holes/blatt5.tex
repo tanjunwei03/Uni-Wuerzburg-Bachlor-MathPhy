@@ -1,0 +1,501 @@
+\begin{Problem}[The Wedge Product]
+
+Let $\omega$ be a $p$-form, $\eta$ a $q$-form and $\theta$ an $r$-form on some manifold $M$. Show that the wedge product satisfies the following properties.
+
+\begin{enumerate}
+\item[(a)]
+\[
+\omega \wedge \eta = (-1)^{pq}\eta \wedge \omega.
+\]
+
+\item[(b)]
+\[
+(\omega \wedge \eta)\wedge\theta
+=
+\omega\wedge(\eta\wedge\theta).
+\]
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+As in the lecture notes, we want to prove these from the definition
+\begin{align*}
+	(\omega\wedge \eta)_{\mu_1\dots \mu_p \nu_1\dots \nu_q} &= \frac{(p+q)!}{p!q!}\omega_{[\mu_1\dots \mu_p}\eta_{\nu_1\dots\nu_q]} \\
+	\mathcal{A}(T)(v_1,\dots,v_p)&= \frac{1}{p!}\sum_{\pi\in S_p}\text{sgn}(\pi)T(v_{\pi(1)},\dots, v_{\pi(p)}) 
+\end{align*}
+	\begin{parts}
+	\item We first expand the definition
+	\begin{align*}
+		(\omega\wedge \eta)_{\mu_1\dots \mu_p \mu_{p+1}\dots \mu_{p+q}} &= \frac{(p+q)!}{p!q!}\omega_{[\mu_1\dots \mu_p}\eta_{\mu_{p+1}\dots \mu_{p+q}]} \\
+				&= \frac{1}{p!q!}\sum_\pi \text{sgn}(\pi)\omega_{\mu_{\pi(1)}\dots \mu_{\pi(p)}}\eta_{\mu_{\pi(p+1)}\dots \mu_{\pi(p+q)}}
+	\end{align*}
+	Now, we define an automorphism on $S_{p+q}$ through $\rho: \{1,\dots, p, p+1, \dots, p+q\} \mapsto \{p+1, \dots, p+q, 1, \dots, p\} $ and $\pi \mapsto \rho\circ \pi$. We note that the sign of $\rho \circ \pi$ is $(-1)^{pq}$ because we move $q$ elements through $p$ elements and hence use $pq$ transpositions. Since this is an automorphism the sum does not change, and we have
+	\begin{align*}
+		(\omega\wedge \eta)_{\mu_1\dots \mu_p \mu_{p+1}\dots \mu_{p+q}} &= \frac{1}{p!q!}(-1)^{pq}\sum_\pi \text{sgn}(\pi)\omega_{\mu_{\pi(q+1)}\dots \mu_{\pi(q+p)}}\eta_{\mu_{\pi(1)}\dots\mu_{\pi(q)}}\\
+		&= (-1)^{pq}(\eta\wedge\omega)_{\nu_1\dots \nu_q \mu_1 \dots \mu_p} 
+	\end{align*}
+	In abstract notation,
+	\[
+	\omega\wedge\eta = (-1)^{pq}\eta\wedge\omega
+	.\] 
+	\item This follows almost directly from a lemma that antisymmetrising a subset of the indices does nothing, i.e.
+\[
+	T_{[[\mu_1\dots \mu_p]\mu_{p+1}\dots\mu_{p+q}]}=T_{[\mu_1\dots \mu_{p+q}]}
+.\] 
+We prove this as follows: Since both antisymmetrisations are just sums, it does not matter in what order we do them. Thus, we do the inner antisymmetrisation followed by the outer one:
+\[
+	T_{[[\mu_1\dots \mu_p]\mu_{p+1}\dots\mu_{p+q}]}=\sum_\pi\sum_\tau \text{sgn}(\pi)\text{sgn}(\tau) T_{\mu_{\pi(\tau(1))}\dots\mu_{\pi(\tau(p))}\mu_{\pi(p+1)}\mu_{\pi(p+q)}}
+.\] 
+However, permuting the inner indices does not actually change the terms in the sum, since we would have summed over all permutations anyway. All it does is weight it by an additional factor of $\text{sgn}(\tau)$, because now $\pi$ has to reverse the permutations in $\tau$ before summing. Thus, we have
+\[
+	T_{[[\mu_1\dots \mu_p]\mu_{p+1}\dots\mu_{p+q}]}=\sum_\pi\sum_\tau \text{sgn}(\pi)\text{sgn}(\tau)^2 T_{\mu_{\pi(1)}\dots\mu_{\pi(p)}\mu_{\pi(p+1)}\mu_{\pi(p+q)}}
+.\] 
+But because the sign is $\pm 1$, we can ignore it, from which the conclusion follows.
+
+Now, all we need to do is expand by the definition
+\[
+	(\omega\wedge\eta)\wedge\theta = \frac{(p+q+r)!}{p!q!r!}\omega_{[\mu_1\dots \mu_p}\eta_{\nu_1\dots \nu_q}\theta_{\delta_1\dots \delta_r]}
+\] 
+and similar for $\omega\wedge(\eta\wedge\theta) $, proving the theorem.
+\end{parts}
+\end{proof}
+
+\begin{Problem}[The Exterior Derivative]
+
+Let $\omega$ be a $p$-form and $\eta$ a $q$-form on some manifold $M$. Show that the exterior derivative satisfies the following properties.
+
+\begin{enumerate}
+\item[(a)]
+\[
+d(d\omega)=0.
+\]
+
+\item[(b)]
+\[
+d(\omega\wedge\eta)
+=
+(d\omega)\wedge\eta
++
+(-1)^p\omega\wedge(d\eta).
+\]
+
+\item[(c)]
+Show that
+\[
+d(\varphi^*\omega)=\varphi^*(d\omega),
+\]
+where $\varphi:M\rightarrow N$ is a map between manifolds $M$ and $N$, and $\varphi^*$ is its pullback.
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+		\item First, we note that $\dd{\eta_I}=0$, because we can treat the prefactor in front as the constant 1, which has 0 differential. Thus,
+		\begin{align*}
+			\dd{\dd{\left( \sum_I f_I \eta_I \right)}} &= \sum_I \dd{(\dd{f_I}\wedge\eta_I)} \\
+			&= \sum_I \left[ \dd{\dd{f_I}}\wedge \eta_I + \cancel{\dd{f_I}\wedge\eta_I} \right]  
+		\end{align*}
+		Thus, all we need to do is to show that $\dd{(\dd{f_I})}=0$ for $f_I$ a smooth function. We do this by
+		\begin{align*}
+			\dd{f_I} &= \pdv{f}{x^i}\dd{x^i} \\
+			\dd{(\dd{f_I})} &= \pdv{f}{x^i}{x^j}\dd{x^j}\wedge\dd{x^i}
+		\end{align*}
+		Now we note that these come in pairs, and cancel out due to the antisymmetry. Thus, $\dd{(\dd{f})}=0$, completing the proof.
+				\item We begin by showing this for a product of 0-forms, i.e. two smooth functions
+		\begin{align*}
+			\dd{fg} &= \pdv{fg}{x^i} \dd{x^i} \\
+			&= \left( \pdv{f}{x^i}g + \pdv{g}{x^i}f \right)\dd{x^i} \\
+			&= g \pdv{f}{x^i}\dd{x^i} + f\pdv{g}{x^i}\dd{x^i} \\
+			&= g\dd{f} + f\dd{g} 
+		\end{align*}
+		Then, we write $\omega$ and $\omega'$ in terms of the basis forms indexed by some multi-indices $I$ and $J$:
+		\begin{align*}
+			\omega &= \sum_I \omega_I \eta_I \\
+			\omega' &= \sum_J \omega'_J \eta_J \\
+			\omega\wedge\omega' &= \sum_{IJ} \omega_I \omega'_J \eta_I\wedge\eta_J \\
+			\dd{\omega\wedge\omega'} &= \sum_{IJ} \dd{\omega_I \omega'_J} \eta_I\wedge\eta_J \\
+			&= \sum_{IJ} \omega_I \dd{\omega'_J} \wedge\eta_I\wedge\eta_J + \sum_{IJ}\omega'_J \underbrace{\dd{\omega_I} \wedge\eta_I}_{\dd{\omega}}\wedge\eta_J \\
+			&= \sum_{IJ}(-1)^{|I|}  \omega_I \eta_I \wedge \dd{\omega'_J} \wedge \eta_J + \sum_{IJ} \dd{\omega}\wedge \omega' \\
+			&= \omega\wedge\dd{\omega'}+\dd{\omega}\wedge\omega' 
+		\end{align*}
+		where $\eta_I = \dd{x_{i_1}}\wedge \dots \dd{x_{i_k}}$ is the elementary $k$-form, we have used the fact that the differential of a function is a 1-form to anticommute it $|I|$ times through $\eta_I$.
+		\item Because of the linearity of the pullback, we only show this for an elementary form:
+		\[
+		f^*(\dd{(g \eta^I)}) = f^*(\dd{g}\wedge \eta^I)= f^*\dd{g} \wedge f^*\eta^I = \dd{(f^* g \eta_I)}
+		.\qedhere\] 
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[The Hodge Star Operator]
+
+Let $\omega$ and $\eta$ be $p$-forms. Recall that we defined the Hodge star operator as
+
+\[
+(\star\omega)_{\mu_1\ldots\mu_{D-p}}
+=
+\frac{1}{p!}
+\epsilon^{\nu_1\ldots\nu_p}{}_{\mu_1\ldots\mu_{D-p}}
+\omega_{\nu_1\ldots\nu_p},
+\]
+
+where $\epsilon$ is the Levi--Civita tensor,
+
+\[
+\epsilon_{\mu_1\ldots\mu_D}
+=
+\sqrt{-\det g}\,
+\varepsilon_{\mu_1\ldots\mu_D},
+\]
+
+\[
+\epsilon^{\mu_1\ldots\mu_D}
+=
+-\frac{1}{\sqrt{-\det g}}
+\varepsilon^{\mu_1\ldots\mu_D},
+\]
+
+with $\varepsilon$ being the usual Levi--Civita symbol. Notice the extra minus sign in the second expression, caused by raising the indices on $\epsilon$ with a Lorentzian metric.
+
+We now define
+
+\[
+\langle\omega,\eta\rangle
+:=
+\int_M
+\omega\wedge\star\eta.
+\]
+
+\begin{enumerate}
+
+\item[(a)] (Extra exercise) Prove that
+\[
+\epsilon_{\alpha_1\cdots\alpha_p\gamma_1\cdots\gamma_{D-p}}
+\epsilon^{\beta_1\cdots\beta_p\gamma_1\cdots\gamma_{D-p}}
+=
+-p!(D-p)!
+\,\delta^{\beta_1}_{[\alpha_1}
+\cdots
+\delta^{\beta_p}_{\alpha_p]}.
+\]
+
+\item[(b)] Prove that
+\[
+\langle\omega,\eta\rangle
+=
+\frac{1}{p!}
+\int
+d^Dx
+\sqrt{-g}\,
+\omega_{\alpha_1\cdots\alpha_p}
+\eta^{\alpha_1\cdots\alpha_p}.
+\]
+
+\item[(c)] Prove that
+\[
+\langle\omega,\eta\rangle
+=
+\langle\eta,\omega\rangle.
+\]
+
+\item[(d)] Show that for a zero-form $\phi$,
+\[
+\langle d\phi,d\phi\rangle
+=
+\int_M
+d^Dx\,
+\sqrt{-g}\,
+g^{\mu\nu}
+\partial_\mu\phi
+\partial_\nu\phi.
+\]
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item No thanks
+	\item Let us first compute this for a single elementary form: We note that $\star \dd{x^I}$ contains all 1-forms not in $I$. Thus, if $I$ and $J$ are multiindices of the same length, the only chance for $\dd{x^I}\wedge\dd{x^J}$ to be nonzero is if $I=J$. If this were not the case, we would have a repeated $\dd{x}$, thus it would vanish. This means that the sum reduces to a scalar product: If
+	\[\omega = \sum_I \omega_I\dd{x^I}\]
+	and
+	\[\eta = \sum_J \eta_J \dd{x^J},\]
+	then
+	\begin{align*}
+		\omega\wedge\star\eta &= \sum_I \sum_J\omega_I \eta_J \dd{x^I}\wedge\dd{x^J}\\
+		&= \sum_I \omega_I\eta_J V
+	\end{align*}
+	where $V$ is the elementary volume form. Thus, essentially by linearity and the proof for elementary forms, we have
+	\[\langle \omega, \eta\rangle = \frac 1{p!} \int \dd[D]{x} \sqrt{-g} \omega_{\alpha_1\dots\alpha_p}\eta^{\alpha_1\dots\alpha_p}\]
+			\item This follows directly by lowering and raising indices
+		\begin{align*}
+			\langle \omega, \eta\rangle &= \frac{1}{p!}\int \dd[D]{x} \sqrt{-g} \omega_{\alpha_1\dots \alpha_p}\eta^{\alpha_1\dots \alpha_p}\\
+			&= \frac{1}{p!}\int\dd[D]{x} \sqrt{-g} \omega^{\alpha_1\dots\alpha_p}\eta_{\alpha_1\dots \alpha_p} \\
+			&=  \langle \eta, \omega\rangle
+		\end{align*}
+		\item Substituting this in, we have
+		\begin{align*}
+			\langle \dd{\phi}, \dd{\phi}\rangle &= \int_M \dd[D]{x} \sqrt{-g} (\dd{\phi})_\mu (\dd{\phi})^\mu\\
+			&= \int_M \dd[D]{x} \sqrt{-g} g^{\mu\nu}(\dd{\phi})_\mu (\dd{\phi})_\nu \\
+			&= \int_M \dd[D]{x} \sqrt{-g} g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi
+		\end{align*}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[Stokes' Theorem]
+
+Given a $(p-1)$-form $\omega$ and a $p$-dimensional submanifold $\Sigma$ with boundary $\partial\Sigma$, we have
+
+\[
+\int_\Sigma d\omega
+=
+\oint_{\partial\Sigma}\omega.
+\]
+
+\begin{enumerate}
+
+\item[(a)] Show that, in three space dimensions, the above equation is equivalent to the classical Stokes' theorem
+
+\[
+\int_\Sigma
+d^2x\,
+\hat n\cdot(\nabla\times\mathbf A)
+=
+\oint_{\partial\Sigma}
+d\mathbf x\cdot\mathbf A,
+\]
+
+by taking
+
+\[
+\omega=A_\mu\,dx^\mu.
+\]
+
+\item[(b)] Similarly, again in three dimensions, show that taking
+
+\[
+\omega=\star(A_\mu\,dx^\mu)
+\]
+
+and integrating over a three-dimensional region $U$ instead of $\Sigma$ gives Gauss' law
+
+\[
+\int_U
+d^3x\,
+\nabla\cdot\mathbf A
+=
+\oint_{\partial U}
+d^2x\,
+\hat n\cdot\mathbf A.
+\]
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We take $\omega=A_\mu\dd{x^\mu}$, and perform the exterior derivative to get
+		\[
+			\dd{\omega} = \dd{A_\mu}\wedge\dd{x^\mu} = \partial_\nu A_{\mu} \dd{x^\nu}\wedge\dd{x^\mu}	
+		.\] 
+		In components for example, this would be written as
+		\begin{align*}
+			\dd{\omega} &= (\partial_x A_y - \partial_y A_x) \dd{x}\wedge\dd{y} \\
+				    &\quad +(\partial_y A_z - \partial_z A_y)\dd{y}\wedge\dd{z} \\
+				    &\quad + (\partial_z A_x -\partial_x A_z)\dd{z}\wedge\dd{x}
+		\end{align*}
+		We will see that this is exactly the area integral: For a surface $S$, the area form is given by the exterior product $V(n, \dots)$, where $n$ is the unit vector and $V$ is the volume form. Thus, we have
+		\[
+			\dd{S} = n_x \dd{y}\wedge\dd{z}+n_y\dd{z}\wedge\dd{x}+n_z\dd{x}\wedge\dd{y}
+		.\] 
+		Identifying, we can see that
+		\[
+			\int_M \dd{\omega} = \int \hat{n}\cdot (\curl{\va A})\dd{S}
+		.\] 
+		On the other hand, we see by direct identification that
+		\[
+			\int_{\partial M}\omega = \oint \va{A}\cdot \dd{\va\ell}
+		.\] 
+		This proves the theorem.
+	\item Note that the Hodge star can be defined on elementary forms as $\theta \wedge\star\theta = \dd{x^1}\wedge\dots\wedge\dd{x^D}$. Thus, by computing the hodge star, we find
+		 \[
+			 \omega = A_1\dd{x^2}\wedge\dd{x^3} + A_2\dd{x^3}\wedge\dd{x^1}+A_3\dd{x^1}\wedge\dd{x^2}
+		.\] 
+		By the same argument as in the previous subproblem, we have
+		\[
+			\int_{\partial U}\omega = \oint_{\partial U}\hat{n}\cdot\va A
+		.\] 
+		Now we compute $\dd{\omega}$. We notice that $\star \dd{x^\mu}$ has all elementary 1-forms inside it except $\dd{x^\mu}$. Thus, the only nonvanishing term is
+		\[
+			\dd{\omega} = (\partial_mu A_\mu)\dd{x^\mu}\wedge \star \dd{x^\mu} = (\partial_\mu A_\mu)V
+		\] 
+		where $V$ is the volume form. We see that this is exactly equal to
+		\[
+			\int_U \dd{\omega} = \int \div{\va A}\dd{V}
+		.\] 
+		Thus, Stoke's theorem yields the divergence theorem.\qedhere
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[$p$-form Calculus]
+
+Solve the following problems and simplify the results as much as possible.
+
+\begin{enumerate}
+
+\item[(a)] Compute and simplify
+
+\begin{align}
+(dx+dy)\wedge\left(f(y)\,dx+g(y)\,dy\right), \\
+d(xyz), \\
+(x\,dy+y\,dz+z\,dx)\wedge d(x\,dy+y\,dz+z\,dx).
+\end{align}
+
+\item[(b)] Which of the following forms $\omega$ is closed, i.e.\ $d\omega=0$? Which of them is exact, i.e.\ $\omega=d\eta$ for some $\eta$?
+
+\begin{align}
+\omega &= y\,dx+x\,dy, \\
+\omega &= (x^2+y^2)\,dx, \\
+\omega &= \frac{y\,dx-x\,dy}{x^2+y^2},
+\qquad \text{on } \mathbb{R}^2\setminus\{0\}.
+\end{align}
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We compute
+		\begin{align*}
+			&\quad (\dd{x}+\dd{y})\wedge (f(y)\dd{x}+g(y)\dd{y}) \\
+			&= g(y)\dd{x}\wedge\dd{y}+f(y)\dd{y}\wedge\dd{x} \\
+								      &= g(y)\dd{x}\wedge\dd{y}-f(y)\dd{x}\wedge\dd{y} \\
+								      &= [g(y)-f(y)]\dd{x}\wedge\dd{y}\\ 
+			\dd{xyz}&= yz\dd{x}+xz\dd{y}+xy\dd{x} \\
+				&\quad (x\dd{y}+y\dd{z}+z\dd{x})\wedge \dd{(x\dd{y}+y\dd{z}+z\dd{x})}\\
+				&= (x\dd{y}+y\dd{z}+z\dd{x})\wedge (\dd{x}\wedge\dd{y}+\dd{y}\wedge\dd{z}+\dd{z}\wedge\dd{x}) \\
+				&= x\dd{y}\wedge\dd{z}\wedge\dd{x}+y\dd{z}\wedge\dd{x}\wedge\dd{y}+z\dd{x}\wedge\dd{y}\wedge\dd{z} \\
+				&= (x+y+z)\dd{x}\wedge\dd{y}\wedge\dd{z} 
+		\end{align*}
+	\item First, we have
+		\begin{align*}
+			\dd{(y\dd{x}+x\dd{y})} &= \dd{y}\wedge\dd{x}+\dd{x}\wedge\dd{y} \\
+			&= 0 
+		\end{align*}
+		Thus it is closed. It is exact, because we have
+		\[
+			\omega = \dd{(xy)}
+		.\] 
+		For the next form, we have
+		\[
+			\dd{[(x^2+y^2)\dd{x}]} = \cancelto{0}{2x\dd{x}\wedge\dd{x}} + 2y\dd{y}\wedge\dd{x}
+		.\] 
+		Thus the form is not closed. Since it is not closed, it also cannot be exact.
+		
+		The last form is closed. We compute the cross derivatives
+		\[
+			\pdv{y} \frac{y}{x^2+y^2}= \frac{1}{x^2+y^2} - \frac{2y^2}{(x^2+y^2)^2}
+		\] 
+		and
+		\[
+			\pdv{x} \frac{-x}{x^2+y^2} = -\frac{1}{x^2+y^2} + \frac{2x^2}{(x^2+y^2)^2}
+		.\] 
+		Substituting, we find
+		\begin{align*}
+			\dd{\omega} &= \left[ \frac{1}{x^2+y^2} - \frac{2y^2}{(x^2+y^2)^2}+ \frac{1}{x^2+y^2} - \frac{2x^2}{x^2+y^2} \right] \dd{x}\wedge\dd{y}\\
+				    &= \left[ \frac{2}{x^2+y^2}-\frac{2(x^2+y^2)}{(x^2+y^2)^2} \right]\dd{x}\wedge\dd{y}  \\
+				    &= 0 
+		\end{align*}
+		However, it cannot be exact. Suppose it were exact. Then $\omega = \dd{\theta}$ for some form $\theta$. We would then have
+		\[
+		\int_{\partial M} \omega = \int_{\partial M} \dd{\theta} = \int_{M}\dd{\dd{\theta}} = 0
+		.\] 
+		We choose $M = D_2\setminus \{0\}  $. Then, we compute
+		\begin{align*}
+			\int_{\partial M}\omega &= \int \frac{y\dd{x}-x\dd{y}}{x^2+y^2} \\
+						&= \int \frac{\sin \theta (-\sin\theta\dd{\theta}) - \cos\theta (\cos\theta\dd{\theta}}{1} \\
+						&= \int 1\dd{\theta}=2\pi 
+		\end{align*}
+		where we integrated using coordinates on $S_1\cong \partial D_2$ using the pullback onto the angle coordinates. This is a contradiction, showing that $\omega$ cannot be exact.\qedhere
+	\end{parts}
+\end{proof}
+
+
+\begin{Problem}[M-Theory]
+
+M-theory is a proposed quantum theory of gravity in $D=11$ spacetime dimensions. It arises from the strong coupling limit of string theory. At lower energies, it is described by the unique theory of $11$-dimensional supergravity, whose bosonic fields are the metric and a $4$-form
+\[
+G=dC,
+\]
+where $C$ is a $3$-form potential. The action governing these fields is
+
+\[
+S_{M}
+=
+\frac12 M_{\mathrm{pl}}^9
+\left[
+\int d^{11}x\,\sqrt{-g}
+\left(
+R
+-\frac1{48}
+G_{\mu\nu\rho\sigma}
+G^{\mu\nu\rho\sigma}
+\right)
+-
+\frac16
+\int
+C\wedge G\wedge G
+\right],
+\]
+
+where $M_{\mathrm{pl}}$ denotes the Planck mass.
+
+\begin{enumerate}
+
+\item[(a)]
+Show that, up to surface terms, this action is gauge invariant under
+
+\[
+C \longrightarrow C+d\Lambda,
+\]
+
+where $\Lambda$ is a $2$-form.
+
+\item[(b)]
+Vary the metric to determine the Einstein equations for this theory.
+
+\item[(c)]
+Vary $C$ to obtain the equation of motion for the $4$-form,
+
+\[
+d\star G
+=
+\frac12
+G\wedge G.
+\]
+
+\textbf{Hint:} Recall that $G=dC$, so under a variation of $C$,
+
+\[
+\delta G=d(\delta C).
+\]
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item We note that $G$ does not change under this, because $G\to \dd{C} + \dd{\dd{\Lambda}}=\dd{C}$. Thus, we only need to consider the second term, which changes as
+		\[
+			\int C\wedge G\wedge G \to \int C \wedge G \wedge G+\int \dd{\Lambda}\wedge G \wedge G
+		\] 
+		However, we can write
+		\[
+			\dd{\Lambda\wedge G \wedge G} = \dd{\Lambda}\wedge G \wedge G
+		,\]
+		again because $\dd{G}=0$, forcing the remaining terms to vanish. This means that the difference term is
+		\[
+			\int_M \dd{\Lambda}\wedge G\wedge G = \int_M \dd{(\Lambda\wedge G \wedge G)} = \int_{\partial M}\Lambda \wedge G \wedge G
+		.\] 
+	\end{parts}
+\end{proof}

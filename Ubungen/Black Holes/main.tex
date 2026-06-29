@@ -1,0 +1,112 @@
+\documentclass[prb,12pt, nofootinbib]{revtex4-2}
+%fonts
+% Palatino for main text and math
+\usepackage[osf,sc]{mathpazo}
+
+% Helvetica for sans serif
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.90]{helvet}
+
+% Bera Mono for monospaced
+% (scaled to match size of Palatino)
+\usepackage[scaled=0.85]{beramono}
+\usepackage{amsmath, amssymb,physics,amsfonts,amsthm}
+\usepackage{enumitem}
+\usepackage{cancel}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\captionsetup[subfigure]{% changed <<<<<<<<<<<<<<<<
+	singlelinecheck = false,
+	justification=raggedright, 
+	margin = {-3ex, 0mm}, % make margin font size dependent
+}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tensor}
+\usepackage{wasysym}
+\usepackage{listings}
+\usepackage{bbm}
+\usepackage{hyperref}
+%\usepackage{./mmacells}
+\usepackage{enumitem}
+\usepackage{transparent}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{slashed}
+\usepackage{ulem}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Proposition}{Proposition}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{Problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newenvironment{parts}{\begin{enumerate}[label=(\alph*)]}{\end{enumerate}}
+\newcommand{\backvec}[1]{\reflectbox{$\vec{\reflectbox{\!$#1$}}$}}
+
+%tikz
+\usetikzlibrary{patterns}
+\usepackage{tikz-cd}
+% definitions of number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\allowdisplaybreaks
+
+\newtcolorbox{revision}[1][]{empty, breakable, sharp corners, borderline north={1pt}{0pt}{black},
+	borderline west={5pt}{0pt}{black},
+	#1}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	literate={_}{{\_}}1
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+\title{Black Holes Homework 5}
+	\author{Jun Wei Tan}
+	\email{jun-wei.tan@stud-mail.uni-wuerzburg.de}
+	\affiliation{Julius-Maximilians-Universit\"{a}t W\"{u}rzburg}
+	\date{\today}
+	\maketitle
+%\input{blatt1.tex}
+%\input{blatt2.tex}
+%\input{blatt3.tex}
+%\input{blatt4.tex}
+\input{blatt5.tex}
+%\input{blatt6.tex}
+%\input{blatt7.tex}
+%	\input{blatt8.tex}
+%	\input{blatt9.tex}
+	%\input{blatt10.tex}
+%	\input{blatt11.tex}
+\end{document}
