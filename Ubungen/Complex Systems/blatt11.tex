@@ -275,13 +275,148 @@ $
 			\braket{0}{\phi_-} &= \beta^*, &|\braket{0}{\phi_-}|^2 &= |\beta|^2 = 1-u\\
 			\braket{1}{\phi_-} &= -\alpha^*, & |\braket{1}{\phi_-}|^2 &= |\alpha|^2 = u\\
 			\braket{-}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha - \beta), &|\braket{-}{\phi_+}|^2 &= \frac{1}{2}|\alpha - \beta|^2 = 1-v  \\
-			\braket{+}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha + \beta) \\
-			\braket{-}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* + \alpha^*) \\
-			\braket{+}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* - \alpha^*) 
+			\braket{+}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha + \beta)& |\braket{+}{\phi_+}|^2 &= \frac12|\alpha+\beta|^2 = v \\
+			\braket{-}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* + \alpha^*) & |\braket{-}{\phi_-}| &= \frac 12|\beta^*+\alpha^*|^2 = v\\
+			\braket{+}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* - \alpha^*) & |\braket{+}{\phi_-}|^2 &=\frac 12 |\beta^*-\alpha^*|^2 = 1-v 
 		\end{align*}
 		where we have used the identity
-		\[
-		1-v = 1-\frac{1}{2}|\alpha +\beta|^2 = 
-		.\] 
+		\begin{align*}
+			2v=|\alpha+\beta|^2 &= |\alpha|^2 + |\beta|^2 + 2\Re(\alpha^*\beta)\\
+			|\alpha-\beta|^2 &= |\alpha|^2 + |\beta|^2 - 2\Re(\alpha\beta)
+		\end{align*}
+		and hence
+		\[|\alpha+\beta|^2 + |\alpha-\beta|^2 = 2,\]
+		leading to
+		\[\frac 12 |\alpha-\beta|^2 = 1-v\]
+		Now, we go down the various probability branches. Suppose Alice measures $a=0$, and hence sends the state $\ket{0}$ to Bob, with it being intercepted by Eve. The chance of her measuring $\ket{\phi_+}$ is $u$, and the chance of her measuring $\ket{\phi_-}$ is $1-u$. 
+		
+		If Alice had sent the state $\ket{+}$ to Bob instead, Eve would have a chance of m
+		
+		\begin{tikzpicture}[grow=right,edge from parent/.style={draw, -{Stealth}}, level distance=3.5cm, level 1/.style={sibling distance=90mm},
+			level 2/.style={sibling distance=45mm},
+			level 3/.style={sibling distance=22.5mm},
+			level 4/.style={sibling distance=11.125mm}]
+			\node {Alice}
+			child {
+				node {$\ket{0}$}
+				child{
+					node {$\ket{\phi_+}$}
+					child{
+						node {$\mathbf{M}_0$}
+						child{
+							node{$\ket{0}$}
+							edge from parent node[above] {$u$}
+						}
+						child{
+							node{$\ket{1}$}
+							edge from parent node[above] {$1-u$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					child{
+						node {$\mathbf{M}_1$}
+											child{
+							node{$\ket{-}$}
+							edge from parent node[above] {$1-v$}
+						}
+						child{
+							node{$\ket{+}$}
+							edge from parent node[above] {$v$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					edge from parent node[above] {$u$}
+				}
+				child{
+					node {$\ket{\phi_-}$}
+										child{
+						node {$\mathbf{M}_0$}
+						child{
+							node{$\ket{0}$}
+							edge from parent node[above] {$u$}
+						}
+						child{
+							node{$\ket{1}$}
+							edge from parent node[above] {$1-u$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					child{
+						node {$\mathbf{M}_1$}
+						child{
+							node{$\ket{-}$}
+							edge from parent node[above] {$1-v$}
+						}
+						child{
+							node{$\ket{+}$}
+							edge from parent node[above] {$v$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					edge from parent node[above] {$1-u$}
+				}
+				edge from parent node[above] {$\frac 12$}
+			}
+						child {
+				node {$\ket{+}$}
+				child{
+					node {$\ket{\phi_+}$}
+					child{
+						node {$\mathbf{M}_0$}
+						child{
+							node{$\ket{0}$}
+							edge from parent node[above] {$u$}
+						}
+						child{
+							node{$\ket{1}$}
+							edge from parent node[above] {$1-u$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					child{
+						node {$\mathbf{M}_1$}
+						child{
+							node{$\ket{-}$}
+							edge from parent node[above] {$1-v$}
+						}
+						child{
+							node{$\ket{+}$}
+							edge from parent node[above] {$v$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					edge from parent node[above] {$u$}
+				}
+				child{
+					node {$\ket{\phi_-}$}
+					child{
+						node {$\mathbf{M}_0$}
+						child{
+							node{$\ket{0}$}
+							edge from parent node[above] {$u$}
+						}
+						child{
+							node{$\ket{1}$}
+							edge from parent node[above] {$1-u$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					child{
+						node {$\mathbf{M}_1$}
+						child{
+							node{$\ket{-}$}
+							edge from parent node[above] {$1-v$}
+						}
+						child{
+							node{$\ket{+}$}
+							edge from parent node[above] {$v$}
+						}
+						edge from parent node[above] {$\frac 12$}
+					}
+					edge from parent node[above] {$1-u$}
+				}
+				edge from parent node[above] {$\frac 12$}
+			};
+		\end{tikzpicture}
 	\end{parts}
 \end{proof}
