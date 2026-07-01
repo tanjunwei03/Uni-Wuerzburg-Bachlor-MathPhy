@@ -52,10 +52,10 @@
 		.\] 
 		We then compute the outer product in mathematica using
 		\begin{mmaCell}{Input}
-v = {1/5, 2 I Sqrt[2]/5, -4/15, -8 I Sqrt[2]/15}
+v = \{1/5, 2 I Sqrt[2]/5, -4/15, -8 I Sqrt[2]/15\}
 		\end{mmaCell}
 		\begin{mmaCell}{Input}
-			\mmaUnd{\(\rho\)} = Outer[Times, Conjugate[v], v]
+\mmaUnd{\(\rho\)} = Outer[Times, Conjugate[v], v]
 		\end{mmaCell}
 		\begin{mmaCell}{Output}
 \{\{1/25, (2 I Sqrt[2])/25, -(4/75), -((8 I Sqrt[2])/75)\}, \{-((2 I Sqrt[2])/25), 8/25, (8 I Sqrt[2])/75, -(32/75)\}, \{-(4/75), -((8 I Sqrt[2])/75), 16/225, (32 I Sqrt[2])/225\}, \{(8 I Sqrt[2])/75, -(32/75), -((32 I Sqrt[2])/225), 128/225\}\}
@@ -84,10 +84,10 @@ v = {1/5, 2 I Sqrt[2]/5, -4/15, -8 I Sqrt[2]/15}
 		.\]
 		Since the matrix has not changed at all, we know that the trace remains the same, i.e. it is 1. We can also confirm this by evaluating
 		\begin{mmaCell}{Input}
-			Tr[\mmaUnd{\(\rho\)}.\mmaUnd{\(\rho\)}]
+Tr[\mmaUnd{\(\rho\)}.\mmaUnd{\(\rho\)}]
 		\end{mmaCell}
 		\begin{mmaCell}{Output}
-			1
+1
 		\end{mmaCell}
 		This is to be expected, since we had $\rho = \dyad{\psi}{\psi}$ and hence
 		\[
@@ -150,7 +150,7 @@ Table[Sum[\mmaUnd{\(\rho\)}[[2 (j - 1) + m, 2 (j - 1) + n]], \{j, 1, 2\}], \{m, 
 		\begin{mmaCell}{Output}
 \{\{1/9, (2 I Sqrt[2])/9\}, \{-((2 I Sqrt[2])/9), 8/9\}\}
 		\end{mmaCell}
-		Since $\tr(\rho^{(L)})=\tr(\rho^{(R)})=1$, we have $\tr((\rho^{(L)})^2)=\tr((\rho^{(R)})^2)=1$, i.e. the states are pure. This means that the states are not entangled.
+		Since $\tr(\rho^{(L)})=\tr(\rho^{(R)})=1$, we have $\tr((\rho^{(L)})^2)=\tr((\rho^{(R)})^2)=1$, i.e. the states are pure. This means that the states are not entangled.\qedhere
 	\end{parts}
 \end{proof}
 \begin{Problem}[Quantum Cryptography]
@@ -411,7 +411,7 @@ $
 		where we have used the identity
 		\begin{align*}
 			2v=|\alpha+\beta|^2 &= |\alpha|^2 + |\beta|^2 + 2\Re(\alpha^*\beta)\\
-			|\alpha-\beta|^2 &= |\alpha|^2 + |\beta|^2 - 2\Re(\alpha\beta)
+			|\alpha-\beta|^2 &= |\alpha|^2 + |\beta|^2 - 2\Re(\alpha^*\beta)
 		\end{align*}
 		and hence
 		\[|\alpha+\beta|^2 + |\alpha-\beta|^2 = 2,\]
@@ -435,8 +435,29 @@ $
 		
 		This means that $u=0$ or $1$, and $v=0$ or $1$. Note that some of these possibilities are generically not possible due to the constraint $|\alpha|^2 + |\beta|^2 = 1$. For example, $u=v=0$ would imply $\alpha=\beta=0$, which is not possible. It is also not possible to have $u=1$ and $v=1$, or $u=1$ and $v=0$, because $u=1$ implies $|\alpha|=1$, and thus $\beta=0$. 
 		
-		Thus, the only possibility is $u=1$ and $v=0$, implying $|\alpha|=1$ and $\beta = 0$. Since the phases cancel, we can just declare $\alpha=1$. 
-		\item The measurements Eve does are just the measurements in the computational basis $\ket{0}$ and $\ket{1}$. Eve cannot obtain complete information about the key. If Eve measures the key $\ket{1}$, then she can tell that the state Alice prepared was in the state $\ket{+}$; however, if she measures the ket $\ket{-}$, then she cannot say about what bit Alice has. 
+		Thus, the only possibility is
+		\[u=1, \qquad v=0.\]
+		This implies $|\alpha|=1$ and $\beta = 0$. Since the phases cancel, we can just declare $\alpha=1$. 
+		
+		However, for Alice and Bob to detect this, they would have to share their keys, which defeats the purpose. Another way for Bob to detect interception is to measure the global statistics of measuring $m=\pm 1$. First we do this without Eve. Without Eve, there are two independent possibilities of measurement:
+		\begin{align*}
+			a &= b:\qquad m=1,\text{ probability 1}\\
+			a&\neq b:\qquad m=\pm 1, \text{ probability }\frac 12\text{ each}
+		\end{align*}
+		This leads to a global probability of $\frac 34$ of measuring $m=1$, and a probability of $m=\frac 14$ of measuring $m=-1$ (I found out I already solved this in the earlier parts after writing this).
+		
+		Summing up the elements in the left column with a factor of 4, we find that the global probability of measuring $m=1$ after interception is given by
+		\[\mathbb{P}(m=1) = \frac 12 + \frac 12 (u+v-1)^2\]
+		By a simple calculation (or the law of total probabillity), the probability of measuring $-1$ must be
+		\[\mathbb{P}(m=-1) =  \frac 12 - \frac 12 (u+v-1)^2\]
+		For the global statistics to agree, we must have
+		\[(u+v-1)^2 = \frac 12\]
+		This leads to the solution set being
+		\[u+v = 1\pm \frac{1}{\sqrt{2}}\]
+		Note that the previous solution is not in this set. This arises from an alternative definition of ``undetectable'', that being the global statistics, where Bob attempts to verify the security by measuring the global statistics. The question is not phrased in a manner that yields a single unique interpretation.
+		\item For clarity, we will use the first definition of ``undetectable'', which yielded the basis $u=1,~v=0$. The measurements Eve does here are just the measurements in the computational basis $\ket{0}$ and $\ket{1}$. Eve cannot obtain complete information about the key. If Eve measures the ket $\ket{1}$, then she can tell that the state Alice prepared was in the state $\ket{+}$; however, if she measures the ket $\ket{-}$, then she cannot say about what bit Alice has. 
+		
+		Additionally (again, dependent on how we define getting information!), even when Eve knows that Alice prepared a bit in the state $\ket{+}$, she cannot say anything about the key, because she does not know what Bob has measured, and hence whether that bit is in the key. Again, this is another reason why this subquestion is :((( phrased.
 		
 		This follows from the nonorthogonality of the states Alice has prepared, which is why it is required for the protocol.\qedhere
 
