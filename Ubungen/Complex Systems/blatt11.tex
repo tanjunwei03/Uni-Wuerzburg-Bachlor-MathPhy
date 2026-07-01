@@ -431,7 +431,14 @@ $
 \end{center}
 	
 		It is clear that the statistics are changed: For example, it is clear that we can choose $u$ and $v$ such that the probabilities $\mathbb{P}(m=-1)$ are all nonzero, which means there is a chance of measuring $m=-1$ for all configurations; this contradicts (a).
-		\item There does not exist such values of $u$ and $v$.
+		\item This depends largely on how ``undetectable'' is defined. We will take it to mean the result in part (a), i.e. that if the measurement $m$ yields the result $-1$, then $b=1-a$.  This means that the probabilities on the right in the first and last row have to vanish.
+		
+		This means that $u=0$ or $1$, and $v=0$ or $1$. Note that some of these possibilities are generically not possible due to the constraint $|\alpha|^2 + |\beta|^2 = 1$. For example, $u=v=0$ would imply $\alpha=\beta=0$, which is not possible. It is also not possible to have $u=1$ and $v=1$, or $u=1$ and $v=0$, because $u=1$ implies $|\alpha|=1$, and thus $\beta=0$. 
+		
+		Thus, the only possibility is $u=1$ and $v=0$, implying $|\alpha|=1$ and $\beta = 0$. Since the phases cancel, we can just declare $\alpha=1$. 
+		\item The measurements Eve does are just the measurements in the computational basis $\ket{0}$ and $\ket{1}$. Eve cannot obtain complete information about the key. If Eve measures the key $\ket{1}$, then she can tell that the state Alice prepared was in the state $\ket{+}$; however, if she measures the ket $\ket{-}$, then she cannot say about what bit Alice has. 
+		
+		This follows from the nonorthogonality of the states Alice has prepared, which is why it is required for the protocol.\qedhere
 
 	\end{parts}
 \end{proof}
