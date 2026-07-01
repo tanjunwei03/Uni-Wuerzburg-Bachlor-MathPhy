@@ -268,30 +268,8 @@ $
 			\mathbbm{P}(m=-1)=\mathbbm{P}(\text{correct apparatus})\cdot \frac{1}{2}= \frac{1}{4}
 		.\] 
 		We thus need 4 qubits on average to generate one bit of the key.
-	\item We compute the necessary inner products:
-		\begin{align*}
-			\braket{0}{\phi_+} &= \alpha, &|\braket{0}{\phi_+}|^2 &= |\alpha|^2 = u\\
-			\braket{1}{\phi_+} &= \beta, &|\braket{1}{\phi_+}|^2 &= |\beta|^2=1-u \\
-			\braket{0}{\phi_-} &= \beta^*, &|\braket{0}{\phi_-}|^2 &= |\beta|^2 = 1-u\\
-			\braket{1}{\phi_-} &= -\alpha^*, & |\braket{1}{\phi_-}|^2 &= |\alpha|^2 = u\\
-			\braket{-}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha - \beta), &|\braket{-}{\phi_+}|^2 &= \frac{1}{2}|\alpha - \beta|^2 = 1-v  \\
-			\braket{+}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha + \beta)& |\braket{+}{\phi_+}|^2 &= \frac12|\alpha+\beta|^2 = v \\
-			\braket{-}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* + \alpha^*) & |\braket{-}{\phi_-}| &= \frac 12|\beta^*+\alpha^*|^2 = v\\
-			\braket{+}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* - \alpha^*) & |\braket{+}{\phi_-}|^2 &=\frac 12 |\beta^*-\alpha^*|^2 = 1-v 
-		\end{align*}
-		where we have used the identity
-		\begin{align*}
-			2v=|\alpha+\beta|^2 &= |\alpha|^2 + |\beta|^2 + 2\Re(\alpha^*\beta)\\
-			|\alpha-\beta|^2 &= |\alpha|^2 + |\beta|^2 - 2\Re(\alpha\beta)
-		\end{align*}
-		and hence
-		\[|\alpha+\beta|^2 + |\alpha-\beta|^2 = 2,\]
-		leading to
-		\[\frac 12 |\alpha-\beta|^2 = 1-v\]
-		Now, we go down the various probability branches. Suppose Alice measures $a=0$, and hence sends the state $\ket{0}$ to Bob, with it being intercepted by Eve. The chance of her measuring $\ket{\phi_+}$ is $u$, and the chance of her measuring $\ket{\phi_-}$ is $1-u$. 
-		
-		If Alice had sent the state $\ket{+}$ to Bob instead, Eve would have a chance of m
-		
+	\item 		\begin{figure}
+		\centering
 		\begin{tikzpicture}[grow=right,edge from parent/.style={draw, -{Stealth}}, level distance=3.5cm, level 1/.style={sibling distance=90mm},
 			level 2/.style={sibling distance=45mm},
 			level 3/.style={sibling distance=22.5mm},
@@ -315,7 +293,7 @@ $
 					}
 					child{
 						node {$\mathbf{M}_1$}
-											child{
+						child{
 							node{$\ket{-}$}
 							edge from parent node[above] {$1-v$}
 						}
@@ -329,15 +307,15 @@ $
 				}
 				child{
 					node {$\ket{\phi_-}$}
-										child{
+					child{
 						node {$\mathbf{M}_0$}
 						child{
 							node{$\ket{0}$}
-							edge from parent node[above] {$u$}
+							edge from parent node[above] {$1-u$}
 						}
 						child{
 							node{$\ket{1}$}
-							edge from parent node[above] {$1-u$}
+							edge from parent node[above] {$u$}
 						}
 						edge from parent node[above] {$\frac 12$}
 					}
@@ -345,11 +323,11 @@ $
 						node {$\mathbf{M}_1$}
 						child{
 							node{$\ket{-}$}
-							edge from parent node[above] {$1-v$}
+							edge from parent node[above] {$v$}
 						}
 						child{
 							node{$\ket{+}$}
-							edge from parent node[above] {$v$}
+							edge from parent node[above] {$1-v$}
 						}
 						edge from parent node[above] {$\frac 12$}
 					}
@@ -357,7 +335,7 @@ $
 				}
 				edge from parent node[above] {$\frac 12$}
 			}
-						child {
+			child {
 				node {$\ket{+}$}
 				child{
 					node {$\ket{\phi_+}$}
@@ -385,7 +363,7 @@ $
 						}
 						edge from parent node[above] {$\frac 12$}
 					}
-					edge from parent node[above] {$u$}
+					edge from parent node[above] {$v$}
 				}
 				child{
 					node {$\ket{\phi_-}$}
@@ -393,11 +371,11 @@ $
 						node {$\mathbf{M}_0$}
 						child{
 							node{$\ket{0}$}
-							edge from parent node[above] {$u$}
+							edge from parent node[above] {$1-u$}
 						}
 						child{
 							node{$\ket{1}$}
-							edge from parent node[above] {$1-u$}
+							edge from parent node[above] {$u$}
 						}
 						edge from parent node[above] {$\frac 12$}
 					}
@@ -405,18 +383,55 @@ $
 						node {$\mathbf{M}_1$}
 						child{
 							node{$\ket{-}$}
-							edge from parent node[above] {$1-v$}
+							edge from parent node[above] {$v$}
 						}
 						child{
 							node{$\ket{+}$}
-							edge from parent node[above] {$v$}
+							edge from parent node[above] {$1-v$}
 						}
 						edge from parent node[above] {$\frac 12$}
 					}
-					edge from parent node[above] {$1-u$}
+					edge from parent node[above] {$1-v$}
 				}
 				edge from parent node[above] {$\frac 12$}
 			};
 		\end{tikzpicture}
+	\end{figure}
+	We compute the necessary inner products:
+		\begin{align*}
+			\braket{0}{\phi_+} &= \alpha, &|\braket{0}{\phi_+}|^2 &= |\alpha|^2 = u\\
+			\braket{1}{\phi_+} &= \beta, &|\braket{1}{\phi_+}|^2 &= |\beta|^2=1-u \\
+			\braket{0}{\phi_-} &= \beta^*, &|\braket{0}{\phi_-}|^2 &= |\beta|^2 = 1-u\\
+			\braket{1}{\phi_-} &= -\alpha^*, & |\braket{1}{\phi_-}|^2 &= |\alpha|^2 = u\\
+			\braket{-}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha - \beta), &|\braket{-}{\phi_+}|^2 &= \frac{1}{2}|\alpha - \beta|^2 = 1-v  \\
+			\braket{+}{\phi_+} &= \frac{1}{\sqrt{2} }(\alpha + \beta)& |\braket{+}{\phi_+}|^2 &= \frac12|\alpha+\beta|^2 = v \\
+			\braket{-}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* + \alpha^*) & |\braket{-}{\phi_-}| &= \frac 12|\beta^*+\alpha^*|^2 = v\\
+			\braket{+}{\phi_-} &= \frac{1}{\sqrt{2} }(\beta^* - \alpha^*) & |\braket{+}{\phi_-}|^2 &=\frac 12 |\beta^*-\alpha^*|^2 = 1-v 
+		\end{align*}
+		where we have used the identity
+		\begin{align*}
+			2v=|\alpha+\beta|^2 &= |\alpha|^2 + |\beta|^2 + 2\Re(\alpha^*\beta)\\
+			|\alpha-\beta|^2 &= |\alpha|^2 + |\beta|^2 - 2\Re(\alpha\beta)
+		\end{align*}
+		and hence
+		\[|\alpha+\beta|^2 + |\alpha-\beta|^2 = 2,\]
+		leading to
+		\[\frac 12 |\alpha-\beta|^2 = 1-v\]
+		Now, we go down the various probability branches as shown in the figure below to find the statistics
+		
+\begin{center}
+		\begin{tabular}{cccc}
+	\toprule
+	$a$ & $b$ & $\mathbb{P}(m=1)$ & $\mathbb{P}(m=-1)$ \\\midrule
+	0 & 0 & $u^2+(1-u)^2$ & $2u(1-u)$\\\midrule
+	0 & 1 & $uv+(1-u)(1-v)$ & $u(1-v)+v(1-u)$\\\midrule
+	1 & 0 & $vu+(1-v)(1-u)$ & $v(1-u)+u(1-v)$\\\midrule
+	1 & 1 & $v^2 + (1-v)^2$ & $2v(1-v)$\\\bottomrule
+\end{tabular}
+\end{center}
+	
+		It is clear that the statistics are changed: For example, it is clear that we can choose $u$ and $v$ such that the probabilities $\mathbb{P}(m=-1)$ are all nonzero, which means there is a chance of measuring $m=-1$ for all configurations; this contradicts (a).
+		\item There does not exist such values of $u$ and $v$.
+
 	\end{parts}
 \end{proof}
