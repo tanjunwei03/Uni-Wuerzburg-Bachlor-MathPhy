@@ -1,0 +1,159 @@
+\begin{Problem}[The First Gap]
+
+The Hamiltonian of the Ising quantum chain is defined by
+\[
+H_N=\sum_{n=0}^{N-1}\left(\sigma_n^x\sigma_{n+1}^x+\lambda\sigma_n^z\right),
+\]
+where $\lambda>0$ and
+\[
+\sigma_n^{x|y|z}
+=
+1_{2^n}
+\otimes
+\sigma^{x|y|z}
+\otimes
+1_{2^{N-n-1}\times2^{N-n-1}}
+\]
+are Pauli matrices acting at site $n$, assuming periodic boundary conditions. The first (or lowest) gap $\Delta_N$ is defined as the difference between the first two lowest-lying eigenvalues of $H_N$.
+
+\begin{enumerate}[label=(\alph*)]
+
+\item
+In Markov processes, the first gap of $\mathcal{L}$ is the inverse leading relaxation time. In particle physics, the first gap measures the mass. What is the interpretation of the first gap of $H_N$ in the present context?
+
+\item
+With the \textit{Mathematica}\textsuperscript{\textregistered} code fragment for the tensor product $\otimes$ given in the lecture notes,\footnote{You are of course free to use any other algebraic computer system as well.}
+write a code snippet to set up the Hamiltonian for arbitrary $N$ and $\lambda$.
+
+Cross-check: The eigenvalues for $N=3$ (i.e.\ $8\times8$) are $
+\{-\lambda-1,\,
+-\lambda-1,\,
+\lambda-1,\,
+\lambda-1,\,
+-2\sqrt{\lambda^2-\lambda+1}+1,\,
+2\sqrt{\lambda^2-\lambda+1}+1,\,
+-2\sqrt{\lambda^2+\lambda+1}+1,\,
+2\sqrt{\lambda^2+\lambda+1}+1
+\}.$
+
+\item
+With (b), compute numerically the first gap of $H_N$ for
+\[
+N=2,4,6,8,10,12
+\]
+and plot the gap for $\lambda=0.8,\;1,\;1.2$ (double-logarithmically) as a function of $N$. For which $\lambda$ do you get an almost straight line of points and why?\footnote{The execution for $N=12$ should take less than 20 seconds. If not, go only up to $N=10$.}
+
+\item
+Compute the negative discrete logarithmic derivative
+\[
+\nu(N)
+=
+-\frac{\ln\!\left[\Delta_{N+2}/\Delta_N\right]}
+{\ln\!\left[(N+2)/N\right]}
+\]
+for $\lambda=1$ and
+\[
+N=2,4,6,8,10,
+\]
+and guess the value of the critical exponent $\nu$, defined by
+\[
+\nu=\lim_{N\to\infty}\nu(N).
+\]
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item The first gap represents the excitation energy between the ground state and the first excited state.
+	\item First we define the tensor product on Pauli matrices, using a \textbf{one-indexed convention} instead.
+		\begin{mmaCell}{Input}
+\mmaUnd{\(\sigma\)}[k\_, x\_, n\_] := KroneckerProduct[IdentityMatrix[2^(k - 1)], PauliMatrix[x], IdentityMatrix[2^(n - k)]]
+		\end{mmaCell}
+		Then, we define the Ising Hamiltonian, being careful to use a mod function to impose periodic boundary conditions
+\begin{mmaCell}{Input}
+IsingHamiltonian[n\_] := Sum[\mmaUnd{\(\sigma\)}[k, 1, n] . \mmaUnd{\(\sigma\)}[Mod[k + 1, n, 1], 1, n] + \mmaUnd{\(\lambda\)} \mmaUnd{\(\sigma\)}[k, 3, n], \{k, 1, n\}]
+\end{mmaCell}
+We then define a function to find a spectral gap, given a list of eigenvalues
+\begin{mmaCell}{Input}
+spectralgap[lst\_] := (Abs[#[[1]] - #[[2]]] &)[TakeSmallest[lst, 2]]
+\end{mmaCell}
+and finally we compute the spectral gaps as a function of $n$ for the various $\lambda$.
+\begin{mmaCell}{Input}
+\mmaUnd{\(\lambda12\)} = spectralgap /@ Monitor[Table[Eigenvalues[IsingHamiltonian[n] /. \mmaUnd{\(\lambda\to\)} 1.2], \{n, 2, 12,2\}], n];
+\end{mmaCell}
+\begin{mmaCell}{Input}
+\mmaUnd{\(\lambda1\)} = spectralgap /@ Monitor[Table[Eigenvalues[IsingHamiltonian[n] /. \mmaUnd{\(\lambda\to\)} 1.], \{n, 2, 12,2\}], n];
+\end{mmaCell}
+\begin{mmaCell}{Input}
+	\mmaUnd{\(\lambda08\)} = spectralgap /@ Monitor[Table[Eigenvalues[IsingHamiltonian[n] /. \mmaUnd{\(\lambda\to\)} 0.8], \{n, 2, 12,2\}], n];
+\end{mmaCell}
+	\end{parts}
+\end{proof}
+
+\begin{Problem}[DP Mean Field Approximation]
+
+In the mean field approximation of directed percolation (DP) extended by a term for diffusion, the density of active sites $\rho(x,t)$ evolves according to the partial differential equation
+\[
+\dot{\rho}
+=
+\lambda\rho(1-\rho)-\rho
++
+D\nabla^2\rho.
+\]
+
+\begin{enumerate}[label=(\alph*)]
+
+\item
+Determine the homogeneous (space-independent) stationary (time-independent) density
+\[
+\rho_{\mathrm{stat}}
+\]
+as a function of $\lambda$. Where is the critical point $\lambda_c$? Test the solutions for stability by a stability analysis.
+
+\item
+Find the exponent for
+\[
+\rho_{\mathrm{stat}}
+\sim
+(\lambda-\lambda_c)^\beta
+\]
+near the critical point.
+
+\item
+At criticality $\lambda=\lambda_c$, the homogeneous density $\rho(t)$ decays as
+\[
+\rho(t)\sim t^{-\delta}.
+\]
+Compute the exponent $\delta$.
+
+\item
+Show that the Green's function of the mean field equation at the critical point can be written in the form
+\[
+G(\mathbf{x},t)
+=
+t^{-1}
+f\!\left(\frac{x^2}{t}\right).
+\]
+
+\textbf{Hint:} It is sufficient to derive an autonomous differential equation for $f$; you do not have to compute $f$ explicitly. Restrict yourself to $t>0$ and ignore the scaling of the $\delta$-functions.
+
+\end{enumerate}
+
+\end{Problem}
+\begin{proof}
+	\begin{parts}
+	\item If the density is homogeneous, the left hand side, as well as the second term on the right hand side vanishes and we are left with
+		\[
+			\lambda\rho_\text{stat}(1-\rho_\text{stat})-\rho_\text{stat} = 0
+		.\] 
+		We factor $\rho$ out to find
+		\[
+			0 = \rho_\text{stat}[\lambda(1-\rho_\text{stat})-1] 
+		\] 
+		which has either the solution $\rho_\text{stat} = 0$ or $\lambda(1-\rho_\text{stat})-1=0$, which implies
+		\[
+		\rho = 1 - \frac 1\lambda
+		.\] 
+	\end{parts}
+\end{proof}
