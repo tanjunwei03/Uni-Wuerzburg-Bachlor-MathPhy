@@ -74,7 +74,7 @@ and guess the value of the critical exponent $\nu$, defined by
 \begin{mmaCell}{Input}
 IsingHamiltonian[n\_] := Sum[\mmaUnd{\(\sigma\)}[k, 1, n] . \mmaUnd{\(\sigma\)}[Mod[k + 1, n, 1], 1, n] + \mmaUnd{\(\lambda\)} \mmaUnd{\(\sigma\)}[k, 3, n], \{k, 1, n\}]
 \end{mmaCell}
-We then define a function to find a spectral gap, given a list of eigenvalues
+\item We define a function to find a spectral gap, given a list of eigenvalues
 \begin{mmaCell}{Input}
 spectralgap[lst\_] := (Abs[#[[1]] - #[[2]]] &)[TakeSmallest[lst, 2]]
 \end{mmaCell}
@@ -88,6 +88,86 @@ and finally we compute the spectral gaps as a function of $n$ for the various $\
 \begin{mmaCell}{Input}
 	\mmaUnd{\(\lambda08\)} = spectralgap /@ Monitor[Table[Eigenvalues[IsingHamiltonian[n] /. \mmaUnd{\(\lambda\to\)} 0.8], \{n, 2, 12,2\}], n];
 \end{mmaCell}
+The results are as follows
+		\begin{center}
+	\begin{tikzpicture}
+		\begin{loglogaxis}[
+			width=12cm,
+			height=8cm,
+			xlabel={$n$},
+			ylabel={Gap size},
+			grid=major,
+    xtick={2,4,6,8,10,12},
+xticklabels={2,4,6,8,10,12},
+legend pos=south west 
+			]
+			
+
+			% First line
+\addplot[
+color=black,
+mark=*,
+thick
+]
+table[
+col sep=comma,
+x index=0,
+y index=1, only marks
+]{blatt12-data.csv};
+		
+\addlegendentry{$\lambda=0.8$}	
+			% First line
+						% First line
+			\addplot[
+			color=blue,
+			mark=*,
+			thick
+			]
+			table[
+			col sep=comma,
+			x index=0,
+			y index=2, only marks
+			]{blatt12-data.csv};
+			
+			\addlegendentry{$\lambda=1$}
+			
+			
+\addplot[
+color=red,
+mark=*,
+thick
+]
+table[
+col sep=comma,
+x index=0,
+y index=3, only marks
+]{blatt12-data.csv};
+			
+\addlegendentry{$\lambda=1.2$}
+			% Second line
+		\end{loglogaxis}
+	\end{tikzpicture}
+\end{center}
+
+The line $\lambda=1$ has an almost linear trend. In a log log plot, the trend appears linear $\log y = a\log x + b$ when the dependence is polynomial, i.e. $y = Ax^B$. 
+
+Since $\lambda=1$ is the critical point, all observables take power law scaling relations, yielding the approximately linear trend in the log log plot.
+
+\item We compute the discrete derivative using the following Mathematica code
+\begin{mmaCell}{Input}
+	Table[-Log[\mmaUnd{\(\lambda1\)}[[i + 1]]/\mmaUnd{\(\lambda1\)}[[i]]]/Log[nlst[[i + 1]]/nlst[[i]]], {i, 1, Length[\mmaUnd{\(\lambda1\)} - 1}]
+	\end{mmaCell}
+	In the convention given in the problem, this yields values
+	
+	\begin{center}
+	\begin{tabular}{cccccc}
+		\toprule
+	$N$	& 2 & 4 & 6 & 8 & 10\\\midrule
+$\nu(N)$ & 1.05824&  1.01784 & 1.00874 & 1.0052 & 1.00345\\\bottomrule
+	\end{tabular}
+	\end{center}
+	
+	The guess would be that $\nu(N)\xrightarrow{N\to\infty}1$.
 	\end{parts}
 \end{proof}
 
