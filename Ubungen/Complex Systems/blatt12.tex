@@ -151,7 +151,7 @@ y index=3, only marks
 
 The line $\lambda=1$ has an almost linear trend. In a log log plot, the trend appears linear $\log y = a\log x + b$ when the dependence is polynomial, i.e. $y = Ax^B$. 
 
-Since $\lambda=1$ is the critical point, all observables take power law scaling relations, yielding the approximately linear trend in the log log plot.
+Since $\lambda=1$ is the critical point, order parameters such as the gap size take power law scaling relations, yielding the approximately linear trend in the log log plot.
 
 \item We compute the discrete derivative using the following Mathematica code
 \begin{mmaCell}{Input}
@@ -167,7 +167,9 @@ $\nu(N)$ & 1.05824&  1.01784 & 1.00874 & 1.0052 & 1.00345\\\bottomrule
 	\end{tabular}
 	\end{center}
 	
-	The guess would be that $\nu(N)\xrightarrow{N\to\infty}1$.
+	The guess would be that $\nu(N)\xrightarrow{N\to\infty}1$. In particular, this implies that
+	\[\Delta_N \to \frac 1N\]
+	which can be easily checked by substituting this expression back into the definition of the discrete logarithmic derivative.\qedhere
 	\end{parts}
 \end{proof}
 
@@ -185,11 +187,7 @@ D\nabla^2\rho.
 \begin{enumerate}[label=(\alph*)]
 
 \item
-Determine the homogeneous (space-independent) stationary (time-independent) density
-\[
-\rho_{\mathrm{stat}}
-\]
-as a function of $\lambda$. Where is the critical point $\lambda_c$? Test the solutions for stability by a stability analysis.
+Determine the homogeneous (space-independent) stationary (time-independent) density $\rho_{\mathrm{stat}}$ as a function of $\lambda$. Where is the critical point $\lambda_c$? Test the solutions for stability by a stability analysis.
 
 \item
 Find the exponent for
@@ -235,5 +233,63 @@ f\!\left(\frac{x^2}{t}\right).
 		\[
 		\rho = 1 - \frac 1\lambda
 		.\] 
+		Note that on physical grounds the static density always has to be positive; hence, the second is only a valid solution for $\lambda>1$.
+		
+		We perform a stability analysis on $\rho_\text{stat}=0$ by setting $\rho(x, t)=\delta \rho(x,t)$ with $\delta\rho(x,t)$ small. Then, the equation of motion simplifies to
+		\[\delta\dot{\rho}(x,t) = (\lambda-1)\delta\rho +D \laplacian{\delta\rho(x,t)}\]
+		We will ignore the Laplacian term for now; a proper justification will come later. We then have
+		\[\delta\dot{\rho} = (\lambda-1)\delta\rho\]
+		This is a harmonic oscillator equation if $\lambda<1$, meaning that this solution is stable in that case. However, if $\lambda>1$, the perturbation does not vanish, but instead grows exponentially. Thus, this solution is unstable for $\lambda>1$. 
+		
+		For the solution $\rho_\text{stat} = 1 - \frac 1\lambda$, we again expand
+		\begin{align*}
+			\delta\dot{\rho} &= \lambda\left(\rho_\text{stat}+\delta\rho\right)(1-(\rho_\text{stat}+\delta\rho))-(\rho_\text{stat}+\delta\rho)\\
+			&= -\delta\rho + \delta\rho\lambda -\rho_\text{stat}+\lambda\rho_\text{stat} -2\rho_\text{stat}\lambda\delta\rho-\lambda\rho_\text{stat}^2+O(\delta\rho^2)\\
+			&= \lambda\rho_\text{stat}(1-\rho_\text{stat})-\rho_\text{stat} + \delta\rho(-1+\lambda-2\rho_\text{stat}\lambda)\\
+			&= \delta\rho(-1+\lambda-2\rho_\text{stat}\lambda)
+		\end{align*}
+		where we have used the fact that $\rho_\text{stat}$ is an equilibrium density, and thus $\lambda\rho_\text{stat}(1-\rho_\text{stat})-\rho_\text{stat}$ vanishes. Then, substituting in explicitly $\rho_\text{stat} = 1 - \frac 1\lambda$, we find
+		\[\delta\dot{\rho} = (1-\lambda)\delta\rho\]
+		Again, this is a harmonic oscillator, but for $\lambda>1$ instead, showing that the solution $\rho_\text{stat}=1-\frac1\lambda$ is stable along all of $\lambda>1$, where it exists.
+		\item Since $\lambda_c=1$, we define $\delta\lambda=\lambda-\lambda_c$ and expand in powers of $\delta\lambda$:
+		\begin{align*}
+			\rho_\text{stat} &= 1-\frac 1\lambda\\
+			&= 1 - \frac{1}{\lambda_c + \delta\lambda}\\
+			&= 1 - \frac 1{\lambda_c} + \frac{\delta\lambda}{\lambda_c^2}+O(\delta\lambda^2)\\
+			&= \frac{\delta\lambda}{\lambda_c^2} & \lambda_c = 1\\
+			&= \frac 1{\lambda_c^2} (\lambda-\lambda_c)^1
+		\end{align*}
+		Thus the critical exponent $\beta=1$.
+		\item We directly substitute in $\lambda_c = 1$ to arrive at the mean field equation
+		\[\dot{\rho} = -\rho^2 + D\laplacian{\rho}\]
+		Since the density is homogeneous, the Laplacian vanishes and wee are left with
+		\[\dot{\rho}=-\rho^2\]
+		This is a simple ordinary differential equation that can be solved directly using separation of variables.
+		\begin{align*}
+			\dot{\rho} &= -\rho^2 \\
+			\frac{\dd{\rho}}{\rho^2}&=-\dd{t}\\
+			-\frac1\rho &= -t - A\\
+			\rho &= \frac{1}{t+A}
+		\end{align*}
+		However, we know that the scaling law is only expected to be accurate at large times. Hence, we have
+		\[\rho(t) \xrightarrow{t\to\infty} \frac 1t.\]
+		By comparison, this yields $\delta=1$.
+		\item We first linearise the equation; now, the task is to find the Green's function of the linear ODE
+		\[(\partial_t - D\laplacian)\rho = 0\]
+		This must be done since nonlinear differential equations do not admit Green's functions at all. The Green's function is defined through the expression
+		\[LG(\va x, t)= \delta(\va x)\delta(t)\]
+		where $L$ is a differential operator, in this case $\partial_t - D\laplacian$.
+		
+		Since we are only working for $t>0$, the delta function vanishes, and we are actually just looking for solutions of
+		\[LG(\va x, t)=0\]
+		We will directly substitute the ansatz in the problem to show that the ansatz yields a good Green's function. First, we compute some derivatives
+		\begin{align*}
+			\partial_t\left[\frac 1t f\left(\frac{x^2}{t}\right)\right]&= -\frac 1{t^2}f\left(\frac{x^2}{t}\right) + \frac 1t f'\left(\frac{x^2}{t}\right)\left(-\frac{x^2}{t^2}\right) \\
+			\partial_x\left[\frac 1t f\left(\frac{x^2}{t}\right)\right] &= \frac 1t f'\left(\frac{x^2}{t}\right)\frac{2x}{t} \\
+			\partial_x^2\left[\frac 1t f\left(\frac{x^2}{t}\right)\right] &= \frac{2}{t^2}f'\left(\frac{x^2}{t}\right) + \frac{2x}{t^2}f''\left(\frac{x^2}{t}\right) \frac{2x}{t} 			
+		\end{align*}
+		Substituting all these derivatives in, we find that $f$ satisfies the equation
+		\[-\frac 1t^2f\left(\frac{x^2}{t}\right) - \frac{x^2}{t^3} f'\left(\frac{x^2}{t}\right) = D\left[\frac 2{t^2}f'\left(\frac{x^2}{t}\right)+ \frac{4x^2}{t^3} f''\left(\frac{x^2}{t}\right)\right].\]
+		Thus any function of the form given in the problem with $f$ satisfying the differential equation are a valid Green's function. To prove the converse, we note that the heat equation has rotational invariance and scaling invariance if we scale $t\mapsto b^2 t$ and $x \mapsto b x$, with the difference in powers arising from the Laplacian being 2nd order in the derivative. \qedhere
 	\end{parts}
 \end{proof}
